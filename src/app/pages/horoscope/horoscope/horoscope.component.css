@@ -13,6 +13,13 @@
     margin-right: 40px;
     margin-top: 24px !important;
     }
+
+    .dx-fieldset-column3 {
+        float: left;
+        width: 25%;
+        margin-right: 80px;
+        margin-top: 24px !important;
+        }
     
     .clear {
     clear: both;
@@ -28,6 +35,11 @@
     width: 100%;
     height:55px;
     }
+    .dx-fieldset-column3 {
+        float: left;
+        width: 100%;
+        height:55px;
+        }
     .dx-field-label{
         width: 60%;
         align-self:flex-end;
