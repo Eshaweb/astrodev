@@ -52,6 +52,7 @@ export class HoroscopeComponent {
   languagedata: ArrayStore;
   genderValue: string;
   genderdata: ArrayStore;
+  password: any;
     ngOnInit() {
       this.products = this.horoScopeService.getProducts();
       this.timeformatdata = new ArrayStore({
@@ -455,17 +456,21 @@ export class HoroscopeComponent {
         IsMarried: true,
       }
   
-      var horoRequest = this.horoRequest;
       this.horoScopeService.Fathername = this.horoRequest.Father;
       this.horoScopeService.Mothername = this.horoRequest.Mother;
       this.horoScopeService.horoRequest = this.horoRequest;
       this.horoScopeService.birthDateinDateFormat = bdate;
       this.horoScopeService.birthTimeinDateFormat = btime;
-      this.horoScopeService.GetFreeData(this.horoRequest, (data) => {
-          this.horoScopeService.data = data;
-          this.loadingSwitchService.loading = false;
-          this.router.navigate(["/horoscope/getFreeData"]);
-      });
+      // this.horoScopeService.GetFreeData(this.horoRequest, (data) => {
+      //     this.horoScopeService.data = data;
+      //     this.loadingSwitchService.loading = false;
+      //     this.router.navigate(["/horoscope/getFreeData"]);
+      // });
+      this.horoScopeService.GetFreeData(this.horoRequest).subscribe((data:any) => {
+        this.horoScopeService.data = data;
+        this.loadingSwitchService.loading = false;
+        this.router.navigate(["/horoscope/getFreeData"]);
+    });
     }
   
     public onDialogOKSelected(event) {
@@ -499,22 +504,8 @@ export class HoroscopeComponent {
       "none";
   }
   
-  // passwordComparison = () => {
-  //     return this.password;
-  // };
-  // checkComparison() {
-  //     return true;
-  // }
-  // onFormSubmit = function(e) {
-  //     notify({
-  //         message: "You have submitted the form",
-  //         position: {
-  //             my: "center top",
-  //             at: "center top"
-  //         }
-  //     }, "success", 3000);
-      
-  //     e.preventDefault();
-  // }
-
+  checkComparison() {
+      return true;
+  }
+  
 }
