@@ -6,7 +6,18 @@ import { OrderResponse } from "src/Models/OrderResponse";
 import { ResultResponse } from "src/Models/ResultResponse";
 import { HttpService } from '../Error/http.service';
 import { ErrorService } from '../Error/error.service';
-
+import { SelectBoxModel } from 'src/Models/SelectBoxModel';
+export class SelectBoxModelNew{
+    Id: number;
+    Text: string;
+}
+let products: SelectBoxModelNew[] = [{
+    "Id": 1,
+    "Text": "HD Video Player"
+}, {
+    "Id": 2,
+    "Text": "SuperHD Player"
+}];
 
 
 @Injectable()
@@ -38,6 +49,10 @@ export class HoroScopeService {
     constructor(private httpService: HttpService, private errorService: ErrorService, handler: HttpBackend, public http: HttpClient) {
         this.http = new HttpClient(handler);
     }
+    getProducts(): SelectBoxModelNew[] {
+        return products;
+    }
+
     //:Observable<SalesResponse>
     GetFreeData(horoRequest, callback: (data) => void) {
         var endPoint = "HoroScope/GetFreeData";
