@@ -65,21 +65,33 @@
                         <div class="dx-field">
                             <div class="dx-field-label">Gender</div>
                             <div class="dx-field-value" style="width: 100%">
-                                <dx-radio-group [items]="genders" [value]="genders[0]" (onValueChanged)="onValueChanged($event)" layout="horizontal">
+                                <!-- <dx-radio-group
+                                 [items]="genders" 
+                                 [value]="genders[0]" 
+                                 (onValueChanged)="onGenderChanged($event)" 
+                                 layout="horizontal">
+                                </dx-radio-group> -->
+                                <dx-radio-group
+                                 [dataSource]="genderdata" 
+                                 [value]="genderValue"
+                                 displayExpr="Text"
+                                 valueExpr="Id" 
+                                 (onValueChanged)="onGenderChanged($event)" 
+                                 layout="horizontal">
                                 </dx-radio-group>
                             </div>
                         </div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
                                 <div class="dx-field-label">Time Format*</div>
-                                <div class="dx-field-value" style="width: 100%">
-                                  <dx-select-box formControlName="TimeFormat" 
-                                      [items]="timeformats"
-                                      placeholder="Choose Type"
+                                <div class="dx-field-value">
+                                <dx-select-box 
+                                (onValueChanged)="timeformatdataSelection($event)"
+                                      [dataSource]="timeformatdata"
                                       displayExpr="Text"
                                       valueExpr="Id"
-                                      showClearButton="true" [value]="timeformats[0].Id"
-                                  ></dx-select-box>
+                                      [value]="timeformatvalue">
+                                  </dx-select-box>
                                   <p style="color:red" id='err_TimeFormat'></p>
 
                                 </div>
@@ -88,14 +100,14 @@
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
                                 <div class="dx-field-label">Report Size*</div>
-                                <div class="dx-field-value" style="width: 100%">
-                                  <dx-select-box formControlName="ReportSize" 
-                                      [items]="reportSizes"
-                                      placeholder="Choose Type"
+                                <div class="dx-field-value">
+                                  <dx-select-box 
+                                  (onValueChanged)="reportSizedataSelection($event)"
+                                      [dataSource]="reportSizedata"
                                       displayExpr="Text"
                                       valueExpr="Id"
-                                      showClearButton="true" [value]="reportSizes[0]"
-                                  ></dx-select-box>
+                                      [value]="reportSizevalue">
+                                  </dx-select-box>
                                 </div>
                                 <p style="color:red" id='err_ReportSize'></p>
                             </div>
@@ -113,14 +125,21 @@
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
                                 <div class="dx-field-label">Languages*</div>
-                                <div class="dx-field-value" style="width: 100%">
-                                  <dx-select-box formControlName="language" 
+                                <div class="dx-field-value">
+                                  <!-- <dx-select-box formControlName="language"
                                       [items]="languages"
                                       placeholder="Choose Type"
                                       displayExpr="Text"
                                       valueExpr="Id"
                                       showClearButton="true" [value]="languages[0]"
-                                  ></dx-select-box>
+                                  ></dx-select-box> -->
+                                  <dx-select-box
+                                  [dataSource]="languagedata"
+                                  (onValueChanged)="languagedataSelection($event)"
+                                  displayExpr="Text"
+                                  valueExpr="Id"
+                                  [value]="languagevalue" >
+                              </dx-select-box>
                                 </div>
                                 <p style="color:red" id='err_language'></p>
                             </div>

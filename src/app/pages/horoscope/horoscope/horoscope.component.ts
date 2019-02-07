@@ -6,13 +6,14 @@ import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/fo
 import { from, Subscription } from 'rxjs';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
-import { PaymentInfo, ServiceInfo, HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
+import { PaymentInfo, ServiceInfo, HoroScopeService, SelectBoxModelNew } from 'src/Services/HoroScopeService/HoroScopeService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { UIService } from 'src/Services/UIService/ui.service';
 import { ErrorService } from 'src/Services/Error/error.service';
 import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import ArrayStore from 'devextreme/data/array_store';
 
 if(!/localhost/.test(document.location.host)) {
     enableProdMode();
@@ -25,14 +26,15 @@ if(!/localhost/.test(document.location.host)) {
   styleUrls: ['./horoscope.component.css']
 })
 export class HoroscopeComponent {
-  genders:string[];
-  //genders: SelectBoxModel[];
+  //genders:string[];
+  genders: SelectBoxModel[];
     dateModel: string;
     isLoading: boolean;
     public loading = false;
     intLongDeg: number;
     intLatDeg: number;
-    
+    timeformatdata: any;
+
     timeformatvalue: string;
     birthDateinDateFormat: Date;
     birthTimeinDateFormat: Date;
@@ -46,11 +48,30 @@ export class HoroscopeComponent {
     ];
     reportSizevalue: string;
     languagevalue: string;
+    products: SelectBoxModelNew[];
+  reportSizedata: any;
+  languagedata: ArrayStore;
+  genderValue: string;
+  genderdata: ArrayStore;
     ngOnInit() {
+      this.products = this.horoScopeService.getProducts();
+      this.timeformatdata = new ArrayStore({
+        data: this.timeformats,
+        key: "Id"
+      });
+      this.reportSizedata = new ArrayStore({
+        data: this.reportSizes,
+        key: "Id"
+      });
+      this.languagedata = new ArrayStore({
+        data: this.languages,
+        key: "Id"
+      });
+      this.genderdata = new ArrayStore({
+        data: this.genders,
+        key: "Id"
+      });
       this.currentValue = 0;
-      this.timeformatvalue = this.timeformats[0].Text;
-      this.reportSizevalue = this.reportSizes[2].Text;
-      this.languagevalue = this.languages[2].Text;
       this.mapsAPILoader.load().then(() => {
         let nativeHomeInputBox = document.getElementById('txtHome').getElementsByTagName('input')[0];
         let autocomplete = new google.maps.places.Autocomplete(nativeHomeInputBox, {
@@ -68,20 +89,27 @@ export class HoroscopeComponent {
         });
       });
     }
-    onValueChanged(event){
-      alert(event);
+    onGenderChanged(event){
+      if(event.value=='M'){
+        this.genderValue='M';
+      }
+      else{
+        this.genderValue='F';
+      }
     }
     ngAfterViewInit(): void {
-    //   if (this.horoScopeService.horoRequest != null) {
-    //     this.timeFormatCombo.dropdown.setSelectedItem(this.horoScopeService.horoRequest.TimeFormat);
-    //     this.reportSizecombo.dropdown.setSelectedItem(this.horoScopeService.horoRequest.ReportSize);
-    //     this.languagecombo.dropdown.setSelectedItem(this.horoScopeService.horoRequest.LangCode);
-    //   }
-    //   else {
-    //     this.timeFormatCombo.selectItems([this.timeformats[0]]);
-    //     this.reportSizecombo.selectItems([this.reportSizes[2]]);
-    //     this.languagecombo.selectItems([this.languages[2]]);
-    //   }
+      if (this.horoScopeService.horoRequest != null) {
+        this.timeformatvalue= this.horoScopeService.horoRequest.TimeFormat;
+        this.reportSizevalue= this.horoScopeService.horoRequest.ReportSize;
+        this.languagevalue= this.horoScopeService.horoRequest.LangCode;
+        this.genderValue=this.horoScopeService.horoRequest.Gender;
+      }
+      else {
+        this.timeformatvalue = this.timeformats[0].Id;
+        this.reportSizevalue = this.reportSizes[2].Id;
+        this.languagevalue = this.languages[2].Id;
+        this.genderValue=this.genders[0].Id;
+      }
 
     }
   
@@ -160,15 +188,14 @@ export class HoroscopeComponent {
     //     return isNumeric(value);
     //   });
     // }
-    public ds = this.languages[0];
     constructor(service: Service, public loadingSwitchService:LoadingSwitchService,private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
       private cdr: ChangeDetectorRef, public partyService: PartyService, public horoScopeService: HoroScopeService, public uiService: UIService,
       private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
       //this.serviceInfo =  horoScopeService.getCustomers();
       this.maxDate = new Date(this.maxDate.setFullYear(this.maxDate.getFullYear() - 21));
       this.countries = service.getCountries();
-      this.genders = ["Male", "Female"];
-      //this.genders = [{ Id: "M", Text: "Male" },{ Id: "F", Text: "Female" }];
+      //this.genders = ["Male", "Female"];
+      this.genders = [{ Id: "M", Text: "Male" },{ Id: "F", Text: "Female" }];
       this.payusing = horoScopeService.getInfo();
       this.using = ["AstroLite Wallet", "Payment Gateway"];
       //this.horoRequest=this.horoScopeService.horoRequest;
@@ -179,13 +206,13 @@ export class HoroscopeComponent {
         gotra: [''],
         Date: new Date(),
         Time: new Date(),
-        TimeFormat: ['', [Validators.required]],
-        ReportSize: ['', [Validators.required]],
+        TimeFormat: ['', []],
+        ReportSize: ['', []],
         birthPlace: ['', [Validators.required]],
-        language: ['', [Validators.required]],
+        language: ['', []],
         latitude: [''],
         longitude: [''],
-        gender: ['M', [Validators.required]],
+        gender: ['M', []],
         LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
         LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
         LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
@@ -334,7 +361,15 @@ export class HoroscopeComponent {
       language_required: '*Select Language',
   
     };
-  
+    timeformatdataSelection(event){
+      this.timeformatvalue=event.value;
+    }
+    reportSizedataSelection(event){
+      this.reportSizevalue=event.value;
+    }
+    languagedataSelection(event){
+      this.languagevalue=event.value;
+    }
     OnMouseUp(event) {
       if (event == null) {
         this.timeZoneName = null;
@@ -394,7 +429,8 @@ export class HoroscopeComponent {
         //DOB:this.horoscopeForm.controls['Bdate'].value.toISOString(),
         //TimeFormat: "STANDARD",
         Place: this.horoScopeService.birthplaceShort,
-        TimeFormat: this.horoscopeForm.controls['TimeFormat'].value,
+        //TimeFormat: this.horoscopeForm.controls['TimeFormat'].value,
+        TimeFormat: this.timeformatvalue,
         LatDeg: this.horoscopeForm.controls['LatDeg'].value,
         LatMt: this.horoscopeForm.controls['LatMt'].value,
         LongDeg: this.horoscopeForm.controls['LongDeg'].value,
@@ -404,11 +440,14 @@ export class HoroscopeComponent {
         ZH: this.horoscopeForm.controls['ZH'].value,
         ZM: this.horoscopeForm.controls['ZM'].value,
         PN: this.horoscopeForm.controls['PN'].value,
-        Gender: this.horoscopeForm.controls['gender'].value,
-        LangCode: this.horoscopeForm.controls['language'].value,
+        //Gender: this.horoscopeForm.controls['gender'].value,
+        Gender: this.genderValue,
+        //LangCode: this.horoscopeForm.controls['language'].value,
+        LangCode: this.languagevalue,
         FormParameter: 'H',
         ReportType: '#HFH',
-        ReportSize: this.horoscopeForm.controls['ReportSize'].value,
+        //ReportSize: this.horoscopeForm.controls['ReportSize'].value,
+        ReportSize: this.reportSizevalue,
         Swarna: 0,
         Pruchaka: 0,
         JanmaRashi: 0,
@@ -419,12 +458,12 @@ export class HoroscopeComponent {
       var horoRequest = this.horoRequest;
       this.horoScopeService.Fathername = this.horoRequest.Father;
       this.horoScopeService.Mothername = this.horoRequest.Mother;
-      var timeFormatText=this.horoscopeForm.controls['TimeFormat'].value;
-      this.horoRequest.TimeFormat = this.timeformats.find(function (obj) { return obj.Text === timeFormatText }).Id;
-      var ReportSizeText=this.horoscopeForm.controls['ReportSize'].value;
-      this.horoRequest.ReportSize = this.reportSizes.find(function (obj) { return obj.Text === ReportSizeText }).Id;
-      var languageText=this.horoscopeForm.controls['language'].value;
-      this.horoRequest.LangCode = this.languages.find(function (obj) { return obj.Text === languageText }).Id;
+      // var timeFormatText=this.horoscopeForm.controls['TimeFormat'].value;
+      // this.horoRequest.TimeFormat = this.timeformats.find(function (obj) { return obj.Text === timeFormatText }).Id;
+      // var ReportSizeText=this.horoscopeForm.controls['ReportSize'].value;
+      // this.horoRequest.ReportSize = this.reportSizes.find(function (obj) { return obj.Text === ReportSizeText }).Id;
+      // var languageText=this.horoscopeForm.controls['language'].value;
+      // this.horoRequest.LangCode = this.languages.find(function (obj) { return obj.Text === languageText }).Id;
       this.horoScopeService.horoRequest = this.horoRequest;
       this.horoScopeService.birthDateinDateFormat = bdate;
       this.horoScopeService.birthTimeinDateFormat = btime;

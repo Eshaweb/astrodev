@@ -6,6 +6,7 @@ import { PartyService } from "../../Services/PartyService/PartyService";
 import { LoginService } from "../../Services/login/login.service";
 import { ActivatedRoute, Router } from "../../../node_modules/@angular/router";
 import { Observable } from 'rxjs';
+import {tap} from 'rxjs/internal/operators';
 // import { RegisterService } from "../services/app-data.service";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -45,7 +46,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 headers: req.headers.set("Authorization", "Bearer " + this.loginService.Token)
 
             });
-            // return next.handle(clonedreq)
+             return next.handle(clonedreq)
             //     .do(
             //     succ => { },
             //     err => {
@@ -55,22 +56,40 @@ export class AuthInterceptor implements HttpInterceptor {
             //         this.event.publish('UNAUTHORIZED');           
             //         }
             //     );
+                .pipe(tap(
+                succ => { },
+                err => {
+                    if (err.status === 401)
+                    this.router.navigateByUrl('/login');
+                    // this.navCtrl.push(LoginPage);  
+                    //this.event.publish('UNAUTHORIZED');           
+                    }
+                ));
         }
         else if(this.loginService.Token== null){
             
             const clonedreq = req.clone({
                 headers: req.headers.set("Authorization", "Bearer ")
             });
-            // return next.handle(clonedreq)
-            //     .do(
-            //     succ => { },
-            //     err => {
-            //         if (err.status === 401)
-            //         //this.router.navigateByUrl('/login');
-            //         // this.navCtrl.push(LoginPage);  
-            //         this.event.publish('UNAUTHORIZED');           
-            //         }
-            //     );
+            return next.handle(clonedreq)
+                // .do(
+                // succ => { },
+                // err => {
+                //     if (err.status === 401)
+                //     this.router.navigateByUrl('/login');
+                //     // this.navCtrl.push(LoginPage);  
+                //     //this.event.publish('UNAUTHORIZED');           
+                //     }
+                // );
+                 .pipe(tap(
+                succ => { },
+                err => {
+                    if (err.status === 401)
+                    this.router.navigateByUrl('/login');
+                    // this.navCtrl.push(LoginPage);  
+                    //this.event.publish('UNAUTHORIZED');           
+                    }
+                ));
         } 
         else {
             //this.router.navigateByUrl('/login');
