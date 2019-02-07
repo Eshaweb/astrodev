@@ -47,7 +47,7 @@
                         <div class="dx-field">
                             <div class="dx-field-label">Date of birth</div>
                             <div class="dx-field-value">
-                                <dx-date-box formControlName="Date" [value]="now" type="date" displayFormat="dd/MM/yyyy" dateSerializationFormat="yyyy-MM-dd">
+                                <dx-date-box formControlName="Date" [value]="now" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd">
                                 </dx-date-box>
                                 </div>
                         </div>
@@ -56,8 +56,10 @@
                         <div class="dx-field">
                             <div class="dx-field-label">Birth Time*</div>
                             <div class="dx-field-value">
-                              <dx-date-box formControlName="Time" width="300" type="datetime" [showClearButton]="true" displayFormat="shortTime" (onOpened)="opened($event)" dateSerializationFormat="HH:mm:ss">
-                              </dx-date-box>
+                              <!-- <dx-date-box formControlName="Time" width="300" type="datetime" [showClearButton]="true" displayFormat="shortTime" (onOpened)="opened($event)" dateSerializationFormat="HH:mm:ss">
+                            </dx-date-box> -->
+                            <dx-date-box formControlName="Time" type="time" [showClearButton]="true" pickerType="rollers" [(ngModel)]="birthTimeinDateFormat" dateSerializationFormat="HH:mm:ss">
+                            </dx-date-box>
                             </div>
                         </div>
                         </div>

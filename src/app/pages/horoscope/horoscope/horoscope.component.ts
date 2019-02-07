@@ -34,7 +34,6 @@ export class HoroscopeComponent {
     intLongDeg: number;
     intLatDeg: number;
     timeformatdata: any;
-
     timeformatvalue: string;
     birthDateinDateFormat: Date;
     birthTimeinDateFormat: Date;
@@ -200,7 +199,7 @@ export class HoroscopeComponent {
       this.using = ["AstroLite Wallet", "Payment Gateway"];
       //this.horoRequest=this.horoScopeService.horoRequest;
       this.horoscopeForm = this.formbuilder.group({
-        Name: ['', [Validators.minLength(4)]],
+        Name: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[^0-9]+$')]],
         fatherName: [''],
         motherName: [''],
         gotra: [''],
@@ -309,6 +308,7 @@ export class HoroscopeComponent {
     private validationMessages = { //used in above method.
       Name_required: '*Enter Name',
       Name_minlength: '*Minimum length is 4',
+      Name_pattern: 'Name should be character only',
   
       fatherName_required: '*Enter Father Name',
       fatherName_minlength: '*Minimum length is 4',
@@ -458,12 +458,6 @@ export class HoroscopeComponent {
       var horoRequest = this.horoRequest;
       this.horoScopeService.Fathername = this.horoRequest.Father;
       this.horoScopeService.Mothername = this.horoRequest.Mother;
-      // var timeFormatText=this.horoscopeForm.controls['TimeFormat'].value;
-      // this.horoRequest.TimeFormat = this.timeformats.find(function (obj) { return obj.Text === timeFormatText }).Id;
-      // var ReportSizeText=this.horoscopeForm.controls['ReportSize'].value;
-      // this.horoRequest.ReportSize = this.reportSizes.find(function (obj) { return obj.Text === ReportSizeText }).Id;
-      // var languageText=this.horoscopeForm.controls['language'].value;
-      // this.horoRequest.LangCode = this.languages.find(function (obj) { return obj.Text === languageText }).Id;
       this.horoScopeService.horoRequest = this.horoRequest;
       this.horoScopeService.birthDateinDateFormat = bdate;
       this.horoScopeService.birthTimeinDateFormat = btime;
@@ -478,16 +472,7 @@ export class HoroscopeComponent {
       event.dialog.close();
     }
   
-
-
-
-
-
-
-
-    time = {hour: 13, minute: 30};
-  meridian = true;
-  password = "";
+  
   maxDate: Date = new Date();
   cityPattern = "^[^0-9]+$";
   namePattern: any = /^[^0-9]+$/;
@@ -513,25 +498,23 @@ export class HoroscopeComponent {
       .getElementsByClassName("dx-box-item")[0].style.display =
       "none";
   }
-  toggleMeridian() {
-    this.meridian = !this.meridian;
-}
-  passwordComparison = () => {
-      return this.password;
-  };
-  checkComparison() {
-      return true;
-  }
-  onFormSubmit = function(e) {
-      notify({
-          message: "You have submitted the form",
-          position: {
-              my: "center top",
-              at: "center top"
-          }
-      }, "success", 3000);
+  
+  // passwordComparison = () => {
+  //     return this.password;
+  // };
+  // checkComparison() {
+  //     return true;
+  // }
+  // onFormSubmit = function(e) {
+  //     notify({
+  //         message: "You have submitted the form",
+  //         position: {
+  //             my: "center top",
+  //             at: "center top"
+  //         }
+  //     }, "success", 3000);
       
-      e.preventDefault();
-  }
+  //     e.preventDefault();
+  // }
 
 }
