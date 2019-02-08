@@ -19,9 +19,11 @@
     </div>
 </div>
 <div class="dx-fieldset-column">
-    <div class="dx-field">
-        <dx-button type="default" text="Request OTP" *ngIf='!requestOTP' (onClick)="onRequestOTP()" width="100%"></dx-button>
-        <dx-button type="default" text="Re-generate OTP" *ngIf='requestOTP' (onClick)="onRegenerateOTP()" width="100%"></dx-button>
+    <div class="dx-field"  *ngIf='!requestOTP'>
+        <dx-button type="default" text="Request OTP" (onClick)="onRequestOTP()" width="100%"></dx-button>
+    </div>
+    <div class="dx-field" *ngIf='requestOTP' >
+        <dx-button type="default" text="Re-generate OTP" (onClick)="onRegenerateOTP()" width="100%"></dx-button>
     </div>
 </div>
 <div class="clear"></div>

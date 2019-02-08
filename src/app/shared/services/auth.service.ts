@@ -4,6 +4,7 @@ import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 @Injectable()
 export class AuthenticationService {
   loggedIn = true;
+  registered: boolean;
 
   constructor(private router: Router) {}
 
@@ -17,7 +18,7 @@ export class AuthenticationService {
     this.router.navigate(['/login-form']);
   }
   register() {
-    this.loggedIn = false;
+    this.registered = false;
     this.router.navigate(['/registration-form']);
   }
   get isLoggedIn() {
@@ -31,14 +32,14 @@ export class AuthGuardService implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot): boolean {
         const isLoggedIn = this.authService.isLoggedIn;
-        const isRegistrationForm = route.routeConfig.path === 'registration-form';
+        //const isRegistrationForm = route.routeConfig.path === 'registration-form';
         const isLoginForm = route.routeConfig.path === 'login-form';
         if (isLoggedIn && isLoginForm) {
             this.router.navigate(['/']);
             return false;
         }
         if (!isLoggedIn && !isLoginForm) {
-          if(isRegistrationForm==true){
+          if(this.authService.registered==false){
             this.router.navigate(['/registration-form']);
           }
           else{
