@@ -1,6 +1,7 @@
 <dx-validation-group>
+        <dx-button icon="arrowleft"></dx-button>
     <div class="login-header">
-        <div class="title">TestDevextreme</div>
+        <div class="title">Astrolite</div>
         <div>Sign In to your account</div>
     </div>
     <form [formGroup]="loginForm">
@@ -9,16 +10,21 @@
         </dx-text-box>
         <p style="color:red;font-size: 12px;" id='err_UserName'></p>
     </div>
+    <div class="dx-fieldset-column"style="width: 145px;margin-right:5px;">
     <div class="dx-field">
         <dx-text-box mode="password" formControlName="Password" *ngIf='!requestOTP' [(value)]="password" placeholder="Password" width="100%">
         </dx-text-box>
         <dx-text-box mode="password" formControlName="Password" *ngIf='requestOTP' [(value)]="password" placeholder="Enter OTP" width="100%">
         </dx-text-box>
     </div>
+</div>
+<div class="dx-fieldset-column">
     <div class="dx-field">
         <dx-button type="default" text="Request OTP" *ngIf='!requestOTP' (onClick)="onRequestOTP()" width="100%"></dx-button>
         <dx-button type="default" text="Re-generate OTP" *ngIf='requestOTP' (onClick)="onRegenerateOTP()" width="100%"></dx-button>
     </div>
+</div>
+<div class="clear"></div>
     <!-- <div class="dx-field">
         <dx-check-box [value]="false" text="Remember me"></dx-check-box>
     </div> -->
@@ -26,10 +32,17 @@
     <div class="dx-field">
         <dx-button type="default" text="Login" [disabled]="!loginForm.valid" (onClick)="Login_Click()" width="100%"></dx-button>
     </div>
+    
     <div class="dx-field">
+            <div class="dx-fieldset-column"style="width: 175px;">
         <a routerLink="/recovery">Forgot password ?</a>
-        <a routerLink="/recovery">Register</a>
     </div>
+    <div class="dx-fieldset-column">
+        <a routerLink="/recovery">Register</a>
+    
+    </div>
+</div>
+
     <p>Login through Social Accounts</p>
     <div class="dx-field">
         <dx-button type="default" text="Google" (onClick)="signInWithGoogle()" width="100%"></dx-button>

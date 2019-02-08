@@ -56,8 +56,8 @@ const routes: Routes = [
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [HomeComponent,  
-    HoroscopeComponent,
-    FreeDataComponent
+   // HoroscopeComponent,
+    //FreeDataComponent
 
   ]
 })

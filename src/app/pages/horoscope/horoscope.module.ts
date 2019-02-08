@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HoroscopeComponent } from '../horoscope/horoscope/horoscope.component';
 import { HoroscopeRoutingModule } from './horoscope-routing.module';
 import { DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule } from 'devextreme-angular';
+import { FreeDataComponent } from './free-data/free-data.component';
 
 @NgModule({
     imports: [
@@ -17,8 +18,8 @@ import { DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBox
     ],
 
     declarations: [
-        //HoroscopeComponent, 
-        //FreeDataComponent
+        HoroscopeComponent, 
+        FreeDataComponent
     ]
 })
 export class HoroscopeModule {
