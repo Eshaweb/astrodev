@@ -38,6 +38,10 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'purchase',
+    loadChildren: './pages/purchase/purchase.module#PurchaseModule'
+  },
+  {
     path: '**',
     redirectTo: 'home',
     canActivate: [ AuthGuardService ]

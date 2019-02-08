@@ -5,7 +5,7 @@
     </div>
     <form [formGroup]="registrationForm">
     <div class="dx-field">
-        <dx-text-box [(value)]="login" formControlName="UserName" placeholder="Mobile No / Email" width="100%">
+        <dx-text-box formControlName="UserName" placeholder="Mobile No / Email" width="100%">
         </dx-text-box>
     </div>
     <p style="color:red;font-size: 12px;" id='err_UserName'></p>

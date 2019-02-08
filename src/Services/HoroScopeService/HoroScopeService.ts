@@ -7,6 +7,9 @@ import { ResultResponse } from "src/Models/ResultResponse";
 import { HttpService } from '../Error/http.service';
 import { ErrorService } from '../Error/error.service';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
+import { Caption } from 'src/Models/HoroScope/Caption';
+import { CaptionDbService } from '../CaptionService/captionDb.service';
+import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
 export class SelectBoxModelNew{
     Id: number;
     Text: string;
@@ -43,10 +46,10 @@ export class HoroScopeService {
     birthTimeinDateFormat:Date;
     AstroReportId:string;
     itemOrdered: ServiceInfo;
-    data: any;
+    horoResponse: HoroResponse;
     ItActId = '#SH';
     birthplaceShort: string;
-    constructor(private httpService: HttpService, private errorService: ErrorService, handler: HttpBackend, public http: HttpClient) {
+    constructor(private captionDbService:CaptionDbService,private httpService: HttpService, private errorService: ErrorService, handler: HttpBackend, public http: HttpClient) {
         this.http = new HttpClient(handler);
     }
     getProducts(): SelectBoxModelNew[] {
@@ -58,7 +61,10 @@ export class HoroScopeService {
         var endPoint = "HoroScope/GetFreeData";
         return this.httpService.Post(endPoint, horoRequest);
     }
-
+    GetCaption(langCode:string,caption:Caption)
+    {
+     this.captionDbService.GetCaption(langCode,caption);
+    }
     DownloadResult(AstroReportId, callback: (data) => void){
         var url = "https://astroliteapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
         this.http.get(url, { responseType: "blob" }).subscribe((data: any) => {

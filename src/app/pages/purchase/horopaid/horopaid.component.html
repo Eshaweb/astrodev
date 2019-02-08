@@ -1,0 +1,37 @@
+    
+    <h3 >{{service.Name}}</h3>
+    <div class="full-horoscope-1">
+    <h5 >{{service.Description}}</h5>
+    <h6  *ngIf='!checkBoxValue'>MRP.               {{service.MRP}}</h6>
+    <h6  *ngIf='checkBoxValue'>MRP.               {{service.PrintMRP}}</h6>
+    <h6  *ngIf='!checkBoxValue'>Discount             {{SoftCopyDifference}}</h6>
+    <h6  *ngIf='checkBoxValue'>Discount             {{HardCopyDifference}}</h6>
+    <h6  *ngIf='!checkBoxValue'>Actual Price      {{service.Amount}}</h6>
+    <h6  *ngIf='checkBoxValue'>Actual Price      {{service.PrintAmount}}</h6>
+    <div class="hardcopy-checkbox">
+    <div class="dx-fieldset">
+        <div>
+            <dx-check-box 
+                id="check"
+                (onValueChanged)="hardcopyRequired_Click(service.ItMastId)"
+                [(value)]="checkBoxValue"
+                text="Hardcopy Required">
+            </dx-check-box>
+        </div>
+    </div>
+    </div>
+    
+    <h5 *ngIf='!checkBoxValue'>Total Price :{{service.Amount}}</h5>
+    <h5 *ngIf='checkBoxValue'>Total Price :{{service.PrintAmount}}</h5>
+    </div>
+    <h5 >Delivery Service is Applicable for Customers Within India</h5>
+    <div class="next">
+    <dx-button (onClick)='onNext(service)'
+                id="button"
+                text="Select"
+                type="success"  
+                [useSubmitBehavior]="true">
+            </dx-button>
+  </div>
+    
+    
