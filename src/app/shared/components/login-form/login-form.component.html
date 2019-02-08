@@ -11,7 +11,7 @@
         <p style="color:red;font-size: 12px;" id='err_UserName'></p>
     </div>
    <div class="twocol">
-    <div class="dx-field" style="margin-right: 12px;">
+    <div class="dx-field" style="margin-right: 12px;" >
         <dx-text-box mode="password" formControlName="Password" *ngIf='!requestOTP' [(value)]="password" placeholder="Password" width="100%">
         </dx-text-box>
         <dx-text-box mode="password" formControlName="Password" *ngIf='requestOTP' [(value)]="password" placeholder="Enter OTP" width="100%">
