@@ -37,8 +37,8 @@ export class HeaderComponent {
     text: 'Register',
     icon: 'runner',
     onClick: () => {
-      //this.authService.register();
-      this.router.navigate(['/registration-form']);
+      this.authService.register();
+      //this.router.navigate(['/registration-form']);
     }
   }];
 
