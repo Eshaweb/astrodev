@@ -23,6 +23,7 @@ import { AuthInterceptor } from 'src/Services/auth/auth.interceptor';
 import { APP_BASE_HREF } from '@angular/common';
 import { ErrorService } from 'src/Services/Error/error.service';
 import { HttpService, applicationHttpClientCreator } from 'src/Services/Error/http.service';
+import { RegistrationFormModule } from './shared/components/registration-form/registration-form.module';
 
 
 let config = new AuthServiceConfig([
@@ -56,6 +57,7 @@ export function provideConfig() {
     SingleCardModule,
     FooterModule,
     LoginFormModule,
+    RegistrationFormModule,
     AppRoutingModule,
     HttpClientModule
   ],

@@ -11,13 +11,14 @@ import { AgmCoreModule } from '@agm/core';
 import { NgxLoadingModule } from 'ngx-loading';
 import { HoroscopeComponent } from './pages/horoscope/horoscope/horoscope.component';
 import { FreeDataComponent } from './pages/horoscope/free-data/free-data.component';
+import { RegistrationFormComponent } from './shared/components/registration-form/registration-form/registration-form.component';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [
   {
     path: 'horoscope',
     //component: HoroscopeComponent,
-    loadChildren: './pages/./horoscope/horoscope.module#HoroscopeModule'
+    loadChildren: './pages/horoscope/horoscope.module#HoroscopeModule'
   },
   
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
   {
     path: 'login-form',
     component: LoginFormComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'registration-form',
+    component: RegistrationFormComponent,
     canActivate: [ AuthGuardService ]
   },
   {
@@ -56,8 +62,8 @@ const routes: Routes = [
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [HomeComponent,  
-    HoroscopeComponent,
-    FreeDataComponent
+    //HoroscopeComponent,
+    //FreeDataComponent
 
   ]
 })

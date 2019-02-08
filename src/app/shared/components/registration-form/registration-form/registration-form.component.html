@@ -1,0 +1,45 @@
+<dx-validation-group>
+    <div class="login-header">
+        <div class="title">TestDevextreme</div>
+        <div>Sign In to your account</div>
+    </div>
+    <form [formGroup]="loginForm">
+    <div class="dx-field">
+        <dx-text-box [(value)]="login" formControlName="UserName" placeholder="Mobile No / Email" width="100%">
+        </dx-text-box>
+        <p style="color:red;font-size: 12px;" id='err_UserName'></p>
+    </div>
+    <div class="dx-field">
+        <dx-text-box mode="password" formControlName="Password" *ngIf='!requestOTP' [(value)]="password" placeholder="Password" width="100%">
+        </dx-text-box>
+        <dx-text-box mode="password" formControlName="Password" *ngIf='requestOTP' [(value)]="password" placeholder="Enter OTP" width="100%">
+        </dx-text-box>
+    </div>
+    <div class="dx-field">
+        <dx-button type="default" text="Request OTP" *ngIf='!requestOTP' (onClick)="onRequestOTP()" width="100%"></dx-button>
+        <dx-button type="default" text="Re-generate OTP" *ngIf='requestOTP' (onClick)="onRegenerateOTP()" width="100%"></dx-button>
+    </div>
+    <!-- <div class="dx-field">
+        <dx-check-box [value]="false" text="Remember me"></dx-check-box>
+    </div> -->
+
+    <div class="dx-field">
+        <dx-button type="default" text="Login" [disabled]="!loginForm.valid" (onClick)="Login_Click()" width="100%"></dx-button>
+    </div>
+    <div class="dx-field">
+        <a routerLink="/recovery">Forgot password ?</a>
+        <a routerLink="/recovery">Register</a>
+    </div>
+    <p>Login through Social Accounts</p>
+    <div class="dx-field">
+        <dx-button type="default" text="Google" (onClick)="signInWithGoogle()" width="100%"></dx-button>
+    </div>
+    <div class="dx-field">
+        <dx-button type="default" text="Facebook" (onClick)="signInWithFB()" width="100%"></dx-button>
+    </div>
+</form>
+
+    <!-- <div class="dx-field">
+        <dx-button type="normal" text="Create an account" width="100%"></dx-button>
+    </div> -->
+</dx-validation-group>
