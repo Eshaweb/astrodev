@@ -1,5 +1,5 @@
 <dx-validation-group>
-        <dx-button icon="arrowleft"></dx-button>
+        <dx-button icon="arrowleft" *ngIf='requestOTP' (onClick)='onBackClick()'></dx-button>
     <div class="login-header">
         <div class="title">Astrolite</div>
         <div>Sign In to your account</div>
@@ -11,7 +11,7 @@
         <p style="color:red;font-size: 12px;" id='err_UserName'></p>
     </div>
    <div class="twocol">
-    <div class="dx-field style=" margin-right: 12px;">
+    <div class="dx-field" style="margin-right: 12px;">
         <dx-text-box mode="password" formControlName="Password" *ngIf='!requestOTP' [(value)]="password" placeholder="Password" width="100%">
         </dx-text-box>
         <dx-text-box mode="password" formControlName="Password" *ngIf='requestOTP' [(value)]="password" placeholder="Enter OTP" width="100%">
@@ -33,14 +33,14 @@
     </div>
     
     <div class="dx-field">
-            <div class="dx-fieldset-column"style="width: 175px;">
+    <div class="dx-fieldset-column"style="width: 175px;">
         <a routerLink="/recovery">Forgot password ?</a>
     </div>
     <div class="dx-fieldset-column">
-        <a routerLink="/recovery">Register</a>
-    
+        <!-- <a routerLink="/registration-form">Register</a> -->
+        <a (click)="goToRegistration()">Register</a>
     </div>
-</div>
+  </div>
 
     <p>Login through Social Accounts</p>
     <div class="dx-field">

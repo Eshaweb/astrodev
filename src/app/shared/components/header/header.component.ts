@@ -6,6 +6,7 @@ import { UserPanelModule } from '../user-panel/user-panel.component';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 import { Router } from '@angular/router';
+import { RegistrationService } from 'src/Services/registration/registration.service';
 
 @Component({
   selector: 'app-header',
@@ -37,12 +38,13 @@ export class HeaderComponent {
     text: 'Register',
     icon: 'runner',
     onClick: () => {
-      this.authService.register();
-      //this.router.navigate(['/registration-form']);
+      //this.authService.register();
+      this.registrationService.registered=true;
+      this.router.navigate(['/registration-form']);
     }
   }];
 
-  constructor(private router: Router, private authService: AuthenticationService) { }
+  constructor(public registrationService:RegistrationService,private router: Router, private authService: AuthenticationService) { }
 
   toggleMenu = () => {
     this.menuToggle.emit();

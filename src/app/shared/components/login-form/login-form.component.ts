@@ -17,6 +17,7 @@ import { LoginService } from 'src/Services/login/login.service';
 import { HttpClient } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { RegistrationService } from 'src/Services/registration/registration.service';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -70,7 +71,7 @@ export class LoginFormComponent {
   Name: any;
   horoInfo: any;
 
-  constructor(public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, 
+  constructor(public registrationService:RegistrationService,public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, 
     public _location: Location, public route: ActivatedRoute, public router: Router, public http: HttpClient,
     public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService,
     public uiService: UIService, public formbuilder: FormBuilder) {
@@ -127,7 +128,8 @@ export class LoginFormComponent {
   }
 
   goToRegistration() {
-    this.router.navigate(["/registration"]);
+    this.registrationService.registered=true;
+    this.router.navigate(["/registration-form"]);
   }
   Login_Click() {
     this.loadingSwitchService.loading = true;
