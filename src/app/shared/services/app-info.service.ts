@@ -5,6 +5,6 @@ export class AppInfoService {
   constructor() {}
 
   public get title() {
-    return 'TestDevextreme';
+    return 'Astrolite';
   }
 }
