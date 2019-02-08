@@ -24,6 +24,8 @@ import { APP_BASE_HREF } from '@angular/common';
 import { ErrorService } from 'src/Services/Error/error.service';
 import { HttpService, applicationHttpClientCreator } from 'src/Services/Error/http.service';
 import { RegistrationFormModule } from './shared/components/registration-form/registration-form.module';
+import { PurchaseModule } from './pages/purchase/purchase.module';
+import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
 
 
 let config = new AuthServiceConfig([
@@ -48,7 +50,7 @@ export function provideConfig() {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,11 +60,12 @@ export function provideConfig() {
     FooterModule,
     LoginFormModule,
     RegistrationFormModule,
+    //PurchaseModule,
     AppRoutingModule,
     HttpClientModule
   ],
   providers: [AuthService, ScreenService, AppInfoService, 
-    Service, AuthenticationService,
+    Service, AuthenticationService, CaptionDbService,
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService,
     PartyService, RegistrationService, AuthGuard, HoroScopeService, UIService, RegistrationService, 
     LoaderService, SalesService, WalletService,

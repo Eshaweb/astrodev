@@ -163,6 +163,7 @@ export class RegistrationFormComponent {
   }
 
   ngOnDestroy(): void {
+      this.registrationService.registered=true;
   }
 
 }

@@ -14,6 +14,7 @@ import { ErrorService } from 'src/Services/Error/error.service';
 import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
+import { Caption } from 'src/Models/HoroScope/Caption';
 
 if(!/localhost/.test(document.location.host)) {
     enableProdMode();
@@ -53,6 +54,7 @@ export class HoroscopeComponent {
   genderValue: string;
   genderdata: ArrayStore;
   password: any;
+  caption: Caption;
     ngOnInit() {
       this.products = this.horoScopeService.getProducts();
       this.timeformatdata = new ArrayStore({
@@ -466,12 +468,12 @@ export class HoroscopeComponent {
       //     this.router.navigate(["/horoscope/getFreeData"]);
       // });
       this.horoScopeService.GetFreeData(this.horoRequest).subscribe((data:any) => {
-        this.horoScopeService.data = data;
+        this.horoScopeService.horoResponse = data;
         this.loadingSwitchService.loading = false;
         this.router.navigate(["/horoscope/getFreeData"]);
     });
     }
-  
+    
     public onDialogOKSelected(event) {
       event.dialog.close();
     }

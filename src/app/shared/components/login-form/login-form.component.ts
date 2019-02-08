@@ -140,11 +140,12 @@ export class LoginFormComponent {
       }
       this.loginService.Login(loginModel, (data) => {
         if (data.Errors == undefined) {
+          this.registrationService.registered=false;
           this.loginService.PartyMastId = data.PartyMastId;
           this.loadingSwitchService.loading = false;
           if (this.horoScopeService.horoRequest != null) {
             if (data.IsActivated == true) {
-              this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
+              this.router.navigate(["/purchase/paidServices"]);
               //this.router.navigate(["/purchase/paidServices"]);
             }
             else if (data.IsActivated == false) {
