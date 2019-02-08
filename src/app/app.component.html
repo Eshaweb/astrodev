@@ -1,5 +1,5 @@
 <ng-container *ngIf="isAutorized(); else notAuthorized">
-    <app-side-nav-inner-toolbar title="{{appInfo.title}}">
+    <app-side-nav-inner-toolbar *ngIf="!registrationService.registered" title="{{appInfo.title}}">
         <router-outlet></router-outlet>
         <app-footer>
             Copyright © 2011-2018 Astrolite.in.
@@ -7,6 +7,9 @@
            
         </app-footer>
     </app-side-nav-inner-toolbar>
+        <app-single-card *ngIf="registrationService.registered">
+            <router-outlet></router-outlet>
+        </app-single-card>
 </ng-container>
 
 <ng-template #notAuthorized>
@@ -14,3 +17,6 @@
         <router-outlet></router-outlet>
     </app-single-card>
 </ng-template>
+
+
+

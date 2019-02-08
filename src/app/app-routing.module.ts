@@ -12,6 +12,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { HoroscopeComponent } from './pages/horoscope/horoscope/horoscope.component';
 import { FreeDataComponent } from './pages/horoscope/free-data/free-data.component';
 import { RegistrationFormComponent } from './shared/components/registration-form/registration-form/registration-form.component';
+import { BrowserModule } from '@angular/platform-browser';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [
@@ -53,6 +54,7 @@ const routes: Routes = [
       libraries: ['places']
     }),
     ReactiveFormsModule,
+    BrowserModule,
     FormsModule,
     DxDataGridModule, DxFormModule,
     DxValidatorModule,DxButtonModule,DxValidationSummaryModule,

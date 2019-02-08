@@ -18,12 +18,14 @@ export class RegistrationService {
     errorMessage: any;
     isLoading: boolean;
     registerModel:RegisterModel;
+    registered: boolean;
     constructor(private loadingSwitchService:LoadingSwitchService,private httpService: HttpService, private errorService: ErrorService, public toastrService: ToastrManager) {
         // var bar = new RegisterResponse();
         // if(bar instanceof RegisterResponse){
         //     this.errorMessage = null;
         //     this.isLoading = true;
         // }
+        this.registered = false;
     }
     RegisterParty(RegisterModel, callback: (data) => void) {
         var endPoint = "Party/RegisterParty";
