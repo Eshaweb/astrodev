@@ -13,9 +13,27 @@ import { HoroscopeComponent } from './pages/horoscope/horoscope/horoscope.compon
 import { FreeDataComponent } from './pages/horoscope/free-data/free-data.component';
 import { RegistrationFormComponent } from './shared/components/registration-form/registration-form/registration-form.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { DownloadComponent } from './pages/download/download.component';
+import { EmailVerifyComponent } from './pages/email-verify/email-verify.component';
+import { OfflinePaymentComponent } from './pages/offline-payment/offline-payment.component';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [
+  {
+    path: 'pages/offline-payment',
+    component: OfflinePaymentComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'pages/email-verify',
+    component: EmailVerifyComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'pages/download',
+    component: DownloadComponent,
+    canActivate: [ AuthGuardService ]
+  },
   {
     path: 'horoscope',
     //component: HoroscopeComponent,
@@ -63,7 +81,7 @@ const routes: Routes = [
   ],  
   providers: [AuthGuardService],
   exports: [RouterModule],
-  declarations: [HomeComponent,  
+  declarations: [HomeComponent, DownloadComponent, EmailVerifyComponent, OfflinePaymentComponent,  
     //HoroscopeComponent,
     //FreeDataComponent
 
