@@ -37,5 +37,10 @@ export const navigation = [
     text: 'Offline-payment',
     path: 'pages/offline-payment',
     icon: 'folder'
+  },
+  {
+    text: 'Wallet',
+    path: 'pages/wallet',
+    icon: 'folder'
   }
 ];
