@@ -22,5 +22,20 @@ export const navigation = [
     text: 'Horopage',
     path: '/horoscope',
     icon: 'folder'
+  },
+  {
+    text: 'Download',
+    path: 'pages/download',
+    icon: 'folder'
+  },
+  {
+    text: 'Email-verify',
+    path: 'pages/email-verify',
+    icon: 'folder'
+  },
+  {
+    text: 'Offline-payment',
+    path: 'pages/offline-payment',
+    icon: 'folder'
   }
 ];
