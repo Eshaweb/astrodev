@@ -10,15 +10,14 @@
         </dx-text-box>
         <p style="color:red;font-size: 12px;" id='err_UserName'></p>
     </div>
-    <div class="dx-fieldset-column"style="width: 145px;margin-right:5px;">
-    <div class="dx-field">
+   <div class="twocol">
+    <div class="dx-field style=" margin-right: 12px;">
         <dx-text-box mode="password" formControlName="Password" *ngIf='!requestOTP' [(value)]="password" placeholder="Password" width="100%">
         </dx-text-box>
         <dx-text-box mode="password" formControlName="Password" *ngIf='requestOTP' [(value)]="password" placeholder="Enter OTP" width="100%">
         </dx-text-box>
     </div>
-</div>
-<div class="dx-fieldset-column">
+
     <div class="dx-field">
         <dx-button type="default" text="Request OTP" *ngIf='!requestOTP' (onClick)="onRequestOTP()" width="100%"></dx-button>
         <dx-button type="default" text="Re-generate OTP" *ngIf='requestOTP' (onClick)="onRegenerateOTP()" width="100%"></dx-button>
