@@ -1,7 +1,7 @@
 import { Component, NgModule, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AuthService } from '../../services';
+import { AuthenticationService } from '../../services';
 import { UserPanelModule } from '../user-panel/user-panel.component';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
@@ -31,9 +31,16 @@ export class HeaderComponent {
     onClick: () => {
       this.authService.logOut();
     }
+  },
+   {
+    text: 'Register',
+    icon: 'runner',
+    onClick: () => {
+      this.authService.register();
+    }
   }];
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthenticationService) { }
 
   toggleMenu = () => {
     this.menuToggle.emit();

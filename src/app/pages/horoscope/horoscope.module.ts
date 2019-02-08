@@ -17,7 +17,7 @@ import { DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBox
     ],
 
     declarations: [
-        HoroscopeComponent, 
+        //HoroscopeComponent, 
         //FreeDataComponent
     ]
 })

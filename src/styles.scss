@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-
+@font-face {
+  font-family: 'MyWebFont';
+   src: url('/assets/fonts/Nudi01e.woff')  format('woff'),
+   url('/assets/fonts/Nudi01e.woff2')  format('woff2'),
+   url('/assets/fonts/Nudi 01 e.ttf')  format('truetype'); 
+}
+$font-path: "assets/fonts";
 html, body {
   margin: 0px;
   min-height: 100%;
