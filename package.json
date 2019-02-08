@@ -26,6 +26,7 @@
     "@ngx-share/button": "^7.0.0",
     "@ngx-share/buttons": "^7.0.0",
     "angular-turnjs": "^1.0.4",
+    "angular4-events": "^5.0.1",
     "angularx-social-login": "^1.2.5",
     "core-js": "^2.5.4",
     "devextreme": "18.2",

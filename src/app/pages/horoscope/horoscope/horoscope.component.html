@@ -7,7 +7,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Name</div>
                     <div class="dx-field-value">
-                        <dx-text-box formControlName="Name" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
+                        <dx-text-box formControlName="Name" [(ngModel)]="horoRequest.Name" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
                         <p style="color:red" id='err_Name'></p>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Father Name</div>
                     <div class="dx-field-value">
-                        <dx-text-box formControlName="fatherName" placeholder="Enter Father Name here..." showClearButton="true"></dx-text-box>
+                        <dx-text-box formControlName="fatherName" [(ngModel)]="horoRequest.Father" placeholder="Enter Father Name here..." showClearButton="true"></dx-text-box>
                         <p style="color:red" id='err_fatherName'></p>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                     <div class="dx-field">
                         <div class="dx-field-label">Mother Name</div>
                         <div class="dx-field-value">
-                            <dx-text-box id="txtmname" formControlName="motherName" placeholder="Enter Mother Name here..." showClearButton="true"></dx-text-box>
+                            <dx-text-box id="txtmname" formControlName="motherName" [(ngModel)]="horoRequest.Mother" placeholder="Enter Mother Name here..." showClearButton="true"></dx-text-box>
                             <p style="color:red" id='err_motherName'></p>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                     <div class="dx-field">
                         <div class="dx-field-label">Gothra</div>
                         <div class="dx-field-value">
-                            <dx-text-box formControlName="gotra" placeholder="Enter Gothra here..." [showClearButton]="true">
+                            <dx-text-box formControlName="gotra" [(ngModel)]="horoRequest.Gothra" placeholder="Enter Gothra here..." [showClearButton]="true">
                             </dx-text-box>
                             <p style="color:red" id='err_gotra'></p>
                         </div>
@@ -119,7 +119,7 @@
                             <div class="dx-field">
                                 <div class="dx-field-label">Birth Place</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" (mouseup)="OnMouseUp($event.target.value)"></dx-text-box>
+                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="horoRequest.Place" (mouseup)="OnMouseUp($event.target.value)"></dx-text-box>
                                     <p style="color:red" id='err_birthPlace'></p>
                             </div>
                         </div>
@@ -225,6 +225,7 @@
                 </div>
             </div>
             <div class="clear"></div>
+            <p style="color: red">TimeZoneName: {{timeZoneName}}</p>
         </div>
         <!-- <div class="dx-fieldset">
             <div class="dx-fieldset-header">Personal Data</div>
@@ -261,9 +262,6 @@
                     id="check"
                     [(value)]="checkBoxValue"
                     text="Click here to Edit">
-                    <dx-validator>
-                        <dxi-validation-rule type="compare" [comparisonTarget]="checkComparison" message="You must agree to the Terms and Conditions"></dxi-validation-rule>
-                    </dx-validator>
                 </dx-check-box>
             </div>
         </div>
@@ -273,7 +271,7 @@
     
             <dx-button [disabled]="!horoscopeForm.valid" (onClick)='submit_click()'
                 id="button"
-                text="Register"
+                text="Submit"
                 type="success"  
                 [useSubmitBehavior]="true">
             </dx-button>

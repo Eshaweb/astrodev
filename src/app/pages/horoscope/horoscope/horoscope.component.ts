@@ -231,8 +231,6 @@ export class HoroscopeComponent {
       motherNameContrl.valueChanges.subscribe(value => this.setErrorMessage(motherNameContrl));
       const gotraContrl = this.horoscopeForm.get('gotra');
       gotraContrl.valueChanges.subscribe(value => this.setErrorMessage(gotraContrl));
-      const DateContrl = this.horoscopeForm.get('Date');
-      DateContrl.valueChanges.subscribe(value => this.setErrorMessage(DateContrl));
       const LatDegContrl = this.horoscopeForm.get('LatDeg');
       LatDegContrl.valueChanges.subscribe(value => this.setErrorMessage(LatDegContrl));
       const LatMtContrl = this.horoscopeForm.get('LatMt');
@@ -251,8 +249,6 @@ export class HoroscopeComponent {
       ZMContrl.valueChanges.subscribe(value => this.setErrorMessage(ZMContrl));
       const PNContrl = this.horoscopeForm.get('PN');
       PNContrl.valueChanges.subscribe(value => this.setErrorMessage(PNContrl));
-      const TimeContrl = this.horoscopeForm.get('Time');
-      TimeContrl.valueChanges.subscribe(value => this.setErrorMessage(TimeContrl));
       const birthPlaceContrl = this.horoscopeForm.get('birthPlace');
       birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
       if (this.horoScopeService.horoRequest != null) {
@@ -413,6 +409,9 @@ export class HoroscopeComponent {
       this.loadingSwitchService.loading=true;
       this.maxvalue = 100;
       this.horoScopeService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
+      // if(typeof this.horoscopeForm.controls['Date'].value ==='string'){
+
+      // }
       var bdate: Date = this.horoscopeForm.controls['Date'].value;
       var btime: Date = this.horoscopeForm.controls['Time'].value;
       var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
@@ -495,17 +494,6 @@ export class HoroscopeComponent {
       "none";
       // e.component.content().getElementsByClassName("dx-toolbar-button")[0].style.padding =
       // "25px";
-    e.component.content().style.width = "320px";
-  }
-  opened2(e) {
-    e.component
-      .content()
-      .getElementsByClassName("dx-box-item")[0].style.display =
-      "none";
-  }
-  
-  checkComparison() {
-      return true;
   }
   
 }
