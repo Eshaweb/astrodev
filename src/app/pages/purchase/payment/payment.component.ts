@@ -87,6 +87,29 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     paymentModeSelection(event){
       this.paymentModedatavalue=event.value;
+      if (this.checkClicked == true && this.differenceAmount > 0) {
+        this.paycodes=[];
+        if(this.discountAmount>0){
+          this.paycodes.push({
+            Code: event.value,
+            Amount: this.differenceAmount-this.discountAmount
+          });
+        }
+        else{
+          this.paycodes.push({
+            Code: event.value,
+            Amount: this.differenceAmount
+          });
+        }
+        this.paymentmodeSelected = true;
+        this.selectMeMessage = '';
+      }
+  
+      else {
+        this.paycodes = [{ Code: event.value, Amount: this.payableAmount }];
+        this.paymentmodeSelected = true;
+        this.selectMeMessage = '';
+      }
     }
     ngOnInit(): void {
       //this.paymentModevalue = this.paymentModes[0].Text;
@@ -135,7 +158,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     onApply() {
       this.loading=true;
       this.disableButton=true;
-      this.horoScopeService.OccupyPromoCode(this.CoupenCodeForm.controls['CouponCode'].value,(data) => {
+      this.horoScopeService.OccupyPromoCode(this.CoupenCodeForm.controls['CouponCode'].value).subscribe((data) => {
         //if (data.Errors == undefined) {
           this.loading=false;
           if (data.IsValid == true) {
@@ -187,8 +210,6 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   
     onContinue() {
-      var paymentModeText=this.paymentModeForm.get('paymentMode').value;
-      this.paymentModeId=this.paymentModes.find(function (obj) { return obj.Text === paymentModeText }).Id;
       if (this.checkClicked == true) {
         this.loading = true;
         if (this.differenceAmount > 0 && this.paymentmodeSelected == true && this.discountAmount>0) {
@@ -246,7 +267,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         if (this.paymentmodeSelected == true) {
           this.payableAmountthroughPaymentModes=this.payableAmount-this.discountAmount;        
           this.paycodes = [{
-          Code: this.paymentModeId,
+          Code: this.paymentModeForm.get('paymentMode').value,
           Amount: this.payableAmountthroughPaymentModes
         }, {
           Code: "D",
@@ -281,7 +302,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         OrderId: this.OrderId,
         PayCodes: this.paycodes
       }
-      this.horoScopeService.CreateBillPayModeToOrder(OrderBillPayMode, (data) => {
+      this.horoScopeService.CreateBillPayModeToOrder(OrderBillPayMode).subscribe((data) => {
         if(data.Error==undefined){
           this.horoScopeService.ExtCode =data.ExtCode;
           for (var i = 0; i < data.PayModes.length; i++) {
@@ -431,7 +452,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   
     next(Payment) {
       this.loading = true;
-      this.horoScopeService.PaymentComplete(Payment, (data) => {
+      this.horoScopeService.PaymentComplete(Payment).subscribe((data) => {
       if(data.Error==undefined){
       this.horoScopeService.resultResponse=data;
       if(data.AstroReportId.length != 0){

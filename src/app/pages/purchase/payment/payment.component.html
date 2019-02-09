@@ -33,25 +33,27 @@
 <p style="color:red" *ngIf="(differenceAmount>0)"> {{'Remaining balance amount '+(differenceAmount-discountAmount)+' Rs will be deducted from choosen payment modes'}} </p>
 <p style="color:green"> {{selectMeMessage}}</p>
 <div class="astrolite-wallet">
-<dx-check-box id="check" (onValueChanged)="checkBox_valueChanged($event)">
-        Pay using Astrolite wallet (Wallet Balance {{walletbalance}})
+<dx-check-box id="check" 
+text='Pay using Astrolite wallet (Wallet Balance {{walletbalance}})'
+(onValueChanged)="checkBox_valueChanged($event)">
 </dx-check-box>
 </div>
 <div class="payment-mode" [formGroup]="paymentModeForm">
-    <dx-select-box formControlName="paymentMode" 
-    placeholder="choose Payment Modes here" 
-    [items]="paymentModes">
-    </dx-select-box>
     <dx-select-box formControlName="paymentMode"
     (onValueChanged)="paymentModeSelection($event)" 
     [dataSource]="paymentModedata" 
     displayExpr="Text" 
-    valueExpr="Id">
+    valueExpr="Id"
+    [value]='paymentModedatavalue'>
     </dx-select-box>
 </div>
 
 <div class="continue-button">
-<button igxRipple igxButton="raised" (click)="onContinue()">Continue</button>
+<dx-button (onClick)='onContinue()' 
+text="Continue" 
+type="success" 
+[useSubmitBehavior]="true">
+</dx-button>
 </div>
 
 </div>
