@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
 import { PaidservicesComponent } from './paidservices/paidservices.component';
 import { HoropaidComponent } from './horopaid/horopaid.component';
-import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule } from 'devextreme-angular';
 import { PurchaseRoutingModule } from './purchase-routing.module';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 
@@ -17,7 +17,8 @@ import { DeliveryAddressComponent } from './delivery-address/delivery-address.co
         PurchaseRoutingModule,
         DxCheckBoxModule,
         DxButtonModule,
-        DxTextBoxModule
+        DxTextBoxModule,
+        DxSelectBoxModule
     ],
     declarations: [
         PaidservicesComponent,

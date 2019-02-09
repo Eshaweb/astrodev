@@ -6,6 +6,8 @@ import { ExistingAddress } from 'src/Models/ExistingAddress';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { UIService } from 'src/Services/UIService/ui.service';
 import { LoginService } from 'src/Services/login/login.service';
+import { SelectBoxModel } from 'src/Models/SelectBoxModel';
+import ArrayStore from 'devextreme/data/array_store';
 
 
 @Component({
@@ -15,9 +17,23 @@ import { LoginService } from 'src/Services/login/login.service';
 })
 export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewInit {
     ItName: string;
+    statesOfIndia: SelectBoxModel[] = [
+        { Id: "STANDARD", Text: 'Standard Time' },
+        { Id: "SUMMER", Text: 'Summer Time' },
+        { Id: "DOUBLE", Text: 'Double Summer Time' },
+        { Id: "WAR", Text: 'War Time' }
+      ];
+    statedata: ArrayStore;
+    statevalue: any;
     ngOnInit() {
-
+        this.statedata = new ArrayStore({
+            data: this.statesOfIndia,
+            key: "Id"
+          });
     }
+    statedataSelection(event){
+        this.statevalue=event.value;
+      }
     customerAddressForm: FormGroup;
     address1Message: string;
     address3Message: string;
