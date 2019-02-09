@@ -1,0 +1,141 @@
+<div class="dx-card content-block responsive-paddings">
+<form>
+<div class="delivery-address">
+<div class="navigation-chrome">
+    <div class="navigation-navbar">
+<!-- <igx-navbar 
+class="navigation-navbar-1" title="Delivery Address" isActionButtonVisible="false" >
+<igx-icon name="more_vert" ></igx-icon>
+</igx-navbar> -->
+</div>
+
+</div>
+<div class="screen">
+    <div class="top">
+        <div class="content" [formGroup]="customerEMailAddressForm">
+                <div class="dx-fieldset">
+            <h4 >Delivery Address</h4>
+<div class="dx-field">
+        <div class="dx-field-label">EMail</div>
+        <div class="dx-field-value">
+            <dx-text-box formControlName="EMail" [(ngModel)]="email" showClearButton="true"></dx-text-box>
+            <p style="color:red" id='err_Name'></p>
+        </div>
+    </div>
+                </div>
+<span>You are  purchasing {{ItName}}. You will get it to above entered EMail Id</span>
+</div>
+</div>
+<div class="address" *ngIf="DeliveryAddressRequired">
+    <span >Since you need printed copy we will send it in post within 3-4 business days</span>
+</div>
+<div class="add-address-button" *ngIf="DeliveryAddressRequired">
+        <div *ngIf="existingAddress">
+                <div *ngFor="let order of existingAddress; trackBy: trackByFn">
+                  <div (click)="OnChangeDefaultAddress(order.Id)" [ngClass]="order.Id === Id? 'class-1':'class-2'">
+                        <dx-button icon="arrowleft" (onClick)='onRemoveAddress()'></dx-button>
+                        <p>Name:{{ order.Name }} </p>
+                        <p>Email:{{ order.EMail }} </p>
+                        <p>City:{{ order.Address1 }} </p>
+                        <p>Street/Area:{{ order.Address2 }} </p>
+                        <p>House No./Building Name:{{ order.Address3 }} </p>
+                </div>
+                </div>
+        </div> 
+    <div class="add-address">
+<dx-button (onClick)='onAddAddress()'
+                id="button"
+                text="Add Address"
+                type="success"  
+                [useSubmitBehavior]="true">
+            </dx-button>
+</div>
+
+</div>
+<div class="delivery-form" *ngIf="DeliveryAddressRequired">
+    <div class="form-address" [formGroup]="customerAddressForm" *ngIf="showAddAddressForm">
+            <div class="dx-fieldset">
+<div class="dx-field">
+        <div class="dx-field-label">Name of the Reciever</div>
+        <div class="dx-field-value">
+            <dx-text-box formControlName="Name" showClearButton="true"></dx-text-box>
+            <p style="color:red" id='err_Name'></p>
+        </div>
+    </div>
+
+<div class="dx-field">
+        <div class="dx-field-label">Address 1</div>
+        <div class="dx-field-value">
+            <dx-text-box formControlName="Address1" showClearButton="true"></dx-text-box>
+            <p style="color:red" id='err_Address1'></p>
+        </div>
+    </div>
+
+<div class="dx-field">
+        <div class="dx-field-label">Address 2</div>
+        <div class="dx-field-value">
+            <dx-text-box formControlName="Address2" showClearButton="true"></dx-text-box>
+            <p style="color:red" id='err_Address2'></p>
+        </div>
+    </div>
+<div class="dx-field">
+        <div class="dx-field-label">City</div>
+        <div class="dx-field-value">
+            <dx-text-box formControlName="Address3" showClearButton="true"></dx-text-box>
+            <p style="color:red" id='err_Address3'></p>
+        </div>
+    </div>
+
+<div class="dx-field">
+        <div class="dx-field-label">State</div>
+        <div class="dx-field-value">
+            <!-- <dx-text-box formControlName="state" showClearButton="true"></dx-text-box> -->
+            <dx-select-box 
+            (onValueChanged)="statedataSelection($event)" 
+            [dataSource]="statedata" 
+            displayExpr="Text"
+            valueExpr="Id" 
+            [value]="statevalue">
+            </dx-select-box>
+            <p style="color:red" id='err_state'></p>
+        </div>
+    </div>
+
+<div class="dx-field">
+        <div class="dx-field-label">Country</div>
+        <div class="dx-field-value">
+            <dx-text-box [disabled]="true" value="India" showClearButton="true"></dx-text-box>
+        </div>
+    </div>
+
+<div class="dx-field">
+        <div class="dx-field-label">Postal Code</div>
+        <div class="dx-field-value">
+            <dx-text-box formControlName="PinCode" showClearButton="true"></dx-text-box>
+            <p style="color:red" id='err_PinCode'></p>
+        </div>
+    </div>
+            </div>
+<div class="save-button-row">
+    <div class="save-button">
+<dx-button class="buttonClass2" [disabled]="customerAddressForm.invalid" text="Save" type="default" (onClick)="onSaveAddress()" style="margin-right:44px;margin-left:55px;"></dx-button>
+<dx-button class="buttonClass1" text="Cancel" type="submit" (onClick)="onCancel()" style="margin-left:55px;" ></dx-button>
+</div>
+
+</div>
+</div>
+</div>
+<div class="place-order"><div class="place-order-button">
+    <dx-button class="buttonClass1" text="Place Order" type="submit" (onClick)="onPlaceOrder()" style="margin-left:55px;" ></dx-button>
+
+</div>
+
+<div class="back">
+        <dx-button class="buttonClass1" text="Back" type="submit"></dx-button>
+</div>
+
+</div>
+</div>
+</div>
+</form>
+</div>

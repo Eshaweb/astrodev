@@ -108,7 +108,7 @@ export class HoropaidComponent implements OnInit {
           OrderId: this.horoScopeService.OrderId
       }
       var DeliveryAddressRequired: boolean = this.requireDeliveryAddress;
-      this.horoScopeService.CreateOrder(orderModel, (data) => {
+      this.horoScopeService.CreateOrder(orderModel).subscribe((data) => {
           if(data.Error==undefined){
           this.horoScopeService.OrderId = data.OrderId;
           this.horoScopeService.orderResponse = data;

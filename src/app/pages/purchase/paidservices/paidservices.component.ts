@@ -42,14 +42,14 @@ export class PaidservicesComponent implements OnInit {
           ItActId: "#SH",
           PartyMastId: loginService.PartyMastId,
       }
-      this.horoScopeService.GetPriceListByItActId(itemMast, (data) => {
-        if(data.Error==undefined){  
-        this.serviceInfo = data;
-    }
-    else{
-      this.errorMessage=data.Error;
-    }
-      });
+    this.horoScopeService.GetPriceListByItActId(itemMast).subscribe((data:any) => {
+        if (data.Error == undefined) {
+            this.serviceInfo = data;
+        }
+        else {
+            this.errorMessage = data.Error;
+        }
+    });
       //this.serviceInformation = [{ ItMastId: '', Name: 'Horo', MRP: 33, Amount: 44, Description: '',PrintMRP:6,PrintAmount:5 }]
     }
   ngOnInit(): void {

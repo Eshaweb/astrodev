@@ -138,10 +138,11 @@ export class LoginFormComponent {
         UserName: this.loginForm.get('UserName').value,
         Password: this.loginForm.get('Password').value
       }
-      this.loginService.Login(loginModel, (data) => {
+      this.loginService.Login(loginModel).subscribe((data) => {
         if (data.Errors == undefined) {
           this.registrationService.registered=false;
           this.loginService.PartyMastId = data.PartyMastId;
+          this.loginService.Token = data.Token;
           this.loadingSwitchService.loading = false;
           if (this.horoScopeService.horoRequest != null) {
             if (data.IsActivated == true) {
