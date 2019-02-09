@@ -1,4 +1,4 @@
-<main>
+<div class="dx-card content-block responsive-paddings">
     <form>
 <div class="payment-1">
 <div class="screen">
@@ -43,6 +43,7 @@ text='Pay using Astrolite wallet--------{{walletbalance}}(Wallet Balance)'
     [dataSource]="paymentModedata" 
     displayExpr="Text" 
     valueExpr="Id"
+    [disabled]='selectboxdisabled'
     [value]='paymentModedatavalue'>
     </dx-select-box>
 </div>
@@ -61,4 +62,4 @@ type="success"
 </div>
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
 </form>
-</main>
+</div>
