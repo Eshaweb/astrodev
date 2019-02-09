@@ -26,6 +26,7 @@ import { HttpService, applicationHttpClientCreator } from 'src/Services/Error/ht
 import { RegistrationFormModule } from './shared/components/registration-form/registration-form.module';
 import { PurchaseModule } from './pages/purchase/purchase.module';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
+import { NgxLoadingModule } from 'ngx-loading';
 
 
 let config = new AuthServiceConfig([
@@ -53,6 +54,7 @@ export function provideConfig() {
     AppComponent,
   ],
   imports: [
+    NgxLoadingModule.forRoot({}),
     BrowserModule,
     SideNavOuterToolbarModule,
     SideNavInnerToolbarModule,

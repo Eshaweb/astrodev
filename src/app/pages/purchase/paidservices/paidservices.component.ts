@@ -66,7 +66,7 @@ export class PaidservicesComponent implements OnInit {
           PartyMastId:this.PartyMastId,
           CountryCode:"IN"
       }
-      this.horoScopeService.GetItemPrice(hardCopyPriceRequest, (data) => {
+      this.horoScopeService.GetItemPrice(hardCopyPriceRequest).subscribe((data) => {
           this.serviceHardCopy = data;
       });
   }

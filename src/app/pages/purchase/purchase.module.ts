@@ -8,6 +8,7 @@ import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule } 
 import { PurchaseRoutingModule } from './purchase-routing.module';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 import { PaymentComponent } from './payment/payment.component';
+import { PaymentProcessingComponent } from './payment-processing/payment-processing.component';
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { PaymentComponent } from './payment/payment.component';
         PaidservicesComponent,
         HoropaidComponent,
         DeliveryAddressComponent,
-        PaymentComponent
+        PaymentComponent,
+        PaymentProcessingComponent
     ]
 })
 export class PurchaseModule{

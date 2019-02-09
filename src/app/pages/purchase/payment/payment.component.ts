@@ -9,6 +9,7 @@ import { Platform } from '@angular/cdk/platform';
 import { PayCode } from 'src/Models/Sales/PayCode';
 import { WalletService } from 'src/Services/Wallet/WalletService';
 import ArrayStore from 'devextreme/data/array_store';
+import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 
 declare var Razorpay: any;
 
@@ -49,7 +50,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   paymentModedata: ArrayStore;
   paymentModedatavalue: any;
   
-    constructor(public walletService:WalletService, public _location: Location, public route: ActivatedRoute, public router: Router,
+    constructor(private loadingSwitchService:LoadingSwitchService, public walletService:WalletService, public _location: Location, public route: ActivatedRoute, public router: Router,
       public formBuilder: FormBuilder, public platform: Platform, public formbuilder: FormBuilder,
       public loginService: LoginService, public horoScopeService: HoroScopeService,
       public uiService: UIService) {
@@ -157,10 +158,12 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     onApply() {
       this.loading=true;
+      //this.loadingSwitchService.loading=true;
       this.disableButton=true;
       this.horoScopeService.OccupyPromoCode(this.CoupenCodeForm.controls['CouponCode'].value).subscribe((data) => {
         //if (data.Errors == undefined) {
           this.loading=false;
+          //this.loadingSwitchService.loading=false;
           if (data.IsValid == true) {
           this.discountAmount = data.Amount ;
         }
@@ -212,6 +215,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     onContinue() {
       if (this.checkClicked == true) {
         this.loading = true;
+        //this.loadingSwitchService.loading=true;
         if (this.differenceAmount > 0 && this.paymentmodeSelected == true && this.discountAmount>0) {
           this.paycodes.push({
             Code: "W",
@@ -242,6 +246,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         }
         else if(this.discountAmount>0){
           this.loading = true;
+          //this.loadingSwitchService.loading=true;
           this.payableAmount=this.payableAmount;
           this.paycodes = [{
             Code: "W",
@@ -254,6 +259,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         }
         else {
           this.loading = true;
+         // this.loadingSwitchService.loading=true;
           this.paycodes = [{
             Code: "W",
             Amount: this.payableAmount
@@ -261,9 +267,11 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           this.CreateBillPayModeToOrder();
         }
         this.loading = false;
+        //this.loadingSwitchService.loading=false;
       }
       else if (this.discountAmount >0){
         this.loading = true;
+        //this.loadingSwitchService.loading=true;
         if (this.paymentmodeSelected == true) {
           this.payableAmountthroughPaymentModes=this.payableAmount-this.discountAmount;        
           this.paycodes = [{
@@ -280,9 +288,11 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           //loading.dismiss();
         }
         this.loading = false;
+        //this.loadingSwitchService.loading=false;
       }
       else {
         this.loading = true;
+        //this.loadingSwitchService.loading=true;
         if (this.paymentmodeSelected == true) {
           this.payableAmountthroughPaymentModes=this.payableAmount;
           this.CreateBillPayModeToOrder();
@@ -292,6 +302,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           //loading.dismiss();
         }
         this.loading = false;
+        //this.loadingSwitchService.loading=false;
       }
     }
 
@@ -452,6 +463,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   
     next(Payment) {
       this.loading = true;
+      //this.loadingSwitchService.loading=true;
       this.horoScopeService.PaymentComplete(Payment).subscribe((data) => {
       if(data.Error==undefined){
       this.horoScopeService.resultResponse=data;
@@ -459,6 +471,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         this.horoScopeService.AstroReportId = data.AstroReportId[0].split('_')[0];
       }
       this.loading = false;
+      //this.loadingSwitchService.loading=false;
       this.router.navigate(['/purchase/paymentProcessing'], { skipLocationChange: true });
       //this.router.navigate(['/purchase/paymentProcessing']);
     }
