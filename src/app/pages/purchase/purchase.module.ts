@@ -9,6 +9,7 @@ import { PurchaseRoutingModule } from './purchase-routing.module';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentProcessingComponent } from './payment-processing/payment-processing.component';
+import { OfflinepaymentComponent } from './offline-payment/offline-payment.component';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import { PaymentProcessingComponent } from './payment-processing/payment-process
         HoropaidComponent,
         DeliveryAddressComponent,
         PaymentComponent,
-        PaymentProcessingComponent
+        PaymentProcessingComponent,
+        OfflinepaymentComponent
     ]
 })
 export class PurchaseModule{

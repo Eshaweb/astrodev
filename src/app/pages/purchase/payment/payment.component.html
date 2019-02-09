@@ -26,15 +26,14 @@
 </div>
 
 </div>
-<span>Order Total</span>
-<span>Price              :         {{payableAmount}}</span>
-<span>Coupon Discount      :          {{discountAmount}}</span>
-<span>Effective Price                :          {{payableAmount-discountAmount}}</span>
+<p>Price              :         {{payableAmount}}</p>
+<p>Coupon Discount      :          {{discountAmount}}</p>
+<p *ngIf="(discountAmount>0)">Order Total                :          {{payableAmount-discountAmount}}</p>
 <p style="color:red" *ngIf="(differenceAmount>0)"> {{'Remaining balance amount '+(differenceAmount-discountAmount)+' Rs will be deducted from choosen payment modes'}} </p>
 <p style="color:green"> {{selectMeMessage}}</p>
 <div class="astrolite-wallet">
 <dx-check-box id="check" 
-text='Pay using Astrolite wallet (Wallet Balance {{walletbalance}})'
+text='Pay using Astrolite wallet--------{{walletbalance}}(Wallet Balance)'
 (onValueChanged)="checkBox_valueChanged($event)">
 </dx-check-box>
 </div>
