@@ -79,7 +79,7 @@
 <h2 class="content-block">Report</h2>
 <div class="dx-card content-block responsive-paddings  ">
     
-  <h2  [ngClass]="getFont(horoModel.LangCode)">{{caption.Nityapanchanga}}</h2>  
+  <h2  [ngClass]="getFont(horoModel.LangCode)" style="font-size: 20px !important;text-align: center;font-weight: bold;">{{caption.Nityapanchanga}}</h2>  
   
   <div class="dx-fieldset">
         <div class="dx-fieldset-column">
@@ -182,9 +182,9 @@
 </div>
             
 
-<div class="dx-card content-block responsive-paddings " [ngClass]="getFont(horoModel.LangCode)">
-      <p >{{caption.CaptionRight}}</p>
-<p >{{horoResponse.Panchanga}}</p>
+<div class="content-block" [ngClass]="getFont(horoModel.LangCode)">
+      <p class="note">{{caption.CaptionRight}}</p>
+<p class="note">{{horoResponse.Panchanga}}</p>
 
 </div>
 
