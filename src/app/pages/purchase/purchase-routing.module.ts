@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { PaidservicesComponent } from './paidservices/paidservices.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 import { PaymentComponent } from './payment/payment.component';
+import { PaymentProcessingComponent } from './payment-processing/payment-processing.component';
 
 const routes: Routes = [
     {
@@ -22,11 +23,11 @@ const routes: Routes = [
     //   path:'offlinePayment',
     //   component:OfflinepaymentsComponent
     // },
-    // {
-    //   path:'paymentProcessing',
-    //   component:DowloadedSuccesdfullyComponent
-    //   //component:PaymentProcessingComponent
-    // }
+    {
+      path:'paymentProcessing',
+      //component:DowloadedSuccesdfullyComponent
+      component:PaymentProcessingComponent
+    }
   ];
   
   @NgModule({
