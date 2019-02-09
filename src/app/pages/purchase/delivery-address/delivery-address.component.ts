@@ -17,19 +17,53 @@ import ArrayStore from 'devextreme/data/array_store';
 })
 export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewInit {
     ItName: string;
-    statesOfIndia: SelectBoxModel[] = [
-        { Id: "STANDARD", Text: 'Standard Time' },
-        { Id: "SUMMER", Text: 'Summer Time' },
-        { Id: "DOUBLE", Text: 'Double Summer Time' },
-        { Id: "WAR", Text: 'War Time' }
-      ];
+
+    // statesOfIndia: SelectBoxModel[] = [
+    //     { Id: "Andhra Pradesh", Text: 'Andhra Pradesh' },
+    //     { Id: "Arunachal Pradesh", Text: 'Arunachal Pradesh' },
+    //     { Id: "Assam", Text: 'Assam' },
+    //     { Id: "Bihar", Text: 'Bihar' },
+    //     { Id: "Chhattisgarh", Text: 'Chhattisgarh' },
+    //     { Id: "Goa", Text: 'Goa' },
+    //     { Id: "Gujarat", Text: 'Gujarat' },
+    //     { Id: "Haryana", Text: 'Haryana' },
+    //     { Id: "Himachal Pradesh", Text: 'Himachal Pradesh' },
+    //     { Id: "Jammu & Kashmir", Text: 'Jammu & Kashmir' },
+    //     { Id: "Jharkhand", Text: 'Jharkhand' },
+    //     { Id: "Karnataka", Text: 'Karnataka' },
+    //     { Id: "Kerala", Text: 'Kerala' },
+    //     { Id: "Madhya Pradesh", Text: 'Madhya Pradesh' },
+    //     { Id: "Maharashtra", Text: 'Maharashtra' },
+    //     { Id: "Manipur", Text: 'Manipur' },
+    //     { Id: "Meghalaya", Text: 'Meghalaya' },
+    //     { Id: "Mizoram", Text: 'Mizoram' },
+    //     { Id: "Nagaland", Text: 'Nagaland' },
+    //     { Id: "Odisha", Text: 'Odisha' },
+    //     { Id: "Punjab", Text: 'Punjab' },
+    //     { Id: "Rajasthan", Text: 'Rajasthan' },
+    //     { Id: "Sikkim", Text: 'Sikkim' },
+    //     { Id: "Tamil Nadu", Text: 'Tamil Nadu' },
+    //     { Id: "Telangana", Text: 'Telangana' },
+    //     { Id: "Tripura", Text: 'Tripura' },
+    //     { Id: "Uttarakhand", Text: 'Uttarakhand' },
+    //     { Id: "Uttar Pradesh", Text: 'Uttar Pradesh' },
+    //     { Id: "West Bengal", Text: 'West Bengal' }
+    //   ];
     statedata: ArrayStore;
     statevalue: any;
+    statesOfIndia: string[];
     ngOnInit() {
-        this.statedata = new ArrayStore({
-            data: this.statesOfIndia,
-            key: "Id"
-          });
+        // this.statedata = new ArrayStore({
+        //     data: this.statesOfIndia,
+        //     key: "Id"
+        //   });
+        this.statesOfIndia=['Andhra Pradesh','Arunachal Pradesh',
+        'Assam','Bihar', 'Chhattisgarh','Goa','Gujarat','Haryana',
+        'Himachal Pradesh','Jammu & Kashmir','Jharkhand','Karnataka',
+        'Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya',
+        'Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim',
+        'Tamil Nadu','Telangana','Tripura','Uttarakhand','Uttar Pradesh',
+        'West Bengal'];
     }
     statedataSelection(event){
         this.statevalue=event.value;

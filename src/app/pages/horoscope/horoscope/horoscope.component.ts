@@ -202,7 +202,7 @@ export class HoroscopeComponent {
       this.using = ["AstroLite Wallet", "Payment Gateway"];
       //this.horoRequest=this.horoScopeService.horoRequest;
       this.horoscopeForm = this.formbuilder.group({
-        Name: ['', [Validators.required, Validators.minLength(4)]],
+        Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],
         fatherName: [''],
         motherName: [''],
         gotra: [''],

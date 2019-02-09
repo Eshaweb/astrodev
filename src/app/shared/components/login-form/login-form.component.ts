@@ -83,8 +83,8 @@ export class LoginFormComponent {
     //     // In a real app: dispatch action to load the details here.
     // });
     this.loginForm = this.formbuilder.group({
-      UserName: [null, [Validators.required, Validators.minLength(8)]],
-      Password: ['', [Validators.required, Validators.minLength(4)]]
+      UserName: [8277033170, [Validators.required, Validators.minLength(8)]],
+      Password: ['1234', [Validators.required, Validators.minLength(4)]]
     });
     const UserNameContrl = this.loginForm.get('UserName');
     UserNameContrl.valueChanges.subscribe(value => this.setErrorMessage(UserNameContrl));

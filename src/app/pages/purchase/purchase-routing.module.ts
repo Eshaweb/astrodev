@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { PaidservicesComponent } from './paidservices/paidservices.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
     {
@@ -13,10 +14,10 @@ const routes: Routes = [
       component:DeliveryAddressComponent
       //component:DeliveryAddressOldnewComponent
     },
-    // {
-    //   path:'payment',
-    //   component:PaymentComponent
-    // },
+    {
+      path:'payment',
+      component:PaymentComponent
+    },
     // {
     //   path:'offlinePayment',
     //   component:OfflinepaymentsComponent

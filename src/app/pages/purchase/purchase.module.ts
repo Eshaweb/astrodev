@@ -7,6 +7,7 @@ import { HoropaidComponent } from './horopaid/horopaid.component';
 import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule } from 'devextreme-angular';
 import { PurchaseRoutingModule } from './purchase-routing.module';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { DeliveryAddressComponent } from './delivery-address/delivery-address.co
     declarations: [
         PaidservicesComponent,
         HoropaidComponent,
-        DeliveryAddressComponent
+        DeliveryAddressComponent,
+        PaymentComponent
     ]
 })
 export class PurchaseModule{

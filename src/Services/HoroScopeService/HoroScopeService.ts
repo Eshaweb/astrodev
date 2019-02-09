@@ -129,9 +129,9 @@ export class HoroScopeService {
         return this.httpService.Post(endPoint, orderAddress);
     }
    
-    GetPayCodes(callback: (data) => void) {
+    GetPayCodes():Observable<any> {
         var endPoint = "Sales/GetPayCodes";
-        this.httpService.Get(endPoint);
+        return this.httpService.Get(endPoint);
     }
 
     OccupyPromoCode(Couponcode, callback: (data) => void) {
