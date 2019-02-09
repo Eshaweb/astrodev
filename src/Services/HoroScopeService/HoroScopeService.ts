@@ -104,9 +104,9 @@ export class HoroScopeService {
         return this.httpService.Post(endPoint, ItemMast);
     }
 
-    GetItemPrice(HardCopyPriceRequest, callback: (data) => void) {
+    GetItemPrice(HardCopyPriceRequest):Observable<any> {
         var endPoint = "Item/GetItemPrice";
-        this.httpService.Post(endPoint, HardCopyPriceRequest);
+        return this.httpService.Post(endPoint, HardCopyPriceRequest);
     }
 
     CreateAddress(addessModel):Observable<any> {
@@ -119,7 +119,7 @@ export class HoroScopeService {
         return this.httpService.Post(endPoint, addessModel);
     }
 
-    CreateAndUpdateOrder(addessModel, callback: (data) => void) {
+    CreateAndUpdateOrder(addessModel):Observable<any> {
         var endPoint = "Address/CreateAndUpdateOrder";
         return this.httpService.Post(endPoint, addessModel);
     }
@@ -129,29 +129,29 @@ export class HoroScopeService {
         return this.httpService.Post(endPoint, orderAddress);
     }
    
-    GetPayCodes(callback: (data) => void) {
+    GetPayCodes():Observable<any> {
         var endPoint = "Sales/GetPayCodes";
-        this.httpService.Get(endPoint);
+        return this.httpService.Get(endPoint);
     }
 
-    OccupyPromoCode(Couponcode, callback: (data) => void) {
+    OccupyPromoCode(Couponcode):Observable<any> {
         var endPoint = "Promo/OccupyPromoCode?Promo=" + Couponcode;
         return this.httpService.Get(endPoint);
     }
 
-    CreateBillPayModeToOrder(orderAddress, callback: (data) => void) {
+    CreateBillPayModeToOrder(orderAddress):Observable<any> {
         var endPoint = "Order/CreateBillPayModeToOrder";
         return this.httpService.Post(endPoint, orderAddress);
     }
 
-    PaymentComplete(payment, callback: (data) => void) {
+    PaymentComplete(payment):Observable<any> {
         var endPoint = "Order/PaymentComplete";
         return this.httpService.Post(endPoint, payment);
     }
 
-    CheckForResult(OrderId, callback: (data) => void) {
+    CheckForResult(OrderId):Observable<any> {
         var endPoint = "Order/CheckForResult?OrderId=" + OrderId;
-        this.httpService.Get(endPoint);
+        return this.httpService.Get(endPoint);
     }
 
     GetEMailAddress(PartyMastId):Observable<any> {

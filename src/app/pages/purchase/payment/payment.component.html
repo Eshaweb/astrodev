@@ -1,0 +1,64 @@
+<main>
+    <form>
+<div class="payment-1">
+<div class="screen">
+    <div class="title">
+        <h2>Payment </h2>
+</div>
+<div class="content-centering-wrapper">
+    <div class="content">
+        <span>If you have a coupon code please enter here</span>
+<div class="coupon-code-2" [formGroup]="CoupenCodeForm">
+        <div class="dx-fieldset">
+            <div class="dx-field">
+                <div class="dx-field-label">Coupon</div>
+                <div class="dx-field-value">
+                    <dx-text-box formControlName="CouponCode" (keyup)='OnCouponCode($event.target.value)' showClearButton="true"></dx-text-box>
+                    <p style="color:red" id='err_CouponCode'></p>
+                </div>
+            </div>
+        </div>
+
+<div class="apply-button">
+    <dx-button (onClick)='onApply()' [disabled]="!CoupenCodeForm.valid||disableButton" id="button" text="Apply" type="success"
+        [useSubmitBehavior]="true">
+    </dx-button>
+</div>
+
+</div>
+<span>Order Total</span>
+<span>Price              :         {{payableAmount}}</span>
+<span>Coupon Discount      :          {{discountAmount}}</span>
+<span>Effective Price                :          {{payableAmount-discountAmount}}</span>
+<p style="color:red" *ngIf="(differenceAmount>0)"> {{'Remaining balance amount '+(differenceAmount-discountAmount)+' Rs will be deducted from choosen payment modes'}} </p>
+<p style="color:green"> {{selectMeMessage}}</p>
+<div class="astrolite-wallet">
+<dx-check-box id="check" 
+text='Pay using Astrolite wallet (Wallet Balance {{walletbalance}})'
+(onValueChanged)="checkBox_valueChanged($event)">
+</dx-check-box>
+</div>
+<div class="payment-mode" [formGroup]="paymentModeForm">
+    <dx-select-box formControlName="paymentMode"
+    (onValueChanged)="paymentModeSelection($event)" 
+    [dataSource]="paymentModedata" 
+    displayExpr="Text" 
+    valueExpr="Id"
+    [value]='paymentModedatavalue'>
+    </dx-select-box>
+</div>
+
+<div class="continue-button">
+<dx-button (onClick)='onContinue()' 
+text="Continue" 
+type="success" 
+[useSubmitBehavior]="true">
+</dx-button>
+</div>
+
+</div>
+</div>
+</div>
+</div></form>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+</main>
