@@ -340,55 +340,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         }
         });
     }
-    // @ViewChild('combo', { read: IgxComboComponent })
-    // combo: IgxComboComponent;
-  
-    // selecting = false;
-    // ObjChanged(event) {
-    //   if (!this.selecting) {
-    //     let removed = false;
-    //     for (let i = 0; i < event.newSelection.length; i++) {
-    //       for (let j = 0; j < event.oldSelection.length; j++) {
-    //         if (event.oldSelection[j] === event.newSelection[i]) {
-    //           event.newSelection.splice(i, 1);
-    //           removed = true;
-    //         }
-    //       }
-    //     }
-  
-    //     if (removed) {
-    //       this.selecting = true;
-    //       this.combo.deselectAllItems();
-    //       this.combo.selectItems(event.newSelection);
-    //       this.selecting = false;
-    //     }
-    //   }
-  
-    //   if (this.checkClicked == true && this.differenceAmount > 0) {
-    //     this.paycodes=[];
-    //     if(this.discountAmount>0){
-    //       this.paycodes.push({
-    //         Code: event.newSelection[0].Id,
-    //         Amount: this.differenceAmount-this.discountAmount
-    //       });
-    //     }
-    //     else{
-    //       this.paycodes.push({
-    //         Code: event.newSelection[0].Id,
-    //         Amount: this.differenceAmount
-    //       });
-    //     }
-    //     this.paymentmodeSelected = true;
-    //     this.selectMeMessage = '';
-    //   }
-  
-    //   else {
-    //     this.paycodes = [{ Code: event.newSelection[0].Id, Amount: this.payableAmount }];
-    //     this.paymentmodeSelected = true;
-    //     this.selectMeMessage = '';
-    //   }
-    // }
-  
+   
     public onpaymentModeSelection(eventArgs) {
       var paymentModeId=eventArgs.newSelection.value;
       this.paymentModevalue = this.paymentModes.find(function (obj) { return obj.Id === paymentModeId }).Text;

@@ -15,7 +15,6 @@ import { RegistrationFormComponent } from './shared/components/registration-form
 import { BrowserModule } from '@angular/platform-browser';
 import { DownloadComponent } from './pages/download/download.component';
 import { EmailVerifyComponent } from './pages/email-verify/email-verify.component';
-import { OfflinePaymentComponent } from './pages/offline-payment/offline-payment.component';
 import { WalletComponent } from './pages/wallet/wallet.component';
 //import { EventsModule } from 'angular4-events';
 
@@ -23,11 +22,6 @@ const routes: Routes = [
   {
     path: 'pages/wallet',
     component: WalletComponent,
-    canActivate: [ AuthGuardService ]
-  },
-  {
-    path: 'pages/offline-payment',
-    component: OfflinePaymentComponent,
     canActivate: [ AuthGuardService ]
   },
   {
@@ -91,7 +85,8 @@ const routes: Routes = [
   ],  
   providers: [AuthGuardService],
   exports: [RouterModule],
-  declarations: [HomeComponent, DownloadComponent, EmailVerifyComponent, OfflinePaymentComponent, WalletComponent,  
+  declarations: [HomeComponent, DownloadComponent, 
+    EmailVerifyComponent, WalletComponent,  
     //HoroscopeComponent,
     //FreeDataComponent
 
