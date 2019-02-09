@@ -19,7 +19,7 @@ export const navigation = [
   //   ]
   // },
   {
-    text: 'Horopage',
+    text: 'Horoscope',
     path: '/horoscope',
     icon: 'folder'
   },
