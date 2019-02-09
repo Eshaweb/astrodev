@@ -1,5 +1,9 @@
     
-    <h3 >{{service.Name}}</h3>
+  
+  <div class="dx-fieldset-column">
+  <div class="dx-card content-block responsive-paddings">
+  
+  <h3 >{{service.Name}}</h3>
     <div class="full-horoscope-1">
     <h5 >{{service.Description}}</h5>
     <h6  *ngIf='!checkBoxValue'>MRP.               {{service.MRP}}</h6>
@@ -8,9 +12,9 @@
     <h6  *ngIf='checkBoxValue'>Discount             {{HardCopyDifference}}</h6>
     <h6  *ngIf='!checkBoxValue'>Offer Price      {{service.Amount}}</h6>
     <h6  *ngIf='checkBoxValue'>Offer Price      {{service.PrintAmount}}</h6>
-    <div class="hardcopy-checkbox">
+   
     <div class="dx-fieldset">
-        <div>
+       
             <dx-check-box 
                 id="check"
                 (onValueChanged)="hardcopyRequired_Click(service.ItMastId)"
@@ -22,12 +26,12 @@
                 [(value)]="checkBoxValue"
                 text="Hardcopy Required">
             </dx-check-box> -->
-        </div>
+       
     </div>
-    </div>
+    
     <a (click)="onClick()">Click here to View Sample PDF</a>
     </div>
-    <h5 >Delivery Service is Within India Only</h5>
+    <p><strong> Service is Within India Only</strong></p>
     <div class="next">
     <dx-button (onClick)='onNext(service)'
                 id="button"
@@ -37,4 +41,6 @@
             </dx-button>
   </div>
     
-    
+</div>
+</div>
+

@@ -1,0 +1,19 @@
+.dx-fieldset-column {
+    float: left;
+    width: 33%;
+    // margin-right: 40px;
+    margin-top: 24px !important;
+    }
+
+    .responsive-paddings {
+        padding: 20px;
+    }
+
+    @media (max-width: 800px) {
+        .dx-fieldset-column {
+        float: left;
+        width: 100%;
+        
+        }
+
+    }
