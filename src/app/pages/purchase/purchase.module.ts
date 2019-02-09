@@ -4,8 +4,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
 import { PaidservicesComponent } from './paidservices/paidservices.component';
 import { HoropaidComponent } from './horopaid/horopaid.component';
-import { DxButtonModule, DxCheckBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule } from 'devextreme-angular';
 import { PurchaseRoutingModule } from './purchase-routing.module';
+import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 
 @NgModule({
     imports: [
@@ -15,11 +16,13 @@ import { PurchaseRoutingModule } from './purchase-routing.module';
         FormsModule,
         PurchaseRoutingModule,
         DxCheckBoxModule,
-        DxButtonModule
+        DxButtonModule,
+        DxTextBoxModule
     ],
     declarations: [
         PaidservicesComponent,
-        HoropaidComponent
+        HoropaidComponent,
+        DeliveryAddressComponent
     ]
 })
 export class PurchaseModule{

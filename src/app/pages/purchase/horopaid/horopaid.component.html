@@ -6,25 +6,29 @@
     <h6  *ngIf='checkBoxValue'>MRP.               {{service.PrintMRP}}</h6>
     <h6  *ngIf='!checkBoxValue'>Discount             {{SoftCopyDifference}}</h6>
     <h6  *ngIf='checkBoxValue'>Discount             {{HardCopyDifference}}</h6>
-    <h6  *ngIf='!checkBoxValue'>Actual Price      {{service.Amount}}</h6>
-    <h6  *ngIf='checkBoxValue'>Actual Price      {{service.PrintAmount}}</h6>
+    <h6  *ngIf='!checkBoxValue'>Offer Price      {{service.Amount}}</h6>
+    <h6  *ngIf='checkBoxValue'>Offer Price      {{service.PrintAmount}}</h6>
     <div class="hardcopy-checkbox">
     <div class="dx-fieldset">
         <div>
-            <dx-check-box 
+            <!-- <dx-check-box 
                 id="check"
                 (onValueChanged)="hardcopyRequired_Click(service.ItMastId)"
+                [(value)]="checkBoxValue"
+                text="Hardcopy Required">
+            </dx-check-box> -->
+            <dx-check-box 
+                id="check"
+                (onValueChanged)="hardcopyRequired_Click($event)"
                 [(value)]="checkBoxValue"
                 text="Hardcopy Required">
             </dx-check-box>
         </div>
     </div>
     </div>
-    
-    <h5 *ngIf='!checkBoxValue'>Total Price :{{service.Amount}}</h5>
-    <h5 *ngIf='checkBoxValue'>Total Price :{{service.PrintAmount}}</h5>
+    <a (click)="onClick()">Click here to View Sample PDF</a>
     </div>
-    <h5 >Delivery Service is Applicable for Customers Within India</h5>
+    <h5 >Delivery Service is Within India Only</h5>
     <div class="next">
     <dx-button (onClick)='onNext(service)'
                 id="button"

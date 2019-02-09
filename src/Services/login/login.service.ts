@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "../../../node_modules/@angular/common/http";
 import { ErrorService } from '../Error/error.service';
 import { HttpService } from '../Error/http.service';
+import { Observable } from 'rxjs';
 
 
 
@@ -39,21 +40,26 @@ export class LoginService {
             callback(data);
         });
     }
-    Login(loginModel, callback: (data) => void) {
+    // Login(loginModel, callback: (data) => void) {
+    //     var endPoint = "Party/Login";
+    //     this.httpService.Post(endPoint, loginModel).subscribe((data: any) => {
+    //         this.Name = data.Name;
+    //         this.Token = data.Token;
+    //         this.PartyMastId = data.PartyMastId;
+    //         localStorage.setItem('Name', this.Name);
+    //         //this.events.publish('REFRESH_NAME');
+    //         callback(data);
+    //     }, (error) => {
+    //         var errorMessage = {
+    //             Error: error
+    //         }
+    //         callback(errorMessage);
+    //     });
+    // }
+
+    Login(loginModel):Observable<any> {
         var endPoint = "Party/Login";
-        this.httpService.Post(endPoint, loginModel).subscribe((data: any) => {
-            this.Name = data.Name;
-            this.Token = data.Token;
-            this.PartyMastId = data.PartyMastId;
-            localStorage.setItem('Name', this.Name);
-            //this.events.publish('REFRESH_NAME');
-            callback(data);
-        }, (error) => {
-            var errorMessage = {
-                Error: error
-            }
-            callback(errorMessage);
-        });
+        return this.httpService.Post(endPoint, loginModel);
     }
     getPhoneNumberFromFacebookAccount() {
         //var ACCESS_TOKEN = 'AIzaSyD68pTd0CmqTXSqPHFpLrPWkiClqPBIpLQ'

@@ -83,25 +83,25 @@ export class HoroScopeService {
         return this.http.post(url, horoSample, { responseType: "blob" });
     }
    
-    CreateOrder(orderModel, callback: (data) => void) {
+    CreateOrder(orderModel):Observable<any> {
         var endPoint = "Order/CreateOrder";
         return this.httpService.Post(endPoint, orderModel);
     }
    
-    GetAllAddress(PartyMastId, callback: (data) => void) {
+    GetAllAddress(PartyMastId):Observable<any> {
        
         var endPoint = "Address/GetAllAddress?PartyMastId=" + PartyMastId;
-        this.httpService.Get(endPoint);
+        return this.httpService.Get(endPoint);
     }
    
-    GetDefaultAddress(PartyMastId, callback: (data) => void) {
+    GetDefaultAddress(PartyMastId):Observable<any> {
         var endPoint = "Address/GetDefaultAddress?PartyMastId=" + PartyMastId;
-        this.httpService.Get(endPoint);
+        return this.httpService.Get(endPoint);
     }
     
-    GetPriceListByItActId(ItemMast, callback: (data) => void) {
+    GetPriceListByItActId(ItemMast):Observable<any> {
         var endPoint = "Item/GetPriceListByItActId";
-        this.httpService.Post(endPoint, ItemMast);
+        return this.httpService.Post(endPoint, ItemMast);
     }
 
     GetItemPrice(HardCopyPriceRequest, callback: (data) => void) {
@@ -109,12 +109,12 @@ export class HoroScopeService {
         this.httpService.Post(endPoint, HardCopyPriceRequest);
     }
 
-    CreateAddress(addessModel, callback: (data) => void) {
+    CreateAddress(addessModel):Observable<any> {
         var endPoint = "Address/CreateAddress";
         return this.httpService.Post(endPoint, addessModel);
     }
 
-    DeleteAddress(addessModel, callback: (data) => void) {
+    DeleteAddress(addessModel) :Observable<any>{
         var endPoint = "Address/DeleteAddress";
         return this.httpService.Post(endPoint, addessModel);
     }
@@ -124,7 +124,7 @@ export class HoroScopeService {
         return this.httpService.Post(endPoint, addessModel);
     }
 
-    UpdateAddressToOrder(orderAddress, callback: (data) => void) {
+    UpdateAddressToOrder(orderAddress):Observable<any> {
         var endPoint = "Order/UpdateAddressToOrder";
         return this.httpService.Post(endPoint, orderAddress);
     }
@@ -154,9 +154,9 @@ export class HoroScopeService {
         this.httpService.Get(endPoint);
     }
 
-    GetEMailAddress(PartyMastId) {
+    GetEMailAddress(PartyMastId):Observable<any> {
         var endPoint = "Party/GetEMailAddress?PartyMastId=" + PartyMastId;
-        this.httpService.Get(endPoint);
+        return this.httpService.Get(endPoint);
     }
     getTimezone(lat, long) {
         var apiKey = 'AIzaSyD68pTd0CmqTXSqPHFpLrPWkiClqPBIpLQ'

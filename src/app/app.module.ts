@@ -60,7 +60,7 @@ export function provideConfig() {
     FooterModule,
     LoginFormModule,
     RegistrationFormModule,
-    //PurchaseModule,
+    PurchaseModule,
     AppRoutingModule,
     HttpClientModule
   ],
