@@ -43,6 +43,7 @@ text='Pay using Astrolite wallet--------{{walletbalance}}(Wallet Balance)'
     [dataSource]="paymentModedata" 
     displayExpr="Text" 
     valueExpr="Id"
+    [disabled]="selectboxdisabled"
     [value]='paymentModedatavalue'>
     </dx-select-box>
 </div>
@@ -59,6 +60,6 @@ type="success"
 </div>
 </div>
 </div>
-<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+<!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading> -->
 </form>
 </main>

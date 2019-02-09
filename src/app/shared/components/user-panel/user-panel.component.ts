@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DxListModule } from 'devextreme-angular/ui/list';
 import { DxContextMenuModule } from 'devextreme-angular/ui/context-menu';
+import { LoginService } from 'src/Services/login/login.service';
 
 @Component({
   selector: 'app-user-panel',
@@ -17,7 +18,9 @@ export class UserPanelComponent {
   @Input()
   menuMode: string;
 
-  constructor() {}
+  constructor(public loginService:LoginService) {
+
+  }
 }
 
 @NgModule({

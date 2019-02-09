@@ -255,6 +255,7 @@ export class HoroscopeComponent {
       birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
       if (this.horoScopeService.horoRequest != null) {
         this.horoRequest = this.horoScopeService.horoRequest;
+        this.horoscopeForm.controls['Name'].setValue(this.horoScopeService.horoRequest.Name);
         this.birthDateinDateFormat = this.horoScopeService.birthDateinDateFormat;
         this.birthTimeinDateFormat = this.horoScopeService.birthTimeinDateFormat;
       }
@@ -470,7 +471,7 @@ export class HoroscopeComponent {
       this.horoScopeService.GetFreeData(this.horoRequest).subscribe((data:any) => {
         this.horoScopeService.horoResponse = data;
         this.loadingSwitchService.loading = false;
-        this.router.navigate(["/horoscope/getFreeData"]);
+        this.router.navigate(["/horoscope/getHoroscopeFreeData"]);
     });
     }
     

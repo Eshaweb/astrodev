@@ -39,8 +39,8 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
     
   }
   ngOnInit() {
-    this.loading = true;
-    //this.loadingSwitchService.loading=true;
+    //this.loading = true;
+    this.loadingSwitchService.loading=true;
     this.horoScopeService.CheckForResult(this.horoScopeService.OrderId).subscribe((data) => {
       if (data.AstroReportId.length != 0) {
         this.enableRefresh = false;
@@ -58,8 +58,8 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
           a.click();
           document.body.removeChild(a);
           URL.revokeObjectURL(url);
-          this.loading = false;
-          //this.loadingSwitchService.loading=false;
+          //this.loading = false;
+          this.loadingSwitchService.loading=false;
           this.showSuccess=true;
           this.clearParameters();
         });
@@ -86,8 +86,8 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
-                this.loading = false;
-                //this.loadingSwitchService.loading=false;
+                //this.loading = false;
+                this.loadingSwitchService.loading=false;
                 this.showSuccess=true;
                 this.clearParameters();
                 this.sub.unsubscribe();
@@ -136,8 +136,8 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
     this.horoScopeService.OrderId=null;
   }
   Download_Click() {
-    this.loading = true;
-    //this.loadingSwitchService.loading=true;
+    //this.loading = true;
+    this.loadingSwitchService.loading=true;
     this.horoScopeService.DownloadResult(this.buttonId, (data) => {
       var newBlob = new Blob([data], { type: "application/pdf" });
       const fileName: string = 'FullHoroscope.pdf';
@@ -149,8 +149,8 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      this.loading = false;
-      //this.loadingSwitchService.loading=false;
+      //this.loading = false;
+      this.loadingSwitchService.loading=false;
     });  
   }
 }

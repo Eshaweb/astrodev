@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HoroscopeComponent } from '../horoscope/horoscope/horoscope.component';
-import { FreeDataComponent } from './free-data/free-data.component';
+import { HoroscopeFreeDataComponent } from './horoscope-free-data/horoscope-free-data.component';
 
 
 const routes: Routes = [
@@ -10,8 +10,8 @@ const routes: Routes = [
       component: HoroscopeComponent,
     },
     {
-      path: 'getFreeData',
-      component: FreeDataComponent
+      path: 'getHoroscopeFreeData',
+      component: HoroscopeFreeDataComponent
     }
   ];
   

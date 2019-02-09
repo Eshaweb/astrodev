@@ -138,7 +138,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       CouponCode_minlength: 'Minimum length should be 6'
     };
     GetWalletBalance() {
-      this.walletService.GetWalletBalance(this.loginService.PartyMastId, (data) => {
+      this.walletService.GetWalletBalance(this.loginService.PartyMastId).subscribe((data) => {
         if (data.Errors == undefined) {
           //IsValid: true 
           this.walletbalance = data;
@@ -157,13 +157,13 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }
     onApply() {
-      this.loading=true;
-      //this.loadingSwitchService.loading=true;
+      //this.loading=true;
+      this.loadingSwitchService.loading=true;
       this.disableButton=true;
       this.horoScopeService.OccupyPromoCode(this.CoupenCodeForm.controls['CouponCode'].value).subscribe((data) => {
         //if (data.Errors == undefined) {
-          this.loading=false;
-          //this.loadingSwitchService.loading=false;
+          //this.loading=false;
+          this.loadingSwitchService.loading=false;
           if (data.IsValid == true) {
           this.discountAmount = data.Amount ;
         }
@@ -214,8 +214,8 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   
     onContinue() {
       if (this.checkClicked == true) {
-        this.loading = true;
-        //this.loadingSwitchService.loading=true;
+        //this.loading = true;
+        this.loadingSwitchService.loading=true;
         if (this.differenceAmount > 0 && this.paymentmodeSelected == true && this.discountAmount>0) {
           this.paycodes.push({
             Code: "W",
@@ -245,8 +245,8 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           //loading.dismiss();
         }
         else if(this.discountAmount>0){
-          this.loading = true;
-          //this.loadingSwitchService.loading=true;
+          //this.loading = true;
+          this.loadingSwitchService.loading=true;
           this.payableAmount=this.payableAmount;
           this.paycodes = [{
             Code: "W",
@@ -266,12 +266,12 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           }];
           this.CreateBillPayModeToOrder();
         }
-        this.loading = false;
-        //this.loadingSwitchService.loading=false;
+        //this.loading = false;
+        this.loadingSwitchService.loading=false;
       }
       else if (this.discountAmount >0){
-        this.loading = true;
-        //this.loadingSwitchService.loading=true;
+        //this.loading = true;
+        this.loadingSwitchService.loading=true;
         if (this.paymentmodeSelected == true) {
           this.payableAmountthroughPaymentModes=this.payableAmount-this.discountAmount;        
           this.paycodes = [{
@@ -287,12 +287,12 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           this.selectMeMessage = "Please select any Payment modes";
           //loading.dismiss();
         }
-        this.loading = false;
-        //this.loadingSwitchService.loading=false;
+        //this.loading = false;
+        this.loadingSwitchService.loading=false;
       }
       else {
-        this.loading = true;
-        //this.loadingSwitchService.loading=true;
+        //this.loading = true;
+        this.loadingSwitchService.loading=true;
         if (this.paymentmodeSelected == true) {
           this.payableAmountthroughPaymentModes=this.payableAmount;
           this.CreateBillPayModeToOrder();
@@ -301,8 +301,8 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           this.selectMeMessage = "Please select any Payment modes";
           //loading.dismiss();
         }
-        this.loading = false;
-        //this.loadingSwitchService.loading=false;
+        //this.loading = false;
+        this.loadingSwitchService.loading=false;
       }
     }
 
@@ -330,7 +330,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
               this.router.navigate(['/purchase/paymentProcessing']);
             }
             else if(data.PayModes[i]=="OFF"){
-              this.router.navigate(['/purchase/offlinePayment']);
+              this.router.navigate(['/offlinePayment']);
             }
           }
         }
@@ -414,16 +414,16 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   
     next(Payment) {
-      this.loading = true;
-      //this.loadingSwitchService.loading=true;
+      //this.loading = true;
+      this.loadingSwitchService.loading=true;
       this.horoScopeService.PaymentComplete(Payment).subscribe((data) => {
       if(data.Error==undefined){
       this.horoScopeService.resultResponse=data;
       if(data.AstroReportId.length != 0){
         this.horoScopeService.AstroReportId = data.AstroReportId[0].split('_')[0];
       }
-      this.loading = false;
-      //this.loadingSwitchService.loading=false;
+      //this.loading = false;
+      this.loadingSwitchService.loading=false;
       this.router.navigate(['/purchase/paymentProcessing'], { skipLocationChange: true });
       //this.router.navigate(['/purchase/paymentProcessing']);
     }

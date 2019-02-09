@@ -1,0 +1,53 @@
+<h2 class="content-block">Wallet</h2>
+<div class="two-column">
+<div *ngIf='!message'class="dx-card content-block responsive-paddings">
+
+        <form [formGroup]="depositToWalletForm">
+                <h6>Wallet Balance:  {{walletBalanceAmount}}</h6>
+
+                <div class="dx-field">
+                <div class="dx-field-label">Amount</div>
+                <div class="dx-field-value">
+                    <dx-text-box formControlName="Amount" (keyup)="onAmount($event.target.value)"  placeholder="Enter Amount" width="100%">
+
+                    </dx-text-box>
+                </div>
+                
+                </div>
+                <p style="color:red" id='err_Amount'></p>
+                <p style="color: red" *ngIf="showError">Amount should be in the range Rs.50-Rs.20000</p>
+                <div class="dx-field-label2" *ngIf="bonusAmount!=null">Bonus Amount:  {{bonusAmount}}</div>
+
+                <br>
+                <div class="dx-field">
+                        <div class="dx-field-label">Payment Mode</div>
+                        <div class="dx-field-value">
+                                <dx-select-box formControlName="BillPayMode"
+                                (onValueChanged)="paymentModeSelection($event)" 
+                                [dataSource]="paymentModedata" 
+                                displayExpr="Text" 
+                                valueExpr="Id"
+                                [value]='paymentModedatavalue'>
+                                </dx-select-box>
+                        </div>
+                    </div>
+                    
+                
+                <div class="dx-field">
+                    <dx-button type="default" [disabled]="!depositToWalletForm.valid" text="Add Money" (onClick)="onClick()" width="100%"></dx-button>
+                </div>
+               
+            </form>
+
+
+</div>
+<div *ngIf='message' class="dx-card content-block responsive-paddings">
+    <div class="centre">
+        <i class="dx-icon-check dx-icon-custom-style"></i>
+        <h4>50.00 Rs</h4>
+<p><b>  Succesfully added to the wallet</b></p>
+
+<p><b>  Updated Wallet Balance is :  {{walletBalanceAmount}}</b></p>
+</div>
+</div>
+</div>

@@ -11,11 +11,11 @@ import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
 
 @Component({
-  selector: 'app-free-data',
-  templateUrl: './free-data.component.html',
-  styleUrls: ['./free-data.component.scss']
+  selector: 'app-horoscope-free-data',
+  templateUrl: './horoscope-free-data.component.html',
+  styleUrls: ['./horoscope-free-data.component.scss']
 })
-export class FreeDataComponent implements OnInit {
+export class HoroscopeFreeDataComponent implements OnInit {
   Shloka1: string;
   Shloka2: string;
   Name: string;

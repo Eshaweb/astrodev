@@ -60,7 +60,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 succ => { },
                 err => {
                     if (err.status === 401)
-                    this.router.navigateByUrl('/login');
+                    this.router.navigateByUrl('/login-form');
                     // this.navCtrl.push(LoginPage);  
                     //this.event.publish('UNAUTHORIZED');           
                     }
@@ -85,7 +85,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 succ => { },
                 err => {
                     if (err.status === 401)
-                    this.router.navigateByUrl('/login');
+                    this.router.navigateByUrl('/login-form');
                     // this.navCtrl.push(LoginPage);  
                     //this.event.publish('UNAUTHORIZED');           
                     }
@@ -94,7 +94,7 @@ export class AuthInterceptor implements HttpInterceptor {
         else {
             //this.router.navigateByUrl('/login');
              //this.navCtrl.push(LoginPage); 
-             this.router.navigate(['login']);
+             this.router.navigate(['login-form']);
         }
     }
 }

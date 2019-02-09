@@ -4,43 +4,29 @@ export const navigation = [
     path: '/home',
     icon: 'home'
   },
-  // {
-  //   text: 'Examples',
-  //   icon: 'folder',
-  //   items: [
-  //     {
-  //       text: 'Profile',
-  //       path: '/profile'
-  //     },
-  //     {
-  //       text: 'Display Data',
-  //       path: '/display-data'
-  //     }
-  //   ]
-  // },
   {
-    text: 'Horoscope',
-    path: '/horoscope',
+    text: 'Services',
+    icon: 'folder',
+    items: [
+      {
+        text: 'Horoscope',
+        path: '/horoscope',
+      }
+    ]
+  },
+  {
+    text: 'Wallet Form',
+    path: '/wallet/depoToWallet',
     icon: 'folder'
   },
   {
-    text: 'Download',
-    path: 'pages/download',
+    text: 'Registration',
+    path:'/registration-form',
     icon: 'folder'
   },
   {
-    text: 'Email-verify',
-    path: 'pages/email-verify',
-    icon: 'folder'
-  },
-  {
-    text: 'Offline-payment',
-    path: 'pages/offline-payment',
-    icon: 'folder'
-  },
-  {
-    text: 'Wallet',
-    path: 'pages/wallet',
+    text: 'Login',
+    path:'/login-form',
     icon: 'folder'
   }
 ];

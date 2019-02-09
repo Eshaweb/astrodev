@@ -27,6 +27,11 @@ import { RegistrationFormModule } from './shared/components/registration-form/re
 import { PurchaseModule } from './pages/purchase/purchase.module';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
 import { NgxLoadingModule } from 'ngx-loading';
+import { HoroscopeModule } from './pages/horoscope/horoscope.module';
+import { WalletModule } from './pages/wallet/wallet.module';
+import { DxPopupModule, DxButtonModule, DxLoadPanelModule, DevExtremeModule } from 'devextreme-angular';
+import { AstamangalaModule } from './pages/astamangala/astamangala.module';
+import { MatchMakingModule } from './pages/matchMaking/matchMaking.module';
 
 
 let config = new AuthServiceConfig([
@@ -60,11 +65,19 @@ export function provideConfig() {
     SideNavInnerToolbarModule,
     SingleCardModule,
     FooterModule,
+    HoroscopeModule,
+    AstamangalaModule,
+    MatchMakingModule,
+    WalletModule,
     LoginFormModule,
     RegistrationFormModule,
-    PurchaseModule,
+    //PurchaseModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    DxPopupModule,
+    DxButtonModule,
+    DxLoadPanelModule,
+    //DevExtremeModule
   ],
   providers: [AuthService, ScreenService, AppInfoService, 
     Service, AuthenticationService, CaptionDbService,

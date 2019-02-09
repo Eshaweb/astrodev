@@ -4,7 +4,7 @@
   <div class="dx-card content-block responsive-paddings">
   
   <h3 >{{service.Name}}</h3>
-    <div class="full-horoscope-1">
+    <div class="full-horoscope-1" id='employee'>
     <h5 >{{service.Description}}</h5>
     <h6  *ngIf='!checkBoxValue'>MRP.               {{service.MRP}}</h6>
     <h6  *ngIf='checkBoxValue'>MRP.               {{service.PrintMRP}}</h6>
@@ -29,7 +29,7 @@
        
     </div>
     
-    <a (click)="onClick()">Click here to View Sample PDF</a>
+    <a (click)="onSamplePDF(service)">Click here to View Sample PDF</a>
     </div>
     <p><strong> Service is Within India Only</strong></p>
     <div class="next">
@@ -44,3 +44,15 @@
 </div>
 </div>
 
+<!-- <dx-load-panel
+    #loadPanel
+    shadingColor="rgba(0,0,0,0.4)"
+    [position]="{ of: '#employee' }"
+    [(visible)]="loading"
+    [showIndicator]="true"
+    [showPane]="true"
+    [shading]="true"
+    [closeOnOutsideClick]="false"
+    (onShown)="onShown()"
+    (onHidden)="onHidden()">
+</dx-load-panel> -->

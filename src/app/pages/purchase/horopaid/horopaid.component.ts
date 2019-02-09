@@ -55,11 +55,14 @@ export class HoropaidComponent implements OnInit {
   }
   
   hardcopyRequired_Click(event) {
+      this.loading=true;
       if (this.checkBoxValue == false) {
           this.checkBoxValue = true;
+          this.loading=false;
       }
       else {
           this.checkBoxValue = false;
+          this.loading=false;
       }
   }
   onSamplePDF(item) {
@@ -84,7 +87,6 @@ export class HoropaidComponent implements OnInit {
 
 
   onNext(item) {
-      this.loading = true;
       this.horoScopeService.itemOrdered = item;
       this.horoScopeService.horoRequest.ReportType = item.ItMastId;
       if (this.checkBoxValue == false) {
@@ -107,7 +109,6 @@ export class HoropaidComponent implements OnInit {
           ItMastId: item.ItMastId,
           OrderId: this.horoScopeService.OrderId
       }
-      var DeliveryAddressRequired: boolean = this.requireDeliveryAddress;
       this.horoScopeService.CreateOrder(orderModel).subscribe((data) => {
           if(data.Error==undefined){
           this.horoScopeService.OrderId = data.OrderId;
@@ -115,7 +116,6 @@ export class HoropaidComponent implements OnInit {
           var FreePDF = {
               OrderId: this.horoScopeService.OrderId.toString()
           }
-          this.isLoading = false;  
           // this.router.navigate(["/services/deliveryAddress", { 'DeliveryAddressRequired': DeliveryAddressRequired }]);
           this.router.navigate(["/purchase/deliveryAddress", { 'OrderId': FreePDF.OrderId }]);
       }

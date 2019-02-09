@@ -95,7 +95,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         });
         this.customerAddressForm = this.formbuilder.group({
             Name: ['Shailesh', [Validators.required, Validators.minLength(3)]],
-            EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
+            //EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
             Address1: ['Bappanadu', [Validators.required, Validators.minLength(3)]],
             Address2: ['Temple Street', [Validators.required, Validators.minLength(4)]],
             Address3: ['#4/5-2', [Validators.required, Validators.minLength(4)]],
@@ -106,8 +106,8 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         EMailContrl_customerEMailAddressForm.valueChanges.subscribe(value => this.setErrorMessage(EMailContrl_customerEMailAddressForm));
         const NameContrl = this.customerAddressForm.get('Name');
         NameContrl.valueChanges.subscribe(value => this.setErrorMessage(NameContrl));
-        const EMailContrl = this.customerAddressForm.get('EMail');
-        EMailContrl.valueChanges.subscribe(value => this.setErrorMessage(EMailContrl));
+        // const EMailContrl = this.customerAddressForm.get('EMail');
+        // EMailContrl.valueChanges.subscribe(value => this.setErrorMessage(EMailContrl));
         const Address1Contrl = this.customerAddressForm.get('Address1');
         Address1Contrl.valueChanges.subscribe(value => this.setErrorMessage(Address1Contrl));
         const Address2Contrl = this.customerAddressForm.get('Address2');
@@ -210,7 +210,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
 
     onSaveAddress() {
         var AddressModel = {
-            EMail: this.customerAddressForm.controls['EMail'].value,
+            //EMail: this.customerAddressForm.controls['EMail'].value,
             OrderId: this.OrderId,
             PartyMastId: this.loginService.PartyMastId,
             Name: this.customerAddressForm.controls['Name'].value,

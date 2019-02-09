@@ -24,8 +24,34 @@
             Copyright © 2011-2018 Astrolite.in.  
         </app-footer>
     </app-side-nav-inner-toolbar>
-    <ngx-loading [show]="loadingSwitchService.loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
-        <!-- <app-single-card>
+    <!-- <ngx-loading [show]="loadingSwitchService.loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading> -->
+    <dx-popup
+    class="popup"
+    [width]="250"
+    [height]="150"
+    [showTitle]="true"
+    title="Error"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="popupVisible">
+    <div *dxTemplate="let data of 'content'">
+        <p>
+            <span>{{errorMessage}}</span>
+        </p>
+        <dx-button text='OK' (onClick)="ClosePopUp()"></dx-button>
+    </div>
+</dx-popup>
+<dx-load-panel
+    #loadPanel
+    shadingColor="rgba(0,0,0,0.4)"
+    [(visible)]="loadingSwitchService.loading"
+    [showIndicator]="true"
+    [showPane]="true"
+    [shading]="true"
+    [closeOnOutsideClick]="false"
+    (onHidden)="onHidden()">
+</dx-load-panel>
+    <!-- <app-single-card>
             <router-outlet></router-outlet>
         </app-single-card> -->
 </ng-container>

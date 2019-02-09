@@ -4,7 +4,6 @@ import { PaidservicesComponent } from './paidservices/paidservices.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentProcessingComponent } from './payment-processing/payment-processing.component';
-import { OfflinepaymentComponent } from './offline-payment/offline-payment.component';
 
 const routes: Routes = [
     {
@@ -20,10 +19,10 @@ const routes: Routes = [
       path:'payment',
       component:PaymentComponent
     },
-    {
-      path:'offlinePayment',
-      component:OfflinepaymentComponent
-    },
+    // {
+    //   path:'offlinePayment',
+    //   component:OfflinepaymentComponent
+    // },
     {
       path:'paymentProcessing',
       //component:DowloadedSuccesdfullyComponent

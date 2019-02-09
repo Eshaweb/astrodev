@@ -1,26 +1,27 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HoroscopeComponent } from '../horoscope/horoscope/horoscope.component';
-import { HoroscopeRoutingModule } from './horoscope-routing.module';
+import { AstamangalaRoutingModule } from './astamangala-routing.module';
+import { AstamangalaComponent } from './astamangala/astamangala.component';
+import { NgModule } from '@angular/core';
 import { DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule } from 'devextreme-angular';
-import { HoroscopeFreeDataComponent } from './horoscope-free-data/horoscope-free-data.component';
+import { AstamangalaFreeDataComponent } from './astamangala-free-data/astamangala-free-data.component';
+
 
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
         FormsModule,
-        HoroscopeRoutingModule,
+        AstamangalaRoutingModule,
         DxValidatorModule,DxButtonModule,DxValidationSummaryModule,
     DxDateBoxModule,DxSelectBoxModule,DxCheckBoxModule,
     DxTextBoxModule, DxRadioGroupModule,
     ],
 
     declarations: [
-        //HoroscopeComponent, 
-        //HoroscopeFreeDataComponent
+        AstamangalaComponent, 
+        AstamangalaFreeDataComponent
     ]
 })
-export class HoroscopeModule {
+export class AstamangalaModule {
 }
