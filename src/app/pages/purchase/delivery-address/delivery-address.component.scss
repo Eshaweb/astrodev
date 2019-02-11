@@ -9,5 +9,31 @@
     background-color:#ddd;
     border: 1px solid lightgrey; 
     padding: 15px; 
-    margin: 5px 0;
+    margin: 5px 9px;
+}
+
+.dx-field-column {
+    width: 34%;
+    float: left;
+
+}
+.existing-add {
+    display: flex;
+    /* width: 72%; */
+    /* float: left; */
+}
+.dx-button-has-text .dx-button-content {
+  
+    width: 150px !important;
+}
+@media (max-width: 800px) {
+    .existing-add {
+        display: block;
+    }
+
+    .dx-field-column {
+        width: 100%;
+        float: left;
+        margin-left: 20px;
+    }
 }

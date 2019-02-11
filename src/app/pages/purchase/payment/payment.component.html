@@ -5,25 +5,31 @@
     <div class="title">
         <h2>Payment </h2>
 </div>
-<div class="content-centering-wrapper">
-    <div class="content">
+
+    
         <span>If you have a coupon code please enter here</span>
 <div class="coupon-code-2" [formGroup]="CoupenCodeForm">
         <div class="dx-fieldset">
+            <div class="dx-feldset-column">
             <div class="dx-field">
                 <div class="dx-field-label">Coupon</div>
                 <div class="dx-field-value">
                     <dx-text-box formControlName="CouponCode" (keyup)='OnCouponCode($event.target.value)' showClearButton="true"></dx-text-box>
                     <p style="color:red" id='err_CouponCode'></p>
                 </div>
+                
             </div>
         </div>
-
-<div class="apply-button">
-    <dx-button (onClick)='onApply()' [disabled]="!CoupenCodeForm.valid||disableButton" id="button" text="Apply" type="success"
-        [useSubmitBehavior]="true">
-    </dx-button>
+        <div class="dx-fieldset">
+            <div class="dx-field">
+            <dx-button (onClick)='onApply()' [disabled]="!CoupenCodeForm.valid||disableButton" id="button" text="Apply" type="success"
+                [useSubmitBehavior]="true">
+            </dx-button>
 </div>
+</div>
+        </div>
+
+
 
 </div>
 <p>Price              :         {{payableAmount}}</p>
@@ -37,6 +43,8 @@ text='Pay using Astrolite wallet--------{{walletbalance}}(Wallet Balance)'
 (onValueChanged)="checkBox_valueChanged($event)">
 </dx-check-box>
 </div>
+<div class="dx-fieldset">
+        <div class="dx-field">
 <div class="payment-mode" [formGroup]="paymentModeForm">
     <dx-select-box formControlName="paymentMode"
     (onValueChanged)="paymentModeSelection($event)" 
@@ -47,19 +55,23 @@ text='Pay using Astrolite wallet--------{{walletbalance}}(Wallet Balance)'
     [value]='paymentModedatavalue'>
     </dx-select-box>
 </div>
+        </div>
 
-<div class="continue-button">
-<dx-button (onClick)='onContinue()' 
-text="Continue" 
-type="success" 
-[useSubmitBehavior]="true">
-</dx-button>
-</div>
+        <div class="dx-field">
+                <div class="continue-button">
+                <dx-button (onClick)='onContinue()' 
+                text="Continue" 
+                type="success" 
+                [useSubmitBehavior]="true">
+                </dx-button>
+                </div>
+                        </div>
+        </div>
 
-</div>
-</div>
+
 </div>
 </div>
 <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading> -->
 </form>
+
 </div>
