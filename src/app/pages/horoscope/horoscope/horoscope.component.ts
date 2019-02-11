@@ -56,7 +56,6 @@ export class HoroscopeComponent {
   password: any;
   caption: Caption;
     ngOnInit() {
-      this.products = this.horoScopeService.getProducts();
       this.timeformatdata = new ArrayStore({
         data: this.timeformats,
         key: "Id"
@@ -169,7 +168,6 @@ export class HoroscopeComponent {
       { Id: "A5", Text: "A5" },
       { Id: "A6", Text: "Small(6inch X 6inch)" }];
     public checkBoxValue: boolean = false;
-    public enabletoEdit: boolean = false;
     long: number;
     lat: number;
     horoRequest: HoroRequest;
@@ -198,7 +196,6 @@ export class HoroscopeComponent {
       this.countries = service.getCountries();
       //this.genders = ["Male", "Female"];
       this.genders = [{ Id: "M", Text: "Male" },{ Id: "F", Text: "Female" }];
-      this.payusing = horoScopeService.getInfo();
       this.using = ["AstroLite Wallet", "Payment Gateway"];
       //this.horoRequest=this.horoScopeService.horoRequest;
       this.horoscopeForm = this.formbuilder.group({
@@ -292,10 +289,6 @@ export class HoroscopeComponent {
           IsMarried: true,
         }
       }
-      this.paymentForm = this.formbuilder.group({
-        using: ['']
-      });
-  
     }
   
     setErrorMessage(c: AbstractControl): void {
@@ -373,16 +366,6 @@ export class HoroscopeComponent {
     OnMouseUp(event) {
       if (event == null) {
         this.timeZoneName = null;
-      }
-    }
-    checkBoxStateChanged() {
-      if (this.checkBoxValue == true) {
-        this.enabletoEdit = true;
-        this.checkBoxValue = false;
-      }
-      else {
-        this.enabletoEdit = false;
-        this.checkBoxValue = true;
       }
     }
     

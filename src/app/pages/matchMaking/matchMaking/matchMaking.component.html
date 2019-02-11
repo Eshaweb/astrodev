@@ -1,0 +1,363 @@
+<h2 class="content-block">Horoscope</h2>
+<div class="dx-card content-block responsive-paddings">
+    <form action="your-action" [formGroup]="femaleMatchMakingForm">
+        <div class="dx-fieldset">
+            <div class="dx-fieldset-header">Enter Girl Details</div>
+            <div class="dx-fieldset-column">
+                <div class="dx-field">
+                    <div class="dx-field-label">Name</div>
+                    <div class="dx-field-value">
+                        <dx-text-box formControlName="femaleName" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
+                        <p style="color:red" id='err_femaleName'></p>
+                    </div>
+                </div>
+                </div>
+                <div class="clear"></div>
+                    <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                            <div class="dx-field-label">Date of birth</div>
+                            <div class="dx-field-value">
+                                <dx-date-box formControlName="FemaleBdate" [value]="now" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="female_birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd">
+                                </dx-date-box>
+                                </div>
+                        </div>
+                        </div>
+                        <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                            <div class="dx-field-label">Birth Time*</div>
+                            <div class="dx-field-value">
+                              <!-- <dx-date-box formControlName="Time" width="300" type="datetime" [showClearButton]="true" displayFormat="shortTime" (onOpened)="opened($event)" dateSerializationFormat="HH:mm:ss">
+                            </dx-date-box> -->
+                            <dx-date-box formControlName="FemaleBtime" type="time" [showClearButton]="true" pickerType="rollers" [(ngModel)]="female_birthTimeinDateFormat" dateSerializationFormat="HH:mm:ss">
+                            </dx-date-box>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Time Format*</div>
+                                <div class="dx-field-value">
+                                <dx-select-box 
+                                (onValueChanged)="femaletimeformatdataSelection($event)"
+                                      [dataSource]="femaletimeformatdata"
+                                      displayExpr="Text"
+                                      valueExpr="Id"
+                                      [value]="female_timeformatvalue">
+                                  </dx-select-box>
+                                  <p style="color:red" id='err_TimeFormat'></p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Birth Place</div>
+                                <div class="dx-field-value">
+                                    <dx-text-box id="female_birthplace_txt" formControlName="FemaleBplace" [(ngModel)]="matchMakingService.female_birthplace" showClearButton="true" (mouseup)="OnMouseUp($event.target.value)"></dx-text-box>
+                                    <p style="color:red" id='err_FemaleBplace'></p>
+                            </div>
+                        </div>
+                        </div> 
+                        <div class="clear"></div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                    <div class="dx-field-label">Latitude</div>
+                        <div class="dx-field-value">
+                    <dx-number-box formControlName="LatDeg" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.LatDeg"></dx-number-box>
+                    <p style="color:red" id='err_LatDeg'></p>
+                    </div>
+                </div>
+            </div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-value">
+                    <dx-number-box formControlName="LatMt" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.LatMt"></dx-number-box>
+                    <p style="color:red" id='err_LatMt'></p>
+                    </div>
+                </div>
+            </div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-value">
+                    <dx-text-box formControlName="NS" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.NS"></dx-text-box>
+                    <p style="color:red" id='err_NS'></p>
+                        </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-label" >Longititude</div>
+                        <div class="dx-field-value">
+                    <dx-number-box formControlName="LongDeg" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.LongDeg"></dx-number-box>
+                    <p style="color:red" id='err_LongDeg'></p>
+                        </div>
+                </div>
+            </div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-value">
+                    <dx-number-box formControlName="LongMt" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.LongMt"></dx-number-box>
+                    <p style="color:red" id='err_LongMt'></p>
+                    </div>
+                </div>
+            </div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-value">
+                    <dx-text-box formControlName="EW" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.EW"></dx-text-box>
+                    <p style="color:red" id='err_EW'></p>
+                        </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-label" >Zone Time</div>
+                        <div class="dx-field-value">
+                    <dx-number-box formControlName="ZH" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.ZH"></dx-number-box>
+                    <p style="color:red" id='err_ZH'></p>
+                        </div>
+                </div>
+            </div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-value">
+                    <dx-number-box formControlName="ZM" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.ZM"></dx-number-box>
+                    <p style="color:red" id='err_ZM'></p>
+                        </div>
+                </div>
+            </div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-value">
+                    <dx-text-box formControlName="PN" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.PN"></dx-text-box>
+                    <p style="color:red" id='err_PN'></p>
+                        </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <p style="color: red">TimeZoneName: {{timeZoneName_Female}}</p>
+        </div>
+        <div class="dx-fieldset">
+            <div>
+                <dx-check-box 
+                    id="check"
+                    [(value)]="checkBoxValue_Female"
+                    text="Click here to Edit">
+                </dx-check-box>
+            </div>
+        </div>
+    
+        <!-- <div class="dx-fieldset">
+            <dx-validation-summary id="summary"></dx-validation-summary>
+    
+            <dx-button [disabled]="!horoscopeForm.valid" (onClick)='submit_click()'
+                id="button"
+                text="Submit"
+                type="success"  
+                [useSubmitBehavior]="true">
+            </dx-button>
+        </div> -->
+    </form>
+    <form action="your-action" [formGroup]="maleMatchMakingForm">
+        <div class="dx-fieldset">
+            <div class="dx-fieldset-header">Enter Boy Details</div>
+            <div class="dx-fieldset-column">
+                <div class="dx-field">
+                    <div class="dx-field-label">Name</div>
+                    <div class="dx-field-value">
+                        <dx-text-box formControlName="maleName" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
+                        <p style="color:red" id='err_maleName'></p>
+                    </div>
+                </div>
+                </div>
+                <div class="clear"></div>
+                    <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                            <div class="dx-field-label">Date of birth</div>
+                            <div class="dx-field-value">
+                                <dx-date-box formControlName="MaleBdate" [value]="now" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="male_birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd">
+                                </dx-date-box>
+                                </div>
+                        </div>
+                        </div>
+                        <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                            <div class="dx-field-label">Birth Time*</div>
+                            <div class="dx-field-value">
+                              <!-- <dx-date-box formControlName="Time" width="300" type="datetime" [showClearButton]="true" displayFormat="shortTime" (onOpened)="opened($event)" dateSerializationFormat="HH:mm:ss">
+                            </dx-date-box> -->
+                            <dx-date-box formControlName="MaleBtime" type="time" [showClearButton]="true" pickerType="rollers" [(ngModel)]="male_birthTimeinDateFormat" dateSerializationFormat="HH:mm:ss">
+                            </dx-date-box>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Time Format*</div>
+                                <div class="dx-field-value">
+                                <dx-select-box 
+                                (onValueChanged)="maletimeformatdataSelection($event)"
+                                      [dataSource]="maletimeformatdata"
+                                      displayExpr="Text"
+                                      valueExpr="Id"
+                                      [value]="male_timeformatvalue">
+                                  </dx-select-box>
+                                  <p style="color:red" id='err_TimeFormat'></p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Report Size*</div>
+                                <div class="dx-field-value">
+                                  <dx-select-box 
+                                  (onValueChanged)="reportSizedataSelection($event)"
+                                      [dataSource]="reportSizedata"
+                                      displayExpr="Text"
+                                      valueExpr="Id"
+                                      [value]="reportSizevalue">
+                                  </dx-select-box>
+                                </div>
+                                <p style="color:red" id='err_ReportSize'></p>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Languages*</div>
+                                <div class="dx-field-value">
+                                  <!-- <dx-select-box formControlName="language"
+                                      [items]="languages"
+                                      placeholder="Choose Type"
+                                      displayExpr="Text"
+                                      valueExpr="Id"
+                                      showClearButton="true" [value]="languages[0]"
+                                  ></dx-select-box> -->
+                                  <dx-select-box
+                                  [dataSource]="languagedata"
+                                  (onValueChanged)="languagedataSelection($event)"
+                                  displayExpr="Text"
+                                  valueExpr="Id"
+                                  [value]="languagevalue" >
+                              </dx-select-box>
+                                </div>
+                                <p style="color:red" id='err_language'></p>
+                            </div>
+                        </div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Birth Place</div>
+                                <div class="dx-field-value">
+                                    <dx-text-box id="male_birthplace_txt" formControlName="MaleBplace"[(ngModel)]="matchMakingService.male_birthplace" showClearButton="true"(mouseup)="OnMouseUp($event.target.value)"></dx-text-box>
+                                    <p style="color:red" id='err_MaleBplace'></p>
+                            </div>
+                        </div>
+                        </div>
+                        
+                        <div class="clear"></div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                    <div class="dx-field-label">Latitude</div>
+                        <div class="dx-field-value">
+                    <dx-number-box formControlName="LatDeg" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.LatDeg"></dx-number-box>
+                    <p style="color:red" id='err_LatDeg'></p>
+                    </div>
+                </div>
+            </div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-value">
+                    <dx-number-box formControlName="LatMt" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.LatMt"></dx-number-box>
+                    <p style="color:red" id='err_LatMt'></p>
+                    </div>
+                </div>
+            </div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-value">
+                    <dx-text-box formControlName="NS" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.NS"></dx-text-box>
+                    <p style="color:red" id='err_NS'></p>
+                        </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-label" >Longititude</div>
+                        <div class="dx-field-value">
+                    <dx-number-box formControlName="LongDeg" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.LongDeg"></dx-number-box>
+                    <p style="color:red" id='err_LongDeg'></p>
+                        </div>
+                </div>
+            </div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-value">
+                    <dx-number-box formControlName="LongMt" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.LongMt"></dx-number-box>
+                    <p style="color:red" id='err_LongMt'></p>
+                    </div>
+                </div>
+            </div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-value">
+                    <dx-text-box formControlName="EW" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.EW"></dx-text-box>
+                    <p style="color:red" id='err_EW'></p>
+                        </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-label" >Zone Time</div>
+                        <div class="dx-field-value">
+                    <dx-number-box formControlName="ZH" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.ZH"></dx-number-box>
+                    <p style="color:red" id='err_ZH'></p>
+                        </div>
+                </div>
+            </div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-value">
+                    <dx-number-box formControlName="ZM" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.ZM"></dx-number-box>
+                    <p style="color:red" id='err_ZM'></p>
+                        </div>
+                </div>
+            </div>
+            <div class="dx-fieldset-column3">
+                <div class="dx-field">
+                        <div class="dx-field-value">
+                    <dx-text-box formControlName="PN" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.PN"></dx-text-box>
+                    <p style="color:red" id='err_PN'></p>
+                        </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <p style="color: red">TimeZoneName: {{timeZoneName_Male}}</p>
+        </div>
+        <div class="dx-fieldset">
+            <div>
+                <dx-check-box 
+                    id="check"
+                    [(value)]="checkBoxValue_Male"
+                    text="Click here to Edit">
+                </dx-check-box>
+            </div>
+        </div>
+    
+        <div class="dx-fieldset">
+            <dx-validation-summary id="summary"></dx-validation-summary>
+            <dx-button [disabled]="!femaleMatchMakingForm.valid||!maleMatchMakingForm.valid" (onClick)='Matchmaking_Click()'
+                id="button"
+                text="Submit"
+                type="success"  
+                [useSubmitBehavior]="true">
+            </dx-button>
+        </div>
+    </form>
+</div>

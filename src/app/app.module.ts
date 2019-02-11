@@ -32,6 +32,7 @@ import { WalletModule } from './pages/wallet/wallet.module';
 import { DxPopupModule, DxButtonModule, DxLoadPanelModule, DevExtremeModule } from 'devextreme-angular';
 import { AstamangalaModule } from './pages/astamangala/astamangala.module';
 import { MatchMakingModule } from './pages/matchMaking/matchMaking.module';
+import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 
 
 let config = new AuthServiceConfig([
@@ -82,7 +83,7 @@ export function provideConfig() {
   providers: [AuthService, ScreenService, AppInfoService, 
     Service, AuthenticationService, CaptionDbService,
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService,
-    PartyService, RegistrationService, AuthGuard, HoroScopeService, UIService, RegistrationService, 
+    PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
     LoaderService, SalesService, WalletService,
     { provide: APP_BASE_HREF, useValue: '/' },
     {

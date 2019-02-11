@@ -117,15 +117,6 @@
                         <div class="clear"></div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
-                                <div class="dx-field-label">Birth Place</div>
-                                <div class="dx-field-value">
-                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="horoRequest.Place" (mouseup)="OnMouseUp($event.target.value)"></dx-text-box>
-                                    <p style="color:red" id='err_birthPlace'></p>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="dx-fieldset-column">
-                            <div class="dx-field">
                                 <div class="dx-field-label">Languages*</div>
                                 <div class="dx-field-value">
                                   <!-- <dx-select-box formControlName="language"
@@ -146,6 +137,16 @@
                                 <p style="color:red" id='err_language'></p>
                             </div>
                         </div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Birth Place</div>
+                                <div class="dx-field-value">
+                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="horoRequest.Place" (mouseup)="OnMouseUp($event.target.value)"></dx-text-box>
+                                    <p style="color:red" id='err_birthPlace'></p>
+                            </div>
+                        </div>
+                        </div>
+                        
                         <div class="clear"></div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
@@ -201,7 +202,7 @@
             <div class="clear"></div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
-                        <div class="dx-field-label" >Zone</div>
+                        <div class="dx-field-label" >Zone Time</div>
                         <div class="dx-field-value">
                     <dx-number-box formControlName="ZH" [disabled]="!checkBoxValue" [(ngModel)]="horoRequest.ZH"></dx-number-box>
                     <p style="color:red" id='err_ZH'></p>
