@@ -113,7 +113,7 @@ export class AstamangalaComponent {
       Swarna: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
       Pruchaka: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
       Tambula: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
-      AshtaMangalaNo: [444, [Validators.required, Validators.min(0), Validators.max(90)]],
+      AshtaMangalaNo: [444, [Validators.required, Validators.min(0)]],
       JanmaRashi: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
       Sprushtanga: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
     });
@@ -452,10 +452,10 @@ export class AstamangalaComponent {
       ReportSize: this.reportSizevalue,
       Swarna: this.astamangalaForm.controls['Swarna'].value,
       Pruchaka: this.astamangalaForm.controls['Pruchaka'].value,
-      JanmaRashi: 0,
-      AshtaMangalaNo: '444',
-      Tambula: null,
-      Sprushtanga: null,
+      JanmaRashi: this.astamangalaForm.controls['JanmaRashi'].value,
+      AshtaMangalaNo: this.astamangalaForm.controls['AshtaMangalaNo'].value,
+      Tambula: this.astamangalaForm.controls['Tambula'].value,
+      Sprushtanga: this.astamangalaForm.controls['Sprushtanga'].value,
       IsMarried: true,
     }
     this.astamangalaService.horoRequest = this.horoRequest;
