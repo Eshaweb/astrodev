@@ -2,6 +2,7 @@ import { Injectable } from "../../../node_modules/@angular/core";
 import { HttpBackend, HttpClient } from "../../../node_modules/@angular/common/http";
 import { MaleMatchMakingRequest } from "src/Models/MatchMaking/MaleMatchMakingRequest";
 import { FemaleMatchMakingRequest } from "src/Models/MatchMaking/FemaleMatchMakingRequest";
+import { MatchRequest } from 'src/Models/MatchMaking/MatchRequest';
 
 
 @Injectable()
@@ -9,6 +10,15 @@ export class MatchMakingService {
     ItActId = '#SM';
     malematchRequest: MaleMatchMakingRequest;
     femalematchRequest: FemaleMatchMakingRequest;
+  female_birthplaceShort: string;
+  female_birthplace: string;
+  male_birthplaceShort: string;
+  male_birthplace: string;
+  matchRequest: MatchRequest;
+  male_birthDateinDateFormat: any;
+  male_birthTimeinDateFormat: any;
+  female_birthDateinDateFormat: any;
+  female_birthTimeinDateFormat: any;
 
     constructor(handler: HttpBackend, public http: HttpClient) {
         this.http = new HttpClient(handler);
