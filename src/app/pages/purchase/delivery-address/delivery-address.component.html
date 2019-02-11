@@ -1,16 +1,7 @@
 <div class="dx-card content-block responsive-paddings">
 <form>
 <div class="delivery-address">
-<div class="navigation-chrome">
-    <div class="navigation-navbar">
-<!-- <igx-navbar 
-class="navigation-navbar-1" title="Delivery Address" isActionButtonVisible="false" >
-<igx-icon name="more_vert" ></igx-icon>
-</igx-navbar> -->
-</div>
 
-</div>
-<div class="screen">
     <div class="top">
         <div class="content" [formGroup]="customerEMailAddressForm">
                 <div class="dx-fieldset">
@@ -29,8 +20,9 @@ class="navigation-navbar-1" title="Delivery Address" isActionButtonVisible="fals
 <div class="address" *ngIf="DeliveryAddressRequired">
     <span >Since you need printed copy we will send it in post within 3-4 business days</span>
 </div>
-<div class="add-address-button" *ngIf="DeliveryAddressRequired">
-        <div *ngIf="existingAddress">
+
+<div class="saved-address" *ngIf="DeliveryAddressRequired">
+        <div class="existing-add" *ngIf="existingAddress">
                 <div *ngFor="let order of existingAddress; trackBy: trackByFn">
                   <div (click)="OnChangeDefaultAddress(order.Id)" [ngClass]="order.Id === Id? 'class-1':'class-2'">
                         <dx-button icon="close" (onClick)='onRemoveAddress(order.Id)'></dx-button>
@@ -41,16 +33,20 @@ class="navigation-navbar-1" title="Delivery Address" isActionButtonVisible="fals
                 </div>
                 </div>
         </div> 
+    </div>
     <div class="add-address">
-<dx-button (onClick)='onAddAddress()'
-                id="button"
-                text="Add Address"
-                type="success"  
-                [useSubmitBehavior]="true">
-            </dx-button>
-</div>
 
 </div>
+<div class="dx-fieldset">
+        <div class="dx-field"> 
+            <dx-button (onClick)='onAddAddress()'
+            id="button"
+            text="Add Address"
+            type="success"  
+            [useSubmitBehavior]="true">
+        </dx-button> </div>
+</div>
+
 <div class="delivery-form" *ngIf="DeliveryAddressRequired">
     <div class="form-address" [formGroup]="customerAddressForm" *ngIf="showAddAddressForm">
             <div class="dx-fieldset">
@@ -120,26 +116,32 @@ class="navigation-navbar-1" title="Delivery Address" isActionButtonVisible="fals
         </div>
     </div>
             </div>
-<div class="save-button-row">
-    <div class="save-button">
+
+    <div class="dx-field">
 <dx-button class="buttonClass2" [disabled]="customerAddressForm.invalid" text="Save" type="default" (onClick)="onSaveAddress()" style="margin-right:44px;margin-left:55px;"></dx-button>
 <dx-button class="buttonClass1" text="Cancel" type="submit" (onClick)="onCancel()" style="margin-left:55px;" ></dx-button>
 </div>
 
-</div>
-</div>
-</div>
-<div class="place-order"><div class="place-order-button">
-    <dx-button class="buttonClass1" text="Place Order" type="submit" (onClick)="onPlaceOrder()" style="margin-left:55px;" ></dx-button>
-
-</div>
-
-<div class="back">
-        <dx-button class="buttonClass1" text="Back" type="submit"></dx-button>
-</div>
 
 </div>
 </div>
+
+<div class="dx-fieldset">
+        <div class="dx-field-column">
+<div class="dx-field">
+
+    <dx-button class="buttonClass1" text="Place Order" type="submit" (onClick)="onPlaceOrder()" ></dx-button>
+    
+</div>
+
+        </div>
+        <div class="dx-field-column">
+<div class="dx-field"><dx-button class="buttonClass1" text="Back" type="submit"></dx-button></div>
+
+</div>
+
+</div>
+
 </div>
 </form>
 </div>
