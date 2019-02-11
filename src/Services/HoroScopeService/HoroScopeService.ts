@@ -162,7 +162,6 @@ export class HoroScopeService {
         var apiKey = 'AIzaSyD68pTd0CmqTXSqPHFpLrPWkiClqPBIpLQ'
         var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey
         return this.http.get(url);
-
     }
     private handleError(err: HttpErrorResponse) {
         // in a real world app, we may send the server to some remote logging infrastructure
@@ -209,10 +208,6 @@ export class HoroScopeService {
             return Observable.throw(err);
         }
     }
-
-    getInfo() {
-        return payusing;
-    }
 }
 export class ServiceInformation {
     ItMastId: string;
@@ -236,9 +231,3 @@ export class ServiceInfo {
 export class PaymentInfo {
     Title: string;
 }
-
-let payusing: PaymentInfo[] = [{
-    "Title": "Astrolite Wallet"
-}, {
-    "Title": "Payment Gateway"
-}];

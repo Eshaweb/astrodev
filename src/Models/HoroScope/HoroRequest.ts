@@ -1,9 +1,9 @@
 
 export class HoroRequest{
-    Name:string;
-    Father:string;
-    Mother:string;
-    Gothra:string;
+    Name?:string;
+    Father?:string;
+    Mother?:string;
+    Gothra?:string;
     Date:string;
     Time:string;
     //Date:Date;
@@ -30,5 +30,7 @@ export class HoroRequest{
     Pruchaka:number;
     JanmaRashi:number;
     AshtaMangalaNo:string;
+    Tambula?:number;
+    Sprushtanga?:number;
     // Path:string;
 }

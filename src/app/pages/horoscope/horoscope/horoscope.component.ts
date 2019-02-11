@@ -198,7 +198,6 @@ export class HoroscopeComponent {
       this.countries = service.getCountries();
       //this.genders = ["Male", "Female"];
       this.genders = [{ Id: "M", Text: "Male" },{ Id: "F", Text: "Female" }];
-      this.payusing = horoScopeService.getInfo();
       this.using = ["AstroLite Wallet", "Payment Gateway"];
       //this.horoRequest=this.horoScopeService.horoRequest;
       this.horoscopeForm = this.formbuilder.group({

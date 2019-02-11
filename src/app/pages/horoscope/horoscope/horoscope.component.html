@@ -1,4 +1,4 @@
-<h2 class="content-block">Astamangala</h2>
+<h2 class="content-block">Horoscope</h2>
 <div class="dx-card content-block responsive-paddings">
     <form action="your-action" [formGroup]="horoscopeForm">
         <div class="dx-fieldset">
@@ -117,15 +117,6 @@
                         <div class="clear"></div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
-                                <div class="dx-field-label">Birth Place</div>
-                                <div class="dx-field-value">
-                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="horoRequest.Place" (mouseup)="OnMouseUp($event.target.value)"></dx-text-box>
-                                    <p style="color:red" id='err_birthPlace'></p>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="dx-fieldset-column">
-                            <div class="dx-field">
                                 <div class="dx-field-label">Languages*</div>
                                 <div class="dx-field-value">
                                   <!-- <dx-select-box formControlName="language"
@@ -146,6 +137,16 @@
                                 <p style="color:red" id='err_language'></p>
                             </div>
                         </div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Birth Place</div>
+                                <div class="dx-field-value">
+                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="horoRequest.Place" (mouseup)="OnMouseUp($event.target.value)"></dx-text-box>
+                                    <p style="color:red" id='err_birthPlace'></p>
+                            </div>
+                        </div>
+                        </div>
+                        
                         <div class="clear"></div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">

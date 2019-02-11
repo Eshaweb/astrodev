@@ -1,51 +1,11 @@
 <h2 class="content-block">Astamangala</h2>
 <div class="dx-card content-block responsive-paddings">
-    <form action="your-action" [formGroup]="horoscopeForm">
+    <form action="your-action" [formGroup]="astamangalaForm">
         <div class="dx-fieldset">
             <div class="dx-fieldset-header">Credentials</div>
-            <div class="dx-fieldset-column">
-                <div class="dx-field">
-                    <div class="dx-field-label">Name</div>
-                    <div class="dx-field-value">
-                        <dx-text-box formControlName="Name" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
-                        <p style="color:red" id='err_Name'></p>
-                    </div>
-                </div>
-                </div>
-                <div class="dx-fieldset-column">
-                <div class="dx-field">
-                    <div class="dx-field-label">Father Name</div>
-                    <div class="dx-field-value">
-                        <dx-text-box formControlName="fatherName" [(ngModel)]="horoRequest.Father" placeholder="Enter Father Name here..." showClearButton="true"></dx-text-box>
-                        <p style="color:red" id='err_fatherName'></p>
-                    </div>
-                </div>
-                </div>
-                <div class="clear"></div>
-
-                <div class="dx-fieldset-column">
-                    <div class="dx-field">
-                        <div class="dx-field-label">Mother Name</div>
-                        <div class="dx-field-value">
-                            <dx-text-box id="txtmname" formControlName="motherName" [(ngModel)]="horoRequest.Mother" placeholder="Enter Mother Name here..." showClearButton="true"></dx-text-box>
-                            <p style="color:red" id='err_motherName'></p>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="dx-fieldset-column">
-                    <div class="dx-field">
-                        <div class="dx-field-label">Gothra</div>
-                        <div class="dx-field-value">
-                            <dx-text-box formControlName="gotra" [(ngModel)]="horoRequest.Gothra" placeholder="Enter Gothra here..." [showClearButton]="true">
-                            </dx-text-box>
-                            <p style="color:red" id='err_gotra'></p>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="clear"></div>
                     <div class="dx-fieldset-column">
                         <div class="dx-field">
-                            <div class="dx-field-label">Date of birth</div>
+                            <div class="dx-field-label">Date</div>
                             <div class="dx-field-value">
                                 <dx-date-box formControlName="Date" [value]="now" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd">
                                 </dx-date-box>
@@ -54,7 +14,7 @@
                         </div>
                         <div class="dx-fieldset-column">
                         <div class="dx-field">
-                            <div class="dx-field-label">Birth Time*</div>
+                            <div class="dx-field-label">Time</div>
                             <div class="dx-field-value">
                               <!-- <dx-date-box formControlName="Time" width="300" type="datetime" [showClearButton]="true" displayFormat="shortTime" (onOpened)="opened($event)" dateSerializationFormat="HH:mm:ss">
                             </dx-date-box> -->
@@ -117,15 +77,6 @@
                         <div class="clear"></div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
-                                <div class="dx-field-label">Birth Place</div>
-                                <div class="dx-field-value">
-                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="horoRequest.Place" (mouseup)="OnMouseUp($event.target.value)"></dx-text-box>
-                                    <p style="color:red" id='err_birthPlace'></p>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="dx-fieldset-column">
-                            <div class="dx-field">
                                 <div class="dx-field-label">Languages*</div>
                                 <div class="dx-field-value">
                                   <!-- <dx-select-box formControlName="language"
@@ -145,6 +96,15 @@
                                 </div>
                                 <p style="color:red" id='err_language'></p>
                             </div>
+                        </div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Place</div>
+                                <div class="dx-field-value">
+                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="horoRequest.Place" (mouseup)="OnMouseUp($event.target.value)"></dx-text-box>
+                                    <p style="color:red" id='err_birthPlace'></p>
+                            </div>
+                        </div>
                         </div>
                         <div class="clear"></div>
             <div class="dx-fieldset-column3">
@@ -226,50 +186,78 @@
             </div>
             <div class="clear"></div>
             <p style="color: red">TimeZoneName: {{timeZoneName}}</p>
-        </div>
-        <!-- <div class="dx-fieldset">
-            <div class="dx-fieldset-header">Personal Data</div>
-            <div class="clear"></div>
-            <div class="dx-fieldset-column">
-            <div class="dx-field">
-                <div class="dx-field-label">Birth Time*</div>
-                <div class="dx-field-value">
-                  <dx-date-box formControlName="Btime" width="300" type="datetime" [showClearButton]="true" displayFormat="shortTime" (onOpened)="opened($event)" dateSerializationFormat="HH:mm:ss">
-                  </dx-date-box>
-                  <dx-date-box formControlName="Btime" type="time" [showClearButton]="true" pickerType="rollers">
-                  </dx-date-box>
+            <div class="dx-fieldset">
+                <div>
+                    <dx-check-box 
+                        id="check"
+                        [(value)]="checkBoxValue"
+                        text="Click here to Edit">
+                    </dx-check-box>
                 </div>
             </div>
-            </div>
             <div class="dx-fieldset-column">
-            <div class="dx-field">
-                <div class="dx-field-label">Birth Time2*</div>
-                <div class="dx-field-value">
-                  <dx-date-box formControlName="time" width="300" type="datetime" [showClearButton]="true" displayFormat="shortTime" (onOpened)="opened2($event)" dateSerializationFormat="HH:mm:ss">
-                  </dx-date-box>
-                  <dx-date-box formControlName="Btime" type="time" [showClearButton]="true" pickerType="rollers">
-                </dx-date-box>
+                <div class="dx-field">
+                    <div class="dx-field-label">Swarna Aarooda</div>
+                    <div class="dx-field-value">
+                        <dx-number-box formControlName="Swarna" [(ngModel)]="horoRequest.Swarna" placeholder="Enter Swarna Aarooda here..."></dx-number-box>
+                        <p style="color:red" id='err_Swarna'></p>
+                    </div>
                 </div>
-            </div>
-            </div>
-            <div class="clear"></div>
-        </div>    -->
-
-        
-        <div class="dx-fieldset">
-            <div>
-                <dx-check-box 
-                    id="check"
-                    [(value)]="checkBoxValue"
-                    text="Click here to Edit">
-                </dx-check-box>
-            </div>
+                </div>
+                <div class="dx-fieldset-column">
+                <div class="dx-field">
+                    <div class="dx-field-label">Pruchaka Nakshatra</div>
+                    <div class="dx-field-value">
+                        <dx-number-box formControlName="Pruchaka" [(ngModel)]="horoRequest.Pruchaka" placeholder="Enter Pruchaka Nakshatra here..."></dx-number-box>
+                        <p style="color:red" id='err_Pruchaka'></p>
+                    </div>
+                </div>
+                </div>
+                <div class="clear"></div>
+                <div class="dx-fieldset-column">
+                    <div class="dx-field">
+                        <div class="dx-field-label">Tambula</div>
+                        <div class="dx-field-value">
+                            <dx-number-box formControlName="Tambula" [(ngModel)]="horoRequest.Tambula" placeholder="Enter Tambula here..."></dx-number-box>
+                            <p style="color:red" id='err_Tambula'></p>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="dx-fieldset-column">
+                    <div class="dx-field">
+                        <div class="dx-field-label">Asta Mangala No</div>
+                        <div class="dx-field-value">
+                            <dx-number-box formControlName="AshtaMangalaNo" [(ngModel)]="horoRequest.AshtaMangalaNo" placeholder="Enter AshtaMangala No here..."></dx-number-box>
+                            <p style="color:red" id='err_AshtaMangalaNo'></p>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                            <div class="dx-field-label">Pruchaka Janma Rashi</div>
+                            <div class="dx-field-value">
+                                <dx-number-box formControlName="JanmaRashi" [(ngModel)]="horoRequest.JanmaRashi" placeholder="Enter JanmaRashi here..."></dx-number-box>
+                                <p style="color:red" id='err_JanmaRashi'></p>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                            <div class="dx-field-label">Sprushtanga</div>
+                            <div class="dx-field-value">
+                                <dx-number-box formControlName="Sprushtanga" [(ngModel)]="horoRequest.Sprushtanga" placeholder="Enter Sprushtanga here..."></dx-number-box>
+                                <p style="color:red" id='err_Sprushtanga'></p>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="clear"></div>
         </div>
     
         <div class="dx-fieldset">
             <dx-validation-summary id="summary"></dx-validation-summary>
     
-            <dx-button [disabled]="!horoscopeForm.valid" (onClick)='submit_click()'
+            <dx-button [disabled]="!astamangalaForm.valid" (onClick)='submit_click()'
                 id="button"
                 text="Submit"
                 type="success"  
