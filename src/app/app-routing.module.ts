@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginFormComponent } from './shared/components';
 import { AuthGuardService } from './shared/services';
 import { HomeComponent } from './pages/home/home.component';
-import { DxDataGridModule, DxFormModule, DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule, DxPopupModule } from 'devextreme-angular';
+import { DxDataGridModule, DxFormModule, DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule, DxPopupModule, DxNumberBoxModule } from 'devextreme-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ng6-toastr-notifications';
@@ -90,7 +90,7 @@ const routes: Routes = [
     DxValidatorModule,DxButtonModule,DxValidationSummaryModule,
     DxDateBoxModule,DxSelectBoxModule,DxCheckBoxModule,
     DxTextBoxModule, DxRadioGroupModule,
-    DxPopupModule 
+    DxPopupModule, DxNumberBoxModule 
   ],  
   providers: [AuthGuardService],
   exports: [RouterModule],

@@ -1,4 +1,4 @@
-<h2 class="content-block">Horoscope</h2>
+<h2 class="content-block">Astamangala</h2>
 <div class="dx-card content-block responsive-paddings">
     <form action="your-action" [formGroup]="horoscopeForm">
         <div class="dx-fieldset">
@@ -151,7 +151,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Latitude</div>
                         <div class="dx-field-value">
-                    <dx-text-box formControlName="LatDeg" [disabled]="!checkBoxValue" [(ngModel)]="horoRequest.LatDeg"></dx-text-box>
+                    <dx-number-box formControlName="LatDeg" [disabled]="!checkBoxValue" [(ngModel)]="horoRequest.LatDeg"></dx-number-box>
                     <p style="color:red" id='err_LatDeg'></p>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-text-box formControlName="LatMt" [disabled]="!checkBoxValue" [(ngModel)]="horoRequest.LatMt"></dx-text-box>
+                    <dx-number-box formControlName="LatMt" [disabled]="!checkBoxValue" [(ngModel)]="horoRequest.LatMt"></dx-number-box>
                     <p style="color:red" id='err_LatMt'></p>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
                 <div class="dx-field">
                         <div class="dx-field-label" >Longititude</div>
                         <div class="dx-field-value">
-                    <dx-text-box formControlName="LongDeg" [disabled]="!checkBoxValue" [(ngModel)]="horoRequest.LongDeg"></dx-text-box>
+                    <dx-number-box formControlName="LongDeg" [disabled]="!checkBoxValue" [(ngModel)]="horoRequest.LongDeg"></dx-number-box>
                     <p style="color:red" id='err_LongDeg'></p>
                         </div>
                 </div>
@@ -185,7 +185,7 @@
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-text-box formControlName="LongMt" [disabled]="!checkBoxValue" [(ngModel)]="horoRequest.LongMt"></dx-text-box>
+                    <dx-number-box formControlName="LongMt" [disabled]="!checkBoxValue" [(ngModel)]="horoRequest.LongMt"></dx-number-box>
                     <p style="color:red" id='err_LongMt'></p>
                     </div>
                 </div>
@@ -203,7 +203,7 @@
                 <div class="dx-field">
                         <div class="dx-field-label" >Zone</div>
                         <div class="dx-field-value">
-                    <dx-text-box formControlName="ZH" [disabled]="!checkBoxValue" [(ngModel)]="horoRequest.ZH"></dx-text-box>
+                    <dx-number-box formControlName="ZH" [disabled]="!checkBoxValue" [(ngModel)]="horoRequest.ZH"></dx-number-box>
                     <p style="color:red" id='err_ZH'></p>
                         </div>
                 </div>
@@ -211,7 +211,7 @@
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-text-box formControlName="ZM" [disabled]="!checkBoxValue" [(ngModel)]="horoRequest.ZM"></dx-text-box>
+                    <dx-number-box formControlName="ZM" [disabled]="!checkBoxValue" [(ngModel)]="horoRequest.ZM"></dx-number-box>
                     <p style="color:red" id='err_ZM'></p>
                         </div>
                 </div>

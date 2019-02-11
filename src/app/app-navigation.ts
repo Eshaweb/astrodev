@@ -11,7 +11,15 @@ export const navigation = [
       {
         text: 'Horoscope',
         path: '/horoscope',
-      }
+      },
+      {
+        text: 'Match Making',
+        path: '/matchMaking',
+      },
+      {
+        text: 'Astamangala',
+        path: '/astamangala',
+      },
     ]
   },
   {

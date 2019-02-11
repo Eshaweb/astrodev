@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HoroscopeComponent } from '../horoscope/horoscope/horoscope.component';
 import { HoroscopeRoutingModule } from './horoscope-routing.module';
-import { DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule } from 'devextreme-angular';
+import { DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule, DxNumberBoxModule } from 'devextreme-angular';
 import { HoroscopeFreeDataComponent } from './horoscope-free-data/horoscope-free-data.component';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { HoroscopeFreeDataComponent } from './horoscope-free-data/horoscope-free
         HoroscopeRoutingModule,
         DxValidatorModule,DxButtonModule,DxValidationSummaryModule,
     DxDateBoxModule,DxSelectBoxModule,DxCheckBoxModule,
-    DxTextBoxModule, DxRadioGroupModule,
+    DxTextBoxModule, DxRadioGroupModule, DxNumberBoxModule
     ],
 
     declarations: [
