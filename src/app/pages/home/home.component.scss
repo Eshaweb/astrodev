@@ -32,3 +32,28 @@
     }
   }
 }
+
+.dx-card.responsive-paddings{
+  padding: 40px;
+  width: 28% !important;
+  float: left !important;
+  margin-left: 20px !important;
+  margin-top: 10px;
+}
+
+@media (max-width: 800px) {
+  .dx-fieldset-column {
+  float: left;
+  width: 100%;
+  
+  }
+
+  .dx-card.responsive-paddings{
+    padding: 40px;
+    width: 43% !important;
+    float: left !important;
+    margin-left: 10px !important;
+    margin-top: 10px;
+
+  }
+}
