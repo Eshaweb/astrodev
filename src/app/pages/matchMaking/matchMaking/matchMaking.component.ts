@@ -91,7 +91,6 @@ export class MatchMakingComponent {
     this.mapsAPILoader.load().then(() => {
       let nativeHome1InputBox = document.getElementById('male_birthplace_txt').getElementsByTagName('input')[0];
       let autocomplete1 = new google.maps.places.Autocomplete(nativeHome1InputBox, {
-        //types: ["address"]
         types: ["geocode"]
       });
       console.log(autocomplete1);
@@ -107,7 +106,6 @@ export class MatchMakingComponent {
       });
       let nativeHome2InputBox = document.getElementById('female_birthplace_txt').getElementsByTagName('input')[0];
       let autocomplete2 = new google.maps.places.Autocomplete(nativeHome2InputBox, {
-       // types: ["address"]
        types: ["geocode"]
       });
       console.log(autocomplete2);
@@ -422,46 +420,32 @@ export class MatchMakingComponent {
     var btime_Male: Date = this.maleMatchMakingForm.controls['MaleBtime'].value;
     var bdate_Female: Date = this.femaleMatchMakingForm.controls['FemaleBdate'].value;
     var btime_Female: Date = this.femaleMatchMakingForm.controls['FemaleBtime'].value;
-    var dateinString_Male = bdate_Male.getFullYear().toString() + "-" + ("0" + ((bdate_Male.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate_Male.getDate()).toString().slice(-2);
-    var timeinString_Male = ("0" + btime_Male.getHours()).toString().slice(-2) + ":" + ("0" + btime_Male.getMinutes()).toString().slice(-2) + ":" + btime_Male.getSeconds().toString() + "0";
-    var dateinStringFemale = bdate_Female.getFullYear().toString() + "-" + ("0" + ((bdate_Female.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate_Female.getDate()).toString().slice(-2);
-    var timeinString_Female = ("0" + btime_Female.getHours()).toString().slice(-2) + ":" + ("0" + btime_Female.getMinutes()).toString().slice(-2) + ":" + btime_Female.getSeconds().toString() + "0";
+    if(bdate_Female instanceof Date){
+      var dateinStringFemale = bdate_Female.getFullYear().toString() + "-" + ("0" + ((bdate_Female.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate_Female.getDate()).toString().slice(-2);
+    }
+      else{
+        dateinStringFemale=bdate_Female;
+      }
+      if(btime_Female instanceof Date){
+        var timeinString_Female = ("0" + btime_Female.getHours()).toString().slice(-2) + ":" + ("0" + btime_Female.getMinutes()).toString().slice(-2) + ":" + btime_Female.getSeconds().toString() + "0";
+      }
+      else{
+        timeinString_Female =btime_Female;
+      } 
+    if(bdate_Male instanceof Date){
+      var dateinString_Male = bdate_Male.getFullYear().toString() + "-" + ("0" + ((bdate_Male.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate_Male.getDate()).toString().slice(-2);
+    }
+      else{
+        dateinString_Male=bdate_Male;
+      }
+      if(btime_Male instanceof Date){
+        var timeinString_Male = ("0" + btime_Male.getHours()).toString().slice(-2) + ":" + ("0" + btime_Male.getMinutes()).toString().slice(-2) + ":" + btime_Male.getSeconds().toString() + "0";
+      }
+      else{
+        timeinString_Male =btime_Male;
+      } 
     this.matchRequest = {
       LangCode: this.languagevalue,
-      Female: {
-        Date: dateinStringFemale,
-        Time: timeinString_Female,
-        LatDeg: 13,
-        LatMt: 0,
-        LongDeg: 75,
-        LongMt: 0,
-        ZH: 5,
-        ZM: 30,
-        NS: "N",
-        EW: "E",
-        PN: "+",
-        Gender: "F",
-        TimeFormat: "STANDARD"
-      },
-      Male: {
-        //DOB:"2011/01/03 05:12:30 PM",
-        Date: dateinString_Male,
-        Time: timeinString_Male,
-        LatDeg: 13,
-        LatMt: 0,
-        LongDeg: 75,
-        LongMt: 0,
-        ZH: 5,
-        ZM: 30,
-        NS: "N",
-        EW: "E",
-        PN: "+",
-        Gender: "M",
-        TimeFormat: "STANDARD"
-      }
-    }
-    this.matchRequest = {
-      LangCode: "KAN",
       Female: {
         Date: dateinStringFemale,
         Time: timeinString_Female,
@@ -475,7 +459,7 @@ export class MatchMakingComponent {
         EW: this.femaleMatchMakingForm.controls['EW'].value,
         PN: this.femaleMatchMakingForm.controls['PN'].value,
         Gender: "F",
-        TimeFormat: this.femaleMatchMakingForm.controls['FemaleTimeformat'].value[0].Id
+        TimeFormat: this.female_timeformatvalue
       },
       Male: {
         Date: dateinString_Male,
@@ -490,16 +474,15 @@ export class MatchMakingComponent {
         EW: this.maleMatchMakingForm.controls['EW'].value,
         PN: this.maleMatchMakingForm.controls['PN'].value,
         Gender: "M",
-        TimeFormat: this.maleMatchMakingForm.controls['MaleTimeformat'].value[0].Id
+        TimeFormat: this.male_timeformatvalue
       }
     }
-
-    this.matchMakingService.GetFreeData(this.matchRequest, (data) => {
+    this.matchMakingService.GetFreeData(this.matchRequest).subscribe((data) => {
       this.matchMakingService.matchRequest = this.matchRequest;
       this.matchMakingService.matchResponse.Left=data.Left;
        this.matchMakingService.matchResponse.Right=data.Right;
        this.matchMakingService.matchResponse.Prediction=data.Prediction;
-      this.router.navigate(["/services/matchFree"]);
+      this.router.navigate(["/matchMaking/getMatchMakingFreeData"]);
     });
   }
   now: Date = new Date();

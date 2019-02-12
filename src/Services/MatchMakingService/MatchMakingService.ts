@@ -4,6 +4,8 @@ import { MaleMatchMakingRequest } from "src/Models/MatchMaking/MaleMatchMakingRe
 import { FemaleMatchMakingRequest } from "src/Models/MatchMaking/FemaleMatchMakingRequest";
 import { MatchRequest } from 'src/Models/MatchMaking/MatchRequest';
 import { MatchResponse } from 'src/Models/MatchMaking/match';
+import { HttpService } from '../Error/http.service';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -22,14 +24,12 @@ export class MatchMakingService {
   female_birthTimeinDateFormat: any;
   matchResponse: MatchResponse;
 
-    constructor(handler: HttpBackend, public http: HttpClient) {
+    constructor(private httpService: HttpService, handler: HttpBackend, public http: HttpClient) {
         this.http = new HttpClient(handler);
     }
-    GetFreeData(matchRequest, callback: (data) => void) {
+    GetFreeData(matchRequest):Observable<any> {
         var endPoint = "Match/GetFreeData";
-        // return this.smartHttpClient.Post(endPoint, matchRequest).subscribe((data: any) => {
-        //     callback(data);
-        // });
+        return this.httpService.Post(endPoint, matchRequest);
     }
     getTimezone(lat, long) {
         var apiKey = 'AIzaSyD68pTd0CmqTXSqPHFpLrPWkiClqPBIpLQ'
