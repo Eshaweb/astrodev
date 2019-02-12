@@ -316,7 +316,7 @@ export class AstamangalaComponent {
     }
     else {
       this.timeformatvalue = this.timeformats[0].Id;
-      this.reportSizevalue = this.reportSizes[2].Id;
+      this.reportSizevalue = this.reportSizes[1].Id;
       this.languagevalue = this.languages[1].Id;
       this.genderValue = this.genders[0].Id;
     }

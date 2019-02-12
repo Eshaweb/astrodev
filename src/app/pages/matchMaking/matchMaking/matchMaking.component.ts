@@ -9,6 +9,7 @@ import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingS
 import { MapsAPILoader } from '@agm/core';
 import { UIService } from 'src/Services/UIService/ui.service';
 import ArrayStore from 'devextreme/data/array_store';
+import { MatchResponse } from 'src/Models/MatchMaking/match';
 
 
 @Component({
@@ -38,6 +39,7 @@ export class MatchMakingComponent {
   intLatDeg_male: number;
   intLongDeg_female: number;
   intLatDeg_female: number;
+  matchResponse: MatchResponse;
 
   ngAfterViewInit(): void {
     if (this.matchMakingService.matchRequest != null) {
@@ -492,6 +494,9 @@ export class MatchMakingComponent {
 
     this.matchMakingService.GetFreeData(this.matchRequest, (data) => {
       this.matchMakingService.matchRequest = this.matchRequest;
+      this.matchMakingService.matchResponse.Left=data.Left;
+       this.matchMakingService.matchResponse.Right=data.Right;
+       this.matchMakingService.matchResponse.Prediction=data.Prediction;
       this.router.navigate(["/services/matchFree"]);
     });
   }

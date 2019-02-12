@@ -1,0 +1,34 @@
+<div class="dx-card content-block responsive-paddings" [ngClass]="getFont(matchRequest.LangCode)">
+    <div class="dx-card content-block responsive-paddings col-sm-6" style="float:left" >
+                     <table>
+                        <tr  *ngFor="let item of matchResponse.Left ">
+                            <td>
+                                {{item.Name}}
+                            </td>
+                            <td>
+                                {{item.Value}}
+                            </td>
+                        </tr>
+                     </table>  
+                    </div> 
+                    <div class="dx-card content-block responsive-paddings col-sm-6"style="float:left" >
+                    <table>
+                        <tr  *ngFor="let item of matchResponse.Right">
+                            <td>
+                                {{item.Name}}
+                            </td>
+                            <td>
+                                {{item.Value}}
+                            </td>
+                        </tr>
+                     </table>                        
+            
+                    </div>
+                    
+
+                </div>
+                <div class="dx-card content-block responsive-paddings" [ngClass]="getFont(matchRequest.LangCode)">
+                        
+                    {{matchResponse.Prediction}}               
+            
+                    </div>
