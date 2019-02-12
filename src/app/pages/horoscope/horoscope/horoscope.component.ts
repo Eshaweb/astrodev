@@ -15,6 +15,7 @@ import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
 import { Caption } from 'src/Models/HoroScope/Caption';
+import { isString } from 'util';
 
 if(!/localhost/.test(document.location.host)) {
     enableProdMode();
@@ -398,11 +399,20 @@ export class HoroscopeComponent {
       // if(typeof this.horoscopeForm.controls['Date'].value ==='string'){
 
       // }
-      var bdate: Date = this.horoscopeForm.controls['Date'].value;
-      var btime: Date = this.horoscopeForm.controls['Time'].value;
+      var bdate = this.horoscopeForm.controls['Date'].value;
+      var btime = this.horoscopeForm.controls['Time'].value;
+      if(bdate==!String){
       var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
-      var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
-      
+      }
+      else{
+        dateinString=bdate;
+      }
+      if(btime==!String){
+        var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
+      }
+      else{
+         timeinString =btime;
+      } 
       this.horoRequest = {
         Name: this.horoscopeForm.controls['Name'].value,
         Father: this.horoscopeForm.controls['fatherName'].value,

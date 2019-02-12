@@ -1,0 +1,246 @@
+<h2 class="content-block">Report</h2>
+<div class="dx-card content-block responsive-paddings  ">
+    
+  <h2  [ngClass]="getFont(horoModel.LangCode)">{{caption.Nityapanchanga}}</h2>  
+
+  <div class="dx-fieldset">
+        <div class="dx-fieldset-column">
+           
+            <div class="dx-field" [ngClass]="getFont(horoModel.LangCode)">
+                <div class="dx-field-label">{{ caption.ShakaVarsha}}:</div>
+                <div class="dx-field-label">
+                  {{prashnaFreeModel.ShakaVarsha}}
+                </div>
+            </div>
+            <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                <div class="dx-field-label">  {{ caption.Samvathsara}}:</div>
+                <div class="dx-field-label">   {{prashnaFreeModel.Samvathsara}}
+                  </div>
+            </div>
+            <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                <div class="dx-field-label">  {{ caption.Ruthu}}:</div>
+                <div class="dx-field-label">  {{prashnaFreeModel.Ruthu}}
+                </div>
+            </div>
+            <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                    <div class="dx-field-label">  {{caption.SouraMasa}}:</div>
+                    <div class="dx-field-label">  {{prashnaFreeModel.SouraMasa}}
+                    </div>
+                </div>
+        </div>
+    
+
+        <div class="dx-fieldset-column">
+              
+                <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                    <div class="dx-field-label">  {{ caption.Kollam}}:</div>
+                    <div class="dx-field-label">{{prashnaFreeModel.Kollam}}
+                    </div>
+                </div>
+                <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                    <div class="dx-field-label"> {{ caption.Aayana}}:</div>
+                    <div class="dx-field-label"> {{ prashnaFreeModel.Aayana}}
+                       
+                    </div>
+                </div>
+                <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                    <div class="dx-field-label">  {{ caption.ChandraMasa}}:</div>
+                    <div class="dx-field-label">  {{ prashnaFreeModel.ChandraMasa}}
+                        
+                    </div>
+                </div>
+                <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                        <div class="dx-field-label">{{ caption.Paksha}}:</div>
+                        <div class="dx-field-label">{{ prashnaFreeModel.Paksha}}
+                            
+                        </div>
+                    </div>
+            </div>
+<div class="clear"></div>
+</div>
+
+        <div class="dx-fieldset">
+               
+                   
+                    <div class="dx-field "[ngClass]="getFont(horoModel.LangCode)" *ngIf="horoModel.LangCode!='TAM'">
+                        <div class="dx-field-label"  > {{ caption.MahaNakshatra}}:</div>
+                        <div class="dx-field-label">
+                          {{ prashnaFreeModel.MahaNakshatra}}
+                        </div>
+                    </div>
+                    <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                        <div class="dx-field-label"> {{caption.NityaTithi}}:</div>
+                        <div class="dx-field-label"> {{ prashnaFreeModel.NityaTithi}}
+                          </div>
+                    </div>
+                    <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                        <div class="dx-field-label"> {{ caption.NityaNakshatra}}:</div>
+                        <div class="dx-field-label">{{ prashnaFreeModel.NityaNakshatra}}
+                        </div>
+                    </div>
+                    <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                            <div class="dx-field-label">{{ caption.ChandrarkaYoga}}:</div>
+                            <div class="dx-field-label">{{ prashnaFreeModel.ChandrarkaYoga}}
+                            </div>
+                        </div>
+             
+                <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                  <div class="dx-field-label">{{ caption.NityaKarana}}:</div>
+                  <div class="dx-field-label">{{ prashnaFreeModel.NityaKarana}}
+                  </div>
+              </div>
+     
+      <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+          <div class="dx-field-label">{{ caption.VishaGhati}}:</div>
+          <div class="dx-field-label">{{ prashnaFreeModel.VishaGhati}}
+          </div>
+      </div>
+
+<div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+  <div class="dx-field-label">{{ caption.AmrithaGhati}}:</div>
+  <div class="dx-field-label">{{ prashnaFreeModel.AmrithaGhati}}
+  </div>
+</div>
+</div>
+            
+
+<div class="dx-card content-block responsive-paddings " [ngClass]="getFont(horoModel.LangCode)">
+      <p style="float:right;">{{caption.CaptionRight}}</p>
+
+
+</div>
+<div class="dx-card content-block responsive-paddings  ">
+        <div class="dx-fieldset">
+                <div class="dx-fieldset-column">
+                   
+                    <div class="dx-field" [ngClass]="getFont(horoModel.LangCode)">
+                        <div class="dx-field-label">{{ caption.JanmaNakshthra}}:</div>
+                        <div class="dx-field-label">
+                            {{ prashnaFreeModel.JanmaNakshthra}}
+                        </div>
+                    </div>
+                    <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                        <div class="dx-field-label"> {{ caption.Aroodha}}:</div>
+                        <div class="dx-field-label"> {{ prashnaFreeModel.Aroodha}}
+                        </div>
+                    </div>
+
+                    <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                        <div class="dx-field-label"> {{ caption.Udaya}}:</div>
+                        <div class="dx-field-label"> {{ prashnaFreeModel.Udaya}}
+                        </div>
+                    </div>
+
+                    <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                        <div class="dx-field-label">{{ caption.Lagnamsha}}:</div>
+                        <div class="dx-field-label">{{ prashnaFreeModel.Lagnamsha}}
+                        </div>
+                    </div>
+                    <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                        <div class="dx-field-label"> {{ caption.ChatraRashi}}:</div>
+                        <div class="dx-field-label">{{ prashnaFreeModel.ChatraRashi}}
+                        </div>
+                    </div>
+
+                    <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                        <div class="dx-field-label">{{ caption.Tambula}}:</div>
+                        <div class="dx-field-label">{{ prashnaFreeModel.Tambula}}
+                            
+                        </div>
+                    </div>
+
+                  
+                </div>
+            
+        
+                <div class="dx-fieldset-column">
+                      
+                    <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                        <div class="dx-field-label"> {{ caption.JanmaRashi}}:</div>
+                        <div class="dx-field-label"> {{ prashnaFreeModel.JanmaRashi}}
+                          </div>
+                    </div>
+                   
+                    <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                            <div class="dx-field-label"> {{ caption.SunRise}}:</div>
+                            <div class="dx-field-label"> {{ prashnaFreeModel.SunRise}}
+                            </div>
+                        </div>
+                       
+                            <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                                    <div class="dx-field-label"> {{ caption.SunSet}}:</div>
+                                    <div class="dx-field-label"> {{ prashnaFreeModel.SunSet}}
+                                    </div>
+                                </div>
+                        <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                                <div class="dx-field-label">  {{ caption.DinaMana}}:</div>
+                                <div class="dx-field-label">{{ prashnaFreeModel.DinaMana}}
+                                </div>
+                            </div>
+                           
+                        <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                            <div class="dx-field-label"> {{ caption.SprushtangaRashi}}:</div>
+                            <div class="dx-field-label"> {{ prashnaFreeModel.SprushtangaRashi}}
+                               
+                            </div>
+                        </div>
+                       
+                        <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
+                                <div class="dx-field-label">{{ caption.ChandradishtithaRashi}}:</div>
+                                <div class="dx-field-label">{{ prashnaFreeModel.ChandradishtithaRashi}}
+                                    
+                                </div>
+                            </div>
+                    </div>
+        <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="dx-card content-block responsive-paddings">
+            <div class="chakra " [ngClass]="getFont(horoModel.LangCode)">
+                    <table style="width: 300px; border:solid">
+                        <tbody>
+                        <tr>
+                        <td style="width: 72px;">
+                        {{prashnaFreeModel.Grahakundali[12]}}
+                        </td>
+                        <td style="width: 72px;">{{ prashnaFreeModel.Grahakundali[1]}}</td>
+                        <td style="width: 72px;">{{ prashnaFreeModel.Grahakundali[2]}}</td>
+                        <td style="width: 72px;">{{ prashnaFreeModel.Grahakundali[3]}}</td>
+                        </tr>
+                        <tr>
+                        <td style="width: 72px;">
+                        <p>{{ prashnaFreeModel.Grahakundali[11]}}</p>
+                        </td>
+                        <td style="width: 140px;" colspan="2" rowspan="2"><p style="font-family: sans-serif"> {{prashnaFreeModel.ChartDate}}  </p><p>{{ caption.Grahachakram}}:  </p>
+                          {{prashnaFreeModel.ChartCenter}}  
+                          </td>
+                        <td style="width: 72px;">{{ prashnaFreeModel.Grahakundali[4]}}</td>
+                        </tr>
+                        <tr>
+                        <td style="width: 72px;">
+                        <p>{{ prashnaFreeModel.Grahakundali[10]}}</p>
+                        </td>
+                        <td style="width: 72px;">{{ prashnaFreeModel.Grahakundali[5]}}</td>
+                        </tr>
+                        <tr>
+      
+                        <td style="width: 72px;">
+                        <p>{{ prashnaFreeModel.Grahakundali[9]}}</p>
+                        </td>
+                        <td style="width: 72px;">{{ prashnaFreeModel.Grahakundali[8]}}</td>
+                        <td style="width: 72px;">{{ prashnaFreeModel.Grahakundali[7]}}</td>
+                        <td style="width: 72px;">{{ prashnaFreeModel.Grahakundali[6]}}</td>
+                        </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="dx-card content-block responsive-paddings " [ngClass]="getFont(horoModel.LangCode)">
+      
+                        <p>{{prashnaFreeModel.ChartBottom}}</p>
+                       
+                    </div>
+                
+</div>

@@ -9,6 +9,7 @@ import { RegistrationService } from 'src/Services/registration/registration.serv
 import { Caption } from 'src/Models/HoroScope/Caption';
 import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
+import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 
 @Component({
   selector: 'app-horoscope-free-data',

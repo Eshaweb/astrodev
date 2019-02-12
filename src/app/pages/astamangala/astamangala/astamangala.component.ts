@@ -416,10 +416,20 @@ export class AstamangalaComponent {
     // if(typeof this.horoscopeForm.controls['Date'].value ==='string'){
 
     // }
-    var bdate: Date = this.astamangalaForm.controls['Date'].value;
-    var btime: Date = this.astamangalaForm.controls['Time'].value;
-    var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
-    var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
+    var bdate= this.astamangalaForm.controls['Date'].value;
+    var btime= this.astamangalaForm.controls['Time'].value;
+    if(bdate==!String){
+      var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
+      }
+      else{
+        dateinString=bdate;
+      }
+      if(btime==!String){
+        var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
+      }
+      else{
+         timeinString =btime;
+      } 
 
     this.horoRequest = {
       //Date: "2018-12-28",
@@ -462,7 +472,7 @@ export class AstamangalaComponent {
     this.astamangalaService.GetFreeData(this.horoRequest).subscribe((data: any) => {
       this.astamangalaService.horoResponse = data;
       this.loadingSwitchService.loading = false;
-      this.router.navigate(["/horoscope/getHoroscopeFreeData"]);
+      this.router.navigate(["/astamangala/getAstamangalaFreeData"]);
     });
   }
 
