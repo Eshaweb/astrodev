@@ -4,6 +4,8 @@ import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service'
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
+import { LoginService } from 'src/Services/login/login.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +23,7 @@ import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
       this.horoModel=this.astamangalaService.horoRequest;
       this.GetCaption(this.horoModel.LangCode, this.caption);
     }
-    constructor(public captionDbService:CaptionDbService, public astamangalaService: AstamangalaService) {
+    constructor(public router: Router, public loginService: LoginService, public captionDbService:CaptionDbService, public astamangalaService: AstamangalaService) {
       this.prashnaFreeModel=this.astamangalaService.horoResponse;
     }
 
@@ -44,5 +46,16 @@ import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
         return "TamilFont";
     }
   }
+
+  onClick() {
+    if (this.loginService.Token == null) {
+        this.router.navigate(["/login-form"]);
+    }
+    else {
+        // this.router.navigate(["/purchase/paidServices", { "PartyMastId": this.loginService.PartyMastId}]);
+        this.router.navigate(["/purchase/paidServices"]);
+
+    }
+}
   }
   

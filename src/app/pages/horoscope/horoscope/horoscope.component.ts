@@ -399,15 +399,15 @@ export class HoroscopeComponent {
       // if(typeof this.horoscopeForm.controls['Date'].value ==='string'){
 
       // }
-      var bdate = this.horoscopeForm.controls['Date'].value;
-      var btime = this.horoscopeForm.controls['Time'].value;
-      if(bdate==!String){
+      var bdate:Date = this.horoscopeForm.controls['Date'].value;
+      var btime:Date = this.horoscopeForm.controls['Time'].value;
+      if(bdate instanceof Date){
       var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
       }
       else{
         dateinString=bdate;
       }
-      if(btime==!String){
+      if(btime instanceof Date){
         var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
       }
       else{
@@ -418,14 +418,9 @@ export class HoroscopeComponent {
         Father: this.horoscopeForm.controls['fatherName'].value,
         Mother: this.horoscopeForm.controls['motherName'].value,
         Gothra: this.horoscopeForm.controls['gotra'].value,
-        //Date: "2018-12-28",
-        //Time: "18:34:00",
         Date: dateinString,
         Time: timeinString,
-        //DOB:this.horoscopeForm.controls['Bdate'].value.toISOString(),
-        //TimeFormat: "STANDARD",
         Place: this.horoScopeService.birthplaceShort,
-        //TimeFormat: this.horoscopeForm.controls['TimeFormat'].value,
         TimeFormat: this.timeformatvalue,
         LatDeg: this.horoscopeForm.controls['LatDeg'].value,
         LatMt: this.horoscopeForm.controls['LatMt'].value,
@@ -456,11 +451,6 @@ export class HoroscopeComponent {
       this.horoScopeService.horoRequest = this.horoRequest;
       this.horoScopeService.birthDateinDateFormat = bdate;
       this.horoScopeService.birthTimeinDateFormat = btime;
-      // this.horoScopeService.GetFreeData(this.horoRequest, (data) => {
-      //     this.horoScopeService.data = data;
-      //     this.loadingSwitchService.loading = false;
-      //     this.router.navigate(["/horoscope/getFreeData"]);
-      // });
       this.horoScopeService.GetFreeData(this.horoRequest).subscribe((data:any) => {
         this.horoScopeService.horoResponse = data;
         this.loadingSwitchService.loading = false;

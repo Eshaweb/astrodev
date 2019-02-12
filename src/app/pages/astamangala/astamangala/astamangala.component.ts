@@ -318,7 +318,7 @@ export class AstamangalaComponent {
     else {
       this.timeformatvalue = this.timeformats[0].Id;
       this.reportSizevalue = this.reportSizes[2].Id;
-      this.languagevalue = this.languages[2].Id;
+      this.languagevalue = this.languages[1].Id;
       this.genderValue = this.genders[0].Id;
     }
 
@@ -416,15 +416,15 @@ export class AstamangalaComponent {
     // if(typeof this.horoscopeForm.controls['Date'].value ==='string'){
 
     // }
-    var bdate= this.astamangalaForm.controls['Date'].value;
-    var btime= this.astamangalaForm.controls['Time'].value;
-    if(bdate==!String){
+    var bdate:Date= this.astamangalaForm.controls['Date'].value;
+    var btime:Date= this.astamangalaForm.controls['Time'].value;
+    if(bdate instanceof Date){
       var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
       }
       else{
         dateinString=bdate;
       }
-      if(btime==!String){
+      if(btime instanceof Date){
         var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
       }
       else{
