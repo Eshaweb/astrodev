@@ -1,6 +1,11 @@
 .dx-button {
     float: none !important;
 }
+
+.dx-field-value{
+
+    margin-top:7px;
+}
     .KannadaFont {
         font-family: "kanfontfamily" !important;
         text-align: center;
@@ -84,9 +89,9 @@
               float: left;
               width: 48%;
           }
-          .dx-field-label {
-              width: 200px !important;
-          }
+        //   .dx-field-label {
+        //       width: 200px !important;
+        //   }
           
           .chakra {
               margin-left: 300px;
@@ -103,6 +108,43 @@
               .chakra {
                   margin-left: 2px;
               }
+
+
+
+              .KannadaFont {
+                font-family: "kanfontfamily" !important;
+                text-align: center;
+                font-size :12px!important;
+                }
+                
+                .EnglishFont
+                {
+                    font-family: sans-serif !important;
+                    text-align: center;
+                    font-size :12px!important;
+              
+                }
+                .HindiFont
+                {
+                    font-family:"hinfontfamily" !important;
+                    text-align: center;
+                    font-size :12px!important;
+              
+                }
+                .MalyalamFont
+                {
+                    font-family:"malfontfamily" !important;
+                    text-align: center;
+                    font-size :12px!important;
+              
+                }
+                .TamilFont
+                {
+                    font-family:"tamfontfamily" !important;
+                    text-align: center;
+                    font-size :12px!important;
+              
+                }
           }
       
       
