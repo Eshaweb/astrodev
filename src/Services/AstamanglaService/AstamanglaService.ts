@@ -6,6 +6,7 @@ import { HttpClient, HttpBackend } from '@angular/common/http';
 import { ErrorService } from '../Error/error.service';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
 import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
+import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 
 
 
@@ -15,7 +16,7 @@ export class AstamangalaService {
     horoRequest: HoroRequest;
     DateinDateFormat:Date;
     TimeinDateFormat:Date;
-    horoResponse: HoroResponse;
+    horoResponse: PrashnaFreeModel;
     place: string;
     placeShort: string;
     constructor(private captionDbService:CaptionDbService,private httpService: HttpService, 
@@ -24,7 +25,7 @@ export class AstamangalaService {
     }
 
 GetFreeData(horoRequest):Observable<any> {
-    var endPoint = "Astamangala/GetFreeData";
+    var endPoint = "Horoscope/GetFreePrashnaData";
     return this.httpService.Post(endPoint, horoRequest);
 }
 

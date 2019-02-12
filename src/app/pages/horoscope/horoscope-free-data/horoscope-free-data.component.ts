@@ -9,6 +9,7 @@ import { RegistrationService } from 'src/Services/registration/registration.serv
 import { Caption } from 'src/Models/HoroScope/Caption';
 import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
+import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 
 @Component({
   selector: 'app-horoscope-free-data',
@@ -55,7 +56,9 @@ export class HoroscopeFreeDataComponent implements OnInit {
     this.caption=new Caption();
     this.GetCaption(this.horoModel.LangCode, this.caption);
   }
-  constructor(public captionDbService:CaptionDbService, public registrationService:RegistrationService,public _location: Location, public route: ActivatedRoute, public router: Router, public platform: Platform, public loginService: LoginService, public horoScopeService: HoroScopeService) {
+  constructor(public captionDbService:CaptionDbService, public registrationService:RegistrationService,
+    public _location: Location, public route: ActivatedRoute, public router: Router, 
+    public platform: Platform, public loginService: LoginService, public horoScopeService: HoroScopeService) {
     
     this.horoModel=this.horoScopeService.horoRequest;
     this.horoResponse=new HoroResponse();

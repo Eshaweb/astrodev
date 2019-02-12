@@ -37,6 +37,7 @@ export class DepositWalletComponent {
   message: string;
   paymentModedata: ArrayStore;
   paymentModedatavalue: any;
+  PurchaseAmount: any;
 
   constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, public walletService: WalletService, public horoScopeService: HoroScopeService, public route: ActivatedRoute, public router: Router, public salesService: SalesService,
     public uiService: UIService, public formbuilder: FormBuilder) {
@@ -141,6 +142,7 @@ export class DepositWalletComponent {
       PurchaseAmount: this.depositToWalletForm.controls['Amount'].value,
       BillPayMode: this.depositToWalletForm.controls['BillPayMode'].value
     }
+    this.PurchaseAmount=WalletPurchase.PurchaseAmount+this.bonusAmount;
     this.walletService.PurchaseWallet(WalletPurchase).subscribe((data) => {
       if (data.IsValid == true && data.PayModes == "ON") {
         this.loadingSwitchService.loading=false;
