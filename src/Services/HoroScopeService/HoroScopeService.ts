@@ -30,7 +30,7 @@ export class HoroScopeService {
     orderResponse:OrderResponse;
     PaymentId: string;
     ExtCode: string;
-    OrderId: string;
+    //OrderId: string;
     Fathername: string;
     Mothername: string;
     birthplace: string;
@@ -47,7 +47,6 @@ export class HoroScopeService {
     AstroReportId:string;
     itemOrdered: ServiceInfo;
     horoResponse: HoroResponse;
-    ItActId = '#SH';
     birthplaceShort: string;
     constructor(private captionDbService:CaptionDbService,private httpService: HttpService, private errorService: ErrorService, handler: HttpBackend, public http: HttpClient) {
         this.http = new HttpClient(handler);
@@ -83,11 +82,6 @@ export class HoroScopeService {
         return this.http.post(url, horoSample, { responseType: "blob" });
     }
    
-    CreateOrder(orderModel):Observable<any> {
-        var endPoint = "Order/CreateOrder";
-        return this.httpService.Post(endPoint, orderModel);
-    }
-   
     GetAllAddress(PartyMastId):Observable<any> {
        
         var endPoint = "Address/GetAllAddress?PartyMastId=" + PartyMastId;
@@ -97,16 +91,6 @@ export class HoroScopeService {
     GetDefaultAddress(PartyMastId):Observable<any> {
         var endPoint = "Address/GetDefaultAddress?PartyMastId=" + PartyMastId;
         return this.httpService.Get(endPoint);
-    }
-    
-    GetPriceListByItActId(ItemMast):Observable<any> {
-        var endPoint = "Item/GetPriceListByItActId";
-        return this.httpService.Post(endPoint, ItemMast);
-    }
-
-    GetItemPrice(HardCopyPriceRequest):Observable<any> {
-        var endPoint = "Item/GetItemPrice";
-        return this.httpService.Post(endPoint, HardCopyPriceRequest);
     }
 
     CreateAddress(addessModel):Observable<any> {
@@ -123,11 +107,6 @@ export class HoroScopeService {
         var endPoint = "Address/CreateAndUpdateOrder";
         return this.httpService.Post(endPoint, addessModel);
     }
-
-    UpdateAddressToOrder(orderAddress):Observable<any> {
-        var endPoint = "Order/UpdateAddressToOrder";
-        return this.httpService.Post(endPoint, orderAddress);
-    }
    
     GetPayCodes():Observable<any> {
         var endPoint = "Sales/GetPayCodes";
@@ -136,21 +115,6 @@ export class HoroScopeService {
 
     OccupyPromoCode(Couponcode):Observable<any> {
         var endPoint = "Promo/OccupyPromoCode?Promo=" + Couponcode;
-        return this.httpService.Get(endPoint);
-    }
-
-    CreateBillPayModeToOrder(orderAddress):Observable<any> {
-        var endPoint = "Order/CreateBillPayModeToOrder";
-        return this.httpService.Post(endPoint, orderAddress);
-    }
-
-    PaymentComplete(payment):Observable<any> {
-        var endPoint = "Order/PaymentComplete";
-        return this.httpService.Post(endPoint, payment);
-    }
-
-    CheckForResult(OrderId):Observable<any> {
-        var endPoint = "Order/CheckForResult?OrderId=" + OrderId;
         return this.httpService.Get(endPoint);
     }
 

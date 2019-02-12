@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
 import { FormControlName } from '@angular/forms';
 import { Location } from "@angular/common";
+import { ItemService } from 'src/Services/ItemService/ItemService';
 @Component({
   selector: 'app-paidservices',
   templateUrl: './paidservices.component.html',
@@ -15,7 +16,6 @@ export class PaidservicesComponent implements OnInit {
   @ViewChildren('cmp') components: ElementRef;
   serviceInfo: ServiceInfo[];
   serviceInformation: ServiceInformation[];
-  horoInfo: any;
   horoRequest: HoroRequest;
   checkBoxValue: boolean = false;
   FH_PDFSelected: boolean = false;
@@ -36,13 +36,12 @@ export class PaidservicesComponent implements OnInit {
 
 }
   constructor(public _location: Location, public route: ActivatedRoute, public router: Router,
-    public loginService: LoginService, public horoScopeService: HoroScopeService) {
-      this.horoInfo = horoScopeService.horoRequest;
+    public loginService: LoginService, public itemService: ItemService) {
       var itemMast = {
-          ItActId: "#SH",
+          ItActId: itemService.ItActId,
           PartyMastId: loginService.PartyMastId,
       }
-    this.horoScopeService.GetPriceListByItActId(itemMast).subscribe((data:any) => {
+    this.itemService.GetPriceListByItActId(itemMast).subscribe((data:any) => {
         if (data.Error == undefined) {
             this.serviceInfo = data;
         }
@@ -66,30 +65,9 @@ export class PaidservicesComponent implements OnInit {
           PartyMastId:this.PartyMastId,
           CountryCode:"IN"
       }
-      this.horoScopeService.GetItemPrice(hardCopyPriceRequest).subscribe((data) => {
+      this.itemService.GetItemPrice(hardCopyPriceRequest).subscribe((data) => {
           this.serviceHardCopy = data;
       });
-  }
-
-  onNext() {
-      var orderModel = {
-          FreeAmount: 0,
-          ItemAmount: this.totalprice,
-          PartyMastId: this.loginService.PartyMastId,
-          //JSONData: this.horoInfo,
-          JSONData: { Name: "Shamanth", Father: "Rajesh", Mother: "Leelavathi", Gothra: "Vasista", Date: "2018-12-21", EW: "W", Gender: "F", LatDeg: 17, LatMt: 24, LongDeg: 78, LongMt: 25, NS: "N", PN: "+", Time: "18:47:00", TimeFormat: "STANDARD", ZH: 5, ZM: 30 },
-          //ItActId: "#SH",
-          ItActId: this.horoScopeService.ItActId,
-          ItMastId: '#HFH'
-      }
-      if (this.FH_HardcopySelected == true || this.MH_HardcopySelected == true || this.PH_HardcopySelected == true) {
-          this.requireDeliveryAddress = true;
-      }
-      else {
-          this.requireDeliveryAddress = false;
-      }
-      var DeliveryAddressRequired = this.requireDeliveryAddress;
-      this.router.navigate(["/deliveryAddress", { 'DeliveryAddressRequired': DeliveryAddressRequired }]);
   }
 
   trackByFn(index, item) {    

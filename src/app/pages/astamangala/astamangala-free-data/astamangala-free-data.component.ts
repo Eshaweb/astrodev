@@ -6,6 +6,7 @@ import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaSer
 import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 import { LoginService } from 'src/Services/login/login.service';
 import { Router } from '@angular/router';
+import { ItemService } from 'src/Services/ItemService/ItemService';
 
 
 @Component({
@@ -23,7 +24,7 @@ import { Router } from '@angular/router';
       this.horoModel=this.astamangalaService.horoRequest;
       this.GetCaption(this.horoModel.LangCode, this.caption);
     }
-    constructor(public router: Router, public loginService: LoginService, public captionDbService:CaptionDbService, public astamangalaService: AstamangalaService) {
+    constructor(private itemService:ItemService, public router: Router, public loginService: LoginService, public captionDbService:CaptionDbService, public astamangalaService: AstamangalaService) {
       this.prashnaFreeModel=this.astamangalaService.horoResponse;
     }
 
@@ -48,6 +49,7 @@ import { Router } from '@angular/router';
   }
 
   onClick() {
+    this.itemService.ItActId='#SA';
     if (this.loginService.Token == null) {
         this.router.navigate(["/login-form"]);
     }

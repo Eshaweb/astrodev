@@ -49,7 +49,6 @@ export class MatchMakingComponent {
     else {
       this.male_timeformatvalue = this.maletimeformats[0].Id;
       this.female_timeformatvalue = this.femaletimeformats[0].Id;
-      this.reportSizevalue = this.reportSizes[2].Id;
       this.languagevalue = this.languages[2].Id;
     }
   }
@@ -81,10 +80,7 @@ export class MatchMakingComponent {
       data: this.maletimeformats,
       key: "Id"
     });
-    this.reportSizedata = new ArrayStore({
-      data: this.reportSizes,
-      key: "Id"
-    });
+    
     this.languagedata = new ArrayStore({
       data: this.languages,
       key: "Id"
@@ -145,10 +141,6 @@ export class MatchMakingComponent {
     { Id: "DOUBLE", Text: 'Double Summer Time' },
     { Id: "WAR", Text: 'War Time' }
   ];
-  reportSizes: SelectBoxModel[] = [
-    { Id: "A4", Text: "A4" },
-    { Id: "A5", Text: "A5" },
-    { Id: "A6", Text: "Small(6inch X 6inch)" }];
   languages: SelectBoxModel[] = [
     { Id: "ENG", Text: 'English' },
     { Id: "HIN", Text: 'Hindi' },
@@ -160,9 +152,6 @@ export class MatchMakingComponent {
   }
   maletimeformatdataSelection(event){
     this.male_timeformatvalue=event.value;
-  }
-  reportSizedataSelection(event){
-    this.reportSizevalue=event.value;
   }
   languagedataSelection(event){
     this.languagevalue=event.value;

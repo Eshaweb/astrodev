@@ -18,6 +18,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { RegistrationService } from 'src/Services/registration/registration.service';
+import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -71,7 +72,7 @@ export class LoginFormComponent {
   Name: any;
   horoInfo: any;
 
-  constructor(public registrationService:RegistrationService,public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, 
+  constructor(private astamangalaService:AstamangalaService, public registrationService:RegistrationService,public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, 
     public _location: Location, public route: ActivatedRoute, public router: Router, public http: HttpClient,
     public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService,
     public uiService: UIService, public formbuilder: FormBuilder) {
@@ -151,6 +152,14 @@ export class LoginFormComponent {
             }
             else if (data.IsActivated == false) {
               //this.events.publish('To_UserActivation');  //events written in appcomponent fires
+              this.router.navigate(["/purchase/enterOTP"]);
+            }
+          }
+          else if (this.astamangalaService.horoRequest != null) {
+            if (data.IsActivated == true) {
+              this.router.navigate(["/purchase/paidServices"]);
+            }
+            else if (data.IsActivated == false) {
               this.router.navigate(["/purchase/enterOTP"]);
             }
           }

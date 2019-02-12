@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { interval } from 'rxjs';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { OrderService } from 'src/Services/OrderService/OrderService';
 
 @Component({
   selector: 'app-payment-processing',
@@ -20,7 +21,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   sub: any;
   showSuccess: boolean;
 
-  constructor(private loadingSwitchService:LoadingSwitchService,public location: Location,public router: Router, public horoScopeService: HoroScopeService) {
+  constructor(private orderService:OrderService,private loadingSwitchService:LoadingSwitchService,public location: Location,public router: Router, public horoScopeService: HoroScopeService) {
     this.enableDownload = true;
     // if (this.horoScopeService.resultResponse.Refresh == true) {
     //   this.enableRefresh = true;
@@ -41,7 +42,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //this.loading = true;
     this.loadingSwitchService.loading=true;
-    this.horoScopeService.CheckForResult(this.horoScopeService.OrderId).subscribe((data) => {
+    this.orderService.CheckForResult(this.orderService.OrderId).subscribe((data) => {
       if (data.AstroReportId.length != 0) {
         this.enableRefresh = false;
         this.enableDownload = true;
@@ -69,7 +70,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
         this.enableDownload = false;
         this.buttonName = 'Click Refresh';
         this.sub=interval(10000).subscribe((val) =>{
-          this.horoScopeService.CheckForResult(this.horoScopeService.OrderId).subscribe((data) => {
+          this.orderService.CheckForResult(this.orderService.OrderId).subscribe((data) => {
             if (data.AstroReportId.length != 0) {
               this.enableRefresh = false;
               this.enableDownload = true;
@@ -133,7 +134,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   }
   clearParameters(){
     this.horoScopeService.birthplace='';
-    this.horoScopeService.OrderId=null;
+    this.orderService.OrderId=null;
   }
   Download_Click() {
     //this.loading = true;

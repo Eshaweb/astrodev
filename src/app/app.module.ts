@@ -33,6 +33,8 @@ import { DxPopupModule, DxButtonModule, DxLoadPanelModule, DevExtremeModule } fr
 import { AstamangalaModule } from './pages/astamangala/astamangala.module';
 import { MatchMakingModule } from './pages/matchMaking/matchMaking.module';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
+import { ItemService } from 'src/Services/ItemService/ItemService';
+import { OrderService } from 'src/Services/OrderService/OrderService';
 
 
 let config = new AuthServiceConfig([
@@ -80,8 +82,8 @@ export function provideConfig() {
     DxLoadPanelModule,
     //DevExtremeModule
   ],
-  providers: [AuthService, ScreenService, AppInfoService, 
-    Service, AuthenticationService, CaptionDbService,
+  providers: [AuthService, ScreenService, AppInfoService, ItemService,
+    Service, AuthenticationService, CaptionDbService, OrderService,
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService,
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
     LoaderService, SalesService, WalletService,

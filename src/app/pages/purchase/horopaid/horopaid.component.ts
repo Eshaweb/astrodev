@@ -5,6 +5,9 @@ import { Location } from "@angular/common";
 import { ServiceInfo, ServiceInformation, HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
 import { LoginService } from 'src/Services/login/login.service';
+import { ItemService } from 'src/Services/ItemService/ItemService';
+import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
+import { OrderService } from 'src/Services/OrderService/OrderService';
 
 
 @Component({
@@ -40,7 +43,7 @@ export class HoropaidComponent implements OnInit {
   itemAmount: number;
   isLoading: boolean;
   errorMessage: any;
-  constructor(public _location: Location, public route: ActivatedRoute, public router: Router,
+  constructor(private orderService:OrderService,private astamangalaService:AstamangalaService,private itemService:ItemService ,public _location: Location, public route: ActivatedRoute, public router: Router,
       public loginService: LoginService, public horoScopeService: HoroScopeService) {
       this.serviceInformation = [{ ItMastId: '', Name: 'Horo', MRP: 33, Amount: 44, Description: '', PrintMRP: 6, PrintAmount: 5 }]
   }
@@ -88,7 +91,7 @@ export class HoropaidComponent implements OnInit {
 
   onNext(item) {
       this.horoScopeService.itemOrdered = item;
-      this.horoScopeService.horoRequest.ReportType = item.ItMastId;
+      //this.horoScopeService.horoRequest.ReportType = item.ItMastId;
       if (this.checkBoxValue == false) {
           this.itemAmount = item.Amount;
           this.requireDeliveryAddress = false;
@@ -99,22 +102,36 @@ export class HoropaidComponent implements OnInit {
           this.requireDeliveryAddress = true;
           this.horoScopeService.IsDeliverable = true;
       }
-      var orderModel = {
-          IsDeliverable: this.checkBoxValue,
-          FreeAmount: 0,
-          ItemAmount: this.itemAmount,
-          PartyMastId: this.loginService.PartyMastId,
-          JSONData: this.horoScopeService.horoRequest,
-          ItActId: this.horoScopeService.ItActId,
-          ItMastId: item.ItMastId,
-          OrderId: this.horoScopeService.OrderId
+      if(this.horoScopeService.horoRequest!=undefined){
+        var orderModel = {
+            IsDeliverable: this.checkBoxValue,
+            FreeAmount: 0,
+            ItemAmount: this.itemAmount,
+            PartyMastId: this.loginService.PartyMastId,
+            JSONData: JSON.stringify(this.horoScopeService.horoRequest),
+            ItActId: this.itemService.ItActId,
+            ItMastId: item.ItMastId,
+            OrderId: this.orderService.OrderId
+        }
       }
-      this.horoScopeService.CreateOrder(orderModel).subscribe((data) => {
+      else if(this.astamangalaService.horoRequest!=undefined){
+        var orderModel = {
+            IsDeliverable: this.checkBoxValue,
+            FreeAmount: 0,
+            ItemAmount: this.itemAmount,
+            PartyMastId: this.loginService.PartyMastId,
+            JSONData:JSON.stringify(this.astamangalaService.horoRequest),
+            ItActId: this.itemService.ItActId,
+            ItMastId: item.ItMastId,
+            OrderId: this.orderService.OrderId
+        }
+      }
+      this.orderService.CreateOrder(orderModel).subscribe((data) => {
           if(data.Error==undefined){
-          this.horoScopeService.OrderId = data.OrderId;
+          this.orderService.OrderId = data.OrderId;
           this.horoScopeService.orderResponse = data;
           var FreePDF = {
-              OrderId: this.horoScopeService.OrderId.toString()
+              OrderId: this.orderService.OrderId.toString()
           }
           // this.router.navigate(["/services/deliveryAddress", { 'DeliveryAddressRequired': DeliveryAddressRequired }]);
           this.router.navigate(["/purchase/deliveryAddress", { 'OrderId': FreePDF.OrderId }]);

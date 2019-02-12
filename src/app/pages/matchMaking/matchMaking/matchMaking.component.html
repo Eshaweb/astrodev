@@ -213,18 +213,12 @@
                         </div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
-                                <div class="dx-field-label">Report Size*</div>
+                                <div class="dx-field-label">Birth Place</div>
                                 <div class="dx-field-value">
-                                  <dx-select-box 
-                                  (onValueChanged)="reportSizedataSelection($event)"
-                                      [dataSource]="reportSizedata"
-                                      displayExpr="Text"
-                                      valueExpr="Id"
-                                      [value]="reportSizevalue">
-                                  </dx-select-box>
-                                </div>
-                                <p style="color:red" id='err_ReportSize'></p>
+                                    <dx-text-box id="male_birthplace_txt" formControlName="MaleBplace"[(ngModel)]="matchMakingService.male_birthplace" showClearButton="true"></dx-text-box>
+                                    <p style="color:red" id='err_MaleBplace'></p>
                             </div>
+                        </div>
                         </div>
                         <div class="clear"></div>
                         <div class="dx-fieldset-column">
@@ -249,16 +243,6 @@
                                 <p style="color:red" id='err_language'></p>
                             </div>
                         </div>
-                        <div class="dx-fieldset-column">
-                            <div class="dx-field">
-                                <div class="dx-field-label">Birth Place</div>
-                                <div class="dx-field-value">
-                                    <dx-text-box id="male_birthplace_txt" formControlName="MaleBplace"[(ngModel)]="matchMakingService.male_birthplace" showClearButton="true"></dx-text-box>
-                                    <p style="color:red" id='err_MaleBplace'></p>
-                            </div>
-                        </div>
-                        </div>
-                        
                         <div class="clear"></div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">

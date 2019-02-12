@@ -36,8 +36,7 @@ export class AstamangalaComponent {
     { Id: "MAL", Text: "Malayalam" }];
   reportSizes: SelectBoxModel[] = [
     { Id: "A4", Text: "A4" },
-    { Id: "A5", Text: "A5" },
-    { Id: "A6", Text: "Small(6inch X 6inch)" }];
+    { Id: "A5", Text: "A5" }];
   genders: SelectBoxModel[];
   dateModel: string;
   isLoading: boolean;

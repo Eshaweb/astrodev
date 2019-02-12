@@ -8,6 +8,7 @@ import { UIService } from 'src/Services/UIService/ui.service';
 import { LoginService } from 'src/Services/login/login.service';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
 import ArrayStore from 'devextreme/data/array_store';
+import { OrderService } from 'src/Services/OrderService/OrderService';
 
 
 @Component({
@@ -76,7 +77,6 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     address2Message: string;
     OrderId: any;
     checkBoxValue: boolean = false;
-
     existingAddress: ExistingAddress[];
     showAddAddressForm: boolean = false;
     nameMessage: string;
@@ -85,10 +85,10 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     email: string;
     DeliveryAddressRequired: boolean;
     constructor(public _location: Location, public route: ActivatedRoute, public router: Router, public loginService: LoginService,
-        public horoScopeService: HoroScopeService,
+        public horoScopeService: HoroScopeService, private orderService:OrderService,
         public uiService: UIService, public formbuilder: FormBuilder) {
         this.DeliveryAddressRequired = this.horoScopeService.IsDeliverable
-        this.OrderId = this.horoScopeService.OrderId;
+        this.OrderId = this.orderService.OrderId;
         this.ItName=this.horoScopeService.orderResponse.ItName;
         this.customerEMailAddressForm = this.formbuilder.group({
             EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]]
@@ -237,7 +237,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
             AddressId: this.Id,
             OrderId: this.OrderId
         }
-        this.horoScopeService.UpdateAddressToOrder(orderAddress).subscribe((data:any) => {
+        this.orderService.UpdateAddressToOrder(orderAddress).subscribe((data:any) => {
             this.router.navigate(["/purchase/payment"]);
         });
     }

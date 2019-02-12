@@ -10,6 +10,7 @@ import { PayCode } from 'src/Models/Sales/PayCode';
 import { WalletService } from 'src/Services/Wallet/WalletService';
 import ArrayStore from 'devextreme/data/array_store';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { OrderService } from 'src/Services/OrderService/OrderService';
 
 declare var Razorpay: any;
 
@@ -50,13 +51,13 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   paymentModedata: ArrayStore;
   paymentModedatavalue: any;
   
-    constructor(private loadingSwitchService:LoadingSwitchService, public walletService:WalletService, public _location: Location, public route: ActivatedRoute, public router: Router,
+    constructor(private orderService:OrderService,private loadingSwitchService:LoadingSwitchService, public walletService:WalletService, public _location: Location, public route: ActivatedRoute, public router: Router,
       public formBuilder: FormBuilder, public platform: Platform, public formbuilder: FormBuilder,
       public loginService: LoginService, public horoScopeService: HoroScopeService,
       public uiService: UIService) {
       this.discountAmount = 0;
       
-      this.OrderId = this.horoScopeService.OrderId;
+      this.OrderId = this.orderService.OrderId;
       this.ItemOrdered = this.horoScopeService.itemOrdered;
       if (this.horoScopeService.IsDeliverable == false) {
         this.payableAmount = this.horoScopeService.itemOrdered.Amount;
@@ -313,7 +314,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         OrderId: this.OrderId,
         PayCodes: this.paycodes
       }
-      this.horoScopeService.CreateBillPayModeToOrder(OrderBillPayMode).subscribe((data) => {
+      this.orderService.CreateBillPayModeToOrder(OrderBillPayMode).subscribe((data) => {
         if(data.Error==undefined){
           this.horoScopeService.ExtCode =data.ExtCode;
           for (var i = 0; i < data.PayModes.length; i++) {
@@ -416,7 +417,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     next(Payment) {
       //this.loading = true;
       this.loadingSwitchService.loading=true;
-      this.horoScopeService.PaymentComplete(Payment).subscribe((data) => {
+      this.orderService.PaymentComplete(Payment).subscribe((data) => {
       if(data.Error==undefined){
       this.horoScopeService.resultResponse=data;
       if(data.AstroReportId.length != 0){

@@ -7,7 +7,6 @@ export class Caption {
     ChandraMasa: string;
     SouraMasa: string;
     Paksha: string;
-
     Grahachakram: string;
     MahaNakshatra: string;
     NityaTithi: string;
@@ -20,7 +19,26 @@ export class Caption {
     Nityapanchanga: string;
     CaptionRight: string;
     GocharaPhala: string;
-
+    JanmaNakshthra: string;
+    JanmaRashi: string;
+    Aroodha: string;
+    SunRise: string;
+    Udaya: string;
+    SunSet: string;
+    Lagnamsha: string;
+    DinaMana: string;
+    ChatraRashi: string;
+    SprushtangaRashi: string;
+    Tambula: string;
+    ChandradishtithaRashi: string;
+    MoonRise: string;
+    MoonSet: string;
+    Rahu: string;
+    Gulika: string;
+    Yama: string;
+    Tithi: string;
+    Nak: string;
+    Yoga: string;
 }
 
 export class Gochara {
