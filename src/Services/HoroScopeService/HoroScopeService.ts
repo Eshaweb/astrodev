@@ -27,7 +27,7 @@ let products: SelectBoxModelNew[] = [{
 export class HoroScopeService {
     systemDate:string;
     resultResponse:ResultResponse;
-    orderResponse:OrderResponse;
+    //orderResponse:OrderResponse;
     PaymentId: string;
     ExtCode: string;
     //OrderId: string;
