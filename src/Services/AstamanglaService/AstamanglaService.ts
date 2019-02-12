@@ -24,7 +24,7 @@ export class AstamangalaService {
     }
 
 GetFreeData(horoRequest):Observable<any> {
-    var endPoint = "Astamangala/GetFreeData";
+    var endPoint = "Horoscope/GetFreePrashnaData";
     return this.httpService.Post(endPoint, horoRequest);
 }
 

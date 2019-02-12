@@ -506,4 +506,6 @@ export class MatchMakingComponent {
       this.router.navigate(["/services/matchFree"]);
     });
   }
+  now: Date = new Date();
+
 }
