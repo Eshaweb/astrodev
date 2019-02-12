@@ -285,7 +285,8 @@ export class AstamangalaComponent {
     this.mapsAPILoader.load().then(() => {
       let nativeHomeInputBox = document.getElementById('txtHome').getElementsByTagName('input')[0];
       let autocomplete = new google.maps.places.Autocomplete(nativeHomeInputBox, {
-        types: ["address"]
+        //types: ["address"]
+        types: ["geocode"]
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {

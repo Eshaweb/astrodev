@@ -27,7 +27,6 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [ AuthGuardService ]
   },
-  
   {
     path: 'login-form',
     component: LoginFormComponent,
@@ -62,8 +61,7 @@ const routes: Routes = [
   {
     path: 'purchase',
     loadChildren: './pages/purchase/purchase.module#PurchaseModule'
-  }
-  ,
+  },
   { path: '**', redirectTo: 'home',canActivate: [ AuthGuardService ]},
   { path: '', redirectTo: 'home', pathMatch: 'full'},
 ];

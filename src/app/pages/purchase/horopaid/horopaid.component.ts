@@ -129,7 +129,7 @@ export class HoropaidComponent implements OnInit {
       this.orderService.CreateOrder(orderModel).subscribe((data) => {
           if(data.Error==undefined){
           this.orderService.OrderId = data.OrderId;
-          this.horoScopeService.orderResponse = data;
+          this.orderService.orderResponse = data;
           var FreePDF = {
               OrderId: this.orderService.OrderId.toString()
           }

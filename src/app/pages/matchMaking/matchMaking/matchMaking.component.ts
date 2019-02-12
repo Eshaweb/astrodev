@@ -91,7 +91,8 @@ export class MatchMakingComponent {
     this.mapsAPILoader.load().then(() => {
       let nativeHome1InputBox = document.getElementById('male_birthplace_txt').getElementsByTagName('input')[0];
       let autocomplete1 = new google.maps.places.Autocomplete(nativeHome1InputBox, {
-        types: ["address"]
+        //types: ["address"]
+        types: ["geocode"]
       });
       console.log(autocomplete1);
       autocomplete1.addListener("place_changed", () => {
@@ -106,7 +107,8 @@ export class MatchMakingComponent {
       });
       let nativeHome2InputBox = document.getElementById('female_birthplace_txt').getElementsByTagName('input')[0];
       let autocomplete2 = new google.maps.places.Autocomplete(nativeHome2InputBox, {
-        types: ["address"]
+       // types: ["address"]
+       types: ["geocode"]
       });
       console.log(autocomplete2);
       autocomplete2.addListener("place_changed", () => {
@@ -425,10 +427,10 @@ export class MatchMakingComponent {
     var dateinStringFemale = bdate_Female.getFullYear().toString() + "-" + ("0" + ((bdate_Female.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate_Female.getDate()).toString().slice(-2);
     var timeinString_Female = ("0" + btime_Female.getHours()).toString().slice(-2) + ":" + ("0" + btime_Female.getMinutes()).toString().slice(-2) + ":" + btime_Female.getSeconds().toString() + "0";
     this.matchRequest = {
-      LangCode: "KAN",
+      LangCode: this.languagevalue,
       Female: {
-        Date: "2015-01-03",
-        Time: "05:12:30",
+        Date: dateinStringFemale,
+        Time: timeinString_Female,
         LatDeg: 13,
         LatMt: 0,
         LongDeg: 75,
@@ -443,8 +445,8 @@ export class MatchMakingComponent {
       },
       Male: {
         //DOB:"2011/01/03 05:12:30 PM",
-        Date: "2015-01-03",
-        Time: "05:12:30",
+        Date: dateinString_Male,
+        Time: timeinString_Male,
         LatDeg: 13,
         LatMt: 0,
         LongDeg: 75,
