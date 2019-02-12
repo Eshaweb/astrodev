@@ -3,6 +3,9 @@ import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingS
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
 import { MatchResponse } from 'src/Models/MatchMaking/match';
 import { Caption } from 'src/Models/HoroScope/Caption';
+import { ItemService } from 'src/Services/ItemService/ItemService';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/Services/login/login.service';
 
 
 @Component({
@@ -15,10 +18,9 @@ import { Caption } from 'src/Models/HoroScope/Caption';
   matchResponse: MatchResponse;
   caption: Caption;
   matchRequest: import("d:/shailesh_bhat/Angular2Projects/DevExtreme/WorkingFolder/Astrodev/src/Models/MatchMaking/MatchRequest").MatchRequest;
-    constructor(public captionDbService:CaptionDbService, public matchMakingService: MatchMakingService) {
-      this.matchResponse.Left=matchMakingService.matchResponse.Left;
-      this.matchResponse.Right=matchMakingService.matchResponse.Right;
-      this.matchResponse.Prediction=matchMakingService.matchResponse.Prediction;    
+    constructor(private itemService:ItemService, public router: Router, public loginService: LoginService, 
+      public captionDbService:CaptionDbService, public matchMakingService: MatchMakingService) {
+      this.matchResponse=matchMakingService.matchResponse;
       this.caption=new Caption();
       this.matchRequest=this.matchMakingService.matchRequest;
       this.GetCaption(this.matchRequest.LangCode, this.caption);
@@ -43,4 +45,14 @@ import { Caption } from 'src/Models/HoroScope/Caption';
    {
     this.captionDbService.GetCaption(langCode,caption);
    }
+
+   onClick() {
+    this.itemService.ItActId='#SM';
+      if (this.loginService.Token == null) {
+          this.router.navigate(["/login-form"]);
+      }
+      else {
+          this.router.navigate(["/purchase/paidServices"]);
+      }
+  }
   }

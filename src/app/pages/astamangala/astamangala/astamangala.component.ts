@@ -151,6 +151,7 @@ export class AstamangalaComponent {
       this.horoRequest = this.astamangalaService.horoRequest;
       this.birthDateinDateFormat = this.astamangalaService.DateinDateFormat;
       this.birthTimeinDateFormat = this.astamangalaService.TimeinDateFormat;
+      this.timeZoneName=this.astamangalaService.timeZoneName;
     }
     else {
       this.birthDateinDateFormat = this.astamangalaForm.controls['Date'].value;
@@ -469,6 +470,7 @@ export class AstamangalaComponent {
     this.astamangalaService.horoRequest = this.horoRequest;
     this.astamangalaService.DateinDateFormat = bdate;
     this.astamangalaService.TimeinDateFormat = btime;
+    this.astamangalaService.timeZoneName=this.timeZoneName;
     this.astamangalaService.GetFreeData(this.horoRequest).subscribe((data: any) => {
       this.astamangalaService.horoResponse = data;
       this.loadingSwitchService.loading = false;

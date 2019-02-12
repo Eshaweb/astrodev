@@ -19,6 +19,7 @@ export class AstamangalaService {
     horoResponse: PrashnaFreeModel;
     place: string;
     placeShort: string;
+  timeZoneName: string;
     constructor(private captionDbService:CaptionDbService,private httpService: HttpService, 
         private errorService: ErrorService, handler: HttpBackend, public http: HttpClient) {
         this.http = new HttpClient(handler);

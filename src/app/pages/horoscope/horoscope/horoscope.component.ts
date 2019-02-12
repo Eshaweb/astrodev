@@ -256,6 +256,7 @@ export class HoroscopeComponent {
         this.horoscopeForm.controls['Name'].setValue(this.horoScopeService.horoRequest.Name);
         this.birthDateinDateFormat = this.horoScopeService.birthDateinDateFormat;
         this.birthTimeinDateFormat = this.horoScopeService.birthTimeinDateFormat;
+        this.timeZoneName=this.horoScopeService.timeZoneName;
       }
       else {
         this.birthDateinDateFormat = this.horoscopeForm.controls['Date'].value;
@@ -451,6 +452,7 @@ export class HoroscopeComponent {
       this.horoScopeService.horoRequest = this.horoRequest;
       this.horoScopeService.birthDateinDateFormat = bdate;
       this.horoScopeService.birthTimeinDateFormat = btime;
+      this.horoScopeService.timeZoneName=this.timeZoneName;
       this.horoScopeService.GetFreeData(this.horoRequest).subscribe((data:any) => {
         this.horoScopeService.horoResponse = data;
         this.loadingSwitchService.loading = false;

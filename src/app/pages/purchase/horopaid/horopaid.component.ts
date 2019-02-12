@@ -8,6 +8,7 @@ import { LoginService } from 'src/Services/login/login.service';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { OrderService } from 'src/Services/OrderService/OrderService';
+import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingService';
 
 
 @Component({
@@ -43,7 +44,7 @@ export class HoropaidComponent implements OnInit {
   itemAmount: number;
   isLoading: boolean;
   errorMessage: any;
-  constructor(private orderService:OrderService,private astamangalaService:AstamangalaService,private itemService:ItemService ,public _location: Location, public route: ActivatedRoute, public router: Router,
+  constructor(private matchMakingService:MatchMakingService,private orderService:OrderService,private astamangalaService:AstamangalaService,private itemService:ItemService ,public _location: Location, public route: ActivatedRoute, public router: Router,
       public loginService: LoginService, public horoScopeService: HoroScopeService) {
       this.serviceInformation = [{ ItMastId: '', Name: 'Horo', MRP: 33, Amount: 44, Description: '', PrintMRP: 6, PrintAmount: 5 }]
   }
@@ -121,6 +122,18 @@ export class HoropaidComponent implements OnInit {
             ItemAmount: this.itemAmount,
             PartyMastId: this.loginService.PartyMastId,
             JSONData:JSON.stringify(this.astamangalaService.horoRequest),
+            ItActId: this.itemService.ItActId,
+            ItMastId: item.ItMastId,
+            OrderId: this.orderService.OrderId
+        }
+      }
+      else if(this.matchMakingService.matchRequest!=undefined){
+        var orderModel = {
+            IsDeliverable: this.checkBoxValue,
+            FreeAmount: 0,
+            ItemAmount: this.itemAmount,
+            PartyMastId: this.loginService.PartyMastId,
+            JSONData:JSON.stringify(this.matchMakingService.matchRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,
             OrderId: this.orderService.OrderId

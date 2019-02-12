@@ -23,6 +23,8 @@ export class MatchMakingService {
   female_birthDateinDateFormat: any;
   female_birthTimeinDateFormat: any;
   matchResponse: MatchResponse;
+  timeZoneName_Female: any;
+  timeZoneName_Male: any;
 
     constructor(private httpService: HttpService, handler: HttpBackend, public http: HttpClient) {
         this.http = new HttpClient(handler);

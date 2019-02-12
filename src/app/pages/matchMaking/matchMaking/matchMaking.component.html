@@ -1,4 +1,4 @@
-<h2 class="content-block">Horoscope</h2>
+<h2 class="content-block">Match Making</h2>
 <div class="dx-card content-block responsive-paddings">
     <form action="your-action" [formGroup]="femaleMatchMakingForm">
         <div class="dx-fieldset">
@@ -17,7 +17,7 @@
                         <div class="dx-field">
                             <div class="dx-field-label">Date of birth</div>
                             <div class="dx-field-value">
-                                <dx-date-box formControlName="FemaleBdate" [value]="now" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="female_birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd">
+                                <dx-date-box formControlName="FemaleBdate" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="female_birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd">
                                 </dx-date-box>
                                 </div>
                         </div>
@@ -178,7 +178,7 @@
                         <div class="dx-field">
                             <div class="dx-field-label">Date of birth</div>
                             <div class="dx-field-value">
-                                <dx-date-box formControlName="MaleBdate" [value]="now" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="male_birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd">
+                                <dx-date-box formControlName="MaleBdate" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="male_birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd">
                                 </dx-date-box>
                                 </div>
                         </div>

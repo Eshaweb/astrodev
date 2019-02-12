@@ -78,7 +78,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
               this.buttonId = data.AstroReportId[0].split('_')[0];
               this.horoScopeService.DownloadResult(this.buttonId, (data) => {
                 var newBlob = new Blob([data], { type: "application/pdf" });
-                const fileName: string = 'FullHoroscope.pdf';
+                const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
                 const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
                 var url = window.URL.createObjectURL(newBlob);
                 a.href = url;
@@ -141,7 +141,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
     this.loadingSwitchService.loading=true;
     this.horoScopeService.DownloadResult(this.buttonId, (data) => {
       var newBlob = new Blob([data], { type: "application/pdf" });
-      const fileName: string = 'FullHoroscope.pdf';
+      const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
       const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
       var url = window.URL.createObjectURL(newBlob);
       a.href = url;

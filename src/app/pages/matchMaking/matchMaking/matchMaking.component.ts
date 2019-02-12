@@ -258,6 +258,8 @@ export class MatchMakingComponent {
       this.male_birthTimeinDateFormat = this.matchMakingService.male_birthTimeinDateFormat;
       this.female_birthDateinDateFormat = this.matchMakingService.female_birthDateinDateFormat;
       this.female_birthTimeinDateFormat = this.matchMakingService.female_birthTimeinDateFormat;
+      this.timeZoneName_Female=this.matchMakingService.timeZoneName_Female;
+      this.timeZoneName_Male=this.matchMakingService.timeZoneName_Male;
     }
     else {
       this.male_birthDateinDateFormat = this.maleMatchMakingForm.controls['MaleBdate'].value;
@@ -427,7 +429,7 @@ export class MatchMakingComponent {
         dateinStringFemale=bdate_Female;
       }
       if(btime_Female instanceof Date){
-        var timeinString_Female = ("0" + btime_Female.getHours()).toString().slice(-2) + ":" + ("0" + btime_Female.getMinutes()).toString().slice(-2) + ":" + btime_Female.getSeconds().toString() + "0";
+        var timeinString_Female = ("0" + btime_Female.getHours()).toString().slice(-2) + ":" + ("0" + btime_Female.getMinutes()).toString().slice(-2) + ":" + "00";
       }
       else{
         timeinString_Female =btime_Female;
@@ -439,7 +441,7 @@ export class MatchMakingComponent {
         dateinString_Male=bdate_Male;
       }
       if(btime_Male instanceof Date){
-        var timeinString_Male = ("0" + btime_Male.getHours()).toString().slice(-2) + ":" + ("0" + btime_Male.getMinutes()).toString().slice(-2) + ":" + btime_Male.getSeconds().toString() + "0";
+        var timeinString_Male = ("0" + btime_Male.getHours()).toString().slice(-2) + ":" + ("0" + btime_Male.getMinutes()).toString().slice(-2)+ ":" + "00";
       }
       else{
         timeinString_Male =btime_Male;
@@ -477,11 +479,15 @@ export class MatchMakingComponent {
         TimeFormat: this.male_timeformatvalue
       }
     }
-    this.matchMakingService.GetFreeData(this.matchRequest).subscribe((data) => {
+    this.matchMakingService.male_birthDateinDateFormat = bdate_Male;
+      this.matchMakingService.male_birthTimeinDateFormat = btime_Male;
+      this.matchMakingService.female_birthDateinDateFormat = bdate_Female;
+      this.matchMakingService.female_birthTimeinDateFormat = btime_Female;
+      this.matchMakingService.timeZoneName_Female=this.timeZoneName_Female;
+      this.matchMakingService.timeZoneName_Male=this.timeZoneName_Male;
+      this.matchMakingService.GetFreeData(this.matchRequest).subscribe((data) => {
       this.matchMakingService.matchRequest = this.matchRequest;
-      this.matchMakingService.matchResponse.Left=data.Left;
-       this.matchMakingService.matchResponse.Right=data.Right;
-       this.matchMakingService.matchResponse.Prediction=data.Prediction;
+      this.matchMakingService.matchResponse=data;
       this.router.navigate(["/matchMaking/getMatchMakingFreeData"]);
     });
   }
