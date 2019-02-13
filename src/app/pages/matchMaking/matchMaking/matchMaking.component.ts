@@ -40,18 +40,22 @@ export class MatchMakingComponent {
   matchResponse: MatchResponse;
   reportTypevalue: any;
   reportTypedata: ArrayStore;
+  reportSizevalue: any;
+  reportSizedata: ArrayStore;
 
   ngAfterViewInit(): void {
     if (this.matchMakingService.matchRequest != null) {
       this.male_timeformatvalue = this.matchMakingService.matchRequest.Male.TimeFormat;
       this.female_timeformatvalue = this.matchMakingService.matchRequest.Female.TimeFormat;
       this.languagevalue = this.matchMakingService.matchRequest.LangCode;
+      this.reportSizevalue = this.matchMakingService.matchRequest.ReportSize;
     }
     else {
       this.male_timeformatvalue = this.maletimeformats[0].Id;
       this.female_timeformatvalue = this.femaletimeformats[0].Id;
       this.languagevalue = this.languages[2].Id;
       this.reportTypevalue= this.reportTypes[0].Id;
+      this.reportSizevalue = this.reportSizes[1].Id;
     }
   }
 
@@ -82,7 +86,10 @@ export class MatchMakingComponent {
       data: this.maletimeformats,
       key: "Id"
     });
-
+    this.reportSizedata = new ArrayStore({
+      data: this.reportSizes,
+      key: "Id"
+    });
     this.languagedata = new ArrayStore({
       data: this.languages,
       key: "Id"
@@ -155,6 +162,10 @@ export class MatchMakingComponent {
   reportTypes: SelectBoxModel[] = [
     { Id: "S", Text: 'System Report' },
     { Id: "U", Text: 'User Report' }];
+
+    reportSizes: SelectBoxModel[] = [
+      { Id: "A4", Text: "A4" },
+      { Id: "A5", Text: "A5" }];
   femaletimeformatdataSelection(event) {
     this.female_timeformatvalue = event.value;
   }
@@ -166,6 +177,9 @@ export class MatchMakingComponent {
   }
   reportTypedataSelection(event){
     this.reportTypevalue = event.value;
+  }
+  reportSizedataSelection(event) {
+    this.reportSizevalue = event.value;
   }
   constructor(public route: ActivatedRoute, public router: Router, public cdr: ChangeDetectorRef,
     public matchMakingService: MatchMakingService, public ngZone: NgZone, public mapsAPILoader: MapsAPILoader,
@@ -311,6 +325,7 @@ export class MatchMakingComponent {
       this.matchRequest = {
         LangCode: null,
         UserOrSystem:null,
+        ReportSize:null,
         Male: {
           Name: this.maleMatchMakingForm.controls['maleName'].value,
           Date: null,
@@ -556,6 +571,7 @@ export class MatchMakingComponent {
     this.matchRequest = {
       LangCode: this.languagevalue,
       UserOrSystem: this.reportTypevalue,
+      ReportSize:this.reportSizevalue,
       Female: {
         Name:this.femaleMatchMakingForm.controls['femaleName'].value,
         Date: dateinStringFemale,

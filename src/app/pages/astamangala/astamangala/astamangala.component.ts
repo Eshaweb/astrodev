@@ -37,7 +37,53 @@ export class AstamangalaComponent {
   reportSizes: SelectBoxModel[] = [
     { Id: "A4", Text: "A4" },
     { Id: "A5", Text: "A5" }];
-  genders: SelectBoxModel[];
+  pruchakaStars: SelectBoxModel[] = [
+      { Id: "A4", Text: "UnKnown" },
+      { Id: "A5", Text: "Ashwini" },
+      { Id: "A4", Text: "Bharani" },
+      { Id: "A5", Text: "Krittika" },
+      { Id: "A4", Text: "Rohini" },
+      { Id: "A5", Text: "Mrigashira" },
+      { Id: "A4", Text: "Ardra" },
+      { Id: "A5", Text: "Punarvasu" },
+      { Id: "A4", Text: "Pushya" },
+      { Id: "A5", Text: "Ashlesha" },
+      { Id: "A4", Text: "Magha" },
+      { Id: "A5", Text: "Poorva(Hubba)" },
+      { Id: "A4", Text: "Uttara" },
+      { Id: "A5", Text: "Hasta" },
+      { Id: "A4", Text: "Chithra" },
+      { Id: "A5", Text: "Swathi" },
+      { Id: "A4", Text: "Vishakha" },
+      { Id: "A5", Text: "Anuradha" },
+      { Id: "A4", Text: "Jyeshta" },
+      { Id: "A5", Text: "Moola" },
+      { Id: "A4", Text: "Poorvashada" },
+      { Id: "A5", Text: "Uttarashada" },
+      { Id: "A4", Text: "Shravana" },
+      { Id: "A5", Text: "Dhanishta" },
+      { Id: "A4", Text: "Shatabhisha" },
+      { Id: "A5", Text: "Poorvabhadra" },
+      { Id: "A4", Text: "Uttarabhadra" },
+      { Id: "A5", Text: "Revathi" },
+    ];
+    
+    pruchakaRashis: SelectBoxModel[] = [
+      { Id: "A4", Text: "UnKnown" },
+      { Id: "A5", Text: "Mesha" },
+      { Id: "A4", Text: "Vrishabha" },
+      { Id: "A5", Text: "Mithuna" },
+      { Id: "A4", Text: "Karkataka" },
+      { Id: "A5", Text: "Simha" },
+      { Id: "A4", Text: "Kanya" },
+      { Id: "A5", Text: "Tula" },
+      { Id: "A4", Text: "Vrishchika" },
+      { Id: "A5", Text: "Dhanu" },
+      { Id: "A4", Text: "Makara" },
+      { Id: "A5", Text: "Kumbha" },
+      { Id: "A4", Text: "Meena" }
+    ];
+    genders: SelectBoxModel[];
   dateModel: string;
   isLoading: boolean;
   public loading = false;
@@ -78,6 +124,10 @@ export class AstamangalaComponent {
   genderdata: ArrayStore;
   password: any;
   caption: Caption;
+  pruchakaStardata: ArrayStore;
+  pruchakaStarvalue: any;
+  pruchakaRashidata: ArrayStore;
+  pruchakaRashivalue: any;
   
   constructor(service: Service, public loadingSwitchService: LoadingSwitchService, private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public astamangalaService: AstamangalaService, public uiService: UIService,
@@ -278,6 +328,14 @@ export class AstamangalaComponent {
       data: this.languages,
       key: "Id"
     });
+    this.pruchakaStardata = new ArrayStore({
+      data: this.pruchakaStars,
+      key: "Id"
+    });
+    this.pruchakaRashidata = new ArrayStore({
+      data: this.pruchakaRashis,
+      key: "Id"
+    });
     this.genderdata = new ArrayStore({
       data: this.genders,
       key: "Id"
@@ -315,12 +373,15 @@ export class AstamangalaComponent {
       this.reportSizevalue = this.astamangalaService.horoRequest.ReportSize;
       this.languagevalue = this.astamangalaService.horoRequest.LangCode;
       this.genderValue = this.astamangalaService.horoRequest.Gender;
+      //this.pruchakaStarvalue = 
     }
     else {
       this.timeformatvalue = this.timeformats[0].Id;
       this.reportSizevalue = this.reportSizes[1].Id;
       this.languagevalue = this.languages[1].Id;
       this.genderValue = this.genders[0].Id;
+      this.pruchakaStarvalue = this.pruchakaStars[0].Id;
+      this.pruchakaRashivalue = this.pruchakaRashis[0].Id;
     }
 
   }
@@ -371,6 +432,97 @@ export class AstamangalaComponent {
   }
   languagedataSelection(event) {
     this.languagevalue = event.value;
+  }
+  pruchakaStardataSelection(event) {
+    this.pruchakaStarvalue = event.value;
+    switch (event.value) {
+      case "Ashwini":
+        this.pruchakaRashis = [{Id:'1',Text:'Mesha'}];
+        break;
+      case "Bharani":
+      this.pruchakaRashis = [{Id:'1',Text:'Mesha'}];
+        break;
+      case "Krittika":
+      this.pruchakaRashis = [{Id:'1',Text:'Mesha'},{Id:'2',Text:'Vrishabha'}];
+        break;
+      case "Rohini":
+      this.pruchakaRashis = [{Id:'2',Text:'Vrishabha'}];
+        break;
+      case "Mrigashira":
+      this.pruchakaRashis = [{Id:'2',Text:'Vrishabha'},{Id:'3',Text:'Mithuna'}];
+        break;
+      case "Ardra":
+      this.pruchakaRashis = [{Id:'3',Text:'Mithuna'}];
+        break;
+      case "Punarvasu":
+      this.pruchakaRashis = [{Id:'3',Text:'Mithuna'},{Id:'4',Text:'Karkataka'}];
+        break;
+      case "Pushya":
+      this.pruchakaRashis = [{Id:'4',Text:'Karkataka'}];
+        break;
+      case "Ashlesha":
+      this.pruchakaRashis = [{Id:'4',Text:'Karkataka'}];
+        break;
+      case "Magha":
+      this.pruchakaRashis = [{Id:'5',Text:'Simha'}];
+        break;
+      case "Poorva(Hubba)":
+      this.pruchakaRashis = [{Id:'5',Text:'Simha'}];
+        break;
+      case "Uttara":
+      this.pruchakaRashis = [{Id:'5',Text:'Simha'},{Id:'6',Text:'Kanya'}];
+        break;
+      case "Hasta":
+      this.pruchakaRashis = [{Id:'6',Text:'Kanya'}];
+        break;
+      case "Chithra":
+      this.pruchakaRashis = [{Id:'6',Text:'Kanya'},{Id:'7',Text:'Tula'}];
+        break;
+      case "Swathi":
+      this.pruchakaRashis = [{Id:'7',Text:'Tula'}];
+        break;
+      case "Vishakha":
+      this.pruchakaRashis = [{Id:'7',Text:'Tula'},{Id:'8',Text:'Vrishchika'}];
+        break;
+      case "Anuradha":
+      this.pruchakaRashis = [{Id:'8',Text:'Vrishchika'}];
+        break;
+      case "Jyeshta":
+      this.pruchakaRashis = [{Id:'8',Text:'Vrishchika'}];
+        break;
+      case "Moola":
+      this.pruchakaRashis = [{Id:'9',Text:'Dhanu'}];
+        break;
+      case "Poorvashada":
+      this.pruchakaRashis = [{Id:'9',Text:'Dhanu'}];
+        break;
+      case "Uttarashada":
+      this.pruchakaRashis = [{Id:'9',Text:'Dhanu'},{Id:'10',Text:'Makara'}];
+        break;
+      case "Shravana":
+      this.pruchakaRashis = [{Id:'10',Text:'Makara'}];
+        break;
+        case "Dhanishta":
+        this.pruchakaRashis = [{Id:'10',Text:'Makara'},{Id:'11',Text:'Kumbha'}];
+        break;
+      case "Shatabhisha":
+      this.pruchakaRashis = [{Id:'11',Text:'Kumbha'}];
+        break;
+      case "Poorvabhadra":
+      this.pruchakaRashis = [{Id:'11',Text:'Kumbha'}, {Id:'12',Text:'Meena'}];
+        break;
+      case "Uttarabhadra":
+      this.pruchakaRashis = [{Id:'12',Text:'Meena'}];
+        break;
+      case "Revathi":
+      this.pruchakaRashis = [{Id:'12',Text:'Meena'}];
+        break;
+      default:
+       // this.pruchakaRashis =  "Chennai";
+    }
+  }
+  pruchakaRashidataSelection(event) {
+    this.pruchakaRashivalue = event.value;
   }
   OnMouseUp(event) {
     if (event == null) {

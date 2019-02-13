@@ -1,6 +1,7 @@
 export class MatchRequest {
     LangCode: string;
     UserOrSystem: string;
+    ReportSize:string;
     Male: MatchDTO;
     Female: MatchDTO;
 }
