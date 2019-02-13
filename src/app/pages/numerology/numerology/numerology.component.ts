@@ -48,7 +48,11 @@ export class NumerologyComponent {
     { Id: "KAN", Text: "Kannada" },
     { Id: "MAL", Text: "Malayalam" },
     { Id: "TAM", Text: "Tamil" }];
-
+    reportSizes: SelectBoxModel[] = [
+      { Id: "A4", Text: "A4" },
+      { Id: "A5", Text: "A5" }];
+  reportSizedata: ArrayStore;
+  reportSizevalue: any;
   constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager,
     public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     public partyService: PartyService, public numerologyService: NumerologyService, public uiService: UIService,
@@ -81,7 +85,8 @@ export class NumerologyComponent {
         HouseName: this.numerologyForm.controls['houseName'].value,
         MobileNo: this.numerologyForm.controls['mobileNo'].value,
         VehicleNo: this.numerologyForm.controls['vehicleNo'].value,
-        CityName: this.numerologyForm.controls['cityName'].value
+        CityName: this.numerologyForm.controls['cityName'].value,
+        ReportSize:this.reportSizevalue
       }
     }
   }
@@ -117,6 +122,10 @@ export class NumerologyComponent {
       data: this.genders,
       key: "Id"
     });
+    this.reportSizedata = new ArrayStore({
+      data: this.reportSizes,
+      key: "Id"
+    });
   }
   onGenderChanged(event) {
     if (event.value == 'M') {
@@ -126,14 +135,19 @@ export class NumerologyComponent {
       this.genderValue = 'F';
     }
   }
+  reportSizedataSelection(event) {
+    this.reportSizevalue = event.value;
+  }
   ngAfterViewInit(): void {
     if (this.numerologyService.numerologyRequest != null) {
       this.languagevalue = this.numerologyService.numerologyRequest.LangCode;
       this.genderValue = this.numerologyService.numerologyRequest.Gender;
+      this.reportSizevalue = this.numerologyService.numerologyRequest.ReportSize;
     }
     else {
       this.languagevalue = this.languages[2].Id;
       this.genderValue = this.genders[0].Id;
+      this.reportSizevalue = this.reportSizes[0].Id;
     }
 
   }
@@ -172,6 +186,7 @@ export class NumerologyComponent {
       MobileNo: this.numerologyForm.controls['mobileNo'].value,
       VehicleNo: this.numerologyForm.controls['vehicleNo'].value,
       CityName: this.numerologyForm.controls['cityName'].value,
+      ReportSize:this.reportSizevalue
     }
     this.numerologyService.numerologyRequest = this.numerologyRequest;
     this.numerologyService.birthDateinDateFormat = bdate;

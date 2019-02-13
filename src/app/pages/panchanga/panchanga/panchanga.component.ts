@@ -15,6 +15,8 @@ import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
+import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
+import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
 
 
 @Component({
@@ -23,99 +25,65 @@ import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaSer
 })
 
 export class PanchangaComponent {
-  timeformats: SelectBoxModel[] = [
-    { Id: "STANDARD", Text: 'Standard Time' },
-    { Id: "SUMMER", Text: 'Summer Time' },
-    { Id: "DOUBLE", Text: 'Double Summer Time' },
-    { Id: "WAR", Text: 'War Time' }
-  ];
   languages: SelectBoxModel[] = [
     { Id: "ENG", Text: "English" },
+    { Id: "HIN", Text: "Hindi" },
     { Id: "KAN", Text: "Kannada" },
-    { Id: "MAL", Text: "Malayalam" }];
-  reportSizes: SelectBoxModel[] = [
-    { Id: "A4", Text: "A4" },
-    { Id: "A5", Text: "A5" }];
-    genders: SelectBoxModel[];
-  dateModel: string;
+    { Id: "MAL", Text: "Malayalam" },
+    { Id: "TAM", Text: "Tamil" }];
   isLoading: boolean;
   public loading = false;
   intLongDeg: number;
   intLatDeg: number;
-  timeformatdata: any;
-  timeformatvalue: string;
   birthDateinDateFormat: Date;
   birthTimeinDateFormat: Date;
   errorMessage: any;
   subscription: Subscription;
-  public selectedColor: string = 'transparent';
-  astamangalaForm: FormGroup;
+  panchangaForm: FormGroup;
   latitude: number;
   longitude: number;
   timeZoneName: string;
   timeZoneId: any;
-  public checkBoxValue: boolean = false;
-  public enabletoEdit: boolean = false;
   long: number;
   lat: number;
-  horoRequest: any;
-  LatDegMessage: string;
-  LatMtMessage: string;
-  payusing: PaymentInfo[];
-  using: string[];
-  paymentForm: FormGroup;
-  Shloka1: string;
-  JanmaNakshatra: string;
-  Shloka2: string;
-  serviceInfo: ServiceInfo[];
-  reportSizevalue: string;
+  panchangaRequest: PanchangaRequest;
   languagevalue: string;
-  products: SelectBoxModelNew[];
-  reportSizedata: any;
   languagedata: ArrayStore;
-  genderValue: string;
-  genderdata: ArrayStore;
-  password: any;
-  pruchakaStardata: ArrayStore;
-  pruchakaStarvalue: any;
-  pruchakaRashidata: ArrayStore;
-  pruchakaRashivalue: any;
-  
-  constructor(service: Service, public loadingSwitchService: LoadingSwitchService, private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
-    private cdr: ChangeDetectorRef, public partyService: PartyService, public astamangalaService: AstamangalaService, public uiService: UIService,
+  constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
+    private cdr: ChangeDetectorRef, public partyService: PartyService, public panchangaService: PanchangaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
-    //this.serviceInfo =  horoScopeService.getCustomers();
     this.maxDate = new Date(this.maxDate.setFullYear(this.maxDate.getFullYear() - 21));
-    this.countries = service.getCountries();
-    //this.genders = ["Male", "Female"];
-    this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
-    this.using = ["AstroLite Wallet", "Payment Gateway"];
-    this.astamangalaForm = this.formbuilder.group({
+    this.panchangaForm = this.formbuilder.group({
       Date: new Date(),
       birthPlace: ['', [Validators.required]],
       language: ['', []]
     });
-    
-    const birthPlaceContrl = this.astamangalaForm.get('birthPlace');
+
+    const birthPlaceContrl = this.panchangaForm.get('birthPlace');
     birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
-    if (this.astamangalaService.horoRequest != null) {
-      this.horoRequest = this.astamangalaService.horoRequest;
-      this.birthDateinDateFormat = this.astamangalaService.DateinDateFormat;
-      this.birthTimeinDateFormat = this.astamangalaService.TimeinDateFormat;
-      this.timeZoneName=this.astamangalaService.timeZoneName;
+    if (this.panchangaService.panchangaRequest != null) {
+      this.panchangaRequest = this.panchangaService.panchangaRequest;
+      this.birthDateinDateFormat = this.panchangaService.DateinDateFormat;
+      this.birthTimeinDateFormat = this.panchangaService.TimeinDateFormat;
+      this.timeZoneName = this.panchangaService.timeZoneName;
     }
     else {
-      this.birthDateinDateFormat = this.astamangalaForm.controls['Date'].value;
-      this.horoRequest = {
-        Date: this.astamangalaForm.controls['Date'].value,
-        Place: this.astamangalaService.place,
-        LangCode: null
+      this.birthDateinDateFormat = this.panchangaForm.controls['Date'].value;
+      this.panchangaRequest = {
+        Date: this.panchangaForm.controls['Date'].value,
+        Place: this.panchangaService.place,
+        LangCode: null,
+        LatDeg: null,
+        LatMt: null,
+        LongDeg: null,
+        LongMt: null,
+        NS:null,
+        EW:null,
+        ZH:null,
+        ZM:null,
+        PN:null,
       }
     }
-    this.paymentForm = this.formbuilder.group({
-      using: ['']
-    });
-
   }
 
   setErrorMessage(c: AbstractControl): void {
@@ -129,8 +97,6 @@ export class PanchangaComponent {
 
     Date_required: '*Select Date of Birth',
 
-    gender_required: '*Select Date of Birth',
-
     birthPlace_required: '*Enter Birth Place',
 
     language_required: '*Select Language',
@@ -138,23 +104,10 @@ export class PanchangaComponent {
   };
 
   ngOnInit() {
-    this.timeformatdata = new ArrayStore({
-      data: this.timeformats,
-      key: "Id"
-    });
-    this.reportSizedata = new ArrayStore({
-      data: this.reportSizes,
-      key: "Id"
-    });
     this.languagedata = new ArrayStore({
       data: this.languages,
       key: "Id"
     });
-    this.genderdata = new ArrayStore({
-      data: this.genders,
-      key: "Id"
-    });
-    this.currentValue = 0;
     this.mapsAPILoader.load().then(() => {
       let nativeHomeInputBox = document.getElementById('txtHome').getElementsByTagName('input')[0];
       let autocomplete = new google.maps.places.Autocomplete(nativeHomeInputBox, {
@@ -164,8 +117,8 @@ export class PanchangaComponent {
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          this.astamangalaService.place = place.formatted_address;
-          this.astamangalaService.placeShort = place.address_components[0].long_name
+          this.panchangaService.place = place.formatted_address;
+          this.panchangaService.placeShort = place.address_components[0].long_name
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.getTimezone(this.latitude, this.longitude);
@@ -173,27 +126,12 @@ export class PanchangaComponent {
       });
     });
   }
-  onGenderChanged(event) {
-    if (event.value == 'M') {
-      this.genderValue = 'M';
-    }
-    else {
-      this.genderValue = 'F';
-    }
-  }
   ngAfterViewInit(): void {
-    if (this.astamangalaService.horoRequest != null) {
-      this.timeformatvalue = this.astamangalaService.horoRequest.TimeFormat;
-      this.reportSizevalue = this.astamangalaService.horoRequest.ReportSize;
-      this.languagevalue = this.astamangalaService.horoRequest.LangCode;
-      this.genderValue = this.astamangalaService.horoRequest.Gender;
-      //this.pruchakaStarvalue = 
+    if (this.panchangaService.panchangaRequest != null) {
+      this.languagevalue = this.panchangaService.panchangaRequest.LangCode;
     }
     else {
-      this.timeformatvalue = this.timeformats[0].Id;
-      this.reportSizevalue = this.reportSizes[1].Id;
       this.languagevalue = this.languages[1].Id;
-      this.genderValue = this.genders[0].Id;
     }
 
   }
@@ -203,32 +141,32 @@ export class PanchangaComponent {
   }
 
   getTimezone(lat, long) {
-    this.horoRequest.LatDeg = Math.abs(parseInt(lat));
-    this.horoRequest.LongDeg = Math.abs(parseInt(long));
+    this.panchangaRequest.LatDeg = Math.abs(parseInt(lat));
+    this.panchangaRequest.LongDeg = Math.abs(parseInt(long));
     this.intLatDeg = parseInt(lat);
     this.intLongDeg = parseInt(long);
-    this.horoRequest.LatMt = parseInt(Math.abs((lat - this.intLatDeg) * 60).toString());
-    this.horoRequest.LongMt = parseInt(Math.abs((long - this.intLongDeg) * 60).toString());
+    this.panchangaRequest.LatMt = parseInt(Math.abs((lat - this.intLatDeg) * 60).toString());
+    this.panchangaRequest.LongMt = parseInt(Math.abs((long - this.intLongDeg) * 60).toString());
     if (lat < 0) {
-      this.horoRequest.NS = "S";
+      this.panchangaRequest.NS = "S";
     }
     else {
-      this.horoRequest.NS = "N";
+      this.panchangaRequest.NS = "N";
     }
     if (long < 0) {
-      this.horoRequest.EW = "W";
+      this.panchangaRequest.EW = "W";
     }
     else {
-      this.horoRequest.EW = "E";
+      this.panchangaRequest.EW = "E";
     }
-    this.astamangalaService.getTimezone(lat, long).subscribe((data: any) => {
-      this.horoRequest.ZH = parseInt((Math.abs(data.rawOffset) / 3600.00).toString());
-      this.horoRequest.ZM = parseInt((((Math.abs(data.rawOffset) / 3600.00) - this.horoRequest.ZH) * 60).toString());
+    this.panchangaService.getTimezone(lat, long).subscribe((data: any) => {
+      this.panchangaRequest.ZH = parseInt((Math.abs(data.rawOffset) / 3600.00).toString());
+      this.panchangaRequest.ZM = parseInt((((Math.abs(data.rawOffset) / 3600.00) - this.panchangaRequest.ZH) * 60).toString());
       if (data.rawOffset < 0) {
-        this.horoRequest.PN = "-";
+        this.panchangaRequest.PN = "-";
       }
       else {
-        this.horoRequest.PN = "+";
+        this.panchangaRequest.PN = "+";
       }
       this.timeZoneName = data.timeZoneName;
       this.timeZoneId = data.timeZoneId;
@@ -236,101 +174,47 @@ export class PanchangaComponent {
     });
   }
 
-  timeformatdataSelection(event) {
-    this.timeformatvalue = event.value;
-  }
-  reportSizedataSelection(event) {
-    this.reportSizevalue = event.value;
-  }
   languagedataSelection(event) {
     this.languagevalue = event.value;
   }
-  OnMouseUp(event) {
-    if (event == null) {
-      this.timeZoneName = null;
-    }
-  }
-  checkBoxStateChanged() {
-    if (this.checkBoxValue == true) {
-      this.enabletoEdit = true;
-      this.checkBoxValue = false;
-    }
-    else {
-      this.enabletoEdit = false;
-      this.checkBoxValue = true;
-    }
-  }
 
   public date: Date = new Date(Date.now());
-  private monthFormatter = new Intl.DateTimeFormat("en", { month: "long" });
-  public formatter = (date: Date) => {
-    return `${date.getDate()} ${this.monthFormatter.format(date)}, ${date.getFullYear()}`;
-  }
-  public currentValue: number;
-  public interval: any;
-  public maxvalue: number;
-  public changeIcon() {
-    return this.interval ? "pause" : "play_arrow";
-  }
-
-  public progresChanged(progress) {
-
-  }
-  private randomIntFromInterval(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
 
   submit_click() {
     this.isLoading = true;
     //this.tick();
     //this.loading = true;
     this.loadingSwitchService.loading = true;
-    this.maxvalue = 100;
-    this.astamangalaService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
+    this.panchangaService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
     // if(typeof this.horoscopeForm.controls['Date'].value ==='string'){
 
     // }
-    var bdate:Date= this.astamangalaForm.controls['Date'].value;
-    var btime:Date= this.astamangalaForm.controls['Time'].value;
-    if(bdate instanceof Date){
+    var bdate: Date = this.panchangaForm.controls['Date'].value;
+    if (bdate instanceof Date) {
       var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
-      }
-      else{
-        dateinString=bdate;
-      }
-      if(btime instanceof Date){
-        var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
-      }
-      else{
-         timeinString =btime;
-      } 
-
-    this.horoRequest = {
-      //Date: "2018-12-28",
-      //Time: "18:34:00",
-      Date: dateinString,
-      Time: timeinString,
-      //DOB:this.horoscopeForm.controls['Bdate'].value.toISOString(),
-      //TimeFormat: "STANDARD",
-      Place: this.astamangalaService.placeShort,
-      //TimeFormat: this.horoscopeForm.controls['TimeFormat'].value,
-      TimeFormat: this.timeformatvalue,
-      
-      Gender: this.genderValue,
-      LangCode: this.languagevalue,
-      FormParameter: 'H',
-      ReportType: '#HFH',
-      ReportSize: this.reportSizevalue,
-      Pruchaka: this.pruchakaStarvalue,
-      JanmaRashi: this.pruchakaRashivalue,
-      IsMarried: true,
     }
-    this.astamangalaService.horoRequest = this.horoRequest;
-    this.astamangalaService.DateinDateFormat = bdate;
-    this.astamangalaService.TimeinDateFormat = btime;
-    this.astamangalaService.timeZoneName=this.timeZoneName;
-    this.astamangalaService.GetFreeData(this.horoRequest).subscribe((data: any) => {
-      this.astamangalaService.horoResponse = data;
+    else {
+      dateinString = bdate;
+    }
+    this.panchangaRequest = {
+      Date: dateinString,
+      Place: this.panchangaService.placeShort,
+      LangCode: this.languagevalue,
+      LatDeg: this.panchangaRequest.LatDeg,
+      LatMt: this.panchangaRequest.LatMt,
+      LongDeg: this.panchangaRequest.LongDeg,
+      LongMt: this.panchangaRequest.LongMt,
+      NS: this.panchangaRequest.NS,
+      EW: this.panchangaRequest.EW,
+      ZH: this.panchangaRequest.ZH,
+      ZM: this.panchangaRequest.ZM,
+      PN: this.panchangaRequest.PN,
+    }
+    this.panchangaService.panchangaRequest = this.panchangaRequest;
+    this.panchangaService.DateinDateFormat = bdate;
+    this.panchangaService.timeZoneName = this.timeZoneName;
+    this.panchangaService.GetPanchanga(this.panchangaRequest).subscribe((data: any) => {
+      this.panchangaService.panchangaResponse = data;
       this.loadingSwitchService.loading = false;
       this.router.navigate(["/panchanga/getPanchangaFreeData"]);
     });

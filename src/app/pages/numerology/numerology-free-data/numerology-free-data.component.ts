@@ -86,7 +86,7 @@ export class NumerologyFreeDataComponent implements OnInit {
       }
     }
     onClick() {
-      this.itemService.ItActId='#SN';
+      this.itemService.ItActId='#NM';
       if (this.loginService.Token == null) {
           this.router.navigate(["/login-form"]);
       }

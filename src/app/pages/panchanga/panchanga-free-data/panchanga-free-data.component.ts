@@ -7,6 +7,9 @@ import { LoginService } from 'src/Services/login/login.service';
 import { Router } from '@angular/router';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { Caption } from 'src/Models/Caption';
+import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
+import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
+import { SerialisedPanchangaResponse } from 'src/Models/Panchanga/PanchangaResponse';
 
 
 @Component({
@@ -19,13 +22,16 @@ import { Caption } from 'src/Models/Caption';
   horoModel: HoroRequest;
   caption: Caption;
   prashnaFreeModel: PrashnaFreeModel;
+  panchangaRequest: PanchangaRequest;
+  serialisedPanchangaResponse: SerialisedPanchangaResponse;
     ngOnInit(): void {
       this.caption=new Caption();
-      this.horoModel=this.astamangalaService.horoRequest;
-      this.GetCaption(this.horoModel.LangCode, this.caption);
+      this.panchangaRequest=this.panchangaService.panchangaRequest;
+      this.GetCaption(this.panchangaRequest.LangCode, this.caption);
     }
-    constructor(private itemService:ItemService, public router: Router, public loginService: LoginService, public captionDbService:CaptionDbService, public astamangalaService: AstamangalaService) {
-      this.prashnaFreeModel=this.astamangalaService.horoResponse;
+    constructor(private itemService:ItemService, public router: Router, public loginService: LoginService, 
+      public captionDbService:CaptionDbService, public panchangaService: PanchangaService) {
+      this.serialisedPanchangaResponse = JSON.parse(this.panchangaService.panchangaResponse.Panchanga);
     }
 
     GetCaption(langCode:string,caption:Caption)

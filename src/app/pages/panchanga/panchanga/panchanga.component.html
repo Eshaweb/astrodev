@@ -1,8 +1,7 @@
-<h2 class="content-block">Nithya</h2>
+<h2 class="content-block">Nithya Panchanga</h2>
 <div class="dx-card content-block responsive-paddings">
-    <form action="your-action" [formGroup]="astamangalaForm">
+    <form action="your-action" [formGroup]="panchangaForm">
         <div class="dx-fieldset">
-            <div class="dx-fieldset-header">Credentials</div>
                     <div class="dx-fieldset-column">
                         <div class="dx-field">
                             <div class="dx-field-label">Date</div>
@@ -15,7 +14,7 @@
                         <div class="clear"></div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
-                                <div class="dx-field-label">Languages*</div>
+                                <div class="dx-field-label">Language</div>
                                 <div class="dx-field-value">
                                   <!-- <dx-select-box formControlName="language"
                                       [items]="languages"
@@ -39,7 +38,7 @@
                             <div class="dx-field">
                                 <div class="dx-field-label">Place</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="horoRequest.Place"></dx-text-box>
+                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="panchangaRequest.Place"></dx-text-box>
                                     <p style="color:red" id='err_birthPlace'></p>
                             </div>
                         </div>
@@ -50,7 +49,7 @@
         <div class="dx-fieldset">
             <dx-validation-summary id="summary"></dx-validation-summary>
     
-            <dx-button [disabled]="!astamangalaForm.valid" (onClick)='submit_click()'
+            <dx-button [disabled]="!panchangaForm.valid" (onClick)='submit_click()'
                 id="button"
                 text="Submit"
                 type="success"  
