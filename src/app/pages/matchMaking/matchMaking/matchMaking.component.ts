@@ -157,7 +157,8 @@ export class MatchMakingComponent {
     { Id: "ENG", Text: 'English' },
     { Id: "HIN", Text: 'Hindi' },
     { Id: "KAN", Text: 'Kannada' },
-    { Id: "MAL", Text: 'Malayalam' }
+    { Id: "MAL", Text: 'Malayalam' },
+    { Id: "TAM", Text: "Tamil" }
   ];
   reportTypes: SelectBoxModel[] = [
     { Id: "S", Text: 'System Report' },
