@@ -82,8 +82,8 @@ export class NumerologyComponent {
     { Id: "MAL", Text: "Malayalam" },
     { Id: "TAM", Text: "Tamil" }];
   
-  constructor(service: Service, public loadingSwitchService: LoadingSwitchService, private errorService: ErrorService, 
-    public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
+  constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, 
+    public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     public partyService: PartyService, public horoScopeService: HoroScopeService, public uiService: UIService,
     public formbuilder: FormBuilder) {
     this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
@@ -91,7 +91,11 @@ export class NumerologyComponent {
       Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],
       Date: new Date(),
       language: ['', []],
-      gender: ['M', []]
+      gender: ['M', []],
+      houseName: [''],
+      mobileNo: [null],
+      vehicleNo: [''],
+      cityName: ['', []]
     });
     const NameContrl = this.numerologyForm.get('Name');
     NameContrl.valueChanges.subscribe(value => this.setErrorMessage(NameContrl));
@@ -168,6 +172,10 @@ export class NumerologyComponent {
       Date: dateinString,
       Gender: this.genderValue,
       LangCode: this.languagevalue,
+      HouseName: this.numerologyForm.controls['houseName'].value,
+      MobileNo: this.numerologyForm.controls['mobileNo'].value,
+      VehicleNo: this.numerologyForm.controls['vehicleNo'].value,
+      CityName: this.numerologyForm.controls['cityName'].value,
       FormParameter: 'H',
       ReportType: '#HFH',
       Swarna: 0,

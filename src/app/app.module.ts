@@ -35,6 +35,7 @@ import { MatchMakingModule } from './pages/matchMaking/matchMaking.module';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { OrderService } from 'src/Services/OrderService/OrderService';
+import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 
 
 let config = new AuthServiceConfig([
@@ -83,7 +84,7 @@ export function provideConfig() {
     //DevExtremeModule
   ],
   providers: [AuthService, ScreenService, AppInfoService, ItemService,
-    Service, AuthenticationService, CaptionDbService, OrderService,
+    Service, AuthenticationService, CaptionDbService, OrderService, NumerologyService,
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService,
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
     LoaderService, SalesService, WalletService,
