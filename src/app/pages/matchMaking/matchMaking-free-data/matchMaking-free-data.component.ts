@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingService';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
 import { MatchResponse } from 'src/Models/MatchMaking/match';
-import { Caption } from 'src/Models/HoroScope/Caption';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/Services/login/login.service';
 import { MatchRequest } from 'src/Models/MatchMaking/MatchRequest';
+import { Caption } from 'src/Models/Caption';
 
 
 @Component({

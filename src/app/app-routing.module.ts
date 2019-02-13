@@ -59,6 +59,10 @@ const routes: Routes = [
     loadChildren: './pages/numerology/numerology.module#NumerologyModule'
   },
   {
+    path: 'panchanga',
+    loadChildren: './pages/panchanga/panchanga.module#PanchangaModule'
+  },
+  {
     path: 'wallet',
     loadChildren: './pages/wallet/wallet.module#WalletModule'
   },

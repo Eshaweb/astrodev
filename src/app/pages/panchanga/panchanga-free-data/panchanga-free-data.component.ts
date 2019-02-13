@@ -10,12 +10,12 @@ import { Caption } from 'src/Models/Caption';
 
 
 @Component({
-    selector: 'app-astamangala-free-data',
-    templateUrl: './astamangala-free-data.component.html',
-    styleUrls: [ './astamangala-free-data.component.scss' ]
+    selector: 'app-panchanga-free-data',
+    templateUrl: './panchanga-free-data.component.html',
+    styleUrls: [ './panchanga-free-data.component.scss' ]
   })
   
-  export class AstamangalaFreeDataComponent {
+  export class PanchangaFreeDataComponent {
   horoModel: HoroRequest;
   caption: Caption;
   prashnaFreeModel: PrashnaFreeModel;

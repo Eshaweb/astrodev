@@ -14,7 +14,6 @@ import { ErrorService } from 'src/Services/Error/error.service';
 import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
-import { Caption } from 'src/Models/HoroScope/Caption';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 
 
@@ -121,7 +120,6 @@ export class AstamangalaComponent {
   genderValue: string;
   genderdata: ArrayStore;
   password: any;
-  caption: Caption;
   pruchakaStardata: ArrayStore;
   pruchakaStarvalue: any;
   pruchakaRashidata: ArrayStore;

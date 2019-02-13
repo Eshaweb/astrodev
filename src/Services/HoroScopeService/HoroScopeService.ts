@@ -7,9 +7,9 @@ import { ResultResponse } from "src/Models/ResultResponse";
 import { HttpService } from '../Error/http.service';
 import { ErrorService } from '../Error/error.service';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
-import { Caption } from 'src/Models/HoroScope/Caption';
 import { CaptionDbService } from '../CaptionService/captionDb.service';
 import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
+import { Caption } from 'src/Models/Caption';
 export class SelectBoxModelNew{
     Id: number;
     Text: string;
