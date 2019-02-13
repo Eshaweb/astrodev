@@ -28,7 +28,7 @@
                             <div class="dx-field-value">
                               <!-- <dx-date-box formControlName="Time" width="300" type="datetime" [showClearButton]="true" displayFormat="shortTime" (onOpened)="opened($event)" dateSerializationFormat="HH:mm:ss">
                             </dx-date-box> -->
-                            <dx-date-box formControlName="FemaleBtime" type="time" [showClearButton]="true" pickerType="rollers" [(ngModel)]="female_birthTimeinDateFormat" dateSerializationFormat="HH:mm:ss">
+                            <dx-date-box formControlName="FemaleBtime" type="time" pickerType="rollers" [(ngModel)]="female_birthTimeinDateFormat" dateSerializationFormat="HH:mm:ss">
                             </dx-date-box>
                             </div>
                         </div>
@@ -64,24 +64,24 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Latitude</div>
                         <div class="dx-field-value">
-                    <dx-number-box formControlName="LatDeg" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.LatDeg"></dx-number-box>
-                    <p style="color:red" id='err_LatDeg'></p>
+                    <dx-number-box formControlName="Female_LatDeg" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.LatDeg"></dx-number-box>
+                    <p style="color:red" id='err_Female_LatDeg'></p>
                     </div>
                 </div>
             </div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-number-box formControlName="LatMt" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.LatMt"></dx-number-box>
-                    <p style="color:red" id='err_LatMt'></p>
+                    <dx-number-box formControlName="Female_LatMt" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.LatMt"></dx-number-box>
+                    <p style="color:red" id='err_Female_LatMt'></p>
                     </div>
                 </div>
             </div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-text-box formControlName="NS" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.NS"></dx-text-box>
-                    <p style="color:red" id='err_NS'></p>
+                    <dx-text-box formControlName="Female_NS" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.NS"></dx-text-box>
+                    <p style="color:red" id='err_Female_NS'></p>
                         </div>
                 </div>
             </div>
@@ -90,24 +90,24 @@
                 <div class="dx-field">
                         <div class="dx-field-label" >Longititude</div>
                         <div class="dx-field-value">
-                    <dx-number-box formControlName="LongDeg" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.LongDeg"></dx-number-box>
-                    <p style="color:red" id='err_LongDeg'></p>
+                    <dx-number-box formControlName="Female_LongDeg" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.LongDeg"></dx-number-box>
+                    <p style="color:red" id='err_Female_LongDeg'></p>
                         </div>
                 </div>
             </div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-number-box formControlName="LongMt" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.LongMt"></dx-number-box>
-                    <p style="color:red" id='err_LongMt'></p>
+                    <dx-number-box formControlName="Female_LongMt" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.LongMt"></dx-number-box>
+                    <p style="color:red" id='err_Female_LongMt'></p>
                     </div>
                 </div>
             </div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-text-box formControlName="EW" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.EW"></dx-text-box>
-                    <p style="color:red" id='err_EW'></p>
+                    <dx-text-box formControlName="Female_EW" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.EW"></dx-text-box>
+                    <p style="color:red" id='err_Female_EW'></p>
                         </div>
                 </div>
             </div>
@@ -116,24 +116,24 @@
                 <div class="dx-field">
                         <div class="dx-field-label" >Zone Time</div>
                         <div class="dx-field-value">
-                    <dx-number-box formControlName="ZH" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.ZH"></dx-number-box>
-                    <p style="color:red" id='err_ZH'></p>
+                    <dx-number-box formControlName="Female_ZH" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.ZH"></dx-number-box>
+                    <p style="color:red" id='err_Female_ZH'></p>
                         </div>
                 </div>
             </div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-number-box formControlName="ZM" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.ZM"></dx-number-box>
-                    <p style="color:red" id='err_ZM'></p>
+                    <dx-number-box formControlName="Female_ZM" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.ZM"></dx-number-box>
+                    <p style="color:red" id='err_Female_ZM'></p>
                         </div>
                 </div>
             </div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-text-box formControlName="PN" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.PN"></dx-text-box>
-                    <p style="color:red" id='err_PN'></p>
+                    <dx-text-box formControlName="Female_PN" [disabled]="!checkBoxValue_Female" [(ngModel)]="matchRequest.Female.PN"></dx-text-box>
+                    <p style="color:red" id='err_Female_PN'></p>
                         </div>
                 </div>
             </div>
@@ -189,7 +189,7 @@
                             <div class="dx-field-value">
                               <!-- <dx-date-box formControlName="Time" width="300" type="datetime" [showClearButton]="true" displayFormat="shortTime" (onOpened)="opened($event)" dateSerializationFormat="HH:mm:ss">
                             </dx-date-box> -->
-                            <dx-date-box formControlName="MaleBtime" type="time" [showClearButton]="true" pickerType="rollers" [(ngModel)]="male_birthTimeinDateFormat" dateSerializationFormat="HH:mm:ss">
+                            <dx-date-box formControlName="MaleBtime" type="time" pickerType="rollers" [(ngModel)]="male_birthTimeinDateFormat" dateSerializationFormat="HH:mm:ss">
                             </dx-date-box>
                             </div>
                         </div>
@@ -243,29 +243,44 @@
                                 <p style="color:red" id='err_language'></p>
                             </div>
                         </div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Report Types</div>
+                                <div class="dx-field-value">
+                                  <dx-select-box
+                                  [dataSource]="reportTypedata"
+                                  (onValueChanged)="reportTypedataSelection($event)"
+                                  displayExpr="Text"
+                                  valueExpr="Id"
+                                  [value]="reportTypevalue" >
+                              </dx-select-box>
+                                </div>
+                                <p style="color:red" id='err_language'></p>
+                            </div>
+                        </div>
                         <div class="clear"></div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                     <div class="dx-field-label">Latitude</div>
                         <div class="dx-field-value">
-                    <dx-number-box formControlName="LatDeg" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.LatDeg"></dx-number-box>
-                    <p style="color:red" id='err_LatDeg'></p>
+                    <dx-number-box formControlName="Male_LatDeg" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.LatDeg"></dx-number-box>
+                    <p style="color:red" id='err_Male_LatDeg'></p>
                     </div>
                 </div>
             </div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-number-box formControlName="LatMt" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.LatMt"></dx-number-box>
-                    <p style="color:red" id='err_LatMt'></p>
+                    <dx-number-box formControlName="Male_LatMt" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.LatMt"></dx-number-box>
+                    <p style="color:red" id='err_Male_LatMt'></p>
                     </div>
                 </div>
             </div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-text-box formControlName="NS" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.NS"></dx-text-box>
-                    <p style="color:red" id='err_NS'></p>
+                    <dx-text-box formControlName="Male_NS" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.NS"></dx-text-box>
+                    <p style="color:red" id='err_Male_NS'></p>
                         </div>
                 </div>
             </div>
@@ -274,24 +289,24 @@
                 <div class="dx-field">
                         <div class="dx-field-label" >Longititude</div>
                         <div class="dx-field-value">
-                    <dx-number-box formControlName="LongDeg" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.LongDeg"></dx-number-box>
-                    <p style="color:red" id='err_LongDeg'></p>
+                    <dx-number-box formControlName="Male_LongDeg" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.LongDeg"></dx-number-box>
+                    <p style="color:red" id='err_Male_LongDeg'></p>
                         </div>
                 </div>
             </div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-number-box formControlName="LongMt" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.LongMt"></dx-number-box>
-                    <p style="color:red" id='err_LongMt'></p>
+                    <dx-number-box formControlName="Male_LongMt" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.LongMt"></dx-number-box>
+                    <p style="color:red" id='err_Male_LongMt'></p>
                     </div>
                 </div>
             </div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-text-box formControlName="EW" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.EW"></dx-text-box>
-                    <p style="color:red" id='err_EW'></p>
+                    <dx-text-box formControlName="Male_EW" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.EW"></dx-text-box>
+                    <p style="color:red" id='err_Male_EW'></p>
                         </div>
                 </div>
             </div>
@@ -300,24 +315,24 @@
                 <div class="dx-field">
                         <div class="dx-field-label" >Zone Time</div>
                         <div class="dx-field-value">
-                    <dx-number-box formControlName="ZH" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.ZH"></dx-number-box>
-                    <p style="color:red" id='err_ZH'></p>
+                    <dx-number-box formControlName="Male_ZH" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.ZH"></dx-number-box>
+                    <p style="color:red" id='err_Male_ZH'></p>
                         </div>
                 </div>
             </div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-number-box formControlName="ZM" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.ZM"></dx-number-box>
-                    <p style="color:red" id='err_ZM'></p>
+                    <dx-number-box formControlName="Male_ZM" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.ZM"></dx-number-box>
+                    <p style="color:red" id='err_Male_ZM'></p>
                         </div>
                 </div>
             </div>
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                         <div class="dx-field-value">
-                    <dx-text-box formControlName="PN" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.PN"></dx-text-box>
-                    <p style="color:red" id='err_PN'></p>
+                    <dx-text-box formControlName="Male_PN" [disabled]="!checkBoxValue_Male" [(ngModel)]="matchRequest.Male.PN"></dx-text-box>
+                    <p style="color:red" id='err_Male_PN'></p>
                         </div>
                 </div>
             </div>

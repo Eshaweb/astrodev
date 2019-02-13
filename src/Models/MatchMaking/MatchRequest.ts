@@ -1,10 +1,11 @@
 export class MatchRequest {
     LangCode: string;
+    UserOrSystem: string;
     Male: MatchDTO;
     Female: MatchDTO;
 }
 export class MatchDTO {
-    Name?: string;
+    Name: string;
     Date: string;
     Time: string;
     //Date:Date;
