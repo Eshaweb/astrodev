@@ -51,47 +51,48 @@
                         </div>
                         <p style="color:red" id='err_language'></p>
                     </div>
-                </div>
-                <div class="clear"></div>
-                <div class="dx-fieldset-column">
-                    <div class="dx-field">
-                        <div class="dx-field-label">House Name</div>
-                        <div class="dx-field-value">
-                            <dx-text-box id="txtmname" formControlName="houseName" placeholder="Enter House Name here..."
-                                showClearButton="true"></dx-text-box>
-                        </div>
-                    </div>
-                </div>
-                <div class="dx-fieldset-column">
-                    <div class="dx-field">
-                        <div class="dx-field-label">Mobile No</div>
-                        <div class="dx-field-value">
-                            <dx-number-box formControlName="mobileNo" placeholder="Enter Mobile No here..." [showClearButton]="true">
-                            </dx-number-box>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-                <div class="dx-fieldset-column">
-                    <div class="dx-field">
-                        <div class="dx-field-label">Vehicle No</div>
-                        <div class="dx-field-value">
-                            <dx-text-box formControlName="vehicleNo" id="txtmname" placeholder="Enter Vehicle No here..."
-                                showClearButton="true"></dx-text-box>
-                        </div>
-                    </div>
-                </div>
-                <div class="dx-fieldset-column">
-                    <div class="dx-field">
-                        <div class="dx-field-label">City Name</div>
-                        <div class="dx-field-value">
-                            <dx-text-box formControlName="cityName" placeholder="Enter City Name here..." [showClearButton]="true">
-                            </dx-text-box>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-                </div>
+                </div>                        
+                        <div class="clear"></div>
+                        <div class="dx-card responsive-paddings Optional">
+                        <div class="dx-fieldset-header">Optional Fields</div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">House Name</div>
+                                <div class="dx-field-value">
+                                    <dx-text-box id="txtmname" placeholder="Enter House Name here..." showClearButton="true"></dx-text-box>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Mobile No</div>
+                                <div class="dx-field-value">
+                                    <dx-text-box placeholder="Enter Mobile No here..." [showClearButton]="true">
+                                    </dx-text-box>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="dx-fieldset-column">
+                                <div class="dx-field">
+                                    <div class="dx-field-label">Vehicle No</div>
+                                    <div class="dx-field-value">
+                                        <dx-text-box id="txtmname" placeholder="Enter Vehicle No here..." showClearButton="true"></dx-text-box>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="dx-fieldset-column">
+                                <div class="dx-field">
+                                    <div class="dx-field-label">City Name</div>
+                                    <div class="dx-field-value">
+                                        <dx-text-box placeholder="Enter City Name here..." [showClearButton]="true">
+                                        </dx-text-box>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="clear"></div>
+        </div>
+    </div>
         <div class="dx-fieldset">
             <dx-validation-summary id="summary"></dx-validation-summary>
             <div class="dx-field">
