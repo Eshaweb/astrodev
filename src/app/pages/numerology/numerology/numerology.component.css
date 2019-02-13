@@ -35,6 +35,11 @@
     .dx-texteditor-container {
     margin-bottom: 14px;
     }
+
+
+    .dx-card.responsive-paddings.Optional {
+        padding: 25px;
+        margin-top: 40px;}
     
     @media (max-width: 800px) {
     .dx-fieldset-column {
