@@ -28,6 +28,15 @@
     .dx-texteditor-container {
     margin-bottom: 14px;
     }
+
+    .dx-header{
+        margin-right: 20px;
+    float: left;
+    }
+    .dx-fieldset-header{
+
+        margin-top: 25px;
+    }
     
     @media (max-width: 800px) {
     .dx-fieldset-column {
