@@ -161,7 +161,10 @@
             </dx-button>
         </div> -->
     </form>
+</div>
+
     <form action="your-action" [formGroup]="maleMatchMakingForm">
+            <div class="dx-card content-block responsive-paddings">
         <div class="dx-fieldset">
             <div class="dx-fieldset-header">Enter Boy Details</div>
             <div class="dx-fieldset-column">
@@ -221,44 +224,7 @@
                         </div>
                         </div>
                         <div class="clear"></div>
-                        <div class="dx-fieldset-column">
-                            <div class="dx-field">
-                                <div class="dx-field-label">Languages*</div>
-                                <div class="dx-field-value">
-                                  <!-- <dx-select-box formControlName="language"
-                                      [items]="languages"
-                                      placeholder="Choose Type"
-                                      displayExpr="Text"
-                                      valueExpr="Id"
-                                      showClearButton="true" [value]="languages[0]"
-                                  ></dx-select-box> -->
-                                  <dx-select-box
-                                  [dataSource]="languagedata"
-                                  (onValueChanged)="languagedataSelection($event)"
-                                  displayExpr="Text"
-                                  valueExpr="Id"
-                                  [value]="languagevalue" >
-                              </dx-select-box>
-                                </div>
-                                <p style="color:red" id='err_language'></p>
-                            </div>
-                        </div>
-                        <div class="dx-fieldset-column">
-                            <div class="dx-field">
-                                <div class="dx-field-label">Report Types</div>
-                                <div class="dx-field-value">
-                                  <dx-select-box
-                                  [dataSource]="reportTypedata"
-                                  (onValueChanged)="reportTypedataSelection($event)"
-                                  displayExpr="Text"
-                                  valueExpr="Id"
-                                  [value]="reportTypevalue" >
-                              </dx-select-box>
-                                </div>
-                                <p style="color:red" id='err_language'></p>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
+                       
             <div class="dx-fieldset-column3">
                 <div class="dx-field">
                     <div class="dx-field-label">Latitude</div>
@@ -348,7 +314,46 @@
                 </dx-check-box>
             </div>
         </div>
-    
+    </div>
+    <div class="dx-card content-block responsive-paddings">
+        <div class="dx-fieldset-column">
+            <div class="dx-field">
+                <div class="dx-field-label">Languages*</div>
+                <div class="dx-field-value">
+                  <!-- <dx-select-box formControlName="language"
+                      [items]="languages"
+                      placeholder="Choose Type"
+                      displayExpr="Text"
+                      valueExpr="Id"
+                      showClearButton="true" [value]="languages[0]"
+                  ></dx-select-box> -->
+                  <dx-select-box
+                  [dataSource]="languagedata"
+                  (onValueChanged)="languagedataSelection($event)"
+                  displayExpr="Text"
+                  valueExpr="Id"
+                  [value]="languagevalue" >
+              </dx-select-box>
+                </div>
+                <p style="color:red" id='err_language'></p>
+            </div>
+        </div>
+        <div class="dx-fieldset-column">
+            <div class="dx-field">
+                <div class="dx-field-label">Report Types</div>
+                <div class="dx-field-value">
+                  <dx-select-box
+                  [dataSource]="reportTypedata"
+                  (onValueChanged)="reportTypedataSelection($event)"
+                  displayExpr="Text"
+                  valueExpr="Id"
+                  [value]="reportTypevalue" >
+              </dx-select-box>
+                </div>
+                <p style="color:red" id='err_language'></p>
+            </div>
+        </div>
+        <div class="clear"></div>
         <div class="dx-fieldset">
             <dx-validation-summary id="summary"></dx-validation-summary>
             <dx-button [disabled]="!femaleMatchMakingForm.valid||!maleMatchMakingForm.valid" (onClick)='Matchmaking_Click()'
@@ -358,5 +363,6 @@
                 [useSubmitBehavior]="true">
             </dx-button>
         </div>
+    </div>
     </form>
-</div>
+
