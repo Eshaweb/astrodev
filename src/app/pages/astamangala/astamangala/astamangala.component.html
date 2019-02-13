@@ -203,56 +203,68 @@
                         <p style="color:red" id='err_Swarna'></p>
                     </div>
                 </div>
+            </div>
+            <div class="dx-fieldset-column">
+                <div class="dx-field">
+                    <div class="dx-field-label">Tambula</div>
+                    <div class="dx-field-value">
+                        <dx-number-box formControlName="Tambula" [(ngModel)]="horoRequest.Tambula" placeholder="Enter Tambula here..."></dx-number-box>
+                        <p style="color:red" id='err_Tambula'></p>
+                    </div>
                 </div>
-                <div class="dx-fieldset-column">
+            </div>
+            <div class="clear"></div>
+            <div class="dx-fieldset-column">
                 <div class="dx-field">
                     <div class="dx-field-label">Pruchaka Nakshatra</div>
                     <div class="dx-field-value">
-                        <dx-number-box formControlName="Pruchaka" [(ngModel)]="horoRequest.Pruchaka" placeholder="Enter Pruchaka Nakshatra here..."></dx-number-box>
-                        <p style="color:red" id='err_Pruchaka'></p>
+                        <!-- <dx-number-box formControlName="Pruchaka" [(ngModel)]="horoRequest.Pruchaka" placeholder="Enter Pruchaka Nakshatra here..."></dx-number-box> -->
+                        <dx-select-box
+                        [dataSource]="pruchakaStardata"
+                        (onValueChanged)="pruchakaStardataSelection($event)"
+                        displayExpr="Text"
+                        valueExpr="Id"
+                        [value]="pruchakaStarvalue" >
+                    </dx-select-box>
+                        <!-- <p style="color:red" id='err_Pruchaka'></p> -->
                     </div>
                 </div>
+            </div>
+            <div class="dx-fieldset-column">
+                <div class="dx-field">
+                    <div class="dx-field-label">Pruchaka Janma Rashi</div>
+                    <div class="dx-field-value">
+                        <dx-select-box
+                        [dataSource]="pruchakaRashidata"
+                        (onValueChanged)="pruchakaRashidataSelection($event)"
+                        displayExpr="Text"
+                        valueExpr="Id"
+                        [value]="pruchakaRashivalue" >
+                    </dx-select-box>
+                    </div>
                 </div>
-                <div class="clear"></div>
-                <div class="dx-fieldset-column">
-                    <div class="dx-field">
-                        <div class="dx-field-label">Tambula</div>
-                        <div class="dx-field-value">
-                            <dx-number-box formControlName="Tambula" [(ngModel)]="horoRequest.Tambula" placeholder="Enter Tambula here..."></dx-number-box>
-                            <p style="color:red" id='err_Tambula'></p>
-                        </div>
+            </div>
+            <div class="clear"></div>
+            <div class="dx-fieldset-column">
+                <div class="dx-field">
+                    <div class="dx-field-label">Asta Mangala No</div>
+                    <div class="dx-field-value">
+                        <dx-number-box formControlName="AshtaMangalaNo" [(ngModel)]="horoRequest.AshtaMangalaNo" placeholder="Enter AshtaMangala No here..."></dx-number-box>
+                        <p style="color:red" id='err_AshtaMangalaNo'></p>
                     </div>
+                </div>
+            </div>
+            <div class="dx-fieldset-column">
+                <div class="dx-field">
+                    <div class="dx-field-label">Sprushtanga</div>
+                    <div class="dx-field-value">
+                        <dx-number-box formControlName="Sprushtanga" [(ngModel)]="horoRequest.Sprushtanga" placeholder="Enter Sprushtanga here..."></dx-number-box>
+                        <p style="color:red" id='err_Sprushtanga'></p>
                     </div>
-                    <div class="dx-fieldset-column">
-                    <div class="dx-field">
-                        <div class="dx-field-label">Asta Mangala No</div>
-                        <div class="dx-field-value">
-                            <dx-number-box formControlName="AshtaMangalaNo" [(ngModel)]="horoRequest.AshtaMangalaNo" placeholder="Enter AshtaMangala No here..."></dx-number-box>
-                            <p style="color:red" id='err_AshtaMangalaNo'></p>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="dx-fieldset-column">
-                        <div class="dx-field">
-                            <div class="dx-field-label">Pruchaka Janma Rashi</div>
-                            <div class="dx-field-value">
-                                <dx-number-box formControlName="JanmaRashi" [(ngModel)]="horoRequest.JanmaRashi" placeholder="Enter JanmaRashi here..."></dx-number-box>
-                                <p style="color:red" id='err_JanmaRashi'></p>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="dx-fieldset-column">
-                        <div class="dx-field">
-                            <div class="dx-field-label">Sprushtanga</div>
-                            <div class="dx-field-value">
-                                <dx-number-box formControlName="Sprushtanga" [(ngModel)]="horoRequest.Sprushtanga" placeholder="Enter Sprushtanga here..."></dx-number-box>
-                                <p style="color:red" id='err_Sprushtanga'></p>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="clear"></div>
-        </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            </div>
     
         <div class="dx-fieldset">
             <dx-validation-summary id="summary"></dx-validation-summary>
