@@ -38,50 +38,48 @@ export class AstamangalaComponent {
     { Id: "A4", Text: "A4" },
     { Id: "A5", Text: "A5" }];
   pruchakaStars: SelectBoxModel[] = [
-      { Id: "A4", Text: "UnKnown" },
-      { Id: "A5", Text: "Ashwini" },
-      { Id: "A4", Text: "Bharani" },
-      { Id: "A5", Text: "Krittika" },
-      { Id: "A4", Text: "Rohini" },
-      { Id: "A5", Text: "Mrigashira" },
-      { Id: "A4", Text: "Ardra" },
-      { Id: "A5", Text: "Punarvasu" },
-      { Id: "A4", Text: "Pushya" },
-      { Id: "A5", Text: "Ashlesha" },
-      { Id: "A4", Text: "Magha" },
-      { Id: "A5", Text: "Poorva(Hubba)" },
-      { Id: "A4", Text: "Uttara" },
-      { Id: "A5", Text: "Hasta" },
-      { Id: "A4", Text: "Chithra" },
-      { Id: "A5", Text: "Swathi" },
-      { Id: "A4", Text: "Vishakha" },
-      { Id: "A5", Text: "Anuradha" },
-      { Id: "A4", Text: "Jyeshta" },
-      { Id: "A5", Text: "Moola" },
-      { Id: "A4", Text: "Poorvashada" },
-      { Id: "A5", Text: "Uttarashada" },
-      { Id: "A4", Text: "Shravana" },
-      { Id: "A5", Text: "Dhanishta" },
-      { Id: "A4", Text: "Shatabhisha" },
-      { Id: "A5", Text: "Poorvabhadra" },
-      { Id: "A4", Text: "Uttarabhadra" },
-      { Id: "A5", Text: "Revathi" },
+      { Id: "1", Text: "Ashwini" },
+      { Id: "2", Text: "Bharani" },
+      { Id: "3", Text: "Krittika" },
+      { Id: "4", Text: "Rohini" },
+      { Id: "5", Text: "Mrigashira" },
+      { Id: "6", Text: "Ardra" },
+      { Id: "7", Text: "Punarvasu" },
+      { Id: "8", Text: "Pushya" },
+      { Id: "9", Text: "Ashlesha" },
+      { Id: "10", Text: "Magha" },
+      { Id: "11", Text: "Poorva(Hubba)" },
+      { Id: "12", Text: "Uttara" },
+      { Id: "13", Text: "Hasta" },
+      { Id: "14", Text: "Chithra" },
+      { Id: "15", Text: "Swathi" },
+      { Id: "16", Text: "Vishakha" },
+      { Id: "17", Text: "Anuradha" },
+      { Id: "18", Text: "Jyeshta" },
+      { Id: "19", Text: "Moola" },
+      { Id: "20", Text: "Poorvashada" },
+      { Id: "21", Text: "Uttarashada" },
+      { Id: "22", Text: "Shravana" },
+      { Id: "23", Text: "Dhanishta" },
+      { Id: "24", Text: "Shatabhisha" },
+      { Id: "25", Text: "Poorvabhadra" },
+      { Id: "26", Text: "Uttarabhadra" },
+      { Id: "27", Text: "Revathi" },
     ];
     
     pruchakaRashis: SelectBoxModel[] = [
-      { Id: "A4", Text: "UnKnown" },
-      { Id: "A5", Text: "Mesha" },
-      { Id: "A4", Text: "Vrishabha" },
-      { Id: "A5", Text: "Mithuna" },
-      { Id: "A4", Text: "Karkataka" },
-      { Id: "A5", Text: "Simha" },
-      { Id: "A4", Text: "Kanya" },
-      { Id: "A5", Text: "Tula" },
-      { Id: "A4", Text: "Vrishchika" },
-      { Id: "A5", Text: "Dhanu" },
-      { Id: "A4", Text: "Makara" },
-      { Id: "A5", Text: "Kumbha" },
-      { Id: "A4", Text: "Meena" }
+      { Id: "1", Text: "Mesha" },
+      { Id: "2", Text: "Vrishabha" },
+      { Id: "3", Text: "Mithuna" },
+      { Id: "4", Text: "Karkataka" },
+      { Id: "5", Text: "Simha" },
+      { Id: "6", Text: "Kanya" },
+      { Id: "7", Text: "Tula" },
+      { Id: "8", Text: "Vrishchika" },
+      { Id: "9", Text: "Dhanu" },
+      { Id: "10", Text: "Makara" },
+      { Id: "11", Text: "Kumbha" },
+      { Id: "12", Text: "Meena" }
     ];
     genders: SelectBoxModel[];
   dateModel: string;
@@ -158,10 +156,10 @@ export class AstamangalaComponent {
       ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
       PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]],
       Swarna: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
-      Pruchaka: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
       Tambula: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
       AshtaMangalaNo: [444, [Validators.required, Validators.min(0)]],
-      JanmaRashi: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
+      //Pruchaka: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
+      //JanmaRashi: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
       Sprushtanga: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
     });
     
@@ -185,14 +183,14 @@ export class AstamangalaComponent {
     PNContrl.valueChanges.subscribe(value => this.setErrorMessage(PNContrl));
     const SwarnaContrl = this.astamangalaForm.get('Swarna');
     SwarnaContrl.valueChanges.subscribe(value => this.setErrorMessage(SwarnaContrl));
-    const PruchakaContrl = this.astamangalaForm.get('Pruchaka');
-    PruchakaContrl.valueChanges.subscribe(value => this.setErrorMessage(PruchakaContrl));
     const TambulaContrl = this.astamangalaForm.get('Tambula');
     TambulaContrl.valueChanges.subscribe(value => this.setErrorMessage(TambulaContrl));
     const AshtaMangalaNoContrl = this.astamangalaForm.get('AshtaMangalaNo');
     AshtaMangalaNoContrl.valueChanges.subscribe(value => this.setErrorMessage(AshtaMangalaNoContrl));
-    const JanmaRashiContrl = this.astamangalaForm.get('JanmaRashi');
-    JanmaRashiContrl.valueChanges.subscribe(value => this.setErrorMessage(JanmaRashiContrl));
+    // const PruchakaContrl = this.astamangalaForm.get('Pruchaka');
+    // PruchakaContrl.valueChanges.subscribe(value => this.setErrorMessage(PruchakaContrl));
+    // const JanmaRashiContrl = this.astamangalaForm.get('JanmaRashi');
+    // JanmaRashiContrl.valueChanges.subscribe(value => this.setErrorMessage(JanmaRashiContrl));
     const SprushtangaContrl = this.astamangalaForm.get('Sprushtanga');
     SprushtangaContrl.valueChanges.subscribe(value => this.setErrorMessage(SprushtangaContrl));
     const birthPlaceContrl = this.astamangalaForm.get('birthPlace');
@@ -226,8 +224,8 @@ export class AstamangalaComponent {
         ReportType: null,
         FormParameter: null,
         Swarna: this.astamangalaForm.controls['Swarna'].value,
-        Pruchaka: this.astamangalaForm.controls['Pruchaka'].value,
-        JanmaRashi: this.astamangalaForm.controls['JanmaRashi'].value,
+        Pruchaka: this.pruchakaStarvalue,
+        JanmaRashi: this.pruchakaRashivalue,
         AshtaMangalaNo: this.astamangalaForm.controls['AshtaMangalaNo'].value,
         Tambula: this.astamangalaForm.controls['Tambula'].value,
         Sprushtanga: this.astamangalaForm.controls['Sprushtanga'].value,
@@ -436,90 +434,108 @@ export class AstamangalaComponent {
   pruchakaStardataSelection(event) {
     this.pruchakaStarvalue = event.value;
     switch (event.value) {
-      case "Ashwini":
+      case "1":
         this.pruchakaRashis = [{Id:'1',Text:'Mesha'}];
         break;
-      case "Bharani":
+      case "2":
       this.pruchakaRashis = [{Id:'1',Text:'Mesha'}];
         break;
-      case "Krittika":
+      case "3":
       this.pruchakaRashis = [{Id:'1',Text:'Mesha'},{Id:'2',Text:'Vrishabha'}];
         break;
-      case "Rohini":
+      case "4":
       this.pruchakaRashis = [{Id:'2',Text:'Vrishabha'}];
         break;
-      case "Mrigashira":
+      case "5":
       this.pruchakaRashis = [{Id:'2',Text:'Vrishabha'},{Id:'3',Text:'Mithuna'}];
         break;
-      case "Ardra":
+      case "6":
       this.pruchakaRashis = [{Id:'3',Text:'Mithuna'}];
         break;
-      case "Punarvasu":
+      case "7":
       this.pruchakaRashis = [{Id:'3',Text:'Mithuna'},{Id:'4',Text:'Karkataka'}];
         break;
-      case "Pushya":
+      case "8":
       this.pruchakaRashis = [{Id:'4',Text:'Karkataka'}];
         break;
-      case "Ashlesha":
+      case "9":
       this.pruchakaRashis = [{Id:'4',Text:'Karkataka'}];
         break;
-      case "Magha":
+      case "10":
       this.pruchakaRashis = [{Id:'5',Text:'Simha'}];
         break;
-      case "Poorva(Hubba)":
+      case "11":
       this.pruchakaRashis = [{Id:'5',Text:'Simha'}];
         break;
-      case "Uttara":
+      case "12":
       this.pruchakaRashis = [{Id:'5',Text:'Simha'},{Id:'6',Text:'Kanya'}];
         break;
-      case "Hasta":
+      case "13":
       this.pruchakaRashis = [{Id:'6',Text:'Kanya'}];
         break;
-      case "Chithra":
+      case "14":
       this.pruchakaRashis = [{Id:'6',Text:'Kanya'},{Id:'7',Text:'Tula'}];
         break;
-      case "Swathi":
+      case "15":
       this.pruchakaRashis = [{Id:'7',Text:'Tula'}];
         break;
-      case "Vishakha":
+      case "16":
       this.pruchakaRashis = [{Id:'7',Text:'Tula'},{Id:'8',Text:'Vrishchika'}];
         break;
-      case "Anuradha":
+      case "17":
       this.pruchakaRashis = [{Id:'8',Text:'Vrishchika'}];
         break;
-      case "Jyeshta":
+      case "18":
       this.pruchakaRashis = [{Id:'8',Text:'Vrishchika'}];
         break;
-      case "Moola":
+      case "19":
       this.pruchakaRashis = [{Id:'9',Text:'Dhanu'}];
         break;
-      case "Poorvashada":
+      case "20":
       this.pruchakaRashis = [{Id:'9',Text:'Dhanu'}];
         break;
-      case "Uttarashada":
+      case "21":
       this.pruchakaRashis = [{Id:'9',Text:'Dhanu'},{Id:'10',Text:'Makara'}];
         break;
-      case "Shravana":
+      case "22":
       this.pruchakaRashis = [{Id:'10',Text:'Makara'}];
         break;
-        case "Dhanishta":
+        case "23":
         this.pruchakaRashis = [{Id:'10',Text:'Makara'},{Id:'11',Text:'Kumbha'}];
         break;
-      case "Shatabhisha":
+      case "24":
       this.pruchakaRashis = [{Id:'11',Text:'Kumbha'}];
         break;
-      case "Poorvabhadra":
+      case "25":
       this.pruchakaRashis = [{Id:'11',Text:'Kumbha'}, {Id:'12',Text:'Meena'}];
         break;
-      case "Uttarabhadra":
+      case "26":
       this.pruchakaRashis = [{Id:'12',Text:'Meena'}];
         break;
-      case "Revathi":
+      case "27":
       this.pruchakaRashis = [{Id:'12',Text:'Meena'}];
         break;
       default:
-       // this.pruchakaRashis =  "Chennai";
+        this.pruchakaRashis =  [
+      { Id: "1", Text: "Mesha" },
+      { Id: "2", Text: "Vrishabha" },
+      { Id: "3", Text: "Mithuna" },
+      { Id: "4", Text: "Karkataka" },
+      { Id: "5", Text: "Simha" },
+      { Id: "6", Text: "Kanya" },
+      { Id: "7", Text: "Tula" },
+      { Id: "8", Text: "Vrishchika" },
+      { Id: "9", Text: "Dhanu" },
+      { Id: "10", Text: "Makara" },
+      { Id: "11", Text: "Kumbha" },
+      { Id: "12", Text: "Meena" }
+        ];
     }
+    this.pruchakaRashidata = new ArrayStore({
+      data: this.pruchakaRashis,
+      key: "Id"
+    });
+    this.pruchakaRashivalue = this.pruchakaRashis[0].Id;
   }
   pruchakaRashidataSelection(event) {
     this.pruchakaRashivalue = event.value;
@@ -612,8 +628,8 @@ export class AstamangalaComponent {
       //ReportSize: this.horoscopeForm.controls['ReportSize'].value,
       ReportSize: this.reportSizevalue,
       Swarna: this.astamangalaForm.controls['Swarna'].value,
-      Pruchaka: this.astamangalaForm.controls['Pruchaka'].value,
-      JanmaRashi: this.astamangalaForm.controls['JanmaRashi'].value,
+      Pruchaka: this.pruchakaStarvalue,
+      JanmaRashi: this.pruchakaRashivalue,
       AshtaMangalaNo: this.astamangalaForm.controls['AshtaMangalaNo'].value,
       Tambula: this.astamangalaForm.controls['Tambula'].value,
       Sprushtanga: this.astamangalaForm.controls['Sprushtanga'].value,
