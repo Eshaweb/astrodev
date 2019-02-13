@@ -55,6 +55,10 @@ const routes: Routes = [
     loadChildren: './pages/matchMaking/matchMaking.module#MatchMakingModule'
   },
   {
+    path: 'numerology',
+    loadChildren: './pages/numerology/numerology.module#NumerologyModule'
+  },
+  {
     path: 'wallet',
     loadChildren: './pages/wallet/wallet.module#WalletModule'
   },

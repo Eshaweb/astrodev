@@ -20,6 +20,10 @@ export const navigation = [
         text: 'Astamangala',
         path: '/astamangala',
       },
+      {
+        text: 'Numerology',
+        path: '/numerology',
+      },
     ]
   },
   {
