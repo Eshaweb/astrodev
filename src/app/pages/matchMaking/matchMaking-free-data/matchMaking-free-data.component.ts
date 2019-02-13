@@ -6,6 +6,7 @@ import { Caption } from 'src/Models/HoroScope/Caption';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/Services/login/login.service';
+import { MatchRequest } from 'src/Models/MatchMaking/MatchRequest';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { LoginService } from 'src/Services/login/login.service';
   export class MatchMakingFreeDataComponent {
   matchResponse: MatchResponse;
   caption: Caption;
-  matchRequest: import("d:/shailesh_bhat/Angular2Projects/DevExtreme/WorkingFolder/Astrodev/src/Models/MatchMaking/MatchRequest").MatchRequest;
+  matchRequest: MatchRequest;
     constructor(private itemService:ItemService, public router: Router, public loginService: LoginService, 
       public captionDbService:CaptionDbService, public matchMakingService: MatchMakingService) {
       this.matchResponse=matchMakingService.matchResponse;
