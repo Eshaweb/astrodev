@@ -5,3 +5,27 @@
   height: 100%;
   width: 100%;
 }
+
+
+ #navigation-header{
+
+  background: url ("assets/images/logo.png") !important;
+}
+
+::ng-deep #popup {
+  padding: 10px;
+
+}
+
+::ng-deep .button-info {
+  margin: 10px;
+}
+::ng-deep .popup p {
+  margin-bottom: 10px;
+  margin-top: 0;
+  color: red;
+}
+.dx-toolbar {
+  background-color: #ea6a18;
+  color: #ffffff;
+}

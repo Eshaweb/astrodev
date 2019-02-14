@@ -11,7 +11,7 @@ export class HomeComponent {
   defaultVisible: boolean;
   constructor(public router: Router) {
     this.defaultVisible = false;
-    this.items=[{Id:0,Text:'Raju'},{Id:1,Text:'Raju'}];
+    
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;
