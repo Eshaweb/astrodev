@@ -18,12 +18,12 @@
     </app-single-card>
 </ng-template> -->
 <ng-container>
-    <app-side-nav-inner-toolbar title="{{appInfo.title}}" >
+    <app-side-nav-outer-toolbar title="{{appInfo.title}}" >
         <router-outlet></router-outlet>
         <app-footer>
             Copyright © 2011-2018 Astrolite.in.  
         </app-footer>
-    </app-side-nav-inner-toolbar>
+    </app-side-nav-outer-toolbar>
     <!-- <ngx-loading [show]="loadingSwitchService.loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading> -->
     <dx-popup
     class="popup"
