@@ -30,6 +30,10 @@ export class RegistrationFormComponent {
   EMailOTPType: string;
   SMSOTPType: string;
   value: string;
+    popupVisible: boolean;
+    uservalidateForm: FormGroup;
+    OTPValidated: string;
+    OTPValidatedVisible: boolean;
   public changeIcon() {
       return this.interval ? "pause" : "play_arrow";
   }
@@ -68,9 +72,6 @@ export class RegistrationFormComponent {
       const UserNameContrl = this.registrationForm.get('UserName');
       UserNameContrl.valueChanges.subscribe(value => this.setErrorMessage(UserNameContrl));
 
-      // const emailContrl = this.registrationForm.get('email');
-      // emailContrl.valueChanges.subscribe(value => this.setErrorMessage(emailContrl));
-
       const PasswordControl = this.registrationForm.get('Password');
       PasswordControl.valueChanges.subscribe(value => this.setErrorMessage(PasswordControl));
 
@@ -79,7 +80,14 @@ export class RegistrationFormComponent {
 
       const IntroPartyControl = this.registrationForm.get('IntroParty');
       IntroPartyControl.valueChanges.subscribe(value => this.setErrorMessage(IntroPartyControl));
-  }
+  
+      this.uservalidateForm = this.formBuilder.group({
+        //UserName: [null, [Validators.required, Validators.minLength(8)]],
+        OTP: ['', [Validators.required]],
+    });
+    const OTPControl = this.uservalidateForm.get('OTP');
+    OTPControl.valueChanges.subscribe(value => this.setErrorMessage(OTPControl));
+    }
   setErrorMessage(c: AbstractControl): void {
       let control = this.uiService.getControlName(c);
       document.getElementById('err_' + control).innerHTML = '';//To not display the error message, if there is no error.
@@ -97,6 +105,8 @@ export class RegistrationFormComponent {
 
       Password_required: 'Enter Password',
       Password_minlength: 'Minimum length is 4',
+
+      OTP_required: 'Enter OTP',
 
       confirm_Password_required: 'Re-Enter Password',
       confirm_Password_minlength: 'Minimum length is 4',
@@ -125,7 +135,7 @@ export class RegistrationFormComponent {
           if (data.IsValid != undefined) {
               //IsValid: true 
               this.loadingSwitchService.loading = false;
-             
+              this.popupVisible = true;
               if (data.OTPType == "E") {
                   //this.toastrService.successToastr('You Successfully registered. Please check your EMail and click on link we sent to verify your Account', 'Success!');
               this.EMailOTPType='Please check your EMail. You have received a link to verify your Account';
@@ -144,16 +154,6 @@ export class RegistrationFormComponent {
       });
   }
   ngOnInit(){
-      // if (this.registrationService.registerModel != null) {
-      //     this.registerModel = this.registrationService.registerModel;
-      // }
-      // else {
-      //     this.registerModel = {
-      //         UserName: '',
-      //         Password: '',
-      //         IntroParty: ''
-      //     }
-      // }
 
   }
   backClicked() {
@@ -161,9 +161,19 @@ export class RegistrationFormComponent {
   }
   ngAfterViewInit(): void {
   }
-
   ngOnDestroy(): void {
       this.registrationService.registered=true;
   }
-
+  ValidateUserByOTP(){
+    var UserOTP={
+          UserName: this.registrationForm.get('UserName').value,
+          OTP:this.uservalidateForm.get('OTP').value
+    }
+    this.registrationService.ValidateUserByOTP(UserOTP).subscribe((data:any)=>{
+        if (data.Errors == undefined) {
+            this.OTPValidatedVisible=true;
+            this.OTPValidated='OTP Validated Successfully';
+        }
+    });
+  }
 }

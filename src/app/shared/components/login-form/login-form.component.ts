@@ -21,6 +21,7 @@ import { RegistrationService } from 'src/Services/registration/registration.serv
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingService';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
+import { DxPopupModule } from 'devextreme-angular';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -35,7 +36,13 @@ export class LoginFormComponent {
   isLoading: boolean = false;
   loading: boolean = false;
   errorMessage: any;
-  requestOTP: boolean=false;
+  requestOTP: boolean = false;
+  needtoEnterOTP: boolean;
+  uservalidateForm: FormGroup;
+  popUpVisible: boolean;
+  OTPValidated: string;
+  title: string;
+  message: string;
 
   ngAfterViewInit(): void {
 
@@ -74,8 +81,8 @@ export class LoginFormComponent {
   Name: any;
   horoInfo: any;
 
-  constructor(private numerologyService:NumerologyService,private matchMakingService:MatchMakingService,
-    private astamangalaService:AstamangalaService, public registrationService:RegistrationService,public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, 
+  constructor(private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
+    private astamangalaService: AstamangalaService, public registrationService: RegistrationService, public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager,
     public _location: Location, public route: ActivatedRoute, public router: Router, public http: HttpClient,
     public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService,
     public uiService: UIService, public formbuilder: FormBuilder) {
@@ -95,6 +102,12 @@ export class LoginFormComponent {
 
     const PasswordControl = this.loginForm.get('Password');
     PasswordControl.valueChanges.subscribe(value => this.setErrorMessage(PasswordControl));
+
+    this.uservalidateForm = this.formbuilder.group({
+      OTP: ['', [Validators.required]]
+    });
+    const OTPControl = this.uservalidateForm.get('OTP');
+    OTPControl.valueChanges.subscribe(value => this.setErrorMessage(OTPControl));
   }
 
   setErrorMessage(c: AbstractControl): void {
@@ -132,7 +145,7 @@ export class LoginFormComponent {
   }
 
   goToRegistration() {
-    this.registrationService.registered=true;
+    this.registrationService.registered = true;
     this.router.navigate(["/registration-form"]);
   }
   Login_Click() {
@@ -144,55 +157,27 @@ export class LoginFormComponent {
       }
       this.loginService.Login(loginModel).subscribe((data) => {
         if (data.Errors == undefined) {
-          this.registrationService.registered=false;
-          this.loginService.PartyMastId = data.PartyMastId;
-          this.loginService.Token = data.Token;
+          this.registrationService.registered = false;
           this.loadingSwitchService.loading = false;
-          if (this.horoScopeService.horoRequest != null) {
-            if (data.IsActivated == true) {
+          if (data.IsActivated == false) {
+            this.needtoEnterOTP = true;
+            this.title='Alert';
+            this.message= 'Please Enter OTP(since you loginnig for the first time)'
+            //this.events.publish('To_UserActivation');  //events written in appcomponent fires
+            
+            //this.router.navigate(["/purchase/enterOTP"]);
+          }
+          else if (data.IsActivated == true) {
+            if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null) {
+              this.loginService.PartyMastId = data.PartyMastId;
+              this.loginService.Token = data.Token;
               this.router.navigate(["/purchase/paidServices"]);
               //this.router.navigate(["/purchase/paidServices"]);
             }
-            else if (data.IsActivated == false) {
-              //this.events.publish('To_UserActivation');  //events written in appcomponent fires
-              this.router.navigate(["/purchase/enterOTP"]);
-            }
-          }
-          else if (this.astamangalaService.horoRequest != null) {
-            if (data.IsActivated == true) {
-              this.router.navigate(["/purchase/paidServices"]);
-            }
-            else if (data.IsActivated == false) {
-              this.router.navigate(["/purchase/enterOTP"]);
-            }
-          }
-          else if (this.matchMakingService.matchRequest != null) {
-            if (data.IsActivated == true) {
-              this.router.navigate(["/purchase/paidServices"]);
-            }
-            else if (data.IsActivated == false) {
-              this.router.navigate(["/purchase/enterOTP"]);
-            }
-          }
-          else if (this.numerologyService.numerologyRequest != null) {
-            if (data.IsActivated == true) {
-              this.router.navigate(["/purchase/paidServices"]);
-            }
-            else if (data.IsActivated == false) {
-              this.router.navigate(["/purchase/enterOTP"]);
-            }
-          }
-          else {
-            if (data.IsActivated == true) {
+            else {
               this.loadingSwitchService.loading = false;
               this.router.navigate(["/home"]);
             }
-            else if (data.IsActivated == false) {
-              this.loadingSwitchService.loading = false;
-              //this.events.publish('To_UserActivation');
-              this.router.navigate(["/enterOTP"]);
-            }
-
           }
         }
         else {
@@ -220,18 +205,43 @@ export class LoginFormComponent {
   goToLoginByOTP() {
     this.isLoginByOTP = true;
   }
-  onRequestOTP(){
-      this.requestOTP=true;
-      if (this.loginForm.get('UserName').value==null) {
-          document.getElementById('err_UserName').innerHTML ='Please Enter Registered Mobile Number/EMail ID'
-      }
+  onRequestOTP() {
+    this.requestOTP = true;
+    if (this.loginForm.get('UserName').value == null) {
+      document.getElementById('err_UserName').innerHTML = 'Please Enter Registered Mobile Number/EMail ID'
+    }
   }
-  onRegenerateOTP(){
+  onRegenerateOTP() {
 
   }
-  onBackClick(){
-      this.requestOTP=false;
-      document.getElementById('err_UserName').innerHTML ='';
+  ValidateUserByOTP() {
+    var UserOTP = {
+      UserName: this.loginForm.get('UserName').value,
+      OTP: this.uservalidateForm.get('OTP').value
+    }
+    this.registrationService.ValidateUserByOTP(UserOTP).subscribe((data: any) => {
+      if (data.Errors == undefined) {
+        this.popUpVisible = true;
+        this.title= 'Thank you';
+        this.message = 'OTP Validated Successfully. Please Login';
+        this.needtoEnterOTP = false;
+      }
+    });
+  }
+  ResendOTP_click(){
+    var UserName = {
+      UserName: this.loginForm.get('UserName').value
+    }
+    this.registrationService.ResendUserOTP(UserName).subscribe((data: any) => {
+      if (data.Errors == undefined) {
+        this.title= 'Message';
+        this.message = 'Please enter OTP And Submit';
+      }
+    });
+  }
+  onBackClick() {
+    this.requestOTP = false;
+    document.getElementById('err_UserName').innerHTML = '';
   }
 }
 @NgModule({
@@ -243,11 +253,12 @@ export class LoginFormComponent {
     DxTextBoxModule,
     DxValidatorModule,
     DxValidationGroupModule,
+    DxPopupModule,
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers:[AuthService],
-  declarations: [ LoginFormComponent ],
-  exports: [ LoginFormComponent ]
+  providers: [AuthService],
+  declarations: [LoginFormComponent],
+  exports: [LoginFormComponent]
 })
 export class LoginFormModule { }
