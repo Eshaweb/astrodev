@@ -34,6 +34,7 @@ export class RegistrationFormComponent {
     uservalidateForm: FormGroup;
     OTPValidated: string;
     OTPValidatedVisible: boolean;
+    message: string;
   public changeIcon() {
       return this.interval ? "pause" : "play_arrow";
   }
@@ -143,7 +144,7 @@ export class RegistrationFormComponent {
               else if (data.OTPType == "S") {
                   //this.toastrService.successToastr('You Successfully registered. Please check your SMS and enter OTP to verify your Account', 'Success!');
                   this.SMSOTPType='You will get an OTP. Please enter the OTP, when you login for the first time';
-              }
+                }
           }
           // else {
           //     this.loadingSwitchService.loading = false;
@@ -174,6 +175,16 @@ export class RegistrationFormComponent {
             this.OTPValidatedVisible=true;
             this.OTPValidated='OTP Validated Successfully';
         }
+    });
+  }
+  ResendOTP_click(){
+    var UserName = {
+      UserName: this.registrationForm.get('UserName').value
+    }
+    this.registrationService.ResendUserOTP(UserName).subscribe((data: any) => {
+      if (data.Errors == undefined) {
+        this.message = 'Please enter OTP And Submit';
+      }
     });
   }
 }
