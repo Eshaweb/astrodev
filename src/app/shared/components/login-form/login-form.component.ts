@@ -97,6 +97,10 @@ export class LoginFormComponent {
       UserName: [8277033170, [Validators.required, Validators.minLength(8)]],
       Password: ['1234', [Validators.required, Validators.minLength(4)]]
     });
+    // this.loginForm = this.formbuilder.group({
+    //   UserName: [null, [Validators.required, Validators.minLength(8)]],
+    //   Password: ['', [Validators.required, Validators.minLength(4)]]
+    // });
     const UserNameContrl = this.loginForm.get('UserName');
     UserNameContrl.valueChanges.subscribe(value => this.setErrorMessage(UserNameContrl));
 

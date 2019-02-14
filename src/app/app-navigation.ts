@@ -44,5 +44,10 @@ export const navigation = [
     text: 'Login',
     path:'/login-form',
     icon: 'folder'
-  }
+  },
+  {
+    text: 'Settings',
+    icon: 'folder',
+    path:'/settings',
+  },
 ];

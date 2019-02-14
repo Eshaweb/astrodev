@@ -1,0 +1,59 @@
+.logos-container {
+  margin: 20px 0 40px 0;
+  text-align: center;
+  svg {
+    display: inline-block;
+  }
+}
+
+.devextreme-logo {
+  width: 200px;
+  height: 34px;
+  margin-bottom: 13px;
+}
+
+.angular-logo {
+  width: 220px;
+  height: 62px;
+}
+
+.plus {
+  margin: 15px 10px;
+  width: 22px;
+  height: 22px;
+}
+
+:host-context(.screen-x-small) .logos-container {
+  svg {
+    width: 100%;
+    display: block;
+    &.plus {
+      margin: 0;
+    }
+  }
+}
+
+.dx-card.responsive-paddings{
+  padding: 40px;
+  width: 28% !important;
+  float: left !important;
+  margin-left: 20px !important;
+  margin-top: 10px;
+}
+
+@media (max-width: 800px) {
+  .dx-fieldset-column {
+  float: left;
+  width: 100%;
+  
+  }
+
+  .dx-card.responsive-paddings{
+    padding: 40px;
+    width: 100% !important;
+    float: left !important;
+    margin-left: 2px !important;
+    margin-top: 10px;
+
+  }
+}

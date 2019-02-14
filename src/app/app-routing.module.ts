@@ -63,6 +63,10 @@ const routes: Routes = [
     loadChildren: './pages/panchanga/panchanga.module#PanchangaModule'
   },
   {
+    path: 'settings',
+    loadChildren: './pages/settings/settings.module#SettingsModule'
+  },
+  {
     path: 'wallet',
     loadChildren: './pages/wallet/wallet.module#WalletModule'
   },
@@ -98,8 +102,7 @@ const routes: Routes = [
     EmailVerifyComponent,  
     OfflinepaymentComponent,
     HoroscopeComponent,
-    HoroscopeFreeDataComponent
-
+    HoroscopeFreeDataComponent,
   ]
 })
 export class AppRoutingModule { }

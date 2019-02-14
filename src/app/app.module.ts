@@ -38,6 +38,7 @@ import { OrderService } from 'src/Services/OrderService/OrderService';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
 import { NumerologyModule } from './pages/numerology/numerology.module';
+import { OrderHistoryService } from 'src/Services/order';
 
 
 let config = new AuthServiceConfig([
@@ -90,7 +91,7 @@ export function provideConfig() {
     Service, AuthenticationService, CaptionDbService, OrderService, NumerologyService,
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService,
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
-    LoaderService, SalesService, WalletService,
+    LoaderService, SalesService, WalletService, OrderHistoryService,
     { provide: APP_BASE_HREF, useValue: '/' },
     {
       provide: HTTP_INTERCEPTORS,
