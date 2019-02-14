@@ -49,6 +49,14 @@ export class PanchangaComponent {
   panchangaRequest: PanchangaRequest;
   languagevalue: string;
   languagedata: ArrayStore;
+  timeformats: SelectBoxModel[] = [
+    { Id: "STANDARD", Text: 'Standard Time' },
+    { Id: "SUMMER", Text: 'Summer Time' },
+    { Id: "DOUBLE", Text: 'Double Summer Time' },
+    { Id: "WAR", Text: 'War Time' }
+  ];
+  timeformatdata: ArrayStore;
+  timeformatvalue: string;
   constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public panchangaService: PanchangaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
@@ -71,7 +79,9 @@ export class PanchangaComponent {
       this.birthDateinDateFormat = this.panchangaForm.controls['Date'].value;
       this.panchangaRequest = {
         Date: this.panchangaForm.controls['Date'].value,
+        Time: null,
         Place: this.panchangaService.place,
+        TimeFormat:this.timeformatvalue,
         LangCode: null,
         LatDeg: null,
         LatMt: null,
@@ -104,6 +114,10 @@ export class PanchangaComponent {
   };
 
   ngOnInit() {
+    this.timeformatdata = new ArrayStore({
+      data: this.timeformats,
+      key: "Id"
+    });
     this.languagedata = new ArrayStore({
       data: this.languages,
       key: "Id"
@@ -128,10 +142,12 @@ export class PanchangaComponent {
   }
   ngAfterViewInit(): void {
     if (this.panchangaService.panchangaRequest != null) {
+      this.timeformatvalue = this.panchangaService.panchangaRequest.TimeFormat;
       this.languagevalue = this.panchangaService.panchangaRequest.LangCode;
     }
     else {
-      this.languagevalue = this.languages[1].Id;
+      this.timeformatvalue = this.timeformats[0].Id;
+      this.languagevalue = this.languages[2].Id;
     }
 
   }
@@ -182,23 +198,27 @@ export class PanchangaComponent {
 
   submit_click() {
     this.isLoading = true;
-    //this.tick();
-    //this.loading = true;
     this.loadingSwitchService.loading = true;
     this.panchangaService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
-    // if(typeof this.horoscopeForm.controls['Date'].value ==='string'){
-
-    // }
     var bdate: Date = this.panchangaForm.controls['Date'].value;
+    var btime: Date = this.panchangaForm.controls['Date'].value;
     if (bdate instanceof Date) {
       var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
     }
     else {
       dateinString = bdate;
     }
+    if (btime instanceof Date) {
+      var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
+    }
+    else {
+      timeinString = "00:00:00";
+    }
     this.panchangaRequest = {
       Date: dateinString,
+      Time:timeinString,
       Place: this.panchangaService.placeShort,
+      TimeFormat:this.timeformatvalue,
       LangCode: this.languagevalue,
       LatDeg: this.panchangaRequest.LatDeg,
       LatMt: this.panchangaRequest.LatMt,

@@ -11,6 +11,22 @@
                                 </div>
                         </div>
                         </div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Time Format*</div>
+                                <div class="dx-field-value">
+                                <dx-select-box 
+                                (onValueChanged)="timeformatdataSelection($event)"
+                                      [dataSource]="timeformatdata"
+                                      displayExpr="Text"
+                                      valueExpr="Id"
+                                      [value]="timeformatvalue">
+                                  </dx-select-box>
+                                  <p style="color:red" id='err_TimeFormat'></p>
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="clear"></div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
