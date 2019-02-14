@@ -21,4 +21,10 @@ export class HomeComponent {
   OnAstamangala_Click() {
     this.router.navigate(["/astamangala"]);
   }
+  OnNumerology_Click() {
+    this.router.navigate(["/numerology"]);
+  }
+  OnPanchanga_Click() {
+    this.router.navigate(["/panchanga"]);
+  }
 }

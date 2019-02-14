@@ -39,8 +39,25 @@ export class Caption {
     Tithi: string;
     Nak: string;
     Yoga: string;
-}
+    Sunday: string;
+    Monday: string;
+    Tuesday: string;
+    Wednesday: string;
+    Thursday: string;
+    Friday: string;
+    Saturday: string;
+    VeryGood: string;
+    VeryGoodDesc: string;
+    Good: string;
+    GoodDesc: string;
+    Average: string;
+    AverageDesc: string;
+    NotBad: string;
+    NotBadDesc: string;
+    Weak: string;
+    WeakDesc: string;
 
+}
 export class Gochara {
     Title: string;
     SubTitle: string;

@@ -20,6 +20,7 @@ import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingS
 import { RegistrationService } from 'src/Services/registration/registration.service';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingService';
+import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -73,7 +74,8 @@ export class LoginFormComponent {
   Name: any;
   horoInfo: any;
 
-  constructor(private matchMakingService:MatchMakingService,private astamangalaService:AstamangalaService, public registrationService:RegistrationService,public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, 
+  constructor(private numerologyService:NumerologyService,private matchMakingService:MatchMakingService,
+    private astamangalaService:AstamangalaService, public registrationService:RegistrationService,public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, 
     public _location: Location, public route: ActivatedRoute, public router: Router, public http: HttpClient,
     public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService,
     public uiService: UIService, public formbuilder: FormBuilder) {
@@ -165,6 +167,14 @@ export class LoginFormComponent {
             }
           }
           else if (this.matchMakingService.matchRequest != null) {
+            if (data.IsActivated == true) {
+              this.router.navigate(["/purchase/paidServices"]);
+            }
+            else if (data.IsActivated == false) {
+              this.router.navigate(["/purchase/enterOTP"]);
+            }
+          }
+          else if (this.numerologyService.numerologyRequest != null) {
             if (data.IsActivated == true) {
               this.router.navigate(["/purchase/paidServices"]);
             }

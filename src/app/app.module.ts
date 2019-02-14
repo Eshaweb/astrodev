@@ -36,6 +36,8 @@ import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaSer
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
+import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
+import { NumerologyModule } from './pages/numerology/numerology.module';
 
 
 let config = new AuthServiceConfig([
@@ -72,6 +74,7 @@ export function provideConfig() {
     HoroscopeModule,
     AstamangalaModule,
     MatchMakingModule,
+    NumerologyModule,
     WalletModule,
     LoginFormModule,
     RegistrationFormModule,
@@ -83,7 +86,7 @@ export function provideConfig() {
     DxLoadPanelModule,
     //DevExtremeModule
   ],
-  providers: [AuthService, ScreenService, AppInfoService, ItemService,
+  providers: [AuthService, ScreenService, AppInfoService, ItemService, PanchangaService,
     Service, AuthenticationService, CaptionDbService, OrderService, NumerologyService,
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService,
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 

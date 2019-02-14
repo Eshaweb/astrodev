@@ -6,11 +6,14 @@ import { Platform } from '@angular/cdk/platform';
 import { LoginService } from 'src/Services/login/login.service';
 import { Location } from "@angular/common";
 import { RegistrationService } from 'src/Services/registration/registration.service';
-import { Caption } from 'src/Models/HoroScope/Caption';
 import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
 import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 import { ItemService } from 'src/Services/ItemService/ItemService';
+import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
+import { Caption } from 'src/Models/Caption';
+import { NumerologyResponse, SerialseMonth } from 'src/Models/Numerology/numerologyResponse';
+import { NumerologyRequest } from 'src/Models/Numerology/numerologyRequest';
 
 @Component({
   selector: 'app-numerology-free-data',
@@ -18,125 +21,77 @@ import { ItemService } from 'src/Services/ItemService/ItemService';
   styleUrls: ['./numerology-free-data.component.scss']
 })
 export class NumerologyFreeDataComponent implements OnInit {
-  Shloka1: string;
-  Shloka2: string;
-  Name: string;
-  Fathername: string;
-  Mothername: string;
-  ItMastId: any;
-  serviceInfo: ServiceInfo[];
-  horoRequest: HoroRequest;
-  horoInfo: any;
-  JanmaNakshathra: string;
-  JanmaRashi: string;
-  BirthPlace: string;
-  SunRise: string;
-  SunSet: string;
-  DinaMana: string;
-  ShakaVarsha: string;
-  Kollam: string;
-  Samvathsara: string;
-  Aayana: string;
-  ChandraMasa: string;
-  Ruthu: string;
-  SouraMasa: string;
-  Paksha: string;
-  MahaNakshatra: string;
-  Tithi: string;
-  NithyaNakshatra: string;
-  ChandrarkaYoga: string;
-  Karana: string;
-  VishaGhati: string;
-  AmrithaGhati: string;
-  BDate: string;
-  systemDate: string;
-    horoModel: HoroRequest;
-    caption: any;
-    horoResponse: any;
-  ngOnInit(): void {
-    this.caption=new Caption();
-    this.GetCaption(this.horoModel.LangCode, this.caption);
-  }
-  constructor(private itemService:ItemService,public captionDbService:CaptionDbService, public registrationService:RegistrationService,
-    public _location: Location, public route: ActivatedRoute, public router: Router, 
-    public platform: Platform, public loginService: LoginService, public horoScopeService: HoroScopeService) {
-    
-    this.horoModel=this.horoScopeService.horoRequest;
-    this.horoResponse=new HoroResponse();
-    this.horoResponse=this.horoScopeService.horoResponse
-      this.Fathername = this.horoScopeService.Mothername;
-      this.Mothername = this.horoScopeService.Fathername;
-      this.BirthPlace = this.horoScopeService.birthplaceShort;
-      this.systemDate=this.horoScopeService.systemDate;
-      this.horoInfo = horoScopeService.horoRequest;
-      this.Name = horoScopeService.horoRequest.Name;
-      this.BDate = horoScopeService.horoRequest.Date
-    //   this.Shloka1 = horoScopeService.data.Shloka1;
-    //   this.Shloka2 = horoScopeService.data.Shloka2;
-    //   this.JanmaNakshathra = horoScopeService.data.JanmaNakshathra;
-    //   this.JanmaRashi = horoScopeService.data.JanmaRashi;
-    //   this.SunRise = horoScopeService.data.SunRise;
-    //   this.SunSet = horoScopeService.data.SunSet;
-    //   this.DinaMana = horoScopeService.data.DinaMana;
-    //   this.ShakaVarsha = horoScopeService.data.ShakaVarsha;
-    //   this.Kollam = horoScopeService.data.Kollam;
-    //   this.Samvathsara = horoScopeService.data.Samvathsara;
-    //   this.Aayana = horoScopeService.data.Aayana;
-    //   this.Ruthu = horoScopeService.data.Ruthu;
-    //   this.ChandraMasa = horoScopeService.data.ChandraMasa;
-    //   this.SouraMasa = horoScopeService.data.SouraMasa;
-    //   this.Paksha = horoScopeService.data.Paksha;
-    //   this.MahaNakshatra = horoScopeService.data.MahaNakshatra;
-    //   this.Tithi = horoScopeService.data.Tithi;
-    //   this.NithyaNakshatra = horoScopeService.data.NithyaNakshatra;
-    //   this.ChandrarkaYoga = horoScopeService.data.ChandrarkaYoga;
-    //   this.Karana = horoScopeService.data.Karana;
-    //   this.VishaGhati = horoScopeService.data.VishaGhati;
-    //   this.AmrithaGhati = horoScopeService.data.AmrithaGhati;
-      
-  }
-
-  GetCaption(langCode:string,caption:Caption)
-    {
-     this.captionDbService.GetCaption(langCode,caption);
-    }
-
-  backClicked() {
-      this._location.back();
-  }
-    getFont(LangCode) {
-        switch (LangCode) {
-            case "KAN":
-                return "KannadaFont";
-            case "ENG":
-                return "EnglishFont";
-            case "HIN":
-                return "HindiFont";
-            case "MAL":
-                return "MalyalamFont";
-            case "TAM":
-                return "TamilFont";
+    caption: Caption;
+    numerologyResponse: NumerologyResponse;
+    numerologyRequest: NumerologyRequest;
+    serialseMonth:SerialseMonth[]=[];
+  manthcaption:string;
+      ngOnInit(): void {
+        this.caption=new Caption();
+        this.numerologyRequest=this.numerologyService.numerologyRequest;
+        this.GetCaption(this.numerologyRequest.LangCode, this.caption);
+      }
+      constructor(private itemService:ItemService, public router: Router, public loginService: LoginService, 
+        public captionDbService:CaptionDbService, public numerologyService: NumerologyService) {
+        
+            this.numerologyResponse=this.numerologyService.numerologyResponse;
+            this.serialseMonth=JSON.parse(this.numerologyResponse.Month);
+            this.manthcaption= this.serialseMonth[0].Caption;
         }
+  
+      GetCaption(langCode:string,caption:Caption)
+     {
+      this.captionDbService.GetCaption(langCode,caption);
+     }
+  
+     getFont(LangCode) {
+      switch (LangCode) {
+        case "KAN":
+          return "KannadaFont";
+        case "ENG":
+          return "EnglishFont";
+        case "HIN":
+          return "HindiFont";
+          case "MAL":
+          return "MalyalamFont";
+          case "TAM":
+          return "TamilFont";
+      }
     }
-  onClick() {
-    this.itemService.ItActId='#SH';
+    split (day:String): String
+    {
+      if(day!=undefined)
+      {
+      return day.split('-')[0];
+      }
+      return "";
+    }
+    
+    GetBackColor (day:any)
+    {
+    
+      if(day!=undefined)
+      {
+     return day.split('-')[1];
+      }
+     
+    }
+    GetForeColor (day:any)
+    {
+      if(day!=undefined)
+      {
+     
+     return day.split('-')[3];
+      
+      }
+    }
+    onClick() {
+      this.itemService.ItActId='#NM';
       if (this.loginService.Token == null) {
-          this.registrationService.registered=true;
           this.router.navigate(["/login-form"]);
       }
       else {
-          // this.router.navigate(["/purchase/paidServices", { "PartyMastId": this.loginService.PartyMastId}]);
           this.router.navigate(["/purchase/paidServices"]);
-
       }
   }
-
-  ngAfterViewInit(): void {
-
-  }
-
-  ngOnDestroy(): void {
-
-  }
-
 }

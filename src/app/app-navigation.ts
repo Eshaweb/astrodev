@@ -24,6 +24,10 @@ export const navigation = [
         text: 'Numerology',
         path: '/numerology',
       },
+      {
+        text: 'Nithya Panchanga',
+        path: '/panchanga',
+      },
     ]
   },
   {

@@ -6,11 +6,11 @@ import { Platform } from '@angular/cdk/platform';
 import { LoginService } from 'src/Services/login/login.service';
 import { Location } from "@angular/common";
 import { RegistrationService } from 'src/Services/registration/registration.service';
-import { Caption } from 'src/Models/HoroScope/Caption';
 import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
 import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 import { ItemService } from 'src/Services/ItemService/ItemService';
+import { Caption } from 'src/Models/Caption';
 
 @Component({
   selector: 'app-horoscope-free-data',
