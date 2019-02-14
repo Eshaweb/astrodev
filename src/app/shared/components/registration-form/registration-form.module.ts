@@ -9,6 +9,7 @@ import { DxValidationGroupModule } from 'devextreme-angular/ui/validation-group'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthService } from 'angularx-social-login';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { DxPopupModule } from 'devextreme-angular';
 @NgModule({
     imports: [
       CommonModule,
@@ -18,6 +19,7 @@ import { RegistrationFormComponent } from './registration-form/registration-form
       DxTextBoxModule,
       DxValidatorModule,
       DxValidationGroupModule,
+      DxPopupModule,
       ReactiveFormsModule,
       FormsModule,
     ],

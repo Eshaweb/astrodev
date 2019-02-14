@@ -6,7 +6,7 @@
     <div class="login-header">
         <div class="title">Register</div>
     </div>
-    <form [formGroup]="registrationForm">
+    <form *ngIf='!SMSOTPType' [formGroup]="registrationForm">
     <div class="dx-field">
         <dx-text-box formControlName="UserName" placeholder="Mobile No / Email" width="100%">
         </dx-text-box>
@@ -34,9 +34,49 @@
    
 </form>
 
-    <!-- <div class="dx-field">
-        <dx-button type="normal" text="Create an account" width="100%"></dx-button>
-    </div> -->
+<form *ngIf='SMSOTPType' [formGroup]="uservalidateForm">
+        <p>{{message}}</p>
+    <div class="dx-field">
+        <dx-text-box mode="password" formControlName="OTP" placeholder="OTP" width="100%">
+        </dx-text-box>
+        <p style="color:red;" id='err_OTP'></p>
+        <a (click)="ResendOTP_click()">Resend OTP</a>
+    </div>
+    <div class="dx-field">
+        <dx-button type="default" text="Submit" (onClick)="ValidateUserByOTP()"[disabled]="!uservalidateForm.valid" width="100%"></dx-button>
+    </div>
+</form>
 
-
+    <dx-popup
+    class="popup"
+    [width]="250"
+    [height]="150"
+    [showTitle]="true"
+    title="Thank you"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="popupVisible">
+    <div *dxTemplate="let data of 'content'">
+        <p>
+            <span *ngIf="EMailOTPType">{{EMailOTPType}}</span>
+            <span *ngIf="SMSOTPType">{{SMSOTPType}}</span>
+            <span *ngIf="OTPValidated">{{OTPValidated}}</span>
+        </p>
+    </div>
+</dx-popup>
+<dx-popup
+    class="popup"
+    [width]="250"
+    [height]="150"
+    [showTitle]="true"
+    title="Thank you"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="OTPValidatedVisible">
+    <div *dxTemplate="let data of 'content'">
+        <p>
+            <span *ngIf="OTPValidated">{{OTPValidated}}</span>
+        </p>
+    </div>
+</dx-popup>
 </div>

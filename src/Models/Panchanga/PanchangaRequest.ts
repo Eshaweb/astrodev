@@ -1,8 +1,8 @@
 export class PanchangaRequest
 {
     Date:string;
-    //Time:string;
-    //TimeFormat:string;
+    Time:string;
+    TimeFormat:string;
     LangCode:string;
     LatDeg:number;
     LatMt:number;
