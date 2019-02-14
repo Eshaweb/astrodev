@@ -189,7 +189,9 @@ export class PanchangaComponent {
       this.cdr.detectChanges();
     });
   }
-
+  timeformatdataSelection(event){
+    this.timeformatvalue=event.value;
+  }
   languagedataSelection(event) {
     this.languagevalue = event.value;
   }
