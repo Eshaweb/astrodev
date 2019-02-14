@@ -7,7 +7,21 @@
 }
 
 
-::ng-deep #navigation-header{
+ #navigation-header{
 
-  background-image: url ("assets/images/logo.png") !important;
+  background: url ("assets/images/logo.png") !important;
+}
+
+::ng-deep #popup {
+  padding: 10px;
+
+}
+
+::ng-deep .button-info {
+  margin: 10px;
+}
+::ng-deep .popup p {
+  margin-bottom: 10px;
+  margin-top: 0;
+  color: red;
 }
