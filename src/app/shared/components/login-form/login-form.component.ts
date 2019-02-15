@@ -172,9 +172,9 @@ export class LoginFormComponent {
             //this.router.navigate(["/purchase/enterOTP"]);
           }
           else if (data.IsActivated == true) {
+            this.loginService.PartyMastId = data.PartyMastId;
+            this.loginService.Token = data.Token;
             if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null) {
-              this.loginService.PartyMastId = data.PartyMastId;
-              this.loginService.Token = data.Token;
               this.router.navigate(["/purchase/paidServices"]);
               //this.router.navigate(["/purchase/paidServices"]);
             }

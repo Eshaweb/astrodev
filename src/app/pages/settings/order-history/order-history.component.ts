@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OrderHistoryService, Company } from 'src/Services/order';
 import ArrayStore from 'devextreme/data/array_store';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
+import { OrderService } from 'src/Services/OrderService/OrderService';
+import { LoginService } from 'src/Services/login/login.service';
+import { ItemService } from 'src/Services/ItemService/ItemService';
+import { OrderHistoryResponse } from 'src/Models/OrderHistoryResponse';
 
 
 
@@ -10,7 +14,29 @@ import { SelectBoxModel } from 'src/Models/SelectBoxModel';
     templateUrl: './order-history.component.html',
     styleUrls: ['./order-history.component.scss']
 })
-export class OrderHistoryComponent {
+export class OrderHistoryComponent implements OnInit {
+    orderHistoryResponse: OrderHistoryResponse;
+    ngOnInit() {
+        var orderHistory = {
+            PartyMastId:this.loginService.PartyMastId,
+            ItActId:"#SH"
+        }
+        this.orderService.OrderHistory(orderHistory).subscribe((data: any) => {
+        this.orderHistoryResponse=data;
+        });
+    }
+    onItemClick(event){
+        var orderHistory = {
+            PartyMastId:this.loginService.PartyMastId,
+            ItActId:event.itemData.ItActId
+        }
+        this.orderService.OrderHistory(orderHistory).subscribe((data: any) => {
+        this.orderHistoryResponse=data;
+        });
+    }
+    onstatus_Click(item){
+
+    }
     companies: Company[];
     fields: SelectBoxModel[] = [
         { Id: "STANDARD", Text: 'Date' },
@@ -43,7 +69,7 @@ export class OrderHistoryComponent {
     fielddata: ArrayStore;
     sortorderdata: ArrayStore;
 
-    constructor(service: OrderHistoryService) {
+    constructor(private itemService:ItemService,private loginService:LoginService,service: OrderHistoryService, private orderService:OrderService) {
         this.companies = service.getCompanies();
         this.fielddata = new ArrayStore({
             data: this.fields,
@@ -90,9 +116,7 @@ export class OrderHistoryComponent {
         this.fieldvalue_horoscope = this.fields[0].Id;
         this.sortordervalue_horoscope = this.sortorders[0].Id;
     }
-    onItemClick(event){
-
-    }
+    
     fielddataSelection(event) {
         this.fieldvalue = event.value;
     }

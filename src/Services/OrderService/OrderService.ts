@@ -39,4 +39,9 @@ export class OrderService {
         var endPoint = "Order/CheckForResult?OrderId=" + OrderId;
         return this.httpService.Get(endPoint);
     }
+
+    OrderHistory(orderHistory):Observable<any>{
+        var endPoint = "Order/OrderHistory";
+        return this.httpService.Post(endPoint, orderHistory);
+    }
 }

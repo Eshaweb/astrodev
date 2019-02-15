@@ -8,6 +8,7 @@
             [collapsible]="true"
             [multiple]="false"
             [animationDuration]="300"
+            (onInitialized)="onInitialized($event)"
             (onItemClick)="onItemClick($event)"
             [selectedItems]="[companies[0]]">
             <div *dxTemplate="let company of 'title'">
@@ -34,10 +35,26 @@
                             </div>
                         </div>
                     </div>
-                    <div class="dx-card responsive-paddings" (click)='OnHoroScope_Click()'>
-                            <h3>Content</h3>
+                    <br/>
+                    <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse">
+                            <div class="dx-field-label">{{item.ItName}}</div>
+                            <div class="dx-field-value">
+                                {{item.Amount}}
+                            </div>
+                            <div class="dx-field-label">{{item.OrderId}}</div>
+                            <div class="dx-field-value">
+                                {{item.Date}}
+                            </div>
+                            <div class="dx-field-label">{{item.Hint}}</div>
+                            <div class="dx-field-value" *ngIf="(item.StatusCode)=='AP'">
+                                <div class="dx-field">
+
+                                    <dx-button class="buttonClass1" text="Proceed" type="submit" (onClick)="onstatus_Click(item)"></dx-button>
+                                    
+                                </div>
+                            </div>
                         </div>
-                <div>
+                <!-- <div>
                     <p>
                         <b>{{company.City}}</b>
                         (<span>{{company.State}}</span>)
@@ -52,7 +69,7 @@
                         Phone: <b>{{company.Phone}}</b>
                     </p>
                     <p>
-                        Fax: <b>{{company.Fax}}</b>
+                        Fax: <b>{{company.ItActId}}</b>
                     </p>
                     <p>
                         Website:
@@ -60,7 +77,7 @@
                             {{company.Website}}
                         </a>
                     </p>
-                </div>
+                </div> -->
             </div>
         </dx-accordion>
         </div>
