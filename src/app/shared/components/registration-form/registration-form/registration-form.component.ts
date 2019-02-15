@@ -174,6 +174,7 @@ export class RegistrationFormComponent {
         if (data.Errors == undefined) {
             this.OTPValidatedVisible=true;
             this.OTPValidated='OTP Validated Successfully';
+            this.router.navigate(["/login-form"]);
         }
     });
   }

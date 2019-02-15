@@ -44,4 +44,9 @@ export class OrderService {
         var endPoint = "Order/OrderHistory";
         return this.httpService.Post(endPoint, orderHistory);
     }
+
+    GetItemAmountByOrderId(OrderId):Observable<any>{
+        var endPoint = "Order/GetItemAmountByOrderId?OrderId="+ OrderId;
+        return this.httpService.Get(endPoint);
+    }
 }

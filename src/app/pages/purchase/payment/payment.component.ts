@@ -12,6 +12,7 @@ import ArrayStore from 'devextreme/data/array_store';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { ItemService } from 'src/Services/ItemService/ItemService';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 declare var Razorpay: any;
 
@@ -62,7 +63,10 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       if (this.horoScopeService.itemOrdered != undefined) {
         this.ItemOrdered = this.horoScopeService.itemOrdered;
       }
-      this.payableAmount=this.itemService.ItemAmount;
+      this.orderService.GetItemAmountByOrderId(this.OrderId).subscribe((data: any) => {
+        this.payableAmount=data.Amount;
+      });
+      //this.payableAmount=this.itemService.ItemAmount;
       this.horoScopeService.GetPayCodes().subscribe((data) => {
       if(data.Error==undefined){
         this.paymentModes = data;
@@ -308,7 +312,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     CreateBillPayModeToOrder(){
       var OrderBillPayMode = {
         CoupenCode: "",
-        PartyMastId: this.loginService.PartyMastId,
+        PartyMastId: StorageService.GetItem('PartyMastId'),
         OrderId: this.OrderId,
         PayCodes: this.paycodes
       }
