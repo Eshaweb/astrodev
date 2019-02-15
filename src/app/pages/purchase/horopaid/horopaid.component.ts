@@ -98,11 +98,13 @@ export class HoropaidComponent implements OnInit {
           this.itemAmount = item.Amount;
           this.requireDeliveryAddress = false;
           this.horoScopeService.IsDeliverable = false;
+          this.itemService.ItemAmount=item.Amount;
       }
       else {
           this.itemAmount = item.PrintAmount;
           this.requireDeliveryAddress = true;
           this.horoScopeService.IsDeliverable = true;
+          this.itemService.ItemAmount=item.PrintAmount;
       }
       if(this.horoScopeService.horoRequest!=undefined){
         var orderModel = {
@@ -157,7 +159,7 @@ export class HoropaidComponent implements OnInit {
           this.orderService.OrderId = data.OrderId;
           this.orderService.orderResponse = data;
           var FreePDF = {
-              OrderId: this.orderService.OrderId.toString()
+              OrderId: this.orderService.orderResponse.OrderId.toString()
           }
           // this.router.navigate(["/services/deliveryAddress", { 'DeliveryAddressRequired': DeliveryAddressRequired }]);
           this.router.navigate(["/purchase/deliveryAddress", { 'OrderId': FreePDF.OrderId }]);

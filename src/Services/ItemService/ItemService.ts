@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ItemService {
     ItActId:string;
+    ItemAmount: any;
     constructor(public httpService: HttpService) {
 
     }

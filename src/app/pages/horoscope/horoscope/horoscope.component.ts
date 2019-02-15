@@ -211,15 +211,15 @@ export class HoroscopeComponent {
         latitude: [''],
         longitude: [''],
         gender: ['M', []],
-        LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
-        LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
-        LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
-        LongMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
-        NS: ['', [Validators.required, Validators.pattern("^[NS]?$")]],
-        EW: ['', [Validators.required, Validators.pattern("^[EW]?$")]],
-        ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
-        ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
-        PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
+        // LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
+        // LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
+        // LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+        // LongMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+        // NS: ['', [Validators.required, Validators.pattern("^[NS]?$")]],
+        // EW: ['', [Validators.required, Validators.pattern("^[EW]?$")]],
+        // ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
+        // ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
+        // PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
       });
       const NameContrl = this.horoscopeForm.get('Name');
       NameContrl.valueChanges.subscribe(value => this.setErrorMessage(NameContrl));
@@ -230,23 +230,23 @@ export class HoroscopeComponent {
       const gotraContrl = this.horoscopeForm.get('gotra');
       gotraContrl.valueChanges.subscribe(value => this.setErrorMessage(gotraContrl));
       const LatDegContrl = this.horoscopeForm.get('LatDeg');
-      LatDegContrl.valueChanges.subscribe(value => this.setErrorMessage(LatDegContrl));
-      const LatMtContrl = this.horoscopeForm.get('LatMt');
-      LatMtContrl.valueChanges.subscribe(value => this.setErrorMessage(LatMtContrl));
-      const NSContrl = this.horoscopeForm.get('NS');
-      NSContrl.valueChanges.subscribe(value => this.setErrorMessage(NSContrl));
-      const LongDegContrl = this.horoscopeForm.get('LongDeg');
-      LongDegContrl.valueChanges.subscribe(value => this.setErrorMessage(LongDegContrl));
-      const LongMtContrl = this.horoscopeForm.get('LongMt');
-      LongMtContrl.valueChanges.subscribe(value => this.setErrorMessage(LongMtContrl));
-      const EWContrl = this.horoscopeForm.get('EW');
-      EWContrl.valueChanges.subscribe(value => this.setErrorMessage(EWContrl));
-      const ZHContrl = this.horoscopeForm.get('ZH');
-      ZHContrl.valueChanges.subscribe(value => this.setErrorMessage(ZHContrl));
-      const ZMContrl = this.horoscopeForm.get('ZM');
-      ZMContrl.valueChanges.subscribe(value => this.setErrorMessage(ZMContrl));
-      const PNContrl = this.horoscopeForm.get('PN');
-      PNContrl.valueChanges.subscribe(value => this.setErrorMessage(PNContrl));
+      // LatDegContrl.valueChanges.subscribe(value => this.setErrorMessage(LatDegContrl));
+      // const LatMtContrl = this.horoscopeForm.get('LatMt');
+      // LatMtContrl.valueChanges.subscribe(value => this.setErrorMessage(LatMtContrl));
+      // const NSContrl = this.horoscopeForm.get('NS');
+      // NSContrl.valueChanges.subscribe(value => this.setErrorMessage(NSContrl));
+      // const LongDegContrl = this.horoscopeForm.get('LongDeg');
+      // LongDegContrl.valueChanges.subscribe(value => this.setErrorMessage(LongDegContrl));
+      // const LongMtContrl = this.horoscopeForm.get('LongMt');
+      // LongMtContrl.valueChanges.subscribe(value => this.setErrorMessage(LongMtContrl));
+      // const EWContrl = this.horoscopeForm.get('EW');
+      // EWContrl.valueChanges.subscribe(value => this.setErrorMessage(EWContrl));
+      // const ZHContrl = this.horoscopeForm.get('ZH');
+      // ZHContrl.valueChanges.subscribe(value => this.setErrorMessage(ZHContrl));
+      // const ZMContrl = this.horoscopeForm.get('ZM');
+      // ZMContrl.valueChanges.subscribe(value => this.setErrorMessage(ZMContrl));
+      // const PNContrl = this.horoscopeForm.get('PN');
+      // PNContrl.valueChanges.subscribe(value => this.setErrorMessage(PNContrl));
       const birthPlaceContrl = this.horoscopeForm.get('birthPlace');
       birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
       if (this.horoScopeService.horoRequest != null) {
@@ -268,12 +268,12 @@ export class HoroscopeComponent {
           Time: this.horoscopeForm.controls['Time'].value,
           TimeFormat: null,
           Place: this.horoScopeService.birthplace,
-          LatDeg: this.horoscopeForm.controls['LatDeg'].value,
-          LatMt: this.horoscopeForm.controls['LatMt'].value,
-          LongDeg: this.horoscopeForm.controls['LongDeg'].value,
-          LongMt: this.horoscopeForm.controls['LongMt'].value,
-          NS: this.horoscopeForm.controls['NS'].value,
-          EW: this.horoscopeForm.controls['EW'].value,
+          LatDeg: null,
+          LatMt: null,
+          LongDeg: null,
+          LongMt: null,
+          NS: null,
+          EW: null,
           ZH: null,
           ZM: null,
           PN: null,
@@ -421,15 +421,15 @@ export class HoroscopeComponent {
         Time: timeinString,
         Place: this.horoScopeService.birthplaceShort,
         TimeFormat: this.timeformatvalue,
-        LatDeg: this.horoscopeForm.controls['LatDeg'].value,
-        LatMt: this.horoscopeForm.controls['LatMt'].value,
-        LongDeg: this.horoscopeForm.controls['LongDeg'].value,
-        LongMt: this.horoscopeForm.controls['LongMt'].value,
-        NS: this.horoscopeForm.controls['NS'].value,
-        EW: this.horoscopeForm.controls['EW'].value,
-        ZH: this.horoscopeForm.controls['ZH'].value,
-        ZM: this.horoscopeForm.controls['ZM'].value,
-        PN: this.horoscopeForm.controls['PN'].value,
+        LatDeg: this.horoRequest.LatDeg,
+        LatMt: this.horoRequest.LatMt,
+        LongDeg: this.horoRequest.LongDeg,
+        LongMt: this.horoRequest.LongMt,
+        NS: this.horoRequest.NS,
+        EW: this.horoRequest.EW,
+        ZH: this.horoRequest.ZH,
+        ZM: this.horoRequest.ZM,
+        PN: this.horoRequest.PN,
         //Gender: this.horoscopeForm.controls['gender'].value,
         Gender: this.genderValue,
         //LangCode: this.horoscopeForm.controls['language'].value,

@@ -7,6 +7,7 @@ import { LoginService } from "../../Services/login/login.service";
 import { ActivatedRoute, Router } from "../../../node_modules/@angular/router";
 import { Observable } from 'rxjs';
 import {tap} from 'rxjs/internal/operators';
+import { StorageService } from '../StorageService/Storage_Service';
 // import { RegisterService } from "../services/app-data.service";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -39,12 +40,12 @@ export class AuthInterceptor implements HttpInterceptor {
             
         // }
 
-
-        if (this.loginService.Token != null) {  
+        if (StorageService.GetItem('Token') != null) {  
+        //if (this.loginService.Token != null) {  
         const clonedreq = req.clone({
                 // headers: req.headers.set("Authorization", "Bearer " + localStorage.getItem('userToken'))
-                headers: req.headers.set("Authorization", "Bearer " + this.loginService.Token)
-
+                headers: req.headers.set("Authorization", "Bearer " + StorageService.GetItem('Token'))
+                //headers: req.headers.set("Authorization", "Bearer " + this.loginService.Token)
             });
              return next.handle(clonedreq)
             //     .do(
@@ -66,7 +67,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     }
                 ));
         }
-        else if(this.loginService.Token== null){
+        else if(StorageService.GetItem('Token')== null){
             
             const clonedreq = req.clone({
                 headers: req.headers.set("Authorization", "Bearer ")

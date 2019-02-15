@@ -39,6 +39,7 @@ import { NumerologyService } from 'src/Services/NumerologyService/NumerologyServ
 import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
 import { NumerologyModule } from './pages/numerology/numerology.module';
 import { OrderHistoryService } from 'src/Services/order';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 
 let config = new AuthServiceConfig([
@@ -91,7 +92,7 @@ export function provideConfig() {
     Service, AuthenticationService, CaptionDbService, OrderService, NumerologyService,
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService,
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
-    LoaderService, SalesService, WalletService, OrderHistoryService,
+    LoaderService, SalesService, WalletService, OrderHistoryService, StorageService,
     { provide: APP_BASE_HREF, useValue: '/' },
     {
       provide: HTTP_INTERCEPTORS,

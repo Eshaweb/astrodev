@@ -22,6 +22,7 @@ import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaSer
 import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingService';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 import { DxPopupModule } from 'devextreme-angular';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -174,6 +175,8 @@ export class LoginFormComponent {
           else if (data.IsActivated == true) {
             this.loginService.PartyMastId = data.PartyMastId;
             this.loginService.Token = data.Token;
+            StorageService.SetItem('Token',data.Token);
+            StorageService.SetItem('PartyMastId',data.PartyMastId);
             if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null) {
               this.router.navigate(["/purchase/paidServices"]);
               //this.router.navigate(["/purchase/paidServices"]);

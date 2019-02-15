@@ -9,6 +9,7 @@ import { LoginService } from 'src/Services/login/login.service';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
 import ArrayStore from 'devextreme/data/array_store';
 import { OrderService } from 'src/Services/OrderService/OrderService';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 
 @Component({
@@ -88,8 +89,10 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         public horoScopeService: HoroScopeService, private orderService:OrderService,
         public uiService: UIService, public formbuilder: FormBuilder) {
         this.DeliveryAddressRequired = this.horoScopeService.IsDeliverable
-        this.OrderId = this.orderService.OrderId;
-        this.ItName=this.orderService.orderResponse.ItName;
+        this.OrderId = this.orderService.orderResponse.OrderId;
+        if(this.orderService.orderResponse.ItName!=undefined){
+            this.ItName=this.orderService.orderResponse.ItName;
+        }
         this.customerEMailAddressForm = this.formbuilder.group({
             EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]]
         });
@@ -128,9 +131,9 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         //         });
         //     });
         // });
-        this.horoScopeService.GetEMailAddress(this.loginService.PartyMastId).subscribe((data:any) => {
+        var PartyMastId = StorageService.GetItem('PartyMastId');
+        this.horoScopeService.GetEMailAddress(PartyMastId).subscribe((data:any) => {
             this.email = data.EMail;
-            var PartyMastId = this.loginService.PartyMastId;
             this.horoScopeService.GetAllAddress(PartyMastId).subscribe((data:any) => {
                 this.existingAddress = data;
                 this.horoScopeService.GetDefaultAddress(PartyMastId).subscribe((data:any) => {
@@ -234,6 +237,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     }
     onPlaceOrder() {
         var orderAddress = {
+            EMail:this.customerEMailAddressForm.controls['EMail'].value,
             AddressId: this.Id,
             OrderId: this.OrderId
         }
