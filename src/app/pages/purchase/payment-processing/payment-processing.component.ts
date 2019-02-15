@@ -42,7 +42,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //this.loading = true;
     this.loadingSwitchService.loading=true;
-    this.orderService.CheckForResult(this.orderService.OrderId).subscribe((data) => {
+    this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
       if (data.AstroReportId.length != 0) {
         this.enableRefresh = false;
         this.enableDownload = true;
@@ -51,6 +51,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
         this.horoScopeService.DownloadResult(this.buttonId, (data) => {
           var newBlob = new Blob([data], { type: "application/pdf" });
           const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
+          //const fileName: string = 'horo.pdf';
           const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
           var url = window.URL.createObjectURL(newBlob);
           a.href = url;
@@ -70,7 +71,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
         this.enableDownload = false;
         this.buttonName = 'Click Refresh';
         this.sub=interval(10000).subscribe((val) =>{
-          this.orderService.CheckForResult(this.orderService.OrderId).subscribe((data) => {
+          this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
             if (data.AstroReportId.length != 0) {
               this.enableRefresh = false;
               this.enableDownload = true;
@@ -134,7 +135,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   }
   clearParameters(){
     this.horoScopeService.birthplace='';
-    this.orderService.OrderId=null;
+    this.orderService.orderResponse=null;
   }
   Download_Click() {
     //this.loading = true;

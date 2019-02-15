@@ -6,6 +6,8 @@ import { OrderService } from 'src/Services/OrderService/OrderService';
 import { LoginService } from 'src/Services/login/login.service';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { OrderHistoryResponse } from 'src/Models/OrderHistoryResponse';
+import { Router } from '@angular/router';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 
 
@@ -18,7 +20,7 @@ export class OrderHistoryComponent implements OnInit {
     orderHistoryResponse: OrderHistoryResponse;
     ngOnInit() {
         var orderHistory = {
-            PartyMastId:this.loginService.PartyMastId,
+            PartyMastId:StorageService.GetItem('PartyMastId'),
             ItActId:"#SH"
         }
         this.orderService.OrderHistory(orderHistory).subscribe((data: any) => {
@@ -27,15 +29,28 @@ export class OrderHistoryComponent implements OnInit {
     }
     onItemClick(event){
         var orderHistory = {
-            PartyMastId:this.loginService.PartyMastId,
+            PartyMastId:StorageService.GetItem('PartyMastId'),
             ItActId:event.itemData.ItActId
         }
         this.orderService.OrderHistory(orderHistory).subscribe((data: any) => {
         this.orderHistoryResponse=data;
         });
     }
-    onstatus_Click(item){
-
+    onstatus_Click(item) {
+        this.orderService.orderResponse={
+            OrderId:item.OrderId,
+            ItMastId:null,
+            ItName:item.ItName
+        };
+        if (item.StatusCode == 'AP') {
+            this.router.navigate(["/purchase/deliveryAddress", { 'OrderId': item.OrderId }]);
+        }
+        else if (item.StatusCode == 'BP'||item.StatusCode == 'PP') {
+            this.router.navigate(["/purchase/payment"]);
+        }
+        else if (item.StatusCode == 'RD') {
+            this.router.navigate(['/purchase/paymentProcessing']);
+        }
     }
     companies: Company[];
     fields: SelectBoxModel[] = [
@@ -69,7 +84,7 @@ export class OrderHistoryComponent implements OnInit {
     fielddata: ArrayStore;
     sortorderdata: ArrayStore;
 
-    constructor(private itemService:ItemService,private loginService:LoginService,service: OrderHistoryService, private orderService:OrderService) {
+    constructor(private router:Router,private itemService:ItemService,private loginService:LoginService,service: OrderHistoryService, private orderService:OrderService) {
         this.companies = service.getCompanies();
         this.fielddata = new ArrayStore({
             data: this.fields,

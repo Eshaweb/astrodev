@@ -38,7 +38,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     paymentmodeSelected: boolean = false;
     ShowMessage: string;
     selectboxdisabled: boolean = false;
-    OrderId: string;
+    OrderId: number;
     paymentId: any;
   errorMessage: any;
   checkClicked: boolean= false;
@@ -57,7 +57,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       public uiService: UIService) {
       this.discountAmount = 0;
       
-      this.OrderId = this.orderService.OrderId;
+      this.OrderId = this.orderService.orderResponse.OrderId;
       this.ItemOrdered = this.horoScopeService.itemOrdered;
       if (this.horoScopeService.IsDeliverable == false) {
         this.payableAmount = this.horoScopeService.itemOrdered.Amount;

@@ -113,7 +113,7 @@ export class HoropaidComponent implements OnInit {
             JSONData: JSON.stringify(this.horoScopeService.horoRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,
-            OrderId: this.orderService.OrderId
+            OrderId: this.orderService.orderResponse.OrderId
         }
       }
       else if(this.astamangalaService.horoRequest!=undefined){
@@ -125,7 +125,7 @@ export class HoropaidComponent implements OnInit {
             JSONData:JSON.stringify(this.astamangalaService.horoRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,
-            OrderId: this.orderService.OrderId
+            OrderId: this.orderService.orderResponse.OrderId
         }
       }
       else if(this.matchMakingService.matchRequest!=undefined){
@@ -137,7 +137,7 @@ export class HoropaidComponent implements OnInit {
             JSONData:JSON.stringify(this.matchMakingService.matchRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,
-            OrderId: this.orderService.OrderId
+            OrderId: this.orderService.orderResponse.OrderId
         }
       }
       else if(this.numerologyService.numerologyRequest!=undefined){
@@ -149,15 +149,15 @@ export class HoropaidComponent implements OnInit {
             JSONData:JSON.stringify(this.numerologyService.numerologyRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,
-            OrderId: this.orderService.OrderId
+            OrderId: this.orderService.orderResponse.OrderId
         }
       }
       this.orderService.CreateOrder(orderModel).subscribe((data) => {
           if(data.Error==undefined){
-          this.orderService.OrderId = data.OrderId;
+          //this.orderService.OrderId = data.OrderId;
           this.orderService.orderResponse = data;
           var FreePDF = {
-              OrderId: this.orderService.OrderId.toString()
+              OrderId: this.orderService.orderResponse.OrderId.toString()
           }
           // this.router.navigate(["/services/deliveryAddress", { 'DeliveryAddressRequired': DeliveryAddressRequired }]);
           this.router.navigate(["/purchase/deliveryAddress", { 'OrderId': FreePDF.OrderId }]);

@@ -88,8 +88,10 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         public horoScopeService: HoroScopeService, private orderService:OrderService,
         public uiService: UIService, public formbuilder: FormBuilder) {
         this.DeliveryAddressRequired = this.horoScopeService.IsDeliverable
-        this.OrderId = this.orderService.OrderId;
-        this.ItName=this.orderService.orderResponse.ItName;
+        this.OrderId = this.orderService.orderResponse.OrderId;
+        if(this.orderService.orderResponse.ItName!=undefined){
+            this.ItName=this.orderService.orderResponse.ItName;
+        }
         this.customerEMailAddressForm = this.formbuilder.group({
             EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]]
         });
