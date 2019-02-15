@@ -2,7 +2,7 @@
 
 <div class="dx-card content-block responsive-paddings">
 
-    
+  
     <div class="login-header">
         <div class="title">Register</div>
     </div>
@@ -43,8 +43,9 @@
         <a (click)="ResendOTP_click()">Resend OTP</a>
     </div>
     <div class="dx-field">
-        <dx-button type="default" text="Submit" (onClick)="ValidateUserByOTP()"[disabled]="!uservalidateForm.valid" width="100%"></dx-button>
+        <dx-button icon="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/icons/weather.png" text="Submit" (onClick)="ValidateUserByOTP()"[disabled]="!uservalidateForm.valid" width="100%"></dx-button>
     </div>
+       
 </form>
 
     <dx-popup

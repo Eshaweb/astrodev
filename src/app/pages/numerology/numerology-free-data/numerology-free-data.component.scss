@@ -6,35 +6,35 @@
     
     .KannadaFont {
         font-family: "kanfontfamily" !important;
-        text-align: center;
+        text-align: justify;
         font-size :20px!important;
         }
         
         .EnglishFont
         {
             font-family: sans-serif !important;
-            text-align: center;
+            text-align: justify;
             font-size :20px!important;
       
         }
         .HindiFont
         {
             font-family:"hinfontfamily" !important;
-            text-align: center;
+            text-align: justify;
             font-size :20px!important;
       
         }
         .MalyalamFont
         {
             font-family:"malfontfamily" !important;
-            text-align: center;
+            text-align: justify;
             font-size :20px!important;
       
         }
         .TamilFont
         {
             font-family:"tamfontfamily" !important;
-            text-align: center;
+            text-align: justify;
             font-size :20px!important;
       
         }
@@ -98,6 +98,14 @@
           .clear {
               clear: both;
           }
+
+
+         .num-title {
+            float: left;
+           
+            font-weight: bold;
+            color: #e91e63;
+         }
           @media (max-width: 479px) {
               .dx-fieldset-column {
                   float: left;
@@ -105,6 +113,10 @@
               }
               .chakra {
                   margin-left: 2px;
+              }
+              .col-sm-4{
+
+                width:85%;
               }
           }
       

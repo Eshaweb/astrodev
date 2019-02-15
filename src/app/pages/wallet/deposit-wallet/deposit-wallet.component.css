@@ -14,3 +14,9 @@ display: flex;
    
     text-align: center !important;
 }
+
+.dx-button-mode-contained.dx-button-default {
+    background-color: #e07333;
+    border-color: transparent;
+    color: #fff;
+  }

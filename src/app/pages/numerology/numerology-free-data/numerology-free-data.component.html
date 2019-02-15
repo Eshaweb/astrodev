@@ -2,8 +2,9 @@
 
     <div class="dx-card content-block responsive-paddings " [ngClass]="getFont(numerologyRequest.LangCode)" *ngFor="let item of numerologyResponse.Predictions "  >
     
-        <div>{{item.Title}}</div>
-        <div>{{item.SubTitle}}</div>
+        <div class="num-title">{{item.Title}}</div>
+        <div class="num-title">: {{item.SubTitle}}</div>
+        <div class="clear"></div>
           <div>{{item.Prediction}}</div>
 
 </div>
