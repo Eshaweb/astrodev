@@ -118,9 +118,9 @@
           float: left;
           width: 48%;
       }
-      .dx-field-label {
-          width: 200px !important;
-      }
+    //   .dx-field-label {
+    //       width: 200px !important;
+    //   }
       
       .chakra {
           margin-left: 300px;
@@ -129,6 +129,11 @@
       .clear {
           clear: both;
       }
+
+
+      .dx-template-wrapper.dx-item-content.dx-tile-content {
+        padding: 24px;
+    }
       @media (max-width: 479px) {
           .dx-fieldset-column {
               float: left;
