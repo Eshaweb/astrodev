@@ -6,12 +6,12 @@
   <h3 >{{service.Name}}</h3>
     <div class="full-horoscope-1" id='employee'>
     <h5 >{{service.Description}}</h5>
-    <h6  *ngIf='!checkBoxValue'>MRP.               {{service.MRP}}</h6>
-    <h6  *ngIf='checkBoxValue'>MRP.               {{service.PrintMRP}}</h6>
-    <h6  *ngIf='!checkBoxValue'>Discount             {{SoftCopyDifference}}</h6>
-    <h6  *ngIf='checkBoxValue'>Discount             {{HardCopyDifference}}</h6>
-    <h6  *ngIf='!checkBoxValue'>Offer Price      {{service.Amount}}</h6>
-    <h6  *ngIf='checkBoxValue'>Offer Price      {{service.PrintAmount}}</h6>
+    <h6  *ngIf='!checkBoxValue'>MRP.               {{service.MRP|currency:'INR'}}</h6>
+    <h6  *ngIf='checkBoxValue'>MRP.               {{service.PrintMRP|currency:'INR'}}</h6>
+    <h6  *ngIf='!checkBoxValue'>Discount             {{SoftCopyDifference|currency:'INR'}}</h6>
+    <h6  *ngIf='checkBoxValue'>Discount             {{HardCopyDifference|currency:'INR'}}</h6>
+    <h6  *ngIf='!checkBoxValue'>Offer Price      {{service.Amount|currency:'INR'}}</h6>
+    <h6  *ngIf='checkBoxValue'>Offer Price      {{service.PrintAmount|currency:'INR'}}</h6>
    
     <div class="dx-fieldset">
        

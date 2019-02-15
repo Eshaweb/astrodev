@@ -3,7 +3,7 @@
 <div *ngIf='!message'class="dx-card content-block responsive-paddings">
 
         <form [formGroup]="depositToWalletForm">
-                <h6>Wallet Balance:  {{walletBalanceAmount}}</h6>
+                <h6>Wallet Balance:  {{walletBalanceAmount|currency:'INR'}}</h6>
 
                 <div class="dx-field">
                 <div class="dx-field-label">Amount</div>
@@ -16,7 +16,7 @@
                 </div>
                 <p style="color:red" id='err_Amount'></p>
                 <p style="color: red" *ngIf="showError">Amount should be in the range Rs.50-Rs.20000</p>
-                <div class="dx-field-label2" *ngIf="bonusAmount!=null">Bonus Amount:  {{bonusAmount}}</div>
+                <div class="dx-field-label2" *ngIf="bonusAmount!=null">Bonus Amount:  {{bonusAmount|currency:'INR'}}</div>
 
                 <br>
                 <div class="dx-field">
@@ -47,7 +47,7 @@
         <h4>{{PurchaseAmount}} Rs</h4>
 <p><b>  Succesfully added to the wallet</b></p>
 
-<p><b>  Updated Wallet Balance is :  {{walletBalanceAmount}}</b></p>
+<p><b>  Updated Wallet Balance is :  {{walletBalanceAmount|currency:'INR'}}</b></p>
 </div>
 </div>
 </div>
