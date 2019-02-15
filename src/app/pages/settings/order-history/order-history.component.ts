@@ -85,8 +85,13 @@ export class OrderHistoryComponent {
             data: this.fields,
             key: "Id"
         });
+        this.fieldvalue = this.fields[0].Id;
+        this.sortordervalue = this.sortorders[0].Id;
         this.fieldvalue_horoscope = this.fields[0].Id;
         this.sortordervalue_horoscope = this.sortorders[0].Id;
+    }
+    onItemClick(event){
+
     }
     fielddataSelection(event) {
         this.fieldvalue = event.value;

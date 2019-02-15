@@ -1,6 +1,6 @@
 export class NumerologyResponse {
 
-    predictions: Predictions[] = [];
+    Predictions: Predictions[] = [];
     Month: string;
 }
 

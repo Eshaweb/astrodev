@@ -5,6 +5,7 @@
             [collapsible]="true"
             [multiple]="false"
             [animationDuration]="300"
+            (onItemClick)="onItemClick($event)"
             [selectedItems]="[companies[0]]">
             <div *dxTemplate="let company of 'title'">
                 <h1>{{company.CompanyName}}</h1>
