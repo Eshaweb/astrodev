@@ -38,18 +38,25 @@
                     <br/>
                     <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse">
                             <div class="dx-field-label">{{item.ItName}}</div>
-                            <div class="dx-field-value">
+                            <div class="dx-field-value" *ngIf="(item.Amount)>0">
                                 {{item.Amount}}
                             </div>
                             <div class="dx-field-label">{{item.OrderId}}</div>
                             <div class="dx-field-value">
-                                {{item.Date}}
+                                {{item.Date|  date:'dd/MM/yyyy'}}
                             </div>
                             <div class="dx-field-label">{{item.Hint}}</div>
                             <div class="dx-field-value" *ngIf="(item.StatusCode)=='AP'">
                                 <div class="dx-field">
 
-                                    <dx-button class="buttonClass1" text="Proceed" type="submit" (onClick)="onstatus_Click(item)"></dx-button>
+                                    <dx-button class="buttonClass1" text="Proceed to Delivery Address" type="submit" (onClick)="onstatus_Click(item)"></dx-button>
+                                    
+                                </div>
+                            </div>
+                            <div class="dx-field-value" *ngIf="(item.StatusCode)=='BP'||(item.StatusCode)=='PP'">
+                                <div class="dx-field">
+
+                                    <dx-button class="buttonClass1" text="Proceed to Payment" type="submit" (onClick)="onstatus_Click(item)"></dx-button>
                                     
                                 </div>
                             </div>
