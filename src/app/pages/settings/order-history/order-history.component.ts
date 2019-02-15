@@ -34,6 +34,9 @@ export class OrderHistoryComponent implements OnInit {
         this.orderHistoryResponse=data;
         });
     }
+    onstatus_Click(item){
+
+    }
     companies: Company[];
     fields: SelectBoxModel[] = [
         { Id: "STANDARD", Text: 'Date' },

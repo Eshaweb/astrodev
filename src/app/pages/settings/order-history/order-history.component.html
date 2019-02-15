@@ -43,8 +43,12 @@
                                 {{item.Date}}
                             </div>
                             <div class="dx-field-label">{{item.Hint}}</div>
-                            <div class="dx-field-value">
-                                {{item.StatusCode}}
+                            <div class="dx-field-value" *ngIf="(item.StatusCode)=='AP'">
+                                <div class="dx-field">
+
+                                    <dx-button class="buttonClass1" text="Proceed" type="submit" (onClick)="onstatus_Click(item)"></dx-button>
+                                    
+                                </div>
                             </div>
                         </div>
                 <!-- <div>
