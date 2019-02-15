@@ -37,7 +37,7 @@
     <div class="add-address">
 
 </div>
-<div class="dx-fieldset">
+<div class="dx-fieldset" *ngIf="DeliveryAddressRequired">
         <div class="dx-field"> 
             <dx-button (onClick)='onAddAddress()'
             id="button"
