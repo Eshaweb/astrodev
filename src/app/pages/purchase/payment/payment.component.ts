@@ -11,6 +11,7 @@ import { WalletService } from 'src/Services/Wallet/WalletService';
 import ArrayStore from 'devextreme/data/array_store';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { OrderService } from 'src/Services/OrderService/OrderService';
+import { ItemService } from 'src/Services/ItemService/ItemService';
 
 declare var Razorpay: any;
 
@@ -51,20 +52,17 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   paymentModedata: ArrayStore;
   paymentModedatavalue: any;
   
-    constructor(private orderService:OrderService,private loadingSwitchService:LoadingSwitchService, public walletService:WalletService, public _location: Location, public route: ActivatedRoute, public router: Router,
+    constructor(private itemService:ItemService,private orderService:OrderService,private loadingSwitchService:LoadingSwitchService, public walletService:WalletService, public _location: Location, public route: ActivatedRoute, public router: Router,
       public formBuilder: FormBuilder, public platform: Platform, public formbuilder: FormBuilder,
       public loginService: LoginService, public horoScopeService: HoroScopeService,
       public uiService: UIService) {
       this.discountAmount = 0;
       
       this.OrderId = this.orderService.orderResponse.OrderId;
-      this.ItemOrdered = this.horoScopeService.itemOrdered;
-      if (this.horoScopeService.IsDeliverable == false) {
-        this.payableAmount = this.horoScopeService.itemOrdered.Amount;
+      if (this.horoScopeService.itemOrdered != undefined) {
+        this.ItemOrdered = this.horoScopeService.itemOrdered;
       }
-      else {
-        this.payableAmount = this.horoScopeService.itemOrdered.PrintAmount;
-      }
+      this.payableAmount=this.itemService.ItemAmount;
       this.horoScopeService.GetPayCodes().subscribe((data) => {
       if(data.Error==undefined){
         this.paymentModes = data;

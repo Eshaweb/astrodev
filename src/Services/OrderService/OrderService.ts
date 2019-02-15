@@ -8,7 +8,7 @@ import { OrderResponse } from 'src/Models/OrderResponse';
 
 @Injectable()
 export class OrderService {
-    //OrderId: string;
+    OrderId: string;
     orderResponse: OrderResponse;
     
     constructor(public httpService: HttpService){

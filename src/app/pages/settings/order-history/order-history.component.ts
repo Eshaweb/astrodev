@@ -37,6 +37,7 @@ export class OrderHistoryComponent implements OnInit {
         });
     }
     onstatus_Click(item) {
+        this.itemService.ItemAmount=item.Amount;
         this.orderService.orderResponse={
             OrderId:item.OrderId,
             ItMastId:null,

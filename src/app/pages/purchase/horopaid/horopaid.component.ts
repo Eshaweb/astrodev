@@ -98,11 +98,13 @@ export class HoropaidComponent implements OnInit {
           this.itemAmount = item.Amount;
           this.requireDeliveryAddress = false;
           this.horoScopeService.IsDeliverable = false;
+          this.itemService.ItemAmount=item.Amount;
       }
       else {
           this.itemAmount = item.PrintAmount;
           this.requireDeliveryAddress = true;
           this.horoScopeService.IsDeliverable = true;
+          this.itemService.ItemAmount=item.PrintAmount;
       }
       if(this.horoScopeService.horoRequest!=undefined){
         var orderModel = {
@@ -113,7 +115,7 @@ export class HoropaidComponent implements OnInit {
             JSONData: JSON.stringify(this.horoScopeService.horoRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,
-            OrderId: this.orderService.orderResponse.OrderId
+            OrderId: this.orderService.OrderId
         }
       }
       else if(this.astamangalaService.horoRequest!=undefined){
@@ -125,7 +127,7 @@ export class HoropaidComponent implements OnInit {
             JSONData:JSON.stringify(this.astamangalaService.horoRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,
-            OrderId: this.orderService.orderResponse.OrderId
+            OrderId: this.orderService.OrderId
         }
       }
       else if(this.matchMakingService.matchRequest!=undefined){
@@ -137,7 +139,7 @@ export class HoropaidComponent implements OnInit {
             JSONData:JSON.stringify(this.matchMakingService.matchRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,
-            OrderId: this.orderService.orderResponse.OrderId
+            OrderId: this.orderService.OrderId
         }
       }
       else if(this.numerologyService.numerologyRequest!=undefined){
@@ -149,12 +151,12 @@ export class HoropaidComponent implements OnInit {
             JSONData:JSON.stringify(this.numerologyService.numerologyRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,
-            OrderId: this.orderService.orderResponse.OrderId
+            OrderId: this.orderService.OrderId
         }
       }
       this.orderService.CreateOrder(orderModel).subscribe((data) => {
           if(data.Error==undefined){
-          //this.orderService.OrderId = data.OrderId;
+          this.orderService.OrderId = data.OrderId;
           this.orderService.orderResponse = data;
           var FreePDF = {
               OrderId: this.orderService.orderResponse.OrderId.toString()
