@@ -8,7 +8,6 @@
             [collapsible]="true"
             [multiple]="false"
             [animationDuration]="300"
-            (onInitialized)="onInitialized($event)"
             (onItemClick)="onItemClick($event)">
             <div *dxTemplate="let company of 'title'">
                 <h1>{{company.CompanyName}}</h1>

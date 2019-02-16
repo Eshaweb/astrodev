@@ -9,6 +9,11 @@ export const navigation = [
     icon: 'fields',
     items: [
       {
+        text: 'Wallet',
+        path: '/wallet/depoToWallet',
+        icon: 'folder'
+      },
+      {
         text: 'Horoscope',
         path: '/horoscope',
       },
@@ -28,12 +33,8 @@ export const navigation = [
         text: 'Nithya Panchanga',
         path: '/panchanga',
       },
-    ]
-  },
-  {
-    text: 'Wallet Form',
-    path: '/wallet/depoToWallet',
-    icon: 'folder'
+    ],
+    
   },
   {
     text: 'Registration',
@@ -49,5 +50,13 @@ export const navigation = [
     text: 'Settings',
     icon: 'folder',
     path:'/settings',
+  },
+  {
+    text: 'About Us',
+    icon: 'folder',
+  },
+  {
+    text: 'Contact Us',
+    icon: 'folder',
   },
 ];

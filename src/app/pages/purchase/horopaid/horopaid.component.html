@@ -10,8 +10,8 @@
     <h6  *ngIf='checkBoxValue'>MRP.               {{service.PrintMRP|currency:'INR'}}</h6>
     <h6  *ngIf='!checkBoxValue'>Discount             {{SoftCopyDifference|currency:'INR'}}</h6>
     <h6  *ngIf='checkBoxValue'>Discount             {{HardCopyDifference|currency:'INR'}}</h6>
-    <h6  *ngIf='!checkBoxValue'>Offer Price      {{service.Amount|currency:'INR'}}</h6>
-    <h6  *ngIf='checkBoxValue'>Offer Price      {{service.PrintAmount|currency:'INR'}}</h6>
+    <h6  *ngIf='!checkBoxValue'>Effective Price      {{service.Amount|currency:'INR'}}</h6>
+    <h6  *ngIf='checkBoxValue'>Effective Price      {{service.PrintAmount|currency:'INR'}}</h6>
    
     <div class="dx-fieldset">
        

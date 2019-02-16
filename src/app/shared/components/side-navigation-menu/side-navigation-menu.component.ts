@@ -1,7 +1,8 @@
 import { Component, NgModule, Output, Input, EventEmitter, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { DxTreeViewModule, DxTreeViewComponent } from 'devextreme-angular/ui/tree-view';
-
 import * as events from 'devextreme/events';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-navigation-menu',
@@ -40,7 +41,7 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef,private router:Router) { }
 
   updateSelection(event) {
     const nodeClass = 'dx-treeview-node';
@@ -58,13 +59,15 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
       if (selectedNode.classList.contains(nodeClass)) {
           selectedNode.classList.add(selectedClass);
       }
-
       selectedNode = selectedNode.parentElement;
     }
   }
 
   onItemClick(event) {
     this.selectedItemChanged.emit(event);
+    // if(StorageService.GetItem('Token')==undefined){
+    //      this.router.navigate(['/login-form']);
+    // }
   }
 
   onMenuInitialized(event) {

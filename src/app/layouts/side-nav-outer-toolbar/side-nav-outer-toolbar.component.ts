@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 
 import { navigation } from '../../app-navigation';
 import { Router, NavigationEnd } from '@angular/router';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 @Component({
   selector: 'app-side-nav-outer-toolbar',
@@ -33,11 +34,14 @@ export class SideNavOuterToolbarComponent implements OnInit {
 
   ngOnInit() {
     this.menuOpened = this.screen.sizes['screen-large'];
-
     this.router.events.subscribe(val => {
-      if (val instanceof NavigationEnd) {
-        this.selectedRoute = val.urlAfterRedirects.split('?')[0];
-      }
+      // if (val instanceof NavigationEnd) {
+      //   this.selectedRoute = val.urlAfterRedirects.split('?')[0];
+      // }
+      if(StorageService.GetItem('Token')==undefined){
+       // this.router.navigate(['/login-form']);
+       //this.selectedRoute = "/login-form";
+   }
     });
 
     this.screen.changed.subscribe(() => this.updateDrawer());
@@ -67,11 +71,22 @@ export class SideNavOuterToolbarComponent implements OnInit {
     const path = event.itemData.path;
     const pointerEvent = event.event;
 
-    if (path && this.menuOpened) {
+    if (this.menuOpened) {
       if (event.node.selected) {
         pointerEvent.preventDefault();
       } else {
-        this.router.navigate([path]);
+        if(path=='/settings'||path=='/wallet/depoToWallet'){
+          var bb=StorageService.GetItem('Token');
+          if(bb!=undefined){
+            this.router.navigate([path]);
+          }
+          else{
+            this.router.navigate(['/login-form']);
+          }
+        }
+        else{
+          this.router.navigate([path]);
+        }
       }
 
       if (this.hideMenuAfterNavigation) {
@@ -80,8 +95,28 @@ export class SideNavOuterToolbarComponent implements OnInit {
         pointerEvent.stopPropagation();
       }
     } else {
-      pointerEvent.preventDefault();
+      if(path){
+        this.router.navigate(['/login-form']);
+      }
+      else{
+        pointerEvent.preventDefault();
+      }
     }
+    // if (path && this.menuOpened) {
+    //   if (event.node.selected) {
+    //     pointerEvent.preventDefault();
+    //   } else {
+    //     this.router.navigate([path]);
+    //   }
+
+    //   if (this.hideMenuAfterNavigation) {
+    //     this.temporaryMenuOpened = false;
+    //     this.menuOpened = false;
+    //     pointerEvent.stopPropagation();
+    //   }
+    // } else {
+    //   pointerEvent.preventDefault();
+    // }
   }
 
   navigationClick() {
