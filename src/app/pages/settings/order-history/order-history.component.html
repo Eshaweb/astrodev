@@ -9,8 +9,7 @@
             [multiple]="false"
             [animationDuration]="300"
             (onInitialized)="onInitialized($event)"
-            (onItemClick)="onItemClick($event)"
-            [selectedItems]="[companies[0]]">
+            (onItemClick)="onItemClick($event)">
             <div *dxTemplate="let company of 'title'">
                 <h1>{{company.CompanyName}}</h1>
             </div>
@@ -39,7 +38,7 @@
                     <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse">
                             <div class="dx-field-label">{{item.ItName}}</div>
                             <div class="dx-field-value" *ngIf="(item.Amount)>0">
-                                {{item.Amount}}
+                                {{item.Amount|currency:'INR'}}
                             </div>
                             <div class="dx-field-label">{{item.OrderId}}</div>
                             <div class="dx-field-value">
