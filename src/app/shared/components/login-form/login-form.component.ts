@@ -37,13 +37,14 @@ export class LoginFormComponent {
   isLoading: boolean = false;
   loading: boolean = false;
   errorMessage: any;
-  requestOTP: boolean = false;
+  //requestOTP: boolean = false;
   needtoEnterOTP: boolean;
   uservalidateForm: FormGroup;
   popUpVisible: boolean;
   OTPValidated: string;
   title: string;
   message: string;
+  OTPRefNo: any;
 
   ngAfterViewInit(): void {
 
@@ -132,11 +133,6 @@ export class LoginFormComponent {
 
   dismiss() {
   }
-  onMobileNo() {
-    var MobileNo = this.loginForm.get('UserName').value;
-    this.loginService.GetOTP(MobileNo);
-    this.isOTPRequested = true;
-  }
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
 
@@ -152,6 +148,26 @@ export class LoginFormComponent {
   goToRegistration() {
     this.registrationService.registered = true;
     this.router.navigate(["/registration-form"]);
+  }
+  onRequestOTP() {
+    this.isOTPRequested = true;
+    if (this.loginForm.get('UserName').value == '') {
+      document.getElementById('err_UserName').innerHTML = 'Please Enter Mobile Number'
+    }
+    else{
+      var GetOTP={
+        MobileNo:this.loginForm.get('UserName').value
+      }
+      this.loginService.GetOTP(GetOTP).subscribe((data:any)=>{
+        this.loginService.oTPRef=data;
+        this.popUpVisible=true;
+        this.title='Note';
+        this.message='You Received an OTP with Reference No.'+this.loginService.oTPRef
+      });
+    }
+  }
+  onRegenerateOTP() {
+
   }
   Login_Click() {
     this.loadingSwitchService.loading = true;
@@ -174,16 +190,23 @@ export class LoginFormComponent {
           }
           else if (data.IsActivated == true) {
             this.loginService.PartyMastId = data.PartyMastId;
-            this.loginService.Token = data.Token;
-            StorageService.SetItem('Token',data.Token);
-            StorageService.SetItem('PartyMastId',data.PartyMastId);
-            if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null) {
-              this.router.navigate(["/purchase/paidServices"]);
-              //this.router.navigate(["/purchase/paidServices"]);
-            }
-            else {
-              this.loadingSwitchService.loading = false;
-              this.router.navigate(["/home"]);
+            if(data.Token!=undefined&&data.PartyMastId!=undefined){
+              this.loginService.Token = data.Token;
+              StorageService.SetItem('Token',data.Token);
+              StorageService.SetItem('PartyMastId',data.PartyMastId);
+              if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null) {
+                this.router.navigate(["/purchase/paidServices"]);
+                //this.router.navigate(["/purchase/paidServices"]);
+              }
+              else {
+                this.loadingSwitchService.loading = false;
+                if (this.loginService.path != undefined) {
+                  this.router.navigate([this.loginService.path]);
+                }
+                else{
+                  this.router.navigate(["/services"]);
+                } 
+              }
             }
           }
         }
@@ -203,7 +226,27 @@ export class LoginFormComponent {
         OTP: this.loginForm.get('Password').value
       }
       this.loadingSwitchService.loading = false;
-      this.loginService.ValidateOTP(oTPModel);
+      this.loginService.ValidateOTP(oTPModel).subscribe((data:any)=>{
+        this.loginService.PartyMastId = data.PartyMastId;
+        if(data.Token!=undefined&&data.PartyMastId!=undefined){
+          this.loginService.Token = data.Token;
+          StorageService.SetItem('Token',data.Token);
+          StorageService.SetItem('PartyMastId',data.PartyMastId);
+          if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null) {
+            this.router.navigate(["/purchase/paidServices"]);
+            //this.router.navigate(["/purchase/paidServices"]);
+          }
+          else {
+            this.loadingSwitchService.loading = false;
+            if (this.loginService.path != undefined) {
+              this.router.navigate([this.loginService.path]);
+            }
+            else{
+              this.router.navigate(["/services"]);
+            } 
+          }
+        }
+      });
     }
   }
   backClicked() {
@@ -212,15 +255,7 @@ export class LoginFormComponent {
   goToLoginByOTP() {
     this.isLoginByOTP = true;
   }
-  onRequestOTP() {
-    this.requestOTP = true;
-    if (this.loginForm.get('UserName').value == null) {
-      document.getElementById('err_UserName').innerHTML = 'Please Enter Registered Mobile Number/EMail ID'
-    }
-  }
-  onRegenerateOTP() {
-
-  }
+  
   ValidateUserByOTP() {
     var UserOTP = {
       UserName: this.loginForm.get('UserName').value,
@@ -247,7 +282,7 @@ export class LoginFormComponent {
     });
   }
   onBackClick() {
-    this.requestOTP = false;
+    this.isOTPRequested = false;
     document.getElementById('err_UserName').innerHTML = '';
   }
 }

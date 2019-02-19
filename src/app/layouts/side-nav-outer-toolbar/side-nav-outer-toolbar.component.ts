@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { navigation } from '../../app-navigation';
 import { Router, NavigationEnd } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoginService } from 'src/Services/login/login.service';
 
 @Component({
   selector: 'app-side-nav-outer-toolbar',
@@ -30,7 +31,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
   minMenuSize = 0;
   shaderEnabled = false;
 
-  constructor(private screen: ScreenService, private router: Router) { }
+  constructor(private loginService:LoginService,private screen: ScreenService, private router: Router) { }
 
   ngOnInit() {
     this.menuOpened = this.screen.sizes['screen-large'];
@@ -70,23 +71,12 @@ export class SideNavOuterToolbarComponent implements OnInit {
   navigationChanged(event) {
     const path = event.itemData.path;
     const pointerEvent = event.event;
-
-    if (this.menuOpened) {
+    this.loginService.path=undefined;
+    if (path && this.menuOpened) {
       if (event.node.selected) {
         pointerEvent.preventDefault();
       } else {
-        if(path=='/settings'||path=='/wallet/depoToWallet'){
-          var bb=StorageService.GetItem('Token');
-          if(bb!=undefined){
-            this.router.navigate([path]);
-          }
-          else{
-            this.router.navigate(['/login-form']);
-          }
-        }
-        else{
-          this.router.navigate([path]);
-        }
+        this.router.navigate([path]);
       }
 
       if (this.hideMenuAfterNavigation) {
@@ -95,28 +85,8 @@ export class SideNavOuterToolbarComponent implements OnInit {
         pointerEvent.stopPropagation();
       }
     } else {
-      if(path){
-        this.router.navigate(['/login-form']);
-      }
-      else{
-        pointerEvent.preventDefault();
-      }
+      pointerEvent.preventDefault();
     }
-    // if (path && this.menuOpened) {
-    //   if (event.node.selected) {
-    //     pointerEvent.preventDefault();
-    //   } else {
-    //     this.router.navigate([path]);
-    //   }
-
-    //   if (this.hideMenuAfterNavigation) {
-    //     this.temporaryMenuOpened = false;
-    //     this.menuOpened = false;
-    //     pointerEvent.stopPropagation();
-    //   }
-    // } else {
-    //   pointerEvent.preventDefault();
-    // }
   }
 
   navigationClick() {

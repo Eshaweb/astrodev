@@ -31,4 +31,7 @@ export class SettingsComponent {
   OnPanchanga_Click() {
     this.router.navigate(["/panchanga"]);
   }
+  OnChangePassword_Click(){
+    this.router.navigate(["/settings/changePassword"]);
+  }
 }

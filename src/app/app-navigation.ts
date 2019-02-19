@@ -1,7 +1,7 @@
 export const navigation = [
   {
     text: 'Home',
-    path: '/home',
+    //path: '/home',
     icon: 'home'
   },
   {
@@ -50,6 +50,11 @@ export const navigation = [
     text: 'Settings',
     icon: 'folder',
     path:'/settings',
+  },
+  {
+    text: 'Profile',
+    icon: 'user',
+    path:'/profile',
   },
   {
     text: 'About Us',

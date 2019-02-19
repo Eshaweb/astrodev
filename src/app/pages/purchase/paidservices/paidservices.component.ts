@@ -6,6 +6,7 @@ import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
 import { FormControlName } from '@angular/forms';
 import { Location } from "@angular/common";
 import { ItemService } from 'src/Services/ItemService/ItemService';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 @Component({
   selector: 'app-paidservices',
   templateUrl: './paidservices.component.html',
@@ -39,7 +40,7 @@ export class PaidservicesComponent implements OnInit {
     public loginService: LoginService, public itemService: ItemService) {
       var itemMast = {
           ItActId: itemService.ItActId,
-          PartyMastId: loginService.PartyMastId,
+          PartyMastId: StorageService.GetItem('PartyMastId'),
       }
     this.itemService.GetPriceListByItActId(itemMast).subscribe((data:any) => {
         if (data.Error == undefined) {

@@ -3,6 +3,7 @@ import { DxTreeViewModule, DxTreeViewComponent } from 'devextreme-angular/ui/tre
 import * as events from 'devextreme/events';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/Services/login/login.service';
 
 @Component({
   selector: 'app-side-navigation-menu',
@@ -41,7 +42,7 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  constructor(private elementRef: ElementRef,private router:Router) { }
+  constructor(private loginService:LoginService,private elementRef: ElementRef,private router:Router) { }
 
   updateSelection(event) {
     const nodeClass = 'dx-treeview-node';
@@ -65,9 +66,21 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
 
   onItemClick(event) {
     this.selectedItemChanged.emit(event);
-    // if(StorageService.GetItem('Token')==undefined){
-    //      this.router.navigate(['/login-form']);
-    // }
+    if(event.itemData.text=='Services'){
+         this.router.navigate(['/services']);
+    }
+    else if (event.itemData.path == '/settings' || event.itemData.path == '/wallet/depoToWallet') {
+      if (StorageService.GetItem('Token') != undefined) {
+        this.router.navigate([event.itemData.path]);
+      }
+      else {
+        this.loginService.path = event.itemData.path;
+        this.router.navigate(['/login-form']);
+      }
+    }
+    else {
+      this.router.navigate([event.itemData.path]);
+    }
   }
 
   onMenuInitialized(event) {

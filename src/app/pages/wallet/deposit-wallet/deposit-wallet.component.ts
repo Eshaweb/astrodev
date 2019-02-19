@@ -10,6 +10,7 @@ import { WalletService } from 'src/Services/Wallet/WalletService';
 import { LoginService } from 'src/Services/login/login.service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import ArrayStore from 'devextreme/data/array_store';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 declare var Razorpay: any;
 
@@ -64,8 +65,8 @@ export class DepositWalletComponent {
         //this.paymentModedatavalue=this.paymentModes[0].Id;
       }
     });
-    if (this.loginService.PartyMastId != undefined) {
-      this.walletService.GetWalletBalance(this.loginService.PartyMastId).subscribe((data) => {
+    if (StorageService.GetItem('PartyMastId')!= undefined) {
+      this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
         if (data.Errors == undefined) {
           //IsValid: true 
           this.walletBalanceAmount = data;

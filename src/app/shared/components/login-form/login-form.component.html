@@ -1,7 +1,7 @@
 
 <div class="dx-card content-block responsive-paddings">
 <dx-validation-group>
-        <dx-button icon="arrowleft" *ngIf='requestOTP' (onClick)='onBackClick()'></dx-button>
+        <dx-button icon="arrowleft" *ngIf='isOTPRequested' (onClick)='onBackClick()'></dx-button>
     <div class="login-header">
         <div class="title">Astrolite</div>
         <div>Sign In to your account</div>
@@ -14,15 +14,15 @@
     </div>
    <div class="twocol">
     <div class="dx-field" style="margin-right: 12px;" >
-        <dx-text-box mode="password" formControlName="Password" *ngIf='!requestOTP' [(value)]="password" placeholder="Password" width="100%">
+        <dx-text-box mode="password" formControlName="Password" *ngIf='!isOTPRequested' [(value)]="password" placeholder="Password" width="100%">
         </dx-text-box>
-        <dx-text-box mode="password" formControlName="Password" *ngIf='requestOTP' [(value)]="password" placeholder="Enter OTP" width="100%">
+        <dx-text-box mode="password" formControlName="Password" *ngIf='isOTPRequested' [(value)]="password" placeholder="Enter OTP" width="100%">
         </dx-text-box>
     </div>
 
     <div class="dx-field">
-        <dx-button type="default" text="Request OTP" *ngIf='!requestOTP' (onClick)="onRequestOTP()" width="100%"></dx-button>
-        <dx-button type="default" text="Re-generate OTP" *ngIf='requestOTP' (onClick)="onRegenerateOTP()" width="100%"></dx-button>
+        <dx-button type="default" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" width="100%"></dx-button>
+        <dx-button type="default" text="Re-generate OTP" *ngIf='isOTPRequested' (onClick)="onRegenerateOTP()" width="100%"></dx-button>
     </div>
 </div>
 <div class="clear"></div>
@@ -36,7 +36,7 @@
     
     <div class="dx-field">
     <div class="dx-fieldset-column"style="width: 175px;">
-        <a routerLink="/recovery">Forgot password ?</a>
+        <a routerLink="/settings/forgotPassword">Forgot password ?</a>
     </div>
     <div class="dx-fieldset-column">
         <!-- <a routerLink="/registration-form">Register</a> -->

@@ -26,7 +26,10 @@ export class HeaderComponent {
 
   userMenuItems = [{
     text: 'Profile',
-    icon: 'user'
+    icon: 'user',
+    onClick: () => {
+      this.router.navigate(['/profile']);
+    }
   }, {
     text: 'Logout',
     icon: 'runner',
