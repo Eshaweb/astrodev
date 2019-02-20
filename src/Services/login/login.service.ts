@@ -9,30 +9,21 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class LoginService {
     oTPRef: any;
-    Name: any;
+    Name: string;
     Token: any;
     PartyMastId: any;
+  path: string;;
 
     constructor(private httpService: HttpService, private errorService: ErrorService, public http: HttpClient) {
 
     }
-    GetOTP(MobileNo) {
-        // var endPoint = "Party/GetOTP";
-        // var data = "MobileNo=" + MobileNo;
-        // this.smartHttpClient.GetById(endPoint, data).subscribe((data: any) => {
-        //     this.oTPRef = data;
-
-        // });
-        var endPoint = "Party/GetOTP?MobileNo=" + MobileNo;
-        this.httpService.Get(endPoint).subscribe((data: any) => {
-            this.oTPRef = data;
-        });
+    GetOTP(GetOTP):Observable<any> {
+        var endPoint = "Party/GetOTP";
+        return this.httpService.Post(endPoint,GetOTP);
     }
-    ValidateOTP(oTPModel) {
+    ValidateOTP(ValidateOTP):Observable<any> {
         var endPoint = "Party/ValidateOTP";
-        this.httpService.Post(endPoint, oTPModel).subscribe((data: any) => {
-            var bbb = data;
-        });
+        return this.httpService.Post(endPoint,ValidateOTP);
     }
     ValidateUserByToken(UserToken, callback: (data) => void) {
         var endPoint = "Party/ValidateUserByToken";

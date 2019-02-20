@@ -118,7 +118,7 @@ export class HoroScopeService {
         var endPoint = "Promo/OccupyPromoCode?Promo=" + Couponcode;
         return this.httpService.Get(endPoint);
     }
-
+    
     GetEMailAddress(PartyMastId):Observable<any> {
         var endPoint = "Party/GetEMailAddress?PartyMastId=" + PartyMastId;
         return this.httpService.Get(endPoint);

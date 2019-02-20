@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginFormComponent } from './shared/components';
 import { AuthGuardService } from './shared/services';
-import { HomeComponent } from './pages/home/home.component';
 import { DxDataGridModule, DxFormModule, DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule, DxPopupModule, DxNumberBoxModule, DxResponsiveBoxModule, DxPopoverModule } from 'devextreme-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -15,16 +14,21 @@ import { EmailVerifyComponent } from './pages/email-verify/email-verify.componen
 import { OfflinepaymentComponent } from './pages/offline-payment/offline-payment.component';
 import { HoroscopeFreeDataComponent } from './pages/horoscope/horoscope-free-data/horoscope-free-data.component';
 import { HoroscopeComponent } from './pages/horoscope/horoscope/horoscope.component';
+import { ServicesComponent } from './pages/services/services.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ForgotComponent } from './pages/forgot/forgot.component';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [
+  { path: 'profile', component: ProfileComponent },
+  { path: 'Forgot', component:ForgotComponent },
   { path: 'Verify', component: EmailVerifyComponent },
   {
     path:'offlinePayment', component:OfflinepaymentComponent
   },
   {
-    path: 'home',
-    component: HomeComponent,
+    path: 'services',
+    component: ServicesComponent,
     canActivate: [ AuthGuardService ]
   },
   {
@@ -75,7 +79,7 @@ const routes: Routes = [
     loadChildren: './pages/purchase/purchase.module#PurchaseModule'
   },
   { path: '**', redirectTo: 'home',canActivate: [ AuthGuardService ]},
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '', redirectTo: 'services', pathMatch: 'full'},
 ];
 
 @NgModule({
@@ -98,8 +102,8 @@ const routes: Routes = [
   ],  
   providers: [AuthGuardService],
   exports: [RouterModule],
-  declarations: [HomeComponent, 
-    EmailVerifyComponent,  
+  declarations: [ServicesComponent, ProfileComponent,
+    EmailVerifyComponent, ForgotComponent, 
     OfflinepaymentComponent,
     HoroscopeComponent,
     HoroscopeFreeDataComponent,

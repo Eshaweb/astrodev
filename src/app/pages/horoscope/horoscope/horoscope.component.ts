@@ -196,7 +196,6 @@ export class HoroscopeComponent {
       //this.genders = ["Male", "Female"];
       this.genders = [{ Id: "M", Text: "Male" },{ Id: "F", Text: "Female" }];
       this.using = ["AstroLite Wallet", "Payment Gateway"];
-      //this.horoRequest=this.horoScopeService.horoRequest;
       this.horoscopeForm = this.formbuilder.group({
         Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],
         fatherName: [''],

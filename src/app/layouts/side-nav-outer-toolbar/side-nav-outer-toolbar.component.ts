@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 
 import { navigation } from '../../app-navigation';
 import { Router, NavigationEnd } from '@angular/router';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoginService } from 'src/Services/login/login.service';
 
 @Component({
   selector: 'app-side-nav-outer-toolbar',
@@ -29,15 +31,18 @@ export class SideNavOuterToolbarComponent implements OnInit {
   minMenuSize = 0;
   shaderEnabled = false;
 
-  constructor(private screen: ScreenService, private router: Router) { }
+  constructor(private loginService:LoginService,private screen: ScreenService, private router: Router) { }
 
   ngOnInit() {
     this.menuOpened = this.screen.sizes['screen-large'];
-
     this.router.events.subscribe(val => {
-      if (val instanceof NavigationEnd) {
-        this.selectedRoute = val.urlAfterRedirects.split('?')[0];
-      }
+      // if (val instanceof NavigationEnd) {
+      //   this.selectedRoute = val.urlAfterRedirects.split('?')[0];
+      // }
+      if(StorageService.GetItem('Token')==undefined){
+       // this.router.navigate(['/login-form']);
+       //this.selectedRoute = "/login-form";
+   }
     });
 
     this.screen.changed.subscribe(() => this.updateDrawer());
@@ -66,7 +71,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
   navigationChanged(event) {
     const path = event.itemData.path;
     const pointerEvent = event.event;
-
+    this.loginService.path=undefined;
     if (path && this.menuOpened) {
       if (event.node.selected) {
         pointerEvent.preventDefault();

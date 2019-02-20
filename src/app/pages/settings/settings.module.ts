@@ -7,6 +7,8 @@ import { DxiRowModule } from 'devextreme-angular/ui/nested/row-dxi';
 import { SettingsRoutingModule } from './settings-routing.module';
 import { SettingsComponent } from './settings/settings.component';
 import { OrderHistoryComponent} from './order-history/order-history.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
     imports: [
@@ -28,7 +30,9 @@ import { OrderHistoryComponent} from './order-history/order-history.component';
     ],
     declarations: [
         SettingsComponent,
-        OrderHistoryComponent
+        OrderHistoryComponent,
+        ChangePasswordComponent,
+        ForgotPasswordComponent,
     ],
 })
 export class SettingsModule{

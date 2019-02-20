@@ -1,0 +1,110 @@
+<h2 class="content-block">Your Profile</h2>
+<div class="dx-card content-block responsive-paddings">
+    <form action="your-action" [formGroup]="profileForm">
+        <div class="dx-fieldset">
+            <div class="dx-fieldset-column">
+                <div class="dx-field">
+                    <div class="dx-field-label">Name</div>
+                    <div class="dx-field-value">
+                        <dx-text-box formControlName="Name" showClearButton="true"></dx-text-box>
+                </div>
+            </div>
+            </div>
+            <div class="dx-fieldset-column">
+                <div class="dx-field">
+                    <div class="dx-field-label">EMail</div>
+                    <div class="dx-field-value">
+                        <dx-text-box formControlName="EMail" [disabled]="EMailDisabled" showClearButton="true"></dx-text-box>
+                </div>
+            </div>
+            </div>
+            <div class="clear"></div>
+            <div class="dx-fieldset-column">
+                <div class="dx-field">
+                    <div class="dx-field-label">Mobile No</div>
+                    <div class="dx-field-value">
+                        <dx-text-box formControlName="MobileNo" [disabled]="MobileNoDisabled" showClearButton="true"></dx-text-box>
+                </div>
+            </div>
+            </div>
+                        <div class="clear"></div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Address 1</div>
+                                <div class="dx-field-value">
+                                    <dx-text-box formControlName="Address1" showClearButton="true"></dx-text-box>
+                                    <p style="color:red" id='err_Address1'></p>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                                <div class="dx-field-label">Address 2</div>
+                                <div class="dx-field-value">
+                                    <dx-text-box formControlName="Address2" showClearButton="true"></dx-text-box>
+                                    <p style="color:red" id='err_Address2'></p>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                                <div class="dx-field-label">City</div>
+                                <div class="dx-field-value">
+                                    <dx-text-box formControlName="Address3" showClearButton="true"></dx-text-box>
+                                    <p style="color:red" id='err_Address3'></p>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                                <div class="dx-field-label">State</div>
+                                <div class="dx-field-value">
+                                    <!-- <dx-text-box formControlName="state" showClearButton="true"></dx-text-box> -->
+                                    <!-- <dx-select-box 
+                                    (onValueChanged)="statedataSelection($event)" 
+                                    [dataSource]="statedata" 
+                                    displayExpr="Text"
+                                    valueExpr="Id" 
+                                    [value]="statevalue">
+                                    </dx-select-box> -->
+                                    <dx-select-box formControlName="state"
+                                    [searchEnabled]="true"
+                                    placeholder="Select State" 
+                                    [items]="statesOfIndia" >
+                                    </dx-select-box>
+                                    <p style="color:red" id='err_state'></p>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                                <div class="dx-field-label">Country</div>
+                                <div class="dx-field-value">
+                                    <dx-text-box [disabled]="true" value="India" showClearButton="true"></dx-text-box>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                                <div class="dx-field-label">Postal Code</div>
+                                <div class="dx-field-value">
+                                    <dx-text-box formControlName="PinCode" showClearButton="true"></dx-text-box>
+                                    <p style="color:red" id='err_PinCode'></p>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="clear"></div>
+            </div>
+    
+        <div class="dx-fieldset">    
+            <dx-button (onClick)='OnSave_click()'
+                id="button"
+                text="Save"
+                type="success"  
+                [useSubmitBehavior]="true">
+            </dx-button>
+        </div>
+    </form>
+</div>
