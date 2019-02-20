@@ -65,5 +65,33 @@
     text-align: left;
     }
    
-
+    .column {
+        float: left;
+        width: 25%;
+        padding: 10px;
+      }
+      
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+    
+      .first-column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+      }
+    
+      .f-label{
+    width:30%;
+    float: left;
+    margin-top: 10px;
+    
+      }
+    .first-textbox{
+            width: 50%;
+            float: right;
+    }
   
