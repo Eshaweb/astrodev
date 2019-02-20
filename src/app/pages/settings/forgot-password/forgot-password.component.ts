@@ -27,6 +27,7 @@ export class ForgotPasswordComponent {
     forgotPassword: boolean;
     passwordEntry: boolean;
     Token: string;
+  UserId: any;
  
   public onDialogOKSelected(event) {
       event.dialog.close();
@@ -107,7 +108,11 @@ export class ForgotPasswordComponent {
               this.popupVisible=true;
               this.forgotPassword=false;
               this.SMSOTPType='You will get an OTP. Please enter the OTP';
-          
+            }
+            else if (data.Type== 'E') {
+              this.loadingSwitchService.loading = false;
+              this.popupVisible=true;
+              this.EMailOTPType='You will get an EMail. Please click on the Link there to verify you';
             }
       });
   }
@@ -130,6 +135,7 @@ export class ForgotPasswordComponent {
       this.partyService.ResetOTPValidate(UserOTP).subscribe((data:any)=>{
         if (data.Errors == undefined) {
             this.Token=data.Token;
+            this.UserId=data.UserId;
             this.OTPValidatedVisible=true;
             this.OTPValidated='OTP Validated Successfully';
             this.SMSOTPType=undefined;
@@ -140,7 +146,7 @@ export class ForgotPasswordComponent {
 
   OnSave_Click(){
     var ResetPassword = {
-        UserName: this.forgotPasswordForm.get('UserName').value,
+        UserId: this.UserId,
         Password:this.passwordEntryForm.get('NewPassword').value,
         Token:this.Token
       }

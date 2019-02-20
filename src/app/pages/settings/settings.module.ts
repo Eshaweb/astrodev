@@ -32,7 +32,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
         SettingsComponent,
         OrderHistoryComponent,
         ChangePasswordComponent,
-        ForgotPasswordComponent
+        ForgotPasswordComponent,
     ],
 })
 export class SettingsModule{

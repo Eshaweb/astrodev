@@ -16,10 +16,12 @@ import { HoroscopeFreeDataComponent } from './pages/horoscope/horoscope-free-dat
 import { HoroscopeComponent } from './pages/horoscope/horoscope/horoscope.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ForgotComponent } from './pages/forgot/forgot.component';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
+  { path: 'Forgot', component:ForgotComponent },
   { path: 'Verify', component: EmailVerifyComponent },
   {
     path:'offlinePayment', component:OfflinepaymentComponent
@@ -101,7 +103,7 @@ const routes: Routes = [
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [ServicesComponent, ProfileComponent,
-    EmailVerifyComponent,  
+    EmailVerifyComponent, ForgotComponent, 
     OfflinepaymentComponent,
     HoroscopeComponent,
     HoroscopeFreeDataComponent,
