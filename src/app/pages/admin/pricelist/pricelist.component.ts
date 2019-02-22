@@ -4,7 +4,7 @@ import { Service } from 'src/app/shared/services/app.service';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 export class BasePrice {
     Id: string;
     Description: string;
@@ -23,7 +23,7 @@ export class PriceListComponent {
     @ViewChild(DxDataGridComponent) public datagridBasePrice: DxDataGridComponent;
     saveButtonName: string;
     allowUpdate: boolean;
-    priceListForm: import("d:/shailesh_bhat/Angular2Projects/DevExtreme/WorkingFolder/Astrodev/node_modules/@angular/forms/src/model").FormGroup;
+    priceListForm: FormGroup;
 
     constructor(public itemService: ItemService, public loadingSwitchService: LoadingSwitchService,
         public formbuilder: FormBuilder) {
