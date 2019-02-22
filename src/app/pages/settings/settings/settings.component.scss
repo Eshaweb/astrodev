@@ -8,10 +8,15 @@
   margin-top: 10px;
 }
 
-img{
-  width: 100px;;
-}
+// img{
+//   width: 100px;;
+// }
 
+.responsive{
+width: 100%;
+height: auto;
+
+}
 @media (max-width: 800px) {
   .dx-fieldset-column {
   float: left;
@@ -25,6 +30,10 @@ img{
     float: left !important;
     margin-left: 2px !important;
     margin-top: 10px;
+
+  }
+  h3{
+font-size: 12px;
 
   }
 }
