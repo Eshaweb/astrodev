@@ -4,7 +4,7 @@ import { Service } from 'src/app/shared/services/app.service';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 export class BasePrice {
     Id: string;
     Description: string;
@@ -23,7 +23,8 @@ export class PriceListComponent {
     @ViewChild(DxDataGridComponent) public datagridBasePrice: DxDataGridComponent;
     saveButtonName: string;
     allowUpdate: boolean;
-    priceListForm: import("d:/shailesh_bhat/Angular2Projects/DevExtreme/WorkingFolder/Astrodev/node_modules/@angular/forms/src/model").FormGroup;
+    priceListForm: FormGroup;
+    priceListUpdated: boolean=false;
 
     constructor(public itemService: ItemService, public loadingSwitchService: LoadingSwitchService,
         public formbuilder: FormBuilder) {
@@ -53,39 +54,6 @@ export class PriceListComponent {
         });
     }
 
-
-    saveRecords() {
-
-        if (this.datagridBasePrice.instance.hasEditData()) {
-            this.loadingSwitchService.loading = true;
-            this.datagridBasePrice.instance.saveEditData();
-            //alert(this.dataSource[0].MRP);
-            var Item={
-                
-            }
-            this.itemService.CreatePriceList(Item).subscribe((data: any) => {
-                if (data.Errors == undefined) {
-                    if (data == true) {
-                        this.itemService.GetBasePrice().subscribe((data: any) => {
-                            if (data.Errors == undefined) {
-                                this.dataSource = data;
-                                this.saveButtonName = 'Edit';
-                                this.allowUpdate = false;
-                                this.loadingSwitchService.loading = false;
-                            }
-                        });
-                    }
-
-                }
-            });
-        }
-        else {
-            this.saveButtonName = 'Save';
-            this.allowUpdate = true;
-        }
-
-    }
-
     OnGenerate_click() {
         var Item = {
             Name:this.priceListForm.controls['Name'].value,
@@ -93,9 +61,29 @@ export class PriceListComponent {
         }
         this.itemService.GeneratePriceList(Item).subscribe((data: any) => {
             if (data.Errors == undefined) {
+                this.priceListUpdated=true;
                 this.dataSource = data;
-
             }
         });
+    }
+
+    saveRecords() {
+            this.loadingSwitchService.loading = true;
+            var Item={
+                Name:this.priceListForm.controls['Name'].value,
+                Formula:this.priceListForm.controls['Formula'].value,
+                GeneratedRateDets:this.dataSource
+            }
+            this.itemService.CreatePriceList(Item).subscribe((data: any) => {
+                if (data.Errors == undefined) {
+                    if (data == true) {
+                        this.priceListUpdated=false;
+                    }
+                    else{
+                        this.priceListUpdated=true;
+                    }
+                    this.loadingSwitchService.loading = false;
+                }
+            });
     }
 }

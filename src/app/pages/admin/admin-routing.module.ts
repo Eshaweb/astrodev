@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AdminComponent } from './admin/admin.component';
 import { BasePriceComponent } from './baseprice/baseprice.component';
 import { PriceListComponent } from './pricelist/pricelist.component';
+import { MasterDetailComponent } from './masterDetail/masterDetail.component';
 
 const routes: Routes = [
     {
@@ -16,6 +17,10 @@ const routes: Routes = [
     {
       path: 'priceList',
       component:PriceListComponent
+    },
+    {
+      path: 'masterDetail',
+      component:MasterDetailComponent
     }
   ];
   

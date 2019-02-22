@@ -21,6 +21,9 @@ export class AdminComponent {
     this.router.navigate(["/admin/basePrice"]);
   }
   OnPriceList_Click(){
-    this.router.navigate(["/admin/priceList"]);
+    this.router.navigate(["/admin/masterDetail"]);
+  }
+  OnAssignPriceList_Click(){
+    this.router.navigate(["/admin/masterDetail"]);
   }
 }

@@ -8,6 +8,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin/admin.component';
 import { BasePriceComponent } from './baseprice/baseprice.component';
 import { PriceListComponent } from './pricelist/pricelist.component';
+import { MasterDetailComponent } from './masterDetail/masterDetail.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import { PriceListComponent } from './pricelist/pricelist.component';
     declarations: [
         AdminComponent,
         BasePriceComponent,
-        PriceListComponent
+        PriceListComponent,
+        MasterDetailComponent
     ],
 })
 export class AdminModule{

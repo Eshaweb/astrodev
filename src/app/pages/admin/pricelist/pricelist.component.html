@@ -34,7 +34,7 @@
 </form>
 </div>
 
-<div id="data-grid-demo" #datagridBasePrice>
+<div id="data-grid-demo" #datagridBasePrice *ngIf="priceListUpdated">
     <dx-data-grid (onToolbarPreparing)="onToolbarPreparing($event)"
         id="gridContainer"
         [dataSource]="dataSource"
@@ -50,7 +50,7 @@
         <dxi-column dataField="PrintAmount" [width]="100"></dxi-column>
     </dx-data-grid>
     <dx-button id="gridDeleteSelected"
-        [text]="Save"
+        text="Save"
         [height]="34"
         [width]="195"
         (onClick)="saveRecords()">

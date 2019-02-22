@@ -36,7 +36,7 @@ export class RegistrationFormComponent {
     OTPValidated: string;
     OTPValidatedVisible: boolean;
     message: string;
-    TandC_checkBoxValue: boolean=true;
+    TandC_checkBoxValue: boolean=false;
   public changeIcon() {
       return this.interval ? "pause" : "play_arrow";
   }
