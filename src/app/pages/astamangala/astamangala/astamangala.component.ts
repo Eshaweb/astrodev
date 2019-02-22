@@ -130,7 +130,6 @@ export class AstamangalaComponent {
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
     //this.serviceInfo =  horoScopeService.getCustomers();
     this.maxDate = new Date(this.maxDate.setFullYear(this.maxDate.getFullYear() - 21));
-    this.countries = service.getCountries();
     //this.genders = ["Male", "Female"];
     this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
     this.using = ["AstroLite Wallet", "Payment Gateway"];
@@ -161,24 +160,24 @@ export class AstamangalaComponent {
       Sprushtanga: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
     });
     
-    const LatDegContrl = this.astamangalaForm.get('LatDeg');
-    LatDegContrl.valueChanges.subscribe(value => this.setErrorMessage(LatDegContrl));
-    const LatMtContrl = this.astamangalaForm.get('LatMt');
-    LatMtContrl.valueChanges.subscribe(value => this.setErrorMessage(LatMtContrl));
-    const NSContrl = this.astamangalaForm.get('NS');
-    NSContrl.valueChanges.subscribe(value => this.setErrorMessage(NSContrl));
-    const LongDegContrl = this.astamangalaForm.get('LongDeg');
-    LongDegContrl.valueChanges.subscribe(value => this.setErrorMessage(LongDegContrl));
-    const LongMtContrl = this.astamangalaForm.get('LongMt');
-    LongMtContrl.valueChanges.subscribe(value => this.setErrorMessage(LongMtContrl));
-    const EWContrl = this.astamangalaForm.get('EW');
-    EWContrl.valueChanges.subscribe(value => this.setErrorMessage(EWContrl));
-    const ZHContrl = this.astamangalaForm.get('ZH');
-    ZHContrl.valueChanges.subscribe(value => this.setErrorMessage(ZHContrl));
-    const ZMContrl = this.astamangalaForm.get('ZM');
-    ZMContrl.valueChanges.subscribe(value => this.setErrorMessage(ZMContrl));
-    const PNContrl = this.astamangalaForm.get('PN');
-    PNContrl.valueChanges.subscribe(value => this.setErrorMessage(PNContrl));
+    // const LatDegContrl = this.astamangalaForm.get('LatDeg');
+    // LatDegContrl.valueChanges.subscribe(value => this.setErrorMessage(LatDegContrl));
+    // const LatMtContrl = this.astamangalaForm.get('LatMt');
+    // LatMtContrl.valueChanges.subscribe(value => this.setErrorMessage(LatMtContrl));
+    // const NSContrl = this.astamangalaForm.get('NS');
+    // NSContrl.valueChanges.subscribe(value => this.setErrorMessage(NSContrl));
+    // const LongDegContrl = this.astamangalaForm.get('LongDeg');
+    // LongDegContrl.valueChanges.subscribe(value => this.setErrorMessage(LongDegContrl));
+    // const LongMtContrl = this.astamangalaForm.get('LongMt');
+    // LongMtContrl.valueChanges.subscribe(value => this.setErrorMessage(LongMtContrl));
+    // const EWContrl = this.astamangalaForm.get('EW');
+    // EWContrl.valueChanges.subscribe(value => this.setErrorMessage(EWContrl));
+    // const ZHContrl = this.astamangalaForm.get('ZH');
+    // ZHContrl.valueChanges.subscribe(value => this.setErrorMessage(ZHContrl));
+    // const ZMContrl = this.astamangalaForm.get('ZM');
+    // ZMContrl.valueChanges.subscribe(value => this.setErrorMessage(ZMContrl));
+    // const PNContrl = this.astamangalaForm.get('PN');
+    // PNContrl.valueChanges.subscribe(value => this.setErrorMessage(PNContrl));
     const SwarnaContrl = this.astamangalaForm.get('Swarna');
     SwarnaContrl.valueChanges.subscribe(value => this.setErrorMessage(SwarnaContrl));
     const TambulaContrl = this.astamangalaForm.get('Tambula');

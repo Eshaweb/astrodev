@@ -58,12 +58,52 @@
     .dx-field-value{
         width: 100% !important;
     }
+    .row{
+        margin-top:30px;
+    }
 
+    .column {
+        float: left !important;
+        width: 22% !important;
+        padding: 10px;
+        }
+     .first-column {
+            float: left !important;
+            width: 50% !important;
+            padding: 10px;
+            }
     }
     
     .dx-field-value, .dx-field-label {
     text-align: left;
     }
-   
+    .column {
+        float: left;
+        width: 10%;
+        padding: 10px;
+        }
+        
+        .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
+        
+        .first-column {
+        float: left;
+        width: 26%;
+        padding: 10px;
+        }
+        
+        .f-label{
+        width:30%;
+        float: left;
+        margin-top: 10px;
+        
+        }
+        .first-textbox{
+        width: 33%;
+        float: right;
+        }
 
   

@@ -81,7 +81,7 @@ export class ProfileComponent {
         if (data.Mobile != null) {
           this.MobileNoDisabled = true;
         }
-        if (data.EMail != null) {
+        if (data.EMail != null||data.EMail != "") {
           this.EMailDisabled = true;
         }
       });

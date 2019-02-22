@@ -16,9 +16,9 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
 import { isString } from 'util';
 
-if(!/localhost/.test(document.location.host)) {
-    enableProdMode();
-}
+// if(!/localhost/.test(document.location.host)) {
+//     enableProdMode();
+// }
 
 
 @Component({
@@ -192,7 +192,6 @@ export class HoroscopeComponent {
       private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
       //this.serviceInfo =  horoScopeService.getCustomers();
       this.maxDate = new Date(this.maxDate.setFullYear(this.maxDate.getFullYear() - 21));
-      this.countries = service.getCountries();
       //this.genders = ["Male", "Female"];
       this.genders = [{ Id: "M", Text: "Male" },{ Id: "F", Text: "Female" }];
       this.using = ["AstroLite Wallet", "Payment Gateway"];
@@ -210,15 +209,15 @@ export class HoroscopeComponent {
         latitude: [''],
         longitude: [''],
         gender: ['M', []],
-        // LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
-        // LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
-        // LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
-        // LongMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
-        // NS: ['', [Validators.required, Validators.pattern("^[NS]?$")]],
-        // EW: ['', [Validators.required, Validators.pattern("^[EW]?$")]],
-        // ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
-        // ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
-        // PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
+        LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
+        LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
+        LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+        LongMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+        NS: ['', [Validators.required, Validators.pattern("^[NS]?$")]],
+        EW: ['', [Validators.required, Validators.pattern("^[EW]?$")]],
+        ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
+        ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
+        PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
       });
       const NameContrl = this.horoscopeForm.get('Name');
       NameContrl.valueChanges.subscribe(value => this.setErrorMessage(NameContrl));
@@ -228,7 +227,7 @@ export class HoroscopeComponent {
       motherNameContrl.valueChanges.subscribe(value => this.setErrorMessage(motherNameContrl));
       const gotraContrl = this.horoscopeForm.get('gotra');
       gotraContrl.valueChanges.subscribe(value => this.setErrorMessage(gotraContrl));
-      const LatDegContrl = this.horoscopeForm.get('LatDeg');
+      // const LatDegContrl = this.horoscopeForm.get('LatDeg');
       // LatDegContrl.valueChanges.subscribe(value => this.setErrorMessage(LatDegContrl));
       // const LatMtContrl = this.horoscopeForm.get('LatMt');
       // LatMtContrl.valueChanges.subscribe(value => this.setErrorMessage(LatMtContrl));

@@ -20,6 +20,7 @@ import { DxPopupModule } from 'devextreme-angular';
       DxValidatorModule,
       DxValidationGroupModule,
       DxPopupModule,
+      DxCheckBoxModule,
       ReactiveFormsModule,
       FormsModule,
     ],
