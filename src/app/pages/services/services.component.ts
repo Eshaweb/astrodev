@@ -13,12 +13,12 @@ export class ServicesComponent {
   defaultVisible: boolean;
   constructor(public loginService:LoginService,public router: Router) {
     this.defaultVisible = false;
-    history.pushState(null, null, location.href);
-    window.onpopstate = function () {       
-      if (window.location.pathname == '/services') { 
-        history.go(1);
-      }
-    };
+    // history.pushState(null, null, location.href);
+    // window.onpopstate = function () {       
+    //   if (window.location.pathname == '/services') { 
+    //     history.go(1);
+    //   }
+    // };
   
   }
   toggleDefault() {

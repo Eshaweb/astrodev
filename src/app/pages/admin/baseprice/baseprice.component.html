@@ -1,0 +1,30 @@
+
+<br/><br/>
+<div id="data-grid-demo" #datagridBasePrice>
+    <dx-data-grid (onToolbarPreparing)="onToolbarPreparing($event)"
+        id="gridContainer"
+        [dataSource]="dataSource"
+        keyExpr="Id"
+        [showBorders]="true">
+        
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-editing 
+            mode="batch"
+            [allowUpdating]="allowUpdate">
+        </dxo-editing>
+        <dxi-column dataField="Description" [allowEditing]="false"></dxi-column>
+        <dxi-column dataField="MRP" [width]="100"></dxi-column>
+        <dxi-column dataField="PrintMRP" [width]="100"></dxi-column>
+    </dx-data-grid>
+    <dx-button id="gridDeleteSelected"
+        [text]="saveButtonName"
+        [height]="34"
+        [width]="195"
+        (onClick)="saveRecords()">
+    </dx-button>
+    <dx-button 
+        text="Cancel"
+        [height]="34"
+        [width]="195">
+    </dx-button>
+</div>    

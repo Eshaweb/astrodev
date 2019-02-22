@@ -14,6 +14,7 @@ import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingS
 import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxValidatorModule, DxValidationGroupModule } from 'devextreme-angular';
 import { RegistrationService } from 'src/Services/registration/registration.service';
 import { RegisterModel } from 'src/Models/Register';
+import { element } from '@angular/core/src/render3';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -35,6 +36,7 @@ export class RegistrationFormComponent {
     OTPValidated: string;
     OTPValidatedVisible: boolean;
     message: string;
+    TandC_checkBoxValue: boolean=true;
   public changeIcon() {
       return this.interval ? "pause" : "play_arrow";
   }
@@ -42,12 +44,6 @@ export class RegistrationFormComponent {
       event.dialog.close();
   }
   
-  public progresChanged(progress) {
-
-  }
-  private randomIntFromInterval(min: number, max: number) {
-      return Math.floor(Math.random() * (max - min + 1) + min);
-  }
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   registrationForm: FormGroup;
   mobilenoMessage: string;
@@ -56,7 +52,7 @@ export class RegistrationFormComponent {
   confirm_PasswordMessage: string;
   refCodeMessage: string;
   isLoading: boolean;
-
+  NewsLetter_checkBoxValue: boolean = true;
 
   constructor(public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, public uiService: UIService, public registrationService: RegistrationService,
       public route: ActivatedRoute, public _location: Location,
@@ -129,7 +125,8 @@ export class RegistrationFormComponent {
       var registerModel = {
           UserName: this.registrationForm.get('UserName').value,
           Password: this.registrationForm.get('Password').value,
-          IntroParty: this.registrationForm.get('IntroParty').value
+          IntroParty: this.registrationForm.get('IntroParty').value,
+          NewsLetter:this.NewsLetter_checkBoxValue
       }
       this.maxvalue = 100;
       this.registrationService.RegisterParty(registerModel, (data) => {
@@ -159,6 +156,23 @@ export class RegistrationFormComponent {
   }
   backClicked() {
       this._location.back();
+  }
+
+  SubscibeNewsLetters_Click(event){
+      if(event.value==true){
+        this.NewsLetter_checkBoxValue=true;
+      }
+    else{
+        this.NewsLetter_checkBoxValue=false;
+    }
+  }
+  TandC_Click(event){
+    if(event.value==true){
+        this.TandC_checkBoxValue=true;
+      }
+    else{
+        this.TandC_checkBoxValue=false;
+    }
   }
   ngAfterViewInit(): void {
   }

@@ -78,6 +78,10 @@ const routes: Routes = [
     path: 'purchase',
     loadChildren: './pages/purchase/purchase.module#PurchaseModule'
   },
+  {
+    path: 'admin',
+    loadChildren: './pages/admin/admin.module#AdminModule'
+  },
   { path: '**', redirectTo: 'home',canActivate: [ AuthGuardService ]},
   { path: '', redirectTo: 'services', pathMatch: 'full'},
 ];
