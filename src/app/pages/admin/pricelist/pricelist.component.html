@@ -1,6 +1,6 @@
 
 <h2 class="content-block">Price List</h2>
-<div class="dx-card content-block responsive-paddings">
+<div class="dx-card content-block responsive-paddings price-grid">
 <form action="your-action" [formGroup]="priceListForm">
     <div class="dx-fieldset">
         <div class="dx-fieldset-column">
@@ -33,7 +33,7 @@
     </div>
 </form>
 </div>
-
+<div class="dx-card content-block responsive-paddings price-grid">
 <div id="data-grid-demo" #datagridBasePrice *ngIf="priceListUpdated">
     <dx-data-grid (onToolbarPreparing)="onToolbarPreparing($event)"
         id="gridContainer"
@@ -57,3 +57,4 @@
     </dx-button>
 </div>    
 
+</div>
