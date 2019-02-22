@@ -192,8 +192,10 @@ export class LoginFormComponent {
             this.loginService.PartyMastId = data.PartyMastId;
             if(data.Token!=undefined&&data.PartyMastId!=undefined){
               this.loginService.Token = data.Token;
+              this.loginService.Name = data.Name;
               StorageService.SetItem('Token',data.Token);
               StorageService.SetItem('PartyMastId',data.PartyMastId);
+              StorageService.SetItem('Name',data.Name);
               if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null) {
                 this.router.navigate(["/purchase/paidServices"]);
                 //this.router.navigate(["/purchase/paidServices"]);

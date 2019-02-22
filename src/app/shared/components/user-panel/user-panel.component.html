@@ -3,7 +3,8 @@
         <div class="image-container">
             <div class="user-image"></div>
         </div>
-        <div class="user-name">Shailesh</div>
+        <!-- <div class="user-name">Shailesh</div> -->
+        <div class="user-name">{{loginService.Name}}</div>
     </div>
     <dx-context-menu
         *ngIf="menuMode === 'context'"

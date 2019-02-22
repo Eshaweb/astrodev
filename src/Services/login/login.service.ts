@@ -12,7 +12,7 @@ export class LoginService {
     Name: string;
     Token: any;
     PartyMastId: any;
-  path: string;;
+  path: string;
 
     constructor(private httpService: HttpService, private errorService: ErrorService, public http: HttpClient) {
 

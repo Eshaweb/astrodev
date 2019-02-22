@@ -69,7 +69,7 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
     if(event.itemData.text=='Services'){
          this.router.navigate(['/services']);
     }
-    else if (event.itemData.path == '/settings' || event.itemData.path == '/wallet/depoToWallet' ||event.itemData.path == '/profile') {
+    else if (event.itemData.path == '/settings' || event.itemData.path == '/wallet/depoToWallet' ||event.itemData.path == '/profile'||event.itemData.path == '/admin') {
       if (StorageService.GetItem('Token') != undefined) {
         this.router.navigate([event.itemData.path]);
       }

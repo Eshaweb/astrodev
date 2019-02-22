@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DxListModule } from 'devextreme-angular/ui/list';
 import { DxContextMenuModule } from 'devextreme-angular/ui/context-menu';
 import { LoginService } from 'src/Services/login/login.service';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 @Component({
   selector: 'app-user-panel',
@@ -17,9 +18,15 @@ export class UserPanelComponent {
 
   @Input()
   menuMode: string;
+  Name: any;
 
-  constructor(public loginService:LoginService) {
-
+  constructor(public loginService: LoginService) {
+    // if (StorageService.GetItem('Name') != undefined) {
+    //   this.Name=StorageService.GetItem('Name');
+    // }
+    // else{
+    //   this.Name='';
+    // }
   }
 }
 
@@ -29,7 +36,7 @@ export class UserPanelComponent {
     DxContextMenuModule,
     CommonModule
   ],
-  declarations: [ UserPanelComponent ],
-  exports: [ UserPanelComponent ]
+  declarations: [UserPanelComponent],
+  exports: [UserPanelComponent]
 })
 export class UserPanelModule { }

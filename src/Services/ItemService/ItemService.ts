@@ -34,4 +34,12 @@ export class ItemService {
         var endPoint = "Admin/UpdateBasePrice";
         return this.httpService.Post(endPoint, item);
     }
+    GeneratePriceList(item):Observable<any>{
+        var endPoint = "Admin/GeneratePriceList";
+        return this.httpService.Post(endPoint, item);
+    }
+    CreatePriceList(item):Observable<any>{
+        var endPoint = "Admin/CreatePriceList";
+        return this.httpService.Post(endPoint, item);
+    }
 }

@@ -1,30 +1,60 @@
 
+
+<h2 class="content-block">Price List</h2>
+<div class="dx-card content-block responsive-paddings">
+    <form action="your-action" [formGroup]="priceListForm">
+        <div class="dx-fieldset">
+                <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                            <div class="dx-field-label">Name</div>
+                            <div class="dx-field-value">
+                                <dx-text-box formControlName="Name" placeholder="Enter Price List Name here..." showClearButton="true"></dx-text-box>
+                                <p style="color:red" id='err_Name'></p>
+                            </div>
+                        </div>
+                </div>
+                <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                            <div class="dx-field-label">Discount</div>
+                            <div class="dx-field-value">
+                                <dx-text-box formControlName="Formula" placeholder="Enter Discount here..." showClearButton="true"></dx-text-box>
+                                <p style="color:red" id='err_Formula'></p>
+                            </div>
+                        </div>
+                </div>
+                <div class="clear"></div>
+        </div>
+        <div class="dx-fieldset">
+                <div class="dx-field">
+                <dx-button [disabled]="!priceListForm.valid" (onClick)='OnGenerate_click()'
+                    id="button"
+                    text="Generate"
+                    type="success"  
+                    [useSubmitBehavior]="true">
+                </dx-button>
+                </div>
+            </div>
+    </form>
+</div>
 <br/><br/>
 <div id="data-grid-demo" #datagridBasePrice>
     <dx-data-grid (onToolbarPreparing)="onToolbarPreparing($event)"
         id="gridContainer"
         [dataSource]="dataSource"
-        keyExpr="Id"
+        keyExpr="ItMastId"
         [showBorders]="true">
         
         <dxo-paging [enabled]="false"></dxo-paging>
         <dxo-editing 
-            mode="batch"
-            [allowUpdating]="allowUpdate">
+            mode="batch">
         </dxo-editing>
-        <dxi-column dataField="Description" [allowEditing]="false"></dxi-column>
-        <dxi-column dataField="MRP" [width]="100"></dxi-column>
-        <dxi-column dataField="PrintMRP" [width]="100"></dxi-column>
+        <dxi-column dataField="ItName" [allowEditing]="false"></dxi-column>
+        <dxi-column dataField="Amount" [width]="100"></dxi-column>
+        <dxi-column dataField="PrintAmount" [width]="100"></dxi-column>
     </dx-data-grid>
-    <dx-button id="gridDeleteSelected"
-        [text]="saveButtonName"
-        [height]="34"
-        [width]="195"
-        (onClick)="saveRecords()">
-    </dx-button>
-    <dx-button 
-        text="Cancel"
-        [height]="34"
-        [width]="195">
-    </dx-button>
-</div>    
+</div>    <dx-button
+text="Save"
+[height]="34"
+[width]="195"
+(onClick)="saveRecords()">
+</dx-button>
