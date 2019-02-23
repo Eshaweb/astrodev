@@ -1,0 +1,22 @@
+<dx-data-grid *ngIf="priceList"
+    id="gridContainer"
+    keyExpr="Id"
+    [dataSource]="priceList"
+    (onRowRemoving)="onRowRemoving($event)"
+    [showBorders]="true">
+    <dxo-editing [allowDeleting]="true">
+    </dxo-editing>
+    <dxo-selection mode="single"></dxo-selection>
+
+    <dxi-column dataField="Category"></dxi-column>
+    <dxi-column dataField="PriceList"></dxi-column>
+    <dxi-column dataField="From" caption="FromDate"></dxi-column>
+    <dxi-column dataField="To"></dxi-column>
+    <dxi-column dataField="Override"></dxi-column>
+</dx-data-grid>
+<dx-button id="gridDeleteSelected"
+        text="Assign New Price List"
+        [height]="34"
+        [width]="195"
+        (onClick)="OnAssignNewPriceList()">
+    </dx-button>

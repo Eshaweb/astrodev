@@ -5,7 +5,7 @@
             <!-- <div class="dx-fieldset-header">Credentials</div> -->
             <div class="dx-fieldset-column">
                 <div class="dx-field">
-                    <div class="dx-field-label">Name</div>
+                    <div class="dx-field-label">Name*</div>
                     <div class="dx-field-value">
                         <dx-text-box formControlName="Name" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
                         <p style="color:red" id='err_Name'></p>
@@ -45,7 +45,7 @@
                     <div class="clear"></div>
                     <div class="dx-fieldset-column">
                         <div class="dx-field">
-                            <div class="dx-field-label">Date of birth</div>
+                            <div class="dx-field-label">Date of birth*</div>
                             <div class="dx-field-value">
                                 <dx-date-box formControlName="Date" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd">
                                 </dx-date-box>
@@ -66,7 +66,7 @@
                         <div class="clear"></div>
                         <div class="dx-fieldset-column">
                         <div class="dx-field">
-                            <div class="dx-field-label">Gender</div>
+                            <div class="dx-field-label">Gender*</div>
                             <div class="dx-field-value">
                                 <!-- <dx-radio-group
                                  [items]="genders" 
@@ -142,7 +142,7 @@
                         </div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
-                                <div class="dx-field-label">Birth Place</div>
+                                <div class="dx-field-label">Birth Place*</div>
                                 <div class="dx-field-value">
                                     <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="horoRequest.Place" (mouseup)="OnMouseUp($event.target.value)"></dx-text-box>
                                     <p style="color:red" id='err_birthPlace'></p>

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
-import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule, DxLoadPanelModule, DxResponsiveBoxModule, DxPopupModule, DxPopoverModule, DxAccordionModule, DxTemplateModule, DxSliderModule, DxTagBoxModule, DxDataGridModule, DxNumberBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule, DxLoadPanelModule, DxResponsiveBoxModule, DxPopupModule, DxPopoverModule, DxAccordionModule, DxTemplateModule, DxSliderModule, DxTagBoxModule, DxDataGridModule, DxNumberBoxModule, DxDateBoxModule } from 'devextreme-angular';
 import { DxiRowModule } from 'devextreme-angular/ui/nested/row-dxi';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin/admin.component';
@@ -10,6 +10,7 @@ import { BasePriceComponent } from './baseprice/baseprice.component';
 import { PriceListComponent } from './pricelist/pricelist.component';
 import { MasterDetailComponent } from './masterDetail/masterDetail.component';
 import { AssignPriceListComponent } from './assignPriceList/assignPriceList.component';
+import { AssignNewPriceListComponent } from './assignNewPriceList/assignNewPriceList.component';
 
 @NgModule({
     imports: [
@@ -21,6 +22,7 @@ import { AssignPriceListComponent } from './assignPriceList/assignPriceList.comp
         DxCheckBoxModule,
         DxButtonModule,
         DxTextBoxModule,
+        DxDateBoxModule,
         DxNumberBoxModule,
         DxSelectBoxModule,DxAccordionModule,
         DxCheckBoxModule,
@@ -36,7 +38,8 @@ import { AssignPriceListComponent } from './assignPriceList/assignPriceList.comp
         BasePriceComponent,
         PriceListComponent,
         MasterDetailComponent,
-        AssignPriceListComponent
+        AssignPriceListComponent,
+        AssignNewPriceListComponent
     ],
 })
 export class AdminModule{

@@ -5,6 +5,7 @@ import { BasePriceComponent } from './baseprice/baseprice.component';
 import { PriceListComponent } from './pricelist/pricelist.component';
 import { MasterDetailComponent } from './masterDetail/masterDetail.component';
 import { AssignPriceListComponent } from './assignPriceList/assignPriceList.component';
+import { AssignNewPriceListComponent } from './assignNewPriceList/assignNewPriceList.component';
 
 const routes: Routes = [
     {
@@ -26,6 +27,10 @@ const routes: Routes = [
     {
       path: 'assignPriceList',
       component:AssignPriceListComponent
+    },
+    {
+      path: 'assignNewPriceList',
+      component:AssignNewPriceListComponent
     }
   ];
   

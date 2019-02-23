@@ -57,4 +57,29 @@ export class ItemService {
         var endPoint = "Admin/DeletePriceList";
         return this.httpService.Post(endPoint, Rate);
     }
+
+    GetCategoryList():Observable<any>{
+        var endPoint = "Admin/GetCategoryList";
+        return this.httpService.Get(endPoint);
+    }
+
+    GetPriceListSource():Observable<any>{
+        var endPoint = "Admin/GetPriceListSource";
+        return this.httpService.Get(endPoint);
+    }
+
+    AssignPriceList(AssignPrice):Observable<any>{
+        var endPoint = "Admin/AssignPriceList";
+        return this.httpService.Post(endPoint, AssignPrice);
+    }
+
+    GetAssignedPriceList():Observable<any>{
+        var endPoint = "Admin/GetAssignedPriceList";
+        return this.httpService.Get(endPoint);
+    }
+
+    DeleteAssignedPriceList(List):Observable<any>{
+        var endPoint = "Admin/DeleteAssignedPriceList";
+        return this.httpService.Post(endPoint, List);
+    }
 }
