@@ -9,6 +9,7 @@ import { AdminComponent } from './admin/admin.component';
 import { BasePriceComponent } from './baseprice/baseprice.component';
 import { PriceListComponent } from './pricelist/pricelist.component';
 import { MasterDetailComponent } from './masterDetail/masterDetail.component';
+import { AssignPriceListComponent } from './assignPriceList/assignPriceList.component';
 
 @NgModule({
     imports: [
@@ -34,7 +35,8 @@ import { MasterDetailComponent } from './masterDetail/masterDetail.component';
         AdminComponent,
         BasePriceComponent,
         PriceListComponent,
-        MasterDetailComponent
+        MasterDetailComponent,
+        AssignPriceListComponent
     ],
 })
 export class AdminModule{

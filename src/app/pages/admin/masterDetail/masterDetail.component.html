@@ -2,9 +2,9 @@
     id="gridContainer"
     keyExpr="Id"
     [height]="740"
-    [dataSource]="employees"
+    [dataSource]="priceList"
     (onSelectionChanged)="selectionChanged($event)"
-    (onContentReady)="contentReady($event)"
+    (onRowRemoving)="onRowRemoving($event)"
     [masterDetail]="{ enabled: false, template: 'detail' }"
     [showBorders]="true">
     <dxo-editing [allowDeleting]="true">
@@ -12,9 +12,9 @@
     <dxo-selection mode="single"></dxo-selection>
 
     <dxi-column dataField="Name"></dxi-column>
-    <dxi-column dataField="Formula"></dxi-column>
+    <dxi-column dataField="Formula" caption="Discount%"></dxi-column>
 
-    <div *dxTemplate="let employee of 'detail'">
+    <div *dxTemplate="let priceListItem of 'detail'">
         <dx-data-grid
         id="gridContainer"
         [dataSource]="dataSource"
@@ -25,9 +25,9 @@
         <dxo-editing 
             mode="batch">
         </dxo-editing>
-        <dxi-column dataField="Description" [allowEditing]="false"></dxi-column>
-        <dxi-column dataField="MRP" [width]="50"></dxi-column>
-        <dxi-column dataField="PrintMRP" [width]="80"></dxi-column>
+        <dxi-column dataField="ItName" caption="Item Name" [allowEditing]="false"></dxi-column>
+        <dxi-column dataField="Amount" [width]="50"></dxi-column>
+        <dxi-column dataField="PrintAmount" [width]="80"></dxi-column>
     </dx-data-grid>
     </div>
 </dx-data-grid>

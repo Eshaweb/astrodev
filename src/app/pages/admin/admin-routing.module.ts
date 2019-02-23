@@ -4,6 +4,7 @@ import { AdminComponent } from './admin/admin.component';
 import { BasePriceComponent } from './baseprice/baseprice.component';
 import { PriceListComponent } from './pricelist/pricelist.component';
 import { MasterDetailComponent } from './masterDetail/masterDetail.component';
+import { AssignPriceListComponent } from './assignPriceList/assignPriceList.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,10 @@ const routes: Routes = [
     {
       path: 'masterDetail',
       component:MasterDetailComponent
+    },
+    {
+      path: 'assignPriceList',
+      component:AssignPriceListComponent
     }
   ];
   
