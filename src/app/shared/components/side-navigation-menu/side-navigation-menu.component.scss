@@ -1,6 +1,12 @@
 @import "../../../../dx-styles.scss";
 @import "../../../../themes/generated/variables.additional.scss";
 
+
+.logo{
+
+  width:250px;
+  height: 100px;
+}
 :host {
   display: flex;
   flex-direction: column;
