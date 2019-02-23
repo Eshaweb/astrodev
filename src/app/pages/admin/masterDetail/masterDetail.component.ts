@@ -26,7 +26,9 @@ export class PriceList {
         this.itemService.GetPriceList().subscribe((data:any)=>{
             if (data.Errors == undefined) {
                 this.priceListUpdated=true;
-                this.priceList = data;         
+                if(data.length!=0){
+                    this.priceList = data;  
+                }  
             }
           });
     }
@@ -42,7 +44,9 @@ export class PriceList {
                 this.itemService.GetPriceList().subscribe((data:any)=>{
                     if (data.Errors == undefined) {
                         this.priceListUpdated=true;
-                        this.priceList = data;         
+                        if(data.length!=0){
+                            this.priceList = data;  
+                        }        
                     }
                   });
               }
@@ -66,7 +70,7 @@ export class PriceList {
       
 
     }
-    click(){
+    OnAddNewPriceList(){
         this.router.navigate(["/admin/priceList"]);
     }
 

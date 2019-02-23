@@ -1,11 +1,11 @@
-<dx-data-grid 
+<dx-data-grid *ngIf="priceList"
     id="gridContainer"
     keyExpr="Id"
     [height]="740"
     [dataSource]="priceList"
     (onSelectionChanged)="selectionChanged($event)"
     (onRowRemoving)="onRowRemoving($event)"
-    [masterDetail]="{ enabled: false, template: 'detail' }"
+    [masterDetail]="{ enabled: true, template: 'detail' }"
     [showBorders]="true">
     <dxo-editing [allowDeleting]="true">
     </dxo-editing>
@@ -33,8 +33,8 @@
 </dx-data-grid>
 
 <dx-button id="gridDeleteSelected"
-        text="Click"
+        text="Add New Price List"
         [height]="34"
         [width]="195"
-        (onClick)="click()">
+        (onClick)="OnAddNewPriceList()">
     </dx-button>
