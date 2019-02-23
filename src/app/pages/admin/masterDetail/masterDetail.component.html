@@ -7,7 +7,7 @@
     [dataSource]="priceList"
     (onSelectionChanged)="selectionChanged($event)"
     (onRowRemoving)="onRowRemoving($event)"
-    [masterDetail]="{ enabled: false, template: 'detail' }"
+    [masterDetail]="{ enabled: true, template: 'detail' }"
     [showBorders]="true">
     <dxo-editing [allowDeleting]="true">
     </dxo-editing>
@@ -33,12 +33,12 @@
     </dx-data-grid>
     </div>
 </dx-data-grid>
-
+<div class="dx-fieldset">
 <dx-button id="gridDeleteSelected"
         text="Click"
         [height]="34"
         [width]="195"
         (onClick)="click()">
     </dx-button>
-
+</div>
     </div>
