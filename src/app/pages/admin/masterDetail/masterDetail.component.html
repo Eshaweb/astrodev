@@ -1,7 +1,9 @@
+<h2 class="content-block">Price List</h2>
+<div class="dx-card content-block responsive-paddings price-grid">
 <dx-data-grid 
     id="gridContainer"
     keyExpr="Id"
-    [height]="740"
+    
     [dataSource]="priceList"
     (onSelectionChanged)="selectionChanged($event)"
     (onRowRemoving)="onRowRemoving($event)"
@@ -38,3 +40,5 @@
         [width]="195"
         (onClick)="click()">
     </dx-button>
+
+    </div>
