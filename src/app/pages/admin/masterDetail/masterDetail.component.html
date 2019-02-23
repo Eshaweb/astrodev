@@ -1,7 +1,8 @@
+<h2 class="content-block">Price List</h2>
+<div class="dx-card content-block responsive-paddings price-grid">
 <dx-data-grid *ngIf="priceList"
     id="gridContainer"
     keyExpr="Id"
-    
     [dataSource]="priceList"
     (onSelectionChanged)="selectionChanged($event)"
     (onRowRemoving)="onRowRemoving($event)"
@@ -39,3 +40,4 @@
         (onClick)="OnAddNewPriceList()">
     </dx-button>
     </div>
+</div>

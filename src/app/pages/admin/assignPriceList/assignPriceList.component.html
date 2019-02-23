@@ -1,3 +1,5 @@
+<h2 class="content-block">Price List</h2>
+<div class="dx-card content-block responsive-paddings price-grid">
 <dx-data-grid *ngIf="priceList"
     id="gridContainer"
     keyExpr="Id"
@@ -10,13 +12,16 @@
 
     <dxi-column dataField="Category"></dxi-column>
     <dxi-column dataField="PriceList"></dxi-column>
-    <dxi-column dataField="From" caption="FromDate"></dxi-column>
-    <dxi-column dataField="To"></dxi-column>
+    <dxi-column dataField="From" caption="FromDate" dataType="date" format="dd/MM/yyyy"></dxi-column>
+    <dxi-column dataField="To" dataType="date" dataType="date" format="dd/MM/yyyy"></dxi-column>
     <dxi-column dataField="Override"></dxi-column>
 </dx-data-grid>
-<dx-button id="gridDeleteSelected"
+<div class="dx-fieldset">
+    <dx-button id="gridDeleteSelected"
         text="Assign New Price List"
         [height]="34"
         [width]="195"
         (onClick)="OnAssignNewPriceList()">
     </dx-button>
+</div>
+</div>
