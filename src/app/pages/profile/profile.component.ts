@@ -41,6 +41,7 @@ export class ProfileComponent {
   Id: any;
   MobileNoDisabled: boolean;
   EMailDisabled: boolean;
+  ReferralCode: any;
   constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public panchangaService: PanchangaService, public uiService: UIService,
     public formbuilder: FormBuilder) {
@@ -55,6 +56,7 @@ export class ProfileComponent {
       Address2: ['', [Validators.required, Validators.minLength(4)]],
       Address3: ['', [Validators.required, Validators.minLength(4)]],
       PinCode: ['', [Validators.required, Validators.minLength(6)]],
+      //ReferralCode:[''],
       state: ['Andhra Pradesh', [Validators.required, Validators.minLength(4)]],
     });
     this.statesOfIndia = ['Andhra Pradesh', 'Arunachal Pradesh',
@@ -68,7 +70,7 @@ export class ProfileComponent {
     birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
     if (StorageService.GetItem('PartyMastId') != undefined) {
       this.partyService.GetProfile(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
-        var hh = data;
+        this.ReferralCode = data.ReferralCode;
         this.Id = data.Id;
         this.profileForm.controls['Name'].setValue(data.Name);
         this.profileForm.controls['MobileNo'].setValue(data.Mobile);
@@ -94,6 +96,7 @@ export class ProfileComponent {
     }
     else {
       this.birthDateinDateFormat = this.profileForm.controls['Date'].value;
+      this.profileForm.controls['ReferralCode'].setValue(this.ReferralCode);
       this.panchangaRequest = {
         Date: this.profileForm.controls['Date'].value,
         Time: null,

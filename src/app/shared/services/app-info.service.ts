@@ -5,6 +5,6 @@ export class AppInfoService {
   constructor() {}
 
   public get title() {
-    return 'Astrolite';
+    return 'assets/images/logo.png';
   }
 }
