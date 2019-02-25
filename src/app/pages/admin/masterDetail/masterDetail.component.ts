@@ -23,9 +23,11 @@ export class PriceList {
     priceListUpdated: boolean;
 
     constructor(public loadingSwitchService:LoadingSwitchService, public router: Router, private service: Service, private itemService:ItemService) {
+        this.loadingSwitchService.loading = true;
         this.itemService.GetPriceList().subscribe((data:any)=>{
             if (data.Errors == undefined) {
                 this.priceListUpdated=true;
+                this.loadingSwitchService.loading = false;
                 if(data.length!=0){
                     this.priceList = data;  
                 }  
@@ -55,8 +57,12 @@ export class PriceList {
     }
     selectionChanged(e) {
         this.loadingSwitchService.loading = true;
-        e.component.collapseAll(-1);
+        e.component.collapseAll(-1); 
+        //e.component.expandRow([e.key]);
         e.component.expandRow(e.currentSelectedRowKeys[0]);
+        // var Rate={
+        //     PriceListId:e.key
+        // }
         var Rate={
             PriceListId:e.selectedRowsData[0].Id
         }
@@ -67,8 +73,10 @@ export class PriceList {
               this.dataSource=data;         
           }
         });
-      
+    }
 
+    onRowCollapsed(event){
+        event.component.collapseAll(-1);
     }
     OnAddNewPriceList(){
         this.router.navigate(["/admin/priceList"]);

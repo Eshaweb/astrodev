@@ -36,20 +36,21 @@
                             <div class="dx-field">
                                 <div class="dx-field-label">From Date</div>
                                 <div class="dx-field-value">
-                                    <dx-date-box formControlName="FromDate" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="fromDateinDateFormat">
+                                    <dx-date-box formControlName="FromDate" type="date" displayFormat="dd/MM/yyyy">
                                     </dx-date-box>
-                                    </div>
-                            </div>
-                            </div>
-                            <div class="dx-fieldset-column">
-                                <div class="dx-field">
-                                    <div class="dx-field-label">To Date</div>
-                                    <div class="dx-field-value">
-                                        <dx-date-box formControlName="ToDate" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="toDateinDateFormat">
-                                        </dx-date-box>
-                                        </div>
                                 </div>
+                            </div>
+                    </div>
+                    <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                            <div class="dx-field-label">To Date</div>
+                                <div class="dx-field-value">
+                                    <dx-date-box formControlName="To" type="date" displayFormat="dd/MM/yyyy">
+                                    </dx-date-box>
+                                    <p style="color:red" id='err_To'></p>
                                 </div>
+                        </div>
+                    </div>
                         <div class="clear"></div>
             </div>
     
@@ -63,3 +64,19 @@
         </div>
     </form>
 </div>
+<dx-popup
+    class="popup"
+    [width]="250"
+    [height]="150"
+    [showTitle]="true"
+    title="Success"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="popupVisible">
+    <div *dxTemplate="let data of 'content'">
+        <p>
+            <span>Item Added Successfully</span>
+        </p>
+        <dx-button text='OK' (onClick)="ClosePopUp()"></dx-button>
+    </div>
+</dx-popup>

@@ -17,9 +17,11 @@ import { HoroscopeComponent } from './pages/horoscope/horoscope/horoscope.compon
 import { ServicesComponent } from './pages/services/services.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
+import { HomeComponent } from './pages/home/home.component';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'Forgot', component:ForgotComponent },
   { path: 'Verify', component: EmailVerifyComponent },
@@ -88,9 +90,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,
-    {
-      preloadingStrategy: PreloadAllModules
-    }), 
+    // {
+    //   preloadingStrategy: PreloadAllModules
+    // }
+    ), 
     NgxLoadingModule.forRoot({}),
     //EventsModule.forRoot(),
     ToastrModule.forRoot(),
@@ -111,7 +114,7 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: [ServicesComponent, ProfileComponent,
     EmailVerifyComponent, ForgotComponent, 
-    OfflinepaymentComponent,
+    OfflinepaymentComponent, HomeComponent,
     HoroscopeComponent,
     HoroscopeFreeDataComponent,
   ]

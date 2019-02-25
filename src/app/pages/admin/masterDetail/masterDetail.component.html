@@ -1,13 +1,23 @@
 <h2 class="content-block">Report</h2>
 <div class="dx-card content-block responsive-paddings">
 
-<dx-data-grid *ngIf="priceList"
+<!-- <dx-data-grid *ngIf="priceList"
+    id="gridContainer"
+    keyExpr="Id"
+    [dataSource]="priceList"
+    (onRowExpanded)="selectionChanged($event)"
+    (onRowCollapsed)="onRowCollapsed($event)"
+    (onRowRemoving)="onRowRemoving($event)"
+    [masterDetail]="{ enabled: true, template: 'detail' }"
+    [showBorders]="true"> -->
+    <dx-data-grid *ngIf="priceList"
     id="gridContainer"
     keyExpr="Id"
     [dataSource]="priceList"
     (onSelectionChanged)="selectionChanged($event)"
+    (onRowCollapsed)="onRowCollapsed($event)"
     (onRowRemoving)="onRowRemoving($event)"
-    [masterDetail]="{ enabled: true, template: 'detail' }"
+    [masterDetail]="{ enabled: false, template: 'detail' }"
     [showBorders]="true">
     <dxo-editing [allowDeleting]="true">
     </dxo-editing>
@@ -28,8 +38,8 @@
             mode="batch">
         </dxo-editing>
         <dxi-column dataField="ItName" caption="Item Name" [allowEditing]="false"></dxi-column>
-        <dxi-column dataField="Amount" [width]="50"></dxi-column>
-        <dxi-column dataField="PrintAmount" [width]="80"></dxi-column>
+        <dxi-column dataField="Amount" [width]="80"></dxi-column>
+        <dxi-column dataField="PrintAmount" [width]="100"></dxi-column>
     </dx-data-grid>
     </div>
 </dx-data-grid>

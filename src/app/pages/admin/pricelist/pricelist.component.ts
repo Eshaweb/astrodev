@@ -25,6 +25,7 @@ export class PriceListComponent {
     allowUpdate: boolean;
     priceListForm: FormGroup;
     priceListUpdated: boolean=false;
+    popupVisible: boolean;
 
     constructor(public itemService: ItemService, public loadingSwitchService: LoadingSwitchService,
         public formbuilder: FormBuilder) {
@@ -55,6 +56,7 @@ export class PriceListComponent {
     }
 
     OnGenerate_click() {
+        this.loadingSwitchService.loading = true;
         var Item = {
             Name:this.priceListForm.controls['Name'].value,
             Formula:this.priceListForm.controls['Formula'].value
@@ -64,6 +66,7 @@ export class PriceListComponent {
                 this.priceListUpdated=true;
                 this.dataSource = data;
             }
+            this.loadingSwitchService.loading = false;
         });
     }
 
@@ -78,6 +81,7 @@ export class PriceListComponent {
                 if (data.Errors == undefined) {
                     if (data == true) {
                         this.priceListUpdated=false;
+                        this.popupVisible = true;
                     }
                     else{
                         this.priceListUpdated=true;
@@ -86,4 +90,8 @@ export class PriceListComponent {
                 }
             });
     }
+
+    ClosePopUp(){
+        this.popupVisible = false;
+      }
 }

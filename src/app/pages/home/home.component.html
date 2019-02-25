@@ -1,0 +1,42 @@
+<h2 class="content-block">Welcome to Astrolite Home Page</h2>
+<div class="content-block">
+    <div class="dx-card responsive-paddings" (click)='OnAstamangala_Click()'>
+<h3>Astamangala</h3>
+<img src="assets/images/Astamangala.png">
+    </div>
+    <div class="dx-card responsive-paddings" id="link1" (mouseenter)="toggleDefault()" (mouseleave)="toggleDefault()" (click)='OnHoroScope_Click()'>
+            <h3>Horoscope</h3>
+  <img src="assets/images/Horoscope.png">
+        </div>
+        <div class="dx-card responsive-paddings" (click)='OnMatchMaking_Click()'>
+                <h3>  Mela Meli</h3>
+  <img src="assets/images/MelaMeli.png">
+    </div>
+<div class="dx-card responsive-paddings">
+        <h3>Muhurtha</h3>
+<img src="assets/images/Muhurtha.png">
+  </div>
+  <div class="dx-card responsive-paddings" (click)='OnPanchanga_Click()'>
+        <h3>Panchanga</h3>
+  <img src="assets/images/panchanga.png">
+  </div>
+<div class="dx-card responsive-paddings" (click)='OnNumerology_Click()'>
+        <h3>Sankyashasthra</h3>
+<img src="assets/images/Sankyashasthra.png">
+  </div>
+  <div class="dx-card responsive-paddings" (click)='OnWalletDeposit_Click()'>
+    <h3>Wallet</h3>
+<img src="assets/images/Sankyashasthra.png">
+</div>
+</div>
+<dx-popover
+                target="#link1" 
+                position="top"
+                [width]="300"
+                [(visible)]="defaultVisible">
+                <div *dxTemplate="let data = model of 'content'">
+                    Make final decision on whether we are going to 
+                    increase our Google AdWord spend based 
+                    on our 2013 marketing plan.
+                </div>
+            </dx-popover>

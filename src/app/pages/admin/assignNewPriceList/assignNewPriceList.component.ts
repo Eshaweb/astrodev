@@ -32,10 +32,11 @@ export class ComboBoxModel{
   categoryList: ComboBoxModel[];
   priceListData: ArrayStore;
   priceList: ComboBoxModel[];
+  popupVisible: boolean;
     constructor(public loadingSwitchService: LoadingSwitchService, public itemService:ItemService,public formBuilder: FormBuilder){
       this.assignNewPriceListForm=this.formBuilder.group({
         FromDate: new Date(),
-        ToDate: new Date()
+        To: new Date()
       });
       this.loadingSwitchService.loading = true;
       this.itemService.GetCategoryList().subscribe((data:any)=>{
@@ -75,14 +76,19 @@ export class ComboBoxModel{
       CategoryId:this.categoryListvalue,
       PriceListId:this.priceListvalue,
       From:this.assignNewPriceListForm.controls['FromDate'].value,
-      To:this.assignNewPriceListForm.controls['ToDate'].value
+      To:this.assignNewPriceListForm.controls['To'].value
     }
     this.itemService.AssignPriceList(AssignPrice).subscribe((data: any) => {
       if (data.Errors == undefined) {
-        var gg = data;
+        if(data==true){
+          this.popupVisible = true;
+        }
         this.loadingSwitchService.loading = false;
       }
     });
 
+  }
+  ClosePopUp(){
+    this.popupVisible = false;
   }
 }
