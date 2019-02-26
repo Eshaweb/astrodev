@@ -10,6 +10,7 @@ import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaSer
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingService';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 
 @Component({
@@ -111,7 +112,7 @@ export class HoropaidComponent implements OnInit {
             IsDeliverable: this.checkBoxValue,
             FreeAmount: 0,
             ItemAmount: this.itemAmount,
-            PartyMastId: this.loginService.PartyMastId,
+            PartyMastId: StorageService.GetItem('PartyMastId'),
             JSONData: JSON.stringify(this.horoScopeService.horoRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,
@@ -123,7 +124,7 @@ export class HoropaidComponent implements OnInit {
             IsDeliverable: this.checkBoxValue,
             FreeAmount: 0,
             ItemAmount: this.itemAmount,
-            PartyMastId: this.loginService.PartyMastId,
+            PartyMastId: StorageService.GetItem('PartyMastId'),
             JSONData:JSON.stringify(this.astamangalaService.horoRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,
@@ -135,7 +136,7 @@ export class HoropaidComponent implements OnInit {
             IsDeliverable: this.checkBoxValue,
             FreeAmount: 0,
             ItemAmount: this.itemAmount,
-            PartyMastId: this.loginService.PartyMastId,
+            PartyMastId: StorageService.GetItem('PartyMastId'),
             JSONData:JSON.stringify(this.matchMakingService.matchRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,
@@ -147,7 +148,7 @@ export class HoropaidComponent implements OnInit {
             IsDeliverable: this.checkBoxValue,
             FreeAmount: 0,
             ItemAmount: this.itemAmount,
-            PartyMastId: this.loginService.PartyMastId,
+            PartyMastId: StorageService.GetItem('PartyMastId'),
             JSONData:JSON.stringify(this.numerologyService.numerologyRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,

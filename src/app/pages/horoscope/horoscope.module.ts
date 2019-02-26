@@ -18,8 +18,8 @@ import { HoroscopeFreeDataComponent } from './horoscope-free-data/horoscope-free
     ],
 
     declarations: [
-        //HoroscopeComponent, 
-        //HoroscopeFreeDataComponent
+        HoroscopeComponent, 
+        HoroscopeFreeDataComponent
     ]
 })
 export class HoroscopeModule {

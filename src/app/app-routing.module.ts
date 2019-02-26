@@ -45,13 +45,13 @@ const routes: Routes = [
   },
   {
     path: 'horoscope',
-    component: HoroscopeComponent,
-    //loadChildren: './pages/horoscope/horoscope.module#HoroscopeModule'
+    //component: HoroscopeComponent,
+    loadChildren: './pages/horoscope/horoscope.module#HoroscopeModule'
   },
-  {
-    path: 'horoscope/getHoroscopeFreeData',
-    component: HoroscopeFreeDataComponent,
-  },
+  // {
+  //   path: 'horoscope/getHoroscopeFreeData',
+  //   component: HoroscopeFreeDataComponent,
+  // },
   {
     path: 'astamangala',
     loadChildren: './pages/astamangala/astamangala.module#AstamangalaModule'
@@ -85,7 +85,7 @@ const routes: Routes = [
     loadChildren: './pages/admin/admin.module#AdminModule'
   },
   { path: '**', redirectTo: 'home',canActivate: [ AuthGuardService ]},
-  { path: '', redirectTo: 'services', pathMatch: 'full'},
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 
 @NgModule({
@@ -115,8 +115,8 @@ const routes: Routes = [
   declarations: [ServicesComponent, ProfileComponent,
     EmailVerifyComponent, ForgotComponent, 
     OfflinepaymentComponent, HomeComponent,
-    HoroscopeComponent,
-    HoroscopeFreeDataComponent,
+    // HoroscopeComponent,
+    // HoroscopeFreeDataComponent,
   ]
 })
 export class AppRoutingModule { }

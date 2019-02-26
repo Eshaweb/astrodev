@@ -19,7 +19,12 @@ export class HomeComponent {
     //     history.go(1);
     //   }
     // };
-  
+  //   window.onpopstate= (response) => {
+  //     if (window.location.pathname == '/home') {
+  //       history.pushState(null, null, "/home");
+        
+  //     }
+  // }
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;

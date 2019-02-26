@@ -1,19 +1,13 @@
 import { Component, OnInit, ViewChildren } from '@angular/core';
-import { ServiceInfo, HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
-import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Platform } from '@angular/cdk/platform';
 import { LoginService } from 'src/Services/login/login.service';
-import { Location } from "@angular/common";
-import { RegistrationService } from 'src/Services/registration/registration.service';
-import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
-import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 import { Caption } from 'src/Models/Caption';
 import { NumerologyResponse, SerialseMonth } from 'src/Models/Numerology/numerologyResponse';
 import { NumerologyRequest } from 'src/Models/Numerology/numerologyRequest';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 @Component({
   selector: 'app-numerology-free-data',
@@ -88,7 +82,7 @@ export class NumerologyFreeDataComponent implements OnInit {
     }
     onClick() {
       this.itemService.ItActId='#NM';
-      if (this.loginService.Token == null) {
+      if (StorageService.GetItem('Token')==undefined) {
           this.router.navigate(["/login-form"]);
       }
       else {

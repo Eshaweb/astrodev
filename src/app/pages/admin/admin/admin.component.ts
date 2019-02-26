@@ -26,4 +26,10 @@ export class AdminComponent {
   OnAssignPriceList_Click(){
     this.router.navigate(["/admin/assignPriceList"]);
   }
+  OnWelcomeOffer_Click(){
+    this.router.navigate(["/admin/welcomeOffer"]);
+  }
+  OnPromoCodes_Click(){
+    this.router.navigate(["/admin/promoCode"]);
+  }
 }

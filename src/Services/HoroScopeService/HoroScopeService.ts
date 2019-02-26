@@ -113,11 +113,6 @@ export class HoroScopeService {
         var endPoint = "Sales/GetPayCodes";
         return this.httpService.Get(endPoint);
     }
-
-    OccupyPromoCode(Couponcode):Observable<any> {
-        var endPoint = "Promo/OccupyPromoCode?Promo=" + Couponcode;
-        return this.httpService.Get(endPoint);
-    }
     
     GetEMailAddress(PartyMastId):Observable<any> {
         var endPoint = "Party/GetEMailAddress?PartyMastId=" + PartyMastId;

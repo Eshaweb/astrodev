@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/Services/login/login.service';
 import { MatchRequest } from 'src/Models/MatchMaking/MatchRequest';
 import { Caption } from 'src/Models/Caption';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 
 @Component({
@@ -49,7 +50,7 @@ import { Caption } from 'src/Models/Caption';
 
    onClick() {
     this.itemService.ItActId='#SM';
-      if (this.loginService.Token == null) {
+      if (StorageService.GetItem('Token')==undefined) {
           this.router.navigate(["/login-form"]);
       }
       else {

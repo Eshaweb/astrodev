@@ -53,17 +53,5 @@ import { SerialisedPanchangaResponse } from 'src/Models/Panchanga/PanchangaRespo
         return "TamilFont";
     }
   }
-
-  onClick() {
-    this.itemService.ItActId='#SA';
-    if (this.loginService.Token == null) {
-        this.router.navigate(["/login-form"]);
-    }
-    else {
-        // this.router.navigate(["/purchase/paidServices", { "PartyMastId": this.loginService.PartyMastId}]);
-        this.router.navigate(["/purchase/paidServices"]);
-
-    }
-}
   }
   

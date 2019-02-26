@@ -16,10 +16,6 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
 import { isString } from 'util';
 
-// if(!/localhost/.test(document.location.host)) {
-//     enableProdMode();
-// }
-
 
 @Component({
   //selector: 'app-horopage',

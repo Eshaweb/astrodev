@@ -40,6 +40,7 @@ import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService
 import { NumerologyModule } from './pages/numerology/numerology.module';
 import { OrderHistoryService } from 'src/Services/order';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { PanchangaModule } from './pages/panchanga/panchanga.module';
 
 
 let config = new AuthServiceConfig([
@@ -73,14 +74,8 @@ export function provideConfig() {
     SideNavInnerToolbarModule,
     SingleCardModule,
     FooterModule,
-    HoroscopeModule,
-    AstamangalaModule,
-    MatchMakingModule,
-    NumerologyModule,
-    WalletModule,
     LoginFormModule,
     RegistrationFormModule,
-    //PurchaseModule,
     AppRoutingModule,
     HttpClientModule,
     DxPopupModule,
