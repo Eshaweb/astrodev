@@ -1,6 +1,7 @@
 <h2 class="content-block">Match Making</h2>
 <div class="dx-card content-block responsive-paddings">
     <form action="your-action" [formGroup]="femaleMatchMakingForm">
+        <div class="dx-card content-block responsive-paddings">
         <div class="dx-fieldset">
             <div class="dx-header img">
             <div class="math-image">
@@ -68,7 +69,7 @@
                         </div>
                         </div> 
                         <div class="clear"></div>
-            <div class="dx-fieldset-column3">
+            <!-- <div class="dx-fieldset-column3">
                 <div class="dx-field">
                     <div class="dx-field-label">Latitude</div>
                         <div class="dx-field-value">
@@ -156,21 +157,65 @@
                     text="Click here to Edit">
                 </dx-check-box>
             </div>
-        </div>
-    
-        <!-- <div class="dx-fieldset">
-            <dx-validation-summary id="summary"></dx-validation-summary>
-    
-            <dx-button [disabled]="!horoscopeForm.valid" (onClick)='submit_click()'
-                id="button"
-                text="Submit"
-                type="success"  
-                [useSubmitBehavior]="true">
-            </dx-button>
         </div> -->
-    </form>
+        <div class="row">
+            <div class="first-column">
+                <div class="f-label">Latitude</div>
+                <div class="first-textbox">
+                    <dx-number-box formControlName="Female_LatDeg" [disabled]="true" [(ngModel)]="matchRequest.Female.LatDeg"></dx-number-box>
+                </div>
+            </div>
+        
+            <div class="column">
+                <div>
+                    <dx-number-box formControlName="Female_LatMt" [disabled]="true" [(ngModel)]="matchRequest.Female.LatMt"></dx-number-box>
+                </div>
+            </div>
+            <div class="column">
+                <dx-text-box formControlName="Female_NS" [disabled]="true" [(ngModel)]="matchRequest.Female.NS"></dx-text-box>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="row">
+            <div class="first-column">
+                <div class="f-label">Longititude</div>
+                <div class="first-textbox">
+                    <dx-number-box formControlName="Female_LongDeg" [disabled]="true" [(ngModel)]="matchRequest.Female.LongDeg"></dx-number-box>
+                </div>
+            </div>
+            <div class="column">
+                <div>
+                    <dx-number-box formControlName="Female_LongMt" [disabled]="true" [(ngModel)]="matchRequest.Female.LongMt"></dx-number-box>
+                </div>
+            </div>
+            <div class="column">
+                <div>
+                    <dx-text-box formControlName="Female_EW" [disabled]="true" [(ngModel)]="matchRequest.Female.EW"></dx-text-box>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="row">
+            <div class="first-column">
+                <div class="f-label">Zone hour</div>
+                <div class="first-textbox">
+                    <dx-number-box formControlName="Female_ZH" [disabled]="true" [(ngModel)]="matchRequest.Female.ZH"></dx-number-box>
+                </div>
+            </div>
+        
+            <div class="column">
+                <dx-number-box formControlName="Female_ZM" [disabled]="true" [(ngModel)]="matchRequest.Female.ZM"></dx-number-box>
+            </div>
+            <div class="column">
+                <dx-text-box formControlName="Female_PN" [disabled]="true" [(ngModel)]="matchRequest.Female.PN"></dx-text-box>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <p style="color: red">TimeZoneName: {{timeZoneName_Female}}</p>
+        
 </div>
-
+        </div>
+    </form>
     <form action="your-action" [formGroup]="maleMatchMakingForm">
             <div class="dx-card content-block responsive-paddings">
         <div class="dx-fieldset">
@@ -241,7 +286,7 @@
                         </div>
                         <div class="clear"></div>
                        
-            <div class="dx-fieldset-column3">
+            <!-- <div class="dx-fieldset-column3">
                 <div class="dx-field">
                     <div class="dx-field-label">Latitude</div>
                         <div class="dx-field-value">
@@ -329,8 +374,65 @@
                     text="Click here to Edit">
                 </dx-check-box>
             </div>
+        </div> -->
+
+        <div class="row">
+            <div class="first-column">
+                <div class="f-label">Latitude</div>
+                <div class="first-textbox">
+                    <dx-number-box formControlName="Male_LatDeg" [disabled]="true" [(ngModel)]="matchRequest.Male.LatDeg"></dx-number-box>
+                </div>
+            </div>
+        
+            <div class="column">
+                <div>
+                    <dx-number-box formControlName="Male_LatMt" [disabled]="true" [(ngModel)]="matchRequest.Male.LatMt"></dx-number-box>
+                </div>
+            </div>
+            <div class="column">
+                <dx-text-box formControlName="Male_NS" [disabled]="true" [(ngModel)]="matchRequest.Male.NS"></dx-text-box>
+            </div>
         </div>
+        <div class="clear"></div>
+        <div class="row">
+            <div class="first-column">
+                <div class="f-label">Longititude</div>
+                <div class="first-textbox">
+                    <dx-number-box formControlName="Male_LongDeg" [disabled]="true" [(ngModel)]="matchRequest.Male.LongDeg"></dx-number-box>
+                </div>
+            </div>
+            <div class="column">
+                <div>
+                    <dx-number-box formControlName="Male_LongMt" [disabled]="true" [(ngModel)]="matchRequest.Male.LongMt"></dx-number-box>
+                </div>
+            </div>
+            <div class="column">
+                <div>
+                    <dx-text-box formControlName="Male_EW" [disabled]="true" [(ngModel)]="matchRequest.Male.EW"></dx-text-box>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="row">
+            <div class="first-column">
+                <div class="f-label">Zone hour</div>
+                <div class="first-textbox">
+                    <dx-number-box formControlName="Male_ZH" [disabled]="true" [(ngModel)]="matchRequest.Male.ZH"></dx-number-box>
+                </div>
+            </div>
+        
+            <div class="column">
+                <dx-number-box formControlName="Male_ZM" [disabled]="true" [(ngModel)]="matchRequest.Male.ZM"></dx-number-box>
+            </div>
+            <div class="column">
+                <dx-text-box formControlName="Male_PN" [disabled]="true" [(ngModel)]="matchRequest.Male.PN"></dx-text-box>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <p style="color: red">TimeZoneName: {{timeZoneName_Male}}</p>
     </div>
+            </div>
+</form>
     <div class="dx-card content-block responsive-paddings">
         <div class="dx-fieldset-column">
             <div class="dx-field">
@@ -396,5 +498,4 @@
             </dx-button>
         </div>
     </div>
-    </form>
-
+</div>

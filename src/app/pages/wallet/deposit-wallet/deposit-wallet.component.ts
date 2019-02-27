@@ -38,7 +38,7 @@ export class DepositWalletComponent {
   message: string;
   paymentModedata: ArrayStore;
   paymentModedatavalue: any;
-  PurchaseAmount: any;
+  PurchaseAmount: number;
 
   constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, public walletService: WalletService, public horoScopeService: HoroScopeService, public route: ActivatedRoute, public router: Router, public salesService: SalesService,
     public uiService: UIService, public formbuilder: FormBuilder) {
@@ -109,7 +109,7 @@ export class DepositWalletComponent {
     else {
       this.showError = false;
       var FreeWalletRequest = {
-        PartyMastId: this.loginService.PartyMastId,
+        PartyMastId: StorageService.GetItem('PartyMastId'),
         PurchaseAmount: value
       }
       this.walletService.GetFreeWallet(FreeWalletRequest).subscribe((data) => {
@@ -139,11 +139,11 @@ export class DepositWalletComponent {
     //this.pay();
     this.loadingSwitchService.loading=true;
     var WalletPurchase = {
-      PartyMastId: this.loginService.PartyMastId,
+      PartyMastId: StorageService.GetItem('PartyMastId'),
       PurchaseAmount: this.depositToWalletForm.controls['Amount'].value,
       BillPayMode: this.depositToWalletForm.controls['BillPayMode'].value
     }
-    this.PurchaseAmount=WalletPurchase.PurchaseAmount+this.bonusAmount;
+    this.PurchaseAmount=(+WalletPurchase.PurchaseAmount)+this.bonusAmount;
     this.walletService.PurchaseWallet(WalletPurchase).subscribe((data) => {
       if (data.IsValid == true && data.PayModes == "ON") {
         this.loadingSwitchService.loading=false;
@@ -169,6 +169,7 @@ export class DepositWalletComponent {
       name: 'Shailesh',
       "handler": (response) => {
         this.paymentId = response.razorpay_payment_id;
+        this.loadingSwitchService.loading=true;
         var Payment = {
           PaymentId: this.paymentId
         }
@@ -202,13 +203,13 @@ export class DepositWalletComponent {
          this.loading = false;
         // this.router.navigate(['/purchase/walletPaymentSuccess'], { skipLocationChange: true });
       
-        this.walletService.GetWalletBalance(this.loginService.PartyMastId).subscribe((data) => {
+        this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
+          this.loadingSwitchService.loading=false;
           if (data.Errors == undefined) {
             //IsValid: true 
             this.walletBalanceAmount = data;
             this.message='PaymentCompleted and Balance Updated';
           }
-          this.loadingSwitchService.loading=false;
         });
       }
       else {

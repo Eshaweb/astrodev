@@ -18,5 +18,7 @@ export class PromoCodeComponent {
 OnUnUsedPromoCodes_Click() {
     this.router.navigate(["/admin/unusedPromoCodes"]);
   }
- 
+  OnUsedPromoCodes_Click() {
+    this.router.navigate(["/admin/usedPromoCodes"]);
+  }
 }

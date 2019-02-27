@@ -11,6 +11,7 @@ import { OrderService } from 'src/Services/OrderService/OrderService';
 import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingService';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 
 
 @Component({
@@ -46,7 +47,9 @@ export class HoropaidComponent implements OnInit {
   itemAmount: number;
   isLoading: boolean;
   errorMessage: any;
-  constructor(private numerologyService:NumerologyService,private matchMakingService:MatchMakingService,private orderService:OrderService,private astamangalaService:AstamangalaService,private itemService:ItemService ,public _location: Location, public route: ActivatedRoute, public router: Router,
+  constructor(private numerologyService:NumerologyService,private matchMakingService:MatchMakingService,
+    private orderService:OrderService,private astamangalaService:AstamangalaService,private itemService:ItemService ,
+    public _location: Location, public route: ActivatedRoute, public router: Router, public loadingSwitchService:LoadingSwitchService,
       public loginService: LoginService, public horoScopeService: HoroScopeService) {
       this.serviceInformation = [{ ItMastId: '', Name: 'Horo', MRP: 33, Amount: 44, Description: '', PrintMRP: 6, PrintAmount: 5 }]
   }
@@ -93,6 +96,7 @@ export class HoropaidComponent implements OnInit {
 
 
   onNext(item) {
+    this.loadingSwitchService.loading=true; 
       this.horoScopeService.itemOrdered = item;
       //this.horoScopeService.horoRequest.ReportType = item.ItMastId;
       if (this.checkBoxValue == false) {
@@ -162,6 +166,7 @@ export class HoropaidComponent implements OnInit {
           var FreePDF = {
               OrderId: this.orderService.orderResponse.OrderId.toString()
           }
+          this.loadingSwitchService.loading=false; 
           // this.router.navigate(["/services/deliveryAddress", { 'DeliveryAddressRequired': DeliveryAddressRequired }]);
           this.router.navigate(["/purchase/deliveryAddress", { 'OrderId': FreePDF.OrderId }]);
       }

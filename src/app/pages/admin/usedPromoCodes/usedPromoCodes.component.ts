@@ -8,11 +8,11 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 
 @Component({
-    templateUrl: 'unusedPromoCodes.component.html',
-    styleUrls: [ './unusedPromoCodes.component.scss' ]
+    templateUrl: 'usedPromoCodes.component.html',
+    styleUrls: [ './usedPromoCodes.component.scss' ]
   })
   
-  export class UnUsedPromoCodesComponent {
+  export class UsedPromoCodesComponent {
     @ViewChild(DxDataGridComponent) public datagridBasePrice: DxDataGridComponent;  
     saveButtonName: string;
     allowUpdate: boolean;
@@ -22,11 +22,9 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
     Id: any;
 
     constructor(public formBuilder: FormBuilder, public router: Router, public itemService:ItemService, public loadingSwitchService:LoadingSwitchService) {
-        this.loadingSwitchService.loading=true;
         this.itemService.GetUnUsedPromoCodes().subscribe((data:any)=>{
             if (data.Errors == undefined) {
                 this.dataSource=data;
-                this.loadingSwitchService.loading=false;
             }
           });
           

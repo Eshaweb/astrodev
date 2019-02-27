@@ -7,6 +7,7 @@ import { FormControlName } from '@angular/forms';
 import { Location } from "@angular/common";
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 @Component({
   selector: 'app-paidservices',
   templateUrl: './paidservices.component.html',
@@ -37,8 +38,9 @@ export class PaidservicesComponent implements OnInit {
 
 }
   constructor(public _location: Location, public route: ActivatedRoute, public router: Router,
-    public loginService: LoginService, public itemService: ItemService) {
-      var itemMast = {
+    public loginService: LoginService, public itemService: ItemService, public loadingSwitchService:LoadingSwitchService) {
+        this.loadingSwitchService.loading=true; 
+        var itemMast = {
           ItActId: itemService.ItActId,
           PartyMastId: StorageService.GetItem('PartyMastId'),
       }
@@ -49,6 +51,7 @@ export class PaidservicesComponent implements OnInit {
         else {
             this.errorMessage = data.Error;
         }
+        this.loadingSwitchService.loading=false;
     });
       //this.serviceInformation = [{ ItMastId: '', Name: 'Horo', MRP: 33, Amount: 44, Description: '',PrintMRP:6,PrintAmount:5 }]
     }

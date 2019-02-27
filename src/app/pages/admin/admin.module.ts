@@ -15,6 +15,7 @@ import { WelcomeOfferComponent } from './welcomeOffer/welcomeOffer.component';
 import { PromoCodeComponent } from './promoCode/promoCode.component';
 import { UnUsedPromoCodesComponent } from './unusedPromoCodes/unusedPromoCodes.component';
 import { CreatePromoCodeComponent } from './createPromoCode/createPromoCode.component';
+import { UsedPromoCodesComponent } from './usedPromoCodes/usedPromoCodes.component';
 
 @NgModule({
     imports: [
@@ -47,6 +48,7 @@ import { CreatePromoCodeComponent } from './createPromoCode/createPromoCode.comp
         WelcomeOfferComponent,
         PromoCodeComponent,
         UnUsedPromoCodesComponent,
+        UsedPromoCodesComponent,
         CreatePromoCodeComponent
     ],
 })

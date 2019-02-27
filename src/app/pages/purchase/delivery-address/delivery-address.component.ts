@@ -10,6 +10,7 @@ import { SelectBoxModel } from 'src/Models/SelectBoxModel';
 import ArrayStore from 'devextreme/data/array_store';
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 
 
 @Component({
@@ -87,8 +88,9 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     DeliveryAddressRequired: boolean;
     constructor(public _location: Location, public route: ActivatedRoute, public router: Router, public loginService: LoginService,
         public horoScopeService: HoroScopeService, private orderService:OrderService,
-        public uiService: UIService, public formbuilder: FormBuilder) {
+        public uiService: UIService, public formbuilder: FormBuilder, public loadingSwitchService:LoadingSwitchService) {
         this.DeliveryAddressRequired = this.horoScopeService.IsDeliverable
+        this.loadingSwitchService.loading=true;
         this.OrderId = this.orderService.orderResponse.OrderId;
         if(this.orderService.orderResponse.ItName!=undefined){
             this.ItName=this.orderService.orderResponse.ItName;
@@ -138,6 +140,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
                 this.existingAddress = data;
                 this.horoScopeService.GetDefaultAddress(PartyMastId).subscribe((data:any) => {
                     this.Id = String(data);
+                    this.loadingSwitchService.loading=false;
                 });
             });
         });
@@ -190,7 +193,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         this.showAddAddressForm = true;
     }
     onRemoveAddress(Id) {
-    
+        this.loadingSwitchService.loading=true;
         var DeleteAddress = {
             PartyMastId: this.loginService.PartyMastId,
             AddressId: Id
@@ -201,6 +204,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
                     this.existingAddress = data;
                     this.horoScopeService.GetDefaultAddress(this.loginService.PartyMastId).subscribe((data:any) => {
                         this.Id = String(data);
+                        this.loadingSwitchService.loading=false;
                     });
                 });
             }
@@ -212,6 +216,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     }
 
     onSaveAddress() {
+        this.loadingSwitchService.loading=true;
         var AddressModel = {
             //EMail: this.customerAddressForm.controls['EMail'].value,
             OrderId: this.OrderId,
@@ -228,6 +233,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
                 this.showAddAddressForm = !this.showAddAddressForm;
                 this.horoScopeService.GetDefaultAddress(this.loginService.PartyMastId).subscribe((data:any) => {
                     this.Id = String(data);
+                    this.loadingSwitchService.loading=false;
                 });
             });
         });
@@ -236,12 +242,14 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         this._location.back();
     }
     onPlaceOrder() {
+        this.loadingSwitchService.loading=true;
         var orderAddress = {
             EMail:this.customerEMailAddressForm.controls['EMail'].value,
             AddressId: this.Id,
             OrderId: this.OrderId
         }
         this.orderService.UpdateAddressToOrder(orderAddress).subscribe((data:any) => {
+            this.loadingSwitchService.loading=false;
             this.router.navigate(["/purchase/payment"]);
         });
     }
