@@ -3,7 +3,7 @@
 <div *ngIf='!message'class="dx-card content-block responsive-paddings">
 
         <form [formGroup]="depositToWalletForm">
-                <h6>Wallet Balance:  {{walletBalanceAmount|currency:'INR'}}</h6>
+                <h6 id="employee">Wallet Balance:  {{walletBalanceAmount|currency:'INR'}}</h6>
 
                 <div class="dx-field">
                 <div class="dx-field-label">Amount</div>
@@ -38,8 +38,6 @@
                 </div>
                
             </form>
-
-
 </div>
 <div *ngIf='message' class="dx-card content-block responsive-paddings">
     <div class="centre">
@@ -51,3 +49,15 @@
 </div>
 </div>
 </div>
+
+<dx-load-panel
+    #loadPanel
+    shadingColor="rgba(0,0,0,0.4)"
+    [(visible)]="loading"
+    [position]="{ of: '#employee' }"
+    [showIndicator]="true"
+    [showPane]="true"
+    [shading]="true"
+    [closeOnOutsideClick]="false"
+    (onHidden)="onHidden()">
+</dx-load-panel>

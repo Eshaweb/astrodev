@@ -5,7 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { WalletRoutingModule } from './wallet-routing.module';
 import { SalesService } from 'src/Services/sales/sales.service';
 import { DepositWalletComponent } from './deposit-wallet/deposit-wallet.component';
-import { DxTextBoxModule, DxSelectBoxModule, DxButtonModule } from 'devextreme-angular';
+import { DxTextBoxModule, DxSelectBoxModule, DxButtonModule, DxLoadPanelModule } from 'devextreme-angular';
 @NgModule({
     imports: [
         CommonModule,
@@ -14,7 +14,8 @@ import { DxTextBoxModule, DxSelectBoxModule, DxButtonModule } from 'devextreme-a
         WalletRoutingModule,
         DxTextBoxModule,
         DxSelectBoxModule,
-        DxButtonModule
+        DxButtonModule,
+        DxLoadPanelModule
     ],
     providers:[
         SalesService

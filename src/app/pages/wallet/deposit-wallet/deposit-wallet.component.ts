@@ -65,11 +65,13 @@ export class DepositWalletComponent {
         //this.paymentModedatavalue=this.paymentModes[0].Id;
       }
     });
+    this.loading=true;
     if (StorageService.GetItem('PartyMastId')!= undefined) {
       this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
         if (data.Errors == undefined) {
           //IsValid: true 
           this.walletBalanceAmount = data;
+          this.loading=false;
         }
       });
     }
@@ -101,6 +103,7 @@ export class DepositWalletComponent {
     }];
   }
   onAmount(value) {
+    this.loading=true;
     if (value < 50 || value > 20000) {
       this.showError = true;
       this.walletAmount = null;
@@ -115,28 +118,13 @@ export class DepositWalletComponent {
       this.walletService.GetFreeWallet(FreeWalletRequest).subscribe((data) => {
         if (data.Errors == undefined) {
           this.bonusAmount = data.Amount;
+          this.loading=false;
         }
       });
     }
 
   }
   onClick() {
-    // this.servtrDets = [{
-    //   ItMastId: "#WALLET",
-    //   FreeAmount: this.bonusAmount,
-    //   ItemAmount: this.depositToWalletForm.controls['amount'].value
-    // }]
-    // const SalesModel = {
-    //   PartyMastId: "1",
-    //   Amount: this.depositToWalletForm.controls['amount'].value,
-    //   BillDiscountCode: "",
-    //   Remarks: "xxx",
-    //   PayCodes: this.paycode,
-    //   ServtrDets: this.servtrDets
-    // }
-    // this.salesService.Sale(SalesModel);
-
-    //this.pay();
     this.loadingSwitchService.loading=true;
     var WalletPurchase = {
       PartyMastId: StorageService.GetItem('PartyMastId'),
@@ -166,7 +154,7 @@ export class DepositWalletComponent {
       currency: 'INR',
       key: 'rzp_test_fg8RMT6vcRs4DP',
       amount: this.depositToWalletForm.controls['Amount'].value * 100,
-      name: 'Shailesh',
+      name: StorageService.GetItem('Name'),
       "handler": (response) => {
         this.paymentId = response.razorpay_payment_id;
         this.loadingSwitchService.loading=true;
