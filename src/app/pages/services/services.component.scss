@@ -1,37 +1,17 @@
-.logos-container {
-  margin: 20px 0 40px 0;
-  text-align: center;
-  svg {
-    display: inline-block;
-  }
-}
 
-.devextreme-logo {
-  width: 200px;
-  height: 34px;
-  margin-bottom: 13px;
-}
-img{
-
-  width: 100px;
-  margin-left: 33px;
+img {
+  width: 45%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 h3 {
-  margin-top: 2px;
+ 
+  text-align: center;
 }
 
 
-.angular-logo {
-  width: 220px;
-  height: 62px;
-}
-
-.plus {
-  margin: 15px 10px;
-  width: 22px;
-  height: 22px;
-}
 
 :host-context(.screen-x-small) .logos-container {
   svg {
@@ -45,7 +25,7 @@ h3 {
 
 .dx-card.responsive-paddings{
   padding: 22px;
-  width: 22% !important;
+ // width: 22% !important;
   float: left !important;
   margin-left: 20px !important;
   margin-top: 10px;
@@ -67,11 +47,14 @@ h3 {
 
   }
   img {
-    width: 100px;
-    margin-left: 6%;
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 h3{
 font-size: 16px;
+text-align: center;
 
 }
 .content-block {
