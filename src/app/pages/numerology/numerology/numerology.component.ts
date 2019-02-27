@@ -18,9 +18,9 @@ import { isString } from 'util';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 import { NumerologyRequest } from 'src/Models/Numerology/numerologyRequest';
 
-if (!/localhost/.test(document.location.host)) {
-  enableProdMode();
-}
+// if (!/localhost/.test(document.location.host)) {
+//   enableProdMode();
+// }
 
 
 @Component({
@@ -30,7 +30,9 @@ if (!/localhost/.test(document.location.host)) {
 })
 export class NumerologyComponent {
   //genders:string[];
-  genders: SelectBoxModel[];
+  genders: SelectBoxModel[]=[
+    { Id: "M", Text: "Male" }, 
+    { Id: "F", Text: "Female" }];
   isLoading: boolean;
   birthDateinDateFormat: Date;
   birthTimeinDateFormat: Date;
@@ -57,7 +59,6 @@ export class NumerologyComponent {
     public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     public partyService: PartyService, public numerologyService: NumerologyService, public uiService: UIService,
     public formbuilder: FormBuilder) {
-    this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
     this.numerologyForm = this.formbuilder.group({
       Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],
       Date: new Date(),

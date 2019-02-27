@@ -11,6 +11,7 @@ import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service'
 import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { Caption } from 'src/Models/Caption';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 @Component({
   selector: 'app-horoscope-free-data',
@@ -120,7 +121,7 @@ export class HoroscopeFreeDataComponent implements OnInit {
     }
   onClick() {
     this.itemService.ItActId='#SH';
-      if (this.loginService.Token == null) {
+      if (StorageService.GetItem('Token')==undefined) {
           this.registrationService.registered=true;
           this.router.navigate(["/login-form"]);
       }

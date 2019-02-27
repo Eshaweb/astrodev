@@ -91,7 +91,7 @@ onHidden() {
     if (routerEvent instanceof NavigationStart) {
       this.navigationInProgress = true;
       this.showAddButton = true;
-      
+      this.loadingSwitchService.loading = true;
       return;
     }
     if (routerEvent instanceof NavigationEnd ||

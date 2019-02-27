@@ -82,4 +82,39 @@ export class ItemService {
         var endPoint = "Admin/DeleteAssignedPriceList";
         return this.httpService.Post(endPoint, List);
     }
+
+    GetGiftAmount():Observable<any>{
+        var endPoint = "Admin/GetGiftAmount";
+        return this.httpService.Get(endPoint);
+    }
+
+    UpdateGiftAmount(WO):Observable<any>{
+        var endPoint = "Admin/UpdateGiftAmount";
+        return this.httpService.Post(endPoint, WO);
+    }
+
+    GetUnUsedPromoCodes():Observable<any>{
+        var endPoint = "Promo/GetUnUsedPromoCodes";
+        return this.httpService.Get(endPoint);
+    }
+
+    CreatePromoCode(PromoModel):Observable<any>{
+        var endPoint = "Promo/CreatePromoCode";
+        return this.httpService.Post(endPoint, PromoModel);
+    }
+
+    SendPromoCode(SendPromo):Observable<any>{
+        var endPoint = "Promo/SendPromoCode";
+        return this.httpService.Post(endPoint, SendPromo);
+    }
+
+    DeletePromoCode(Id):Observable<any> {
+        var endPoint = "Promo/DeletePromoCode?Id=" + Id;
+        return this.httpService.Get(endPoint);
+    }
+
+    OccupyPromoCode(Couponcode):Observable<any> {
+        var endPoint = "Promo/OccupyPromoCode";
+        return this.httpService.Post(endPoint, Couponcode);
+    }
 }

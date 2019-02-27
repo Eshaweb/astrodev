@@ -163,7 +163,11 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       //this.loading=true;
       this.loadingSwitchService.loading=true;
       this.disableButton=true;
-      this.horoScopeService.OccupyPromoCode(this.CoupenCodeForm.controls['CouponCode'].value).subscribe((data) => {
+      var Promo={
+        PromoText:this.CoupenCodeForm.controls['CouponCode'].value,
+        Amount:this.payableAmount
+      }
+      this.itemService.OccupyPromoCode(Promo).subscribe((data) => {
         //if (data.Errors == undefined) {
           //this.loading=false;
           this.loadingSwitchService.loading=false;
@@ -216,6 +220,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   
     onContinue() {
+      this.loadingSwitchService.loading=true;
       if (this.checkClicked == true) {
         //this.loading = true;
         this.loadingSwitchService.loading=true;
@@ -311,7 +316,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
 
     CreateBillPayModeToOrder(){
       var OrderBillPayMode = {
-        CoupenCode: "",
+        CouponCode: this.CoupenCodeForm.controls['CouponCode'].value,
         PartyMastId: StorageService.GetItem('PartyMastId'),
         OrderId: this.OrderId,
         PayCodes: this.paycodes
@@ -327,19 +332,22 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
               else{
                 this.payableAmountthroughPaymentModes=this.payableAmountthroughPaymentModes;
               }
+              this.loadingSwitchService.loading=false;
               this.pay();
             }
             else if(data.PayModes[i] == "W" && (data.Status == "C"||data.Status == "P")) {
+              this.loadingSwitchService.loading=false;
               this.router.navigate(['/purchase/paymentProcessing']);
             }
             else if(data.PayModes[i]=="OFF"){
+              this.loadingSwitchService.loading=false;
               this.router.navigate(['/offlinePayment']);
             }
           }
         }
         else{
           this.errorMessage=data.Error;
-         
+          this.loadingSwitchService.loading=false;
         }
         });
     }

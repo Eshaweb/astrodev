@@ -39,9 +39,8 @@ export class ProfileComponent {
   statesOfIndia: string[];
   statevalue: any;
   Id: any;
-  MobileNoDisabled: boolean;
-  EMailDisabled: boolean;
-  ReferralCode: any;
+  MobileNoDisabled: boolean=true;
+  EMailDisabled: boolean=true;
   constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public panchangaService: PanchangaService, public uiService: UIService,
     public formbuilder: FormBuilder) {
@@ -56,7 +55,7 @@ export class ProfileComponent {
       Address2: ['', [Validators.required, Validators.minLength(4)]],
       Address3: ['', [Validators.required, Validators.minLength(4)]],
       PinCode: ['', [Validators.required, Validators.minLength(6)]],
-      //ReferralCode:[''],
+      ReferralCode:[''],
       state: ['Andhra Pradesh', [Validators.required, Validators.minLength(4)]],
     });
     this.statesOfIndia = ['Andhra Pradesh', 'Arunachal Pradesh',
@@ -70,7 +69,7 @@ export class ProfileComponent {
     birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
     if (StorageService.GetItem('PartyMastId') != undefined) {
       this.partyService.GetProfile(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
-        this.ReferralCode = data.ReferralCode;
+        this.profileForm.controls['ReferralCode'].setValue(data.ReferralCode);
         this.Id = data.Id;
         this.profileForm.controls['Name'].setValue(data.Name);
         this.profileForm.controls['MobileNo'].setValue(data.Mobile);
@@ -80,11 +79,11 @@ export class ProfileComponent {
         this.profileForm.controls['Address3'].setValue(data.Address3);
         this.profileForm.controls['PinCode'].setValue(data.PinCode);
 
-        if (data.Mobile != null) {
-          this.MobileNoDisabled = true;
+        if (data.Mobile == null||data.Mobile == "") {
+          this.MobileNoDisabled = false;
         }
-        if (data.EMail != null||data.EMail != "") {
-          this.EMailDisabled = true;
+        if (data.EMail == null||data.EMail == "") {
+          this.EMailDisabled = false;
         }
       });
     }
@@ -96,7 +95,6 @@ export class ProfileComponent {
     }
     else {
       this.birthDateinDateFormat = this.profileForm.controls['Date'].value;
-      this.profileForm.controls['ReferralCode'].setValue(this.ReferralCode);
       this.panchangaRequest = {
         Date: this.profileForm.controls['Date'].value,
         Time: null,

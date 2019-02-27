@@ -1,0 +1,30 @@
+
+
+.dx-card.responsive-paddings{
+  padding: 40px;
+  width: 22% !important;
+  float: left !important;
+  margin-left: 20px !important;
+  margin-top: 10px;
+}
+
+img{
+  width: 100px;;
+}
+
+@media (max-width: 800px) {
+  .dx-fieldset-column {
+  float: left;
+  width: 100%;
+  
+  }
+
+  .dx-card.responsive-paddings{
+    padding: 40px;
+    width: 100% !important;
+    float: left !important;
+    margin-left: 2px !important;
+    margin-top: 10px;
+
+  }
+}

@@ -197,7 +197,7 @@ export class LoginFormComponent {
               StorageService.SetItem('PartyMastId',data.PartyMastId);
               StorageService.SetItem('Name',data.Name);
               if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null) {
-                this.router.navigate(["/purchase/paidServices"]);
+                this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
                 //this.router.navigate(["/purchase/paidServices"]);
               }
               else {

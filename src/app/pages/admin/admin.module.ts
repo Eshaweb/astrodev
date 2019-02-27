@@ -11,6 +11,10 @@ import { PriceListComponent } from './pricelist/pricelist.component';
 import { MasterDetailComponent } from './masterDetail/masterDetail.component';
 import { AssignPriceListComponent } from './assignPriceList/assignPriceList.component';
 import { AssignNewPriceListComponent } from './assignNewPriceList/assignNewPriceList.component';
+import { WelcomeOfferComponent } from './welcomeOffer/welcomeOffer.component';
+import { PromoCodeComponent } from './promoCode/promoCode.component';
+import { UnUsedPromoCodesComponent } from './unusedPromoCodes/unusedPromoCodes.component';
+import { CreatePromoCodeComponent } from './createPromoCode/createPromoCode.component';
 
 @NgModule({
     imports: [
@@ -39,7 +43,11 @@ import { AssignNewPriceListComponent } from './assignNewPriceList/assignNewPrice
         PriceListComponent,
         MasterDetailComponent,
         AssignPriceListComponent,
-        AssignNewPriceListComponent
+        AssignNewPriceListComponent,
+        WelcomeOfferComponent,
+        PromoCodeComponent,
+        UnUsedPromoCodesComponent,
+        CreatePromoCodeComponent
     ],
 })
 export class AdminModule{

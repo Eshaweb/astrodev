@@ -6,6 +6,10 @@ import { PriceListComponent } from './pricelist/pricelist.component';
 import { MasterDetailComponent } from './masterDetail/masterDetail.component';
 import { AssignPriceListComponent } from './assignPriceList/assignPriceList.component';
 import { AssignNewPriceListComponent } from './assignNewPriceList/assignNewPriceList.component';
+import { WelcomeOfferComponent } from './welcomeOffer/welcomeOffer.component';
+import { PromoCodeComponent } from './promoCode/promoCode.component';
+import { UnUsedPromoCodesComponent } from './unusedPromoCodes/unusedPromoCodes.component';
+import { CreatePromoCodeComponent } from './createPromoCode/createPromoCode.component';
 
 const routes: Routes = [
     {
@@ -31,6 +35,22 @@ const routes: Routes = [
     {
       path: 'assignNewPriceList',
       component:AssignNewPriceListComponent
+    },
+    {
+      path: 'welcomeOffer',
+      component:WelcomeOfferComponent
+    },
+    {
+      path: 'promoCode',
+      component:PromoCodeComponent
+    },
+    {
+      path: 'unusedPromoCodes',
+      component:UnUsedPromoCodesComponent
+    },
+    {
+      path: 'createPromoCode',
+      component:CreatePromoCodeComponent
     }
   ];
   
