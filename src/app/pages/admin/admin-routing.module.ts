@@ -10,6 +10,7 @@ import { WelcomeOfferComponent } from './welcomeOffer/welcomeOffer.component';
 import { PromoCodeComponent } from './promoCode/promoCode.component';
 import { UnUsedPromoCodesComponent } from './unusedPromoCodes/unusedPromoCodes.component';
 import { CreatePromoCodeComponent } from './createPromoCode/createPromoCode.component';
+import { UsedPromoCodesComponent } from './usedPromoCodes/usedPromoCodes.component';
 
 const routes: Routes = [
     {
@@ -47,6 +48,10 @@ const routes: Routes = [
     {
       path: 'unusedPromoCodes',
       component:UnUsedPromoCodesComponent
+    },
+    {
+      path: 'usedPromoCodes',
+      component:UsedPromoCodesComponent
     },
     {
       path: 'createPromoCode',

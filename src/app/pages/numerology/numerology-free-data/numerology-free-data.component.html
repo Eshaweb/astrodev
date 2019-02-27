@@ -108,4 +108,97 @@
       </div>
   </div>
 
-
+  <!-- <dx-popup
+  class="popup"
+  [width]="450"
+  [height]="650"
+  [showTitle]="true"
+  title="Login"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="popupVisible">
+  <div *dxTemplate="let data of 'content'">
+     
+<div class="dx-card content-block responsive-paddings">
+    <dx-validation-group>
+            <dx-button icon="arrowleft" *ngIf='isOTPRequested' (onClick)='onBackClick()'></dx-button>
+        <div class="login-header">
+            <div class="title">Astrolite</div>
+            <div>Sign In to your account</div>
+        </div>
+        <form *ngIf='!needtoEnterOTP' [formGroup]="loginForm">
+        <div class="dx-field">
+            <dx-text-box [(value)]="login" formControlName="UserName" placeholder="Mobile No / Email" width="100%">
+            </dx-text-box>
+            <p style="color:red;font-size: 12px;" id='err_UserName'></p>
+        </div>
+       <div class="twocol">
+        <div class="dx-field" style="margin-right: 12px;" >
+            <dx-text-box mode="password" formControlName="Password" *ngIf='!isOTPRequested' [(value)]="password" placeholder="Password" width="100%">
+            </dx-text-box>
+            <dx-text-box mode="password" formControlName="Password" *ngIf='isOTPRequested' [(value)]="password" placeholder="Enter OTP" width="100%">
+            </dx-text-box>
+        </div>
+    
+        <div class="dx-field">
+            <dx-button type="default" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" width="100%"></dx-button>
+            <dx-button type="default" text="Re-generate OTP" *ngIf='isOTPRequested' (onClick)="onRegenerateOTP()" width="100%"></dx-button>
+        </div>
+    </div>
+    <div class="clear"></div>
+        <div class="dx-field">
+            <dx-button type="default" text="Login" [disabled]="!loginForm.valid" (onClick)="Login_Click()" width="100%"></dx-button>
+        </div>
+        
+        <div class="dx-field">
+        <div class="dx-fieldset-column"style="width: 175px;">
+            <a routerLink="/settings/forgotPassword">Forgot password ?</a>
+        </div>
+        <div class="dx-fieldset-column">
+            <a (click)="goToRegistration()">Register</a>
+        </div>
+      </div>
+    
+        <p>Login through Social Accounts</p>
+        <div class="dx-field">
+            <dx-button type="danger" text="Google" (onClick)="signInWithGoogle()" width="100%"></dx-button>
+        </div>
+        <div class="dx-field">
+            <dx-button type="default" text="Facebook" (onClick)="signInWithFB()" width="100%"></dx-button>
+        </div>
+    </form>
+    <form *ngIf='needtoEnterOTP' [formGroup]="uservalidateForm">
+        <p>{{message}}</p>
+        <div class="dx-field">
+            <dx-text-box mode="password" formControlName="OTP" placeholder="OTP" width="100%">
+            </dx-text-box>
+            <p style="color:red;" id='err_OTP'></p>
+            <a (click)="ResendOTP_click()">Resend OTP</a>
+        </div>
+        <div class="dx-field">
+            <dx-button icon= "images/icons/weather.png" text="Submit" (onClick)="ValidateUserByOTP()"[disabled]="!uservalidateForm.valid" width="100%"></dx-button>
+            
+        
+        </div>
+        
+    </form>
+    </dx-validation-group>
+    </div>
+    
+    <dx-popup
+        class="popup"
+        [width]="250"
+        [height]="150"
+        [showTitle]="true"
+        [title]="title"
+        [dragEnabled]="false"
+        [closeOnOutsideClick]="true"
+        [(visible)]="popUpVisible">
+        <div *dxTemplate="let data of 'content'">
+            <p>
+                <span>{{message}}</span>
+            </p>
+        </div>
+    </dx-popup>
+  </div>
+</dx-popup> -->

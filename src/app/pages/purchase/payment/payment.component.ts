@@ -98,12 +98,14 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
             Code: event.value,
             Amount: this.differenceAmount-this.discountAmount
           });
+          this.payableAmountthroughPaymentModes=this.differenceAmount-this.discountAmount;
         }
         else{
           this.paycodes.push({
             Code: event.value,
             Amount: this.differenceAmount
           });
+          this.payableAmountthroughPaymentModes=this.differenceAmount;
         }
         this.paymentmodeSelected = true;
         this.selectMeMessage = '';
@@ -141,7 +143,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       CouponCode_minlength: 'Minimum length should be 6'
     };
     GetWalletBalance() {
-      this.walletService.GetWalletBalance(this.loginService.PartyMastId).subscribe((data) => {
+      this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
         if (data.Errors == undefined) {
           //IsValid: true 
           this.walletbalance = data;
@@ -176,6 +178,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         }
         else if (data.IsValid == false) {
           this.discountAmount = 0;
+          this.errorMessage=data.Error;
         }
         else{
           this.errorMessage=data.Error;
@@ -225,27 +228,27 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         //this.loading = true;
         this.loadingSwitchService.loading=true;
         if (this.differenceAmount > 0 && this.paymentmodeSelected == true && this.discountAmount>0) {
-          this.paycodes.push({
+          this.paycodes = [{
+            Code: this.paymentModeForm.get('paymentMode').value,
+            Amount: this.differenceAmount-this.discountAmount
+          }, {
             Code: "W",
             Amount: this.walletbalance
-          });
-          this.paycodes.push({
+          },{
             Code: "D",
             Amount: this.discountAmount
-          });
+          }];
+          this.payableAmountthroughPaymentModes=this.differenceAmount-this.discountAmount;
           this.CreateBillPayModeToOrder();
         }
-        if (this.differenceAmount > 0 && this.paymentmodeSelected == true) {
-          if(this.paycodes.indexOf({Code: "W",Amount: this.walletbalance}) === -1) {
-            this.paycodes.push({
-              Code: "W",
-              Amount: this.walletbalance
-            });
-          }
-          // this.paycodes.push({
-          //   Code: "W",
-          //   Amount: this.walletbalance
-          // });
+        else if (this.differenceAmount > 0 && this.paymentmodeSelected == true) {
+          this.paycodes = [{
+            Code: this.paymentModeForm.get('paymentMode').value,
+            Amount: this.differenceAmount
+          }, {
+            Code: "W",
+            Amount: this.walletbalance
+          }];
           this.CreateBillPayModeToOrder();
         }
         else if (this.differenceAmount > 0 && this.paymentmodeSelected == false) {
@@ -315,6 +318,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     CreateBillPayModeToOrder(){
+      this.loadingSwitchService.loading=true;
       var OrderBillPayMode = {
         CouponCode: this.CoupenCodeForm.controls['CouponCode'].value,
         PartyMastId: StorageService.GetItem('PartyMastId'),
@@ -327,13 +331,19 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           for (var i = 0; i < data.PayModes.length; i++) {
             if (data.PayModes[i] == "ON") {
               if(this.discountAmount==0){
-                this.payableAmountthroughPaymentModes=this.payableAmount;
+                if(this.differenceAmount>0){
+                  this.payableAmountthroughPaymentModes=this.differenceAmount;
+                }
+                else{
+                  this.payableAmountthroughPaymentModes=this.payableAmount;
+                }
               }
               else{
                 this.payableAmountthroughPaymentModes=this.payableAmountthroughPaymentModes;
               }
               this.loadingSwitchService.loading=false;
               this.pay();
+              break;
             }
             else if(data.PayModes[i] == "W" && (data.Status == "C"||data.Status == "P")) {
               this.loadingSwitchService.loading=false;
@@ -342,6 +352,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
             else if(data.PayModes[i]=="OFF"){
               this.loadingSwitchService.loading=false;
               this.router.navigate(['/offlinePayment']);
+              break;
             }
           }
         }
@@ -363,12 +374,14 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
             Code: eventArgs.newSelection.value,
             Amount: this.differenceAmount-this.discountAmount
           });
+          this.payableAmountthroughPaymentModes=this.differenceAmount-this.discountAmount;
         }
         else{
           this.paycodes.push({
             Code: eventArgs.newSelection.value,
             Amount: this.differenceAmount
           });
+          this.payableAmountthroughPaymentModes=this.differenceAmount;
         }
         this.paymentmodeSelected = true;
         this.selectMeMessage = '';
@@ -387,7 +400,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         currency: 'INR',
         key: 'rzp_test_fg8RMT6vcRs4DP',
         amount: this.payableAmountthroughPaymentModes * 100,
-        name: 'Shailesh',
+        name: StorageService.GetItem('Name'),
         "handler": (response) => {
           this.paymentId = response.razorpay_payment_id;
           var Payment = {
