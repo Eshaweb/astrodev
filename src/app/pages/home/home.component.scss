@@ -1,16 +1,36 @@
-.logos-container {
-  margin: 20px 0 40px 0;
-  text-align: center;
-  svg {
-    display: inline-block;
-  }
+.hero-unit{
+
+  background: 50% 50% no-repeat #709df0;
+  background: rgba(241,231,103,1);
+background: -moz-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(241,231,103,1)), color-stop(100%, rgba(254,182,69,1)));
+background: -webkit-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+background: -o-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+background: -ms-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+background: linear-gradient(to right, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645', GradientType=1 );
+  background-size: cover,100%;
+
 }
 
-.devextreme-logo {
-  width: 200px;
-  height: 34px;
-  margin-bottom: 13px;
+.slider{
+  font-size: 64px;
+  line-height: normal;
+  letter-spacing: -.03em;
+  margin-top: 2px;
+  margin-bottom: 2px;
+
 }
+
+.main-slider{
+
+    margin-left: calc(calc(3 / var(--ion-grid-columns, 12)) * 100%);
+    flex: 0 0 calc(calc(6 / var(--ion-grid-columns, 12)) * 100%);
+    width: calc(calc(6 / var(--ion-grid-columns, 12)) * 100%);
+    max-width: calc(calc(6 / var(--ion-grid-columns, 12)) * 100%);
+
+}
+
 img{
 
   width: 100px;
@@ -21,17 +41,6 @@ h3 {
   margin-top: 2px;
 }
 
-
-.angular-logo {
-  width: 220px;
-  height: 62px;
-}
-
-.plus {
-  margin: 15px 10px;
-  width: 22px;
-  height: 22px;
-}
 
 :host-context(.screen-x-small) .logos-container {
   svg {
@@ -45,10 +54,26 @@ h3 {
 
 .dx-card.responsive-paddings{
   padding: 22px;
-  width: 22% !important;
+  width: 30% !important;
   float: left !important;
   margin-left: 20px !important;
   margin-top: 10px;
+}
+.home-content
+
+  {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+
+.hlink {
+  color: #d46525;
+  font-size: medium;
+  font-weight: 500;
+  border-bottom: 1px solid;
+  width: 100px;
+  margin-left: 30%;
 }
 
 @media (max-width: 800px) {
@@ -67,7 +92,7 @@ h3 {
 
   }
   img {
-    width: 100px;
+    width: 150px;
     margin-left: 6%;
 }
 h3{

@@ -8,3 +8,15 @@
 .clear {
     clear: both;
     }
+
+.payment{
+        width: 50%;
+        }
+
+
+ @media (max-width: 800px) {
+
+    .payment{
+         width: 50%;
+          }
+  }

@@ -27,6 +27,9 @@
   
     width: 150px !important;
 }
+.delivery-add{
+width: 50%;
+}
 @media (max-width: 800px) {
     .existing-add {
         display: block;
@@ -37,5 +40,9 @@
         float: left;
         margin-left: 20px;
     }
+
+    .delivery-add{
+        width: 100%;
+        }
 }
 
