@@ -4637,8 +4637,8 @@
   font-size: 1.4em;
 }
 .dx-toolbar {
-  background-color: #ea6a18;
-  color: #ffffff;
+  background-color:transparent;
+  color: #d67e0c;
   padding: 0;
   overflow: visible;
 }
