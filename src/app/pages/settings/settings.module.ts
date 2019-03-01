@@ -9,6 +9,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { OrderHistoryComponent} from './order-history/order-history.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { SortingOrderHistoryPipe } from 'src/pipes/sorting-orders.pipe';
 
 @NgModule({
     imports: [
@@ -32,7 +33,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
         SettingsComponent,
         OrderHistoryComponent,
         ChangePasswordComponent,
-        ForgotPasswordComponent,
+        ForgotPasswordComponent, SortingOrderHistoryPipe
     ],
 })
 export class SettingsModule{

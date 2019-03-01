@@ -278,7 +278,6 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           this.CreateBillPayModeToOrder();
         }
         //this.loading = false;
-        this.loadingSwitchService.loading=false;
       }
       else if (this.discountAmount >0){
         //this.loading = true;

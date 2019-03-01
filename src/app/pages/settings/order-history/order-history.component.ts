@@ -18,6 +18,8 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 })
 export class OrderHistoryComponent implements OnInit {
     orderHistoryResponse: OrderHistoryResponse;
+    path: string[] = ['OrderId'];
+    order: number = 1; // 1 asc, -1 desc;
     ngOnInit() {
         var orderHistory = {
             PartyMastId:StorageService.GetItem('PartyMastId'),
@@ -55,31 +57,16 @@ export class OrderHistoryComponent implements OnInit {
     }
     companies: Company[];
     fields: SelectBoxModel[] = [
-        { Id: "STANDARD", Text: 'Date' },
-        { Id: "SUMMER", Text: 'Amount' },
-        { Id: "DOUBLE", Text: 'Status' }
+        { Id: "OrderId", Text: 'Date' },
+        { Id: "Amount", Text: 'Amount' },
+        { Id: "StatusCode", Text: 'Status' },
+        { Id: "ItName", Text: "Item"}
     ];
     sortorders: SelectBoxModel[] = [
         { Id: "A", Text: 'Ascending Order' },
         { Id: "D", Text: 'Descending Order' }
     ];
-    sortorderdata_horoscope: ArrayStore;
-    sortorderdata_matchMaking: ArrayStore;
-    sortorderdata_astamangala: ArrayStore;
-    sortorderdata_numerology: ArrayStore;
-    fielddata_horoscope: ArrayStore;
-    fielddata_matchMaking: ArrayStore;
-    fielddata_astamangala: ArrayStore;
-    fielddata_numerology: ArrayStore;
-    fieldvalue_horoscope: string;
-    fieldvalue_matchMaking: string;
-    fieldvalue_astamangala: string;
-    fieldvalue_numerology: string;
-
-    sortordervalue_horoscope: string;
-    sortordervalue_matchMaking: string;
-    sortordervalue_astamangala: string;
-    sortordervalue_numerology: string;
+    
     fieldvalue: any;
     sortordervalue: any;
     fielddata: ArrayStore;
@@ -95,42 +82,9 @@ export class OrderHistoryComponent implements OnInit {
             data: this.sortorders,
             key: "Id"
         });
-        this.fielddata_horoscope = new ArrayStore({
-            data: this.fields,
-            key: "Id"
-        });
-        this.sortorderdata_horoscope = new ArrayStore({
-            data: this.sortorders,
-            key: "Id"
-        });
-        this.sortorderdata_matchMaking = new ArrayStore({
-            data: this.sortorders,
-            key: "Id"
-        });
-        this.fielddata_matchMaking = new ArrayStore({
-            data: this.fields,
-            key: "Id"
-        });
-        this.sortorderdata_astamangala = new ArrayStore({
-            data: this.sortorders,
-            key: "Id"
-        });
-        this.fielddata_astamangala = new ArrayStore({
-            data: this.fields,
-            key: "Id"
-        });
-        this.sortorderdata_numerology = new ArrayStore({
-            data: this.sortorders,
-            key: "Id"
-        });
-        this.fielddata_numerology = new ArrayStore({
-            data: this.fields,
-            key: "Id"
-        });
+        
         this.fieldvalue = this.fields[0].Id;
         this.sortordervalue = this.sortorders[0].Id;
-        this.fieldvalue_horoscope = this.fields[0].Id;
-        this.sortordervalue_horoscope = this.sortorders[0].Id;
     }
     
     fielddataSelection(event) {
@@ -138,30 +92,18 @@ export class OrderHistoryComponent implements OnInit {
     }
     sortorderdataSelection(event) {
         this.sortordervalue = event.value;
+        if(event.value=='D'){
+           // this.orderHistoryResponse=this.orderHistoryResponse*(-1);
+        }
+        else if(event.value=='A'){
+
+        }
+        this.sortTable(this.fieldvalue);
     }
-    fielddataSelection_horoscope(event) {
-        this.fieldvalue_horoscope = event.value;
-    }
-    sortorderdataSelection_horoscope(event) {
-        this.sortordervalue_horoscope = event.value;
-    }
-    fielddataSelection_matchMaking(event) {
-        this.fieldvalue_matchMaking = event.value;
-    }
-    sortorderdataSelection_matchMaking(event) {
-        this.sortordervalue_matchMaking = event.value;
-    }
-    fielddataSelection_astamangala(event) {
-        this.fieldvalue_astamangala = event.value;
-    }
-    sortorderdataSelection_astamangala(event) {
-        this.sortordervalue_astamangala = event.value;
-    }
-    fielddataSelection_numerology(event) {
-        this.fieldvalue_numerology = event.value;
-    }
-    sortorderdataSelection_numerology(event) {
-        this.sortordervalue_numerology = event.value;
-    }
+    sortTable(prop: string) {
+        this.path = prop.split('.')
+        this.order = this.order * (-1); // change order
+        return false; // do not reload
+      }
 }
 

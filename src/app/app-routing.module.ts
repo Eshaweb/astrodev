@@ -18,6 +18,7 @@ import { ServicesComponent } from './pages/services/services.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { HomeComponent } from './pages/home/home.component';
+import { SortingOrderHistoryPipe } from 'src/pipes/sorting-orders.pipe';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [
@@ -113,7 +114,8 @@ const routes: Routes = [
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [ServicesComponent, ProfileComponent,
-    EmailVerifyComponent, ForgotComponent, 
+    EmailVerifyComponent, ForgotComponent,
+    // SortingOrderHistoryPipe,
     OfflinepaymentComponent, HomeComponent,
     // HoroscopeComponent,
     // HoroscopeFreeDataComponent,

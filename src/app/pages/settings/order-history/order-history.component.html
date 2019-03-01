@@ -34,8 +34,10 @@
                         </div>
                     </div>
                     <br/>
-                    <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse">
-                            <div class="dx-field-label">{{item.ItName}}</div>
+                    <!-- <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse | sortingOrders:path:order"> -->
+                    <!-- <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse | orderBy:'ItName'">     -->
+                        <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse | sortingOrders:['-ItName', 'OrderId']">    
+                        <div class="dx-field-label">{{item.ItName}}</div>
                             <div class="dx-field-value" *ngIf="(item.Amount)>0">
                                 {{item.Amount|currency:'INR'}}
                             </div>
