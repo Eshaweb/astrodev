@@ -1,73 +1,21 @@
 
 <h2 class="content-block">Used Promo Codes</h2>
 <div class="dx-card content-block responsive-paddings price-grid">
-    <div class="dx-fieldset"> 
-        <dx-button
-            text="Create Promo Code"
-            [height]="34"
-            [width]="195"
-            (onClick)="onCreatePromoCode()">
-        </dx-button>
-        </div>
     <div id="data-grid-demo" #datagridBasePrice>
     <dx-data-grid (onToolbarPreparing)="onToolbarPreparing($event)"
         id="gridContainer"
         [dataSource]="dataSource"
-        (onRowRemoving)="onRowRemoving($event)"
         keyExpr="Id"
         [showBorders]="true">
         <dxo-paging [enabled]="false"></dxo-paging>
-        <dxo-editing [allowDeleting]="true"> </dxo-editing>
         <dxi-column dataField="PromoText" [allowEditing]="false"></dxi-column>
         <dxi-column dataField="Amount" ></dxi-column>
         <dxi-column dataField="ValueType" ></dxi-column>
-        <dxi-column dataField="ExpiryDate" ></dxi-column>
-        <dxi-column dataField="CreatedBy" ></dxi-column>
-        <dxi-column dataField="SentTo" caption="Sent To" cellTemplate="SentToCellTemplate">
-            <!-- <a (click)="OnSend()">Send</a> -->
-        </dxi-column>
-        <div *dxTemplate="let d of 'SentToCellTemplate'">
-            <div class="chart-cell">
-                <span *ngIf="d.value!=null">{{d.value}}</span>
-                <a *ngIf="d.value==null" (click)="OnSend(d)">Send</a>
-            </div>
-        </div>
+        <dxi-column dataField="UsedDate" dataType="date" format="MM/dd/yyyy"></dxi-column>
+        <dxi-column dataField="Party" ></dxi-column>
+        <dxi-column dataField="Value" ></dxi-column>
+        <dxi-column dataField="SentTo" caption="Sent To" ></dxi-column>
+
     </dx-data-grid>
 </div>    
 </div>
-
-<dx-popup
-class="popup"
-[width]="300"
-[height]="250"
-[showTitle]="true"
-title="Information"
-[dragEnabled]="false"
-[closeOnOutsideClick]="true"
-[(visible)]="popupVisible">
-<div *dxTemplate="let data of 'content'">
-        <form action="your-action" [formGroup]="AskMobileNoForm">
-            <div class="dx-fieldset">
-            <div class="dx-fieldset-column">
-                <div class="dx-field">
-                    <div class="dx-field-label">Mobile No.</div>
-                        <div class="dx-field-value">
-                            <dx-number-box formControlName="MobileNo" placeholder="Enter here..." showClearButton="true">
-                            </dx-number-box>
-                            <p style="color:red" id='err_MobileNo'></p>
-                        </div>
-                </div>
-            </div>
-            </div>
-            <div class="dx-fieldset">    
-                    <dx-button [disabled]="!AskMobileNoForm.valid" 
-                    (onClick)='onSend_click()'
-                        id="button"
-                        text="Send"
-                        type="success"  
-                        [useSubmitBehavior]="true">
-                    </dx-button>
-                </div>
-        </form>
-</div>
-</dx-popup>

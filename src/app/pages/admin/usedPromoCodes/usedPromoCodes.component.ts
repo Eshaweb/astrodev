@@ -22,7 +22,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
     Id: any;
 
     constructor(public formBuilder: FormBuilder, public router: Router, public itemService:ItemService, public loadingSwitchService:LoadingSwitchService) {
-        this.itemService.GetUnUsedPromoCodes().subscribe((data:any)=>{
+        this.itemService.GetUsedPromoCodes().subscribe((data:any)=>{
             if (data.Errors == undefined) {
                 this.dataSource=data;
             }
@@ -73,20 +73,6 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
         });
     }
 
-    onRowRemoving(event){
-      this.itemService.DeletePromoCode(event.data.Id).subscribe((data:any)=>{
-        this.loadingSwitchService.loading = false;
-        if (data.Errors == undefined) {
-              if(data==true){
-                this.itemService.GetUnUsedPromoCodes().subscribe((data:any)=>{
-                    if (data.Errors == undefined) {
-                        this.dataSource=data;
-                    }
-                  }); 
-              }
-          }
-        });
-    }
     saveRecords(){
          
         if(this.datagridBasePrice.instance.hasEditData())

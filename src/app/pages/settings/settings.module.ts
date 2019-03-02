@@ -35,6 +35,8 @@ import { SortingOrderHistoryPipe } from 'src/pipes/sorting-orders.pipe';
         ChangePasswordComponent,
         ForgotPasswordComponent, SortingOrderHistoryPipe
     ],
+
+    providers:[SortingOrderHistoryPipe]
 })
 export class SettingsModule{
 

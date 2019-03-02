@@ -98,6 +98,11 @@ export class ItemService {
         return this.httpService.Get(endPoint);
     }
 
+    GetUsedPromoCodes():Observable<any>{
+        var endPoint = "Promo/GetUsedPromoCodes";
+        return this.httpService.Get(endPoint);
+    }
+
     CreatePromoCode(PromoModel):Observable<any>{
         var endPoint = "Promo/CreatePromoCode";
         return this.httpService.Post(endPoint, PromoModel);

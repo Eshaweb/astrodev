@@ -40,12 +40,12 @@ export class SortingOrderHistoryPipe implements PipeTransform {
     return 0; //equal each other
   }
 
-  transform(input:any, [config = '+']): any{
-      
+  //transform(input:any, [config = '+']): any{
+    transform(input:any, args:string[]): any{
       if(!Array.isArray(input)) return input;
 
-      if(!Array.isArray(config) || (Array.isArray(config) && config.length == 1)){
-          var propertyToCheck:string = !Array.isArray(config) ? config : config[0];
+      if(!Array.isArray(args) || (Array.isArray(args) && args.length == 1)){
+          var propertyToCheck:string = !Array.isArray(args) ? args : args[0];
           var desc = propertyToCheck.substr(0, 1) == '-';
           
           //Basic array
@@ -67,11 +67,11 @@ export class SortingOrderHistoryPipe implements PipeTransform {
       else {
           //Loop over property of the array in order and sort
           return input.sort(function(a:any,b:any){
-              for(var i:number = 0; i < config.length; i++){
-                  var desc = config[i].substr(0, 1) == '-';
-                  var property = config[i].substr(0, 1) == '+' || config[i].substr(0, 1) == '-'
-                      ? config[i].substr(1)
-                      : config[i];
+              for(var i:number = 0; i < args.length; i++){
+                  var desc = args[i].substr(0, 1) == '-';
+                  var property = args[i].substr(0, 1) == '+' || args[i].substr(0, 1) == '-'
+                      ? args[i].substr(1)
+                      : args[i];
 
                   var comparison = !desc 
                       ? SortingOrderHistoryPipe._orderByComparator(a[property], b[property]) 
