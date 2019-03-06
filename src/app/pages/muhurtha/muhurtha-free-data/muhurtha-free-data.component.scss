@@ -8,28 +8,28 @@
     .EnglishFont
     {
         font-family: sans-serif !important;
-        text-align: center;
+        text-align: justify;
         font-size :20px!important;
   
     }
     .HindiFont
     {
         font-family:"hinfontfamily" !important;
-        text-align: center;
+        text-align: justify;
         font-size :20px!important;
   
     }
     .MalyalamFont
     {
         font-family:"malfontfamily" !important;
-        text-align: center;
+        text-align: justify;
         font-size :20px!important;
   
     }
     .TamilFont
     {
         font-family:"tamfontfamily" !important;
-        text-align: center;
+        text-align: justify;
         font-size :20px!important;
   
     }
@@ -69,65 +69,6 @@
     max-width: 350px;
 }
 
-
-.KannadaFont {
-    font-family: "kanfontfamily" !important;
-    text-align: center;
-    font-size :20px!important;
-    }
-    
-    .EnglishFont
-    {
-        font-family: sans-serif !important;
-        text-align: center;
-        font-size :20px!important;
-  
-    }
-    .HindiFont
-    {
-        font-family:"hinfontfamily" !important;
-        text-align: center;
-        font-size :20px!important;
-  
-    }
-    .MalyalamFont
-    {
-        font-family:"malfontfamily" !important;
-        text-align: center;
-        font-size :20px!important;
-  
-    }
-    .TamilFont
-    {
-        font-family:"tamfontfamily" !important;
-        text-align: center;
-        font-size :20px!important;
-  
-    }
-    .logos-container {
-    margin: 20px 0 40px 0;
-    text-align: center;
-    svg {
-      display: inline-block;
-    }
-  }
-  
-  .devextreme-logo {
-    width: 200px;
-    height: 34px;
-    margin-bottom: 13px;
-  }
-  
-  .angular-logo {
-    width: 220px;
-    height: 62px;
-  }
-  
-  .plus {
-    margin: 15px 10px;
-    width: 22px;
-    height: 22px;
-  }
   
   :host-context(.screen-x-small) .logos-container {
     svg {
