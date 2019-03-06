@@ -22,7 +22,7 @@ export class HoroRequest{
     Gender:string;
     LangCode:any;
     ReportType:string;
-    ReportSize:any;
+    ReportSize:string;
     IsMarried:boolean;
 
     FormParameter:string;

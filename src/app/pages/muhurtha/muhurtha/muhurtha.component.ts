@@ -65,6 +65,9 @@ export class MuhurthaComponent {
     { Id: "DOUBLE", Text: 'North' },
     { Id: "WAR", Text: 'North East' }
   ];
+  reportSizes: SelectBoxModel[] = [
+    { Id: "A4", Text: "A4" },
+    { Id: "A5", Text: "A5" }];
   dataSource = [];
   stars: SelectBoxModel[] = [
     { Id: "0", Text: "Unknown" },
@@ -169,6 +172,8 @@ export class MuhurthaComponent {
   endTimeCheckBoxValue: boolean=false;
   nakshathraValue: string;
   rashiValue: string;
+  reportSizevalue: any;
+  reportSizedata: ArrayStore;
 
   constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public muhurthaService: MuhurthaService, public uiService: UIService,
@@ -199,6 +204,7 @@ export class MuhurthaComponent {
         FromDate:null,
         ToDate:null,
         TimeFormat:null,
+        ReportSize:null,
         Place:null,
         LatDeg: null,
         LatMt: null,
@@ -266,6 +272,10 @@ export class MuhurthaComponent {
       data: this.languages,
       key: "Id"
     });
+    this.reportSizedata = new ArrayStore({
+      data: this.reportSizes,
+      key: "Id"
+    });
     this.yathradirectionsdata = new ArrayStore({
       data: this.yathradirections,
       key: "Id"
@@ -299,11 +309,12 @@ export class MuhurthaComponent {
       this.timeformatvalue = this.muhurthaService.muhurthaRequest.TimeFormat;
       //this.muhurthasvalue = this.muhurthaService.panchangaRequest.LangCode;
       this.languagevalue = this.muhurthaService.muhurthaRequest.LangCode;
-
+      this.reportSizevalue = this.muhurthaService.muhurthaRequest.ReportSize;
     }
     else {
       this.timeformatvalue = this.timeformats[0].Id;
       this.languagevalue = this.languages[2].Id;
+      this.reportSizevalue = this.reportSizes[1].Id;
       // this.muhurthasvalue = this.muhurthas[0].Id;
       this.yathradirectionsvalue = this.yathradirections[0].Id;
 
@@ -394,7 +405,9 @@ export class MuhurthaComponent {
   yathradirectionSelection(event) {
     this.yathradirectionsvalue = event.value;
   }
-
+  reportSizedataSelection(event){
+    this.reportSizevalue=event.value;
+  }
   getFilteredRashis(options) {
     return {
       store: this.rashis,
@@ -485,6 +498,7 @@ export class MuhurthaComponent {
       FromDate:fromdateinString,
       ToDate:todateinString,
       TimeFormat:this.timeformatvalue,
+      ReportSize:this.reportSizevalue,
       Place:this.muhurthaService.placeShort,
       LatDeg: this.muhurthaRequest.LatDeg,
       LatMt: this.muhurthaRequest.LatMt,
