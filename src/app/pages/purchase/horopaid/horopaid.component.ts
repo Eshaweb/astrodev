@@ -12,6 +12,7 @@ import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingS
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
 
 
 @Component({
@@ -47,7 +48,7 @@ export class HoropaidComponent implements OnInit {
   itemAmount: number;
   isLoading: boolean;
   errorMessage: any;
-  constructor(private numerologyService:NumerologyService,private matchMakingService:MatchMakingService,
+  constructor(private muhurthaService:MuhurthaService,private numerologyService:NumerologyService,private matchMakingService:MatchMakingService,
     private orderService:OrderService,private astamangalaService:AstamangalaService,private itemService:ItemService ,
     public _location: Location, public route: ActivatedRoute, public router: Router, public loadingSwitchService:LoadingSwitchService,
       public loginService: LoginService, public horoScopeService: HoroScopeService) {
@@ -130,6 +131,18 @@ export class HoropaidComponent implements OnInit {
             ItemAmount: this.itemAmount,
             PartyMastId: StorageService.GetItem('PartyMastId'),
             JSONData:JSON.stringify(this.astamangalaService.horoRequest),
+            ItActId: this.itemService.ItActId,
+            ItMastId: item.ItMastId,
+            OrderId: this.orderService.OrderId
+        }
+      }
+      else if(this.muhurthaService.muhurthaRequest!=undefined){
+        var orderModel = {
+            IsDeliverable: this.checkBoxValue,
+            FreeAmount: 0,
+            ItemAmount: this.itemAmount,
+            PartyMastId: StorageService.GetItem('PartyMastId'),
+            JSONData:JSON.stringify(this.muhurthaService.muhurthaRequest),
             ItActId: this.itemService.ItActId,
             ItMastId: item.ItMastId,
             OrderId: this.orderService.OrderId

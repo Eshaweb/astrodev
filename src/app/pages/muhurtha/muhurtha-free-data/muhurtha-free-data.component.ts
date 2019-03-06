@@ -13,6 +13,8 @@ import { SerialisedPanchangaResponse } from 'src/Models/Panchanga/PanchangaRespo
 import { MuhurthaRequest } from 'src/Models/Muhurtha/MuhurthaRequest';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
 import { MuhurthaResponse } from 'src/Models/Muhurtha/MuhurthaResponse';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { RegistrationService } from 'src/Services/registration/registration.service';
 
 
 @Component({
@@ -33,7 +35,7 @@ import { MuhurthaResponse } from 'src/Models/Muhurtha/MuhurthaResponse';
       this.muhurthaRequest=this.muhurthaService.muhurthaRequest;
       this.GetCaption(this.muhurthaRequest.LangCode, this.caption);
     }
-    constructor(private itemService:ItemService, public router: Router, public loginService: LoginService, 
+    constructor(private registrationService:RegistrationService,private itemService:ItemService, public router: Router, public loginService: LoginService, 
       public captionDbService:CaptionDbService, public muhurthaService: MuhurthaService) {
         this.muhurthaResponse=muhurthaService.muhurthaResponse;
     }
@@ -56,6 +58,18 @@ import { MuhurthaResponse } from 'src/Models/Muhurtha/MuhurthaResponse';
         case "TAM":
         return "TamilFont";
     }
+  }
+  onClick() {
+    this.itemService.ItActId='#MU';
+      if (StorageService.GetItem('Token')==undefined) {
+          this.registrationService.registered=true;
+          this.router.navigate(["/login-form"]);
+      }
+      else {
+          // this.router.navigate(["/purchase/paidServices", { "PartyMastId": this.loginService.PartyMastId}]);
+          this.router.navigate(["/purchase/paidServices"]);
+
+      }
   }
   }
   
