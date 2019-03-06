@@ -39,6 +39,9 @@ export class ServicesComponent {
   OnPanchanga_Click() {
     this.router.navigate(["/panchanga"]);
   }
+  OnMuhurtha_Click(){
+    this.router.navigate(["/muhurtha"]);
+  }
   OnWalletDeposit_Click(){
     if (StorageService.GetItem('Token') != undefined) {
       this.router.navigate(['/wallet/depoToWallet']);

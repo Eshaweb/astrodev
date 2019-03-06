@@ -14,7 +14,7 @@
             <div class="dx-field">
                 <div class="dx-field-label">Coupon</div>
                 <div class="dx-field-value">
-                    <dx-text-box formControlName="CouponCode" (keyup)='OnCouponCode($event.target.value)' showClearButton="true"></dx-text-box>
+                    <dx-text-box formControlName="CouponCode" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true"></dx-text-box>
                     <p style="color:red" id='err_CouponCode'></p>
                 </div>
                 
@@ -37,13 +37,13 @@
 <p>Price              :         {{payableAmount|currency:'INR'}}</p>
 <p>Coupon Discount      :          {{discountAmount|currency:'INR'}}</p>
 <p *ngIf="(discountAmount>0)">Order Total                :          {{payableAmount-discountAmount|currency:'INR'}}</p>
-<p style="color:red" *ngIf="(differenceAmount>0)"> {{'Remaining amount '+(differenceAmount-discountAmount)+' Rs will be deducted from choosen payment modes'}} </p>
+<p style="color:red" *ngIf="(differenceAmount>0)&&(differenceAmount>discountAmount)"> {{'Remaining amount '+(differenceAmount-discountAmount)+' Rs will be deducted from choosen payment modes'}} </p>
 <p style="color:green"> {{selectMeMessage}}</p>
 <p style="color:red"> {{errorMessage}}</p>
 
 </div>
 <div class="astrolite-wallet">
-<dx-check-box id="check" 
+<dx-check-box id="check" [disabled]="alterationDisabled"
 text='Pay using Astrolite wallet--------{{walletbalance}}(Wallet Balance)'
 (onValueChanged)="checkBox_valueChanged($event)">
 </dx-check-box>

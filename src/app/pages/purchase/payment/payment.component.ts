@@ -52,6 +52,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   paymentModeId: any;
   paymentModedata: ArrayStore;
   paymentModedatavalue: any;
+  alterationDisabled: boolean;
   
     constructor(private itemService:ItemService,private orderService:OrderService,private loadingSwitchService:LoadingSwitchService, public walletService:WalletService, public _location: Location, public route: ActivatedRoute, public router: Router,
       public formBuilder: FormBuilder, public platform: Platform, public formbuilder: FormBuilder,
@@ -318,6 +319,8 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
 
     CreateBillPayModeToOrder(){
       this.loadingSwitchService.loading=true;
+      this.alterationDisabled=true;
+      this.selectboxdisabled=true;
       var OrderBillPayMode = {
         CouponCode: this.CoupenCodeForm.controls['CouponCode'].value,
         PartyMastId: StorageService.GetItem('PartyMastId'),

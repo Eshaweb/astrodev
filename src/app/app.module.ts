@@ -80,7 +80,7 @@ export function provideConfig() {
     HttpClientModule,
     DxPopupModule,
     DxButtonModule,
-    DxLoadPanelModule,
+    DxLoadPanelModule
     //DevExtremeModule
   ],
   providers: [AuthService, ScreenService, AppInfoService, ItemService, PanchangaService,
