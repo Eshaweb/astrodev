@@ -19,7 +19,6 @@ import { MuhurthaFreeDataComponent } from './muhurtha-free-data/muhurtha-free-da
     DxDateBoxModule,DxSelectBoxModule,DxCheckBoxModule, DxTileViewModule,
     DxTextBoxModule, DxRadioGroupModule, DxNumberBoxModule,
     ],
-providers:[MuhurthaService],
     declarations: [
         MuhurthaComponent, 
         MuhurthaFreeDataComponent

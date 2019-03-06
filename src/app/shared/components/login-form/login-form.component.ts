@@ -23,6 +23,7 @@ import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingS
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 import { DxPopupModule } from 'devextreme-angular';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -83,7 +84,7 @@ export class LoginFormComponent {
   Name: any;
   horoInfo: any;
 
-  constructor(private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
+  constructor(private muhurthaService:MuhurthaService,private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
     private astamangalaService: AstamangalaService, public registrationService: RegistrationService, public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager,
     public _location: Location, public route: ActivatedRoute, public router: Router, public http: HttpClient,
     public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService,
@@ -196,7 +197,7 @@ export class LoginFormComponent {
               StorageService.SetItem('Token',data.Token);
               StorageService.SetItem('PartyMastId',data.PartyMastId);
               StorageService.SetItem('Name',data.Name);
-              if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null) {
+              if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
                 this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
                 //this.router.navigate(["/purchase/paidServices"]);
               }
