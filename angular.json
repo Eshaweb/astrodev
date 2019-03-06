@@ -50,7 +50,8 @@
               "src/themes/generated/theme.base.css",
               "src/themes/generated/theme.additional.css",
               "src/dx-styles.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": []
           },

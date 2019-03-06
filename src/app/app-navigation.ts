@@ -33,6 +33,10 @@ export const navigation = [
         text: 'Nithya Panchanga',
         path: '/panchanga',
       },
+      {
+        text: 'Muhurtha',
+        path:'/muhurtha'
+      }
     ],
     
   },

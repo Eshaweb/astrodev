@@ -70,6 +70,10 @@ const routes: Routes = [
     loadChildren: './pages/panchanga/panchanga.module#PanchangaModule'
   },
   {
+    path: 'muhurtha',
+    loadChildren: './pages/muhurtha/muhurtha.module#MuhurthaModule'
+  },
+  {
     path: 'settings',
     loadChildren: './pages/settings/settings.module#SettingsModule'
   },
