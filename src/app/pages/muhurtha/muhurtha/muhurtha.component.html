@@ -67,6 +67,21 @@
                                                         </div>
                                                     </div>
                                         </div>
+                                        <div class="dx-fieldset-column">
+                                            <div class="dx-field">
+                                                <div class="dx-field-label">Report Size*</div>
+                                                <div class="dx-field-value">
+                                                  <dx-select-box 
+                                                  (onValueChanged)="reportSizedataSelection($event)"
+                                                      [dataSource]="reportSizedata"
+                                                      displayExpr="Text"
+                                                      valueExpr="Id"
+                                                      [value]="reportSizevalue">
+                                                  </dx-select-box>
+                                                </div>
+                                                <p style="color:red" id='err_ReportSize'></p>
+                                            </div>
+                                        </div>
                                         <div class="clear"></div>
                                 <div class="dx-fieldset-column">
                                     <div class="dx-field">
@@ -118,7 +133,7 @@
                                     <dxo-selection mode="single"></dxo-selection>
                                     <dxo-paging [enabled]="false"></dxo-paging>
                                     <dxo-editing
-                                        mode="batch"
+                                        mode="row"
                                         [allowDeleting]="true">
                                     </dxo-editing>
                                         <dxi-column dataField="Nakshathra" [width]="100"  [setCellValue]="setStarValue">

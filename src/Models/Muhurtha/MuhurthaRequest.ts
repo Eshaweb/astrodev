@@ -19,6 +19,7 @@ export class MuhurthaRequest{
     Direction:string;
     EndTime:boolean;
     LangCode:string;
+    ReportSize:string;
     RashiNakshatras:RashiNak[]
   }
   export class RashiNak{
