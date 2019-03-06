@@ -119,7 +119,7 @@ export class NumerologyFreeDataComponent implements OnInit {
     
       if(day!=undefined)
       {
-     return day.split('-')[1];
+     return day;
       }
      
     }
@@ -128,7 +128,7 @@ export class NumerologyFreeDataComponent implements OnInit {
       if(day!=undefined)
       {
      
-     return day.split('-')[3];
+     return day;
       
       }
     }

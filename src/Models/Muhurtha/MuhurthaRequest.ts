@@ -1,0 +1,27 @@
+export class MuhurthaRequest{
+    MuhurthaType:string;
+    FromDate:string;
+    ToDate:string;
+    TimeFormat:string;
+    Place:string;
+    LatDeg:number;
+    LatMt: number;
+    LongDeg: number;
+    LongMt: number;
+    ZH: number;
+    ZM: number;
+    NS: string;
+    EW: string;
+    PN: string;
+    Godhuli:boolean;
+    Abhijin:boolean;
+    VatuDOB:Date;
+    Direction:string;
+    EndTime:boolean;
+    LangCode:string;
+    RashiNakshatras:RashiNak[]
+  }
+  export class RashiNak{
+    Rashi:string;
+    Nakshatra:string;
+  }

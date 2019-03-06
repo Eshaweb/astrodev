@@ -12,6 +12,8 @@ import ArrayStore from 'devextreme/data/array_store';
 import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
 import { MuhurthaService, Star } from 'src/Services/MuhoorthaService/MuhoorthaService';
 import { DxDataGridComponent } from 'devextreme-angular';
+import { getLocaleDateTimeFormat } from '@angular/common';
+import { MuhurthaRequest, RashiNak } from 'src/Models/Muhurtha/MuhurthaRequest';
 
 
 @Component({
@@ -43,7 +45,8 @@ export class MuhurthaComponent {
   timeZoneId: any;
   long: number;
   lat: number;
-  panchangaRequest: PanchangaRequest;
+  muhurthaRequest: MuhurthaRequest;
+  rashiNak: RashiNak[];
   muhurthasvalue: string;
   muhurthasdata: ArrayStore;
   timeformats: SelectBoxModel[] = [
@@ -148,7 +151,7 @@ export class MuhurthaComponent {
   timeformatdata: ArrayStore;
   timeformatvalue: string;
   languagedata: ArrayStore;
-  languagevalue: any;
+  languagevalue: string;
   muhurthas: any;
   public checkBoxValue: boolean = false;
   vivahaSelected: boolean;
@@ -161,6 +164,11 @@ export class MuhurthaComponent {
   rashidata: ArrayStore;
   rashivalue: string;
   dateRangeForm: FormGroup;
+  abhijinCheckBoxValue: boolean=false;
+  godhuliCheckBoxValue: boolean=false;
+  endTimeCheckBoxValue: boolean=false;
+  nakshathraValue: string;
+  rashiValue: string;
 
   constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public muhurthaService: MuhurthaService, public uiService: UIService,
@@ -178,30 +186,38 @@ export class MuhurthaComponent {
     this.getFilteredRashis = this.getFilteredRashis.bind(this);
     const birthPlaceContrl = this.muhurthaaForm.get('birthPlace');
     birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
-    if (this.muhurthaService.panchangaRequest != null) {
-      this.panchangaRequest = this.muhurthaService.panchangaRequest;
+    if (this.muhurthaService.muhurthaRequest != null) {
+      this.muhurthaRequest = this.muhurthaService.muhurthaRequest;
       this.birthDateinDateFormat = this.muhurthaService.DateinDateFormat;
       this.birthTimeinDateFormat = this.muhurthaService.TimeinDateFormat;
       this.timeZoneName = this.muhurthaService.timeZoneName;
     }
     else {
       this.birthDateinDateFormat = this.muhurthaaForm.controls['Date'].value;
-      this.panchangaRequest = {
-        Date: this.muhurthaaForm.controls['Date'].value,
-        Time: null,
-        Place: this.muhurthaService.place,
-        TimeFormat: this.timeformatvalue,
-        LangCode: null,
+      this.muhurthaRequest={
+        MuhurthaType:null,
+        FromDate:null,
+        ToDate:null,
+        TimeFormat:null,
+        Place:null,
         LatDeg: null,
         LatMt: null,
         LongDeg: null,
         LongMt: null,
-        NS: null,
-        EW: null,
-        ZH: null,
-        ZM: null,
-        PN: null,
+        NS:null,
+        EW:null,
+        ZH:null,
+        ZM:null,
+        PN:null,
+        Godhuli:null,
+        Abhijin:null,
+        VatuDOB:null,
+        Direction:null,
+        EndTime:null,
+        LangCode:null,
+        RashiNakshatras:null
       }
+     
     }
 
   }
@@ -279,10 +295,10 @@ export class MuhurthaComponent {
 
   }
   ngAfterViewInit(): void {
-    if (this.muhurthaService.panchangaRequest != null) {
-      this.timeformatvalue = this.muhurthaService.panchangaRequest.TimeFormat;
+    if (this.muhurthaService.muhurthaRequest != null) {
+      this.timeformatvalue = this.muhurthaService.muhurthaRequest.TimeFormat;
       //this.muhurthasvalue = this.muhurthaService.panchangaRequest.LangCode;
-      this.languagevalue = this.muhurthaService.panchangaRequest.LangCode;
+      this.languagevalue = this.muhurthaService.muhurthaRequest.LangCode;
 
     }
     else {
@@ -313,32 +329,32 @@ export class MuhurthaComponent {
   }
 
   getTimezone(lat, long) {
-    this.panchangaRequest.LatDeg = Math.abs(parseInt(lat));
-    this.panchangaRequest.LongDeg = Math.abs(parseInt(long));
+    this.muhurthaRequest.LatDeg = Math.abs(parseInt(lat));
+    this.muhurthaRequest.LongDeg = Math.abs(parseInt(long));
     this.intLatDeg = parseInt(lat);
     this.intLongDeg = parseInt(long);
-    this.panchangaRequest.LatMt = parseInt(Math.abs((lat - this.intLatDeg) * 60).toString());
-    this.panchangaRequest.LongMt = parseInt(Math.abs((long - this.intLongDeg) * 60).toString());
+    this.muhurthaRequest.LatMt = parseInt(Math.abs((lat - this.intLatDeg) * 60).toString());
+    this.muhurthaRequest.LongMt = parseInt(Math.abs((long - this.intLongDeg) * 60).toString());
     if (lat < 0) {
-      this.panchangaRequest.NS = "S";
+      this.muhurthaRequest.NS = "S";
     }
     else {
-      this.panchangaRequest.NS = "N";
+      this.muhurthaRequest.NS = "N";
     }
     if (long < 0) {
-      this.panchangaRequest.EW = "W";
+      this.muhurthaRequest.EW = "W";
     }
     else {
-      this.panchangaRequest.EW = "E";
+      this.muhurthaRequest.EW = "E";
     }
     this.muhurthaService.getTimezone(lat, long).subscribe((data: any) => {
-      this.panchangaRequest.ZH = parseInt((Math.abs(data.rawOffset) / 3600.00).toString());
-      this.panchangaRequest.ZM = parseInt((((Math.abs(data.rawOffset) / 3600.00) - this.panchangaRequest.ZH) * 60).toString());
+      this.muhurthaRequest.ZH = parseInt((Math.abs(data.rawOffset) / 3600.00).toString());
+      this.muhurthaRequest.ZM = parseInt((((Math.abs(data.rawOffset) / 3600.00) - this.muhurthaRequest.ZH) * 60).toString());
       if (data.rawOffset < 0) {
-        this.panchangaRequest.PN = "-";
+        this.muhurthaRequest.PN = "-";
       }
       else {
-        this.panchangaRequest.PN = "+";
+        this.muhurthaRequest.PN = "+";
       }
       this.timeZoneName = data.timeZoneName;
       this.timeZoneId = data.timeZoneId;
@@ -393,19 +409,38 @@ export class MuhurthaComponent {
 
 
   setStarValue(rowData: any, value: any): void {
+    this.nakshathraValue= value;
     rowData.Nakshathra = null;
+    (<any>this).defaultSetCellValue(rowData, value);
+  }
+  setRashiValue(rowData: any,value: any): void {
+    this.rashiValue= value;
     (<any>this).defaultSetCellValue(rowData, value);
   }
   public date: Date = new Date(Date.now());
   OnAddNew(){
     this.muhurtha.instance.addRow();
   }
-  submit_click() {
+  GodhuliCheckBoxValueChanged(event){
+    this.godhuliCheckBoxValue=event.value;
+  }
+  AbhijinCheckBoxValueChanged(event){
+    this.abhijinCheckBoxValue=event.value;
+  }
+  EndTimeCheckBoxValueChanged(event){
+    this.endTimeCheckBoxValue=event.value;
+  }
+  submit_click(dataSource){
+
+  }
+  OnSubmit_click() {
     this.isLoading = true;
     this.loadingSwitchService.loading = true;
     this.muhurthaService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
     var bdate: Date = this.muhurthaaForm.controls['Date'].value;
     var btime: Date = this.muhurthaaForm.controls['Date'].value;
+    var fromdate: Date = this.dateRangeForm.controls['FromDate'].value;
+    var todate: Date = this.dateRangeForm.controls['ToDate'].value;
     if (bdate instanceof Date) {
       var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
     }
@@ -416,32 +451,67 @@ export class MuhurthaComponent {
       var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
     }
     else {
-      timeinString = "00:00:00";
+      timeinString = btime;
     }
-    this.panchangaRequest = {
-      Date: dateinString,
-      Time: timeinString,
-      Place: this.muhurthaService.placeShort,
-      TimeFormat: this.timeformatvalue,
-      LangCode: this.muhurthasvalue,
-      LatDeg: this.panchangaRequest.LatDeg,
-      LatMt: this.panchangaRequest.LatMt,
-      LongDeg: this.panchangaRequest.LongDeg,
-      LongMt: this.panchangaRequest.LongMt,
-      NS: this.panchangaRequest.NS,
-      EW: this.panchangaRequest.EW,
-      ZH: this.panchangaRequest.ZH,
-      ZM: this.panchangaRequest.ZM,
-      PN: this.panchangaRequest.PN,
+    if (fromdate instanceof Date) {
+      var fromdateinString = fromdate.getFullYear().toString() + "-" + ("0" + ((fromdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + fromdate.getDate()).toString().slice(-2);
     }
-    this.muhurthaService.panchangaRequest = this.panchangaRequest;
+    else {
+      fromdateinString = fromdate;
+    }
+    if (todate instanceof Date) {
+      var todateinString = todate.getFullYear().toString() + "-" + ("0" + ((todate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + todate.getDate()).toString().slice(-2);
+    }
+    else {
+      todateinString = todate;
+    }
+    
+    for(var i=0;i<this.muhurtha.instance.getVisibleRows().length;i++){
+      if(i==0){
+        this.rashiNak=[{
+          Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
+          Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshathra
+        }]
+      }
+        else if(i>0){
+          this.rashiNak.push({
+            Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
+            Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshathra
+          })
+        } 
+    }
+    this.muhurthaRequest={
+      MuhurthaType:this.muhurthasvalue,
+      FromDate:fromdateinString,
+      ToDate:todateinString,
+      TimeFormat:this.timeformatvalue,
+      Place:this.muhurthaService.placeShort,
+      LatDeg: this.muhurthaRequest.LatDeg,
+      LatMt: this.muhurthaRequest.LatMt,
+      LongDeg: this.muhurthaRequest.LongDeg,
+      LongMt: this.muhurthaRequest.LongMt,
+      NS: this.muhurthaRequest.NS,
+      EW: this.muhurthaRequest.EW,
+      ZH: this.muhurthaRequest.ZH,
+      ZM: this.muhurthaRequest.ZM,
+      PN: this.muhurthaRequest.PN,
+      Godhuli:this.godhuliCheckBoxValue,
+      Abhijin:this.abhijinCheckBoxValue,
+      VatuDOB:this.muhurthaaForm.controls['Date'].value,
+      Direction:this.yathradirectionsvalue,
+      EndTime:this.endTimeCheckBoxValue,
+      LangCode:this.languagevalue,
+      RashiNakshatras:this.rashiNak
+    }
+    
+    this.muhurthaService.muhurthaRequest = this.muhurthaRequest;
     this.muhurthaService.DateinDateFormat = bdate;
     this.muhurthaService.timeZoneName = this.timeZoneName;
-    // this.muhurthaService.GetPanchanga(this.panchangaRequest).subscribe((data: any) => {
-    //   this.muhurthaService.panchangaResponse = data;
-    //   this.loadingSwitchService.loading = false;
-    //   this.router.navigate(["/panchanga/getPanchangaFreeData"]);
-    // });
+    this.muhurthaService.GetFreeData(this.muhurthaRequest).subscribe((data: any) => {
+      this.muhurthaService.muhurthaResponse = data;
+      this.loadingSwitchService.loading = false;
+      this.router.navigate(["/muhurtha/getMuhurthaFreeData"]);
+    });
   }
 
   public onDialogOKSelected(event) {
