@@ -1,7 +1,7 @@
 <h2 class="content-block">Muhurtha</h2>
 <div class="dx-card content-block responsive-paddings">
         <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'">
-                <aw-wizard-step [stepTitle]="'Steptitle 1'" [navigationSymbol]="{ symbol: '&#xf0b1;', fontFamily: 'FontAwesome' }">
+                <aw-wizard-step [stepTitle]="'Muhurtha'" [navigationSymbol]="{ symbol: '&#xf0b1;', fontFamily: 'FontAwesome' }">
                   <div class="centered-content">
                         <form action="your-action" [formGroup]="muhurthaaForm">
                             <div class="dx-fieldset">
@@ -20,7 +20,7 @@
                                             <div class="dx-field">
                                                 <div class="dx-field-label">Place</div>
                                                 <div class="dx-field-value">
-                                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="panchangaRequest.Place"></dx-text-box>
+                                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="muhurthaRequest.Place"></dx-text-box>
                                                     <p style="color:red" id='err_birthPlace'></p>
                                                 </div>
                                             </div>
@@ -33,7 +33,7 @@
                                             <div>
                                                     <dx-check-box
                                                         id="check"
-                                                        [(value)]="checkBoxValue"
+                                                        (onValueChanged)="GodhuliCheckBoxValueChanged($event)"
                                                         text="Godhuli Required">
                                                     </dx-check-box>
                                                 </div>
@@ -41,7 +41,7 @@
                                                 <div>
                                                     <dx-check-box
                                                         id="check"
-                                                        [(value)]="checkBoxValue"
+                                                        (onValueChanged)="AbhijinCheckBoxValueChanged($event)"
                                                         text="Abhijin Required">
                                                     </dx-check-box>
                                                 </div>
@@ -106,7 +106,7 @@
                         </form>
                   </div>
                 </aw-wizard-step>
-                <aw-wizard-step (stepEnter)="enterStep($event)" [stepTitle]="'Steptitle 2'" [navigationSymbol]="{ symbol: '&#xf085;', fontFamily: 'FontAwesome' }">
+                <aw-wizard-step (stepEnter)="enterStep($event)" [stepTitle]="'Rashi/Nakshatra'" [navigationSymbol]="{ symbol: '&#xf085;', fontFamily: 'FontAwesome' }">
                   <div class="centered-content">
                         <div id="data-grid-demo" #muhurtha>
                                 <dx-data-grid
@@ -128,42 +128,25 @@
                                         valueExpr="Id">
                                     </dxo-lookup>
                                     </dxi-column>
-                                        <dxi-column dataField="Rashi" [width]="100">
+                                        <dxi-column dataField="Rashi" [width]="100" [setCellValue]="setRashiValue">
                                     <dxo-lookup
                                             [dataSource]="getFilteredRashis"
                                             displayExpr="Text"
                                             valueExpr="Id">
                                         </dxo-lookup>
                                     </dxi-column>
-                                    <dxi-column dataField="SentTo" caption="" cellTemplate="SentToCellTemplate">
-                                        </dxi-column>
-                                        <div *dxTemplate="let d of 'SentToCellTemplate'">
-                                            <div class="chart-cell">
-                                                <a (click)="OnAddNew()">Add New Row</a>
-                                            </div>
-                                        </div>
-                                    <!-- <dxi-column dataField="Button" caption="" cellTemplate="ButtonCellTemplate"></dxi-column>
-                                    <div *dxTemplate="let d of 'ButtonCellTemplate'">
-                                        <div class="chart-cell">
-                                            <dx-button (onClick)='submit_click()'
-                                            id="button"
-                                            text="Add"
-                                            type="success">
-                                        </dx-button> 
-                                      </div>
-                                    </div> -->
                                 </dx-data-grid>
                             </div>
-
+                            <a (click)="OnAddNew()">Add New Row</a>
                     <div class="dx-fieldset">
                             <dx-button text="Back" type="success" [useSubmitBehavior]="true" awPreviousStep>
                             </dx-button>
-                            <dx-button text="Continue" type="success" [useSubmitBehavior]="true" awNextStep>
+                            <dx-button text="Continue" type="success" (onClick)='submit_click(dataSource)' [useSubmitBehavior]="true" awNextStep>
                             </dx-button>
                             </div>
                   </div>
                 </aw-wizard-step>
-                <aw-wizard-step [stepTitle]="'Steptitle 3'" [navigationSymbol]="{ symbol: '&#xf00c;', fontFamily: 'FontAwesome' }">
+                <aw-wizard-step [stepTitle]="'Date Range'" [navigationSymbol]="{ symbol: '&#xf00c;', fontFamily: 'FontAwesome' }">
                   <div class="centered-content">
                         <form [formGroup]="dateRangeForm">
                         <div class="dx-fieldset">
@@ -182,11 +165,29 @@
                                         <div class="dx-field-value">
                                             <dx-date-box formControlName="ToDate" type="date" displayFormat="dd/MM/yyyy" dateSerializationFormat="yyyy-MM-dd">
                                             </dx-date-box>
-                                            </div>
+                                            <p style="color:red" id='err_ToDate'></p>
+                                        </div>
                                     </div>
                                     </div>
                             <div class="clear"></div>
+                            <div class="dx-fieldset-column">
+                                <div class="dx-field">
+                    <!-- <div class="dx-field-label">Vivaha Muhurtha</div>
+                    <div class="dx-field-value"> -->
+                        <div>
+                            <dx-check-box id="check" (onValueChanged)="EndTimeCheckBoxValueChanged($event)" text="End Time Required">
+                            </dx-check-box>
                         </div>
+                    
+                    <!-- </div> -->
+                    </div>
+                        </div>
+                        <div class="clear"></div>
+                        </div>
+                        <div class="dx-fieldset">
+                            <dx-button text="Submit" (onClick)='OnSubmit_click()' type="success" [useSubmitBehavior]="true">
+                            </dx-button>
+                            </div>
                         </form>
                    
                     <div class="dx-fieldset">

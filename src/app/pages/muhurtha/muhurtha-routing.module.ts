@@ -9,7 +9,7 @@ const routes: Routes = [
       component: MuhurthaComponent,
     },
     {
-      path: 'getPanchangaFreeData',
+      path: 'getMuhurthaFreeData',
       component: MuhurthaFreeDataComponent
     }
   ];

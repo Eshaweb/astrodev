@@ -1,3 +1,38 @@
+
+ .KannadaFont {
+    font-family: "kanfontfamily" !important;
+    text-align: justify;
+    font-size :14px!important;
+    }
+    
+    .EnglishFont
+    {
+        font-family: sans-serif !important;
+        text-align: center;
+        font-size :20px!important;
+  
+    }
+    .HindiFont
+    {
+        font-family:"hinfontfamily" !important;
+        text-align: center;
+        font-size :20px!important;
+  
+    }
+    .MalyalamFont
+    {
+        font-family:"malfontfamily" !important;
+        text-align: center;
+        font-size :20px!important;
+  
+    }
+    .TamilFont
+    {
+        font-family:"tamfontfamily" !important;
+        text-align: center;
+        font-size :20px!important;
+  
+    }
 ::ng-deep .dx-selectbox {
     max-width: 400px;
 }

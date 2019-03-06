@@ -10,6 +10,9 @@ import { Caption } from 'src/Models/Caption';
 import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
 import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
 import { SerialisedPanchangaResponse } from 'src/Models/Panchanga/PanchangaResponse';
+import { MuhurthaRequest } from 'src/Models/Muhurtha/MuhurthaRequest';
+import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
+import { MuhurthaResponse } from 'src/Models/Muhurtha/MuhurthaResponse';
 
 
 @Component({
@@ -22,23 +25,24 @@ import { SerialisedPanchangaResponse } from 'src/Models/Panchanga/PanchangaRespo
   horoModel: HoroRequest;
   caption: Caption;
   prashnaFreeModel: PrashnaFreeModel;
-  panchangaRequest: PanchangaRequest;
+  muhurthaRequest: MuhurthaRequest;
+  muhurthaResponse: MuhurthaResponse;
   serialisedPanchangaResponse: SerialisedPanchangaResponse;
     ngOnInit(): void {
       this.caption=new Caption();
-      this.panchangaRequest=this.panchangaService.panchangaRequest;
-      this.GetCaption(this.panchangaRequest.LangCode, this.caption);
+      this.muhurthaRequest=this.muhurthaService.muhurthaRequest;
+      this.GetCaption(this.muhurthaRequest.LangCode, this.caption);
     }
     constructor(private itemService:ItemService, public router: Router, public loginService: LoginService, 
-      public captionDbService:CaptionDbService, public panchangaService: PanchangaService) {
-      this.serialisedPanchangaResponse = JSON.parse(this.panchangaService.panchangaResponse.Panchanga);
+      public captionDbService:CaptionDbService, public muhurthaService: MuhurthaService) {
+        this.muhurthaResponse=muhurthaService.muhurthaResponse;
     }
 
     GetCaption(langCode:string,caption:Caption)
    {
     this.captionDbService.GetCaption(langCode,caption);
    }
-
+   
    getFont(LangCode) {
     switch (LangCode) {
       case "KAN":

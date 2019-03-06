@@ -4,6 +4,8 @@ import { HttpService } from '../Error/http.service';
 import { HttpClient, HttpBackend } from '@angular/common/http';
 import { PanchangaResponse } from 'src/Models/Panchanga/PanchangaResponse';
 import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
+import { MuhurthaRequest } from 'src/Models/Muhurtha/MuhurthaRequest';
+import { MuhurthaResponse } from 'src/Models/Muhurtha/MuhurthaResponse';
 
 export class Star {
     Id: string;
@@ -51,10 +53,10 @@ export class Star {
 @Injectable()
 export class MuhurthaService {
     systemDate:string;
-    panchangaRequest: PanchangaRequest;
+    muhurthaRequest: MuhurthaRequest;
     DateinDateFormat:Date;
     TimeinDateFormat:Date;
-    panchangaResponse: PanchangaResponse;
+    muhurthaResponse: MuhurthaResponse;
     place: string;
     placeShort: string;
   timeZoneName: string;
@@ -68,6 +70,11 @@ export class MuhurthaService {
     GetMuhurthaList():Observable<any> {
     var endPoint = "Muhurtha/GetMuhurthaList";
     return this.httpService.Get(endPoint);
+}
+
+GetFreeData(horoRequest):Observable<any> {
+    var endPoint = "Muhurtha/GetFreeData";
+    return this.httpService.Post(endPoint, horoRequest);
 }
 
 getTimezone(lat, long) {
