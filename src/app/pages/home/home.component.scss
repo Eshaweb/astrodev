@@ -22,7 +22,7 @@
     margin-top: 2px;
     margin-bottom: 2px;
     padding-top: 100px;
-    color: #7d2f2d91;
+    color: #D05B19;
     text-align: center;
     font-weight: 400;
 }
@@ -32,19 +32,23 @@
     line-height: normal;
     letter-spacing: -.03em;
     font-weight: 400;
-    color: #7d2f2d91;
+    color: #D05B19;
     text-align: center;
 }
 
 .main-slider {
     width: 100%;
 }
+
+p {
+  text-align: center;
+}
 .service-header{
 margin-top: 2px;
 padding-top: 25px;
   font-size: 40px;
   font-weight: 400;
-  color: #7d2f2d91;
+  color: #D05B19;
   text-align: center;
 }
 img {
@@ -70,18 +74,36 @@ h3 {
 }
 
 .card-background {
-    height: 350px;
-    background: orange;
+    height: 1020px;
+    background: #FADB32;
     
 }
 
-.dx-card.responsive-paddings {
+.service-box{
     padding: 22px;
     width: 30% !important;
     float: left !important;
     margin-left: 20px !important;
     margin-top: 10px;
 }
+
+.product-box{
+  padding: 22px;
+  width: 45% !important;
+  float: left !important;
+  margin-left: 20px !important;
+  margin-top: 10px;
+}
+
+
+.menu{
+  padding: 22px;
+  width: 22% !important;
+  float: left !important;
+  margin-left: 20px !important;
+  margin-top: 10px;
+}
+
 
 .home-content {
     padding-left: 40px;
