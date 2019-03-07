@@ -432,7 +432,7 @@ export class MuhurthaComponent {
   }
   public date: Date = new Date(Date.now());
   OnAddNew(){
-    this.muhurtha.instance.addRow();
+    this.muhurtha.instance.insertRow();
   }
   GodhuliCheckBoxValueChanged(event){
     this.godhuliCheckBoxValue=event.value;

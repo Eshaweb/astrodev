@@ -18,6 +18,7 @@
         </dx-text-box>
         <dx-text-box mode="password" formControlName="Password" *ngIf='isOTPRequested' [(value)]="password" placeholder="Enter OTP" width="100%">
         </dx-text-box>
+        <p style="color:red;font-size: 12px;" id='err_Password'></p>
     </div>
 
     <div class="dx-field">
@@ -31,7 +32,8 @@
     </div> -->
 
     <div class="dx-field">
-        <dx-button type="default" text="Login" [disabled]="!loginForm.valid" (onClick)="Login_Click()" width="100%"></dx-button>
+        <!-- <dx-button type="default" text="Login" [disabled]="!loginForm.valid" (onClick)="Login_Click()" width="100%"></dx-button> -->
+        <dx-button type="default" text="Login" (onClick)="Login_Click()" width="100%"></dx-button>
     </div>
     
     <div class="dx-field">

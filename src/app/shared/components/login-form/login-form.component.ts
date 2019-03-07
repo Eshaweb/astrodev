@@ -128,8 +128,8 @@ export class LoginFormComponent {
     UserName_required: 'Enter UserName',
     UserName_minlength: 'Minimum length should be 8',
 
-    Password_required: 'Enter Password',
-    Password_minlength: 'Minimum length should be 3',
+    Password_required: 'Enter Password/OTP',
+    Password_minlength: 'Minimum length should be 4',
   };
 
   dismiss() {
@@ -163,7 +163,8 @@ export class LoginFormComponent {
         this.loginService.oTPRef=data;
         this.popUpVisible=true;
         this.title='Note';
-        this.message='You Received an OTP with Reference No.'+this.loginService.oTPRef
+        this.message='You Received an OTP with Reference No.'+this.loginService.oTPRef;
+        this.loginForm.controls['Password'].setValue('');
       });
     }
   }
@@ -184,10 +185,7 @@ export class LoginFormComponent {
           if (data.IsActivated == false) {
             this.needtoEnterOTP = true;
             this.title='Alert';
-            this.message= 'Please Enter OTP(since you loginnig for the first time)'
-            //this.events.publish('To_UserActivation');  //events written in appcomponent fires
-            
-            //this.router.navigate(["/purchase/enterOTP"]);
+            this.message= 'Please Enter OTP(since you loginnig for the first time)';
           }
           else if (data.IsActivated == true) {
             this.loginService.PartyMastId = data.PartyMastId;
@@ -199,7 +197,6 @@ export class LoginFormComponent {
               StorageService.SetItem('Name',data.Name);
               if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
                 this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
-                //this.router.navigate(["/purchase/paidServices"]);
               }
               else {
                 this.loadingSwitchService.loading = false;
@@ -215,8 +212,6 @@ export class LoginFormComponent {
         }
         else {
           this.loadingSwitchService.loading = false;
-          // this.dialog.message=data.Error;
-          // this.dialog.open();
         }
       });
 
@@ -235,9 +230,8 @@ export class LoginFormComponent {
           this.loginService.Token = data.Token;
           StorageService.SetItem('Token',data.Token);
           StorageService.SetItem('PartyMastId',data.PartyMastId);
-          if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null) {
+          if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
             this.router.navigate(["/purchase/paidServices"]);
-            //this.router.navigate(["/purchase/paidServices"]);
           }
           else {
             this.loadingSwitchService.loading = false;
@@ -287,6 +281,7 @@ export class LoginFormComponent {
   onBackClick() {
     this.isOTPRequested = false;
     document.getElementById('err_UserName').innerHTML = '';
+    this.loginForm.controls['Password'].setValue('');
   }
 }
 @NgModule({
