@@ -70,7 +70,7 @@
      .first-column {
             float: left !important;
             width: 50% !important;
-            padding: 10px;
+           padding:  10px 11px 9px 0px;
             }
     }
     
@@ -92,7 +92,7 @@
         .first-column {
         float: left;
         width: 26%;
-        padding: 10px;
+        padding: 10px 11px 9px 0px;
         }
         
         .f-label{
