@@ -121,7 +121,7 @@
                         </form>
                   </div>
                 </aw-wizard-step>
-                <aw-wizard-step (stepEnter)="enterStep($event)" [stepTitle]="'Rashi/Nakshatra'" [navigationSymbol]="{ symbol: '&#xf085;', fontFamily: 'FontAwesome' }">
+                <aw-wizard-step (stepEnter)="OnEnterStep($event)" [stepTitle]="'Rashi/Nakshatra'" [navigationSymbol]="{ symbol: '&#xf085;', fontFamily: 'FontAwesome' }">
                   <div class="centered-content">
                         <div id="data-grid-demo" #muhurtha>
                                 <dx-data-grid
@@ -136,7 +136,7 @@
                                         mode="batch"
                                         [allowDeleting]="true">
                                     </dxo-editing>
-                                        <dxi-column dataField="Nakshathra" [width]="100"  [setCellValue]="setStarValue">
+                                        <dxi-column dataField="Nakshathra" [width]="100" [setCellValue]="setStarValue">
                                         <dxo-lookup
                                         [dataSource]="stars"
                                         displayExpr="Text"
@@ -161,7 +161,7 @@
                             </div>
                   </div>
                 </aw-wizard-step>
-                <aw-wizard-step [stepTitle]="'Date Range'" [navigationSymbol]="{ symbol: '&#xf00c;', fontFamily: 'FontAwesome' }">
+                <aw-wizard-step (stepExit)="OnExitStep($event)" [stepTitle]="'Date Range'" [navigationSymbol]="{ symbol: '&#xf00c;', fontFamily: 'FontAwesome' }">
                   <div class="centered-content">
                         <form [formGroup]="dateRangeForm">
                         <div class="dx-fieldset">
