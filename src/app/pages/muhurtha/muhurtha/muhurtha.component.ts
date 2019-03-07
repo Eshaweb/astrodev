@@ -34,7 +34,8 @@ export class MuhurthaComponent {
   public loading = false;
   intLongDeg: number;
   intLatDeg: number;
-  birthDateinDateFormat: Date;
+  fromdateinDateFormat: Date;
+  todateinDateFormat: Date;
   birthTimeinDateFormat: Date;
   errorMessage: any;
   subscription: Subscription;
@@ -174,6 +175,8 @@ export class MuhurthaComponent {
   rashiValue: string;
   reportSizevalue: any;
   reportSizedata: ArrayStore;
+  birthDateinDateFormat: Date;
+  dateinDateFormat: Date;
 
   constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public muhurthaService: MuhurthaService, public uiService: UIService,
@@ -191,14 +194,22 @@ export class MuhurthaComponent {
     this.getFilteredRashis = this.getFilteredRashis.bind(this);
     const birthPlaceContrl = this.muhurthaaForm.get('birthPlace');
     birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
+    //this.setStarValue()
     if (this.muhurthaService.muhurthaRequest != null) {
       this.muhurthaRequest = this.muhurthaService.muhurthaRequest;
-      this.birthDateinDateFormat = this.muhurthaService.DateinDateFormat;
+      this.birthDateinDateFormat = this.muhurthaService.BirthDateinDateFormat;
+      this.dateinDateFormat = this.muhurthaService.DateinDateFormat;
+      this.fromdateinDateFormat = this.muhurthaService.FromDateinDateFormat;
+      this.todateinDateFormat = this.muhurthaService.ToDateinDateFormat;
       this.birthTimeinDateFormat = this.muhurthaService.TimeinDateFormat;
       this.timeZoneName = this.muhurthaService.timeZoneName;
     }
     else {
       this.birthDateinDateFormat = this.muhurthaaForm.controls['Date'].value;
+      this.dateinDateFormat = new Date();
+      this.fromdateinDateFormat = this.dateRangeForm.controls['FromDate'].value;
+      this.todateinDateFormat = this.dateRangeForm.controls['ToDate'].value;
+      this.todateinDateFormat.setMonth(this.todateinDateFormat.getMonth()+3);
       this.muhurthaRequest={
         MuhurthaType:null,
         FromDate:null,
@@ -223,9 +234,7 @@ export class MuhurthaComponent {
         LangCode:null,
         RashiNakshatras:null
       }
-     
     }
-
   }
 
   setErrorMessage(c: AbstractControl): void {
@@ -246,6 +255,7 @@ export class MuhurthaComponent {
   };
 
   ngOnInit() {
+    this.loadingSwitchService.loading = true;
     this.muhurthaService.GetMuhurthaList().subscribe((data: any) => {
       this.muhurthas = data;
       this.muhurthasdata = new ArrayStore({
@@ -332,8 +342,33 @@ export class MuhurthaComponent {
       item.visible = false;
     });
   }
-  enterStep(event){
-
+  OnEnterStep(event){
+    var bdate: Date = this.muhurthaaForm.controls['Date'].value;
+    if (bdate instanceof Date) {
+      var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
+    }
+    else {
+      dateinString = bdate;
+    }
+    this.muhurthaService.DateinDateFormat = bdate;
+  }
+  OnExitStep(event){
+    var fromdate: Date = this.dateRangeForm.controls['FromDate'].value;
+    var todate: Date = this.dateRangeForm.controls['ToDate'].value;
+    if (fromdate instanceof Date) {
+      var fromdateinString = fromdate.getFullYear().toString() + "-" + ("0" + ((fromdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + fromdate.getDate()).toString().slice(-2);
+    }
+    else {
+      fromdateinString = fromdate;
+    }
+    if (todate instanceof Date) {
+      var todateinString = todate.getFullYear().toString() + "-" + ("0" + ((todate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + todate.getDate()).toString().slice(-2);
+    }
+    else {
+      todateinString = todate;
+    }
+    this.muhurthaService.FromDateinDateFormat = fromdate;
+    this.muhurthaService.ToDateinDateFormat = todate;
   }
   onRowRemoving(event) {
 
@@ -450,22 +485,8 @@ export class MuhurthaComponent {
     this.isLoading = true;
     this.loadingSwitchService.loading = true;
     this.muhurthaService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
-    var bdate: Date = this.muhurthaaForm.controls['Date'].value;
-    var btime: Date = this.muhurthaaForm.controls['Date'].value;
     var fromdate: Date = this.dateRangeForm.controls['FromDate'].value;
     var todate: Date = this.dateRangeForm.controls['ToDate'].value;
-    if (bdate instanceof Date) {
-      var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
-    }
-    else {
-      dateinString = bdate;
-    }
-    if (btime instanceof Date) {
-      var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
-    }
-    else {
-      timeinString = btime;
-    }
     if (fromdate instanceof Date) {
       var fromdateinString = fromdate.getFullYear().toString() + "-" + ("0" + ((fromdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + fromdate.getDate()).toString().slice(-2);
     }
@@ -478,7 +499,6 @@ export class MuhurthaComponent {
     else {
       todateinString = todate;
     }
-    
     for(var i=0;i<this.muhurtha.instance.getVisibleRows().length;i++){
       if(i==0){
         this.rashiNak=[{
@@ -517,9 +537,9 @@ export class MuhurthaComponent {
       LangCode:this.languagevalue,
       RashiNakshatras:this.rashiNak
     }
-    
+    this.muhurthaService.FromDateinDateFormat = fromdate;
+    this.muhurthaService.ToDateinDateFormat = todate;
     this.muhurthaService.muhurthaRequest = this.muhurthaRequest;
-    this.muhurthaService.DateinDateFormat = bdate;
     this.muhurthaService.timeZoneName = this.timeZoneName;
     this.muhurthaService.GetFreeData(this.muhurthaRequest).subscribe((data: any) => {
       this.muhurthaService.muhurthaResponse = data;

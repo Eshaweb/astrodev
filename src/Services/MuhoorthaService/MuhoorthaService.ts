@@ -55,6 +55,9 @@ export class MuhurthaService {
     systemDate:string;
     muhurthaRequest: MuhurthaRequest;
     DateinDateFormat:Date;
+    BirthDateinDateFormat:Date;
+    FromDateinDateFormat:Date;
+    ToDateinDateFormat:Date;
     TimeinDateFormat:Date;
     muhurthaResponse: MuhurthaResponse;
     place: string;

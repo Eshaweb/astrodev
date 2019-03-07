@@ -9,11 +9,6 @@ export const navigation = [
     icon: 'fields',
     items: [
       {
-        text: 'Wallet',
-        path: '/wallet/depoToWallet',
-        icon: 'folder'
-      },
-      {
         text: 'Horoscope',
         path: '/horoscope',
       },
@@ -36,7 +31,11 @@ export const navigation = [
       {
         text: 'Muhurtha',
         path:'/muhurtha'
-      }
+      },
+      {
+        text: 'Wallet',
+        path: '/wallet/depoToWallet'
+      },
     ],
     
   },
