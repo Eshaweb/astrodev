@@ -10,7 +10,7 @@
             [animationDuration]="300"
             (onItemTitleClick)="onItemClick($event)">
             <div *dxTemplate="let company of 'title'">
-                <h1>{{company.ServiceName}}</h1>
+                <h4>{{company.ServiceName}}</h4>
             </div>
             <div *dxTemplate="let company of 'item'">
                     <div class="dx-fieldset-column">
@@ -37,15 +37,20 @@
                     <!-- <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse | sortingOrders:path:order"> -->
                     <!-- <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse | orderBy:'ItName'">     -->
                         <!-- <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse | sortingOrders:['Amount', 'OrderId']">     -->
-                            <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse">    
+                            <div class="dx-card responsive-paddings order-list" *ngFor="let item of orderHistoryResponse">  
+                                <div class="dx-field" >
                             <div class="dx-field-label">{{item.ItName}}</div>
                             <div class="dx-field-value" *ngIf="(item.Amount)>0">
                                 {{item.Amount|currency:'INR'}}
                             </div>
+                        </div> 
+                        <div class="dx-field" >
                             <div class="dx-field-label">{{item.OrderId}}</div>
                             <div class="dx-field-value">
                                 {{item.Date|  date:'dd/MM/yyyy'}}
                             </div>
+                        </div>
+                        
                             <div class="dx-field-label">{{item.Hint}}</div>
                             <div class="dx-field-value" *ngIf="(item.StatusCode)=='AP'">
                                 <div class="dx-field">
