@@ -169,7 +169,7 @@
                                 <div class="dx-field">
                                     <div class="dx-field-label">From Date</div>
                                     <div class="dx-field-value">
-                                        <dx-date-box formControlName="FromDate" type="date" displayFormat="dd/MM/yyyy" dateSerializationFormat="yyyy-MM-dd">
+                                        <dx-date-box formControlName="FromDate" [(ngModel)]="fromdateinDateFormat" [(min)]="dateinDateFormat" type="date" displayFormat="dd/MM/yyyy" dateSerializationFormat="yyyy-MM-dd">
                                         </dx-date-box>
                                         </div>
                                 </div>
@@ -178,7 +178,7 @@
                                     <div class="dx-field">
                                         <div class="dx-field-label">To Date</div>
                                         <div class="dx-field-value">
-                                            <dx-date-box formControlName="ToDate" type="date" displayFormat="dd/MM/yyyy" dateSerializationFormat="yyyy-MM-dd">
+                                            <dx-date-box formControlName="ToDate" [(ngModel)]="todateinDateFormat" [(min)]="dateinDateFormat" type="date" displayFormat="dd/MM/yyyy" dateSerializationFormat="yyyy-MM-dd">
                                             </dx-date-box>
                                             <p style="color:red" id='err_ToDate'></p>
                                         </div>

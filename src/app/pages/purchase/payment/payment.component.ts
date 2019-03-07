@@ -44,7 +44,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     paymentId: any;
   errorMessage: any;
   checkClicked: boolean= false;
-  payableAmountthroughPaymentModes: any;
+  payableAmountthroughPaymentGateWay: any;
   disableButton: boolean;
   firstClick: boolean;
   paymentModeForm: FormGroup;
@@ -99,14 +99,14 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
             Code: event.value,
             Amount: this.differenceAmount-this.discountAmount
           });
-          this.payableAmountthroughPaymentModes=this.differenceAmount-this.discountAmount;
+          this.payableAmountthroughPaymentGateWay=this.differenceAmount-this.discountAmount;
         }
         else{
           this.paycodes.push({
             Code: event.value,
             Amount: this.differenceAmount
           });
-          this.payableAmountthroughPaymentModes=this.differenceAmount;
+          this.payableAmountthroughPaymentGateWay=this.differenceAmount;
         }
         this.paymentmodeSelected = true;
         this.selectMeMessage = '';
@@ -239,7 +239,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
             Code: "D",
             Amount: this.discountAmount
           }];
-          this.payableAmountthroughPaymentModes=this.differenceAmount-this.discountAmount;
+          this.payableAmountthroughPaymentGateWay=this.differenceAmount-this.discountAmount;
           this.CreateBillPayModeToOrder();
         }
         else if (this.differenceAmount > 0 && this.paymentmodeSelected == true) {
@@ -284,10 +284,10 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         //this.loading = true;
         this.loadingSwitchService.loading=true;
         if (this.paymentmodeSelected == true) {
-          this.payableAmountthroughPaymentModes=this.payableAmount-this.discountAmount;        
+          this.payableAmountthroughPaymentGateWay=this.payableAmount-this.discountAmount;        
           this.paycodes = [{
           Code: this.paymentModeForm.get('paymentMode').value,
-          Amount: this.payableAmountthroughPaymentModes
+          Amount: this.payableAmountthroughPaymentGateWay
         }, {
           Code: "D",
           Amount: this.discountAmount
@@ -305,7 +305,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         //this.loading = true;
         this.loadingSwitchService.loading=true;
         if (this.paymentmodeSelected == true) {
-          this.payableAmountthroughPaymentModes=this.payableAmount;
+          this.payableAmountthroughPaymentGateWay=this.payableAmount;
           this.CreateBillPayModeToOrder();
         }
         else {
@@ -334,14 +334,14 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
             if (data.PayModes[i] == "ON") {
               if(this.discountAmount==0){
                 if(this.differenceAmount>0){
-                  this.payableAmountthroughPaymentModes=this.differenceAmount;
+                  this.payableAmountthroughPaymentGateWay=this.differenceAmount;
                 }
                 else{
-                  this.payableAmountthroughPaymentModes=this.payableAmount;
+                  this.payableAmountthroughPaymentGateWay=this.payableAmount;
                 }
               }
               else{
-                this.payableAmountthroughPaymentModes=this.payableAmountthroughPaymentModes;
+                this.payableAmountthroughPaymentGateWay=this.payableAmountthroughPaymentGateWay;
               }
               this.loadingSwitchService.loading=false;
               this.pay();
@@ -376,14 +376,14 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
             Code: eventArgs.newSelection.value,
             Amount: this.differenceAmount-this.discountAmount
           });
-          this.payableAmountthroughPaymentModes=this.differenceAmount-this.discountAmount;
+          this.payableAmountthroughPaymentGateWay=this.differenceAmount-this.discountAmount;
         }
         else{
           this.paycodes.push({
             Code: eventArgs.newSelection.value,
             Amount: this.differenceAmount
           });
-          this.payableAmountthroughPaymentModes=this.differenceAmount;
+          this.payableAmountthroughPaymentGateWay=this.differenceAmount;
         }
         this.paymentmodeSelected = true;
         this.selectMeMessage = '';
@@ -401,7 +401,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         image: 'https://i.imgur.com/3g7nmJC.png',
         currency: 'INR',
         key: 'rzp_test_fg8RMT6vcRs4DP',
-        amount: this.payableAmountthroughPaymentModes * 100,
+        amount: this.payableAmountthroughPaymentGateWay * 100,
         name: StorageService.GetItem('Name'),
         "handler": (response) => {
           this.paymentId = response.razorpay_payment_id;
@@ -412,8 +412,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         },
         prefill: {
           email: 'shailesh@eshaweb.com',
-          contact: '9731927204',
-          name: 'Shailesh'
+          contact: '9731927204'
         },
         notes: {
           order_id: this.horoScopeService.ExtCode,
