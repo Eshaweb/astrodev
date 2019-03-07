@@ -37,7 +37,10 @@
     ::ng-deep a {
         text-transform: capitalize !important;
     }
-    
+    .vivaha-lagna{
+
+        margin-top: 10px !important
+    }
     @media (max-width: 800px) {
     .dx-fieldset-column {
     float: left;
@@ -59,6 +62,11 @@
     }
     .dx-field-value{
         width: 100% !important;
+    }
+
+    .vivaha-lagna{
+
+        margin-top: 10px !important
     }
 
     }

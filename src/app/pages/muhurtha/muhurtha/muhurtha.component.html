@@ -30,15 +30,15 @@
                                                 <div class="dx-field">
                                     <div class="dx-field-label">Vivaha Muhurtha</div>
                                     <div class="dx-field-value">
-                                            <div>
+                                            <div >
                                                     <dx-check-box
                                                         id="check"
                                                         (onValueChanged)="GodhuliCheckBoxValueChanged($event)"
                                                         text="Godhuli Required">
                                                     </dx-check-box>
                                                 </div>
-                                                <br>
-                                                <div>
+                                            
+                                                <div class="vivaha-lagna">
                                                     <dx-check-box
                                                         id="check"
                                                         (onValueChanged)="AbhijinCheckBoxValueChanged($event)"
@@ -67,9 +67,9 @@
                                                         </div>
                                                     </div>
                                         </div>
-                                        <div class="dx-fieldset-column">
+                                        <div class="dx-fieldset-column"  >
                                             <div class="dx-field">
-                                                <div class="dx-field-label">Report Size*</div>
+                                                <div class="dx-field-label vivaha-lagna">Report Size*</div>
                                                 <div class="dx-field-value">
                                                   <dx-select-box 
                                                   (onValueChanged)="reportSizedataSelection($event)"
