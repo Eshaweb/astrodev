@@ -41,6 +41,15 @@
 
         margin-top: 10px !important
     }
+
+    .dx-button-mode-contained.dx-button-success{
+
+        margin-right:5%;
+    }
+
+    /* ::ng-deep .dx-button-content {
+        padding: 9px 36px 10px !important;
+    } */
     @media (max-width: 800px) {
     .dx-fieldset-column {
     float: left;
