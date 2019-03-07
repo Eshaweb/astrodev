@@ -33,7 +33,23 @@
     .dx-texteditor-container {
     margin-bottom: 14px;
     }
-    
+
+    ::ng-deep a {
+        text-transform: capitalize !important;
+    }
+    .vivaha-lagna{
+
+        margin-top: 10px !important
+    }
+
+    .dx-button-mode-contained.dx-button-success{
+
+        margin-right:5%;
+    }
+
+    /* ::ng-deep .dx-button-content {
+        padding: 9px 36px 10px !important;
+    } */
     @media (max-width: 800px) {
     .dx-fieldset-column {
     float: left;
@@ -57,11 +73,15 @@
         width: 100% !important;
     }
 
+    .vivaha-lagna{
+
+        margin-top: 10px !important
+    }
+
     }
     
     .dx-field-value, .dx-field-label {
     text-align: left;
     }
    
-
-  
+   
