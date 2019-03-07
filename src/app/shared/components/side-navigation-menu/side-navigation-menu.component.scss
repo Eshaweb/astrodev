@@ -1,7 +1,14 @@
 @import "../../../../dx-styles.scss";
 @import "../../../../themes/generated/variables.additional.scss";
 
+.menu-container {
+  background: rgb(211, 125, 12);
+  
+}
+.dx-treeview-node{
+  border-bottom: 1px solid #a76017;
 
+}
 .logo{
 
   width:250px;
@@ -55,7 +62,7 @@
       .dx-treeview-node {
         &[aria-level='1'] {
           font-weight: bold;
-          border-bottom: 1px solid $base-border-color;
+          border-bottom: 1px solid #a76017 !important;
         }
   
         &[aria-level='2'] .dx-treeview-item-content {
