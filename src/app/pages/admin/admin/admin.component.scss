@@ -2,7 +2,7 @@
 
 .dx-card.responsive-paddings{
   padding: 40px;
-  width: 22% !important;
+  width: 25% !important;
   float: left !important;
   margin-left: 20px !important;
   margin-top: 10px;
@@ -10,6 +10,11 @@
 
 img{
   width: 100px;;
+}
+
+.dx-button dx-button-normal{
+
+  margin-right: 5%;
 }
 
 @media (max-width: 800px) {
