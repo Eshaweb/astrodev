@@ -21,9 +21,9 @@ export class ServicesComponent {
     // };
   
   }
-  toggleDefault() {
-    this.defaultVisible = !this.defaultVisible;
-}
+//   toggleDefault() {
+//     this.defaultVisible = !this.defaultVisible;
+// }
   OnHoroScope_Click() {
     this.router.navigate(["/horoscope"]);
   }

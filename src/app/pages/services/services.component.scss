@@ -30,7 +30,10 @@ h3 {
   margin-left: 20px !important;
   margin-top: 10px;
 }
-
+.service-list{
+  cursor: pointer;
+  
+}
 @media (max-width: 800px) {
   .dx-fieldset-column {
   float: left;
