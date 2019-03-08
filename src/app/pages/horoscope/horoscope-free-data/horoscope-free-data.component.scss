@@ -30,7 +30,19 @@ app-free-data{
 //       td{
 //         background-color:white;
 //       }
+.data{
 
+  float:left;
+  width: 40%;
+  text-align: left;
+}
+.cap{
+
+  float: left;
+  //margin-right: 12%;
+  width: 19%;
+  text-align: left;
+}
 .dx-button {
     float: none !important;
 }
@@ -48,7 +60,7 @@ h2{
       .KannadaFont {
         font-family: "kanfontfamily" !important;
         text-align: justify;
-        font-size :14px!important;
+        font-size :16px!important;
         }
         
         .EnglishFont
@@ -128,9 +140,13 @@ h2{
               float: left;
               width: 48%;
           }
-          .dx-field-label {
-              width: 200px !important;
-          }
+          // .dx-field-label {
+          //     width: 200px !important;
+          // }
+          // .Maha-Nakshatra{
+
+          //   width: 50%;
+          // }
           
           .chakram {
             display: flex;
@@ -145,6 +161,17 @@ h2{
 
           .chakra.KannadaFont {
             text-align: center;
+        }
+
+        .subtitle{
+font-size: 20px;
+        }
+
+        .prediction{
+
+          border-bottom: 1px solid;
+          margin-bottom: 15px;
+          padding-bottom: 15px;
         }
           @media (max-width: 479px) {
               .dx-fieldset-column {
@@ -165,7 +192,19 @@ h2{
                 padding: 5px !important;
 
             }
+            .data{
 
+              float:left;
+              width: 45%;
+              text-align: left;
+            }
+            .cap{
+            
+              float: left;
+              //margin-right: 12%;
+              width: 50%;
+              text-align: left;
+            }
 
           }
       

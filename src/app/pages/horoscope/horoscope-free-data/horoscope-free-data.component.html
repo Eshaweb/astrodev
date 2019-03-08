@@ -61,46 +61,46 @@
 <div class="clear"></div>
 </div>
 
-        <div class="dx-fieldset">
+        <div class="dx-fieldset Maha-Nakshatra">
                
                    
                     <div class="dx-field "[ngClass]="getFont(horoModel.LangCode)" *ngIf="horoModel.LangCode!='TAM'">
-                        <div class="dx-field-label"  > {{ caption.MahaNakshatra}}:</div>
-                        <div class="dx-field-label">
+                        <div class="cap"  > {{ caption.MahaNakshatra}}:</div>
+                        <div class="data">
                           {{ horoResponse.MahaNakshatra}}
                         </div>
                     </div>
                     <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                        <div class="dx-field-label"> {{caption.NityaTithi}}:</div>
-                        <div class="dx-field-label"> {{ horoResponse.NityaTithi}}
+                        <div class="cap"> {{caption.NityaTithi}}:</div>
+                        <div class="data"> {{ horoResponse.NityaTithi}}
                           </div>
                     </div>
                     <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                        <div class="dx-field-label"> {{ caption.NityaNakshatra}}:</div>
-                        <div class="dx-field-label">{{ horoResponse.NityaNakshatra}}
+                        <div class="cap"> {{ caption.NityaNakshatra}}:</div>
+                        <div class="data">{{ horoResponse.NityaNakshatra}}
                         </div>
                     </div>
                     <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                            <div class="dx-field-label">{{ caption.ChandrarkaYoga}}:</div>
-                            <div class="dx-field-label">{{ horoResponse.ChandrarkaYoga}}
+                            <div class="cap">{{ caption.ChandrarkaYoga}}:</div>
+                            <div class="data">{{ horoResponse.ChandrarkaYoga}}
                             </div>
                         </div>
              
                 <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                  <div class="dx-field-label">{{ caption.NityaKarana}}:</div>
-                  <div class="dx-field-label">{{ horoResponse.NityaKarana}}
+                  <div class="cap">{{ caption.NityaKarana}}:</div>
+                  <div class="data">{{ horoResponse.NityaKarana}}
                   </div>
               </div>
      
       <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-          <div class="dx-field-label">{{ caption.VishaGhati}}:</div>
-          <div class="dx-field-label">{{ horoResponse.VishaGhati}}
+          <div class="cap">{{ caption.VishaGhati}}:</div>
+          <div class="data">{{ horoResponse.VishaGhati}}
           </div>
       </div>
 
 <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-  <div class="dx-field-label">{{ caption.AmrithaGhati}}:</div>
-  <div class="dx-field-label">{{ horoResponse.AmrithaGhati}}
+  <div class="cap">{{ caption.AmrithaGhati}}:</div>
+  <div class="data">{{ horoResponse.AmrithaGhati}}
   </div>
 </div>
 </div>
@@ -113,8 +113,8 @@
 </div>
 </div>
 
-<div class="dx-card content-block responsive-paddings chakram">
-<div class="chakra " [ngClass]="getFont(horoModel.LangCode)">
+<div class="dx-card content-block responsive-paddings">
+<div class="chakram " [ngClass]="getFont(horoModel.LangCode)">
         <table style="width: 330px; border:solid">
             <tbody>
             <tr>
@@ -152,30 +152,34 @@
             </tbody>
             </table>
         </div>
+        <div class="clear"></div>
+
+        <div [ngClass]="getFont(horoModel.LangCode)">
+
+                <p>{{horoResponse.ChartBottom}}</p>
+               
+            </div>
+
     </div>
     
 
-    <div class="dx-card content-block responsive-paddings " [ngClass]="getFont(horoModel.LangCode)">
-
-        <p>{{horoResponse.ChartBottom}}</p>
-       
-    </div>
+    
 
 
 
     <div class="dx-card content-block responsive-paddings " [ngClass]="getFont(horoModel.LangCode)">
     
           <h2>{{caption.GocharaPhala}}</h2>  
-          </div>
-
-          <div class="dx-card content-block responsive-paddings " [ngClass]="getFont(horoModel.LangCode)" *ngFor="let item of horoResponse.Gocharas "  >
           
-                                  <div>{{item.Title}}</div>
+
+          <div [ngClass]="getFont(horoModel.LangCode)" *ngFor="let item of horoResponse.Gocharas "  >
+          
+                                  <div class="subtitle">{{item.Title}}</div>
                                   <div>{{item.SubTitle}}</div>
-                                    <div>{{item.Prediction}}</div>
+                                    <div class="prediction">{{item.Prediction}}</div>
                          
           </div>
-           
+        </div>
 
 
          
