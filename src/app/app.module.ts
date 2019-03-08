@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SideNavOuterToolbarModule, SideNavInnerToolbarModule, SingleCardModule } from './layouts';
-import { FooterModule, LoginFormModule } from './shared/components';
+import { FooterModule, HeaderModule, LoginFormModule } from './shared/components';
 import { AuthenticationService, ScreenService, AppInfoService } from './shared/services';
 import { SocialUser, AuthService, GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider, AuthServiceConfig } from 'angularx-social-login';
 import { AppRoutingModule } from './app-routing.module';

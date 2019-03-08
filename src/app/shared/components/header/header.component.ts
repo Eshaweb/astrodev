@@ -8,6 +8,8 @@ import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 import { Router } from '@angular/router';
 import { RegistrationService } from 'src/Services/registration/registration.service';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoginFormComponent, LoginFormModule } from '../login-form/login-form.component';
+import { LoginService } from 'src/Services/login/login.service';
 
 @Component({
   selector: 'app-header',
@@ -38,6 +40,8 @@ export class HeaderComponent {
       //this.authService.logOut();
       StorageService.RemoveItem('Token');
       StorageService.RemoveItem('PartyMastId');
+      this.loginService.userProfileVisible=false;
+      this.router.navigate(['/login-form']);
     }
   },
     // {
@@ -49,12 +53,22 @@ export class HeaderComponent {
     //   }
     // }
   ];
+  visible: boolean;
 
-  constructor(public registrationService:RegistrationService,private router: Router, private authService: AuthenticationService) { }
+  constructor(public loginService:LoginService,public registrationService:RegistrationService,private router: Router, private authService: AuthenticationService) { 
+    if(StorageService.GetItem('Token')!=undefined){
+      this.loginService.userProfileVisible=true;
+      this.loginService.Name=StorageService.GetItem('Name');
+    }
+    else{
+      this.loginService.userProfileVisible=false;
+    }
+  }
 
   toggleMenu = () => {
     this.menuToggle.emit();
   }
+
 }
 
 @NgModule({
@@ -62,7 +76,8 @@ export class HeaderComponent {
     CommonModule,
     DxButtonModule,
     UserPanelModule,
-    DxToolbarModule
+    DxToolbarModule,
+    //LoginFormModule
   ],
   declarations: [ HeaderComponent ],
   exports: [ HeaderComponent ]
