@@ -6,15 +6,15 @@
   
   <div class="dx-fieldset">
        <p> {{muhurthaResponse.CountDesc}}</p>
-    <div *ngFor="let item of muhurthaResponse.MuhurthaDates">
-        <div [ngStyle]="{'color':item.Taranukula}" [ngClass]="getFont(muhurthaRequest.LangCode)">
+    <div >
+        <div >
         <!-- <p><span>{{item.Date}}</span><span>{{item.Lagna}}</span></p> -->
         <table>
-            <tr>
-                <td>
+            <tr *ngFor="let item of muhurthaResponse.MuhurthaDates">
+                <td [ngStyle]="{'color':item.Taranukula}" [ngClass]="getFont(muhurthaRequest.LangCode)">
                     {{item.Date}}
                 </td>
-                <td>
+                <td [ngStyle]="{'color':item.Taranukula}" [ngClass]="getFont(muhurthaRequest.LangCode)">
                     {{item.Lagna}}
                 </td>
             </tr>

@@ -105,7 +105,9 @@
       .clear {
           clear: both;
       }
-
+      table, tr, td {
+        border: none;
+    }
 
       .dx-template-wrapper.dx-item-content.dx-tile-content {
         padding: 24px;

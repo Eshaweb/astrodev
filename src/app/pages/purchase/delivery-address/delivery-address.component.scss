@@ -13,9 +13,9 @@
 }
 
 .dx-field-column {
-    width: 16%;
+    width: 22%;
     float: left;
-    margin-left: 20%;
+    margin-left: 19%;
 
 }
 .existing-add {
@@ -38,11 +38,16 @@ width: 50%;
     .dx-field-column {
         width: 100%;
         float: left;
-        margin-left: 20px;
+       // margin-left: 20px;
     }
 
     .delivery-add{
-        width: 100%;
+        width: 88%;
+        }
+
+        ::ng-deep #button {
+            width: 150px;
+            margin-left: 10%;
         }
 }
 

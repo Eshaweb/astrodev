@@ -132,13 +132,20 @@ h2{
               width: 200px !important;
           }
           
-          .chakra {
-              margin-left: 30%x;
+          .chakram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        
           }
           
           .clear {
               clear: both;
           }
+
+          .chakra.KannadaFont {
+            text-align: center;
+        }
           @media (max-width: 479px) {
               .dx-fieldset-column {
                   float: left;
