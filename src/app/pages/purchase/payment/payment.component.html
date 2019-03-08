@@ -10,23 +10,37 @@
 <div class="coupon-code-2" [formGroup]="CoupenCodeForm">
         <div class="dx-fieldset">
             <div class="dx-feldset-column">
-            <div class="dx-field">
-                <div class="dx-field-label">Coupon</div>
-                <div class="dx-field-value">
-                    <dx-text-box formControlName="CouponCode" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box>
+            <!-- <div class="dx-field">
+                <div class="dx-field-label">
+                     <dx-text-box formControlName="CouponCode" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box>
                     <p style="color:red" id='err_CouponCode'></p>
                 </div>
-                
-            </div>
+                <div class="dx-field-value">
+                        <dx-button (onClick)='onApply()' [disabled]="!CoupenCodeForm.valid||disableButton" id="button" text="Apply" type="success"
+                        [useSubmitBehavior]="true">
+                    </dx-button>
+                </div>         
+            </div> -->
+            <div class="dx-field">
+                    <div class="cap">
+                         <dx-text-box formControlName="CouponCode" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box>
+                        <p style="color:red" id='err_CouponCode'></p>
+                    </div>
+                    <div class="data">
+                            <dx-button (onClick)='onApply()' [disabled]="!CoupenCodeForm.valid||disableButton" id="button" text="Apply" type="success"
+                            [useSubmitBehavior]="true">
+                        </dx-button>
+                    </div>         
+                </div>
         </div>
         </div>
-        <div class="dx-feldset">
+        <!-- <div class="dx-feldset">
             <div class="dx-field">
             <dx-button (onClick)='onApply()' [disabled]="!CoupenCodeForm.valid||disableButton" id="button" text="Apply" type="success"
                 [useSubmitBehavior]="true">
             </dx-button>
 </div>
-</div>
+</div> -->
 
 
 
