@@ -18,14 +18,33 @@
     [(opened)]="menuOpened">
 
     <app-side-navigation-menu
-        [items]="menuItems"
+    [items]="loginService.menuItems"
+    [compactMode]="!menuOpened"
+    [selectedItem]="selectedRoute"
+    class="dx-swatch-additional"
+    *dxTemplate="let dataMenu of 'panel'"
+    (selectedItemChanged)="navigationChanged($event)"
+    (openMenu)="navigationClick()">
+</app-side-navigation-menu>
+
+<!-- <app-side-navigation-menu *ngIf="!loginService.userProfileVisible"
+    [items]="menuItemsBeforeLogin"
+    [compactMode]="!menuOpened"
+    [selectedItem]="selectedRoute"
+    class="dx-swatch-additional"
+    *dxTemplate="let dataMenu of 'panel'"
+    (selectedItemChanged)="navigationChanged($event)"
+    (openMenu)="navigationClick()">
+</app-side-navigation-menu>
+    <app-side-navigation-menu *ngIf="loginService.userProfileVisible"
+        [items]="menuItemsAfterLogin"
         [compactMode]="!menuOpened"
         [selectedItem]="selectedRoute"
         class="dx-swatch-additional"
         *dxTemplate="let dataMenu of 'panel'"
         (selectedItemChanged)="navigationChanged($event)"
         (openMenu)="navigationClick()">
-    </app-side-navigation-menu>
+    </app-side-navigation-menu> -->
 
     <dx-scroll-view class="full-height-scrollable">
         <div class="content">

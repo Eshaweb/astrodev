@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { SideNavOuterToolbarModule, SideNavInnerToolbarModule, SingleCardModule } from './layouts';
+import { SideNavOuterToolbarModule, SingleCardModule } from './layouts';
 import { FooterModule, HeaderModule, LoginFormModule } from './shared/components';
 import { AuthenticationService, ScreenService, AppInfoService } from './shared/services';
 import { SocialUser, AuthService, GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider, AuthServiceConfig } from 'angularx-social-login';
@@ -72,7 +72,6 @@ export function provideConfig() {
     NgxLoadingModule.forRoot({}),
     BrowserModule,
     SideNavOuterToolbarModule,
-    SideNavInnerToolbarModule,
     SingleCardModule,
     FooterModule,
     LoginFormModule,
