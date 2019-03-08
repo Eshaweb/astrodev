@@ -14,6 +14,7 @@ import { MuhurthaService, Star } from 'src/Services/MuhoorthaService/MuhoorthaSe
 import { DxDataGridComponent } from 'devextreme-angular';
 import { getLocaleDateTimeFormat } from '@angular/common';
 import { MuhurthaRequest, RashiNak } from 'src/Models/Muhurtha/MuhurthaRequest';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 
 @Component({
@@ -194,7 +195,8 @@ export class MuhurthaComponent {
     this.getFilteredRashis = this.getFilteredRashis.bind(this);
     const birthPlaceContrl = this.muhurthaaForm.get('birthPlace');
     birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
-    //this.setStarValue()
+    //this.setStarValue("","1");
+   // this.setRashiValue("","1");
     if (this.muhurthaService.muhurthaRequest != null) {
       this.muhurthaRequest = this.muhurthaService.muhurthaRequest;
       this.birthDateinDateFormat = this.muhurthaService.BirthDateinDateFormat;

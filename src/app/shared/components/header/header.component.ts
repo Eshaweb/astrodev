@@ -7,6 +7,7 @@ import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 import { Router } from '@angular/router';
 import { RegistrationService } from 'src/Services/registration/registration.service';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 @Component({
   selector: 'app-header',
@@ -34,18 +35,20 @@ export class HeaderComponent {
     text: 'Logout',
     icon: 'runner',
     onClick: () => {
-      this.authService.logOut();
+      //this.authService.logOut();
+      StorageService.RemoveItem('Token');
+      StorageService.RemoveItem('PartyMastId');
     }
   },
-   {
-    text: 'Register',
-    icon: 'runner',
-    onClick: () => {
-      //this.authService.register();
-      this.registrationService.registered=true;
-      this.router.navigate(['/registration-form']);
-    }
-  }];
+    // {
+    //   text: 'Register',
+    //   icon: 'runner',
+    //   onClick: () => {
+    //     this.registrationService.registered = true;
+    //     this.router.navigate(['/registration-form']);
+    //   }
+    // }
+  ];
 
   constructor(public registrationService:RegistrationService,private router: Router, private authService: AuthenticationService) { }
 

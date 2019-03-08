@@ -8,8 +8,17 @@
        <p> {{muhurthaResponse.CountDesc}}</p>
     <div *ngFor="let item of muhurthaResponse.MuhurthaDates">
         <div [ngStyle]="{'color':item.Taranukula}" [ngClass]="getFont(muhurthaRequest.LangCode)">
-        <p><span>{{item.Date}}</span><span>{{item.Lagna}}</span></p>
-        
+        <!-- <p><span>{{item.Date}}</span><span>{{item.Lagna}}</span></p> -->
+        <table>
+            <tr>
+                <td>
+                    {{item.Date}}
+                </td>
+                <td>
+                    {{item.Lagna}}
+                </td>
+            </tr>
+         </table>  
     </div>
     </div>
     <div class="dx-field"  *ngIf="muhurthaResponse.Comment!=''">
