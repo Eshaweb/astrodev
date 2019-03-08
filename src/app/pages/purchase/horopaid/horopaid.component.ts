@@ -113,6 +113,7 @@ export class HoropaidComponent implements OnInit {
           this.itemService.ItemAmount=item.PrintAmount;
       }
       if(this.horoScopeService.horoRequest!=undefined){
+        this.horoScopeService.horoRequest.ReportType=item.ItMastId;
         var orderModel = {
             IsDeliverable: this.checkBoxValue,
             FreeAmount: 0,
@@ -125,6 +126,7 @@ export class HoropaidComponent implements OnInit {
         }
       }
       else if(this.astamangalaService.horoRequest!=undefined){
+        this.astamangalaService.horoRequest.ReportType=item.ItMastId;
         var orderModel = {
             IsDeliverable: this.checkBoxValue,
             FreeAmount: 0,
