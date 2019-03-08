@@ -5,7 +5,7 @@ import { DxCheckBoxModule } from 'devextreme-angular/ui/check-box';
 import { DxTextBoxModule } from 'devextreme-angular/ui/text-box';
 import { DxValidatorModule } from 'devextreme-angular/ui/validator';
 import { DxValidationGroupModule } from 'devextreme-angular/ui/validation-group';
-import { NgModule, OnInit, OnDestroy, ViewChildren, ElementRef, AfterViewInit, ViewChild, Component } from '@angular/core';
+import { NgModule, OnInit, OnDestroy, ViewChildren, ElementRef, AfterViewInit, ViewChild, Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControlName, AbstractControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from "@angular/common";
@@ -24,6 +24,7 @@ import { NumerologyService } from 'src/Services/NumerologyService/NumerologyServ
 import { DxPopupModule } from 'devextreme-angular';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
+import { HeaderComponent } from '../header/header.component';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -171,6 +172,7 @@ export class LoginFormComponent {
   onRegenerateOTP() {
 
   }
+  @Output() open: EventEmitter<any> = new EventEmitter();
   Login_Click() {
     this.loadingSwitchService.loading = true;
     if (this.isOTPRequested == false) {
@@ -195,6 +197,8 @@ export class LoginFormComponent {
               StorageService.SetItem('Token',data.Token);
               StorageService.SetItem('PartyMastId',data.PartyMastId);
               StorageService.SetItem('Name',data.Name);
+              this.loginService.userProfileVisible = true;
+              this.open.emit("hi");
               if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
                 this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
               }

@@ -17,7 +17,7 @@
             *ngIf="title"
             [text]="title">
         </dxi-item>
-        <dxi-item
+        <dxi-item *ngIf="loginService.userProfileVisible" 
             location="after"
             locateInMenu="auto"
             menuItemTemplate="menuItem">

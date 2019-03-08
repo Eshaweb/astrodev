@@ -21,12 +21,7 @@ export class UserPanelComponent {
   Name: any;
 
   constructor(public loginService: LoginService) {
-    // if (StorageService.GetItem('Name') != undefined) {
-    //   this.Name=StorageService.GetItem('Name');
-    // }
-    // else{
-    //   this.Name='';
-    // }
+    
   }
 }
 
