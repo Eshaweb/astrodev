@@ -198,7 +198,6 @@ export class LoginFormComponent {
               StorageService.SetItem('PartyMastId',data.PartyMastId);
               StorageService.SetItem('Name',data.Name);
               this.loginService.userProfileVisible = true;
-              this.open.emit("hi");
               if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
                 this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
               }
@@ -234,6 +233,8 @@ export class LoginFormComponent {
           this.loginService.Token = data.Token;
           StorageService.SetItem('Token',data.Token);
           StorageService.SetItem('PartyMastId',data.PartyMastId);
+          StorageService.SetItem('Name',data.Name);
+          this.loginService.userProfileVisible = true;
           if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
             this.router.navigate(["/purchase/paidServices"]);
           }

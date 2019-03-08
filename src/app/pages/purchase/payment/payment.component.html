@@ -7,36 +7,50 @@
 </div>
 
     
-        <span>If you have a coupon code please enter here</span>
 <div class="coupon-code-2" [formGroup]="CoupenCodeForm">
         <div class="dx-fieldset">
             <div class="dx-feldset-column">
             <div class="dx-field">
                 <div class="dx-field-label">Coupon</div>
                 <div class="dx-field-value">
-                    <dx-text-box formControlName="CouponCode" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true"></dx-text-box>
+                    <dx-text-box formControlName="CouponCode" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box>
                     <p style="color:red" id='err_CouponCode'></p>
                 </div>
                 
             </div>
         </div>
-        <div class="dx-feldset-column">
+        </div>
+        <div class="dx-feldset">
             <div class="dx-field">
             <dx-button (onClick)='onApply()' [disabled]="!CoupenCodeForm.valid||disableButton" id="button" text="Apply" type="success"
                 [useSubmitBehavior]="true">
             </dx-button>
 </div>
 </div>
-        </div>
 
 
 
 </div>
 <div class="clear"></div>
 <div>
-<p>Price              :         {{payableAmount|currency:'INR'}}</p>
-<p>Coupon Discount      :          {{discountAmount|currency:'INR'}}</p>
-<p *ngIf="(discountAmount>0)">Order Total                :          {{payableAmount-discountAmount|currency:'INR'}}</p>
+
+<div class="dx-field">
+    <div class="cap">Price</div>
+    <div class="data">{{payableAmount|currency:'INR'}}
+    </div>
+</div>
+
+<div class="dx-field">
+    <div class="cap">Coupon Discount</div>
+    <div class="data">{{discountAmount|currency:'INR'}}
+    </div>
+</div>
+
+<div class="dx-field" *ngIf="(discountAmount>0)">
+    <div class="cap">Order Total</div>
+    <div class="data">{{payableAmount-discountAmount|currency:'INR'}}
+    </div>
+</div>
 <p style="color:red" *ngIf="(differenceAmount>0)&&(differenceAmount>discountAmount)"> {{'Remaining amount '+(differenceAmount-discountAmount)+' Rs will be deducted from choosen payment modes'}} </p>
 <p style="color:green"> {{selectMeMessage}}</p>
 <p style="color:red"> {{errorMessage}}</p>
@@ -44,7 +58,7 @@
 </div>
 <div class="astrolite-wallet">
 <dx-check-box id="check" [disabled]="alterationDisabled"
-text='Pay using Astrolite wallet--------{{walletbalance}}(Wallet Balance)'
+text='Pay using Astrolite wallet       {{walletbalance}}(Wallet Balance)'
 (onValueChanged)="checkBox_valueChanged($event)">
 </dx-check-box>
 </div>

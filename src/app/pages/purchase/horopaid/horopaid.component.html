@@ -1,18 +1,68 @@
     
   
   <div class="dx-fieldset-column">
-  <div class="dx-card content-block responsive-paddings">
+  <div class="dx-card content-block responsive-paddings pricelist">
   
   <h3 >{{service.Name}}</h3>
     <div class="full-horoscope-1" id='employee'>
     <h5 >{{service.Description}}</h5>
-    <h6  *ngIf='!checkBoxValue'>MRP.               {{service.MRP|currency:'INR'}}</h6>
+    <!-- <h6  *ngIf='!checkBoxValue'>MRP.               {{service.MRP|currency:'INR'}}</h6>
     <h6  *ngIf='checkBoxValue'>MRP.               {{service.PrintMRP|currency:'INR'}}</h6>
     <h6  *ngIf='!checkBoxValue'>Discount             {{SoftCopyDifference|currency:'INR'}}</h6>
     <h6  *ngIf='checkBoxValue'>Discount             {{HardCopyDifference|currency:'INR'}}</h6>
     <h6  *ngIf='!checkBoxValue'>Effective Price      {{service.Amount|currency:'INR'}}</h6>
-    <h6  *ngIf='checkBoxValue'>Effective Price      {{service.PrintAmount|currency:'INR'}}</h6>
+    <h6  *ngIf='checkBoxValue'>Effective Price      {{service.PrintAmount|currency:'INR'}}</h6> -->
    
+    <!-- <div class="dx-fieldset-column">
+        <div class="dx-field">
+            <div class="dx-field-label">MRP.</div>
+            <div class="dx-field-value">
+                <h6>{{service.MRP|currency:'INR'}}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="dx-fieldset-column">
+        <div class="dx-field">
+            <div class="dx-field-label">MRP.</div>
+            <div class="dx-field-value">
+                <h6>{{service.PrintMRP|currency:'INR'}}</h6>
+            </div>
+        </div>
+    </div> -->
+
+        <div class="dx-field" *ngIf='!checkBoxValue'>
+            <div class="cap">MRP.</div>
+            <div class="data">{{service.MRP|currency:'INR'}}
+            </div>
+        </div>
+    
+        <div class="dx-field" *ngIf='checkBoxValue'>
+            <div class="cap">MRP.</div>
+            <div class="data">{{service.PrintMRP|currency:'INR'}}
+            </div>
+        </div>
+        <div class="dx-field" *ngIf='!checkBoxValue'>
+            <div class="cap">Discount</div>
+            <div class="data">{{HardCopyDifference|currency:'INR'}}
+            </div>
+        </div>
+    
+        <div class="dx-field" *ngIf='checkBoxValue'>
+            <div class="cap">Discount</div>
+            <div class="data">{{service.PrintMRP|currency:'INR'}}
+            </div>
+        </div>
+        <div class="dx-field" *ngIf='!checkBoxValue'>
+            <div class="cap">Effective Price</div>
+            <div class="data">{{service.MRP|currency:'INR'}}
+            </div>
+        </div>
+    
+        <div class="dx-field" *ngIf='checkBoxValue'>
+            <div class="cap">Effective Price</div>
+            <div class="data">{{service.PrintAmount|currency:'INR'}}
+            </div>
+        </div>
     <div class="dx-fieldset">
        
             <dx-check-box 
@@ -31,7 +81,7 @@
     
     <a (click)="onSamplePDF(service)">Click here to View Sample PDF</a>
     </div>
-    <p><strong>Delivery Service is Within India Only</strong></p>
+    <p><strong *ngIf="checkBoxValue">Delivery Service is Within India Only</strong></p>
     <div class="next">
     <dx-button (onClick)='onNext(service)'
                 id="button"
