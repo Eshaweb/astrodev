@@ -1,14 +1,15 @@
-import { Component, OnInit, NgModule, Input } from '@angular/core';
+import { Component, OnInit, NgModule, Input} from '@angular/core';
 import { SideNavigationMenuModule, HeaderModule,  } from '../../shared/components';
 import { ScreenService } from '../../shared/services';
 import { DxDrawerModule } from 'devextreme-angular/ui/drawer';
 import { DxScrollViewModule } from 'devextreme-angular/ui/scroll-view';
 import { CommonModule } from '@angular/common';
 
-import { navigation } from '../../app-navigation';
 import { Router, NavigationEnd } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
+// import { navigation } from 'src/app/app-navigation';
+import { navigationAfterLogin, navigationBeforeLogin } from 'src/app/app-navigation';
 
 @Component({
   selector: 'app-side-nav-outer-toolbar',
@@ -16,9 +17,11 @@ import { LoginService } from 'src/Services/login/login.service';
   styleUrls: ['./side-nav-outer-toolbar.component.scss']
 })
 export class SideNavOuterToolbarComponent implements OnInit {
-  menuItems = navigation;
+  //menuItems = navigation;
+  // menuItemsAfterLogin = navigationAfterLogin;
+  // menuItemsBeforeLogin = navigationBeforeLogin;
   selectedRoute = '';
-
+  
   menuOpened: boolean;
   temporaryMenuOpened = false;
 
@@ -31,7 +34,14 @@ export class SideNavOuterToolbarComponent implements OnInit {
   minMenuSize = 0;
   shaderEnabled = false;
 
-  constructor(private loginService:LoginService,private screen: ScreenService, private router: Router) { }
+  constructor(private loginService:LoginService,private screen: ScreenService, private router: Router) {
+    if(StorageService.GetItem('Token')!=undefined){
+      this.loginService.menuItems = navigationAfterLogin;
+    }
+    else{
+      this.loginService.menuItems = navigationBeforeLogin;
+    }
+   }
 
   ngOnInit() {
     this.menuOpened = this.screen.sizes['screen-large'];

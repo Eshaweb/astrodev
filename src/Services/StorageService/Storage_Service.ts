@@ -18,5 +18,9 @@ export class StorageService {
 
         sessionStorage.removeItem(param);
     }
+
+    SetHoroModel(param) {
+        localStorage.setItem("HoroModel", param);
+    }
     
 }

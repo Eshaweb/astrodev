@@ -1,73 +1,56 @@
 .dx-icon-custom-style {
-    font-size: 45px;
-    color  :green;
+  font-size: 45px;
+  color  :green;
 }
 
 
 .centre {
-   
-    text-align: center !important;
+ 
+  text-align: center !important;
 }
 
 
 .login-header {
-    text-align: center;
-    margin-bottom: 40px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+ .dx-fieldset-column {
+ float: left;
+/*  width: 45%;*/
+margin-bottom: 22px;
   
-    .title {
-      color: $base-accent;
-      font-weight: bold;
-      font-size: 30px;
-      margin: 0;
-    }
-  }
-   .dx-fieldset-column {
-   float: left;
-  /*  width: 45%;*/
-  margin-bottom: 22px;
-    
-     }
-  
-     .dx-card[_ngcontent-c3]{
-      width: 350px !important;
-      margin: auto auto;
-      padding: 25px !important;
-  }
-  
-  .twocol {
-    display: flex;
-    margin-bottom: 10px;
-  }
-  
-  
-  :host {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .dx-card {
-    width: 350px;
+   }
+
+   .dx-card[_ngcontent-c3]{
+    width: 350px !important;
     margin: auto auto;
-    padding: 30px;
-    margin-top: 50px;
-  
-    :host-context(.screen-x-small) & {
-      width: 100%;
-      height: 100%;
-      border-radius: 0;
-      box-shadow: none;
-      margin: 0;
-      border: 0;
-    }  
-  }
-  
-  .dx-button-mode-contained.dx-button-default {
-    background-color: #e07333;
-    border-color: transparent;
-    color: #fff;
-  }
-  
-  a {
-    color: #b74610;
-  }
-  
+    padding: 25px !important;
+}
+
+.twocol {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+.dx-card {
+  width: 350px;
+  margin: auto auto;
+  padding: 30px;
+  margin-top: 50px;
+}
+
+.dx-button-mode-contained.dx-button-default {
+  background-color: #e07333;
+  border-color: transparent;
+  color: #fff;
+}
+
+a {
+  color: #b74610;
+}
