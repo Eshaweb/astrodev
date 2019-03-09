@@ -232,6 +232,21 @@ export class PanchangaComponent {
       ZM: this.panchangaRequest.ZM,
       PN: this.panchangaRequest.PN,
     }
+    // var getsputaModel={
+    //   Date:dateinString,
+    //   Time:timeinString,
+    //   TimeFormat:this.timeformatvalue,
+    //   LatDeg: this.panchangaRequest.LatDeg,
+    //   LatMt: this.panchangaRequest.LatMt,
+    //   LongDeg: this.panchangaRequest.LongDeg,
+    //   LongMt: this.panchangaRequest.LongMt,
+    //   NS: this.panchangaRequest.NS,
+    //   EW: this.panchangaRequest.EW,
+    //   ZH: this.panchangaRequest.ZH,
+    //   ZM: this.panchangaRequest.ZM,
+    //   PN: this.panchangaRequest.PN,
+    //   Count:1,
+    // }
     this.panchangaService.panchangaRequest = this.panchangaRequest;
     this.panchangaService.DateinDateFormat = bdate;
     this.panchangaService.timeZoneName = this.timeZoneName;
@@ -240,6 +255,11 @@ export class PanchangaComponent {
       this.loadingSwitchService.loading = false;
       this.router.navigate(["/panchanga/getPanchangaFreeData"]);
     });
+    // this.panchangaService.GetSputasOnSunRise(getsputaModel).subscribe((data: any) => {
+    //   this.panchangaService.panchangaResponse = data;
+    //   this.loadingSwitchService.loading = false;
+    //   this.router.navigate(["/panchanga/getPanchangaFreeData"]);
+    // });
   }
 
   public onDialogOKSelected(event) {

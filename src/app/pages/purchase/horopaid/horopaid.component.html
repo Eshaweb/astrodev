@@ -43,18 +43,18 @@
         </div>
         <div class="dx-field" *ngIf='!checkBoxValue'>
             <div class="cap">Discount</div>
-            <div class="data">{{HardCopyDifference|currency:'INR'}}
+            <div class="data">{{SoftCopyDifference|currency:'INR'}}
             </div>
         </div>
     
         <div class="dx-field" *ngIf='checkBoxValue'>
             <div class="cap">Discount</div>
-            <div class="data">{{service.PrintMRP|currency:'INR'}}
+            <div class="data">{{HardCopyDifference|currency:'INR'}}
             </div>
         </div>
         <div class="dx-field" *ngIf='!checkBoxValue'>
             <div class="cap">Effective Price</div>
-            <div class="data">{{service.MRP|currency:'INR'}}
+            <div class="data">{{service.Amount|currency:'INR'}}
             </div>
         </div>
     

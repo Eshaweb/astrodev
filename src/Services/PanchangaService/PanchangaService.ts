@@ -31,7 +31,10 @@ export class PanchangaService {
     var endPoint = "DayPanchanga/GetPanchanga";
     return this.httpService.Post(endPoint, horoRequest);
 }
-
+GetSputasOnSunRise(horoRequest):Observable<any> {
+    var endPoint = "PanchaPakshi/GetSputasOnSunRise";
+    return this.httpService.Post(endPoint, horoRequest);
+}
 getTimezone(lat, long) {
     var apiKey = 'AIzaSyD68pTd0CmqTXSqPHFpLrPWkiClqPBIpLQ'
     var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey

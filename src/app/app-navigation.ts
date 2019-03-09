@@ -112,6 +112,10 @@ export const navigationAfterLogin = [
         path:'/muhurtha'
       },
       {
+        text: 'Panchapakshi',
+        path: '/panchapakshi',
+      },
+      {
         text: 'Wallet',
         path: '/wallet/depoToWallet'
       },
@@ -181,6 +185,10 @@ export const navigationBeforeLogin = [
       {
         text: 'Muhurtha',
         path:'/muhurtha'
+      },
+      {
+        text: 'Panchapakshi',
+        path: '/panchapakshi',
       },
       {
         text: 'Wallet',
