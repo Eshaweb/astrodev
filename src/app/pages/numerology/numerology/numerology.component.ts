@@ -189,6 +189,7 @@ export class NumerologyComponent {
       CityName: this.numerologyForm.controls['cityName'].value,
       ReportSize:this.reportSizevalue
     }
+    
     this.numerologyService.numerologyRequest = this.numerologyRequest;
     this.numerologyService.birthDateinDateFormat = bdate;
     this.numerologyService.GetFreeData(this.numerologyRequest).subscribe((data: any) => {

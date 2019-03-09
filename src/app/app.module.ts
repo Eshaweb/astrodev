@@ -42,6 +42,7 @@ import { OrderHistoryService } from 'src/Services/order';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { PanchangaModule } from './pages/panchanga/panchanga.module';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
+import { PanchaPakshiService } from 'src/Services/PanchaPakshiService/PanchaPakshiService';
 
 
 let config = new AuthServiceConfig([
@@ -84,7 +85,7 @@ export function provideConfig() {
     //DevExtremeModule
   ],
   providers: [AuthService, ScreenService, AppInfoService, ItemService, PanchangaService,
-    Service, AuthenticationService, CaptionDbService, OrderService, NumerologyService,
+    Service, AuthenticationService, CaptionDbService, OrderService, NumerologyService, PanchaPakshiService,
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService, MuhurthaService,
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
     LoaderService, SalesService, WalletService, OrderHistoryService, StorageService,

@@ -86,6 +86,10 @@ const routes: Routes = [
     loadChildren: './pages/purchase/purchase.module#PurchaseModule'
   },
   {
+    path: 'panchapakshi',
+    loadChildren: './pages/panchapakshi/panchapakshi.module#PanchapakshiModule'
+  },
+  {
     path: 'admin',
     loadChildren: './pages/admin/admin.module#AdminModule'
   },
