@@ -153,11 +153,11 @@ export class LoginFormComponent {
     this.router.navigate(["/registration-form"]);
   }
   onRequestOTP() {
-    this.isOTPRequested = true;
-    if (this.loginForm.get('UserName').value == '') {
+    if (this.loginForm.get('UserName').value == ''||this.loginForm.get('UserName').value == null) {
       document.getElementById('err_UserName').innerHTML = 'Please Enter Mobile Number'
     }
     else{
+      this.isOTPRequested = true;
       var GetOTP={
         MobileNo:this.loginForm.get('UserName').value
       }
