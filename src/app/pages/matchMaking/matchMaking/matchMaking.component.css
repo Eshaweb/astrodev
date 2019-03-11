@@ -2,106 +2,106 @@
     padding-left: 10px;
     margin-top: 20px;
     margin-bottom: 10px;
-    }
-    ::ng-deep #button {
+}
+
+::ng-deep #button {
     display: block;
-    }
-    
+}
+
+.dx-fieldset-column {
+    float: left;
+    width: 45%;
+    margin-right: 40px;
+    margin-top: 24px !important;
+}
+
+.dx-fieldset-column3 {
+    float: left;
+    width: 30%;
+    margin-right: 25px;
+    margin-top: 24px !important;
+}
+
+.clear {
+    clear: both;
+}
+
+.dx-texteditor-container {
+    margin-bottom: 14px;
+}
+
+.dx-header {
+    margin-right: 20px;
+    float: left;
+}
+
+.dx-fieldset-header {
+    margin-top: 25px;
+}
+
+@media (max-width: 800px) {
     .dx-fieldset-column {
         float: left;
-        width: 45%;
-        margin-right: 40px;
-        margin-top: 24px !important;
-        }
-    
-        .dx-fieldset-column3 {
-            float: left;
-            width: 30%;
-            margin-right: 25px;
-            margin-top: 24px !important;
-            }
-        
-        .clear {
-        clear: both;
-        }
-    
-    .dx-texteditor-container {
-    margin-bottom: 14px;
-    }
-
-    .dx-header{
-        margin-right: 20px;
-    float: left;
-    }
-    .dx-fieldset-header{
-
-        margin-top: 25px;
-    }
-    
-    @media (max-width: 800px) {
-    .dx-fieldset-column {
-    float: left;
-    width: 100%;
-    height:55px;
+        width: 100%;
+        height: 55px;
     }
     .dx-fieldset-column3 {
         float: left;
         width: 100%;
         /*height:55px;*/
-        }
-    .dx-field-label{
-        width: 60%;
-        align-self:flex-end;
     }
-
+    .dx-field-label {
+        width: 60%;
+        align-self: flex-end;
+    }
     .responsive-paddings {
         padding: 5px;
     }
-    .dx-field-value{
+    .dx-field-value {
         width: 100% !important;
     }
     .column {
         float: left !important;
         width: 22% !important;
         padding: 10px;
-        }
-     .first-column {
-            float: left !important;
-            width: 50% !important;
-            padding: 10px;
-            }
     }
-    
-    .dx-field-value, .dx-field-label {
-    text-align: left;
+    .first-column {
+        float: left !important;
+        width: 50% !important;
+        padding: 10px;
     }
-   
+}
 
-    .column {
-        float: left;
-        width: 10%;
-        padding: 10px;
-        }
-        
-        .row:after {
-        content: "";
-        display: table;
-        clear: both;
-        }
-        
-        .first-column {
-        float: left;
-        width: 26%;
-        padding: 10px;
-        }
-        
-        .f-label{
-        width:30%;
-        float: left;
-        margin-top: 10px;
-        
-        }
-        .first-textbox{
-        width: 33%;
-        float: right;
-        }
+.dx-field-value,
+.dx-field-label {
+    text-align: left;
+}
+
+.column {
+    float: left;
+    width: 10%;
+    padding: 10px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.first-column {
+    float: left;
+    width: 27%;
+    padding: 10px 11px 9px 0px;
+}
+
+.f-label {
+    width: 37%;
+    float: left;
+    margin-top: 10px;
+}
+
+.first-textbox {
+    width: 30%;
+    float: right;
+}
