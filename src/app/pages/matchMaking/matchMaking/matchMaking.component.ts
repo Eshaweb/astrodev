@@ -624,6 +624,4 @@ export class MatchMakingComponent {
       this.router.navigate(["/matchMaking/getMatchMakingFreeData"]);
     });
   }
-  now: Date = new Date();
-
 }

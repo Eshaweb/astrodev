@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { interval } from 'rxjs';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { OrderService } from 'src/Services/OrderService/OrderService';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 @Component({
   selector: 'app-payment-processing',
@@ -21,7 +22,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   sub: any;
   showSuccess: boolean;
 
-  constructor(private orderService:OrderService,private loadingSwitchService:LoadingSwitchService,public location: Location,public router: Router, public horoScopeService: HoroScopeService) {
+  constructor(public storageService:StorageService,private orderService:OrderService,private loadingSwitchService:LoadingSwitchService,public location: Location,public router: Router, public horoScopeService: HoroScopeService) {
     this.enableDownload = true;
     // if (this.horoScopeService.resultResponse.Refresh == true) {
     //   this.enableRefresh = true;
@@ -42,15 +43,17 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //this.loading = true;
     this.loadingSwitchService.loading=true;
-    this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
-      if (data.AstroReportId.length != 0) {
+    // this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
+    this.orderService.CheckForResult(StorageService.GetItem('OrderId')).subscribe((data) => {
+    if (data.AstroReportId.length != 0) {
         this.enableRefresh = false;
         this.enableDownload = true;
         this.buttonName = data.AstroReportId[0].split('_')[1];
         this.buttonId = data.AstroReportId[0].split('_')[0];
         this.horoScopeService.DownloadResult(this.buttonId, (data) => {
           var newBlob = new Blob([data], { type: "application/pdf" });
-          const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
+          // const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
+          const fileName: string = this.storageService.GetOrderResponse().ItName+'.pdf';
           //const fileName: string = 'horo.pdf';
           const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
           var url = window.URL.createObjectURL(newBlob);
@@ -71,15 +74,17 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
         this.enableDownload = false;
         this.buttonName = 'Click Refresh';
         this.sub=interval(10000).subscribe((val) =>{
-          this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
-            if (data.AstroReportId.length != 0) {
+          // this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
+          this.orderService.CheckForResult(StorageService.GetItem('OrderId')).subscribe((data) => {
+          if (data.AstroReportId.length != 0) {
               this.enableRefresh = false;
               this.enableDownload = true;
               this.buttonName = data.AstroReportId[0].split('_')[1];
               this.buttonId = data.AstroReportId[0].split('_')[0];
               this.horoScopeService.DownloadResult(this.buttonId, (data) => {
                 var newBlob = new Blob([data], { type: "application/pdf" });
-                const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
+                // const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
+                const fileName: string = this.storageService.GetOrderResponse().ItName+'.pdf';
                 const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
                 var url = window.URL.createObjectURL(newBlob);
                 a.href = url;

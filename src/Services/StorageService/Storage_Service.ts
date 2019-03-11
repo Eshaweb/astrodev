@@ -39,6 +39,9 @@ export class StorageService {
     SetOrderResponse(param) {
         sessionStorage.setItem("OrderResponse", param);
     }
+    SetItemOrdered(param) {
+        sessionStorage.setItem("ItemOrdered", param);
+    }
     GetHoroRequest(ItActId): any {
         switch (ItActId) {
             case '#SH':
@@ -88,7 +91,10 @@ export class StorageService {
         }
 
     }
-    GetOrderResponse(): any {
+    GetOrderResponse(): OrderResponse {
         return JSON.parse(sessionStorage.getItem("OrderResponse")) as OrderResponse;
+    }
+    GetItemOrdered(): any {
+        return JSON.parse(sessionStorage.getItem("ItemOrdered"));
     }
 }

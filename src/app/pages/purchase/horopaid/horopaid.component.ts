@@ -98,7 +98,8 @@ export class HoropaidComponent implements OnInit {
 
   onNext_click(item) {
     this.loadingSwitchService.loading=true; 
-      this.horoScopeService.itemOrdered = item;
+      //this.horoScopeService.itemOrdered = item;
+      this.storageService.SetItemOrdered(JSON.stringify(item));
       //this.horoScopeService.horoRequest.ReportType = item.ItMastId;
       if (this.checkBoxValue == false) {
           this.itemAmount = item.Amount;

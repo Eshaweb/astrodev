@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { SortingOrderHistoryPipe } from 'src/pipes/sorting-orders.pipe';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 
 
 
@@ -38,8 +39,9 @@ export class OrderHistoryComponent implements OnInit {
     sortordervalue: string;
     fielddata: ArrayStore;
     sortorderdata: ArrayStore;
+    buttonId: any;
 
-    constructor(public loadingSwitchService:LoadingSwitchService, public sortingOrderHistoryPipe:SortingOrderHistoryPipe,private router:Router,private itemService:ItemService,private loginService:LoginService,service: OrderHistoryService, private orderService:OrderService) {
+    constructor(public horoScopeService:HoroScopeService,public storageService:StorageService,public loadingSwitchService:LoadingSwitchService, public sortingOrderHistoryPipe:SortingOrderHistoryPipe,private router:Router,private itemService:ItemService,private loginService:LoginService,service: OrderHistoryService, private orderService:OrderService) {
         this.services = service.getServices();
         this.fielddata = new ArrayStore({
             data: this.fields,
@@ -60,7 +62,9 @@ export class OrderHistoryComponent implements OnInit {
         }
         this.orderService.OrderHistory(orderHistory).subscribe((data: any) => {
         this.orderHistoryResponse=data;
-        });
+        var args:string[]=[this.fieldvalue,"OrderId"];
+        this.sortingOrderHistoryPipe.transform(this.orderHistoryResponse,args);
+    });
     }
     
     fielddataSelection(event) {
@@ -109,6 +113,8 @@ export class OrderHistoryComponent implements OnInit {
             ItMastId:null,
             ItName:item.ItName
         };
+        // StorageService.SetItem('OrderId', item.OrderId)
+        // this.storageService.SetOrderResponse(JSON.stringify(this.orderService.orderResponse));
         if (item.StatusCode == 'AP') {
             this.router.navigate(["/purchase/deliveryAddress", { 'OrderId': item.OrderId }]);
         }
@@ -116,7 +122,26 @@ export class OrderHistoryComponent implements OnInit {
             this.router.navigate(["/purchase/payment"]);
         }
         else if (item.StatusCode == 'RD') {
-            this.router.navigate(['/purchase/paymentProcessing']);
+            //this.router.navigate(['/purchase/paymentProcessing']);
+
+            this.orderService.CheckForResult(item.OrderId).subscribe((data) => {
+                if (data.AstroReportId.length != 0) {
+                    this.buttonId = data.AstroReportId[0].split('_')[0];
+                    this.horoScopeService.DownloadResult(this.buttonId, (data) => {
+                      var newBlob = new Blob([data], { type: "application/pdf" });
+                       const fileName: string = item.ItName+'.pdf';
+                      const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+                      var url = window.URL.createObjectURL(newBlob);
+                      a.href = url;
+                      a.download = fileName;
+                      document.body.appendChild(a);
+                      a.click();
+                      document.body.removeChild(a);
+                      URL.revokeObjectURL(url);
+                      this.loadingSwitchService.loading=false;
+                    });
+                  }
+                });
         }
     }
 }

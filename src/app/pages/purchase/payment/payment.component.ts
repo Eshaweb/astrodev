@@ -40,7 +40,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     paymentmodeSelected: boolean = false;
     ShowMessage: string;
     selectboxdisabled: boolean = false;
-    OrderId: number;
+    OrderId: any;
     paymentId: any;
   errorMessage: any;
   checkClicked: boolean= false;
@@ -54,15 +54,19 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   paymentModedatavalue: any;
   alterationDisabled: boolean;
   
-    constructor(private itemService:ItemService,private orderService:OrderService,private loadingSwitchService:LoadingSwitchService, public walletService:WalletService, public _location: Location, public route: ActivatedRoute, public router: Router,
+    constructor(public storageService:StorageService,private itemService:ItemService,private orderService:OrderService,private loadingSwitchService:LoadingSwitchService, public walletService:WalletService, public _location: Location, public route: ActivatedRoute, public router: Router,
       public formBuilder: FormBuilder, public platform: Platform, public formbuilder: FormBuilder,
       public loginService: LoginService, public horoScopeService: HoroScopeService,
       public uiService: UIService) {
       this.discountAmount = 0;
       
-      this.OrderId = this.orderService.orderResponse.OrderId;
-      if (this.horoScopeService.itemOrdered != undefined) {
-        this.ItemOrdered = this.horoScopeService.itemOrdered;
+      //this.OrderId = this.orderService.orderResponse.OrderId;
+      this.OrderId = StorageService.GetItem('OrderId');
+      // if (this.horoScopeService.itemOrdered != undefined) {
+      //   this.ItemOrdered = this.horoScopeService.itemOrdered;
+      // }
+      if (this.storageService.GetItemOrdered() != undefined) {
+        this.ItemOrdered = this.storageService.GetItemOrdered();
       }
       this.orderService.GetItemAmountByOrderId(this.OrderId).subscribe((data: any) => {
         this.payableAmount=data.Amount;

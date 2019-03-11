@@ -198,8 +198,12 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     }
     onRemoveAddress(Id) {
         this.loadingSwitchService.loading=true;
+        // var DeleteAddress = {
+        //     PartyMastId: this.loginService.PartyMastId,
+        //     AddressId: Id
+        // }
         var DeleteAddress = {
-            PartyMastId: this.loginService.PartyMastId,
+            PartyMastId: StorageService.GetItem('PartyMastId'),
             AddressId: Id
         }
         this.horoScopeService.DeleteAddress(DeleteAddress).subscribe((data:any) => {

@@ -3,6 +3,6 @@ export class OrderHistoryResponse {
     Date: string;
     Hint: string;
     ItName: string;
-    OrderId: string
+    OrderId: any
     StatusCode: string;
 }
