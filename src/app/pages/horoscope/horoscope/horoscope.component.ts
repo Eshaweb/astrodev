@@ -15,6 +15,7 @@ import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
 import { isString } from 'util';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 
 @Component({
@@ -183,7 +184,7 @@ export class HoroscopeComponent {
     //     return isNumeric(value);
     //   });
     // }
-    constructor(service: Service, public loadingSwitchService:LoadingSwitchService,private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
+    constructor(public storageService:StorageService,service: Service, public loadingSwitchService:LoadingSwitchService,private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
       private cdr: ChangeDetectorRef, public partyService: PartyService, public horoScopeService: HoroScopeService, public uiService: UIService,
       private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
       //this.serviceInfo =  horoScopeService.getCustomers();
@@ -445,8 +446,10 @@ export class HoroscopeComponent {
       this.horoScopeService.birthDateinDateFormat = bdate;
       this.horoScopeService.birthTimeinDateFormat = btime;
       this.horoScopeService.timeZoneName=this.timeZoneName;
+      this.storageService.SetHoroModel(this.horoRequest);
       this.horoScopeService.GetFreeData(this.horoRequest).subscribe((data:any) => {
         this.horoScopeService.horoResponse = data;
+        this.storageService.SetHoroResponse(data);
         this.loadingSwitchService.loading = false;
         this.router.navigate(["/horoscope/getHoroscopeFreeData"]);
     });

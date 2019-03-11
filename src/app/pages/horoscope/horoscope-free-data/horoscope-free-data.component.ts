@@ -58,20 +58,22 @@ export class HoroscopeFreeDataComponent implements OnInit {
     this.caption=new Caption();
     this.GetCaption(this.horoModel.LangCode, this.caption);
   }
-  constructor(private itemService:ItemService,public captionDbService:CaptionDbService, public registrationService:RegistrationService,
+  constructor(public storageService:StorageService,private itemService:ItemService,public captionDbService:CaptionDbService, public registrationService:RegistrationService,
     public _location: Location, public route: ActivatedRoute, public router: Router, 
     public platform: Platform, public loginService: LoginService, public horoScopeService: HoroScopeService) {
     
     this.horoModel=this.horoScopeService.horoRequest;
+    //this.horoModel=this.storageService.GetHoroRequest();
     this.horoResponse=new HoroResponse();
-    this.horoResponse=this.horoScopeService.horoResponse
-      this.Fathername = this.horoScopeService.Mothername;
-      this.Mothername = this.horoScopeService.Fathername;
-      this.BirthPlace = this.horoScopeService.birthplaceShort;
-      this.systemDate=this.horoScopeService.systemDate;
-      this.horoInfo = horoScopeService.horoRequest;
-      this.Name = horoScopeService.horoRequest.Name;
-      this.BDate = horoScopeService.horoRequest.Date
+    this.horoResponse=this.horoScopeService.horoResponse;
+    //this.horoResponse=this.storageService.GetHoroResponse();
+    //   this.Fathername = this.horoScopeService.Mothername;
+    //   this.Mothername = this.horoScopeService.Fathername;
+    //   this.BirthPlace = this.horoScopeService.birthplaceShort;
+    //   this.systemDate=this.horoScopeService.systemDate;
+    //   this.horoInfo = horoScopeService.horoRequest;
+    //   this.Name = horoScopeService.horoRequest.Name;
+    //   this.BDate = horoScopeService.horoRequest.Date;
     //   this.Shloka1 = horoScopeService.data.Shloka1;
     //   this.Shloka2 = horoScopeService.data.Shloka2;
     //   this.JanmaNakshathra = horoScopeService.data.JanmaNakshathra;

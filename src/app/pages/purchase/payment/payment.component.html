@@ -65,19 +65,20 @@
     <div class="data">{{payableAmount-discountAmount|currency:'INR'}}
     </div>
 </div>
-<p style="color:red" *ngIf="(differenceAmount>0)&&(differenceAmount>discountAmount)"> {{'Remaining amount '+(differenceAmount-discountAmount)+' Rs will be deducted from choosen payment modes'}} </p>
 <p style="color:green"> {{selectMeMessage}}</p>
-<p style="color:red"> {{errorMessage}}</p>
 
 </div>
 </div>
 <div class="astrolite-wallet">
 <dx-check-box id="check" [disabled]="alterationDisabled"
-text='Pay using Astrolite wallet'
+text='Pay using Astrolite wallet      {{walletbalance|currency:"INR"}}(Wallet Balance)'
 (onValueChanged)="checkBox_valueChanged($event)">
 </dx-check-box>
-<p>{{walletbalance|currency:'INR'}}(Wallet Balance)</p>
 </div>
+
+<p style="color:red" *ngIf="(differenceAmount>0)&&(differenceAmount>discountAmount)"> {{'Remaining amount '+(differenceAmount-discountAmount)+' Rs will be deducted from choosen payment modes'}} </p>
+<p style="color:red"> {{errorMessage}}</p>
+
 <div class="dx-fieldset">
         <div class="dx-field">
                 <div class="cap">
