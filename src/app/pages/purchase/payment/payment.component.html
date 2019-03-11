@@ -47,7 +47,7 @@
 </div>
 <div class="clear"></div>
 <div>
-
+        <div class="dx-fieldset">
 <div class="dx-field">
     <div class="cap">Price</div>
     <div class="data">{{payableAmount|currency:'INR'}}
@@ -70,6 +70,7 @@
 <p style="color:red"> {{errorMessage}}</p>
 
 </div>
+</div>
 <div class="astrolite-wallet">
 <dx-check-box id="check" [disabled]="alterationDisabled"
 text='Pay using Astrolite wallet'
@@ -79,6 +80,7 @@ text='Pay using Astrolite wallet'
 </div>
 <div class="dx-fieldset">
         <div class="dx-field">
+                <div class="cap">
 <div class="payment-mode" [formGroup]="paymentModeForm">
     <dx-select-box formControlName="paymentMode"
     (onValueChanged)="paymentModeSelection($event)" 
@@ -88,6 +90,7 @@ text='Pay using Astrolite wallet'
     [disabled]="selectboxdisabled"
     [value]='paymentModedatavalue'>
     </dx-select-box>
+</div>
 </div>
         </div>
 
