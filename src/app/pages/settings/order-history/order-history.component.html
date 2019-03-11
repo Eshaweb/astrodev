@@ -10,7 +10,7 @@
             [animationDuration]="300"
             (onItemTitleClick)="onItemClick($event)">
             <div *dxTemplate="let company of 'title'">
-                <h4>{{company.ServiceName}}</h4>
+                <div class="heading">{{company.ServiceName}}</div>
             </div>
             <div *dxTemplate="let company of 'item'">
                     <div class="dx-fieldset-column">
@@ -45,7 +45,7 @@
                             </div>
                         </div> 
                         <div class="dx-field" >
-                            <div class="dx-field-label">{{item.OrderId}}</div>
+                            <div class="collapsible">{{item.OrderId}}</div>
                             <div class="dx-field-value">
                                 {{item.Date|  date:'dd/MM/yyyy'}}
                             </div>
