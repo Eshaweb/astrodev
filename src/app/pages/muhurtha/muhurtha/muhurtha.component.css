@@ -48,8 +48,8 @@
     }
 
     /* ::ng-deep .dx-button-content {
-        padding: 9px 36px 10px !important;
-    } */
+    padding: 9px 36px 10px !important;
+} */
     @media (max-width: 800px) {
     .dx-fieldset-column {
     float: left;
