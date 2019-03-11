@@ -72,7 +72,33 @@ tr,
 td {
     border: 1px solid black !important;
 }
+.header{
+font-family: 'PT Sans Narrow', sans-serif;
+font-size: 18px;
+font-weight: 700;
+margin: 0 0 10px;
+text-align: center
 
+}
+
+.calender{
+  width: 340px;
+    background: rgba(0, 0, 0, .1);
+    padding: 12px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+table {
+  border-collapse: collapse;
+  text-align: center;
+}
+
+td {
+  color: #000;
+  background: #fff;
+  width: 50px;
+  /* border-collapse: collapse; */
+}
 .dx-field-value,
 .dx-field-label {
     text-align: left;
@@ -111,5 +137,9 @@ td {
     }
     .col-sm-4 {
         width: 85%;
+    }
+    .calender{
+      width: 285px;
+       
     }
 }

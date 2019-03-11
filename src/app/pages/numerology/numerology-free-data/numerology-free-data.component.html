@@ -66,10 +66,12 @@
 </div>
 
 <div class="dx-card content-block responsive-paddings "    >
+<div class="calender">
+        <div class="header">{{manthcaption}}</div>
 <table>
 
 <thead>
-<tr>{{manthcaption}}</tr>
+
 <tr>
 <td [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Sunday}}</td>
 <td [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Monday}}</td>
@@ -94,7 +96,7 @@
 </tr>
 </tbody>
 </table>
-
+</div>
 </div>
 
 <div class="dx-card content-block responsive-paddings ">
