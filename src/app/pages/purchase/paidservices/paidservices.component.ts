@@ -40,10 +40,14 @@ export class PaidservicesComponent implements OnInit {
   constructor(public _location: Location, public route: ActivatedRoute, public router: Router,
     public loginService: LoginService, public itemService: ItemService, public loadingSwitchService:LoadingSwitchService) {
         this.loadingSwitchService.loading=true; 
-        var itemMast = {
-          ItActId: itemService.ItActId,
-          PartyMastId: StorageService.GetItem('PartyMastId'),
-      }
+    //     var itemMast = {
+    //       ItActId: itemService.ItActId,
+    //       PartyMastId: StorageService.GetItem('PartyMastId'),
+    //   }
+    var itemMast = {
+        ItActId: StorageService.GetItem('ItActId'),
+        PartyMastId: StorageService.GetItem('PartyMastId'),
+    }
     this.itemService.GetPriceListByItActId(itemMast).subscribe((data:any) => {
         if (data.Error == undefined) {
             this.serviceInfo = data;

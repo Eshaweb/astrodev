@@ -86,14 +86,18 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     customerEMailAddressForm: FormGroup;
     email: string;
     DeliveryAddressRequired: boolean;
-    constructor(public _location: Location, public route: ActivatedRoute, public router: Router, public loginService: LoginService,
+    constructor(public storageService:StorageService,public _location: Location, public route: ActivatedRoute, public router: Router, public loginService: LoginService,
         public horoScopeService: HoroScopeService, private orderService:OrderService,
         public uiService: UIService, public formbuilder: FormBuilder, public loadingSwitchService:LoadingSwitchService) {
         this.DeliveryAddressRequired = this.horoScopeService.IsDeliverable
         this.loadingSwitchService.loading=true;
-        this.OrderId = this.orderService.orderResponse.OrderId;
-        if(this.orderService.orderResponse.ItName!=undefined){
-            this.ItName=this.orderService.orderResponse.ItName;
+        //this.OrderId = this.orderService.orderResponse.OrderId;
+        this.OrderId = StorageService.GetItem('OrderId');
+        // if(this.orderService.orderResponse.ItName!=undefined){
+        //     this.ItName=this.orderService.orderResponse.ItName;
+        // }
+        if(this.storageService.GetOrderResponse().ItName!=undefined){
+            this.ItName=this.storageService.GetOrderResponse().ItName;
         }
         this.customerEMailAddressForm = this.formbuilder.group({
             EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]]

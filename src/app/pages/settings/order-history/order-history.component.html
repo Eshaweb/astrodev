@@ -4,7 +4,7 @@
 <div id="accordion">
         <dx-accordion
             #accordion
-            [dataSource]="companies"
+            [dataSource]="services"
             [collapsible]="true"
             [multiple]="false"
             [animationDuration]="300"
@@ -12,7 +12,7 @@
             <div *dxTemplate="let company of 'title'">
                 <div class="heading">{{company.ServiceName}}</div>
             </div>
-            <div *dxTemplate="let company of 'item'">
+            <div *dxTemplate="let service of 'item'">
                     <div class="dx-fieldset-column">
                         <div class="dx-field">
                             <div class="dx-field-label">Field</div>

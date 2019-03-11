@@ -15,6 +15,7 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import { getLocaleDateTimeFormat } from '@angular/common';
 import { MuhurthaRequest, RashiNak } from 'src/Models/Muhurtha/MuhurthaRequest';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 
 @Component({
@@ -179,7 +180,7 @@ export class MuhurthaComponent {
   birthDateinDateFormat: Date;
   dateinDateFormat: Date;
 
-  constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
+  constructor(public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public muhurthaService: MuhurthaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
     this.maxDate = new Date(this.maxDate.setFullYear(this.maxDate.getFullYear() - 21));
@@ -543,8 +544,10 @@ export class MuhurthaComponent {
     this.muhurthaService.ToDateinDateFormat = todate;
     this.muhurthaService.muhurthaRequest = this.muhurthaRequest;
     this.muhurthaService.timeZoneName = this.timeZoneName;
+    this.storageService.SetHoroModel(JSON.stringify(this.muhurthaRequest));
     this.muhurthaService.GetFreeData(this.muhurthaRequest).subscribe((data: any) => {
       this.muhurthaService.muhurthaResponse = data;
+      this.storageService.SetHoroResponse(JSON.stringify(data));
       this.loadingSwitchService.loading = false;
       this.router.navigate(["/muhurtha/getMuhurthaFreeData"]);
     });

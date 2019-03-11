@@ -446,10 +446,10 @@ export class HoroscopeComponent {
       this.horoScopeService.birthDateinDateFormat = bdate;
       this.horoScopeService.birthTimeinDateFormat = btime;
       this.horoScopeService.timeZoneName=this.timeZoneName;
-      this.storageService.SetHoroModel(this.horoRequest);
+      this.storageService.SetHoroModel(JSON.stringify(this.horoRequest));
       this.horoScopeService.GetFreeData(this.horoRequest).subscribe((data:any) => {
         this.horoScopeService.horoResponse = data;
-        this.storageService.SetHoroResponse(data);
+        this.storageService.SetHoroResponse(JSON.stringify(data));
         this.loadingSwitchService.loading = false;
         this.router.navigate(["/horoscope/getHoroscopeFreeData"]);
     });

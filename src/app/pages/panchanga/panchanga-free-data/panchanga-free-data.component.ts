@@ -10,6 +10,7 @@ import { Caption } from 'src/Models/Caption';
 import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
 import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
 import { SerialisedPanchangaResponse } from 'src/Models/Panchanga/PanchangaResponse';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 
 @Component({
@@ -26,12 +27,14 @@ import { SerialisedPanchangaResponse } from 'src/Models/Panchanga/PanchangaRespo
   serialisedPanchangaResponse: SerialisedPanchangaResponse;
     ngOnInit(): void {
       this.caption=new Caption();
-      this.panchangaRequest=this.panchangaService.panchangaRequest;
+      //this.panchangaRequest=this.panchangaService.panchangaRequest;
+      this.panchangaRequest=this.storageService.GetHoroRequest('#PA');
       this.GetCaption(this.panchangaRequest.LangCode, this.caption);
     }
-    constructor(private itemService:ItemService, public router: Router, public loginService: LoginService, 
+    constructor(public storageService:StorageService,private itemService:ItemService, public router: Router, public loginService: LoginService, 
       public captionDbService:CaptionDbService, public panchangaService: PanchangaService) {
-      this.serialisedPanchangaResponse = JSON.parse(this.panchangaService.panchangaResponse.Panchanga);
+      //this.serialisedPanchangaResponse = JSON.parse(this.panchangaService.panchangaResponse.Panchanga);
+      this.serialisedPanchangaResponse=JSON.parse(this.storageService.GetHoroResponse('#PA').Panchanga);
     }
 
     GetCaption(langCode:string,caption:Caption)

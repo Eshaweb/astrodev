@@ -48,7 +48,7 @@ export class HoropaidComponent implements OnInit {
   itemAmount: number;
   isLoading: boolean;
   errorMessage: any;
-  constructor(private muhurthaService:MuhurthaService,private numerologyService:NumerologyService,private matchMakingService:MatchMakingService,
+  constructor(public storageService:StorageService,private muhurthaService:MuhurthaService,private numerologyService:NumerologyService,private matchMakingService:MatchMakingService,
     private orderService:OrderService,private astamangalaService:AstamangalaService,private itemService:ItemService ,
     public _location: Location, public route: ActivatedRoute, public router: Router, public loadingSwitchService:LoadingSwitchService,
       public loginService: LoginService, public horoScopeService: HoroScopeService) {
@@ -96,7 +96,7 @@ export class HoropaidComponent implements OnInit {
   }
 
 
-  onNext(item) {
+  onNext_click(item) {
     this.loadingSwitchService.loading=true; 
       this.horoScopeService.itemOrdered = item;
       //this.horoScopeService.horoRequest.ReportType = item.ItMastId;
@@ -112,7 +112,70 @@ export class HoropaidComponent implements OnInit {
           this.horoScopeService.IsDeliverable = true;
           this.itemService.ItemAmount=item.PrintAmount;
       }
-      if(this.horoScopeService.horoRequest!=undefined){
+    //   if(this.horoScopeService.horoRequest!=undefined){
+    //     this.horoScopeService.horoRequest.ReportType=item.ItMastId;
+    //     var orderModel = {
+    //         IsDeliverable: this.checkBoxValue,
+    //         FreeAmount: 0,
+    //         ItemAmount: this.itemAmount,
+    //         PartyMastId: StorageService.GetItem('PartyMastId'),
+    //         JSONData: JSON.stringify(this.horoScopeService.horoRequest),
+    //         ItActId: this.itemService.ItActId,
+    //         ItMastId: item.ItMastId,
+    //         OrderId: this.orderService.OrderId
+    //     }
+    //   }
+    //   else if(this.astamangalaService.horoRequest!=undefined){
+    //     this.astamangalaService.horoRequest.ReportType=item.ItMastId;
+    //     var orderModel = {
+    //         IsDeliverable: this.checkBoxValue,
+    //         FreeAmount: 0,
+    //         ItemAmount: this.itemAmount,
+    //         PartyMastId: StorageService.GetItem('PartyMastId'),
+    //         JSONData:JSON.stringify(this.astamangalaService.horoRequest),
+    //         ItActId: this.itemService.ItActId,
+    //         ItMastId: item.ItMastId,
+    //         OrderId: this.orderService.OrderId
+    //     }
+    //   }
+    //   else if(this.muhurthaService.muhurthaRequest!=undefined){
+    //     var orderModel = {
+    //         IsDeliverable: this.checkBoxValue,
+    //         FreeAmount: 0,
+    //         ItemAmount: this.itemAmount,
+    //         PartyMastId: StorageService.GetItem('PartyMastId'),
+    //         JSONData:JSON.stringify(this.muhurthaService.muhurthaRequest),
+    //         ItActId: this.itemService.ItActId,
+    //         ItMastId: item.ItMastId,
+    //         OrderId: this.orderService.OrderId
+    //     }
+    //   }
+    //   else if(this.matchMakingService.matchRequest!=undefined){
+    //     var orderModel = {
+    //         IsDeliverable: this.checkBoxValue,
+    //         FreeAmount: 0,
+    //         ItemAmount: this.itemAmount,
+    //         PartyMastId: StorageService.GetItem('PartyMastId'),
+    //         JSONData:JSON.stringify(this.matchMakingService.matchRequest),
+    //         ItActId: this.itemService.ItActId,
+    //         ItMastId: item.ItMastId,
+    //         OrderId: this.orderService.OrderId
+    //     }
+    //   }
+    //   else if(this.numerologyService.numerologyRequest!=undefined){
+    //     var orderModel = {
+    //         IsDeliverable: this.checkBoxValue,
+    //         FreeAmount: 0,
+    //         ItemAmount: this.itemAmount,
+    //         PartyMastId: StorageService.GetItem('PartyMastId'),
+    //         JSONData:JSON.stringify(this.numerologyService.numerologyRequest),
+    //         ItActId: this.itemService.ItActId,
+    //         ItMastId: item.ItMastId,
+    //         OrderId: this.orderService.OrderId
+    //     }
+    //   }
+    if(this.storageService.GetHoroResponse('#SH')!=undefined){
+        this.horoScopeService.horoRequest=this.storageService.GetHoroRequest('#SH');
         this.horoScopeService.horoRequest.ReportType=item.ItMastId;
         var orderModel = {
             IsDeliverable: this.checkBoxValue,
@@ -120,12 +183,13 @@ export class HoropaidComponent implements OnInit {
             ItemAmount: this.itemAmount,
             PartyMastId: StorageService.GetItem('PartyMastId'),
             JSONData: JSON.stringify(this.horoScopeService.horoRequest),
-            ItActId: this.itemService.ItActId,
+            ItActId: StorageService.GetItem('ItActId'),
             ItMastId: item.ItMastId,
             OrderId: this.orderService.OrderId
         }
       }
-      else if(this.astamangalaService.horoRequest!=undefined){
+      else if(this.storageService.GetHoroResponse('#SA')!=undefined){
+        this.astamangalaService.horoRequest=this.storageService.GetHoroRequest('#SA');
         this.astamangalaService.horoRequest.ReportType=item.ItMastId;
         var orderModel = {
             IsDeliverable: this.checkBoxValue,
@@ -133,43 +197,43 @@ export class HoropaidComponent implements OnInit {
             ItemAmount: this.itemAmount,
             PartyMastId: StorageService.GetItem('PartyMastId'),
             JSONData:JSON.stringify(this.astamangalaService.horoRequest),
-            ItActId: this.itemService.ItActId,
+            ItActId: StorageService.GetItem('ItActId'),
             ItMastId: item.ItMastId,
             OrderId: this.orderService.OrderId
         }
       }
-      else if(this.muhurthaService.muhurthaRequest!=undefined){
+      else if(this.storageService.GetHoroResponse('#MU')!=undefined){
         var orderModel = {
             IsDeliverable: this.checkBoxValue,
             FreeAmount: 0,
             ItemAmount: this.itemAmount,
             PartyMastId: StorageService.GetItem('PartyMastId'),
-            JSONData:JSON.stringify(this.muhurthaService.muhurthaRequest),
-            ItActId: this.itemService.ItActId,
+            JSONData:JSON.stringify(this.storageService.GetHoroRequest('#MU')),
+            ItActId: StorageService.GetItem('ItActId'),
             ItMastId: item.ItMastId,
             OrderId: this.orderService.OrderId
         }
       }
-      else if(this.matchMakingService.matchRequest!=undefined){
+      else if(this.storageService.GetHoroResponse('#SM')!=undefined){
         var orderModel = {
             IsDeliverable: this.checkBoxValue,
             FreeAmount: 0,
             ItemAmount: this.itemAmount,
             PartyMastId: StorageService.GetItem('PartyMastId'),
-            JSONData:JSON.stringify(this.matchMakingService.matchRequest),
-            ItActId: this.itemService.ItActId,
+            JSONData:JSON.stringify(this.storageService.GetHoroRequest('#SM')),
+            ItActId: StorageService.GetItem('ItActId'),
             ItMastId: item.ItMastId,
             OrderId: this.orderService.OrderId
         }
       }
-      else if(this.numerologyService.numerologyRequest!=undefined){
+      else if(this.storageService.GetHoroResponse('#NM')!=undefined){
         var orderModel = {
             IsDeliverable: this.checkBoxValue,
             FreeAmount: 0,
             ItemAmount: this.itemAmount,
             PartyMastId: StorageService.GetItem('PartyMastId'),
-            JSONData:JSON.stringify(this.numerologyService.numerologyRequest),
-            ItActId: this.itemService.ItActId,
+            JSONData:JSON.stringify(this.storageService.GetHoroRequest('#NM')),
+            ItActId: StorageService.GetItem('ItActId'),
             ItMastId: item.ItMastId,
             OrderId: this.orderService.OrderId
         }
@@ -177,10 +241,15 @@ export class HoropaidComponent implements OnInit {
       this.orderService.CreateOrder(orderModel).subscribe((data) => {
           if(data.Error==undefined){
           this.orderService.OrderId = data.OrderId;
-          this.orderService.orderResponse = data;
-          var FreePDF = {
-              OrderId: this.orderService.orderResponse.OrderId.toString()
-          }
+          StorageService.SetItem('OrderId',data.OrderId);
+          //this.orderService.orderResponse = data;
+          this.storageService.SetOrderResponse(JSON.stringify(data));
+        //   var FreePDF = {
+        //       OrderId: this.orderService.orderResponse.OrderId.toString()
+        //   }
+        var FreePDF = {
+            OrderId: StorageService.GetItem('OrderId').toString()
+        }
           this.loadingSwitchService.loading=false; 
           // this.router.navigate(["/services/deliveryAddress", { 'DeliveryAddressRequired': DeliveryAddressRequired }]);
           this.router.navigate(["/purchase/deliveryAddress", { 'OrderId': FreePDF.OrderId }]);

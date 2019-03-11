@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderHistoryService, Company } from 'src/Services/order';
+import { OrderHistoryService, Services } from 'src/Services/order';
 import ArrayStore from 'devextreme/data/array_store';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
 import { OrderService } from 'src/Services/OrderService/OrderService';
@@ -22,7 +22,7 @@ export class OrderHistoryComponent implements OnInit {
     orderHistoryResponse: OrderHistoryResponse;
     path: string[] = ['OrderId'];
     order: number = 1; // 1 asc, -1 desc;
-    companies: Company[];
+    services: Services[];
     fields: SelectBoxModel[] = [
         { Id: "OrderId", Text: 'Date' },
         { Id: "Amount", Text: 'Amount' },
@@ -40,7 +40,7 @@ export class OrderHistoryComponent implements OnInit {
     sortorderdata: ArrayStore;
 
     constructor(public loadingSwitchService:LoadingSwitchService, public sortingOrderHistoryPipe:SortingOrderHistoryPipe,private router:Router,private itemService:ItemService,private loginService:LoginService,service: OrderHistoryService, private orderService:OrderService) {
-        this.companies = service.getCompanies();
+        this.services = service.getServices();
         this.fielddata = new ArrayStore({
             data: this.fields,
             key: "Id"

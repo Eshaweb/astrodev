@@ -58,45 +58,15 @@ export class HoroscopeFreeDataComponent implements OnInit {
     this.caption=new Caption();
     this.GetCaption(this.horoModel.LangCode, this.caption);
   }
-  constructor(public storageService:StorageService,private itemService:ItemService,public captionDbService:CaptionDbService, public registrationService:RegistrationService,
-    public _location: Location, public route: ActivatedRoute, public router: Router, 
+  constructor(public storageService:StorageService, private itemService:ItemService,public captionDbService:CaptionDbService,
+    public _location: Location, public route: ActivatedRoute, public router: Router, public registrationService:RegistrationService,
     public platform: Platform, public loginService: LoginService, public horoScopeService: HoroScopeService) {
     
-    this.horoModel=this.horoScopeService.horoRequest;
-    //this.horoModel=this.storageService.GetHoroRequest();
+    //this.horoModel=this.horoScopeService.horoRequest;
+    this.horoModel=this.storageService.GetHoroRequest('#SH');
     this.horoResponse=new HoroResponse();
-    this.horoResponse=this.horoScopeService.horoResponse;
-    //this.horoResponse=this.storageService.GetHoroResponse();
-    //   this.Fathername = this.horoScopeService.Mothername;
-    //   this.Mothername = this.horoScopeService.Fathername;
-    //   this.BirthPlace = this.horoScopeService.birthplaceShort;
-    //   this.systemDate=this.horoScopeService.systemDate;
-    //   this.horoInfo = horoScopeService.horoRequest;
-    //   this.Name = horoScopeService.horoRequest.Name;
-    //   this.BDate = horoScopeService.horoRequest.Date;
-    //   this.Shloka1 = horoScopeService.data.Shloka1;
-    //   this.Shloka2 = horoScopeService.data.Shloka2;
-    //   this.JanmaNakshathra = horoScopeService.data.JanmaNakshathra;
-    //   this.JanmaRashi = horoScopeService.data.JanmaRashi;
-    //   this.SunRise = horoScopeService.data.SunRise;
-    //   this.SunSet = horoScopeService.data.SunSet;
-    //   this.DinaMana = horoScopeService.data.DinaMana;
-    //   this.ShakaVarsha = horoScopeService.data.ShakaVarsha;
-    //   this.Kollam = horoScopeService.data.Kollam;
-    //   this.Samvathsara = horoScopeService.data.Samvathsara;
-    //   this.Aayana = horoScopeService.data.Aayana;
-    //   this.Ruthu = horoScopeService.data.Ruthu;
-    //   this.ChandraMasa = horoScopeService.data.ChandraMasa;
-    //   this.SouraMasa = horoScopeService.data.SouraMasa;
-    //   this.Paksha = horoScopeService.data.Paksha;
-    //   this.MahaNakshatra = horoScopeService.data.MahaNakshatra;
-    //   this.Tithi = horoScopeService.data.Tithi;
-    //   this.NithyaNakshatra = horoScopeService.data.NithyaNakshatra;
-    //   this.ChandrarkaYoga = horoScopeService.data.ChandrarkaYoga;
-    //   this.Karana = horoScopeService.data.Karana;
-    //   this.VishaGhati = horoScopeService.data.VishaGhati;
-    //   this.AmrithaGhati = horoScopeService.data.AmrithaGhati;
-      
+    //this.horoResponse=this.horoScopeService.horoResponse;
+    this.horoResponse=this.storageService.GetHoroResponse('#SH');
   }
 
   GetCaption(langCode:string,caption:Caption)
@@ -123,6 +93,7 @@ export class HoroscopeFreeDataComponent implements OnInit {
     }
   onClick() {
     this.itemService.ItActId='#SH';
+    StorageService.SetItem('ItActId','#SH');
       if (StorageService.GetItem('Token')==undefined) {
           this.registrationService.registered=true;
           this.router.navigate(["/login-form"]);
