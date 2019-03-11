@@ -9,8 +9,8 @@
             [multiple]="false"
             [animationDuration]="300"
             (onItemTitleClick)="onItemClick($event)">
-            <div *dxTemplate="let service of 'title'">
-                <h4>{{service.ServiceName}}</h4>
+            <div *dxTemplate="let company of 'title'">
+                <div class="heading">{{company.ServiceName}}</div>
             </div>
             <div *dxTemplate="let service of 'item'">
                     <div class="dx-fieldset-column">
@@ -37,7 +37,7 @@
                     <!-- <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse | sortingOrders:path:order"> -->
                     <!-- <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse | orderBy:'ItName'">     -->
                         <!-- <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse | sortingOrders:['Amount', 'OrderId']">     -->
-                            <div class="dx-card responsive-paddings order-list" *ngFor="let item of orderHistoryResponse">  
+                            <div class="dx-card order-list" *ngFor="let item of orderHistoryResponse">  
                                 <div class="dx-field" >
                             <div class="dx-field-label">{{item.ItName}}</div>
                             <div class="dx-field-value" *ngIf="(item.Amount)>0">
@@ -45,7 +45,7 @@
                             </div>
                         </div> 
                         <div class="dx-field" >
-                            <div class="dx-field-label">{{item.OrderId}}</div>
+                            <div class="collapsible">{{item.OrderId}}</div>
                             <div class="dx-field-value">
                                 {{item.Date|  date:'dd/MM/yyyy'}}
                             </div>
