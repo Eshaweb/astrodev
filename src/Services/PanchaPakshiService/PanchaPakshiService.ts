@@ -29,8 +29,10 @@ export class PanchaPakshiService {
     handler: HttpBackend, public http: HttpClient) {
     this.http = new HttpClient(handler);
 }
-
-
+GetSputasOnSunRise(panchapakshiRequest):Observable<any> {
+    var endPoint = "PanchaPakshi/GetSputasOnSunRise";
+    return this.httpService.Post(endPoint, panchapakshiRequest);
+}
     GetFreeData(horoRequest):Observable<any> {
         var endPoint = "HoroScope/GetFreeDataPanchaPakshi";
         return this.httpService.Post(endPoint, horoRequest);

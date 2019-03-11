@@ -17,7 +17,7 @@ export class PanchaPakshiRequest{
     BirthPlace_ZH:number;
     BirthPlace_ZM:number;
     BirthPlace_PN:string;
-
+    Count:number;
     PresentPlace_LatDeg:number;
     PresentPlace_LatMt:number;
     PresentPlace_LongDeg:number;

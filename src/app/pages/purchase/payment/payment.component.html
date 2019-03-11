@@ -72,9 +72,10 @@
 </div>
 <div class="astrolite-wallet">
 <dx-check-box id="check" [disabled]="alterationDisabled"
-text='Pay using Astrolite wallet       {{walletbalance}}(Wallet Balance)'
+text='Pay using Astrolite wallet'
 (onValueChanged)="checkBox_valueChanged($event)">
 </dx-check-box>
+<p>{{walletbalance|currency:'INR'}}(Wallet Balance)</p>
 </div>
 <div class="dx-fieldset">
         <div class="dx-field">
@@ -91,14 +92,14 @@ text='Pay using Astrolite wallet       {{walletbalance}}(Wallet Balance)'
         </div>
 
         <div class="dx-field">
-                <div class="continue-button">
+            <div class="continue-button">
                 <dx-button (onClick)='onContinue()' 
                 text="Continue" 
                 type="success" 
                 [useSubmitBehavior]="true">
                 </dx-button>
-                </div>
-                        </div>
+            </div>
+        </div>
         </div>
 
 

@@ -14,6 +14,7 @@ import ArrayStore from 'devextreme/data/array_store';
 import { PanchaPakshiService } from 'src/Services/PanchaPakshiService/PanchaPakshiService';
 import { toDate } from '@angular/common/src/i18n/format_date';
 import { PanchaPakshiRequest } from 'src/Models/PanchaPakshi/PanchaPakshiRequest';
+import { GetsputaModel } from 'src/Models/PanchaPakshi/GetsputaModel';
 
 
 @Component({
@@ -66,6 +67,7 @@ export class PanchaPakshiComponent {
   PresentPlace_timeZoneId: any;
   public checkBoxValue: boolean = false;
   panchaPakshiRequest: PanchaPakshiRequest;
+  getsputaModel:GetsputaModel;
   constructor(public loadingSwitchService: LoadingSwitchService, private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public panchaPakshiService: PanchaPakshiService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
@@ -138,7 +140,7 @@ export class PanchaPakshiComponent {
         BirthPlace_ZH: null,
         BirthPlace_ZM: null,
         BirthPlace_PN: null,
-
+        Count:null,
         PresentPlace_LatDeg: null,
         PresentPlace_LatMt: null,
         PresentPlace_LongDeg: null,
@@ -383,7 +385,7 @@ export class PanchaPakshiComponent {
       BirthPlace_ZH: this.panchaPakshiRequest.BirthPlace_ZH,
       BirthPlace_ZM: this.panchaPakshiRequest.BirthPlace_ZM,
       BirthPlace_PN: this.panchaPakshiRequest.BirthPlace_PN,
-
+      Count:this.datedifference(this.fromDateinDateFormat,this.toDateinDateFormat),
       PresentPlace_LatDeg: this.panchaPakshiRequest.PresentPlace_LatDeg,
       PresentPlace_LatMt: this.panchaPakshiRequest.PresentPlace_LatMt,
       PresentPlace_LongDeg: this.panchaPakshiRequest.PresentPlace_LongDeg,
@@ -396,7 +398,21 @@ export class PanchaPakshiComponent {
       LangCode: this.languagevalue,
       ReportSize: this.reportSizevalue,
     }
-
+    this.getsputaModel = {
+      Date: dateinString,
+      Time: timeinString,
+      TimeFormat: this.timeformatvalue,
+      ZH: this.panchaPakshiRequest.PresentPlace_ZH,
+      EW: this.panchaPakshiRequest.PresentPlace_EW,
+      LatDeg: this.panchaPakshiRequest.PresentPlace_LatDeg,
+      LatMt: this.panchaPakshiRequest.PresentPlace_LatMt,
+      LongDeg: this.panchaPakshiRequest.PresentPlace_LongDeg,
+      LongMt: this.panchaPakshiRequest.PresentPlace_LongMt,
+      NS: this.panchaPakshiRequest.PresentPlace_NS,
+      PN: this.panchaPakshiRequest.PresentPlace_PN,
+      ZM: this.panchaPakshiRequest.PresentPlace_ZM,
+      Count:this.datedifference(this.fromDateinDateFormat,this.toDateinDateFormat),
+    }
     this.panchaPakshiService.panchaPakshiRequest = this.panchaPakshiRequest;
     this.panchaPakshiService.birthDateinDateFormat = bdate;
     this.panchaPakshiService.birthTimeinDateFormat = btime;
@@ -404,11 +420,501 @@ export class PanchaPakshiComponent {
     this.panchaPakshiService.toDateinDateFormat = todate;
     this.panchaPakshiService.BirthPlace_timeZoneName = this.BirthPlace_timeZoneName;
     this.panchaPakshiService.PresentPlace_timeZoneName = this.PresentPlace_timeZoneName;
-    // this.panchaPakshiService.GetFreeData(this.panchaPakshiRequest).subscribe((data: any) => {
-    //   this.panchaPakshiService.panchapakshiResponse = data;
-    //   this.loadingSwitchService.loading = false;
-    //   this.router.navigate(["/horoscope/getHoroscopeFreeData"]);
-    // });
+    this.panchaPakshiService.GetSputasOnSunRise(this.getsputaModel).subscribe((data: any) => {
+      this.panchaPakshiService.panchapakshiResponse = data;
+      this.loadingSwitchService.loading = false;
+      //this.router.navigate(["/panchanga/getPanchangaFreeData"]);
+
+       var week_day:number[]=[0,1,2,3,4,5,6];
+    let ChandraSputa:any[]=[];
+    let RaviSputa:any[]=[];
+    let SunRise:any[]=[];
+    let SunSet:any[]=[];
+   
+    let dinamana :any[]=[];
+    let rathrimana:any[]=[];
+    let day_subact:any[] =[];
+    let night_subact:any[]=[];
+    let day_yama:any[] =[];
+    let night_yama:any[] = [];
+    let daytime:any[]=[];
+    let nighttime:any[]=[];
+    let DayChoughadi:any[]=[];
+    let NightChoughadi:any[]=[];
+    for(var i=0;i<this.panchaPakshiRequest.Count//this.datedifference(new Date(),new Date('2017,1,23'))
+    ;i++)
+    {
+     ChandraSputa[i]=data[i].ChandraSputa;
+     RaviSputa[i]=data[i].RaviSputa;
+    SunSet[i]=data[i].SunSet;
+     SunRise[i]=data[i].SunRise;
+      dinamana[i] = SunSet[i] +12- SunRise[i];
+       rathrimana[i]= 24 - dinamana[i];
+       day_subact[i] = dinamana[i] / 60;
+   night_subact[i]= dinamana[i] / 60;
+ day_yama[i]= dinamana[i] / 5;
+night_yama[i] = rathrimana[i] / 5;
+ daytime[i] = SunSet[i]+12 - SunRise[i];
+ nighttime[i] = (6 - SunSet[i])+12;
+
+   
+    }let day_of_week:number[]=[]
+    var week_day:number[]=[0,1,2,3,4,5,6];
+    day_of_week[0]=week_day[new Date().getDay()]
+    for(let i=0;i<this.panchaPakshiRequest.Count;i++)
+    {
+    day_of_week[i+1]=(day_of_week[i]
+    +1)%7;
+    
+    }
+    let paksha:number[]=[];
+   
+    let bird:number;
+    for(let i=0;i<this.panchaPakshiRequest.Count;i++)
+    {
+      paksha[i] = this.Get_shukla_krishna_fordob(ChandraSputa[i],RaviSputa[i]);
+     }
+      bird = this.Getbird(ChandraSputa[1], paksha[1]);
+      let ac:number;
+      
+      
+    
+    
+    let shukla_day_time:any[]=[];
+    let shukla_nt_time:any[]=[];
+    let value:any[][];
+    var week_day:number[]=[0,1,2,3,4,5,6];
+    
+    
+    let day_of_week2:number=week_day[new Date().getDay()];
+    let index2:any[]=[];
+    let pakshi:number[]=[1, 2, 3, 4, 5, 1, 2, 3,4,5];
+    let shukla_day_action:any[]=[];
+    let shukla_day_value:any[]=[]; 
+    
+    let shukla_nt_value:any[]=[];
+    let shukla_nt_action:any[]=[] ;
+    let krishna_nt_value:any[]=[];
+    let krishna_nt_action:any[]=[] ;
+    let krishna_day_value:any[]=[];
+    let krishna_day_action:any[] =[];
+    let krishna_day_time:any[]=[];
+    let krishna_nt_time:any[]=[] ;
+    
+     let time_day: any[] =[];
+    let action:any[]=[]
+    
+    let value2:any[]=[];
+     let shukla_day_act:any[]=[];
+     let shukla_day_actbird:any[]=[];
+     let shukla_nt_act:any[]=[];
+     let shukla_nt_actbird:any[]=[];
+     let krishna_day_act:any[]=[];
+     let krishna_day_actbird:any[]=[];
+     let krishna_nt_act:any[]=[];
+     let krishna_nt_actbird:any[]=[];
+     
+     for(let i=0;i<this.panchaPakshiRequest.Count;i++)
+    {
+    if (paksha[i] == 0)
+    {
+     [shukla_day_act[i],shukla_day_actbird[i],shukla_day_time[i],shukla_day_value[i],shukla_day_action[i]]=this.Shukladay_calculations( bird, SunRise[i], day_of_week[i], day_subact[i]);
+     
+     [shukla_nt_act[i],shukla_nt_actbird[i],shukla_nt_time[i],shukla_nt_value[i],shukla_nt_action[i]]=this.Shuklanight_calculations( bird, SunSet[i], day_of_week[i], day_subact[i]);
+    }
+    else
+    {
+    [krishna_day_act[i],krishna_day_actbird[i],krishna_day_time[i],krishna_day_value[i],krishna_day_action[i]]= this.Krishnaday_calculations( bird, SunRise[i], day_of_week[i], day_subact[i]);
+    [krishna_nt_act[i],krishna_nt_actbird[i],krishna_nt_time[i],krishna_nt_value[i],krishna_nt_action[i]]= this.Krishnanight_calculations( bird, SunSet[i], day_of_week[i], day_subact[i]);
+    }}
+    });
+  }
+  datedifference(date1:Date,date2:Date)
+  {
+  var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+  var dayDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  return dayDifference;
   }
 
+  Get_shukla_krishna_fordob(chandrasputa:any,ravisputa:any) {
+    let paksha: number;
+    let Thithi:any;
+    
+     Thithi = (chandrasputa) - (ravisputa);
+    
+   
+    if (Thithi < 0) {
+      Thithi= Thithi + 360;
+    }
+    if (Thithi < 180) {
+      paksha = 1;
+    }
+    else {
+      paksha = 0;
+    }
+  
+  
+  return paksha;
+  }
+   Getbird(chandra_sputa:any, paksha: number) {
+    let bird: number;
+   
+    if (paksha == 1) {
+      if (chandra_sputa < 66.666666666666671) {
+        bird = 1;
+      }
+      else if (chandra_sputa < 146.66666666666669) {
+        bird = 2;
+      }
+      else if (chandra_sputa < 226.66666666666669) {
+        bird = 3;
+      }
+      else if (chandra_sputa < 293.33333333333337) {
+        bird = 4;
+      }
+      else {
+        bird = 5;
+      }
+    }
+    else {
+      if (chandra_sputa < 66.666666666666671) {
+        bird = 5;
+      }
+      else if (chandra_sputa < 146.66666666666669) {
+        bird = 4;
+      }
+      else if (chandra_sputa < 226.66666666666669) {
+        bird= 3;
+      }
+      else if (chandra_sputa < 293.33333333333337) {
+        bird = 2;
+      }
+      else {
+        bird = 1;
+      }
+  
+    }
+    
+    return bird;
+  }
+  Shukladay_calculations( bird: number, SunRise:any[], day_of_week: number, day_subact: any) {
+    let day_activity: number[];
+    let activity: any;
+    let ac1:number;
+    let index:number;
+    let shukla_day_pakshi: number[] = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
+    let ac:number;
+    switch (day_of_week) {
+      case 0:
+      case 2:
+  
+        day_activity = [2, 3, 1, 4, 5, 2, 3, 1, 4, 5, 2, 3, 1, 4, 5];
+        [index,ac]= this.GetActivity(bird, day_activity, shukla_day_pakshi);
+        break;
+      case 1:
+      case 3:
+        day_activity = [5, 2, 3, 1, 4, 5, 2, 3, 1, 4, 5, 2, 3, 1, 4];
+     [index,ac] = this.GetActivity(bird, day_activity, shukla_day_pakshi);
+        break;
+      case 4:
+        day_activity = [4, 5, 2, 3, 1, 4, 5, 2, 3, 1, 4, 5, 2, 3, 1];
+      [index,ac ]= this.GetActivity(bird, day_activity, shukla_day_pakshi);
+        break;
+      case 5:
+        day_activity = [1, 4, 5, 2, 3, 1, 4, 5, 2, 3, 1, 4, 5, 2, 3];
+       [index,ac] = this.GetActivity(bird, day_activity, shukla_day_pakshi);
+        break;
+      case 6:
+        day_activity = [3, 1, 4, 5, 2, 3, 1, 4, 5, 2, 3, 1, 4, 5, 2];
+       [ index,ac] = this.GetActivity(bird, day_activity, shukla_day_pakshi);
+        break;
+      default: break;
+    }
+    var values:any[]=[4,2.5,3,1.5,1];
+    var subact_day:any[]=[];
+    
+    let temp=0;
+   
+   
+     subact_day= [day_subact * 4, day_subact * 2.5, day_subact* 3, day_subact * 1.5 ,day_subact,day_subact * 4 ,day_subact * 2.5,day_subact * 3,day_subact * 1.5, day_subact, day_subact * 4,day_subact * 2.5,day_subact * 3 ,day_subact * 1.5 ,day_subact];
+   
+   let time_day: any[] =[];
+  let action:any[]=[]
+  
+  let value:any[]=[];
+   
+   
+    time_day= this.gettime(subact_day, index, SunRise);
+    let actbird:number[]=[];
+   [ action,actbird] =this. Getaction(bird, index, shukla_day_pakshi);
+   value =this. Geteffectvalue(shukla_day_pakshi, index, day_activity);
+   
+    
+    
+    return [ac,actbird,time_day,value,action];
+  }
+  
+  
+  Shuklanight_calculations(bird: number, SunSet:any[], day_of_week: number, night_subact:any)
+        {
+            let night_activity:number[] ;
+           let  night_pakshi:number[] = [ 5, 4, 3, 2, 1, 5, 4, 3, 2, 1 ];
+           let activity: any;
+           let ac:number;
+           let index:number;
+         
+          switch (day_of_week)
+                {
+                    case 0:
+                    case 2:
+  
+                        night_activity = [5, 3, 4, 2, 1, 5, 3, 4, 2, 1, 5, 3, 4, 2, 1];
+                        [index,ac]= this.GetActivity(bird, night_activity, night_pakshi);
+                        break;
+                    case 1:
+                    case 3:
+                        night_activity = [3, 4, 2, 1, 5, 3, 4, 2, 1, 5, 3, 4, 2, 1, 5 ];
+                        [index,ac]= this.GetActivity(bird, night_activity, night_pakshi);
+                        break;
+                    case 4:
+                        night_activity = [ 4, 2, 1, 5, 3, 4, 2, 1, 5, 3, 4, 2, 1, 5, 3 ];
+                        [index,ac]= this.GetActivity(bird, night_activity, night_pakshi);
+                        break;
+                    case 5:
+                        night_activity = [2, 1, 5, 3, 4, 2, 1, 5, 3, 4, 2, 1, 5, 3, 4 ];
+                        [index,ac]= this.GetActivity(bird, night_activity, night_pakshi);
+                        break;
+                    case 6:
+                        night_activity = [1, 5, 3, 4, 2, 1, 5, 3, 4, 2, 1, 5, 3, 4, 2 ];
+                        [index,ac] = this.GetActivity(bird, night_activity, night_pakshi);
+                        break;
+                    default: break;
+                }
+  
+                
+              let subact_night:any[]=[];//=new Array(15);
+                
+                  //{
+                   
+                  
+               subact_night = [night_subact * 2, night_subact* 2.5, night_subact * 2.5, night_subact* 2, night_subact* 3, night_subact * 2, night_subact * 2.5, night_subact * 2.5, night_subact* 2, night_subact* 3, night_subact* 2, night_subact* 2.5, night_subact* 2.5, night_subact* 2, night_subact * 3 ];
+                
+                let time_night: any[] =[];
+                let action:any[]=[]
+                let value:any[]=[];
+                 
+             time_night= this.gettime(subact_night, index, SunSet);
+  
+             value=this. Geteffectvalue(night_pakshi, index, night_activity);
+             let actbird:number[]=[];
+           [ action,actbird]= this.Getaction(bird, index,night_pakshi);
+                    return [ac,actbird,time_night,value,action];
+           
+  
+        }
+        Krishnaday_calculations(   bird:number, SunRise:any[],  day_of_week:number, day_subact:any)
+        {
+            let day_activity :number[];
+            let activity: any;
+            let ac:number;
+            let index:number;
+         let krishna_day_pakshi :number[]= [ 1, 4, 2, 5, 3, 1, 4, 2, 5, 3, 1, 4, 2, 5, 3 ];
+         //  for(let i=0;i<3;i++
+          //  )
+          //  {
+                switch (day_of_week)
+                {
+                    case 0:
+                    case 2:
+  
+                        day_activity = [ 3, 2, 5, 4, 1, 3, 2, 5, 4, 1, 3, 2, 5, 4, 1 ];
+                      [index,ac]= this.GetActivity(bird, day_activity, krishna_day_pakshi);
+                        break;
+                    case 1:
+                    case 6:
+                        day_activity = [4, 1, 3, 2, 5, 4, 1, 3, 2, 5, 4, 1, 3, 2, 5 ];
+                        [index,ac]= this.GetActivity(bird, day_activity, krishna_day_pakshi);
+                        break;
+                    case 3:
+                        day_activity = [5, 4, 1, 3, 2, 5, 4, 1, 3, 2, 5, 4, 1, 3, 2 ];
+                        [index,ac] = this.GetActivity(bird, day_activity, krishna_day_pakshi);
+                        break;
+                    case 4:
+                        day_activity = [ 1, 3, 2, 5, 4, 1, 3, 2, 5, 4, 1, 3, 2, 5, 4 ];
+                        [index,ac]= this.GetActivity(bird, day_activity, krishna_day_pakshi);
+                        break;
+                    case 5:
+                        day_activity = [2, 5, 4, 1, 3, 2, 5, 4, 1, 3, 2, 5, 4, 1, 3 ];
+                        [index,ac] = this.GetActivity(bird, day_activity, krishna_day_pakshi);
+                        break;
+                    default: break;
+  
+  
+                }
+            
+           let subact_day :any[]= [day_subact*1.5,day_subact*4,day_subact*3,day_subact,day_subact*2.5,day_subact*1.5,day_subact*4,day_subact*3,day_subact,day_subact*2.5, day_subact*1.5,day_subact*4,day_subact*3,day_subact,day_subact*2.5];
+  
+  
+            let time_day:any[][]= this.gettime(subact_day, index, SunRise);
+    let value:any[][]=this. Geteffectvalue(krishna_day_pakshi, index,day_activity );
+    let  action:number[]=[];
+    let actbird:number[]=[];
+    [action,actbird]= this.Getaction(bird, index, krishna_day_pakshi);
+                   return [ac,actbird,time_day,value,action];
+  }
+        Krishnanight_calculations( bird:number, SunSet:any[], day_of_week:number , night_subact:any)
+        {
+            let krishna_night_activity:number[] ;
+            let  night_pakshi:number[] = [ 5, 4, 3, 2, 1, 5, 4, 3, 2, 1 ];
+  let activity: any;
+    let ac:number;
+    let index:number;
+         switch (day_of_week)
+                {
+                    case 0:
+                    case 2:
+  
+                        krishna_night_activity = [ 2, 4, 3, 5, 1, 2, 4, 3, 5, 1, 2, 4, 3, 5, 1 ];
+                       [index,ac]= this.GetActivity(bird, krishna_night_activity, night_pakshi);
+                        break;
+                    case 1:
+                    case 6:
+                        krishna_night_activity = [ 5, 1, 2, 4, 3, 5, 1, 2, 4, 3, 5, 1, 2, 4, 3 ];
+                        [index,ac] = this.GetActivity(bird, krishna_night_activity, night_pakshi);
+                        break;
+                    case 3:
+                        krishna_night_activity = [4, 3, 5, 1, 2, 4, 3, 5, 1, 2, 4, 3, 5, 1, 2 ];
+                        [index,ac]= this.GetActivity(bird, krishna_night_activity, night_pakshi);
+                        break;
+                    case 4:
+                        krishna_night_activity = [ 3, 5, 1, 2, 4, 3, 5, 1, 2, 4, 3, 5, 1, 2, 4 ];
+                      [index,ac] = this.GetActivity(bird, krishna_night_activity, night_pakshi);
+                        break;
+                    case 5:
+                        krishna_night_activity = [1, 2, 4, 3, 5, 1, 2, 4, 3, 5, 1, 2, 4, 3, 5 ];
+                       [index,ac] = this.GetActivity(bird, krishna_night_activity, night_pakshi);
+                        break;
+                    default: break;
+                   }
+                  
+               let subact_night:any[] = [night_subact * 1.5, night_subact * 3.5, night_subact * 3.5, night_subact * 1.5, night_subact * 2, night_subact * 1.5, night_subact * 3.5, night_subact * 3.5, night_subact * 1.5, night_subact * 2, night_subact * 1.5, night_subact * 3.5, night_subact * 3.5, night_subact * 1.5, night_subact * 2 ];
+  let  time_night:any[] = this.gettime(subact_night, index, SunSet);
+  let value:any[][]=this.Geteffectvalue(night_pakshi, index,krishna_night_activity);
+  let action:any[]=[];
+  let actbird:number[]=[];
+  
+        [action,actbird]= this.Getaction(bird, index, night_pakshi);
+             return [ac,actbird,time_night,value,action];
+           }
+           GetActivity(bird: number, activity: number[], pakshi: number[]){
+            let index: number = 0;
+            let ac: number =0;
+        
+        
+            for (let i: number = 0; i < 5; i++) {
+              if (bird == pakshi[i]) {
+                index = i;
+                ac = activity[index];
+                break;
+              }
+        
+            }
+        
+         return[index,ac];
+           
+        
+          }
+          
+        
+              gettime(subarray:any[], index: number,m1:any) {
+         let sum: any[]=[m1];
+            let temp: number = 0;
+             let t: number = 0;
+            while (temp < 5) {
+            for (let i :number= index; i < index + 5; i++) {
+                sum[t + 1] = sum[t] + subarray[i];
+               // sum[t + 1] = sum[t] + subarray[i];
+                t++;
+              }
+              temp++;
+              index++;
+            }
+             return sum;
+          }
+          
+          Geteffectvalue(pakshi: number[], index: number,act:number[]) {
+            
+             let actbird: number[]=[];
+            let temp:number=0;
+            let j:number;
+          
+            for(let i :number=0;i <5;i++)
+            {
+               actbird[i]=pakshi[i+index];
+            }
+          
+            let index3: number[]=[];
+        //let value:any[][]=new Array[25][1];
+        //let value_sum:any[][]=new Array[25][1];
+            let value: any[]=[];
+            //[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
+            let value_sum: any[]=[];
+            //[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
+            let effect_value: number[][] = [[0, 3, 1, 2, 4, 5], [1, 100, 75, 50, 25, 12.5], [2, 32, 24, 16, 8, 4], [3, 60, 45, 30, 10, 7.5], [4, 40, 30, 20, 5, 5], [5, 20, 15, 10, 5, 2.5]];
+        
+            for (let j: number = 0; j <5; j++) {
+              for (let k: number = 1; k <= 25; k++) {
+                if (actbird[j] == effect_value[0][k]) {
+                  index3[j] = k;
+                }
+              }
+            }
+            let temp2: number = 0;
+            let m: number = 0;
+           for(let i:number=5;i<25;i++)
+           {
+             index3[i]=index3[i%5];
+           }
+         
+        
+           while (temp2 < 5) {
+              for (let i:number = index; i< index + 5; i++) {
+                value[m] = effect_value[act[i]][ index3[m]];
+                value_sum[m] = (value[0] + value[m]) / 2;
+                m++;
+              }
+              temp2++;
+              index++;
+            }
+           
+            return [value_sum];
+          }
+        
+          Getaction(bird: number, index: number,  pakshi: number[]) {
+            let friend_action: number[][] = [[1, 5, 2], [2, 1, 3], [3, 4, 2], [4, 3, 5], [5, 1, 4], [1, 5, 2], [2, 1, 3], [3, 4, 2], [4, 3, 5], [5, 1, 4]];
+            let index2: number = 0;
+            let actbird: number[]=[];
+            for(let i :number=0;i <5;i++)
+            {
+               actbird[i]=pakshi[i+index];
+            }
+            for (let i = 0; i < 5; i++) {
+              if (bird == friend_action[i][0]) {
+                index2 = i;
+                break;
+              }
+            }
+            let action: number[]=[];
+            for (let i = 1; i <= 4; i++) {
+              if (actbird[i] == friend_action[index2][1] || actbird[i] == friend_action[index2][2]) {
+                action[i] = 1;
+        
+              }
+              else {
+                action[i] = -1;
+              }
+            }
+        return [action,actbird];
+          }
+        
 }
