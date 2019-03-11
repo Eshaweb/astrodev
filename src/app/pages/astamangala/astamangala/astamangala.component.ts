@@ -15,6 +15,7 @@ import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 
 @Component({
@@ -125,7 +126,7 @@ export class AstamangalaComponent {
   pruchakaRashidata: ArrayStore;
   pruchakaRashivalue: any;
   
-  constructor(service: Service, public loadingSwitchService: LoadingSwitchService, private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
+  constructor(public storageService:StorageService, service: Service, public loadingSwitchService: LoadingSwitchService, private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public astamangalaService: AstamangalaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
     //this.serviceInfo =  horoScopeService.getCustomers();
@@ -636,8 +637,10 @@ export class AstamangalaComponent {
     this.astamangalaService.DateinDateFormat = bdate;
     this.astamangalaService.TimeinDateFormat = btime;
     this.astamangalaService.timeZoneName=this.timeZoneName;
+    this.storageService.SetHoroModel(JSON.stringify(this.horoRequest));
     this.astamangalaService.GetFreeData(this.horoRequest).subscribe((data: any) => {
       this.astamangalaService.horoResponse = data;
+      this.storageService.SetHoroResponse(JSON.stringify(data));
       this.loadingSwitchService.loading = false;
       this.router.navigate(["/astamangala/getAstamangalaFreeData"]);
     });

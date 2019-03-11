@@ -17,6 +17,7 @@ import ArrayStore from 'devextreme/data/array_store';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
 import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 
 @Component({
@@ -57,10 +58,9 @@ export class PanchangaComponent {
   ];
   timeformatdata: ArrayStore;
   timeformatvalue: string;
-  constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
+  constructor(public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public panchangaService: PanchangaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
-    this.maxDate = new Date(this.maxDate.setFullYear(this.maxDate.getFullYear() - 21));
     this.panchangaForm = this.formbuilder.group({
       Date: new Date(),
       birthPlace: ['', [Validators.required]],
@@ -250,31 +250,17 @@ export class PanchangaComponent {
     this.panchangaService.panchangaRequest = this.panchangaRequest;
     this.panchangaService.DateinDateFormat = bdate;
     this.panchangaService.timeZoneName = this.timeZoneName;
+    this.storageService.SetHoroModel(JSON.stringify(this.panchangaRequest));
     this.panchangaService.GetPanchanga(this.panchangaRequest).subscribe((data: any) => {
       this.panchangaService.panchangaResponse = data;
+      this.storageService.SetHoroResponse(JSON.stringify(data));
       this.loadingSwitchService.loading = false;
       this.router.navigate(["/panchanga/getPanchangaFreeData"]);
     });
-    // this.panchangaService.GetSputasOnSunRise(getsputaModel).subscribe((data: any) => {
-    //   this.panchangaService.panchangaResponse = data;
-    //   this.loadingSwitchService.loading = false;
-    //   this.router.navigate(["/panchanga/getPanchangaFreeData"]);
-    // });
   }
 
   public onDialogOKSelected(event) {
     event.dialog.close();
   }
-
-
-  maxDate: Date = new Date();
-  cityPattern = "^[^0-9]+$";
-  namePattern: any = /^[^0-9]+$/;
-  phonePattern: any = /^\+\s*1\s*\(\s*[02-9]\d{2}\)\s*\d{3}\s*-\s*\d{4}$/;
-  countries: string[];
-  phoneRules: any = {
-    X: /[02-9]/
-  }
-  now: Date = new Date();
 
 }

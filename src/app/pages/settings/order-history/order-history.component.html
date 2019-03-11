@@ -4,15 +4,15 @@
 <div id="accordion">
         <dx-accordion
             #accordion
-            [dataSource]="companies"
+            [dataSource]="services"
             [collapsible]="true"
             [multiple]="false"
             [animationDuration]="300"
             (onItemTitleClick)="onItemClick($event)">
-            <div *dxTemplate="let company of 'title'">
-                <h4>{{company.ServiceName}}</h4>
+            <div *dxTemplate="let service of 'title'">
+                <h4>{{service.ServiceName}}</h4>
             </div>
-            <div *dxTemplate="let company of 'item'">
+            <div *dxTemplate="let service of 'item'">
                     <div class="dx-fieldset-column">
                         <div class="dx-field">
                             <div class="dx-field-label">Field</div>

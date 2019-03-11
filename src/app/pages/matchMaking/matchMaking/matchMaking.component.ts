@@ -11,6 +11,7 @@ import { UIService } from 'src/Services/UIService/ui.service';
 import ArrayStore from 'devextreme/data/array_store';
 import { MatchResponse } from 'src/Models/MatchMaking/match';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 
 @Component({
@@ -183,7 +184,7 @@ export class MatchMakingComponent {
   reportSizedataSelection(event) {
     this.reportSizevalue = event.value;
   }
-  constructor(public loadingSwitchService:LoadingSwitchService,public route: ActivatedRoute, public router: Router, public cdr: ChangeDetectorRef,
+  constructor(public storageService:StorageService, public loadingSwitchService:LoadingSwitchService,public route: ActivatedRoute, public router: Router, public cdr: ChangeDetectorRef,
     public matchMakingService: MatchMakingService, public ngZone: NgZone, public mapsAPILoader: MapsAPILoader,
     public uiService: UIService, public formbuilder: FormBuilder) {
     this.maleMatchMakingForm = this.formbuilder.group({
@@ -614,9 +615,11 @@ export class MatchMakingComponent {
     this.matchMakingService.female_birthTimeinDateFormat = btime_Female;
     this.matchMakingService.timeZoneName_Female = this.timeZoneName_Female;
     this.matchMakingService.timeZoneName_Male = this.timeZoneName_Male;
+    this.storageService.SetHoroModel(JSON.stringify(this.matchRequest));
     this.matchMakingService.GetFreeData(this.matchRequest).subscribe((data) => {
       this.matchMakingService.matchRequest = this.matchRequest;
       this.matchMakingService.matchResponse = data;
+      this.storageService.SetHoroResponse(JSON.stringify(data));
       this.loadingSwitchService.loading=false;
       this.router.navigate(["/matchMaking/getMatchMakingFreeData"]);
     });

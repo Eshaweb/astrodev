@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 
-export class Company {
+export class Services {
     ID: number;
     ServiceName: string;
     ItActId: string;
 }
 
-let companies: Company[] = [{
+let services: Services[] = [{
     "ID": 1,
     "ServiceName": "Horoscope",
     "ItActId": "#SH",
@@ -30,7 +30,7 @@ let companies: Company[] = [{
 
 @Injectable()
 export class OrderHistoryService {
-    getCompanies(): Company[] {
-        return companies;
+    getServices(): Services[] {
+        return services;
     }
 }

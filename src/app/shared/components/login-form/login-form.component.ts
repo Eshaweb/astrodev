@@ -86,7 +86,7 @@ export class LoginFormComponent {
   Name: any;
   horoInfo: any;
 
-  constructor(private muhurthaService:MuhurthaService,private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
+  constructor(public storageService:StorageService, private muhurthaService:MuhurthaService,private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
     private astamangalaService: AstamangalaService, public registrationService: RegistrationService, public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager,
     public _location: Location, public route: ActivatedRoute, public router: Router, public http: HttpClient,
     public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService,
@@ -200,8 +200,12 @@ export class LoginFormComponent {
               this.loginService.userProfileVisible = true;
               this.loginService.menuItems = navigationAfterLogin;
               this.close.emit("hi");
-              if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
-                this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
+              // if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
+              //   this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
+              // }
+              if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined|| this.storageService.GetHoroResponse('#MU') != undefined) {
+                // this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
+                this.router.navigate(["/purchase/paidServices"]);
               }
               else {
                 this.loadingSwitchService.loading = false;
@@ -240,6 +244,9 @@ export class LoginFormComponent {
           if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
             this.router.navigate(["/purchase/paidServices"]);
           }
+          // if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined|| this.storageService.GetHoroResponse('#MU') != undefined) {
+          //   this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
+          // }
           else {
             this.loadingSwitchService.loading = false;
             if (this.loginService.path != undefined) {

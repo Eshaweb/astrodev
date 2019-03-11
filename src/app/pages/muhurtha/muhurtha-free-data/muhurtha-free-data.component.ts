@@ -32,12 +32,14 @@ import { RegistrationService } from 'src/Services/registration/registration.serv
   serialisedPanchangaResponse: SerialisedPanchangaResponse;
     ngOnInit(): void {
       this.caption=new Caption();
-      this.muhurthaRequest=this.muhurthaService.muhurthaRequest;
+      //this.muhurthaRequest=this.muhurthaService.muhurthaRequest;
+      this.muhurthaRequest=this.storageService.GetHoroRequest('#MU');
       this.GetCaption(this.muhurthaRequest.LangCode, this.caption);
     }
-    constructor(private registrationService:RegistrationService,private itemService:ItemService, public router: Router, public loginService: LoginService, 
+    constructor(public storageService:StorageService, private registrationService:RegistrationService,private itemService:ItemService, public router: Router, public loginService: LoginService, 
       public captionDbService:CaptionDbService, public muhurthaService: MuhurthaService) {
-        this.muhurthaResponse=muhurthaService.muhurthaResponse;
+        //this.muhurthaResponse=muhurthaService.muhurthaResponse;
+        this.muhurthaResponse=this.storageService.GetHoroResponse('#MU');
     }
 
     GetCaption(langCode:string,caption:Caption)
@@ -61,6 +63,7 @@ import { RegistrationService } from 'src/Services/registration/registration.serv
   }
   onClick() {
     this.itemService.ItActId='#MU';
+    StorageService.SetItem('ItActId','#MU');
       if (StorageService.GetItem('Token')==undefined) {
           this.registrationService.registered=true;
           this.router.navigate(["/login-form"]);

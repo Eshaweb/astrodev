@@ -22,11 +22,12 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
   prashnaFreeModel: PrashnaFreeModel;
     ngOnInit(): void {
       this.caption=new Caption();
-      this.horoModel=this.astamangalaService.horoRequest;
+      this.horoModel=this.storageService.GetHoroRequest('#SA');
       this.GetCaption(this.horoModel.LangCode, this.caption);
     }
-    constructor(private itemService:ItemService, public router: Router, public loginService: LoginService, public captionDbService:CaptionDbService, public astamangalaService: AstamangalaService) {
+    constructor(public storageService:StorageService, private itemService:ItemService, public router: Router, public loginService: LoginService, public captionDbService:CaptionDbService, public astamangalaService: AstamangalaService) {
       this.prashnaFreeModel=this.astamangalaService.horoResponse;
+      this.prashnaFreeModel=this.storageService.GetHoroResponse('#SA');
     }
 
     GetCaption(langCode:string,caption:Caption)
@@ -51,6 +52,7 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
   onClick() {
     this.itemService.ItActId='#SA';
+    StorageService.SetItem('ItActId','#SA');
     if (StorageService.GetItem('Token')==undefined) {
         this.router.navigate(["/login-form"]);
     }

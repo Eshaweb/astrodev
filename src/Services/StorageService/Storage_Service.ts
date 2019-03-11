@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
+import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
+import { MatchResponse } from 'src/Models/MatchMaking/match';
+import { MatchRequest } from 'src/Models/MatchMaking/MatchRequest';
+import { NumerologyResponse } from 'src/Models/Numerology/numerologyResponse';
+import { NumerologyRequest } from 'src/Models/Numerology/numerologyRequest';
+import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
+import { MuhurthaRequest } from 'src/Models/Muhurtha/MuhurthaRequest';
+import { MuhurthaResponse } from 'src/Models/Muhurtha/MuhurthaResponse';
+import { OrderResponse } from 'src/Models/OrderResponse';
 
 @Injectable()
 export class StorageService {
@@ -22,15 +31,64 @@ export class StorageService {
     }
 
     SetHoroModel(param) {
-        localStorage.setItem("HoroModel", param);
+        sessionStorage.setItem("HoroModel", param);
     }
     SetHoroResponse(param) {
-        localStorage.setItem("HoroResponse", param);
+        sessionStorage.setItem("HoroResponse", param);
     }
-    GetHoroRequest(): HoroRequest {
-        return JSON.parse(localStorage.getItem("HoroModel")) as HoroRequest;
+    SetOrderResponse(param) {
+        sessionStorage.setItem("OrderResponse", param);
     }
-    GetHoroResponse(): HoroResponse {
-        return JSON.parse(localStorage.getItem("HoroResponse")) as HoroResponse;
+    GetHoroRequest(ItActId): any {
+        switch (ItActId) {
+            case '#SH':
+                return JSON.parse(sessionStorage.getItem("HoroModel")) as HoroRequest;
+                break;
+            case '#SA':
+                return JSON.parse(sessionStorage.getItem("HoroModel")) as HoroRequest;
+                break;
+            case '#SM':
+                return JSON.parse(sessionStorage.getItem("HoroModel")) as MatchRequest;
+                break;
+            case '#NM':
+                return JSON.parse(sessionStorage.getItem("HoroModel")) as NumerologyRequest;
+                break;
+            case '#MU':
+                return JSON.parse(sessionStorage.getItem("HoroModel")) as MuhurthaRequest;
+                break;
+            case '#PA':
+                return JSON.parse(sessionStorage.getItem("HoroModel")) as PanchangaRequest;
+                break;
+            default:
+                break;
+        }
+    }
+    GetHoroResponse(ItActId): any {
+        switch (ItActId) {
+            case '#SH':
+                return JSON.parse(sessionStorage.getItem("HoroResponse")) as HoroResponse;
+                break;
+            case '#SA':
+                return JSON.parse(sessionStorage.getItem("HoroResponse")) as PrashnaFreeModel;
+                break;
+            case '#SM':
+                return JSON.parse(sessionStorage.getItem("HoroResponse")) as MatchResponse;
+                break;
+            case '#NM':
+                return JSON.parse(sessionStorage.getItem("HoroResponse")) as NumerologyResponse;
+                break;
+            case '#MU':
+                return JSON.parse(sessionStorage.getItem("HoroResponse")) as MuhurthaResponse;
+                break;
+            case '#PA':
+                return JSON.parse(sessionStorage.getItem("HoroResponse"));
+                break;
+            default:
+                break;
+        }
+
+    }
+    GetOrderResponse(): any {
+        return JSON.parse(sessionStorage.getItem("OrderResponse")) as OrderResponse;
     }
 }

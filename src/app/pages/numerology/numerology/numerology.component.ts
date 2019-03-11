@@ -17,6 +17,7 @@ import ArrayStore from 'devextreme/data/array_store';
 import { isString } from 'util';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 import { NumerologyRequest } from 'src/Models/Numerology/numerologyRequest';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 // if (!/localhost/.test(document.location.host)) {
 //   enableProdMode();
@@ -55,7 +56,7 @@ export class NumerologyComponent {
       { Id: "A5", Text: "A5" }];
   reportSizedata: ArrayStore;
   reportSizevalue: any;
-  constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager,
+  constructor(public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager,
     public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     public partyService: PartyService, public numerologyService: NumerologyService, public uiService: UIService,
     public formbuilder: FormBuilder) {
@@ -192,8 +193,10 @@ export class NumerologyComponent {
     
     this.numerologyService.numerologyRequest = this.numerologyRequest;
     this.numerologyService.birthDateinDateFormat = bdate;
+    this.storageService.SetHoroModel(JSON.stringify(this.numerologyRequest));
     this.numerologyService.GetFreeData(this.numerologyRequest).subscribe((data: any) => {
       this.numerologyService.numerologyResponse = data;
+      this.storageService.SetHoroResponse(JSON.stringify(data));
       this.loadingSwitchService.loading = false;
       this.router.navigate(["/numerology/getNumerologyFreeData"]);
     });
