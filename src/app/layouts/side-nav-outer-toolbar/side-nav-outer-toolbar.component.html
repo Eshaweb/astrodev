@@ -26,21 +26,26 @@
     (openMenu)="navigationClick()">
 </app-side-navigation-menu>
 
-<dx-nav-bar>
-    <dxi-item text="Registration" icon="home" (onItemClick)='OnRegistrationform_Click()'>
-        <div (click)="OnRegistrationform_Click()">
-                <dx-button icon="home" text="Registration"></dx-button>
-        </div>
-    </dxi-item>
-    <dxi-item text="Login" icon="info" [onClick]="OnLogin_Click"></dxi-item>
-    <dxi-item text="Profile" icon="favorites" badge="new">
-            <dx-button icon="home" text="Profile" (click)="OnProfile_Click()"></dx-button>
-    </dxi-item>
-    <dxi-item text="Home" icon="home"></dxi-item>
-    <dxi-item text="About" icon="info"></dxi-item>
-    <dxi-item text="Favorites" icon="favorites" badge="new"></dxi-item>
-</dx-nav-bar>
-
+<dx-nav-bar (onItemClick)="selectionChanged($event)"
+[selectedIndex]="0">
+        <dxi-item text="Registration" icon="home" (onItemClick)='OnRegistrationform_Click()'>
+            <div (click)="OnRegistrationform_Click()">
+                    <dx-button icon="home" text="Registration"></dx-button>
+            </div>
+        </dxi-item>
+        <dxi-item text="Login" icon="info" [onClick]="OnLogin_Click"></dxi-item>
+        <dxi-item text="Profile" icon="favorites" badge="new">
+                <dx-button icon="home" text="Profile" (click)="OnProfile_Click()"></dx-button>
+        </dxi-item>
+        <dxi-item text="Home" icon="home"></dxi-item>
+        <dxi-item text="About" icon="info"></dxi-item>
+        <dxi-item text="Favorites" icon="favorites" badge="new"></dxi-item>
+    </dx-nav-bar>
+<!-- <dx-nav-bar
+    [dataSource]="navBarData"
+    (onItemClick)="selectionChanged($event)"
+    [selectedIndex]="0">
+</dx-nav-bar> -->
 <!-- <app-side-navigation-menu *ngIf="!loginService.userProfileVisible"
     [items]="menuItemsBeforeLogin"
     [compactMode]="!menuOpened"

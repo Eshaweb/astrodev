@@ -11,7 +11,28 @@ import { LoginService } from 'src/Services/login/login.service';
 // import { navigation } from 'src/app/app-navigation';
 import { navigationAfterLogin, navigationBeforeLogin } from 'src/app/app-navigation';
 import { DxNavBarModule, DxButtonModule } from 'devextreme-angular';
-
+export class Category {
+  text: string;
+  icon: string;
+  badge?: number;
+  path?:string;
+}
+let categories: Category[] = [
+  {
+      text: "Horoscope",
+      icon: "user",
+      path:'/horoscope'
+  }, {
+      text: "MatchMaking",
+      icon: "clock",
+      path:'/matchMaking',
+      badge: 3
+  }, {
+      text: "AstaMangala",
+      icon: "favorites",
+      path:'/astamangala',
+  }
+];
 @Component({
   selector: 'app-side-nav-outer-toolbar',
   templateUrl: './side-nav-outer-toolbar.component.html',
@@ -34,6 +55,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
   menuRevealMode = 'expand';
   minMenuSize = 0;
   shaderEnabled = false;
+  navBarData: Category[];
 
   constructor(private loginService:LoginService,private screen: ScreenService, private router: Router) {
     if(StorageService.GetItem('Token')!=undefined){
@@ -43,7 +65,9 @@ export class SideNavOuterToolbarComponent implements OnInit {
       this.loginService.menuItems = navigationBeforeLogin;
     }
    }
-
+  selectionChanged(e) {
+    this.router.navigate([e.itemData.path]);
+  }
   ngOnInit() {
     this.menuOpened = this.screen.sizes['screen-large'];
     this.router.events.subscribe(val => {
@@ -55,7 +79,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
        //this.selectedRoute = "/login-form";
    }
     });
-
+    this.navBarData = categories;
     this.screen.changed.subscribe(() => this.updateDrawer());
 
     this.updateDrawer();
