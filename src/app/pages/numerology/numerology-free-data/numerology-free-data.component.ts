@@ -40,8 +40,8 @@ export class NumerologyFreeDataComponent implements OnInit {
   uservalidateForm: FormGroup;
       ngOnInit(): void {
         this.caption=new Caption();
-        //this.numerologyRequest=this.numerologyService.numerologyRequest;
-        this.numerologyRequest=this.storageService.GetHoroRequest('#NM');
+        this.numerologyRequest=this.numerologyService.numerologyRequest;
+        //this.numerologyRequest=this.storageService.GetHoroRequest('#NM');
         this.GetCaption(this.numerologyRequest.LangCode, this.caption);
       }
       constructor(public storageService:StorageService, public uiService: UIService, public formBuilder: FormBuilder, private itemService:ItemService, 
@@ -51,8 +51,8 @@ export class NumerologyFreeDataComponent implements OnInit {
         public _location: Location, 
         public captionDbService:CaptionDbService, public numerologyService: NumerologyService) {
         
-            //this.numerologyResponse=this.numerologyService.numerologyResponse;
-            this.numerologyResponse=this.storageService.GetHoroResponse('#NM');
+            this.numerologyResponse=this.numerologyService.numerologyResponse;
+            //this.numerologyResponse=this.storageService.GetHoroResponse('#NM');
             //this.numerologyResponse.Predictions= this.numerologyService.numerologyResponse.Predictions;
             this.numerologyResponse.Predictions= this.numerologyResponse.Predictions;
             this.serialseMonth=JSON.parse(this.numerologyResponse.Month);

@@ -82,6 +82,7 @@ export class ProfileComponent {
         { Id: "WB", Text: 'West Bengal' }
       ];
     if (StorageService.GetItem('PartyMastId') != undefined) {
+      this.loadingSwitchService.loading = true;
       this.partyService.GetProfile(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
         this.profileForm.controls['ReferralCode'].setValue(data.ReferralCode);
         this.Id = data.Id;
@@ -99,6 +100,7 @@ export class ProfileComponent {
         if (data.EMail == null||data.EMail == "") {
           this.EMailDisabled = false;
         }
+        this.loadingSwitchService.loading = false;
       });
     }
   }
@@ -111,6 +113,8 @@ export class ProfileComponent {
       data: this.statesOfIndia,
       key: "Id"
     });
+
+
   }
   ngAfterViewInit(): void {
     

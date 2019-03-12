@@ -15,9 +15,12 @@ export class SettingsComponent {
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;
-}
-  OnHoroScope_Click() {
-    this.router.navigate(["/horoscope"]);
+  }
+  OnGeneralConfig_Click() {
+    this.router.navigate(["/settings/generalConfig"]);
+  }
+  OnMuhurthaConfig_Click() {
+    this.router.navigate(["/settings/muhurthaConfig"]);
   }
   OnMatchMaking_Click() {
     this.router.navigate(["/matchMaking"]);

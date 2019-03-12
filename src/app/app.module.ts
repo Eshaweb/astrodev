@@ -43,6 +43,7 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { PanchangaModule } from './pages/panchanga/panchanga.module';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
 import { PanchaPakshiService } from 'src/Services/PanchaPakshiService/PanchaPakshiService';
+import { InputService } from 'src/Services/input.service';
 
 
 let config = new AuthServiceConfig([
@@ -84,7 +85,7 @@ export function provideConfig() {
     DxLoadPanelModule
     //DevExtremeModule
   ],
-  providers: [AuthService, ScreenService, AppInfoService, ItemService, PanchangaService,
+  providers: [AuthService, ScreenService, AppInfoService, ItemService, PanchangaService, InputService,
     Service, AuthenticationService, CaptionDbService, OrderService, NumerologyService, PanchaPakshiService,
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService, MuhurthaService,
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
