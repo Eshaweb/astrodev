@@ -25,7 +25,7 @@ import { DxPopupModule } from 'devextreme-angular';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
 import { HeaderComponent } from '../header/header.component';
-import { navigationAfterLogin, menusAfterLogin } from 'src/app/app-navigation';
+import { navigationAfterLogin } from 'src/app/app-navigation';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -199,7 +199,7 @@ export class LoginFormComponent {
               StorageService.SetItem('Name',data.Name);
               this.loginService.userProfileVisible = true;
               this.loginService.menuItems = navigationAfterLogin;
-              this.loginService.navBarData = menusAfterLogin;
+             // this.loginService.navBarData = menusAfterLogin;
               this.close.emit("hi");
               // if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
               //   this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
@@ -243,7 +243,7 @@ export class LoginFormComponent {
           StorageService.SetItem('Name',data.Name);
           this.loginService.userProfileVisible = true;
           this.loginService.menuItems = navigationAfterLogin;
-          this.loginService.navBarData = menusAfterLogin;
+          //this.loginService.navBarData = menusAfterLogin;
           if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
             this.router.navigate(["/purchase/paidServices"]);
           }

@@ -9,7 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
 // import { navigation } from 'src/app/app-navigation';
-import { navigationAfterLogin, navigationBeforeLogin, menusBeforeLogin, menusAfterLogin } from 'src/app/app-navigation';
+import { navigationAfterLogin, navigationBeforeLogin } from 'src/app/app-navigation';
 import { DxNavBarModule, DxButtonModule, DxMenuModule } from 'devextreme-angular';
 @Component({
   selector: 'app-side-nav-outer-toolbar',
@@ -40,11 +40,9 @@ export class SideNavOuterToolbarComponent implements OnInit {
   constructor(private loginService: LoginService, private screen: ScreenService, private router: Router) {
     if (StorageService.GetItem('Token') != undefined) {
       this.loginService.menuItems = navigationAfterLogin;
-      this.loginService.navBarData = menusAfterLogin;
     }
     else {
       this.loginService.menuItems = navigationBeforeLogin;
-      this.loginService.navBarData = menusBeforeLogin;
     }
 
     this.showSubmenuModes = [{

@@ -48,12 +48,12 @@
 </dx-nav-bar> -->
 <dx-menu *ngIf='!isMobileResolution'
             #menu
-            [dataSource]="loginService.navBarData"
+            [dataSource]="loginService.menuItems"
             displayExpr="text"
             [showFirstSubmenuMode]="showFirstSubmenuModes"
             orientation="horizontal"
             submenuDirection="auto"
-            [hideSubmenuOnMouseLeave]="false"
+            [hideSubmenuOnMouseLeave]="true"
             (onItemClick)="itemClick($event)">
 </dx-menu>
 <!-- <app-side-navigation-menu *ngIf="!loginService.userProfileVisible"
