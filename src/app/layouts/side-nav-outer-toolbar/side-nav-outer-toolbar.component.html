@@ -15,7 +15,7 @@
     [minSize]="minMenuSize"
     [shading]="shaderEnabled"
     [(opened)]="menuOpened">
-
+<div *ngIf='isMobileResolution'>
     <app-side-navigation-menu
     [items]="loginService.menuItems"
     [compactMode]="!menuOpened"
@@ -25,9 +25,9 @@
     (selectedItemChanged)="navigationChanged($event)"
     (openMenu)="navigationClick()">
 </app-side-navigation-menu>
-
-<dx-nav-bar (onItemClick)="selectionChanged($event)"
-[selectedIndex]="0">
+</div>
+<!-- <dx-nav-bar (onItemClick)="selectionChanged($event)"
+[selectedIndex]="0" *ngIf='!isMobileResolution'>
         <dxi-item text="Registration" icon="home" (onItemClick)='OnRegistrationform_Click()'>
             <div (click)="OnRegistrationform_Click()">
                     <dx-button icon="home" text="Registration"></dx-button>
@@ -40,12 +40,22 @@
         <dxi-item text="Home" icon="home"></dxi-item>
         <dxi-item text="About" icon="info"></dxi-item>
         <dxi-item text="Favorites" icon="favorites" badge="new"></dxi-item>
-    </dx-nav-bar>
+    </dx-nav-bar> -->
 <!-- <dx-nav-bar
     [dataSource]="navBarData"
     (onItemClick)="selectionChanged($event)"
     [selectedIndex]="0">
 </dx-nav-bar> -->
+<dx-menu *ngIf='!isMobileResolution'
+            #menu
+            [dataSource]="loginService.navBarData"
+            displayExpr="text"
+            [showFirstSubmenuMode]="showFirstSubmenuModes"
+            orientation="horizontal"
+            submenuDirection="auto"
+            [hideSubmenuOnMouseLeave]="false"
+            (onItemClick)="itemClick($event)">
+</dx-menu>
 <!-- <app-side-navigation-menu *ngIf="!loginService.userProfileVisible"
     [items]="menuItemsBeforeLogin"
     [compactMode]="!menuOpened"

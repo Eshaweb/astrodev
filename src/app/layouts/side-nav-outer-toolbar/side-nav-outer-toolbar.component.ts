@@ -1,5 +1,5 @@
-import { Component, OnInit, NgModule, Input} from '@angular/core';
-import { SideNavigationMenuModule, HeaderModule,  } from '../../shared/components';
+import { Component, OnInit, NgModule, Input } from '@angular/core';
+import { SideNavigationMenuModule, HeaderModule, } from '../../shared/components';
 import { ScreenService } from '../../shared/services';
 import { DxDrawerModule } from 'devextreme-angular/ui/drawer';
 import { DxScrollViewModule } from 'devextreme-angular/ui/scroll-view';
@@ -9,30 +9,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
 // import { navigation } from 'src/app/app-navigation';
-import { navigationAfterLogin, navigationBeforeLogin } from 'src/app/app-navigation';
-import { DxNavBarModule, DxButtonModule } from 'devextreme-angular';
-export class Category {
-  text: string;
-  icon: string;
-  badge?: number;
-  path?:string;
-}
-let categories: Category[] = [
-  {
-      text: "Horoscope",
-      icon: "user",
-      path:'/horoscope'
-  }, {
-      text: "MatchMaking",
-      icon: "clock",
-      path:'/matchMaking',
-      badge: 3
-  }, {
-      text: "AstaMangala",
-      icon: "favorites",
-      path:'/astamangala',
-  }
-];
+import { navigationAfterLogin, navigationBeforeLogin, menusBeforeLogin, menusAfterLogin } from 'src/app/app-navigation';
+import { DxNavBarModule, DxButtonModule, DxMenuModule } from 'devextreme-angular';
 @Component({
   selector: 'app-side-nav-outer-toolbar',
   templateUrl: './side-nav-outer-toolbar.component.html',
@@ -43,7 +21,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
   // menuItemsAfterLogin = navigationAfterLogin;
   // menuItemsBeforeLogin = navigationBeforeLogin;
   selectedRoute = '';
-  
+
   menuOpened: boolean;
   temporaryMenuOpened = false;
 
@@ -55,18 +33,40 @@ export class SideNavOuterToolbarComponent implements OnInit {
   menuRevealMode = 'expand';
   minMenuSize = 0;
   shaderEnabled = false;
-  navBarData: Category[];
+  showSubmenuModes: any;
+  showFirstSubmenuModes: any;
+  isMobileResolution: boolean;
 
-  constructor(private loginService:LoginService,private screen: ScreenService, private router: Router) {
-    if(StorageService.GetItem('Token')!=undefined){
+  constructor(private loginService: LoginService, private screen: ScreenService, private router: Router) {
+    if (StorageService.GetItem('Token') != undefined) {
       this.loginService.menuItems = navigationAfterLogin;
+      this.loginService.navBarData = menusAfterLogin;
     }
-    else{
+    else {
       this.loginService.menuItems = navigationBeforeLogin;
+      this.loginService.navBarData = menusBeforeLogin;
     }
-   }
+
+    this.showSubmenuModes = [{
+      name: "onHover",
+      delay: { show: 0, hide: 500 }
+    }, {
+      name: "onClick",
+      delay: { show: 0, hide: 300 }
+    }];
+    this.showFirstSubmenuModes = this.showSubmenuModes[0];
+
+    if (window.innerWidth < 768) {
+      this.isMobileResolution = true;
+    } else {
+      this.isMobileResolution = false;
+    }
+  }
   selectionChanged(e) {
     this.router.navigate([e.itemData.path]);
+  }
+  itemClick(data) {
+    this.router.navigate([data.itemData.path]);
   }
   ngOnInit() {
     this.menuOpened = this.screen.sizes['screen-large'];
@@ -74,12 +74,12 @@ export class SideNavOuterToolbarComponent implements OnInit {
       // if (val instanceof NavigationEnd) {
       //   this.selectedRoute = val.urlAfterRedirects.split('?')[0];
       // }
-      if(StorageService.GetItem('Token')==undefined){
-       // this.router.navigate(['/login-form']);
-       //this.selectedRoute = "/login-form";
-   }
+      if (StorageService.GetItem('Token') == undefined) {
+        // this.router.navigate(['/login-form']);
+        //this.selectedRoute = "/login-form";
+      }
     });
-    this.navBarData = categories;
+    
     this.screen.changed.subscribe(() => this.updateDrawer());
 
     this.updateDrawer();
@@ -106,7 +106,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
   navigationChanged(event) {
     const path = event.itemData.path;
     const pointerEvent = event.event;
-    this.loginService.path=undefined;
+    this.loginService.path = undefined;
     if (path && this.menuOpened) {
       if (event.node.selected) {
         pointerEvent.preventDefault();
@@ -142,8 +142,8 @@ export class SideNavOuterToolbarComponent implements OnInit {
 }
 
 @NgModule({
-  imports: [ SideNavigationMenuModule,DxButtonModule, DxDrawerModule,HeaderModule, DxScrollViewModule, CommonModule, DxNavBarModule ],
-  exports: [ SideNavOuterToolbarComponent ],
-  declarations: [ SideNavOuterToolbarComponent ]
+  imports: [SideNavigationMenuModule, DxButtonModule, DxMenuModule, DxDrawerModule, HeaderModule, DxScrollViewModule, CommonModule, DxNavBarModule],
+  exports: [SideNavOuterToolbarComponent],
+  declarations: [SideNavOuterToolbarComponent]
 })
 export class SideNavOuterToolbarModule { }

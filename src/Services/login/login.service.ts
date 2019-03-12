@@ -3,7 +3,7 @@ import { HttpClient } from "../../../node_modules/@angular/common/http";
 import { ErrorService } from '../Error/error.service';
 import { HttpService } from '../Error/http.service';
 import { Observable } from 'rxjs';
-import { navigationBeforeLogin, navigationAfterLogin } from 'src/app/app-navigation';
+import { navigationBeforeLogin, navigationAfterLogin, menusBeforeLogin,  } from 'src/app/app-navigation';
 
 
 
@@ -16,6 +16,7 @@ export class LoginService {
   path: string;
   userProfileVisible: boolean;
   menuItems = navigationBeforeLogin;
+  navBarData = menusBeforeLogin;
     constructor(private httpService: HttpService, private errorService: ErrorService, public http: HttpClient) {
 
     }

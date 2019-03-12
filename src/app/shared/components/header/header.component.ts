@@ -56,6 +56,7 @@ export class HeaderComponent {
     // }
   ];
   visible: boolean;
+  isMobileResolution: boolean;
 
   constructor(public loginService:LoginService,public registrationService:RegistrationService,private router: Router, private authService: AuthenticationService) { 
     if(StorageService.GetItem('Token')!=undefined){
@@ -64,6 +65,11 @@ export class HeaderComponent {
     }
     else{
       this.loginService.userProfileVisible=false;
+    }
+    if (window.innerWidth < 768) {
+      this.isMobileResolution = true;
+    } else {
+      this.isMobileResolution = false;
     }
   }
 
