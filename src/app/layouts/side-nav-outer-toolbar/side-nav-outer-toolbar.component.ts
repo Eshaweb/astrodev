@@ -10,6 +10,7 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
 // import { navigation } from 'src/app/app-navigation';
 import { navigationAfterLogin, navigationBeforeLogin } from 'src/app/app-navigation';
+import { DxNavBarModule, DxButtonModule } from 'devextreme-angular';
 
 @Component({
   selector: 'app-side-nav-outer-toolbar',
@@ -105,10 +106,19 @@ export class SideNavOuterToolbarComponent implements OnInit {
       this.menuOpened = true;
     }
   }
+  OnRegistrationform_Click() {
+    this.router.navigate(["/registration-form"]);
+  }
+  OnLogin_Click() {
+    this.router.navigate(["/login-form"]);
+  }
+  OnProfile_Click() {
+    this.router.navigate(["/profile"]);
+  }
 }
 
 @NgModule({
-  imports: [ SideNavigationMenuModule, DxDrawerModule,HeaderModule, DxScrollViewModule, CommonModule ],
+  imports: [ SideNavigationMenuModule,DxButtonModule, DxDrawerModule,HeaderModule, DxScrollViewModule, CommonModule, DxNavBarModule ],
   exports: [ SideNavOuterToolbarComponent ],
   declarations: [ SideNavOuterToolbarComponent ]
 })

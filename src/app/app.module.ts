@@ -29,7 +29,7 @@ import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service'
 import { NgxLoadingModule } from 'ngx-loading';
 import { HoroscopeModule } from './pages/horoscope/horoscope.module';
 import { WalletModule } from './pages/wallet/wallet.module';
-import { DxPopupModule, DxButtonModule, DxLoadPanelModule, DevExtremeModule } from 'devextreme-angular';
+import { DxPopupModule, DxButtonModule, DxLoadPanelModule, DevExtremeModule, DxNavBarModule } from 'devextreme-angular';
 import { AstamangalaModule } from './pages/astamangala/astamangala.module';
 import { MatchMakingModule } from './pages/matchMaking/matchMaking.module';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
@@ -82,7 +82,7 @@ export function provideConfig() {
     HttpClientModule,
     DxPopupModule,
     DxButtonModule,
-    DxLoadPanelModule
+    DxLoadPanelModule,
     //DevExtremeModule
   ],
   providers: [AuthService, ScreenService, AppInfoService, ItemService, PanchangaService, ConfigerationService,

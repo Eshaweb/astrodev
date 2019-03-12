@@ -123,7 +123,7 @@ export class OrderHistoryComponent implements OnInit {
         }
         else if (item.StatusCode == 'RD') {
             //this.router.navigate(['/purchase/paymentProcessing']);
-
+            this.loadingSwitchService.loading = true;
             this.orderService.CheckForResult(item.OrderId).subscribe((data) => {
                 if (data.AstroReportId.length != 0) {
                     this.buttonId = data.AstroReportId[0].split('_')[0];
@@ -135,10 +135,10 @@ export class OrderHistoryComponent implements OnInit {
                       a.href = url;
                       a.download = fileName;
                       document.body.appendChild(a);
+                      this.loadingSwitchService.loading=false;
                       a.click();
                       document.body.removeChild(a);
                       URL.revokeObjectURL(url);
-                      this.loadingSwitchService.loading=false;
                     });
                   }
                 });
