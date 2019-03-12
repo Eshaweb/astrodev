@@ -1,333 +1,155 @@
-<div class="dx-card content-block responsive-paddings">
-    <form formGroup="partyGeneralConfig.Configform" >
-    <div class="dx-card content-block responsive-paddings">
-    <div id="accordion">
-    <dx-accordion
-        #accordion
-        [dataSource]="inputService.accordian"
-        [collapsible]="true"
-        [multiple]="false"
-        [animationDuration]="300"
-       >
-        <div *dxTemplate="let accordian of 'title'">
-            <h1>{{accordian.name}}</h1>
-        </div>
-        <div *dxTemplate="let accordian of 'item'">
-                <div class="dx-fieldset dx-fieldset-modiied" *ngIf="accordian.name=='Dasha Type'" >  
-            <div class="dx-field">
-                <div class="dx-field-value">
-                    <dx-radio-group 
-                        [items]="inputService.dashatype"
-    [(value)]="partyGeneralConfig.Config.YearValue"
-    valueExpr="id"
-    displayExpr="name"
-    >
-                    </dx-radio-group>
-                </div>
-                </div>
-            </div>
-                <div class="dx-fieldset dx-fieldset-modiied" *ngIf="accordian.name=='Dasha Start'">  
-            <div class="dx-field">
-                <div class="dx-field-value">
-                    <dx-radio-group
-                        [items]="inputService.dashastart"
-                         [(value)]="partyGeneralConfig.Config.DashaStartType" valueExpr="id"
-                         displayExpr="name">
-                    </dx-radio-group>
-                </div>
-            </div> 
-                <div class="dx-field">
-                    <div class="dx-field-label">From Age</div>
-                    <div class="dx-field-label">
-                        <dx-number-box #numberBox
-                            [max]="100"
-                            [min]="0" formControlName="DashaStartFromAge"
-                            [showSpinButtons]="true"
-                             [(value)]="partyGeneralConfig.Config.DashaStartValue"
-                        ></dx-number-box>
-                        <p style="color:red;font-size: 14px;" id='err_DashaStartFromAge'></p>
-                    </div>
-                </div>
-                <div class="dx-field">
-                    <div class="dx-field-label">To Age</div>
-                    <div class="dx-field-label">
-                        <dx-number-box #numberBox
-                            [max]="100"
-                            [min]="0" formControlName="DashaStarttoAge"
-                            [showSpinButtons]="true"
-                             [(value)]="partyGeneralConfig.Config.DashaEndValue"
-                        ></dx-number-box>
-                        <p style="color:red;font-size: 14px;" id='err_DashaStarttoAge'></p>
-                    </div>
-                </div>
-            </div> 
-            <div class="dx-fieldset dx-fieldset-modiied"*ngIf="accordian.name=='Dasha Prediction'">  
-                    <div class="dx-field">
-                    </div> 
-                        <div class="dx-field">
-                            <div class="dx-field-label">From Age</div>
-                            <div class="dx-field-label">
-                                <dx-number-box #numberBox
-                                    [max]="100"
-                                    [min]="0" formControlName="DashapredictfromAge"
-                                    [showSpinButtons]="true"
-                                     [(value)]="partyGeneralConfig.Config.PredStDt"
-                                ></dx-number-box>
-                                <p style="color:red;font-size: 14px;" id='err_DashaStartFromAge'></p>
-                            </div>
-                        </div>
-                        <div class="dx-field">
-                            <div class="dx-field-label">To Age</div>
-                            <div class="dx-field-label">
-                                <dx-number-box #numberBox
-                                    [max]="100"
-                                    [min]="0" formControlName="DashapredicttoAge"
-                                    [showSpinButtons]="true"
-                                     [(value)]="partyGeneralConfig.Config.PredEndDt"
-                                ></dx-number-box>
-                                <p style="color:red;font-size: 14px;" id='err_DashaStartFromAge'></p>
-                            </div>
+
+
+  <div class="dx-card content-block responsive-paddings">
+               
+            <form>
+             
+                      
+                <div class="dx-fieldset" >      
+                          
+                           
+                            <div class="dx-field" >
+                               
+                                <div class="dx-field-label">
+                             
+                        <dx-select-box id="MuhurthaType" name="MuhurthaType"   autofocus="autofocus" (onValueChanged)="onValueChanged($event)" 
+                        [dataSource]="combosource"
+                        displayExpr="Name"
+                        valueExpr="Id"
+                        [searchEnabled]="true"
+                        showClearButton="true">
+                    </dx-select-box>
+                           
+                      
                         </div>
                     </div>
-                     <div class="dx-fieldset dx-fieldset-modiied" *ngIf="accordian.name=='Ayanamsha'">  
+                </div>
+              
+                    <div class="dx-fieldset">
+                        <div class="dx-field" *ngIf="isvisibleMoudyaMuhurtha" #items>
+                            
+                            <div class="dx-field-label">
+                                <dx-check-box   [(value)]="muhurthaConfig.MoudyaMuhurtha"    text="In Moudya Time Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                        
+                        <div class="dx-field" *ngIf="isvisibleAshada"  #items>
+                         
+                            <div class="dx-field-label">
+                                <dx-check-box  [(value)]="muhurthaConfig.Ashada" text="In Ashada Time Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                        <div class="dx-field" *ngIf="isvisiblePushya" #items>
+                       
+                            <div class="dx-field-label">
+                                <dx-check-box   [(value)]=" muhurthaConfig.Pushya"    text="In Pousha Time Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                        <div class="dx-field" *ngIf="isvisibleAdhikaMasa" #items>
+                        
+                            <div class="dx-field-label">
+                                <dx-check-box   [(value)]=" muhurthaConfig.AdhikaMasa"  text="In AdhikaMasa  Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                        <div class="dx-field" *ngIf="isvisibleIncludeSouraMonth"  #items>
+                        
+                            <div class="dx-field-label">
+                                <dx-check-box  [(value)]=" muhurthaConfig.IncludeSouraMonth"   text="In SouraMasa  Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                        <div class="dx-field" *ngIf="isvisibleIsRikthaThithi" #items>
+                       
+                            <div class="dx-field-label">
+                                <dx-check-box   [(value)]=" muhurthaConfig.IsRikthaThithi"   text="Riktha Tithi Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                        <div class="dx-field" *ngIf="isvisibleRahuKala"  #items>
+                       
+                            <div class="dx-field-label">
+                                <dx-check-box  [(value)]=" muhurthaConfig.RahuKala"   text="In Rahu Kala Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                        <div class="dx-field" *ngIf="isvisibleShalakaVedha" #items>
+                          
+                            <div class="dx-field-label">
+                                <dx-check-box  [(value)]=" muhurthaConfig.ShalakaVedha"  text="Shalakavedha Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                        <div class="dx-field" *ngIf="isvisibleChandraInAnishta" #items>
+                         
+                            <div class="dx-field-label">
+                                <dx-check-box  [(value)]=" muhurthaConfig.ChandraInAnishta"    text="Chandra 6.8.12.Bhava From Lagna:  Muhurtha Reqd"></dx-check-box>
+                            </div>
+                        </div>  
+                        <div class="dx-field" *ngIf="isvisibleDayTimeTithiNakshatra"  #items>
+                          
+                            <div class="dx-field-label">
+                                <dx-check-box  [(value)]=" muhurthaConfig.DayTimeTithiNakshatra"    text="Day Time Tithi/Nakshatra sandhi  Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                        <div class="dx-field" *ngIf="isvisibleKundalaYoga" #items>
+                          
+                            <div class="dx-field-label">
+                                <dx-check-box   [(value)]=" muhurthaConfig.KundalaYoga"   text="Kundala Yoga Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                        <div class="dx-field" *ngIf="isvisibleVedaDosha" #items>
+                          
+                            <div class="dx-field-label">
+                                <dx-check-box   [(value)]=" muhurthaConfig.VedaDosha" text="VedaDosha Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                        <div class="dx-field" *ngIf="isvisibleKritika"   #items>
+                         
+                            <div class="dx-field-label">
+                                <dx-check-box [(value)]=" muhurthaConfig.Kritika"  text="Ravi In Kritika Nakshatra: Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                        <div class="dx-field" *ngIf="isvisibleIsRaviInSapthama" #items>
+                          
+                            <div class="dx-field-label">
+                                <dx-check-box   [(value)]=" muhurthaConfig.IsRaviInSapthama"   text="Ravi in Sapthama: Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                       
+                       
+                        <div class="dx-field" *ngIf="isvisibleIsKujaInSapthama" #items>
+                        
+                            <div class="dx-field-label">
+                                <dx-check-box   [(value)]=" muhurthaConfig.IsKujaInSapthama"   text="Kuja in Sapthama: Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+                        <div class="dx-field" *ngIf="isvisibleIsShaniInSapthama" #items>
+                         
+                            <div class="dx-field-label">
+                                <dx-check-box   [(value)]=" muhurthaConfig.IsShaniInSapthama"   text="Shani in Sapthama: Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>  
+
+                        <div class="dx-field" *ngIf="isvisibleIsRahuInSapthama" #items>
+                          
+                            <div class="dx-field-label">
+                                <dx-check-box   [(value)]=" muhurthaConfig.IsRahuInSapthama" text="Rahu in Sapthama: Muhurtha Required"></dx-check-box>
+                            </div>
+                        </div>   
+                    </div>
+                           
                     <div class="dx-field">
+                    
                         <div class="dx-field-label">
-                            <dx-radio-group
-                                [items]="inputService.ayanamsha"
-                                 [(value)]="partyGeneralConfig.Config.AyanaType" valueExpr="id"
-                                 displayExpr="name" (onValueChanged)="ayanaValueChanged($event)">
-                            </dx-radio-group>
+                            <dx-button
+                              
+                                text="save"
+                                (onClick)="save()">
+                            </dx-button>
                         </div>
-                        </div>
-                        <div class="dx-field" *ngIf="isvisibleayana">
-                                                                                                        <div class="dx-field-label">Degree</div>
-                                                                                                        <div class="dx-field-label">
-                                                                                                            <dx-number-box #numberBox
-                                                                                                                 [(value)]="partyGeneralConfig.Config.AyanaDeg"  formControlName="AyanaDeg"
-                                                                                                            ></dx-number-box>
-                                                                                                            <p style="color:red;font-size: 14px;" id='err_AyanaDeg'></p>
-                                                                                                        </div>
-                                                                                                    </div>
-
-                                                                                                    <div class="dx-field" *ngIf="isvisibleayana">
-                                                                                                            <div class="dx-field-label">Minute</div>
-                                                                                                            <div class="dx-field-label">
-                                                                                                                <dx-number-box #numberBox
-                                                                                                                     [(value)]="partyGeneralConfig.Config.PartypartyGeneralConfig.Config.AyanaMt" formControlName="AyanaMt"
-                                                                                                                ></dx-number-box>
-                                                                                                                <p style="color:red;font-size: 14px;" id='err_AyanaMt'></p>
-                                                                                                            </div>
-                                                                                                        </div>
-
-                                                                                                        <div class="dx-field" *ngIf="isvisibleayana">
-                                                                                                                <div class="dx-field-label">second</div>
-                                                                                                                <div class="dx-field-label">
-                                                                                                                    <dx-number-box #numberBox
-                                                                                                                         [(value)]="partyGeneralConfig.Config.AyanaSec"  formControlName="AyanaSec"
-                                                                                                                    ></dx-number-box>
-                                                                                                                    <p style="color:red;font-size: 14px;" id='err_AyanaSec'></p>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                  
-                    </div>
-                            <div class="dx-fieldset dx-fieldset-modiied" *ngIf="accordian.name=='Astaka Varga Type'">  
-                                    <div class="dx-field">
-                                        <div class="dx-field-label">
-                                            <dx-radio-group
-                                                [items]="inputService.astakavarga"
-                                                 [(value)]="partyGeneralConfig.Config.AVType" valueExpr="id"
-                                                 displayExpr="name">
-                                            </dx-radio-group>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div class="dx-fieldset dx-fieldset-modiied" *ngIf="accordian.name=='Bhava Phal'">  
-                                                            <div class="dx-field">
-                                                                   
-                                                                <div class="dx-field-label">
-                                                                    <dx-radio-group 
-                                                                        [items]="inputService.Bahvaphala"
-                                                                        [(value)]="partyGeneralConfig.Config.BhavaPhal" valueExpr="id"
-                                                                        displayExpr="name">
-                                                                    </dx-radio-group>
-                                                                 
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="dx-fieldset dx-fieldset-modiied" *ngIf="accordian.name=='Match Making'">  
-                                                                    <div class="dx-field">
-                                                                           
-                                                                        <div class="dx-field-label">
-                                                                                <dx-check-box
-                                                                                [(value)]="partyGeneralConfig.Config.IsKalatraReqd"
-                                                                                text="Check kalatrarishta/Soubhagya Yoga"
-                                                                            ></dx-check-box>  
-                                                                         
-                                                                        </div>
-                                                                        </div>
-                                                                      
-                                                                     
-                                                                    </div>
-
-                                                            <div class="dx-fieldset dx-fieldset-modiied" *ngIf="accordian.name=='Adhipathi Phal'">  
-                                                                    <div class="dx-field">
-                                                                           
-                                                                        <div class="dx-field-label">
-                                                                            <dx-radio-group
-                                                                                [items]="inputService.Adipatathaphala"
-                                                                                 [(value)]="partyGeneralConfig.Config.AdhiPhal"valueExpr="id"
-                                                                                 displayExpr="name">
-                                                                            </dx-radio-group>
-                                                                         
-                                                                        </div>
-                                                                        </div>
-                                                                      
-                                                                     
-                                                                    </div>
-                                                                    <div class="dx-fieldset dx-fieldset-modiied" *ngIf="accordian.name=='Sadesathi Shani'">  
-                                                                            <div class="dx-field">
-                                                                                   
-                                                                                <div class="dx-field-label">
-                                                                                        <dx-check-box
-                                                                                         [(value)]="partyGeneralConfig.Config.IsSadesathiReqd"
-                                                                                      
-                                                                                        text="Check sadesathi"
-                                                                                    ></dx-check-box>  
-                                                                                 
-                                                                                </div>
-                                                                                </div>
-                                                                              
-                                                                             
-                                                                            </div>
-                                                                    <div class="dx-fieldset dx-fieldset-modiied" *ngIf="accordian.name=='SunRise/SunSet'">  
-                                                                            <div class="dx-field">
-                                                                                   
-                                                                                <div class="dx-field-label">
-                                                                                    <dx-radio-group
-                                                                                        [items]="inputService.sunriseset"
-                                                                                        [(value)]="partyGeneralConfig.Config.SunSetting" 
-                                                                                        valueExpr="id"
-                                                                                        displayExpr="name">
-                                                                                    </dx-radio-group>
-                                                                                 
-                                                                                </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="dx-fieldset dx-fieldset-modiied" *ngIf="accordian.name=='Chart Type'">  
-                                                                                <div class="dx-field">
-                                                                                    <div class="dx-field-label">
-                                                                                            <dx-select-box id="ChartType" name="ChartType"   autofocus="autofocus"  [(value)]="partyGeneralConfig.Config.ChartType"  
-                                                                                            [dataSource]="inputService.charttypesource"
-                                                                                            displayExpr="name"
-                                                                                            valueExpr="id"
-                                                                                            [searchEnabled]="true"
-                                                                                            showClearButton="true">
-                                                                                        </dx-select-box>
-                                                                                    </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="dx-fieldset dx-fieldset-modiied" *ngIf="accordian.name=='Moudya Settings'">
-                                                                                            <div class="dx-field">
-                                                                                                    <div class="dx-field-label">Chandra</div>
-                                                                                                    <div class="dx-field-label">
-                                                                                                        <dx-number-box #numberBox
-                                                                                                             [(value)]="partyGeneralConfig.Config.MChandra" formControlName="Chandra"
-                                                                                                        ></dx-number-box>
-                                                                                                        <p style="color:red;font-size: 14px;" id='err_Chandra'></p>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="dx-field">
-                                                                                                        <div class="dx-field-label">Kuja</div>
-                                                                                                        <div class="dx-field-label">
-                                                                                                            <dx-number-box #numberBox
-                                                                                                                 [(value)]="partyGeneralConfig.Config.MKuja"  formControlName="Kuja"
-                                                                                                            ></dx-number-box>
-                                                                                                            <p style="color:red;font-size: 14px;" id='err_Kuja'></p>
-                                                                                                        </div>
-                                                                                                    </div>
-
-                                                                                                    <div class="dx-field">
-                                                                                                            <div class="dx-field-label">Budha</div>
-                                                                                                            <div class="dx-field-label">
-                                                                                                                <dx-number-box #numberBox
-                                                                                                                     [(value)]="partyGeneralConfig.Config.MBudha" formControlName="Budha"
-                                                                                                                ></dx-number-box>
-                                                                                                                <p style="color:red;font-size: 14px;" id='err_Budha'></p>
-                                                                                                            </div>
-                                                                                                        </div>
-
-                                                                                                        <div class="dx-field">
-                                                                                                                <div class="dx-field-label">Guru</div>
-                                                                                                                <div class="dx-field-label">
-                                                                                                                    <dx-number-box #numberBox
-                                                                                                                         [(value)]="partyGeneralConfig.Config.MGuru"  formControlName="Guru"
-                                                                                                                    ></dx-number-box>
-                                                                                                                    <p style="color:red;font-size: 14px;" id='err_Guru'></p>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <div class="dx-field">
-                                                                                                                    <div class="dx-field-label">Shukra</div>
-                                                                                                                    <div class="dx-field-label">
-                                                                                                                        <dx-number-box #numberBox
-                                                                                                                             [(value)]="partyGeneralConfig.Config.MShukra" formControlName="Shukra"
-                                                                                                                        ></dx-number-box>
-                                                                                                                        <p style="color:red;font-size: 14px;" id='err_Shukra'></p>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                                <div class="dx-field">
-                                                                                                                        <div class="dx-field-label">Shani</div>
-                                                                                                                        <div class="dx-field-label">
-                                                                                                                            <dx-number-box #numberBox
-                                                                                                                                 [(value)]="partyGeneralConfig.Config.MShani" formControlName="Shani"
-                                                                                                                            ></dx-number-box>
-                                                                                                                            <p style="color:red;font-size: 14px;" id='err_Shani'></p>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                    </div>
+                    </div>       
+                       
+                        
+                           
+                      
+            </form>
 
 
         </div>
   
-       
-    </dx-accordion>
-
-  
-
-</div>
-</div>
-<div class="col-md-12">
-        <div class="rows">
-<div class="dx-field col-md-4">
-                    
-    <div class="dx-field-label">
-        <dx-button
-          
-            text="Update"
-            (onClick)="Update()">
-        </dx-button>
-    </div>
-</div>      
-<div class="dx-field col-md-4">
-                    
-    <div class="dx-field-label">
-        <dx-button
-          
-            text="Deafult"
-            (onClick)="Deafult()">
-        </dx-button>
-    </div>
-</div>      
-<div class="dx-field col-md-4">
-                    
-    <div class="dx-field-label">
-        <dx-button
-          
-            text="Back"
-            (onClick)="Back()">
-        </dx-button>
-    </div>
-</div> 
-</div>  
-</div>    
-</form>
-</div>

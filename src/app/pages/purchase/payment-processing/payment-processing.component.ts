@@ -67,6 +67,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
           this.loadingSwitchService.loading=false;
           this.showSuccess=true;
           this.clearParameters();
+          this.storageService.RemoveDataFromSession();
         });
       }
       else {
@@ -97,6 +98,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
                 this.loadingSwitchService.loading=false;
                 this.showSuccess=true;
                 this.clearParameters();
+                this.storageService.RemoveDataFromSession();
                 this.sub.unsubscribe();
               });
             }
@@ -141,6 +143,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   clearParameters(){
     this.horoScopeService.birthplace='';
     this.orderService.orderResponse=null;
+
   }
   Download_Click() {
     //this.loading = true;

@@ -81,8 +81,8 @@ export class ProfileComponent {
         { Id: "UP", Text: 'Uttar Pradesh' },
         { Id: "WB", Text: 'West Bengal' }
       ];
-    if (StorageService.GetItem('PartyMastId') != undefined) {
       this.loadingSwitchService.loading = true;
+      if (StorageService.GetItem('PartyMastId') != undefined) {
       this.partyService.GetProfile(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
         this.profileForm.controls['ReferralCode'].setValue(data.ReferralCode);
         this.Id = data.Id;

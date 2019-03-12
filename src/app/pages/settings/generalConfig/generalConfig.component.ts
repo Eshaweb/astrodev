@@ -1,327 +1,123 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Combosource, MuhurthaConfig, PartymuhurthaConfig } from 'src/Models/Input1DTO';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
+import { PartyGeneralConfig, Config } from 'src/Models/inputdto2';
+import { UIService } from 'src/Services/UIService/ui.service';
 import { HttpService } from 'src/Services/Error/http.service';
+import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { ConfigerationService } from 'src/Services/ConfigerationService/ConfigerationService';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
+
 @Component({
   templateUrl: 'generalConfig.component.html',
   styleUrls: ['./generalConfig.component.scss']
 })
 
-export class GeneralConfigComponent implements OnInit {
+export class GeneralConfigComponent {
+  configform: FormGroup;
+  partyGeneralConfig: PartyGeneralConfig;
+  isvisibleayana: boolean;
 
-  combosource: Combosource;
-  muhurthaConfig: MuhurthaConfig;
-  partymuhurthaconfig: PartymuhurthaConfig;
-  isvisibleAdhikaMasa: boolean;
-  isvisibleAshada: boolean;
-  isvisibleIsRaviInSapthama: boolean;
-  isvisibleIsKujaInSapthama: boolean;
-  isvisibleIncludeSouraMonth: boolean;
-  isvisibleIsRikthaThithi: boolean;
-  isvisibleIsRahuInSapthama: boolean;
-  isvisibleChandraInAnishta: boolean;
-  isvisibleIsShaniInSapthama: boolean;
-  isvisibleKritika: boolean;
-  isvisibleVedaDosha: boolean;
-  isvisibleDayTimeTithiNakshatra: boolean;
-  isvisibleShalakaVedha: boolean;
-  isvisibleRahuKala: boolean;
-  isvisibleMoudyaMuhurtha: boolean;
-  isvisibleKundalaYoga: boolean;
-  isvisiblePushya: boolean;
+  constructor(public loadingSwitchService:LoadingSwitchService,public uiService: UIService, public formbuilder: FormBuilder, private httpService: HttpService, public configerationService: ConfigerationService) {
+    this.configform = this.formbuilder.group({
+      DashaStartFromAge: [''],
+      DashaStarttoAge: [''],
+      DashapredictfromAge: [''],
+      DashapredicttoAge: [''],
+      Chandra: [''],
+      Kuja: [''],
+      Budha: [''],
+      Guru: [''],
+      Shukra: [''],
+      Shani: [''],
+      AyanaDeg: [''],
+      AyanaMt: [''],
+      AyanaSec: [''],
 
-  constructor(private http: HttpClient, private httpService: HttpService) { }
+    });
+    const DashaStartFromAgeContrl = this.configform.get('DashaStartFromAge');
+    DashaStartFromAgeContrl.valueChanges.subscribe(value => this.setErrorMessage(DashaStartFromAgeContrl));
+
+    const DashaStarttoAgeContrl = this.configform.get('DashaStarttoAge');
+    DashaStarttoAgeContrl.valueChanges.subscribe(value => this.setErrorMessage(DashaStarttoAgeContrl));
+
+    const DashapredictfromAgeContrl = this.configform.get('DashapredictfromAge');
+    DashapredictfromAgeContrl.valueChanges.subscribe(value => this.setErrorMessage(DashapredictfromAgeContrl));
+    const DashapredicttoAgeContrl = this.configform.get('DashapredicttoAge');
+    DashapredicttoAgeContrl.valueChanges.subscribe(value => this.setErrorMessage(DashapredicttoAgeContrl));
+
+    const ChandraContrl = this.configform.get('Chandra');
+    ChandraContrl.valueChanges.subscribe(value => this.setErrorMessage(ChandraContrl));
+
+    const KujaContrl = this.configform.get('Kuja');
+    KujaContrl.valueChanges.subscribe(value => this.setErrorMessage(KujaContrl));
+    const BudhaContrl = this.configform.get('Budha');
+    BudhaContrl.valueChanges.subscribe(value => this.setErrorMessage(BudhaContrl));
+    const GuruContrl = this.configform.get('Guru');
+    GuruContrl.valueChanges.subscribe(value => this.setErrorMessage(GuruContrl));
+    const ShukraContrl = this.configform.get('Shukra');
+    ShukraContrl.valueChanges.subscribe(value => this.setErrorMessage(ShukraContrl));
+    const ShaniContrl = this.configform.get('Shani');
+    ShaniContrl.valueChanges.subscribe(value => this.setErrorMessage(ShaniContrl));
+
+    const AyanaDegContrl = this.configform.get('AyanaDeg');
+    AyanaDegContrl.valueChanges.subscribe(value => this.setErrorMessage(AyanaDegContrl));
+
+    const AyanaMtContrl = this.configform.get('AyanaMt');
+    AyanaMtContrl.valueChanges.subscribe(value => this.setErrorMessage(AyanaMtContrl));
+
+    const AyanaSecContrl = this.configform.get('AyanaSec');
+    AyanaSecContrl.valueChanges.subscribe(value => this.setErrorMessage(AyanaSecContrl));
+  }
+
+  setErrorMessage(c: AbstractControl): void {
+    let control = this.uiService.getControlName(c);
+    document.getElementById('err_' + control).innerHTML = '';//To not display the error message, if there is no error.
+    if ((c.touched || c.dirty) && c.errors) {
+      document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
+    }
+  }
+  private validationMessages = {
+  };
+
 
   ngOnInit() {
 
-    this.muhurthaConfig = new MuhurthaConfig();
-    this.partymuhurthaconfig = new PartymuhurthaConfig();
-    var endPoint = "Muhurtha/GetMuhurthaList";
-    this.httpService.Get(endPoint).subscribe((data: any) => {
-      this.combosource = data;
-      var endPoint2 = "PartyConfig/GetMuhurthaconfig?PartyMastId=1";
-      this.httpService.Get(endPoint2).subscribe((data: MuhurthaConfig[]) => {
-        this.partymuhurthaconfig.Config = data;
-      });
+    this.partyGeneralConfig = new PartyGeneralConfig();
+    this.partyGeneralConfig.Config = new Config();
+    this.configerationService.GetGeneralconfig(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
+      this.partyGeneralConfig.Config = data;
     });
   }
+  ayanaValueChanged(e) {
 
-
-  onValueChanged(e) {
-    this.muhurthaConfig = this.partymuhurthaconfig.Config.filter(a => a.MuhurthaType == e.value)[0]
-
-    this.isvisibleAdhikaMasa = true;
-    this.isvisibleAshada = true;
-    this.isvisibleIsRaviInSapthama = true;
-    this.isvisibleIsKujaInSapthama = true;
-    this.isvisibleIncludeSouraMonth = true;
-    this.isvisibleIsRikthaThithi = true;
-    this.isvisibleIsRahuInSapthama = true;
-    this.isvisibleChandraInAnishta = true;
-    this.isvisibleIsShaniInSapthama = true;
-    this.isvisibleKritika = true;
-    this.isvisibleVedaDosha = true;
-    this.isvisibleDayTimeTithiNakshatra = true;
-    this.isvisibleShalakaVedha = true;
-    this.isvisibleRahuKala = true;
-    this.isvisibleMoudyaMuhurtha = true;
-    this.isvisibleKundalaYoga = true;
-    this.isvisiblePushya = true;
-
-
-    switch (e.value) {
-      case "viha":
-
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleKundalaYoga = false;
-
-        break;
-      case "upny":
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIncludeSouraMonth = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleKundalaYoga = false;
-
-        break;
-      case "semt":
-        this.isvisibleAdhikaMasa = false;
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIncludeSouraMonth = false;
-        this.isvisibleIsRikthaThithi = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleMoudyaMuhurtha = false;
-        this.isvisibleKundalaYoga = false;
-
-        break;
-      case "anna":
-        this.isvisibleAdhikaMasa = false;
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIncludeSouraMonth = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleMoudyaMuhurtha = false;
-        this.isvisibleKundalaYoga = false;
-
-        break;
-      case "krna":
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleShalakaVedha = false;
-
-        break;
-      case "grpr":
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleKundalaYoga = false;
-
-        break;
-      case "grab":
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleKundalaYoga = false;
-
-        break;
-      case "chal":
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIncludeSouraMonth = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleKundalaYoga = false;
-
-        break;
-
-
-      case "dvpr":
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIncludeSouraMonth = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleKundalaYoga = false
-
-        break;
-      case "vyar":
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleKundalaYoga = false;
-
-        break;
-      case "udyo":
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleKundalaYoga = false;
-
-        break;
-      case "vahn":
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleKundalaYoga = false;
-
-        break;
-      case "tott":
-        this.isvisibleAdhikaMasa = false;
-        this.isvisibleAshada = false;
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIncludeSouraMonth = false;
-        this.isvisibleIsRikthaThithi = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleMoudyaMuhurtha = false;
-        this.isvisibleKundalaYoga = false;
-        this.isvisiblePushya = false;
-        break;
-      case "gopr":
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleKundalaYoga = false;
-
-        break;
-      case "trvl":
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIncludeSouraMonth = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleChandraInAnishta = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleKundalaYoga = false;
-
-        break;
-      case "name":
-        this.isvisibleAdhikaMasa = false;
-        this.isvisibleAshada = false;
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIncludeSouraMonth = false;
-        this.isvisibleIsRikthaThithi = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleMoudyaMuhurtha = false;
-        this.isvisibleKundalaYoga = false;
-        this.isvisiblePushya = false;
-        break;
-
-      case "lapr":
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleKundalaYoga = false;
-        break;
-      case "vida":
-
-        this.isvisibleIsRaviInSapthama = false;
-        this.isvisibleIsKujaInSapthama = false;
-        this.isvisibleIncludeSouraMonth = false;
-        this.isvisibleIsRahuInSapthama = false;
-        this.isvisibleIsShaniInSapthama = false;
-        this.isvisibleKritika = false;
-        this.isvisibleVedaDosha = false;
-        this.isvisibleDayTimeTithiNakshatra = false;
-        this.isvisibleShalakaVedha = false;
-        this.isvisibleKundalaYoga = false;
-        break;
+    if (e.value == 'UD') {
+      this.isvisibleayana = true;
     }
-  }
-  save() {
-    var endPoint3 = "PartyConfig/UpdateMuhurthaConfig";
-    this.httpService.Post(endPoint3, this.partymuhurthaconfig).subscribe((data: any) => {
-      alert(data);
+    else {
+      this.isvisibleayana = false;
+    }
 
+  }
+
+  Update() {
+    this.loadingSwitchService.loading = true;
+    this.configerationService.UpdateGeneralconfig(this.partyGeneralConfig).subscribe((data: any) => {
+      this.loadingSwitchService.loading = false;
+      this.loadingSwitchService.popupVisible = true;
+      this.loadingSwitchService.message = 'Configuration Updated Successfully';
     });
   }
+  Deafult() {
+    this.loadingSwitchService.loading = true;
+    this.configerationService.GetDefaultconfig().subscribe((data: any) => {
+      this.partyGeneralConfig.Config = data;
+      this.loadingSwitchService.loading = false;
+      this.loadingSwitchService.popupVisible = true;
+      this.loadingSwitchService.message = 'Default Configuration';
+    });
+  }
+  Back() {
+
+  }
+
 }

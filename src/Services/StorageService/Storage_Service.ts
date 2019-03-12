@@ -97,4 +97,13 @@ export class StorageService {
     GetItemOrdered(): any {
         return JSON.parse(sessionStorage.getItem("ItemOrdered"));
     }
+
+    RemoveDataFromSession(){
+        sessionStorage.removeItem('HoroModel');
+        sessionStorage.removeItem('HoroResponse');
+        sessionStorage.removeItem('OrderResponse');
+        sessionStorage.removeItem('ItemOrdered');
+        sessionStorage.removeItem('OrderId');
+        sessionStorage.removeItem('ItActId');
+    }
 }
