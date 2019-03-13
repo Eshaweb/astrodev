@@ -84,7 +84,12 @@
 table,
 tr,
 td {
-    border: 1px solid black !important;
+    border: 2px solid rgb(138, 130, 130) !important;
+}
+
+td{
+
+    padding: 8px;
 }
 
 .dx-field-value,
