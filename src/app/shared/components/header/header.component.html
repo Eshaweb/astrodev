@@ -13,12 +13,30 @@
             }">
         </dxi-item>
     </div>
-        <dxi-item
+        <!-- <dxi-item
             location="before"
             cssClass="header-title"
             *ngIf="title"
             [text]="title">
+        </dxi-item> -->
+       
+        <dxi-item location="before" cssClass="header-logo">
+                <img class="site-logo" src="assets/images/astrologo.png">
         </dxi-item>
+        <div class="menu">
+        <dxi-item location="after" cssClass="web-menu">
+                <P>Home</P>
+        </dxi-item>
+        <dxi-item location="after" cssClass="web-menu" >
+                <P>Services</P>
+        </dxi-item>
+        <dxi-item location="after" cssClass="web-menu">
+                <P>About us</P>
+        </dxi-item>
+        <dxi-item location="after" cssClass="web-menu">
+                <P>Contact Us</P>
+        </dxi-item>
+    </div>
         <dxi-item *ngIf="loginService.userProfileVisible" 
             location="after"
             locateInMenu="auto"
