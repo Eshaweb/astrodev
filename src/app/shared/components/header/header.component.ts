@@ -72,12 +72,12 @@ export class HeaderComponent {
     } else {
       this.isMobileResolution = false;
     }
-    if (StorageService.GetItem('Token') != undefined) {
-      this.loginService.menuItems = navigationAfterLogin;
-    }
-    else {
-      this.loginService.menuItems = navigationBeforeLogin;
-    }
+    // if (StorageService.GetItem('Token') != undefined) {
+    //   this.loginService.menuItems = navigationAfterLogin;
+    // }
+    // else {
+    //   this.loginService.menuItems = navigationBeforeLogin;
+    // }
 
     // this.showSubmenuModes = [{
     //   name: "onHover",
@@ -92,7 +92,12 @@ export class HeaderComponent {
   toggleMenu = () => {
     this.menuToggle.emit();
   }
-
+  onServicesClick(event){
+    this.router.navigate(['/services']);
+  }
+  onHomeClick(event){
+    this.router.navigate(['/home']);
+  }
 }
 
 @NgModule({

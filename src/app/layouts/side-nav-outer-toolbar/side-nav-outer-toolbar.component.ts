@@ -9,7 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
 // import { navigation } from 'src/app/app-navigation';
-import { navigationAfterLogin, navigationBeforeLogin } from 'src/app/app-navigation';
+import { navigationAfterLogin, navigationBeforeLogin, navigationAfterLoginForSystem, navigationBeforeLoginForSystem } from 'src/app/app-navigation';
 import { DxNavBarModule, DxButtonModule, DxMenuModule } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 @Component({
@@ -39,12 +39,6 @@ export class SideNavOuterToolbarComponent implements OnInit {
   isMobileResolution: boolean;
 
   constructor(public loadingSwitchService:LoadingSwitchService,private loginService: LoginService, private screen: ScreenService, private router: Router) {
-    if (StorageService.GetItem('Token') != undefined) {
-      this.loginService.menuItems = navigationAfterLogin;
-    }
-    else {
-      this.loginService.menuItems = navigationBeforeLogin;
-    }
 
     this.showSubmenuModes = [{
       name: "onHover",
@@ -57,8 +51,20 @@ export class SideNavOuterToolbarComponent implements OnInit {
 
     if (window.innerWidth < 768) {
       this.isMobileResolution = true;
+      if (StorageService.GetItem('Token') != undefined) {
+        this.loginService.menuItems = navigationAfterLogin;
+      }
+      else {
+        this.loginService.menuItems = navigationBeforeLogin;
+      }
     } else {
       this.isMobileResolution = false;
+      if (StorageService.GetItem('Token') != undefined) {
+        this.loginService.menuItems = navigationAfterLoginForSystem;
+      }
+      else {
+        this.loginService.menuItems = navigationBeforeLoginForSystem;
+      }
     }
   }
   selectionChanged(e) {
