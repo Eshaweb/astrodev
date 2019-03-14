@@ -47,11 +47,11 @@ img.site-logo {
 
 .menu-item {
   /* padding-right: 60px; */
-
-  border-bottom: 2px solid;
-  width: 65px;
+  border-bottom: 2px solid #e0ae3e;
+  width: fit-content;
   margin-right: 50px;
   height: 28px;
+  color: #D05B19;
 }
 @media (max-width: 800px) {
   .menu-item{
