@@ -15,8 +15,7 @@
           <div *dxTemplate="let accordian of 'item'">
             <div
               class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'Dasha Type'"
-            >
+              *ngIf="accordian.name == 'Dasha Type'">
               <div class="dx-field">
                 <div class="dx-field-value">
                   <dx-radio-group
@@ -29,14 +28,12 @@
                 </div>
               </div>
             </div>
-            <div
-              class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'Dasha Start'"
-            >
+            <div class="dx-fieldset dx-fieldset-modiied"
+              *ngIf="accordian.name == 'Dasha Start'">
               <div class="dx-field">
                 <div class="dx-field-value">
                   <dx-radio-group
-                    [items]="inputService.dashastart"
+                    [items]="configerationService.dashastart"
                     [(value)]="partyGeneralConfig.Config.DashaStartType"
                     valueExpr="id"
                     displayExpr="name"
@@ -81,8 +78,7 @@
             </div>
             <div
               class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'Dasha Prediction'"
-            >
+              *ngIf="accordian.name == 'Dasha Prediction'">
               <div class="dx-field"></div>
               <div class="dx-field">
                 <div class="dx-field-label">From Age</div>
@@ -126,7 +122,7 @@
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-radio-group
-                    [items]="inputService.ayanamsha"
+                    [items]="configerationService.ayanamsha"
                     [(value)]="partyGeneralConfig.Config.AyanaType"
                     valueExpr="id"
                     displayExpr="name"
@@ -181,7 +177,7 @@
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-radio-group
-                    [items]="inputService.astakavarga"
+                    [items]="configerationService.astakavarga"
                     [(value)]="partyGeneralConfig.Config.AVType"
                     valueExpr="id"
                     displayExpr="name"
@@ -197,7 +193,7 @@
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-radio-group
-                    [items]="inputService.Bahvaphala"
+                    [items]="configerationService.Bahvaphala"
                     [(value)]="partyGeneralConfig.Config.BhavaPhal"
                     valueExpr="id"
                     displayExpr="name"
@@ -227,7 +223,7 @@
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-radio-group
-                    [items]="inputService.Adipatathaphala"
+                    [items]="configerationService.Adipatathaphala"
                     [(value)]="partyGeneralConfig.Config.AdhiPhal"
                     valueExpr="id"
                     displayExpr="name"
@@ -256,7 +252,7 @@
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-radio-group
-                    [items]="inputService.sunriseset"
+                    [items]="configerationService.sunriseset"
                     [(value)]="partyGeneralConfig.Config.SunSetting"
                     valueExpr="id"
                     displayExpr="name"
@@ -276,7 +272,7 @@
                     name="ChartType"
                     autofocus="autofocus"
                     [(value)]="partyGeneralConfig.Config.ChartType"
-                    [dataSource]="inputService.charttypesource"
+                    [dataSource]="configerationService.charttypesource"
                     displayExpr="name"
                     valueExpr="id"
                     [searchEnabled]="true"

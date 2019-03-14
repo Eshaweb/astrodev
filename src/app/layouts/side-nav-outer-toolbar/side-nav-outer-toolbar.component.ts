@@ -11,6 +11,7 @@ import { LoginService } from 'src/Services/login/login.service';
 // import { navigation } from 'src/app/app-navigation';
 import { navigationAfterLogin, navigationBeforeLogin } from 'src/app/app-navigation';
 import { DxNavBarModule, DxButtonModule, DxMenuModule } from 'devextreme-angular';
+import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 @Component({
   selector: 'app-side-nav-outer-toolbar',
   templateUrl: './side-nav-outer-toolbar.component.html',
@@ -37,7 +38,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
   showFirstSubmenuModes: any;
   isMobileResolution: boolean;
 
-  constructor(private loginService: LoginService, private screen: ScreenService, private router: Router) {
+  constructor(public loadingSwitchService:LoadingSwitchService,private loginService: LoginService, private screen: ScreenService, private router: Router) {
     if (StorageService.GetItem('Token') != undefined) {
       this.loginService.menuItems = navigationAfterLogin;
     }
@@ -64,6 +65,19 @@ export class SideNavOuterToolbarComponent implements OnInit {
     this.router.navigate([e.itemData.path]);
   }
   itemClick(data) {
+    // if (data.itemData.path == '/registration-form'){
+    //   if (StorageService.GetItem('Token') != undefined) {
+    //     this.loadingSwitchService.title='Note';
+    //     this.loadingSwitchService.popupVisible=true;
+    //     this.loadingSwitchService.message='Please Logout, to Register with New UserID';
+    //   }
+    //   else{
+    //     this.router.navigate([data.itemData.path]);
+    //   }
+    // }
+    // else{
+    //   this.router.navigate([data.itemData.path]);
+    // }
     this.router.navigate([data.itemData.path]);
   }
   ngOnInit() {

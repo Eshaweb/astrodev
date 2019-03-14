@@ -123,11 +123,6 @@ export const navigationAfterLogin = [
     
   },
   {
-    text: 'Registration',
-    path:'/registration-form',
-    icon: 'folder'
-  },
-  {
     text: 'Settings',
     icon: 'folder',
     path:'/settings',

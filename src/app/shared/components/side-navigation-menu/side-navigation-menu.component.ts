@@ -4,6 +4,7 @@ import * as events from 'devextreme/events';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/Services/login/login.service';
+import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 
 @Component({
   selector: 'app-side-navigation-menu',
@@ -42,7 +43,7 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  constructor(private loginService:LoginService,private elementRef: ElementRef,private router:Router) { }
+  constructor(public loadingSwitchService:LoadingSwitchService,private loginService:LoginService,private elementRef: ElementRef,private router:Router) { }
 
   updateSelection(event) {
     const nodeClass = 'dx-treeview-node';
@@ -72,6 +73,12 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
     else if (event.itemData.path == '/settings' || event.itemData.path == '/wallet/depoToWallet' ||event.itemData.path == '/profile'||event.itemData.path == '/admin') {
       if (StorageService.GetItem('Token') != undefined) {
         this.router.navigate([event.itemData.path]);
+      }
+      else if (event.itemData.path == '/registration-form'){
+        if (StorageService.GetItem('Token') != undefined) {
+          this.loadingSwitchService.popupVisible=true;
+          this.loadingSwitchService.message='Please Logout, to Register with New UserID';
+        }
       }
       else {
         this.loginService.path = event.itemData.path;
