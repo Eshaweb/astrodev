@@ -72,35 +72,66 @@ export class MuhurthaComponent {
     { Id: "A4", Text: "A4" },
     { Id: "A5", Text: "A5" }];
   dataSource = [];
-  stars: SelectBoxModel[] = [
-    { Id: "0", Text: "Unknown" },
-    { Id: "1", Text: "Ashwini" },
-    { Id: "2", Text: "Bharani" },
-    { Id: "3", Text: "Krittika" },
-    { Id: "4", Text: "Rohini" },
-    { Id: "5", Text: "Mrigashira" },
-    { Id: "6", Text: "Ardra" },
-    { Id: "7", Text: "Punarvasu" },
-    { Id: "8", Text: "Pushya" },
-    { Id: "9", Text: "Ashlesha" },
-    { Id: "10", Text: "Magha" },
-    { Id: "11", Text: "Poorva(Hubba)" },
-    { Id: "12", Text: "Uttara" },
-    { Id: "13", Text: "Hasta" },
-    { Id: "14", Text: "Chithra" },
-    { Id: "15", Text: "Swathi" },
-    { Id: "16", Text: "Vishakha" },
-    { Id: "17", Text: "Anuradha" },
-    { Id: "18", Text: "Jyeshta" },
-    { Id: "19", Text: "Moola" },
-    { Id: "20", Text: "Poorvashada" },
-    { Id: "21", Text: "Uttarashada" },
-    { Id: "22", Text: "Shravana" },
-    { Id: "23", Text: "Dhanishta" },
-    { Id: "24", Text: "Shatabhisha" },
-    { Id: "25", Text: "Poorvabhadra" },
-    { Id: "26", Text: "Uttarabhadra" },
-    { Id: "27", Text: "Revathi" },
+  // stars: SelectBoxModel[] = [
+  //   { Id: "0", Text: "Unknown" },
+  //   { Id: "1", Text: "Ashwini" },
+  //   { Id: "2", Text: "Bharani" },
+  //   { Id: "3", Text: "Krittika" },
+  //   { Id: "4", Text: "Rohini" },
+  //   { Id: "5", Text: "Mrigashira" },
+  //   { Id: "6", Text: "Ardra" },
+  //   { Id: "7", Text: "Punarvasu" },
+  //   { Id: "8", Text: "Pushya" },
+  //   { Id: "9", Text: "Ashlesha" },
+  //   { Id: "10", Text: "Magha" },
+  //   { Id: "11", Text: "Poorva(Hubba)" },
+  //   { Id: "12", Text: "Uttara" },
+  //   { Id: "13", Text: "Hasta" },
+  //   { Id: "14", Text: "Chithra" },
+  //   { Id: "15", Text: "Swathi" },
+  //   { Id: "16", Text: "Vishakha" },
+  //   { Id: "17", Text: "Anuradha" },
+  //   { Id: "18", Text: "Jyeshta" },
+  //   { Id: "19", Text: "Moola" },
+  //   { Id: "20", Text: "Poorvashada" },
+  //   { Id: "21", Text: "Uttarashada" },
+  //   { Id: "22", Text: "Shravana" },
+  //   { Id: "23", Text: "Dhanishta" },
+  //   { Id: "24", Text: "Shatabhisha" },
+  //   { Id: "25", Text: "Poorvabhadra" },
+  //   { Id: "26", Text: "Uttarabhadra" },
+  //   { Id: "27", Text: "Revathi" },
+  // ];
+
+  stars = [
+    { "Id": "0", "Text": "Unknown" },
+    { "Id": "1", "Text": "Ashwini" },
+    { "Id": "2", "Text": "Bharani" },
+    { "Id": "3", "Text": "Krittika" },
+    { "Id": "4", "Text": "Rohini" },
+    { "Id": "5", "Text": "Mrigashira" },
+    { "Id": "6", "Text": "Ardra" },
+    { "Id": "7", "Text": "Punarvasu" },
+    { "Id": "8", "Text": "Pushya" },
+    { "Id": "9", "Text": "Ashlesha" },
+    { "Id": "10", "Text": "Magha" },
+    { "Id": "11", "Text": "Poorva(Hubba)" },
+    { "Id": "12", "Text": "Uttara" },
+    { "Id": "13", "Text": "Hasta" },
+    { "Id": "14", "Text": "Chithra" },
+    { "Id": "15", "Text": "Swathi" },
+    { "Id": "16", "Text": "Vishakha" },
+    { "Id": "17", "Text": "Anuradha" },
+    { "Id": "18", "Text": "Jyeshta" },
+    { "Id": "19", "Text": "Moola" },
+    { "Id": "20", "Text": "Poorvashada" },
+    { "Id": "21", "Text": "Uttarashada" },
+    { "Id": "22", "Text": "Shravana" },
+    { "Id": "23", "Text": "Dhanishta" },
+    { "Id": "24", "Text": "Shatabhisha" },
+    { "Id": "25", "Text": "Poorvabhadra" },
+    { "Id": "26", "Text": "Uttarabhadra" },
+    { "Id": "27", "Text": "Revathi" },
   ];
 
   rashis = [
@@ -269,6 +300,7 @@ export class MuhurthaComponent {
       this.vivahaSelected = true;
       this.loadingSwitchService.loading = false;
     });
+    //this.stars=this.stars;
     this.stardata = new ArrayStore({
       data: this.stars,
       key: "Id"
@@ -330,7 +362,6 @@ export class MuhurthaComponent {
       this.reportSizevalue = this.reportSizes[1].Id;
       // this.muhurthasvalue = this.muhurthas[0].Id;
       this.yathradirectionsvalue = this.yathradirections[0].Id;
-
     }
 
   }

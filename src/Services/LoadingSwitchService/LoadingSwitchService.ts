@@ -6,6 +6,7 @@ export class LoadingSwitchService {
     public popupVisible = false;
     errorData: ErrorData[];
     message: string;
+  title: string;
 
     ClosePopUp() {
         this.popupVisible = false;

@@ -133,7 +133,7 @@
                                     <dxo-selection mode="single"></dxo-selection>
                                     <dxo-paging [enabled]="false"></dxo-paging>
                                     <dxo-editing
-                                        mode="row"
+                                        mode="batch"
                                         [allowDeleting]="true">
                                     </dxo-editing>
                                         <dxi-column dataField="Nakshathra" [width]="100" [setCellValue]="setStarValue">
@@ -143,7 +143,7 @@
                                         valueExpr="Id">
                                     </dxo-lookup>
                                     </dxi-column>
-                                        <dxi-column dataField="Rashi" [width]="100" [setCellValue]="setRashiValue">
+                                        <dxi-column [showEditorAlways]="true" dataField="Rashi" [width]="100" [setCellValue]="setRashiValue">
                                     <dxo-lookup
                                             [dataSource]="getFilteredRashis"
                                             displayExpr="Text"

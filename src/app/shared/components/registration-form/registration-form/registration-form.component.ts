@@ -137,10 +137,10 @@ export class RegistrationFormComponent {
               if (data.OTPType == "E") {
                   //this.toastrService.successToastr('You Successfully registered. Please check your EMail and click on link we sent to verify your Account', 'Success!');
               this.EMailOTPType='Please check your EMail. You have received a link to verify your Account';
-              }
+            }
               else if (data.OTPType == "S") {
                   //this.toastrService.successToastr('You Successfully registered. Please check your SMS and enter OTP to verify your Account', 'Success!');
-                  this.SMSOTPType='You will get an OTP. Please enter the OTP, when you login for the first time';
+                  this.SMSOTPType='You will get an OTP. Please enter the OTP here';
                 }
           }
           // else {
@@ -180,14 +180,17 @@ export class RegistrationFormComponent {
       this.registrationService.registered=true;
   }
   ValidateUserByOTP(){
+    this.loadingSwitchService.loading = true;
     var UserOTP={
           UserName: this.registrationForm.get('UserName').value,
           OTP:this.uservalidateForm.get('OTP').value
     }
     this.registrationService.ValidateUserByOTP(UserOTP).subscribe((data:any)=>{
+        this.loadingSwitchService.loading = false;
         if (data.Errors == undefined) {
             this.OTPValidatedVisible=true;
-            this.OTPValidated='OTP Validated Successfully';
+            //this.OTPValidated='OTP Validated Successfully';
+            //document.getElementById('message').innerHTML = 'OTP Validated Successfully';
             this.router.navigate(["/login-form"]);
         }
     });

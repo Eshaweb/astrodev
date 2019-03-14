@@ -21,6 +21,7 @@
         <dx-text-box mode="password" formControlName="confirm_Password" placeholder="Re Enter Password" width="100%">
         </dx-text-box>
         <p style="color:red;" id='err_confirm_Password'></p>
+        <p style="color:red" *ngIf="registrationForm.errors?.notSame">Passwords do not match</p>
     </div>
    
     <div class="dx-field">
@@ -53,7 +54,6 @@
     <div class="dx-field">
         <dx-button type="default" text="Register" (onClick)="Register_Click()"[disabled]="!registrationForm.valid||(TandC_checkBoxValue==false)" width="100%"></dx-button>
     </div>
-   
 </form>
 
 <form *ngIf='SMSOTPType' [formGroup]="uservalidateForm">
@@ -65,12 +65,15 @@
         <a (click)="ResendOTP_click()">Resend OTP</a>
     </div>
     <div class="dx-field">
-        <dx-button  text="Submit" (onClick)="ValidateUserByOTP()"[disabled]="!uservalidateForm.valid" width="100%"></dx-button>
-    </div>
-       
-</form>
+        <!-- <dx-button  text="Submit" (onClick)="ValidateUserByOTP()"[disabled]="!uservalidateForm.valid" width="100%"></dx-button> -->
+        <dx-button  text="Submit" (onClick)="ValidateUserByOTP()" width="100%"></dx-button>
 
-    <dx-popup
+    </div>
+</form>
+<p style="color:green;">{{EMailOTPType}}</p>
+<p style="color:green;">{{SMSOTPType}}</p>
+
+    <!-- <dx-popup
     class="popup"
     [width]="250"
     [height]="150"
@@ -101,5 +104,5 @@
             <span *ngIf="OTPValidated">{{OTPValidated}}</span>
         </p>
     </div>
-</dx-popup>
+</dx-popup> -->
 </div>
