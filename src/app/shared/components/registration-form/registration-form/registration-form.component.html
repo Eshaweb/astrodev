@@ -18,7 +18,7 @@
         <p style="color:red;" id='err_Password'></p>
     </div>
     <div class="dx-field">
-        <dx-text-box mode="password" formControlName="confirm_Password" placeholder="ReEnter Password" width="100%">
+        <dx-text-box mode="password" formControlName="confirm_Password" placeholder="Re Enter Password" width="100%">
         </dx-text-box>
         <p style="color:red;" id='err_confirm_Password'></p>
         <p style="color:red" *ngIf="registrationForm.errors?.notSame">Passwords do not match</p>
@@ -30,7 +30,7 @@
         <p style="color:red;" id='err_IntroParty'></p>
     </div>
 
-    <div class="dx-fieldset">
+    <div class="dx-field">
         <div>
             <dx-check-box 
                 id="check"
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="dx-fieldset">
+    <div class="dx-field">
         <div>
             <dx-check-box 
                 id="check"
@@ -65,8 +65,9 @@
         <a (click)="ResendOTP_click()">Resend OTP</a>
     </div>
     <div class="dx-field">
-        <!-- <dx-button icon="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/icons/weather.png" text="Submit" (onClick)="ValidateUserByOTP()"[disabled]="!uservalidateForm.valid" width="100%"></dx-button> -->
-        <dx-button icon="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/icons/weather.png" text="Submit" (onClick)="ValidateUserByOTP()" width="100%"></dx-button>
+        <!-- <dx-button  text="Submit" (onClick)="ValidateUserByOTP()"[disabled]="!uservalidateForm.valid" width="100%"></dx-button> -->
+        <dx-button  text="Submit" (onClick)="ValidateUserByOTP()" width="100%"></dx-button>
+
     </div>
 </form>
 <p style="color:green;">{{EMailOTPType}}</p>
