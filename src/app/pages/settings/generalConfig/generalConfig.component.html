@@ -1,5 +1,5 @@
 <div class="dx-card content-block responsive-paddings">
-  <form formGroup="partyGeneralConfig.Configform">
+    <form [formGroup]="configform">
     <div class="dx-card ">
       <div id="accordion">
         <dx-accordion
@@ -7,8 +7,7 @@
           [dataSource]="configerationService.accordian"
           [collapsible]="true"
           [multiple]="false"
-          [animationDuration]="300"
-        >
+          [animationDuration]="300">
           <div *dxTemplate="let accordian of 'title'">
             <h1>{{ accordian.name }}</h1>
           </div>
@@ -30,8 +29,8 @@
             </div>
             <div class="dx-fieldset dx-fieldset-modiied"
               *ngIf="accordian.name == 'Dasha Start'">
-              <div class="dx-field">
-                <div class="dx-field-value">
+              <!-- <div class="dx-field">
+                <div class="dx-field-label">
                   <dx-radio-group
                     [items]="configerationService.dashastart"
                     [(value)]="partyGeneralConfig.Config.DashaStartType"
@@ -43,7 +42,7 @@
               </div>
               <div class="dx-field">
                 <div class="dx-field-label">From Age</div>
-                <div class="dx-field-label">
+                <div class="dx-field-value">
                   <dx-number-box
                     #numberBox
                     [max]="100"
@@ -60,7 +59,58 @@
               </div>
               <div class="dx-field">
                 <div class="dx-field-label">To Age</div>
+                <div class="dx-field-value">
+                  <dx-number-box
+                    #numberBox
+                    [max]="100"
+                    [min]="0"
+                    formControlName="DashaStarttoAge"
+                    [showSpinButtons]="true"
+                    [(value)]="partyGeneralConfig.Config.DashaEndValue"
+                  ></dx-number-box>
+                  <p
+                    style="color:red;font-size: 14px;"
+                    id="err_DashaStarttoAge"
+                  ></p>
+                </div>
+              </div> -->
+              <div class="dx-fieldset-column">
+              <div class="dx-field">
                 <div class="dx-field-label">
+                  <dx-radio-group
+                    [items]="configerationService.dashastart"
+                    [(value)]="partyGeneralConfig.Config.DashaStartType"
+                    valueExpr="id"
+                    displayExpr="name"
+                  >
+                  </dx-radio-group>
+                </div>
+              </div>
+              </div>
+              <div class="clear"></div>
+              <div class="dx-fieldset-column">
+              <div class="dx-field">
+                <div class="dx-field-label">From Age</div>
+                <div class="dx-field-value">
+                  <dx-number-box
+                    #numberBox
+                    [max]="100"
+                    [min]="0"
+                    formControlName="DashaStartFromAge"
+                    [showSpinButtons]="true"
+                    [(value)]="partyGeneralConfig.Config.DashaStartValue"
+                  ></dx-number-box>
+                  <p
+                    style="color:red;font-size: 14px;"
+                    id="err_DashaStartFromAge"
+                  ></p>
+                </div>
+              </div>
+              </div>
+              <div class="dx-fieldset-column">
+              <div class="dx-field">
+                <div class="dx-field-label">To Age</div>
+                <div class="dx-field-value">
                   <dx-number-box
                     #numberBox
                     [max]="100"
@@ -75,6 +125,8 @@
                   ></p>
                 </div>
               </div>
+              </div>
+
             </div>
             <div
               class="dx-fieldset dx-fieldset-modiied"

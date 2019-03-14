@@ -81,7 +81,7 @@ export const navigationAfterLogin = [
   {
     text: 'Home',
     path:'/home',
-    //icon: 'home'
+    icon: 'home'
   },
   {
     text: 'Services',
