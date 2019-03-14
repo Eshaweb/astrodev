@@ -15,9 +15,9 @@ export class LoginService {
     PartyMastId: any;
   path: string;
   userProfileVisible: boolean;
-  menuItems = navigationBeforeLogin;
+  menuItems:any;
     constructor(private httpService: HttpService, private errorService: ErrorService, public http: HttpClient) {
-
+       this.menuItems = navigationBeforeLogin;
     }
     GetOTP(GetOTP):Observable<any> {
         var endPoint = "Party/GetOTP";

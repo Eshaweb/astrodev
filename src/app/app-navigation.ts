@@ -81,7 +81,7 @@ export const navigationAfterLogin = [
   {
     text: 'Home',
     path:'/home',
-    icon: 'home'
+    //icon: 'home'
   },
   {
     text: 'Services',
@@ -155,7 +155,7 @@ export const navigationBeforeLogin = [
   },
   {
     text: 'Services',
-    icon: 'fields',
+    //icon: 'fields',
     items: [
       {
         text: 'Horoscope',
@@ -192,23 +192,23 @@ export const navigationBeforeLogin = [
     ],
     
   },
-  {
-    text: 'Registration',
-    path:'/registration-form',
-    icon: 'folder'
-  },
-  {
-    text: 'Login',
-    path:'/login-form',
-    icon: 'folder'
-  },
+  // {
+  //   text: 'Registration',
+  //   path:'/registration-form',
+  //   icon: 'folder'
+  // },
+  // {
+  //   text: 'Login',
+  //   path:'/login-form',
+  //   icon: 'folder'
+  // },
   {
     text: 'About Us',
-    icon: 'folder',
+    //icon: 'folder',
   },
   {
     text: 'Contact Us',
-    icon: 'folder',
+    //icon: 'folder',
   },
 ];
 

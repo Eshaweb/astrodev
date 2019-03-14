@@ -10,7 +10,8 @@ import { RegistrationService } from 'src/Services/registration/registration.serv
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginFormComponent, LoginFormModule } from '../login-form/login-form.component';
 import { LoginService } from 'src/Services/login/login.service';
-import { navigationBeforeLogin } from 'src/app/app-navigation';
+import { navigationBeforeLogin, navigationAfterLogin } from 'src/app/app-navigation';
+import { DxMenuModule } from 'devextreme-angular';
 
 @Component({
   selector: 'app-header',
@@ -71,6 +72,21 @@ export class HeaderComponent {
     } else {
       this.isMobileResolution = false;
     }
+    if (StorageService.GetItem('Token') != undefined) {
+      this.loginService.menuItems = navigationAfterLogin;
+    }
+    else {
+      this.loginService.menuItems = navigationBeforeLogin;
+    }
+
+    // this.showSubmenuModes = [{
+    //   name: "onHover",
+    //   delay: { show: 0, hide: 500 }
+    // }, {
+    //   name: "onClick",
+    //   delay: { show: 0, hide: 300 }
+    // }];
+    // this.showFirstSubmenuModes = this.showSubmenuModes[0];
   }
 
   toggleMenu = () => {
@@ -85,6 +101,7 @@ export class HeaderComponent {
     DxButtonModule,
     UserPanelModule,
     DxToolbarModule,
+    DxMenuModule
     //LoginFormModule
   ],
   declarations: [ HeaderComponent ],

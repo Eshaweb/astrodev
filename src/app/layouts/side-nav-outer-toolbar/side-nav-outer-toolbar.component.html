@@ -46,7 +46,7 @@
     (onItemClick)="selectionChanged($event)"
     [selectedIndex]="0">
 </dx-nav-bar> -->
-<dx-menu *ngIf='!isMobileResolution'
+<!-- <dx-menu *ngIf='!isMobileResolution'
             #menu
             [dataSource]="loginService.menuItems"
             displayExpr="text"
@@ -55,7 +55,7 @@
             submenuDirection="auto"
             [hideSubmenuOnMouseLeave]="true"
             (onItemClick)="itemClick($event)">
-</dx-menu>
+</dx-menu> -->
 <!-- <app-side-navigation-menu *ngIf="!loginService.userProfileVisible"
     [items]="menuItemsBeforeLogin"
     [compactMode]="!menuOpened"

@@ -6,6 +6,7 @@ import { HttpService } from 'src/Services/Error/http.service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { ConfigerationService } from 'src/Services/ConfigerationService/ConfigerationService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: 'generalConfig.component.html',
@@ -17,7 +18,7 @@ export class GeneralConfigComponent {
   partyGeneralConfig: PartyGeneralConfig;
   isvisibleayana: boolean;
 
-  constructor(public loadingSwitchService:LoadingSwitchService,public uiService: UIService, public formbuilder: FormBuilder, private httpService: HttpService, public configerationService: ConfigerationService) {
+  constructor(public router:Router,public loadingSwitchService:LoadingSwitchService,public uiService: UIService, public formbuilder: FormBuilder, private httpService: HttpService, public configerationService: ConfigerationService) {
     this.configform = this.formbuilder.group({
       DashaStartFromAge: [''],
       DashaStarttoAge: [''],
@@ -103,8 +104,9 @@ export class GeneralConfigComponent {
     this.loadingSwitchService.loading = true;
     this.configerationService.UpdateGeneralconfig(this.partyGeneralConfig).subscribe((data: any) => {
       this.loadingSwitchService.loading = false;
-      this.loadingSwitchService.popupVisible = true;
-      this.loadingSwitchService.message = 'Configuration Updated Successfully';
+      this.router.navigate(["/settings"]);
+      // this.loadingSwitchService.popupVisible = true;
+      // this.loadingSwitchService.message = 'Configuration Updated Successfully';
     });
   }
   Deafult() {
@@ -112,8 +114,9 @@ export class GeneralConfigComponent {
     this.configerationService.GetDefaultconfig().subscribe((data: any) => {
       this.partyGeneralConfig.Config = data;
       this.loadingSwitchService.loading = false;
-      this.loadingSwitchService.popupVisible = true;
-      this.loadingSwitchService.message = 'Default Configuration';
+      this.router.navigate(["/settings"]);
+      // this.loadingSwitchService.popupVisible = true;
+      // this.loadingSwitchService.message = 'Default Configuration';
     });
   }
   Back() {
