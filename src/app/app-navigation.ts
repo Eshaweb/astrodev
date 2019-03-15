@@ -320,3 +320,44 @@ export const navigationBeforeLoginForSystem = [
     icon: 'folder'
   }
 ];
+
+export const serviceMenus = [
+  {
+    text: 'Services',
+    items: [
+      {
+        text: 'Horoscope',
+        path: '/horoscope',
+      },
+      {
+        text: 'Match Making',
+        path: '/matchMaking',
+      },
+      {
+        text: 'Astamangala',
+        path: '/astamangala',
+      },
+      {
+        text: 'Numerology',
+        path: '/numerology',
+      },
+      {
+        text: 'Nithya Panchanga',
+        path: '/panchanga',
+      },
+      {
+        text: 'Muhurtha',
+        path:'/muhurtha'
+      },
+      // {
+      //   text: 'Panchapakshi',
+      //   path: '/panchapakshi',
+      // },
+      {
+        text: 'Wallet',
+        path: '/wallet/depoToWallet'
+      },
+    ],
+    
+  }
+];

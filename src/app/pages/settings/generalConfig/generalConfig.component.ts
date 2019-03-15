@@ -102,6 +102,7 @@ export class GeneralConfigComponent {
 
   Update() {
     this.loadingSwitchService.loading = true;
+    this.partyGeneralConfig.PartyMastId=StorageService.GetItem('PartyMastId');
     this.configerationService.UpdateGeneralconfig(this.partyGeneralConfig).subscribe((data: any) => {
       this.loadingSwitchService.loading = false;
       this.router.navigate(["/settings"]);
