@@ -19,7 +19,7 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 
 @Component({
-  //selector: 'app-horopage',
+  selector: 'app-horopage',
   templateUrl: './horoscope.component.html',
   styleUrls: ['./horoscope.component.css']
 })

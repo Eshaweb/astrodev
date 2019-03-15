@@ -10,7 +10,7 @@ import { RegistrationService } from 'src/Services/registration/registration.serv
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginFormComponent, LoginFormModule } from '../login-form/login-form.component';
 import { LoginService } from 'src/Services/login/login.service';
-import { navigationBeforeLogin, navigationAfterLogin } from 'src/app/app-navigation';
+import { navigationBeforeLogin, navigationAfterLogin, serviceMenus } from 'src/app/app-navigation';
 import { DxMenuModule } from 'devextreme-angular';
 
 @Component({
@@ -58,6 +58,7 @@ export class HeaderComponent {
   ];
   visible: boolean;
   isMobileResolution: boolean;
+  menuItems:any;
 
   constructor(public loginService:LoginService,public registrationService:RegistrationService,private router: Router, private authService: AuthenticationService) { 
     if(StorageService.GetItem('Token')!=undefined){
@@ -72,6 +73,7 @@ export class HeaderComponent {
     } else {
       this.isMobileResolution = false;
     }
+    this.menuItems=serviceMenus;
     // if (StorageService.GetItem('Token') != undefined) {
     //   this.loginService.menuItems = navigationAfterLogin;
     // }
@@ -97,6 +99,18 @@ export class HeaderComponent {
   }
   onHomeClick(event){
     this.router.navigate(['/home']);
+  }
+  onSettingsClick(event){
+    this.router.navigate(['/settings']);
+  }
+  onProfileClick(event){
+    this.router.navigate(['/profile']);
+  }
+  onAdminClick(event){
+    this.router.navigate(['/admin']);
+  }
+  itemClick(data) {
+    this.router.navigate([data.itemData.path]);
   }
 }
 

@@ -5,6 +5,7 @@ import { HoroscopeComponent } from '../horoscope/horoscope/horoscope.component';
 import { HoroscopeRoutingModule } from './horoscope-routing.module';
 import { DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule, DxNumberBoxModule } from 'devextreme-angular';
 import { HoroscopeFreeDataComponent } from './horoscope-free-data/horoscope-free-data.component';
+import { ContainerComponent } from './container/container.component';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import { HoroscopeFreeDataComponent } from './horoscope-free-data/horoscope-free
 
     declarations: [
         HoroscopeComponent, 
-        HoroscopeFreeDataComponent
+        HoroscopeFreeDataComponent,
+        ContainerComponent
     ]
 })
 export class HoroscopeModule {

@@ -58,6 +58,6 @@ export class Config
 }
 export class PartyGeneralConfig
 {
-    PartyMastId:string="1";
+    PartyMastId:string;
     Config:Config;
 }
