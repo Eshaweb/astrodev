@@ -91,18 +91,18 @@
         <div class="dx-field-label">State</div>
         <div class="dx-field-value">
             <!-- <dx-text-box formControlName="state" showClearButton="true"></dx-text-box> -->
-            <!-- <dx-select-box 
+            <dx-select-box 
             (onValueChanged)="statedataSelection($event)" 
             [dataSource]="statedata" 
             displayExpr="Text"
             valueExpr="Id" 
             [value]="statevalue">
-            </dx-select-box> -->
-            <dx-select-box formControlName="state"
+            </dx-select-box>
+            <!-- <dx-select-box formControlName="state"
             [searchEnabled]="true"
             placeholder="Select State" 
             [items]="statesOfIndia" >
-            </dx-select-box>
+            </dx-select-box> -->
             <p style="color:red" id='err_state'></p>
         </div>
     </div>
