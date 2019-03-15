@@ -26,6 +26,10 @@
     text-align: center;
     font-weight: 400;
 }
+.service-menu {
+    margin-left: -42px;
+    margin-right: -45px;
+}
 
 .slider2 {
     font-size: 40px;
@@ -36,10 +40,44 @@
     text-align: center;
 }
 
+// Horizontal menu start
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(241, 219, 19);
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: rgb(224, 172, 28);
+  }
+  
+  .active {
+    background-color: rgb(180, 131, 24);
+  }
+
+
+// Horizontal menu end
 .main-slider {
     width: 100%;
 }
-
+.dx-menu-horizontal {
+    /* height: 100%; */
+    height: 55px !important;
+}
 p {
   text-align: center;
 }
@@ -145,5 +183,8 @@ h3 {
     }
     .slider2 {
         font-size: 30px;
+    }
+    .service-menu{
+        display: none;
     }
 }
