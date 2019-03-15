@@ -9,7 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
 // import { navigation } from 'src/app/app-navigation';
-import { navigationAfterLogin, navigationBeforeLogin, navigationAfterLoginForSystem, navigationBeforeLoginForSystem } from 'src/app/app-navigation';
+import { navigationAfterLogin, navigationBeforeLogin, navigationAfterLoginForSystem, navigationBeforeLoginForSystem, services } from 'src/app/app-navigation';
 import { DxNavBarModule, DxButtonModule, DxMenuModule } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 @Component({
@@ -37,9 +37,12 @@ export class SideNavOuterToolbarComponent implements OnInit {
   showSubmenuModes: any;
   showFirstSubmenuModes: any;
   isMobileResolution: boolean;
+  menuItems: any;
 
-  constructor(public loadingSwitchService:LoadingSwitchService,private loginService: LoginService, private screen: ScreenService, private router: Router) {
-
+  constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, private screen: ScreenService, private router: Router) {
+    if (window.location.pathname == '/home') {
+      this.loginService.isHomePage=true;
+     }
     this.showSubmenuModes = [{
       name: "onHover",
       delay: { show: 0, hide: 500 }
@@ -48,7 +51,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
       delay: { show: 0, hide: 300 }
     }];
     this.showFirstSubmenuModes = this.showSubmenuModes[0];
-
+    this.menuItems=services;
     if (window.innerWidth < 768) {
       this.isMobileResolution = true;
       if (StorageService.GetItem('Token') != undefined) {
@@ -83,6 +86,10 @@ export class SideNavOuterToolbarComponent implements OnInit {
     // }
     // else{
     //   this.router.navigate([data.itemData.path]);
+    // }
+    // this.loginService.isHomePage=false;
+    // if (data.itemData.path == '/home'){
+    //   this.loginService.isHomePage=true;
     // }
     this.router.navigate([data.itemData.path]);
   }

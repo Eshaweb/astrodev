@@ -23,6 +23,7 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
 
   @Input()
   items: any[];
+  isHomePage: boolean;
 
   @Input()
   set selectedItem(value: String) {
@@ -67,6 +68,7 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
 
   onItemClick(event) {
     this.selectedItemChanged.emit(event);
+    //this.loginService.isHomePage=false;
     if(event.itemData.text=='Services'){
          this.router.navigate(['/services']);
     }
@@ -74,6 +76,9 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
       if (StorageService.GetItem('Token') != undefined) {
         this.router.navigate([event.itemData.path]);
       }
+      // else if (event.itemData.path == '/home'){
+      //   this.loginService.isHomePage=true;
+      // }
       else if (event.itemData.path == '/registration-form'){
         if (StorageService.GetItem('Token') != undefined) {
           this.loadingSwitchService.popupVisible=true;

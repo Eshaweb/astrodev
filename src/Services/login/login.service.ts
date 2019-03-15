@@ -16,6 +16,7 @@ export class LoginService {
   path: string;
   userProfileVisible: boolean;
   menuItems:any;
+  isHomePage: boolean;
     constructor(private httpService: HttpService, private errorService: ErrorService, public http: HttpClient) {
        this.menuItems = navigationBeforeLogin;
     }
