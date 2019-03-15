@@ -30,15 +30,14 @@
         <!-- <dxi-item location="after" cssClass="web-menu">
                 <div class="menu-item" (click)="onServicesClick($event)">Services</div>
         </dxi-item> -->
-        <dxi-item location="after" editorType="dxMenu" locateInMenu="auto" cssClass="web-menu">
-                <div class="menu-item" (click)="onServicesClick()">
-                        <!-- <dx-menu [dataSource]="loginService.serviceMenus" displayExpr="text"
+        <dxi-item location="after" cssClass="web-menu">
+            <div class="menu-item" *dxTemplate="let data of 'item'">
+                <dx-menu [dataSource]="loginService.serviceMenus" displayExpr="text"
                         [showFirstSubmenuMode]="showFirstSubmenuModes" orientation="horizontal" submenuDirection="auto"
                         [hideSubmenuOnMouseLeave]="true" (onItemClick)="itemClick($event)">
-                        </dx-menu> -->
-                        Services
-                </div>
-            </dxi-item>
+                        </dx-menu>
+            </div>
+        </dxi-item>
         <dxi-item location="after" cssClass="web-menu">
                 <div class="menu-item">About- Us</div>
         </dxi-item>
@@ -62,9 +61,10 @@
                 </dx-menu>
             </div>
         </dxi-item> -->
+        
     </div>
     <dxi-item location="after" *ngIf="!loginService.userProfileVisible">
-        <div class="login-register">
+        <div class="login-register menu-item">
         <dx-button text="Login" (onClick)="OnLogin_click()" style="border-radius: 15px 0px 0px 15px;"></dx-button>
         <dx-button text="Register" (onClick)="OnRegister_click()"style="border-radius: 0px 15px 15px 0px;"></dx-button>
     </div>

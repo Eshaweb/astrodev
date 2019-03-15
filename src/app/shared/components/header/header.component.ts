@@ -59,6 +59,8 @@ export class HeaderComponent {
   ];
   visible: boolean;
   isMobileResolution: boolean;
+  showSubmenuModes: { name: string; delay: { show: number; hide: number; }; }[];
+  showFirstSubmenuModes: { name: string; delay: { show: number; hide: number; }; };
 
   constructor(public loginService:LoginService,public registrationService:RegistrationService,private router: Router, private authService: AuthenticationService) { 
     if(StorageService.GetItem('Token')!=undefined){
@@ -92,6 +94,16 @@ export class HeaderComponent {
     // this.showFirstSubmenuModes = this.showSubmenuModes[0];
 
     //this.loginService.isHomePage=true;
+
+
+    this.showSubmenuModes = [{
+      name: "onHover",
+      delay: { show: 0, hide: 500 }
+    }, {
+      name: "onClick",
+      delay: { show: 0, hide: 300 }
+    }];
+    this.showFirstSubmenuModes = this.showSubmenuModes[0];
   }
 
   toggleMenu = () => {

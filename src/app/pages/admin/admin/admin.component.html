@@ -33,3 +33,16 @@
     <h3>Promo Codes</h3>
   </div>
 </div>
+
+
+<div class="list-container">
+  <dx-list 
+      #list
+      [dataSource]="adminMenu"
+      (onItemClick)="onItemClick($event)"
+      [height]="400">
+          <div *dxTemplate="let data of 'item'">
+              <div>{{data.Name}}</div>
+          </div>
+  </dx-list>
+</div>

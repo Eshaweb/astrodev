@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
-import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule, DxLoadPanelModule, DxResponsiveBoxModule, DxPopupModule, DxPopoverModule, DxAccordionModule, DxTemplateModule, DxSliderModule, DxTagBoxModule, DxRadioGroupModule, DxNumberBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule, DxLoadPanelModule, DxResponsiveBoxModule, DxPopupModule, DxPopoverModule, DxAccordionModule, DxTemplateModule, DxSliderModule, DxTagBoxModule, DxRadioGroupModule, DxNumberBoxModule, DxListModule } from 'devextreme-angular';
 import { DxiRowModule } from 'devextreme-angular/ui/nested/row-dxi';
 import { SettingsRoutingModule } from './settings-routing.module';
 import { SettingsComponent } from './settings/settings.component';
@@ -27,7 +27,7 @@ import { MuhurthaConfigComponent } from './muhurthaConfig/muhurthaConfig.compone
         DxCheckBoxModule, DxNumberBoxModule,
         DxSliderModule, DxRadioGroupModule,
         DxTagBoxModule,
-        DxTemplateModule,
+        DxTemplateModule, DxListModule,
         DxLoadPanelModule,DxPopupModule, DxPopoverModule,
         DxResponsiveBoxModule,DxiRowModule
     ],

@@ -19,4 +19,14 @@
 
   </div>
 </div>
-
+<div class="list-container">
+    <dx-list 
+        #list
+        [dataSource]="settingsMenu"
+        (onItemClick)="onItemClick($event)"
+        [height]="400">
+            <div *dxTemplate="let data of 'item'">
+                <div>{{data.Name}}</div>
+            </div>
+    </dx-list>
+</div>
