@@ -11,6 +11,7 @@ import ArrayStore from 'devextreme/data/array_store';
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { PartyService } from 'src/Services/PartyService/PartyService';
 
 
 @Component({
@@ -21,52 +22,13 @@ import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingS
 export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewInit {
     ItName: string;
 
-    // statesOfIndia: SelectBoxModel[] = [
-    //     { Id: "Andhra Pradesh", Text: 'Andhra Pradesh' },
-    //     { Id: "Arunachal Pradesh", Text: 'Arunachal Pradesh' },
-    //     { Id: "Assam", Text: 'Assam' },
-    //     { Id: "Bihar", Text: 'Bihar' },
-    //     { Id: "Chhattisgarh", Text: 'Chhattisgarh' },
-    //     { Id: "Goa", Text: 'Goa' },
-    //     { Id: "Gujarat", Text: 'Gujarat' },
-    //     { Id: "Haryana", Text: 'Haryana' },
-    //     { Id: "Himachal Pradesh", Text: 'Himachal Pradesh' },
-    //     { Id: "Jammu & Kashmir", Text: 'Jammu & Kashmir' },
-    //     { Id: "Jharkhand", Text: 'Jharkhand' },
-    //     { Id: "Karnataka", Text: 'Karnataka' },
-    //     { Id: "Kerala", Text: 'Kerala' },
-    //     { Id: "Madhya Pradesh", Text: 'Madhya Pradesh' },
-    //     { Id: "Maharashtra", Text: 'Maharashtra' },
-    //     { Id: "Manipur", Text: 'Manipur' },
-    //     { Id: "Meghalaya", Text: 'Meghalaya' },
-    //     { Id: "Mizoram", Text: 'Mizoram' },
-    //     { Id: "Nagaland", Text: 'Nagaland' },
-    //     { Id: "Odisha", Text: 'Odisha' },
-    //     { Id: "Punjab", Text: 'Punjab' },
-    //     { Id: "Rajasthan", Text: 'Rajasthan' },
-    //     { Id: "Sikkim", Text: 'Sikkim' },
-    //     { Id: "Tamil Nadu", Text: 'Tamil Nadu' },
-    //     { Id: "Telangana", Text: 'Telangana' },
-    //     { Id: "Tripura", Text: 'Tripura' },
-    //     { Id: "Uttarakhand", Text: 'Uttarakhand' },
-    //     { Id: "Uttar Pradesh", Text: 'Uttar Pradesh' },
-    //     { Id: "West Bengal", Text: 'West Bengal' }
-    //   ];
     statedata: ArrayStore;
     statevalue: any;
-    statesOfIndia: string[];
     ngOnInit() {
-        // this.statedata = new ArrayStore({
-        //     data: this.statesOfIndia,
-        //     key: "Id"
-        //   });
-        this.statesOfIndia=['Andhra Pradesh','Arunachal Pradesh',
-        'Assam','Bihar', 'Chhattisgarh','Goa','Gujarat','Haryana',
-        'Himachal Pradesh','Jammu & Kashmir','Jharkhand','Karnataka',
-        'Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya',
-        'Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim',
-        'Tamil Nadu','Telangana','Tripura','Uttarakhand','Uttar Pradesh',
-        'West Bengal'];
+        this.statedata = new ArrayStore({
+            data: this.partyService.statesOfIndia,
+            key: "Id"
+          });
     }
     statedataSelection(event){
         this.statevalue=event.value;
@@ -87,7 +49,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     email: string;
     DeliveryAddressRequired: boolean;
     constructor(public storageService:StorageService,public _location: Location, public route: ActivatedRoute, public router: Router, public loginService: LoginService,
-        public horoScopeService: HoroScopeService, private orderService:OrderService,
+        public horoScopeService: HoroScopeService, private orderService:OrderService, public partyService:PartyService,
         public uiService: UIService, public formbuilder: FormBuilder, public loadingSwitchService:LoadingSwitchService) {
         this.DeliveryAddressRequired = this.horoScopeService.IsDeliverable
         this.loadingSwitchService.loading=true;
@@ -229,19 +191,20 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         var AddressModel = {
             //EMail: this.customerAddressForm.controls['EMail'].value,
             OrderId: this.OrderId,
-            PartyMastId: this.loginService.PartyMastId,
+            PartyMastId: StorageService.GetItem('PartyMastId'),
             Name: this.customerAddressForm.controls['Name'].value,
-            MobileNo:this.customerAddressForm.controls['MobileNo'].value,
+            Mobile:this.customerAddressForm.controls['MobileNo'].value,
             Address1: this.customerAddressForm.controls['Address1'].value,
             Address2: this.customerAddressForm.controls['Address2'].value,
             Address3: this.customerAddressForm.controls['Address3'].value,
+            State:this.statevalue,
             PinCode: this.customerAddressForm.controls['PinCode'].value
         }
         this.horoScopeService.CreateAddress(AddressModel).subscribe((data:any) => {
-            this.horoScopeService.GetAllAddress(this.loginService.PartyMastId).subscribe((data:any) => {
+            this.horoScopeService.GetAllAddress(StorageService.GetItem('PartyMastId')).subscribe((data:any) => {
                 this.existingAddress = data;
                 this.showAddAddressForm = !this.showAddAddressForm;
-                this.horoScopeService.GetDefaultAddress(this.loginService.PartyMastId).subscribe((data:any) => {
+                this.horoScopeService.GetDefaultAddress(StorageService.GetItem('PartyMastId')).subscribe((data:any) => {
                     this.Id = String(data);
                     this.loadingSwitchService.loading=false;
                 });

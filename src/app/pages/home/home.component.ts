@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
+import { services } from 'src/app/app-navigation';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -11,6 +12,7 @@ import { LoginService } from 'src/Services/login/login.service';
 export class HomeComponent {
   items: { Id: number; Text: string; }[];
   defaultVisible: boolean;
+  menuItems: { text: string; path: string; }[];
   constructor(public loginService:LoginService,public router: Router) {
     this.defaultVisible = false;
     // history.pushState(null, null, location.href);
@@ -25,6 +27,7 @@ export class HomeComponent {
         
   //     }
   // }
+  this.menuItems=services;
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;

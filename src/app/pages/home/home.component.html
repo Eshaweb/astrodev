@@ -6,6 +6,10 @@
   <h1 class="slider2">FOR YOUR SUCCESS</h1>
 </div>
 </div>
+
+<dx-menu #menu [dataSource]="menuItems" displayExpr="text" [showFirstSubmenuMode]="showFirstSubmenuModes" orientation="horizontal"
+    submenuDirection="auto" [hideSubmenuOnMouseLeave]="true" (onItemClick)="itemClick($event)">
+</dx-menu>
 <div class="dx-card home-content"  >
     <img src="assets/images/main.png" style="width: 15%;">
 <h1 class="slider2"> Indian Astrology("Jyothisha Shastra")</h1>
