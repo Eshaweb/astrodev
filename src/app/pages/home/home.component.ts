@@ -13,10 +13,19 @@ export class HomeComponent {
   items: { Id: number; Text: string; }[];
   defaultVisible: boolean;
   menuItems: { text: string; path: string; }[];
-  showSubmenuModes: { name: string; delay: { show: number; hide: number; }; }[];
-  showFirstSubmenuModes: { name: string; delay: { show: number; hide: number; }; };
+  showSubmenuModes: any;
+  showFirstSubmenuModes: any;
+  serviceList: any;
   constructor(public loginService:LoginService,public router: Router) {
     this.defaultVisible = false;
+    this.serviceList=[{Path:'/astamangala',Name:'Astamangala'},
+    {Path:'/horoscope',Name:'Horoscope'},
+    {Path:'/matchMaking',Name:'Mela Meli'},
+    {Path:'/muhurtha',Name:'Muhurtha'},
+    {Path:'/panchanga',Name:'Panchanga'},
+    {Path:'/numerology',Name:'Numerology'},
+    {Path:'/wallet/depoToWallet',Name:'Wallet'}];  
+  
     // history.pushState(null, null, location.href);
     // window.onpopstate = function () {       
     //   if (window.location.pathname == '/services') { 
@@ -42,6 +51,9 @@ export class HomeComponent {
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;
+}
+OnServiceClick(path){
+  this.router.navigate([path]);
 }
   OnHoroScope_Click() {
     this.router.navigate(["/horoscope"]);
