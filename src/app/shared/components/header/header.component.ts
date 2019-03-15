@@ -89,15 +89,19 @@ export class HeaderComponent {
     //   delay: { show: 0, hide: 300 }
     // }];
     // this.showFirstSubmenuModes = this.showSubmenuModes[0];
+
+    //this.loginService.isHomePage=true;
   }
 
   toggleMenu = () => {
     this.menuToggle.emit();
   }
   onServicesClick(event){
+    this.loginService.isHomePage=false;
     this.router.navigate(['/services']);
   }
   onHomeClick(event){
+    this.loginService.isHomePage=true;
     this.router.navigate(['/home']);
   }
   onSettingsClick(event){
