@@ -3,7 +3,7 @@ import { HttpClient } from "../../../node_modules/@angular/common/http";
 import { ErrorService } from '../Error/error.service';
 import { HttpService } from '../Error/http.service';
 import { Observable } from 'rxjs';
-import { navigationBeforeLogin, navigationAfterLogin, } from 'src/app/app-navigation';
+import { navigationBeforeLogin, navigationAfterLogin, serviceMenus, } from 'src/app/app-navigation';
 
 
 
@@ -17,8 +17,10 @@ export class LoginService {
   userProfileVisible: boolean;
   menuItems:any;
   isHomePage: boolean;
+  serviceMenus:any;
     constructor(private httpService: HttpService, private errorService: ErrorService, public http: HttpClient) {
        this.menuItems = navigationBeforeLogin;
+       this.serviceMenus=serviceMenus;
     }
     GetOTP(GetOTP):Observable<any> {
         var endPoint = "Party/GetOTP";

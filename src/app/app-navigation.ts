@@ -155,7 +155,7 @@ export const navigationBeforeLogin = [
   },
   {
     text: 'Services',
-    //icon: 'fields',
+    icon: 'fields',
     items: [
       {
         text: 'Horoscope',
@@ -204,11 +204,11 @@ export const navigationBeforeLogin = [
   },
   {
     text: 'About Us',
-    //icon: 'folder',
+    icon: 'folder',
   },
   {
     text: 'Contact Us',
-    //icon: 'folder',
+    icon: 'folder',
   },
 ];
 
@@ -216,6 +216,7 @@ export const navigationAfterLoginForSystem = [
   {
     text: 'Services',
     icon: 'fields',
+    path:'/services',
     items: [
       {
         text: 'Horoscope',
@@ -324,6 +325,7 @@ export const navigationBeforeLoginForSystem = [
 export const serviceMenus = [
   {
     text: 'Services',
+    path: '/services',
     items: [
       {
         text: 'Horoscope',

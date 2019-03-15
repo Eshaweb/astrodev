@@ -25,7 +25,7 @@ import { DxPopupModule } from 'devextreme-angular';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
 import { HeaderComponent } from '../header/header.component';
-import { navigationAfterLogin, navigationAfterLoginForSystem } from 'src/app/app-navigation';
+import { navigationAfterLogin, navigationAfterLoginForSystem, serviceMenus } from 'src/app/app-navigation';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -204,6 +204,7 @@ export class LoginFormComponent {
               else{
                 this.loginService.menuItems = navigationAfterLoginForSystem;
               }
+              this.loginService.serviceMenus= serviceMenus;
              // this.loginService.navBarData = menusAfterLogin;
               this.close.emit("hi");
               // if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
@@ -253,6 +254,7 @@ export class LoginFormComponent {
           else{
             this.loginService.menuItems = navigationAfterLoginForSystem;
           }          //this.loginService.navBarData = menusAfterLogin;
+          this.loginService.serviceMenus= serviceMenus;
           if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
             this.router.navigate(["/purchase/paidServices"]);
           }
