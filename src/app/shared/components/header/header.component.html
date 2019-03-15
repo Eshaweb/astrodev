@@ -45,13 +45,13 @@
                 <div class="menu-item">Contact- Us</div>
         </dxi-item>
         <dxi-item location="after" cssClass="web-menu" *ngIf="loginService.userProfileVisible">
-                <div class="menu-item">Settings</div>
+                <div class="menu-item" (click)="onSettingsClick($event)">Settings</div>
         </dxi-item>
         <dxi-item location="after" cssClass="web-menu" *ngIf="loginService.userProfileVisible">
-                <div class="menu-item">Profile</div>
+                <div class="menu-item" (click)="onProfileClick($event)">Profile</div>
         </dxi-item>
         <dxi-item location="after" cssClass="web-menu" *ngIf="loginService.userProfileVisible">
-                <div class="menu-item">Admin</div>
+                <div class="menu-item" (click)="onAdminClick($event)">Admin</div>
         </dxi-item>
         <!-- <dxi-item location="after">
             <div class="menu-item">

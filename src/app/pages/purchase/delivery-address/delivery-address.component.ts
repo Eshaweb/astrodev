@@ -105,6 +105,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         this.customerAddressForm = this.formbuilder.group({
             Name: ['Shailesh', [Validators.required, Validators.minLength(3)]],
             //EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
+            MobileNo:[8277033170,[Validators.required]],
             Address1: ['Bappanadu', [Validators.required, Validators.minLength(3)]],
             Address2: ['Temple Street', [Validators.required, Validators.minLength(4)]],
             Address3: ['#4/5-2', [Validators.required, Validators.minLength(4)]],
@@ -230,6 +231,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
             OrderId: this.OrderId,
             PartyMastId: this.loginService.PartyMastId,
             Name: this.customerAddressForm.controls['Name'].value,
+            MobileNo:this.customerAddressForm.controls['MobileNo'].value,
             Address1: this.customerAddressForm.controls['Address1'].value,
             Address2: this.customerAddressForm.controls['Address2'].value,
             Address3: this.customerAddressForm.controls['Address3'].value,

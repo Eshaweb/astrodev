@@ -100,6 +100,18 @@ export class HeaderComponent {
   onHomeClick(event){
     this.router.navigate(['/home']);
   }
+  onSettingsClick(event){
+    this.router.navigate(['/settings']);
+  }
+  onProfileClick(event){
+    this.router.navigate(['/profile']);
+  }
+  onAdminClick(event){
+    this.router.navigate(['/admin']);
+  }
+  itemClick(data) {
+    this.router.navigate([data.itemData.path]);
+  }
 }
 
 @NgModule({
