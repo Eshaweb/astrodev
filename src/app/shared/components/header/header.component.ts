@@ -114,6 +114,12 @@ export class HeaderComponent {
     this.router.navigate(['/admin']);
   }
   itemClick(data) {
+    if (data.itemData.path == '/home'){
+        this.loginService.isHomePage=true;
+      }
+      else{
+        this.loginService.isHomePage=false;
+      }
     this.router.navigate([data.itemData.path]);
   }
 }
