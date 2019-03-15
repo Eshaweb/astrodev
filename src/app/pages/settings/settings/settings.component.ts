@@ -9,12 +9,20 @@ import { Router } from '@angular/router';
 export class SettingsComponent {
   items: { Id: number; Text: string; }[];
   defaultVisible: boolean;
+  settingsMenu:any;
   constructor(public router: Router) {
     this.defaultVisible = false;
     this.items=[{Id:0,Text:'Raju'},{Id:1,Text:'Raju'}];
+    this.settingsMenu=[{Path:'/settings/orderHistory',Name:'Order History'},
+    {Path:'/settings/generalConfig',Name:'General Configuration'},
+    {Path:'/settings/muhurthaConfig',Name:'Muhurtha Configuration'},
+    {Path:'/settings/changePassword',Name:'Change Password'}];
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;
+  }
+  onItemClick(event){
+    this.router.navigate([event.itemData.Path]);
   }
   OnGeneralConfig_Click() {
     this.router.navigate(["/settings/generalConfig"]);

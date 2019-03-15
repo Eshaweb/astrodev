@@ -44,6 +44,7 @@ export class HeaderComponent {
       StorageService.RemoveItem('PartyMastId');
       this.loginService.userProfileVisible=false;
       this.loginService.menuItems=navigationBeforeLogin;
+      this.loginService.serviceMenus=serviceMenus;
       this.router.navigate(['/login-form']);
     }
   },
@@ -58,7 +59,8 @@ export class HeaderComponent {
   ];
   visible: boolean;
   isMobileResolution: boolean;
-  menuItems:any;
+  showSubmenuModes: { name: string; delay: { show: number; hide: number; }; }[];
+  showFirstSubmenuModes: { name: string; delay: { show: number; hide: number; }; };
 
   constructor(public loginService:LoginService,public registrationService:RegistrationService,private router: Router, private authService: AuthenticationService) { 
     if(StorageService.GetItem('Token')!=undefined){
@@ -73,7 +75,8 @@ export class HeaderComponent {
     } else {
       this.isMobileResolution = false;
     }
-    this.menuItems=serviceMenus;
+    this.loginService.serviceMenus=serviceMenus;
+    
     // if (StorageService.GetItem('Token') != undefined) {
     //   this.loginService.menuItems = navigationAfterLogin;
     // }
@@ -91,12 +94,22 @@ export class HeaderComponent {
     // this.showFirstSubmenuModes = this.showSubmenuModes[0];
 
     //this.loginService.isHomePage=true;
+
+
+    this.showSubmenuModes = [{
+      name: "onHover",
+      delay: { show: 0, hide: 500 }
+    }, {
+      name: "onClick",
+      delay: { show: 0, hide: 300 }
+    }];
+    this.showFirstSubmenuModes = this.showSubmenuModes[0];
   }
 
   toggleMenu = () => {
     this.menuToggle.emit();
   }
-  onServicesClick(event){
+  onServicesClick(){
     this.loginService.isHomePage=false;
     this.router.navigate(['/services']);
   }
@@ -112,6 +125,12 @@ export class HeaderComponent {
   }
   onAdminClick(event){
     this.router.navigate(['/admin']);
+  }
+  OnLogin_click(){
+    this.router.navigate(['/login-form']);
+  }
+  OnRegister_click(){
+    this.router.navigate(['/registration-form']);
   }
   itemClick(data) {
     if (data.itemData.path == '/home'){

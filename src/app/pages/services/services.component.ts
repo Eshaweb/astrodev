@@ -11,6 +11,7 @@ import { LoginService } from 'src/Services/login/login.service';
 export class ServicesComponent {
   items: { Id: number; Text: string; }[];
   defaultVisible: boolean;
+  servicesMenu: any;
   constructor(public loginService:LoginService,public router: Router) {
     this.defaultVisible = false;
     // history.pushState(null, null, location.href);
@@ -19,11 +20,30 @@ export class ServicesComponent {
     //     history.go(1);
     //   }
     // };
-  
+    this.servicesMenu=[{Path:'/astamangala',Name:'Astamangala'},
+    {Path:'/horoscope',Name:'Horoscope'},
+    {Path:'/matchMaking',Name:'Mela Meli'},
+    {Path:'/muhurtha',Name:'Muhurtha'},
+    {Path:'/panchanga',Name:'Panchanga'},
+    {Path:'/numerology',Name:'Numerology'},
+    {Path:'/wallet/depoToWallet',Name:'Wallet'}];  
   }
 //   toggleDefault() {
 //     this.defaultVisible = !this.defaultVisible;
 // }
+
+onServiceClick(event){
+  if (event.itemData.Path=="/wallet/depoToWallet"&&StorageService.GetItem('Token') != undefined) {
+    this.router.navigate(['/wallet/depoToWallet']);
+  }
+  else if (event.itemData.Path=="/wallet/depoToWallet"&&StorageService.GetItem('Token') == undefined) {
+    this.loginService.path = '/wallet/depoToWallet';
+    this.router.navigate(['/login-form']);
+  }
+  else{
+    this.router.navigate([event.itemData.Path]);
+  }
+}
   OnHoroScope_Click() {
     this.router.navigate(["/horoscope"]);
   }

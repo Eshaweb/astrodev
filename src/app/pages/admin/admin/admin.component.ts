@@ -7,16 +7,22 @@ import { Router } from '@angular/router';
 })
 
 export class AdminComponent {
-  items: { Id: number; Text: string; }[];
+  adminMenu: any;
   defaultVisible: boolean;
   constructor(public router: Router) {
     this.defaultVisible = false;
-    this.items=[{Id:0,Text:'Raju'},{Id:1,Text:'Raju'}];
+    this.adminMenu=[{Path:'/admin/basePrice',Name:'Base Price'},
+    {Path:'/admin/masterDetail',Name:'Price List'},
+    {Path:'/admin/assignPriceList',Name:'Assign Price List'},
+    {Path:'/admin/welcomeOffer',Name:'Welcome Offer'},
+    {Path:'/admin/promoCode',Name:'Promo Codes'}];  
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;
 }
- 
+onItemClick(event){
+  this.router.navigate([event.itemData.Path]);
+}
   OnBasePrice_Click() {
     this.router.navigate(["/admin/basePrice"]);
   }

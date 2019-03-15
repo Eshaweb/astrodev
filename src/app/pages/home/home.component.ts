@@ -13,6 +13,8 @@ export class HomeComponent {
   items: { Id: number; Text: string; }[];
   defaultVisible: boolean;
   menuItems: { text: string; path: string; }[];
+  showSubmenuModes: { name: string; delay: { show: number; hide: number; }; }[];
+  showFirstSubmenuModes: { name: string; delay: { show: number; hide: number; }; };
   constructor(public loginService:LoginService,public router: Router) {
     this.defaultVisible = false;
     // history.pushState(null, null, location.href);
@@ -27,6 +29,15 @@ export class HomeComponent {
         
   //     }
   // }
+
+  this.showSubmenuModes = [{
+    name: "onHover",
+    delay: { show: 0, hide: 500 }
+  }, {
+    name: "onClick",
+    delay: { show: 0, hide: 300 }
+  }];
+  this.showFirstSubmenuModes = this.showSubmenuModes[0];
   this.menuItems=services;
   }
   toggleDefault() {

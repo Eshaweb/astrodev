@@ -42,6 +42,19 @@
 <h3>Wallet</h3>
 </div>
 </div>
+
+<div class="list-container">
+    <dx-list 
+        #list
+        [dataSource]="servicesMenu"
+        (onItemClick)="onServiceClick($event)"
+        [height]="400">
+            <div *dxTemplate="let data of 'item'">
+                <div>{{data.Name}}</div>
+            </div>
+    </dx-list>
+</div>
+
 <!-- <dx-popover
                 target="#link1" 
                 position="top"
