@@ -3,7 +3,9 @@
 <dx-validation-group>
         <dx-button icon="arrowleft" *ngIf='isOTPRequested' (onClick)='onBackClick()'></dx-button>
     <div class="login-header">
-        <div class="title">Astrolite</div>
+        <div class="title">
+                <img src="assets/images/login.png" >
+        </div>
         <div>Sign In to your account</div>
     </div>
     <form *ngIf='!needtoEnterOTP' [formGroup]="loginForm">
