@@ -16,6 +16,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
 import { isString } from 'util';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoginService } from 'src/Services/login/login.service';
 
 
 @Component({
@@ -184,12 +185,13 @@ export class HoroscopeComponent {
     //     return isNumeric(value);
     //   });
     // }
-    constructor(public storageService:StorageService,service: Service, public loadingSwitchService:LoadingSwitchService,private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
+    constructor(public loginService:LoginService,public storageService:StorageService,service: Service, public loadingSwitchService:LoadingSwitchService,private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
       private cdr: ChangeDetectorRef, public partyService: PartyService, public horoScopeService: HoroScopeService, public uiService: UIService,
       private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
       //this.serviceInfo =  horoScopeService.getCustomers();
       this.maxDate = new Date(this.maxDate.setFullYear(this.maxDate.getFullYear() - 21));
       //this.genders = ["Male", "Female"];
+      this.loginService.isHomePage=false;
       this.genders = [{ Id: "M", Text: "Male" },{ Id: "F", Text: "Female" }];
       this.using = ["AstroLite Wallet", "Payment Gateway"];
       this.horoscopeForm = this.formbuilder.group({

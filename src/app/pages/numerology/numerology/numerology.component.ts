@@ -18,6 +18,7 @@ import { isString } from 'util';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 import { NumerologyRequest } from 'src/Models/Numerology/numerologyRequest';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoginService } from 'src/Services/login/login.service';
 
 // if (!/localhost/.test(document.location.host)) {
 //   enableProdMode();
@@ -56,11 +57,12 @@ export class NumerologyComponent {
       { Id: "A5", Text: "A5" }];
   reportSizedata: ArrayStore;
   reportSizevalue: any;
-  constructor(public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager,
+  constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager,
     public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     public partyService: PartyService, public numerologyService: NumerologyService, public uiService: UIService,
     public formbuilder: FormBuilder) {
-    this.numerologyForm = this.formbuilder.group({
+      this.loginService.isHomePage=false;
+      this.numerologyForm = this.formbuilder.group({
       Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],
       Date: new Date(),
       language: ['', []],
