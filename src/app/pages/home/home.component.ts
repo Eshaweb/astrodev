@@ -31,7 +31,9 @@ export class HomeComponent {
         
   //     }
   // }
-
+  if (window.location.pathname == '/home') {
+    this.loginService.isHomePage=true;
+   }
   this.showSubmenuModes = [{
     name: "onHover",
     delay: { show: 0, hide: 500 }
