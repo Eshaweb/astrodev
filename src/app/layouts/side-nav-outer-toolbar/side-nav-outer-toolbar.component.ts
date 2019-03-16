@@ -9,7 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
 // import { navigation } from 'src/app/app-navigation';
-import { navigationAfterLogin, navigationBeforeLogin, navigationAfterLoginForSystem, navigationBeforeLoginForSystem, services } from 'src/app/app-navigation';
+import { navigationAfterLogin, navigationBeforeLogin, navigationAfterLoginForSystem, navigationBeforeLoginForSystem, services, serviceListAfterLogin, serviceListBeforeLogin } from 'src/app/app-navigation';
 import { DxNavBarModule, DxButtonModule, DxMenuModule } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 @Component({
@@ -38,6 +38,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
   showFirstSubmenuModes: any;
   isMobileResolution: boolean;
   menuItems: any;
+  serviceList:any;
 
   constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, private screen: ScreenService, private router: Router) {
     if (window.location.pathname == '/home') {
@@ -64,9 +65,11 @@ export class SideNavOuterToolbarComponent implements OnInit {
       this.isMobileResolution = false;
       if (StorageService.GetItem('Token') != undefined) {
         this.loginService.menuItems = navigationAfterLoginForSystem;
+        this.loginService.serviceList= serviceListAfterLogin;
       }
       else {
         this.loginService.menuItems = navigationBeforeLoginForSystem;
+        this.loginService.serviceList= serviceListBeforeLogin;
       }
     }
   }
@@ -109,7 +112,15 @@ export class SideNavOuterToolbarComponent implements OnInit {
 
     this.updateDrawer();
   }
+  OnServiceClick(path){
+    this.router.navigate([path]);
+  }
 
+  getActive(Path){
+    if(window.location.pathname==Path){
+      return 'active';
+    }
+  }
   updateDrawer() {
     const isXSmall = this.screen.sizes['screen-x-small'];
     const isLarge = this.screen.sizes['screen-large'];

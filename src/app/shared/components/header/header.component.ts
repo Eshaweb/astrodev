@@ -10,7 +10,7 @@ import { RegistrationService } from 'src/Services/registration/registration.serv
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginFormComponent, LoginFormModule } from '../login-form/login-form.component';
 import { LoginService } from 'src/Services/login/login.service';
-import { navigationBeforeLogin, navigationAfterLogin, serviceMenus } from 'src/app/app-navigation';
+import { navigationBeforeLogin, navigationAfterLogin, serviceMenusBeforeLogin, serviceMenusAfterLogin, serviceListBeforeLogin } from 'src/app/app-navigation';
 import { DxMenuModule } from 'devextreme-angular';
 
 @Component({
@@ -44,7 +44,8 @@ export class HeaderComponent {
       StorageService.RemoveItem('PartyMastId');
       this.loginService.userProfileVisible=false;
       this.loginService.menuItems=navigationBeforeLogin;
-      this.loginService.serviceMenus=serviceMenus;
+      this.loginService.serviceMenus=serviceMenusBeforeLogin;
+      this.loginService.serviceList=serviceListBeforeLogin;
       this.router.navigate(['/login-form']);
     }
   },
@@ -66,16 +67,17 @@ export class HeaderComponent {
     if(StorageService.GetItem('Token')!=undefined){
       this.loginService.userProfileVisible=true;
       this.loginService.Name=StorageService.GetItem('Name');
+      this.loginService.serviceMenus=serviceMenusAfterLogin;
     }
     else{
       this.loginService.userProfileVisible=false;
+      this.loginService.serviceMenus=serviceMenusBeforeLogin;
     }
     if (window.innerWidth < 768) {
       this.isMobileResolution = true;
     } else {
       this.isMobileResolution = false;
     }
-    this.loginService.serviceMenus=serviceMenus;
     
     // if (StorageService.GetItem('Token') != undefined) {
     //   this.loginService.menuItems = navigationAfterLogin;

@@ -322,7 +322,45 @@ export const navigationBeforeLoginForSystem = [
   }
 ];
 
-export const serviceMenus = [
+export const serviceMenusBeforeLogin = [
+  {
+    text: 'Services',
+    path: '/services',
+    items: [
+      {
+        text: 'Horoscope',
+        path: '/horoscope',
+      },
+      {
+        text: 'Match Making',
+        path: '/matchMaking',
+      },
+      {
+        text: 'Astamangala',
+        path: '/astamangala',
+      },
+      {
+        text: 'Numerology',
+        path: '/numerology',
+      },
+      {
+        text: 'Nithya Panchanga',
+        path: '/panchanga',
+      },
+      {
+        text: 'Muhurtha',
+        path:'/muhurtha'
+      },
+      // {
+      //   text: 'Panchapakshi',
+      //   path: '/panchapakshi',
+      // },
+    ],
+    
+  }
+];
+
+export const serviceMenusAfterLogin = [
   {
     text: 'Services',
     path: '/services',
@@ -364,7 +402,6 @@ export const serviceMenus = [
   }
 ];
 
-
 export const services = [
       {
         text: 'Horoscope',
@@ -398,4 +435,19 @@ export const services = [
         text: 'Wallet',
         path: '/wallet/depoToWallet'
       },
-    ]
+    ];
+
+    export const serviceListBeforeLogin=[{Path:'/astamangala',Name:'Astamangala'},
+    {Path:'/horoscope',Name:'Horoscope'},
+    {Path:'/matchMaking',Name:'Mela Meli'},
+    {Path:'/muhurtha',Name:'Muhurtha'},
+    {Path:'/panchanga',Name:'Panchanga'},
+    {Path:'/numerology',Name:'Numerology'}];
+
+    export const serviceListAfterLogin=[{Path:'/astamangala',Name:'Astamangala'},
+    {Path:'/horoscope',Name:'Horoscope'},
+    {Path:'/matchMaking',Name:'Mela Meli'},
+    {Path:'/muhurtha',Name:'Muhurtha'},
+    {Path:'/panchanga',Name:'Panchanga'},
+    {Path:'/numerology',Name:'Numerology'},
+    {Path:'/wallet/depoToWallet',Name:'Wallet'}];

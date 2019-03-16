@@ -60,7 +60,7 @@
             (onItemClick)="itemClick($event)">
 </dx-menu> -->
 
-<dx-menu *ngIf='!isMobileResolution&&!loginService.isHomePage'
+<!-- <dx-menu *ngIf='!isMobileResolution&&!loginService.isHomePage'
             #menu
             [dataSource]="menuItems"
             displayExpr="text"
@@ -69,8 +69,14 @@
             submenuDirection="auto"
             [hideSubmenuOnMouseLeave]="true"
             (onItemClick)="itemClick($event)">
-</dx-menu>
-
+</dx-menu> -->
+<div class="service-menu" *ngIf='!isMobileResolution&&!loginService.isHomePage'>
+    <ul>
+        <li *ngFor="let item of loginService.serviceList">
+            <a (click)='OnServiceClick(item.Path)' [ngClass]="getActive(item.Path)">{{item.Name}}</a>
+        </li>
+      </ul>
+    </div>
 <!-- <app-side-navigation-menu *ngIf="!loginService.userProfileVisible"
     [items]="menuItemsBeforeLogin"
     [compactMode]="!menuOpened"
