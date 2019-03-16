@@ -24,11 +24,11 @@ import { Location } from "@angular/common";
   styleUrls: ['./numerology-free-data.component.scss']
 })
 export class NumerologyFreeDataComponent implements OnInit {
-    caption: Caption;
-    numerologyResponse: NumerologyResponse;
-    numerologyRequest: NumerologyRequest;
-    serialseMonth:SerialseMonth[]=[];
-  manthcaption:string;
+  caption: Caption;
+  numerologyResponse: NumerologyResponse;
+  numerologyRequest: NumerologyRequest;
+  serialseMonth: SerialseMonth[] = [];
+  manthcaption: string;
   loginForm: FormGroup;
   isOTPRequested: boolean;
   message: string;
@@ -38,60 +38,56 @@ export class NumerologyFreeDataComponent implements OnInit {
   oTPRef: any;
   isLoginByOTP: boolean;
   uservalidateForm: FormGroup;
-      ngOnInit(): void {
-        this.caption=new Caption();
-        this.numerologyRequest=this.numerologyService.numerologyRequest;
-        //this.numerologyRequest=this.storageService.GetHoroRequest('#NM');
-        this.GetCaption(this.numerologyRequest.LangCode, this.caption);
-      }
-      constructor(public storageService:StorageService, public uiService: UIService, public formBuilder: FormBuilder, private itemService:ItemService, 
-        public router: Router, public loginService: LoginService, public registrationService: RegistrationService,
-        public loadingSwitchService: LoadingSwitchService, private matchMakingService: MatchMakingService, private astamangalaService: AstamangalaService,
-        public authService: AuthService, public horoScopeService: HoroScopeService, 
-        public _location: Location, 
-        public captionDbService:CaptionDbService, public numerologyService: NumerologyService) {
-        
-            this.numerologyResponse=this.numerologyService.numerologyResponse;
-            //this.numerologyResponse=this.storageService.GetHoroResponse('#NM');
-            //this.numerologyResponse.Predictions= this.numerologyService.numerologyResponse.Predictions;
-            this.numerologyResponse.Predictions= this.numerologyResponse.Predictions;
-            this.serialseMonth=JSON.parse(this.numerologyResponse.Month);
-            this.manthcaption= this.serialseMonth[0].Caption;
-        }
-      GetCaption(langCode:string,caption:Caption)
-     {
-      this.captionDbService.GetCaption(langCode,caption);
-     }
-  
-     getFont(LangCode) {
-      switch (LangCode) {
-        case "KAN":
-          return "KannadaFont";
-        case "ENG":
-          return "EnglishFont";
-        case "HIN":
-          return "HindiFont";
-          case "MAL":
-          return "MalyalamFont";
-          case "TAM":
-          return "TamilFont";
-      }
+  ngOnInit(): void {
+    this.caption = new Caption();
+    //this.numerologyRequest = this.numerologyService.numerologyRequest;
+    this.numerologyRequest=this.storageService.GetHoroRequest('#NM');
+    this.GetCaption(this.numerologyRequest.LangCode, this.caption);
+  }
+  constructor(public storageService: StorageService, public uiService: UIService, public formBuilder: FormBuilder, private itemService: ItemService,
+    public router: Router, public loginService: LoginService, public registrationService: RegistrationService,
+    public loadingSwitchService: LoadingSwitchService, private matchMakingService: MatchMakingService, private astamangalaService: AstamangalaService,
+    public authService: AuthService, public horoScopeService: HoroScopeService,
+    public _location: Location,
+    public captionDbService: CaptionDbService, public numerologyService: NumerologyService) {
+
+    //this.numerologyResponse = this.numerologyService.numerologyResponse;
+    this.numerologyResponse=this.storageService.GetHoroResponse('#NM');
+    this.numerologyResponse.Predictions= this.numerologyService.numerologyResponse.Predictions;
+    this.serialseMonth = JSON.parse(this.numerologyResponse.Month);
+    this.manthcaption = this.serialseMonth[0].Caption;
+  }
+  GetCaption(langCode: string, caption: Caption) {
+    this.captionDbService.GetCaption(langCode, caption);
+  }
+
+  getFont(LangCode) {
+    switch (LangCode) {
+      case "KAN":
+        return "KannadaFont";
+      case "ENG":
+        return "EnglishFont";
+      case "HIN":
+        return "HindiFont";
+      case "MAL":
+        return "MalyalamFont";
+      case "TAM":
+        return "TamilFont";
     }
-    split (day:String): String
-    {
-      if(day!=undefined)
-      {
+  }
+  split(day: String): String {
+    if (day != undefined) {
       return day.split('-')[0];
-      }
-      return "";
     }
-    
-    GetBackColor (day:any)
+    return "";
+  }
+
+  GetBackColor (day:any)
     {
     
       if(day!=undefined)
       {
-     return day;
+     return day.split('-')[1];
       }
      
     }
@@ -100,13 +96,13 @@ export class NumerologyFreeDataComponent implements OnInit {
       if(day!=undefined)
       {
      
-     return day;
+     return day.split('-')[3];
       
       }
     }
   onClick() {
     this.itemService.ItActId = '#NM';
-    StorageService.SetItem('ItActId','#NM');
+    StorageService.SetItem('ItActId', '#NM');
     if (StorageService.GetItem('Token') == undefined) {
       this.router.navigate(["/login-form"]);
       //this.popupVisible=true;
@@ -116,3 +112,4 @@ export class NumerologyFreeDataComponent implements OnInit {
     }
   }
 }
+
