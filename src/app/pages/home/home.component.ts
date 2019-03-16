@@ -18,13 +18,6 @@ export class HomeComponent {
   serviceList: any;
   constructor(public loginService:LoginService,public router: Router) {
     this.defaultVisible = false;
-    this.serviceList=[{Path:'/astamangala',Name:'Astamangala'},
-    {Path:'/horoscope',Name:'Horoscope'},
-    {Path:'/matchMaking',Name:'Mela Meli'},
-    {Path:'/muhurtha',Name:'Muhurtha'},
-    {Path:'/panchanga',Name:'Panchanga'},
-    {Path:'/numerology',Name:'Numerology'},
-    {Path:'/wallet/depoToWallet',Name:'Wallet'}];  
   
     // history.pushState(null, null, location.href);
     // window.onpopstate = function () {       
