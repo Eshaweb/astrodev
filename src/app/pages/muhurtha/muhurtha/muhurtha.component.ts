@@ -16,6 +16,7 @@ import { getLocaleDateTimeFormat } from '@angular/common';
 import { MuhurthaRequest, RashiNak } from 'src/Models/Muhurtha/MuhurthaRequest';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoginService } from 'src/Services/login/login.service';
 
 
 @Component({
@@ -211,10 +212,11 @@ export class MuhurthaComponent {
   birthDateinDateFormat: Date;
   dateinDateFormat: Date;
 
-  constructor(public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
+  constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public muhurthaService: MuhurthaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
     this.maxDate = new Date(this.maxDate.setFullYear(this.maxDate.getFullYear() - 21));
+    this.loginService.isHomePage=false;
     this.muhurthaaForm = this.formbuilder.group({
       Date: new Date(),
       birthPlace: ['', [Validators.required]],

@@ -32,7 +32,7 @@
         </dxi-item> -->
         <dxi-item location="after" cssClass="web-menu">
             <div class="menu-item" *dxTemplate="let data of 'item'">
-                <dx-menu [dataSource]="loginService.serviceMenus" displayExpr="text"
+                <dx-menu [dataSource]="loginService.serviceMenus" displayExpr="text" activeStateEnabled='true'
                         [showFirstSubmenuMode]="showFirstSubmenuModes" orientation="horizontal" submenuDirection="auto"
                         [hideSubmenuOnMouseLeave]="true" (onItemClick)="itemClick($event)">
                         </dx-menu>

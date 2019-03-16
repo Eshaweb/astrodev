@@ -31,7 +31,9 @@ export class HomeComponent {
         
   //     }
   // }
-
+  if (window.location.pathname == '/home') {
+    this.loginService.isHomePage=true;
+   }
   this.showSubmenuModes = [{
     name: "onHover",
     delay: { show: 0, hide: 500 }
@@ -46,13 +48,13 @@ export class HomeComponent {
     this.defaultVisible = !this.defaultVisible;
 }
 OnServiceClick(path){
-  if (path == '/home') {
-    this.loginService.isHomePage=true;
-   }
-   else{
-    this.loginService.isHomePage=false;
-   }
   this.router.navigate([path]);
+  // if (path == '/home') {
+  //   this.loginService.isHomePage=true;
+  //  }
+  //  else{
+  //   this.loginService.isHomePage=false;
+  //  }
 }
   OnHoroScope_Click() {
     this.router.navigate(["/horoscope"]);

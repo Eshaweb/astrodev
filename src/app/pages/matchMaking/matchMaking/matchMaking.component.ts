@@ -12,6 +12,7 @@ import ArrayStore from 'devextreme/data/array_store';
 import { MatchResponse } from 'src/Models/MatchMaking/match';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoginService } from 'src/Services/login/login.service';
 
 
 @Component({
@@ -184,10 +185,11 @@ export class MatchMakingComponent {
   reportSizedataSelection(event) {
     this.reportSizevalue = event.value;
   }
-  constructor(public storageService:StorageService, public loadingSwitchService:LoadingSwitchService,public route: ActivatedRoute, public router: Router, public cdr: ChangeDetectorRef,
+  constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService:LoadingSwitchService,public route: ActivatedRoute, public router: Router, public cdr: ChangeDetectorRef,
     public matchMakingService: MatchMakingService, public ngZone: NgZone, public mapsAPILoader: MapsAPILoader,
     public uiService: UIService, public formbuilder: FormBuilder) {
-    this.maleMatchMakingForm = this.formbuilder.group({
+      this.loginService.isHomePage=false;
+      this.maleMatchMakingForm = this.formbuilder.group({
       maleName: ['Shamanth', [Validators.required, Validators.minLength(4)]],
       MaleBdate: new Date(),
       MaleBtime: new Date(),
