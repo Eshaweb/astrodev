@@ -85,8 +85,7 @@
 </thead>
 <tbody>
 <tr *ngFor="let item of serialseMonth">
-<!-- <td [ngStyle]="{'background-color':GetBackColor(item.Sunday),'color':GetForeColor(item.Sunday)}">{{split(item.Sunday)}}</td> -->
-<td [ngStyle]="{'background-color':'#5FAF0A','color':'red'}">{{split(item.Sunday)}}</td>
+<td [ngStyle]="{'background-color':GetBackColor(item.Sunday),'color':GetForeColor(item.Sunday)}">{{split(item.Sunday)}}</td>
 <td [ngStyle]="{'background-color':'GetBackColor(item.Monday)','color':GetForeColor(item.Monday)}">{{split(item.Monday)}}</td>
 <td [ngStyle]="{'background-color':GetBackColor(item.Tuesday),'color':GetForeColor(item.Tuesday)}">{{split(item.Tuesday)}}</td>
 <td [ngStyle]="{'background-color':GetBackColor(item.Wednesday),'color':GetForeColor(item.Wednesday)}">{{split(item.Wednesday)}}</td>
@@ -205,3 +204,5 @@
     </dx-popup>
   </div>
 </dx-popup> -->
+
+
