@@ -347,7 +347,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
               else{
                 this.payableAmountthroughPaymentGateWay=this.payableAmountthroughPaymentGateWay;
               }
-              this.loadingSwitchService.loading=false;
+              this.loadingSwitchService.loading=true;
               this.pay();
               break;
             }
@@ -452,7 +452,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         this.horoScopeService.AstroReportId = data.AstroReportId[0].split('_')[0];
       }
       //this.loading = false;
-      this.loadingSwitchService.loading=false;
+      //this.loadingSwitchService.loading=false;
       this.router.navigate(['/purchase/paymentProcessing'], { skipLocationChange: true });
       //this.router.navigate(['/purchase/paymentProcessing']);
     }

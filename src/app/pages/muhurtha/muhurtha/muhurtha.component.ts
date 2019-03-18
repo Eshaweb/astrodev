@@ -72,7 +72,7 @@ export class MuhurthaComponent {
   reportSizes: SelectBoxModel[] = [
     { Id: "A4", Text: "A4" },
     { Id: "A5", Text: "A5" }];
-  dataSource = [];
+  //dataSource = [];
   // stars: SelectBoxModel[] = [
   //   { Id: "0", Text: "Unknown" },
   //   { Id: "1", Text: "Ashwini" },
@@ -211,6 +211,7 @@ export class MuhurthaComponent {
   reportSizedata: ArrayStore;
   birthDateinDateFormat: Date;
   dateinDateFormat: Date;
+  dataSource: RashiNak[];
 
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public muhurthaService: MuhurthaService, public uiService: UIService,
@@ -239,6 +240,7 @@ export class MuhurthaComponent {
       this.todateinDateFormat = this.muhurthaService.ToDateinDateFormat;
       this.birthTimeinDateFormat = this.muhurthaService.TimeinDateFormat;
       this.timeZoneName = this.muhurthaService.timeZoneName;
+      this.dataSource=this.muhurthaService.muhurthaRequest.RashiNakshatras;
     }
     else {
       this.birthDateinDateFormat = this.muhurthaaForm.controls['Date'].value;
@@ -246,6 +248,7 @@ export class MuhurthaComponent {
       this.fromdateinDateFormat = this.dateRangeForm.controls['FromDate'].value;
       this.todateinDateFormat = this.dateRangeForm.controls['ToDate'].value;
       this.todateinDateFormat.setMonth(this.todateinDateFormat.getMonth()+3);
+      this.dataSource = [];
       this.muhurthaRequest={
         MuhurthaType:null,
         FromDate:null,
@@ -372,7 +375,10 @@ export class MuhurthaComponent {
 
   }
   onToolbarPreparing(e) {
-    this.muhurtha.instance.addRow();
+    if (this.muhurthaService.muhurthaRequest == null) {
+      this.muhurtha.instance.addRow();
+    }
+  //  this.muhurtha.instance.d
     var toolbarItems = e.toolbarOptions.items;
     toolbarItems.forEach(function (item) {
       item.visible = false;
@@ -482,7 +488,7 @@ export class MuhurthaComponent {
   getFilteredRashis(options) {
     return {
       store: this.rashis,
-      filter: options.data ? ["StarId", "=", options.data.Nakshathra] : null
+      filter: options.data ? ["StarId", "=", options.data.Nakshatra] : null
     };
   }
   // onEditorPreparing(e) {
@@ -494,7 +500,7 @@ export class MuhurthaComponent {
 
   setStarValue(rowData: any, value: any): void {
     this.nakshathraValue= value;
-    rowData.Nakshathra = null;
+    rowData.Nakshatra = null;
     (<any>this).defaultSetCellValue(rowData, value);
   }
   setRashiValue(rowData: any,value: any): void {
@@ -539,13 +545,13 @@ export class MuhurthaComponent {
       if(i==0){
         this.rashiNak=[{
           Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
-          Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshathra
+          Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
         }]
       }
         else if(i>0){
           this.rashiNak.push({
             Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
-            Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshathra
+            Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
           })
         } 
     }

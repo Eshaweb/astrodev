@@ -52,6 +52,7 @@ export class MatchMakingComponent {
       this.female_timeformatvalue = this.matchMakingService.matchRequest.Female.TimeFormat;
       this.languagevalue = this.matchMakingService.matchRequest.LangCode;
       this.reportSizevalue = this.matchMakingService.matchRequest.ReportSize;
+      this.reportTypevalue= this.matchMakingService.matchRequest.UserOrSystem;
     }
     else {
       this.male_timeformatvalue = this.maletimeformats[0].Id;

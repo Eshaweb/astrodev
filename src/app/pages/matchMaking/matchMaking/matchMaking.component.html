@@ -1,6 +1,8 @@
 <h2 class="content-block">Match Making</h2>
 <div class="dx-card content-block responsive-paddings">
-    <form action="your-action" [formGroup]="femaleMatchMakingForm">
+        <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'">
+                <aw-wizard-step [stepTitle]="'Female Entry Form'" [navigationSymbol]="{ symbol: '&#xf0b1;', fontFamily: 'FontAwesome' }">
+            <form action="your-action" [formGroup]="femaleMatchMakingForm">
         <div class="dx-card content-block responsive-paddings">
         <div class="dx-fieldset">
             <div class="dx-header img">
@@ -214,8 +216,15 @@
         <p style="color: red">Time Zone: {{timeZoneName_Female}}</p>
         
 </div>
+<div class="dx-fieldset">
+        <dx-button [disabled]="!femaleMatchMakingForm.valid" text="Continue" type="success"
+            [useSubmitBehavior]="true" awNextStep>
+        </dx-button>
+    </div>
         </div>
     </form>
+</aw-wizard-step>
+<aw-wizard-step (stepEnter)="OnEnterStep($event)" [stepTitle]="'Male Entry Form'" [navigationSymbol]="{ symbol: '&#xf085;', fontFamily: 'FontAwesome' }">
     <form action="your-action" [formGroup]="maleMatchMakingForm">
             <div class="dx-card content-block responsive-paddings">
         <div class="dx-fieldset">
@@ -431,8 +440,16 @@
         <div class="clear"></div>
         <p style="color: red">Time Zone: {{timeZoneName_Male}}</p>
     </div>
+    <div class="dx-fieldset">
+            <dx-button text="Back" type="success" [useSubmitBehavior]="true" awPreviousStep>
+            </dx-button>
+            <dx-button [disabled]="!maleMatchMakingForm.valid" text="Continue" type="success" (onClick)='submit_click(dataSource)' [useSubmitBehavior]="true" awNextStep>
+            </dx-button>
+            </div>
             </div>
 </form>
+</aw-wizard-step>
+<aw-wizard-step (stepExit)="OnExitStep($event)" [stepTitle]="'General'" [navigationSymbol]="{ symbol: '&#xf00c;', fontFamily: 'FontAwesome' }">
     <div class="dx-card content-block responsive-paddings">
         <div class="dx-fieldset-column">
             <div class="dx-field">
@@ -488,14 +505,18 @@
             </div>
         </div>
         <div class="clear"></div>
+        
         <div class="dx-fieldset">
-            <dx-validation-summary id="summary"></dx-validation-summary>
-            <dx-button [disabled]="!femaleMatchMakingForm.valid||!maleMatchMakingForm.valid" (onClick)='Matchmaking_Click()'
+                <dx-button text="Back" type="success" [useSubmitBehavior]="true" awPreviousStep>
+                </dx-button>
+               <dx-button [disabled]="!femaleMatchMakingForm.valid||!maleMatchMakingForm.valid" (onClick)='Matchmaking_Click()'
                 id="button"
                 text="Submit"
                 type="success"  
                 [useSubmitBehavior]="true">
             </dx-button>
-        </div>
+                </div>
     </div>
+</aw-wizard-step>
+</aw-wizard>
 </div>

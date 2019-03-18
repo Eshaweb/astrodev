@@ -1,126 +1,126 @@
 <h2 class="content-block">Muhurtha</h2>
 <div class="dx-card content-block responsive-paddings">
         <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'">
-                <aw-wizard-step [stepTitle]="'Muhurtha'" [navigationSymbol]="{ symbol: '&#xf0b1;', fontFamily: 'FontAwesome' }">
-                  <div class="centered-content">
-                        <form action="your-action" [formGroup]="muhurthaaForm">
-                            <div class="dx-fieldset">
-                                    <div class="dx-fieldset-column">
-                                            <div class="dx-field">
-                                                <div class="dx-field-label">Muhurthas</div>
-                                                <div class="dx-field-value">
-                                                    <dx-select-box [dataSource]="muhurthasdata" (onValueChanged)="muhurthasdataSelection($event)"
-                                                        displayExpr="Name" valueExpr="Id" [value]="muhurthasvalue">
-                                                    </dx-select-box>
-                                                </div>
-                                                <p style="color:red" id='err_language'></p>
-                                            </div>
-                                        </div>
-                                        <div class="dx-fieldset-column">
-                                            <div class="dx-field">
-                                                <div class="dx-field-label">Place</div>
-                                                <div class="dx-field-value">
-                                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="muhurthaRequest.Place"></dx-text-box>
-                                                    <p style="color:red" id='err_birthPlace'></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="clear"></div>
-                                        <div class="dx-fieldset-column" *ngIf="vivahaSelected">
-                                                <div class="dx-field">
-                                    <div class="dx-field-label">Vivaha Muhurtha</div>
-                                    <div class="dx-field-value">
-                                            <div >
-                                                    <dx-check-box
-                                                        id="check"
-                                                        (onValueChanged)="GodhuliCheckBoxValueChanged($event)"
-                                                        text="Godhuli Required">
-                                                    </dx-check-box>
-                                                </div>
-                                            
-                                                <div class="vivaha-lagna">
-                                                    <dx-check-box
-                                                        id="check"
-                                                        (onValueChanged)="AbhijinCheckBoxValueChanged($event)"
-                                                        text="Abhijin Required">
-                                                    </dx-check-box>
-                                                </div>
-                                    </div>
-                                                </div>
-                                        </div>
-                                        <div class="dx-fieldset-column" *ngIf="upanayanaSelected">
-                                                <div class="dx-field">
-                                                        <div class="dx-field-label">Date of Birth</div>
-                                                        <div class="dx-field-value">
-                                                            <dx-date-box formControlName="Date" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd">
-                                                            </dx-date-box>
-                                                            </div>
-                                                    </div>
-                                        </div>
-                                        <div class="dx-fieldset-column" *ngIf="yathraSelected">
-                                                <div class="dx-field">
-                                                        <div class="dx-field-label">Yathra Direction</div>
-                                                        <div class="dx-field-value">
-                                                            <dx-select-box (onValueChanged)="yathradirectionSelection($event)" [dataSource]="yathradirectionsdata"
-                                                                displayExpr="Text" valueExpr="Id" [value]="yathradirectionsvalue">
-                                                            </dx-select-box>
-                                                        </div>
-                                                    </div>
-                                        </div>
-                                        <div class="dx-fieldset-column"  >
-                                            <div class="dx-field">
-                                                <div class="dx-field-label vivaha-lagna">Report Size*</div>
-                                                <div class="dx-field-value">
-                                                  <dx-select-box 
-                                                  (onValueChanged)="reportSizedataSelection($event)"
-                                                      [dataSource]="reportSizedata"
-                                                      displayExpr="Text"
-                                                      valueExpr="Id"
-                                                      [value]="reportSizevalue">
+            <aw-wizard-step [stepTitle]="'Muhurtha'" [navigationSymbol]="{ symbol: '&#xf0b1;', fontFamily: 'FontAwesome' }">
+                <div class="centered-content">
+                      <form action="your-action" [formGroup]="muhurthaaForm">
+                          <div class="dx-fieldset">
+                                  <div class="dx-fieldset-column">
+                                          <div class="dx-field">
+                                              <div class="dx-field-label">Muhurthas</div>
+                                              <div class="dx-field-value">
+                                                  <dx-select-box [dataSource]="muhurthasdata" (onValueChanged)="muhurthasdataSelection($event)"
+                                                      displayExpr="Name" valueExpr="Id" [value]="muhurthasvalue">
                                                   </dx-select-box>
-                                                </div>
-                                                <p style="color:red" id='err_ReportSize'></p>
-                                            </div>
-                                        </div>
-                                        <div class="clear"></div>
-                                <div class="dx-fieldset-column">
-                                    <div class="dx-field">
-                                        <div class="dx-field-label">Time format*</div>
-                                        <div class="dx-field-value">
-                                            <dx-select-box (onValueChanged)="timeformatdataSelection($event)" [dataSource]="timeformatdata"
-                                                displayExpr="Text" valueExpr="Id" [value]="timeformatvalue">
-                                            </dx-select-box>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dx-fieldset-column">
-                                        <div class="dx-field">
-                                            <div class="dx-field-label">Language</div>
-                                            <div class="dx-field-value">
-                                              <dx-select-box
-                                              [dataSource]="languagedata"
-                                              (onValueChanged)="languagedataSelection($event)"
-                                              displayExpr="Text"
-                                              valueExpr="Id"
-                                              [value]="languagevalue" >
+                                              </div>
+                                              <p style="color:red" id='err_language'></p>
+                                          </div>
+                                      </div>
+                                      <div class="dx-fieldset-column">
+                                          <div class="dx-field">
+                                              <div class="dx-field-label">Place</div>
+                                              <div class="dx-field-value">
+                                                  <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="muhurthaRequest.Place"></dx-text-box>
+                                                  <p style="color:red" id='err_birthPlace'></p>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="clear"></div>
+                                      <div class="dx-fieldset-column" *ngIf="vivahaSelected">
+                                              <div class="dx-field">
+                                  <div class="dx-field-label">Vivaha Muhurtha</div>
+                                  <div class="dx-field-value">
+                                          <div >
+                                                  <dx-check-box
+                                                      id="check"
+                                                      (onValueChanged)="GodhuliCheckBoxValueChanged($event)"
+                                                      text="Godhuli Required">
+                                                  </dx-check-box>
+                                              </div>
+                                          
+                                              <div class="vivaha-lagna">
+                                                  <dx-check-box
+                                                      id="check"
+                                                      (onValueChanged)="AbhijinCheckBoxValueChanged($event)"
+                                                      text="Abhijin Required">
+                                                  </dx-check-box>
+                                              </div>
+                                  </div>
+                                              </div>
+                                      </div>
+                                      <div class="dx-fieldset-column" *ngIf="upanayanaSelected">
+                                              <div class="dx-field">
+                                                      <div class="dx-field-label">Date of Birth</div>
+                                                      <div class="dx-field-value">
+                                                          <dx-date-box formControlName="Date" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd">
+                                                          </dx-date-box>
+                                                          </div>
+                                                  </div>
+                                      </div>
+                                      <div class="dx-fieldset-column" *ngIf="yathraSelected">
+                                              <div class="dx-field">
+                                                      <div class="dx-field-label">Yathra Direction</div>
+                                                      <div class="dx-field-value">
+                                                          <dx-select-box (onValueChanged)="yathradirectionSelection($event)" [dataSource]="yathradirectionsdata"
+                                                              displayExpr="Text" valueExpr="Id" [value]="yathradirectionsvalue">
+                                                          </dx-select-box>
+                                                      </div>
+                                                  </div>
+                                      </div>
+                                      <div class="dx-fieldset-column"  >
+                                          <div class="dx-field">
+                                              <div class="dx-field-label vivaha-lagna">Report Size*</div>
+                                              <div class="dx-field-value">
+                                                <dx-select-box 
+                                                (onValueChanged)="reportSizedataSelection($event)"
+                                                    [dataSource]="reportSizedata"
+                                                    displayExpr="Text"
+                                                    valueExpr="Id"
+                                                    [value]="reportSizevalue">
+                                                </dx-select-box>
+                                              </div>
+                                              <p style="color:red" id='err_ReportSize'></p>
+                                          </div>
+                                      </div>
+                                      <div class="clear"></div>
+                              <div class="dx-fieldset-column">
+                                  <div class="dx-field">
+                                      <div class="dx-field-label">Time format*</div>
+                                      <div class="dx-field-value">
+                                          <dx-select-box (onValueChanged)="timeformatdataSelection($event)" [dataSource]="timeformatdata"
+                                              displayExpr="Text" valueExpr="Id" [value]="timeformatvalue">
                                           </dx-select-box>
-                                            </div>
-                                            <p style="color:red" id='err_language'></p>
-                                        </div>
-                                    </div>
-                                <div class="clear"></div>
-                            </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="dx-fieldset-column">
+                                      <div class="dx-field">
+                                          <div class="dx-field-label">Language</div>
+                                          <div class="dx-field-value">
+                                            <dx-select-box
+                                            [dataSource]="languagedata"
+                                            (onValueChanged)="languagedataSelection($event)"
+                                            displayExpr="Text"
+                                            valueExpr="Id"
+                                            [value]="languagevalue" >
+                                        </dx-select-box>
+                                          </div>
+                                          <p style="color:red" id='err_language'></p>
+                                      </div>
+                                  </div>
+                              <div class="clear"></div>
+                          </div>
 
-                            <div class="dx-fieldset">
-                                <dx-validation-summary id="summary"></dx-validation-summary>
+                          <div class="dx-fieldset">
+                              <dx-validation-summary id="summary"></dx-validation-summary>
 
-                                <dx-button [disabled]="!muhurthaaForm.valid" text="Continue" type="success"
-                                    [useSubmitBehavior]="true" awNextStep>
-                                </dx-button>
-                            </div>
-                        </form>
-                  </div>
-                </aw-wizard-step>
+                              <dx-button [disabled]="!muhurthaaForm.valid" text="Continue" type="success"
+                                  [useSubmitBehavior]="true" awNextStep>
+                              </dx-button>
+                          </div>
+                      </form>
+                </div>
+              </aw-wizard-step>
                 <aw-wizard-step (stepEnter)="OnEnterStep($event)" [stepTitle]="'Rashi/Nakshatra'" [navigationSymbol]="{ symbol: '&#xf085;', fontFamily: 'FontAwesome' }">
                   <div class="centered-content">
                         <div id="data-grid-demo" #muhurtha>
@@ -136,14 +136,14 @@
                                         mode="batch"
                                         [allowDeleting]="true">
                                     </dxo-editing>
-                                        <dxi-column dataField="Nakshathra" [width]="100" [setCellValue]="setStarValue">
+                                        <dxi-column dataField="Nakshatra" placeholder="Enter Gothra here..." [setCellValue]="setStarValue">
                                         <dxo-lookup
                                         [dataSource]="stars"
                                         displayExpr="Text"
                                         valueExpr="Id">
                                     </dxo-lookup>
                                     </dxi-column>
-                                        <dxi-column [showEditorAlways]="true" dataField="Rashi" [width]="100" [setCellValue]="setRashiValue">
+                                        <dxi-column dataField="Rashi" [setCellValue]="setRashiValue">
                                     <dxo-lookup
                                             [dataSource]="getFilteredRashis"
                                             displayExpr="Text"

@@ -134,7 +134,6 @@ export class DepositWalletComponent {
     this.PurchaseAmount=(+WalletPurchase.PurchaseAmount)+this.bonusAmount;
     this.walletService.PurchaseWallet(WalletPurchase).subscribe((data) => {
       if (data.IsValid == true && data.PayModes == "ON") {
-        this.loadingSwitchService.loading=false;
         this.pay(data.ExtCode);
       }
       else if (data.IsValid == true && data.PayModes == "OFF") {
@@ -157,7 +156,6 @@ export class DepositWalletComponent {
       name: StorageService.GetItem('Name'),
       "handler": (response) => {
         this.paymentId = response.razorpay_payment_id;
-        this.loadingSwitchService.loading=true;
         var Payment = {
           PaymentId: this.paymentId
         }
@@ -185,18 +183,17 @@ export class DepositWalletComponent {
   }
 
   next(Payment) {
-    this.loadingSwitchService.loading=true;
     this.walletService.PaymentComplete(Payment).subscribe((data) => {
       if (data.Error == undefined) {
          this.loading = false;
         // this.router.navigate(['/purchase/walletPaymentSuccess'], { skipLocationChange: true });
       
         this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
-          this.loadingSwitchService.loading=false;
           if (data.Errors == undefined) {
             //IsValid: true 
             this.walletBalanceAmount = data;
             this.message='PaymentCompleted and Balance Updated';
+            this.loadingSwitchService.loading=false;
           }
         });
       }

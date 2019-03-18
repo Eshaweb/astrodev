@@ -131,7 +131,6 @@ export class AstamangalaComponent {
     private cdr: ChangeDetectorRef, public partyService: PartyService, public astamangalaService: AstamangalaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
     //this.serviceInfo =  horoScopeService.getCustomers();
-    this.maxDate = new Date(this.maxDate.setFullYear(this.maxDate.getFullYear() - 21));
     //this.genders = ["Male", "Female"];
     this.loginService.isHomePage=false;
     this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
@@ -651,16 +650,5 @@ export class AstamangalaComponent {
   public onDialogOKSelected(event) {
     event.dialog.close();
   }
-
-
-  maxDate: Date = new Date();
-  cityPattern = "^[^0-9]+$";
-  namePattern: any = /^[^0-9]+$/;
-  phonePattern: any = /^\+\s*1\s*\(\s*[02-9]\d{2}\)\s*\d{3}\s*-\s*\d{4}$/;
-  countries: string[];
-  phoneRules: any = {
-    X: /[02-9]/
-  }
-  now: Date = new Date();
 
 }

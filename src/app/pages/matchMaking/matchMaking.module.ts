@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule, DxNumberBoxModule } from 'devextreme-angular';
 import { MatchMakingRoutingModule } from './matchMaking-routing.module';
+import { ArchwizardModule } from 'angular-archwizard';
 
 
 @NgModule({
@@ -12,7 +13,7 @@ import { MatchMakingRoutingModule } from './matchMaking-routing.module';
         CommonModule,
         ReactiveFormsModule,
         FormsModule,
-        MatchMakingRoutingModule,
+        MatchMakingRoutingModule, ArchwizardModule,
         DxValidatorModule,DxButtonModule,DxValidationSummaryModule,
     DxDateBoxModule,DxSelectBoxModule,DxCheckBoxModule,
     DxTextBoxModule, DxRadioGroupModule, DxNumberBoxModule
