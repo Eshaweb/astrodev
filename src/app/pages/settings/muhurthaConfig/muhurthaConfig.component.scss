@@ -1,0 +1,24 @@
+.m-type{
+
+    width: 45%
+}
+
+
+
+
+@media (max-width: 800px) {
+.m-type{
+
+    width:95%;
+}
+.dx-field-label{
+
+    float: left;
+    width: 100%;
+}
+
+.dx-field-value{
+    float: left;
+    width: 100% !important;
+}
+}

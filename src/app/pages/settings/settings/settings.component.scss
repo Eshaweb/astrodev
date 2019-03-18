@@ -2,7 +2,7 @@
 
 .dx-card.responsive-paddings{
   padding: 40px;
-  width: 25% !important;
+  width: 50% !important;
   float: left !important;
   margin-left: 20px !important;
   margin-top: 10px;
@@ -11,6 +11,9 @@
 // img{
 //   width: 100px;;
 // }
+::ng-deep.dx-list-item:last-of-type {
+  border-bottom: 1px solid #ddd !important;
+}
 
 .responsive{
 width: 100%;

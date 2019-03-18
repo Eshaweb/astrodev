@@ -5,12 +5,14 @@
             <form>
              
                       
-                <div class="dx-fieldset" >      
+                <div class="dx-fieldset m-type" >      
                           
                            
                             <div class="dx-field" >
                                
-                                <div class="dx-field-label">
+                                <div class="dx-field-label">Muhurtha Type
+                                </div>
+                                <div class="dx-field-value">
                              
                         <dx-select-box id="MuhurthaType" name="MuhurthaType"   autofocus="autofocus" (onValueChanged)="onValueChanged($event)" 
                         [dataSource]="combosource"
@@ -28,86 +30,86 @@
                     <div class="dx-fieldset">
                         <div class="dx-field" *ngIf="isvisibleMoudyaMuhurtha" #items>
                             
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box   [(value)]="muhurthaConfig.MoudyaMuhurtha"    text="In Moudya Time Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
                         
                         <div class="dx-field" *ngIf="isvisibleAshada"  #items>
                          
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box  [(value)]="muhurthaConfig.Ashada" text="In Ashada Time Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
                         <div class="dx-field" *ngIf="isvisiblePushya" #items>
                        
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box   [(value)]=" muhurthaConfig.Pushya"    text="In Pousha Time Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
                         <div class="dx-field" *ngIf="isvisibleAdhikaMasa" #items>
                         
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box   [(value)]=" muhurthaConfig.AdhikaMasa"  text="In AdhikaMasa  Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
                         <div class="dx-field" *ngIf="isvisibleIncludeSouraMonth"  #items>
                         
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box  [(value)]=" muhurthaConfig.IncludeSouraMonth"   text="In SouraMasa  Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
                         <div class="dx-field" *ngIf="isvisibleIsRikthaThithi" #items>
                        
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box   [(value)]=" muhurthaConfig.IsRikthaThithi"   text="Riktha Tithi Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
                         <div class="dx-field" *ngIf="isvisibleRahuKala"  #items>
                        
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box  [(value)]=" muhurthaConfig.RahuKala"   text="In Rahu Kala Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
                         <div class="dx-field" *ngIf="isvisibleShalakaVedha" #items>
                           
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box  [(value)]=" muhurthaConfig.ShalakaVedha"  text="Shalakavedha Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
                         <div class="dx-field" *ngIf="isvisibleChandraInAnishta" #items>
                          
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box  [(value)]=" muhurthaConfig.ChandraInAnishta"    text="Chandra 6.8.12.Bhava From Lagna:  Muhurtha Reqd"></dx-check-box>
                             </div>
                         </div>  
                         <div class="dx-field" *ngIf="isvisibleDayTimeTithiNakshatra"  #items>
                           
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box  [(value)]=" muhurthaConfig.DayTimeTithiNakshatra"    text="Day Time Tithi/Nakshatra sandhi  Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
                         <div class="dx-field" *ngIf="isvisibleKundalaYoga" #items>
                           
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box   [(value)]=" muhurthaConfig.KundalaYoga"   text="Kundala Yoga Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
                         <div class="dx-field" *ngIf="isvisibleVedaDosha" #items>
                           
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box   [(value)]=" muhurthaConfig.VedaDosha" text="VedaDosha Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
                         <div class="dx-field" *ngIf="isvisibleKritika"   #items>
                          
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box [(value)]=" muhurthaConfig.Kritika"  text="Ravi In Kritika Nakshatra: Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
                         <div class="dx-field" *ngIf="isvisibleIsRaviInSapthama" #items>
                           
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box   [(value)]=" muhurthaConfig.IsRaviInSapthama"   text="Ravi in Sapthama: Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
@@ -115,20 +117,20 @@
                        
                         <div class="dx-field" *ngIf="isvisibleIsKujaInSapthama" #items>
                         
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box   [(value)]=" muhurthaConfig.IsKujaInSapthama"   text="Kuja in Sapthama: Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
                         <div class="dx-field" *ngIf="isvisibleIsShaniInSapthama" #items>
                          
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box   [(value)]=" muhurthaConfig.IsShaniInSapthama"   text="Shani in Sapthama: Muhurtha Required"></dx-check-box>
                             </div>
                         </div>  
 
                         <div class="dx-field" *ngIf="isvisibleIsRahuInSapthama" #items>
                           
-                            <div class="dx-field-label">
+                            <div class="dx-field-checkbox">
                                 <dx-check-box   [(value)]=" muhurthaConfig.IsRahuInSapthama" text="Rahu in Sapthama: Muhurtha Required"></dx-check-box>
                             </div>
                         </div>   
@@ -139,7 +141,7 @@
                         <div class="dx-field-label">
                             <dx-button
                               
-                                text="save"
+                                text="Save"
                                 (onClick)="save()">
                             </dx-button>
                         </div>
