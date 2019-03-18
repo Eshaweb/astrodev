@@ -20,9 +20,11 @@
 ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 16px;
   overflow: hidden;
-  background-color: rgb(241, 219, 19);
+  background-color:#f7d430;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
 }
 
 li {
@@ -31,10 +33,11 @@ li {
 
 li a {
   display: block;
-  color: white;
+  color: #383131;
   text-align: center;
-  padding: 14px 16px;
+  padding: 5px 16px;
   text-decoration: none;
+  border-right: 1px solid rgba(137,63,3, .40)
 }
 
 li a:hover:not(.active) {
