@@ -99,9 +99,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,
-    // {
-    //   preloadingStrategy: PreloadAllModules
-    // }
+    {
+      preloadingStrategy: PreloadAllModules
+    }
     ), 
     NgxLoadingModule.forRoot({}),
     //EventsModule.forRoot(),
