@@ -301,8 +301,13 @@ export class MuhurthaComponent {
         data: this.muhurthas,
         key: "Id"
       });
-      this.muhurthasvalue = this.muhurthas[0].Id;
-      this.vivahaSelected = true;
+      if(this.muhurthaService.muhurthaRequest != null){
+        this.muhurthasvalue = this.muhurthaService.muhurthaRequest.MuhurthaType;
+      }
+      else{
+        this.muhurthasvalue = this.muhurthas[0].Id;
+        this.vivahaSelected = true;
+      }
       this.loadingSwitchService.loading = false;
     });
     //this.stars=this.stars;
@@ -365,7 +370,7 @@ export class MuhurthaComponent {
       this.timeformatvalue = this.timeformats[0].Id;
       this.languagevalue = this.languages[2].Id;
       this.reportSizevalue = this.reportSizes[1].Id;
-      // this.muhurthasvalue = this.muhurthas[0].Id;
+      //this.muhurthasvalue = this.muhurthas[0].Id;
       this.yathradirectionsvalue = this.yathradirections[0].Id;
     }
 

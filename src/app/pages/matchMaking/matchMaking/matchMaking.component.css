@@ -1,3 +1,8 @@
+
+.centered-content {
+    margin: auto;
+    text-align: center;
+  }
 ::ng-deep #summary {
     padding-left: 10px;
     margin-top: 20px;
