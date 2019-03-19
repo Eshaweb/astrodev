@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { UIService } from 'src/Services/UIService/ui.service';
 import { PartyService } from 'src/Services/PartyService/PartyService';
+import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 
 @Component({
     selector: 'app-forgot',
@@ -17,7 +18,7 @@ export class ForgotComponent {
     passwordEntry: boolean;
     popupVisible: boolean;
     PasswordUpdated: string;
-    constructor(public loginService: LoginService, public formBuilder: FormBuilder, private partyService:PartyService,
+    constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, public formBuilder: FormBuilder, private partyService:PartyService,
         public route: ActivatedRoute, public router: Router, public uiService: UIService) {
         this.route.queryParams.subscribe(params => {
             this.UserToken = {
@@ -69,12 +70,14 @@ export class ForgotComponent {
         this.router.navigate(["/login-form"]);
     }
     OnSave_Click(){
+        this.loadingSwitchService.loading = true;
         var ResetPassword = {
             UserId: this.UserToken.userid,
             Password:this.passwordEntryForm.get('NewPassword').value,
             Token:this.UserToken.Token
           }
           this.partyService.ResetPassword(ResetPassword).subscribe((data:any)=>{
+            this.loadingSwitchService.loading = false;
             if (data.Errors == undefined) {
                 this.popupVisible=true;
                 this.PasswordUpdated='Password Changed Successfully';

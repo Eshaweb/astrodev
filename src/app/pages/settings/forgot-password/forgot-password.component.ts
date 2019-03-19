@@ -7,6 +7,7 @@ import { UIService } from 'src/Services/UIService/ui.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
+import { RegistrationService } from 'src/Services/registration/registration.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -41,7 +42,7 @@ export class ForgotPasswordComponent {
   isLoading: boolean;
   passwordEntryForm:FormGroup;
 
-  constructor(public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, public uiService: UIService, public partyService: PartyService,
+  constructor(public registrationService:RegistrationService,public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, public uiService: UIService, public partyService: PartyService,
       public route: ActivatedRoute, public _location: Location,
       public router: Router, public formBuilder: FormBuilder) {
       this.forgotPassword=true;    
@@ -128,12 +129,14 @@ export class ForgotPasswordComponent {
 
 }
   OnValidateOTP_click(){
+    this.loadingSwitchService.loading = true;
     var UserOTP = {
         UserName: this.forgotPasswordForm.get('UserName').value,
         OTP: this.userOTPValidateForm.get('OTP').value
       }
       this.partyService.ResetOTPValidate(UserOTP).subscribe((data:any)=>{
         if (data.Errors == undefined) {
+          this.loadingSwitchService.loading = false;
             this.Token=data.Token;
             this.UserId=data.UserId;
             this.OTPValidatedVisible=true;
@@ -145,12 +148,14 @@ export class ForgotPasswordComponent {
   }
 
   OnSave_Click(){
+    this.loadingSwitchService.loading = true;
     var ResetPassword = {
         UserId: this.UserId,
         Password:this.passwordEntryForm.get('NewPassword').value,
         Token:this.Token
       }
       this.partyService.ResetPassword(ResetPassword).subscribe((data:any)=>{
+        this.loadingSwitchService.loading = false;
         if (data.Errors == undefined) {
             this.popupVisible=true;
             this.OTPValidated='Password Changed Successfully';
@@ -163,6 +168,10 @@ export class ForgotPasswordComponent {
     var UserName = {
       UserName: this.forgotPasswordForm.get('UserName').value
     }
-    
+    this.registrationService.ResendUserOTP(UserName).subscribe((data: any) => {
+      if (data.Errors == undefined) {
+        this.SMSOTPType = 'Please enter OTP And Submit';
+      }
+    });
   }
 }

@@ -18,12 +18,9 @@ import { PartyService } from 'src/Services/PartyService/PartyService';
 })
 export class ChangePasswordComponent {
   public loading = false;
-  EMailOTPType: string;
-  SMSOTPType: string;
   value: string;
     popupVisible: boolean;
     uservalidateForm: FormGroup;
-    OTPValidated: string;
     OTPValidatedVisible: boolean;
     message: string;
     changePasswordSuccessful: boolean;
@@ -45,7 +42,7 @@ export class ChangePasswordComponent {
   isLoading: boolean;
 
 
-  constructor(public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, public uiService: UIService, public partyService: PartyService,
+  constructor(public registrationService:RegistrationService,public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, public uiService: UIService, public partyService: PartyService,
       public route: ActivatedRoute, public _location: Location,
       public router: Router, public formBuilder: FormBuilder) {
       this.changePasswordForm = this.formBuilder.group({
@@ -128,12 +125,28 @@ export class ChangePasswordComponent {
           UserName: this.changePasswordForm.get('UserName').value,
           OTP:this.uservalidateForm.get('OTP').value
     }
-    
+    this.registrationService.ValidateUserByOTP(UserOTP).subscribe((data:any)=>{
+        this.loadingSwitchService.loading = false;
+        if (data.Errors == undefined) {
+            this.OTPValidatedVisible=true;
+            //this.OTPValidated='OTP Validated Successfully';
+            //document.getElementById('message').innerHTML = 'OTP Validated Successfully';
+            this.router.navigate(["/login-form"]);
+        }
+    });
   }
   ResendOTP_click(){
     var UserName = {
       UserName: this.changePasswordForm.get('UserName').value
     }
-    
+    this.registrationService.ResendUserOTP(UserName).subscribe((data: any) => {
+        if (data.Errors == undefined) {
+          this.message = 'Please enter OTP And Submit';
+
+        }
+      });
+  }
+  gotoServies(){
+    this.router.navigate(["/services"]);
   }
 }
