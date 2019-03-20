@@ -58,8 +58,10 @@
 
 <form *ngIf='SMSOTPType' [formGroup]="uservalidateForm">
         <p>{{message}}</p>
+        <p style="color:green;">{{EMailOTPType}}</p>
+<p style="color:green;">{{SMSOTPType}}</p>
     <div class="dx-field">
-        <dx-text-box mode="password" formControlName="OTP" placeholder="OTP" width="100%">
+        <dx-text-box mode="password" formControlName="OTP" placeholder="Enter OTP" width="100%">
         </dx-text-box>
         <p style="color:red;" id='err_OTP'></p>
         <a (click)="ResendOTP_click()">Resend OTP</a>
@@ -70,8 +72,7 @@
 
     </div>
 </form>
-<p style="color:green;">{{EMailOTPType}}</p>
-<p style="color:green;">{{SMSOTPType}}</p>
+
 
     <!-- <dx-popup
     class="popup"

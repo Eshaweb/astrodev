@@ -16,6 +16,7 @@
             <dx-text-box mode="password" formControlName="confirm_NewPassword" placeholder="Re Enter New Password" width="100%">
             </dx-text-box>
             <p style="color:red;" id='err_confirm_NewPassword'></p>
+            <p style="color:red" *ngIf="passwordEntryForm.errors?.notSame">Passwords do not match</p>
         </div>
         <div class="dx-field">
             <dx-button type="default" text="Save" (onClick)="OnSave_Click()"[disabled]="!passwordEntryForm.valid" width="100%"></dx-button>

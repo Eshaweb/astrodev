@@ -290,9 +290,55 @@ export class LoginFormComponent {
     }
     this.registrationService.ValidateUserByOTP(UserOTP).subscribe((data: any) => {
       if (data.Errors == undefined) {
-        this.popUpVisible = true;
-        this.title= 'Thank you';
-        this.message = 'OTP Validated Successfully. Please Login';
+        //this.popUpVisible = true;
+        // this.title= 'Thank you';
+        // this.message = 'OTP Validated Successfully. Please Login';
+        const loginModel = {
+          UserName: this.loginForm.get('UserName').value,
+          Password: this.loginForm.get('Password').value
+        }
+        this.loginService.Login(loginModel).subscribe((data) => {
+          if (data.Errors == undefined) {
+            this.registrationService.registered = false;
+            this.loadingSwitchService.loading = false;
+            if (data.IsActivated == true) {
+              this.loginService.PartyMastId = data.PartyMastId;
+              if(data.Token!=undefined&&data.PartyMastId!=undefined){
+                this.loginService.Token = data.Token;
+                this.loginService.Name = data.Name;
+                StorageService.SetItem('Token',data.Token);
+                StorageService.SetItem('PartyMastId',data.PartyMastId);
+                StorageService.SetItem('Name',data.Name);
+                this.loginService.userProfileVisible = true;
+                if (window.innerWidth < 768) {
+                  this.loginService.menuItems = navigationAfterLogin;
+                }
+                else{
+                  this.loginService.menuItems = navigationAfterLoginForSystem;
+                  this.loginService.serviceMenus= serviceMenusAfterLogin;
+                  this.loginService.serviceList= serviceListAfterLogin;
+                }
+               // this.loginService.navBarData = menusAfterLogin;
+                this.close.emit("hi");
+               
+                if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined|| this.storageService.GetHoroResponse('#MU') != undefined) {
+                  // this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
+                  this.router.navigate(["/purchase/paidServices"]);
+                }
+                else {
+                  this.loadingSwitchService.loading = false;
+                  if (this.loginService.path != undefined) {
+                    this.router.navigate([this.loginService.path]);
+                  }
+                  else{
+                    this.router.navigate(["/services"]);
+                  } 
+                }
+              }
+            }
+          }
+        });
+
         this.needtoEnterOTP = false;
       }
     });

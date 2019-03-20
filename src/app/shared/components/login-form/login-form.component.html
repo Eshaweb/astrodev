@@ -59,13 +59,18 @@
 <form *ngIf='needtoEnterOTP' [formGroup]="uservalidateForm">
     <p>{{message}}</p>
     <div class="dx-field">
-        <dx-text-box mode="password" formControlName="OTP" placeholder="OTP" width="100%">
+        <dx-text-box mode="password" formControlName="OTP" placeholder="Enter OTP" width="100%">
         </dx-text-box>
         <p style="color:red;" id='err_OTP'></p>
+        <p style="color:red;" id='err_OTPRef'></p>
         <a (click)="ResendOTP_click()">Resend OTP</a>
     </div>
     <div class="dx-field">
+<<<<<<< HEAD
         <dx-button  text="Submit" (onClick)="ValidateUserByOTP()"[disabled]="!uservalidateForm.valid" width="100%"></dx-button>
+=======
+        <dx-button text="Submit" (onClick)="ValidateUserByOTP()"[disabled]="!uservalidateForm.valid" width="100%"></dx-button>
+>>>>>>> d5603ff642bb8794bcd0713b917b600863f9a79b
         
     
     </div>
