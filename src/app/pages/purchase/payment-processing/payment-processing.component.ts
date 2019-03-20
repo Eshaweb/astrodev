@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
-import { interval } from 'rxjs';
+import { interval, Observable, timer } from 'rxjs';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
@@ -14,108 +14,68 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 })
 export class PaymentProcessingComponent implements OnInit, OnDestroy {
   ShowMessage: string;
-  enableDownload: boolean;
-  enableRefresh: boolean;
-  buttonName: string;
   buttonId: any;
   loading: boolean;
   sub: any;
   showSuccess: boolean;
+  countDown;
+  counter = 20;
+  tick = 1000;
+  constructor(public storageService:StorageService,private orderService:OrderService,private loadingSwitchService:LoadingSwitchService,
+    public location: Location,public router: Router, public horoScopeService: HoroScopeService) {
 
-  constructor(public storageService:StorageService,private orderService:OrderService,private loadingSwitchService:LoadingSwitchService,public location: Location,public router: Router, public horoScopeService: HoroScopeService) {
-    this.enableDownload = true;
-    // if (this.horoScopeService.resultResponse.Refresh == true) {
-    //   this.enableRefresh = true;
-    //   this.enableDownload = false;
-    //   this.buttonName = 'Click Refresh';
-    // }
-    // else {
-    //   this.enableRefresh = false;
-    //   this.enableDownload = true;
-    //   this.buttonName = this.horoScopeService.resultResponse.AstroReportId[0];
-    // }
   }
-  Refresh_Click() {
-    this.loading = true;
-    //this.loadingSwitchService.loading=true;
-    
-  }
+  
   ngOnInit() {
     //this.loading = true;
     this.loadingSwitchService.loading=true;
     // this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
     this.orderService.CheckForResult(StorageService.GetItem('OrderId')).subscribe((data) => {
     if (data.AstroReportId.length != 0) {
-        this.enableRefresh = false;
-        this.enableDownload = true;
-        this.buttonName = data.AstroReportId[0].split('_')[1];
+        this.loadingSwitchService.loading=false;
         this.buttonId = data.AstroReportId[0].split('_')[0];
-        this.horoScopeService.DownloadResult(this.buttonId, (data) => {
-          var newBlob = new Blob([data], { type: "application/pdf" });
-          // const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
-          const fileName: string = this.storageService.GetOrderResponse().ItName+'.pdf';
-          //const fileName: string = 'horo.pdf';
-          const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
-          var url = window.URL.createObjectURL(newBlob);
-          a.href = url;
-          a.download = fileName;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-          //this.loading = false;
-          this.loadingSwitchService.loading=false;
-          this.showSuccess=true;
-          this.clearParameters();
-          this.storageService.RemoveDataFromSession();
-        });
+        this.DownloadResult(this.buttonId);
       }
       else {
-        this.enableRefresh = true;
-        this.enableDownload = false;
-        this.buttonName = 'Click Refresh';
         this.sub=interval(10000).subscribe((val) =>{
+          this.countDown = timer(0, this.tick);
           // this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
           this.orderService.CheckForResult(StorageService.GetItem('OrderId')).subscribe((data) => {
           if (data.AstroReportId.length != 0) {
-              this.enableRefresh = false;
-              this.enableDownload = true;
-              this.buttonName = data.AstroReportId[0].split('_')[1];
+              this.loadingSwitchService.loading=false;
               this.buttonId = data.AstroReportId[0].split('_')[0];
-              this.horoScopeService.DownloadResult(this.buttonId, (data) => {
-                var newBlob = new Blob([data], { type: "application/pdf" });
-                // const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
-                const fileName: string = this.storageService.GetOrderResponse().ItName+'.pdf';
-                const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
-                var url = window.URL.createObjectURL(newBlob);
-                a.href = url;
-                a.download = fileName;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                //this.loading = false;
-                this.loadingSwitchService.loading=false;
-                this.showSuccess=true;
-                this.clearParameters();
-                this.storageService.RemoveDataFromSession();
-                this.sub.unsubscribe();
-              });
-            }
-            else {
-              this.enableRefresh = true;
-              this.enableDownload = false;
-              this.buttonName = 'Click Refresh';
+              this.DownloadResult(this.buttonId);
             }
           });
         });
-       
       }
     });
     this.horoScopeService.horoRequest =null;
   }
-  public onDialogOKSelected(event) {
-    event.dialog.close();
+  DownloadResult(buttonId){
+    this.horoScopeService.DownloadResult(buttonId, (data) => {
+      var newBlob = new Blob([data], { type: "application/pdf" });
+      // const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
+      const fileName: string = this.storageService.GetOrderResponse().ItName+'.pdf';
+      const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+      var url = window.URL.createObjectURL(newBlob);
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      //this.loading = false;
+      this.showSuccess=true;
+      this.clearParameters();
+      this.storageService.RemoveDataFromSession();
+      this.sub.unsubscribe();
+      console.clear();
+    });
+  }
+  clearParameters(){
+    this.horoScopeService.birthplace='';
+    this.orderService.orderResponse=null;
   }
   ngOnDestroy(): void {
     // window.location.pathname='/home';
@@ -139,28 +99,5 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
     location.reload(true);
     //this.router.navigate(['/home']);
     //window.history.forward();
-  }
-  clearParameters(){
-    this.horoScopeService.birthplace='';
-    this.orderService.orderResponse=null;
-
-  }
-  Download_Click() {
-    //this.loading = true;
-    this.loadingSwitchService.loading=true;
-    this.horoScopeService.DownloadResult(this.buttonId, (data) => {
-      var newBlob = new Blob([data], { type: "application/pdf" });
-      const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
-      const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
-      var url = window.URL.createObjectURL(newBlob);
-      a.href = url;
-      a.download = fileName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      //this.loading = false;
-      this.loadingSwitchService.loading=false;
-    });  
   }
 }

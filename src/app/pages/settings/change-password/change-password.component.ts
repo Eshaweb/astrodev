@@ -120,32 +120,31 @@ export class ChangePasswordComponent {
   ngOnDestroy(): void {
 
 }
-  ValidateUserByOTP(){
-    var UserOTP={
-          UserName: this.changePasswordForm.get('UserName').value,
-          OTP:this.uservalidateForm.get('OTP').value
-    }
-    this.registrationService.ValidateUserByOTP(UserOTP).subscribe((data:any)=>{
-        this.loadingSwitchService.loading = false;
-        if (data.Errors == undefined) {
-            this.OTPValidatedVisible=true;
-            //this.OTPValidated='OTP Validated Successfully';
-            //document.getElementById('message').innerHTML = 'OTP Validated Successfully';
-            this.router.navigate(["/login-form"]);
-        }
-    });
-  }
-  ResendOTP_click(){
-    var UserName = {
-      UserName: this.changePasswordForm.get('UserName').value
-    }
-    this.registrationService.ResendUserOTP(UserName).subscribe((data: any) => {
-        if (data.Errors == undefined) {
-          this.message = 'Please enter OTP And Submit';
-
-        }
-      });
-  }
+//   ValidateUserByOTP(){
+//     var UserOTP={
+//           UserName: this.changePasswordForm.get('UserName').value,
+//           OTP:this.uservalidateForm.get('OTP').value
+//     }
+//     this.registrationService.ValidateUserByOTP(UserOTP).subscribe((data:any)=>{
+//         this.loadingSwitchService.loading = false;
+//         if (data.Errors == undefined) {
+//             this.OTPValidatedVisible=true;
+//             //this.OTPValidated='OTP Validated Successfully';
+//             //document.getElementById('message').innerHTML = 'OTP Validated Successfully';
+//             this.router.navigate(["/login-form"]);
+//         }
+//     });
+//   }
+//   ResendOTP_click(){
+//     var UserName = {
+//       UserName: this.changePasswordForm.get('UserName').value
+//     }
+//     this.registrationService.ResendUserOTP(UserName).subscribe((data: any) => {
+//         if (data.Errors == undefined) {
+//           this.message = 'Please enter OTP And Submit';
+//         }
+//       });
+//   }
   gotoServies(){
     this.router.navigate(["/services"]);
   }

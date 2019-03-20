@@ -203,4 +203,7 @@ export class DepositWalletComponent {
       }
     });
   }
+  gotoServies(){
+    this.router.navigate(["/services"]);
+  }
 }
