@@ -25,13 +25,6 @@ export class ChangePasswordComponent {
     message: string;
     changePasswordSuccessful: boolean;
  
-  public onDialogOKSelected(event) {
-      event.dialog.close();
-  }
-  
-  public progresChanged(progress) {
-
-  }
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   changePasswordForm: FormGroup;
   mobilenoMessage: string;
@@ -60,12 +53,6 @@ export class ChangePasswordComponent {
       const confirm_NewPasswordControl = this.changePasswordForm.get('confirm_NewPassword');
       confirm_NewPasswordControl.valueChanges.subscribe(value => this.setErrorMessage(confirm_NewPasswordControl));
 
-      this.uservalidateForm = this.formBuilder.group({
-        //UserName: [null, [Validators.required, Validators.minLength(8)]],
-        OTP: ['', [Validators.required]],
-    });
-    const OTPControl = this.uservalidateForm.get('OTP');
-    OTPControl.valueChanges.subscribe(value => this.setErrorMessage(OTPControl));
     }
   setErrorMessage(c: AbstractControl): void {
       let control = this.uiService.getControlName(c);
@@ -120,31 +107,7 @@ export class ChangePasswordComponent {
   ngOnDestroy(): void {
 
 }
-//   ValidateUserByOTP(){
-//     var UserOTP={
-//           UserName: this.changePasswordForm.get('UserName').value,
-//           OTP:this.uservalidateForm.get('OTP').value
-//     }
-//     this.registrationService.ValidateUserByOTP(UserOTP).subscribe((data:any)=>{
-//         this.loadingSwitchService.loading = false;
-//         if (data.Errors == undefined) {
-//             this.OTPValidatedVisible=true;
-//             //this.OTPValidated='OTP Validated Successfully';
-//             //document.getElementById('message').innerHTML = 'OTP Validated Successfully';
-//             this.router.navigate(["/login-form"]);
-//         }
-//     });
-//   }
-//   ResendOTP_click(){
-//     var UserName = {
-//       UserName: this.changePasswordForm.get('UserName').value
-//     }
-//     this.registrationService.ResendUserOTP(UserName).subscribe((data: any) => {
-//         if (data.Errors == undefined) {
-//           this.message = 'Please enter OTP And Submit';
-//         }
-//       });
-//   }
+
   gotoServies(){
     this.router.navigate(["/services"]);
   }

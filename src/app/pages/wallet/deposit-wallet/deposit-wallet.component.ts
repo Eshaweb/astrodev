@@ -160,6 +160,7 @@ export class DepositWalletComponent {
           PaymentId: this.paymentId
         }
         this.next(Payment);
+        this.loadingSwitchService.loading=false;
       },
       prefill: {
         email: 'shailesh@eshaweb.com',
@@ -183,12 +184,15 @@ export class DepositWalletComponent {
   }
 
   next(Payment) {
+    this.loadingSwitchService.loading=false;
     this.walletService.PaymentComplete(Payment).subscribe((data) => {
+      this.loadingSwitchService.loading=false;
       if (data.Error == undefined) {
          this.loading = false;
         // this.router.navigate(['/purchase/walletPaymentSuccess'], { skipLocationChange: true });
-      
+        this.loadingSwitchService.loading=false;
         this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
+          this.loadingSwitchService.loading=false;
           if (data.Errors == undefined) {
             //IsValid: true 
             this.walletBalanceAmount = data;

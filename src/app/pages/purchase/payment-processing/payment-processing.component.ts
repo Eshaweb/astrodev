@@ -21,9 +21,11 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   countDown;
   counter = 20;
   tick = 1000;
+  timeExceeded: boolean;
+  OrderId: string;
   constructor(public storageService:StorageService,private orderService:OrderService,private loadingSwitchService:LoadingSwitchService,
     public location: Location,public router: Router, public horoScopeService: HoroScopeService) {
-
+this.OrderId=StorageService.GetItem('OrderId');
   }
   
   ngOnInit() {
@@ -37,8 +39,16 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
         this.DownloadResult(this.buttonId);
       }
       else {
+        const source = timer(1000, 1000);
+        const subscribe =source.subscribe(val =>{
+          if(val==2) {
+            this.loadingSwitchService.loading=false;
+            this.sub.unsubscribe();
+            subscribe.unsubscribe();
+            this.timeExceeded=true;
+          }
+        });
         this.sub=interval(10000).subscribe((val) =>{
-          this.countDown = timer(0, this.tick);
           // this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
           this.orderService.CheckForResult(StorageService.GetItem('OrderId')).subscribe((data) => {
           if (data.AstroReportId.length != 0) {
@@ -76,6 +86,9 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   clearParameters(){
     this.horoScopeService.birthplace='';
     this.orderService.orderResponse=null;
+  }
+  gotoOrderHistory(){
+    this.router.navigate(['/settings/orderHistory']);
   }
   ngOnDestroy(): void {
     // window.location.pathname='/home';
