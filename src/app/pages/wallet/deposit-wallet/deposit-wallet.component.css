@@ -1,5 +1,6 @@
 .two-column{
-display: flex;
+/* display: flex; */
+width: 45%;
 
 
 }
@@ -9,7 +10,10 @@ display: flex;
     color  :green;
 }
 
+h3{
 
+    color: #d15b2f;
+}
 .centre {
    
     text-align: center !important;
@@ -19,4 +23,14 @@ display: flex;
     background-color: #e07333;
     border-color: transparent;
     color: #fff;
+  }
+
+  @media (max-width: 800px) {
+
+    .two-column{
+        /* display: flex; */
+        width: 90%;
+        
+        
+        }
   }
