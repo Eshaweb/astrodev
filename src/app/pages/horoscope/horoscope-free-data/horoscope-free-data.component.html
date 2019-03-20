@@ -11,22 +11,22 @@
             <div class="dx-field" [ngClass]="getFont(horoModel.LangCode)">
                 <div class="dx-field-label">{{ caption.ShakaVarsha}}</div>
                 <div class="dx-field-label">
-                  :{{horoResponse.ShakaVarsha}}
+                    <span>:&nbsp;&nbsp;</span>{{horoResponse.ShakaVarsha}}
                 </div>  
             </div>
             <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
                 <div class="dx-field-label">  {{ caption.Samvathsara}}</div>
-                <div class="dx-field-label">   :{{horoResponse.Samvathsara}}
+                <div class="dx-field-label"> <span>:&nbsp;&nbsp;</span>{{horoResponse.Samvathsara}}
                   </div>
             </div>
             <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                <div class="dx-field-label">  {{ caption.Ruthu}}:</div>
-                <div class="dx-field-label">  {{horoResponse.Ruthu}}
+                <div class="dx-field-label">  {{ caption.Ruthu}}</div>
+                <div class="dx-field-label">  <span>:&nbsp;&nbsp;</span>{{horoResponse.Ruthu}}
                 </div>
             </div>
             <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                    <div class="dx-field-label">  {{caption.SouraMasa}}:</div>
-                    <div class="dx-field-label">  {{horoResponse.SouraMasa}}
+                    <div class="dx-field-label">  {{caption.SouraMasa}}</div>
+                    <div class="dx-field-label">  <span>:&nbsp;&nbsp;</span>{{horoResponse.SouraMasa}}
                     </div>
                 </div>
         </div>
@@ -35,25 +35,25 @@
         <div class="dx-fieldset-column">
               
                 <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                    <div class="dx-field-label">  {{ caption.Kollam}}:</div>
-                    <div class="dx-field-label">{{horoResponse.Kollam}}
+                    <div class="dx-field-label">  {{ caption.Kollam}}</div>
+                    <div class="dx-field-label"><span>:&nbsp;&nbsp;</span>{{horoResponse.Kollam}}
                     </div>
                 </div>
                 <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                    <div class="dx-field-label"> {{ caption.Aayana}}:</div>
-                    <div class="dx-field-label"> {{ horoResponse.Aayana}}
+                    <div class="dx-field-label"> {{ caption.Aayana}}</div>
+                    <div class="dx-field-label"><span>:&nbsp;&nbsp;</span> {{ horoResponse.Aayana}}
                        
                     </div>
                 </div>
                 <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                    <div class="dx-field-label">  {{ caption.ChandraMasa}}:</div>
-                    <div class="dx-field-label">  {{ horoResponse.ChandraMasa}}
+                    <div class="dx-field-label">  {{ caption.ChandraMasa}}</div>
+                    <div class="dx-field-label"> <span>:&nbsp;&nbsp;</span> {{ horoResponse.ChandraMasa}}
                         
                     </div>
                 </div>
                 <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                        <div class="dx-field-label">{{ caption.Paksha}}:</div>
-                        <div class="dx-field-label">{{ horoResponse.Paksha}}
+                        <div class="dx-field-label">{{ caption.Paksha}}</div>
+                        <div class="dx-field-label"><span>:&nbsp;&nbsp;</span>{{ horoResponse.Paksha}}
                             
                         </div>
                     </div>
@@ -65,42 +65,42 @@
                
                    
                     <div class="dx-field "[ngClass]="getFont(horoModel.LangCode)" *ngIf="horoModel.LangCode!='TAM'">
-                        <div class="cap"  > {{ caption.MahaNakshatra}}:</div>
+                        <div class="cap"  > {{ caption.MahaNakshatra}}</div>
                         <div class="data">
-                          {{ horoResponse.MahaNakshatra}}
+                            <span>:&nbsp;&nbsp;</span>  {{ horoResponse.MahaNakshatra}}
                         </div>
                     </div>
                     <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                        <div class="cap"> {{caption.NityaTithi}}:</div>
-                        <div class="data"> {{ horoResponse.NityaTithi}}
+                        <div class="cap"> {{caption.NityaTithi}}</div>
+                        <div class="data"> <span>:&nbsp;&nbsp;</span>{{ horoResponse.NityaTithi}}
                           </div>
                     </div>
                     <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                        <div class="cap"> {{ caption.NityaNakshatra}}:</div>
-                        <div class="data">{{ horoResponse.NityaNakshatra}}
+                        <div class="cap"> {{ caption.NityaNakshatra}}</div>
+                        <div class="data"><span>:&nbsp;&nbsp;</span>{{ horoResponse.NityaNakshatra}}
                         </div>
                     </div>
                     <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                            <div class="cap">{{ caption.ChandrarkaYoga}}:</div>
-                            <div class="data">{{ horoResponse.ChandrarkaYoga}}
+                            <div class="cap">{{ caption.ChandrarkaYoga}}</div>
+                            <div class="data"><span>:&nbsp;&nbsp;</span>{{ horoResponse.ChandrarkaYoga}}
                             </div>
                         </div>
              
                 <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-                  <div class="cap">{{ caption.NityaKarana}}:</div>
-                  <div class="data">{{ horoResponse.NityaKarana}}
+                  <div class="cap">{{ caption.NityaKarana}}</div>
+                  <div class="data"><span>:&nbsp;&nbsp;</span>{{ horoResponse.NityaKarana}}
                   </div>
               </div>
      
       <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-          <div class="cap">{{ caption.VishaGhati}}:</div>
-          <div class="data">{{ horoResponse.VishaGhati}}
+          <div class="cap">{{ caption.VishaGhati}}</div>
+          <div class="data"><span>:&nbsp;&nbsp;</span>{{ horoResponse.VishaGhati}}
           </div>
       </div>
 
 <div class="dx-field " [ngClass]="getFont(horoModel.LangCode)">
-  <div class="cap">{{ caption.AmrithaGhati}}:</div>
-  <div class="data">{{ horoResponse.AmrithaGhati}}
+  <div class="cap">{{ caption.AmrithaGhati}}</div>
+  <div class="data"><span>:&nbsp;&nbsp;</span>{{ horoResponse.AmrithaGhati}}
   </div>
 </div>
 </div>
