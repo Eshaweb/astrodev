@@ -201,7 +201,7 @@ export class RegistrationFormComponent {
     }
     this.registrationService.ResendUserOTP(UserName).subscribe((data: any) => {
       if (data.Errors == undefined) {
-        this.message = 'Please enter OTP And Submit';
+        this.SMSOTPType = 'Please enter OTP And Submit';
       }
     });
   }

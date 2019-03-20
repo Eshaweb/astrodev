@@ -9,10 +9,12 @@
         <div>Sign In to your account</div>
     </div>
     <form *ngIf='!needtoEnterOTP' [formGroup]="loginForm">
+            <p style="color:green;">{{message}}</p>
     <div class="dx-field">
         <dx-text-box [(value)]="login" formControlName="UserName" placeholder="Mobile No / Email" width="100%">
         </dx-text-box>
         <p style="color:red;font-size: 12px;" id='err_UserName'></p>
+        <p style="color:red;font-size: 12px;" id='err_MobileNo'></p>
     </div>
    <div class="twocol">
     <div class="dx-field" style="margin-right: 12px;" >
@@ -25,7 +27,7 @@
 
     <div class="dx-field">
         <dx-button type="default" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" width="100%"></dx-button>
-        <dx-button type="default" text="Re-generate OTP" *ngIf='isOTPRequested' (onClick)="onRegenerateOTP()" width="100%"></dx-button>
+        <dx-button type="default" text="Resend OTP" *ngIf='isOTPRequested' (onClick)="onRegenerateOTP()" width="100%"></dx-button>
     </div>
 </div>
 <div class="clear"></div>

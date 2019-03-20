@@ -122,6 +122,7 @@ export class LoginFormComponent {
   setErrorMessage(c: AbstractControl): void {
     let control = this.uiService.getControlName(c);
     document.getElementById('err_' + control).innerHTML = '';//To not display the error message, if there is no error.
+    document.getElementById('err_MobileNo').innerHTML='';
     if ((c.touched || c.dirty) && c.errors) {
       document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
     }
@@ -157,16 +158,24 @@ export class LoginFormComponent {
       document.getElementById('err_UserName').innerHTML = 'Please Enter Mobile Number'
     }
     else{
-      this.isOTPRequested = true;
+      this.loadingSwitchService.loading = true;
       var GetOTP={
         MobileNo:this.loginForm.get('UserName').value
       }
       this.loginService.GetOTP(GetOTP).subscribe((data:any)=>{
+        if (data.Errors==undefined) {
+        this.isOTPRequested = true;
         this.loginService.oTPRef=data;
-        this.popUpVisible=true;
-        this.title='Note';
-        this.message='You Received an OTP with Reference No.'+this.loginService.oTPRef;
+        //this.popUpVisible=true;
+        //this.title='Note';
+        //this.message='You Received an OTP with Reference No.'+this.loginService.oTPRef;
+        this.message='You will get an OTP. Please enter it';
         this.loginForm.controls['Password'].setValue('');
+        }
+        this.loadingSwitchService.loading = false;
+      },(error)=>{
+        this.isOTPRequested = false;
+        this.loadingSwitchService.loading = false;
       });
     }
   }
@@ -180,58 +189,62 @@ export class LoginFormComponent {
         UserName: this.loginForm.get('UserName').value,
         Password: this.loginForm.get('Password').value
       }
-      this.loginService.Login(loginModel).subscribe((data) => {
-        if (data.Errors == undefined) {
-          this.registrationService.registered = false;
-          this.loadingSwitchService.loading = false;
-          if (data.IsActivated == false) {
-            this.needtoEnterOTP = true;
-            this.title='Alert';
-            this.message= 'Please Enter OTP(since you loginnig for the first time)';
-          }
-          else if (data.IsActivated == true) {
-            this.loginService.PartyMastId = data.PartyMastId;
-            if(data.Token!=undefined&&data.PartyMastId!=undefined){
-              this.loginService.Token = data.Token;
-              this.loginService.Name = data.Name;
-              StorageService.SetItem('Token',data.Token);
-              StorageService.SetItem('PartyMastId',data.PartyMastId);
-              StorageService.SetItem('Name',data.Name);
-              this.loginService.userProfileVisible = true;
-              if (window.innerWidth < 768) {
-                this.loginService.menuItems = navigationAfterLogin;
-              }
-              else{
-                this.loginService.menuItems = navigationAfterLoginForSystem;
-                this.loginService.serviceMenus= serviceMenusAfterLogin;
-                this.loginService.serviceList= serviceListAfterLogin;
-              }
-             // this.loginService.navBarData = menusAfterLogin;
-              this.close.emit("hi");
-              // if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
-              //   this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
-              // }
-              if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined|| this.storageService.GetHoroResponse('#MU') != undefined) {
-                // this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
-                this.router.navigate(["/purchase/paidServices"]);
-              }
-              else {
-                this.loadingSwitchService.loading = false;
-                if (this.loginService.path != undefined) {
-                  this.router.navigate([this.loginService.path]);
-                }
-                else{
-                  this.router.navigate(["/services"]);
-                } 
-              }
-            }
-          }
-        }
-        else {
-          this.loadingSwitchService.loading = false;
-        }
-      });
-
+      // this.loginService.Login(loginModel).subscribe((data) => {
+      //   if (data.Errors == undefined) {
+      //     this.registrationService.registered = false;
+      //     this.loadingSwitchService.loading = false;
+      //     if (data.IsActivated == false) {
+      //       this.needtoEnterOTP = true;
+      //       this.title='Alert';
+      //       this.message= 'Please Enter OTP(since you loginnig for the first time)';
+      //     }
+      //     else if (data.IsActivated == true) {
+      //       this.loginService.PartyMastId = data.PartyMastId;
+      //       if(data.Token!=undefined&&data.PartyMastId!=undefined){
+      //         this.loginService.Token = data.Token;
+      //         this.loginService.Name = data.Name;
+      //         StorageService.SetItem('Token',data.Token);
+      //         StorageService.SetItem('PartyMastId',data.PartyMastId);
+      //         StorageService.SetItem('Name',data.Name);
+      //         this.loginService.userProfileVisible = true;
+      //         if (window.innerWidth < 768) {
+      //           this.loginService.menuItems = navigationAfterLogin;
+      //         }
+      //         else{
+      //           this.loginService.menuItems = navigationAfterLoginForSystem;
+      //           this.loginService.serviceMenus= serviceMenusAfterLogin;
+      //           this.loginService.serviceList= serviceListAfterLogin;
+      //         }
+      //        // this.loginService.navBarData = menusAfterLogin;
+      //         this.close.emit("hi");
+      //         // if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
+      //         //   this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
+      //         // }
+      //         if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined|| this.storageService.GetHoroResponse('#MU') != undefined) {
+      //           // this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
+      //           this.router.navigate(["/purchase/paidServices"]);
+      //         }
+      //         else {
+      //           this.loadingSwitchService.loading = false;
+      //           if (this.loginService.path != undefined) {
+      //             this.router.navigate([this.loginService.path]);
+      //           }
+      //           else{
+      //             this.router.navigate(["/services"]);
+      //           } 
+      //         }
+      //       }
+      //     }
+      //   }
+      //   else {
+      //     this.loadingSwitchService.loading = false;
+      //     this.loginForm.controls['UserName'].setValue('');
+      //     this.loginForm.controls['Password'].setValue('');
+      //     document.getElementById('err_UserName').innerHTML='';
+      //     document.getElementById('err_Password').innerHTML='';
+      //   }
+      // });
+      this.Login(loginModel);
     }
     else {
       this.oTPRef = this.loginService.oTPRef;
@@ -240,7 +253,7 @@ export class LoginFormComponent {
         OTPRef: this.oTPRef,
         OTP: this.loginForm.get('Password').value
       }
-      this.loadingSwitchService.loading = false;
+      this.loadingSwitchService.loading = true;
       this.loginService.ValidateOTP(oTPModel).subscribe((data:any)=>{
         this.loginService.PartyMastId = data.PartyMastId;
         if(data.Token!=undefined&&data.PartyMastId!=undefined){
@@ -273,6 +286,7 @@ export class LoginFormComponent {
             } 
           }
         }
+        this.loadingSwitchService.loading = false;
       });
     }
   }
@@ -282,7 +296,63 @@ export class LoginFormComponent {
   goToLoginByOTP() {
     this.isLoginByOTP = true;
   }
-  
+  Login(loginModel){
+    this.loginService.Login(loginModel).subscribe((data) => {
+      if (data.Errors == undefined) {
+        this.registrationService.registered = false;
+        this.loadingSwitchService.loading = false;
+        if (data.IsActivated == false) {
+          this.needtoEnterOTP = true;
+          this.title='Alert';
+          this.message= 'Please Enter OTP(since you loginnig for the first time)';
+        }
+        else if (data.IsActivated == true) {
+          this.loginService.PartyMastId = data.PartyMastId;
+          if(data.Token!=undefined&&data.PartyMastId!=undefined){
+            this.loginService.Token = data.Token;
+            this.loginService.Name = data.Name;
+            StorageService.SetItem('Token',data.Token);
+            StorageService.SetItem('PartyMastId',data.PartyMastId);
+            StorageService.SetItem('Name',data.Name);
+            this.loginService.userProfileVisible = true;
+            if (window.innerWidth < 768) {
+              this.loginService.menuItems = navigationAfterLogin;
+            }
+            else{
+              this.loginService.menuItems = navigationAfterLoginForSystem;
+              this.loginService.serviceMenus= serviceMenusAfterLogin;
+              this.loginService.serviceList= serviceListAfterLogin;
+            }
+           // this.loginService.navBarData = menusAfterLogin;
+            this.close.emit("hi");
+            // if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
+            //   this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
+            // }
+            if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined|| this.storageService.GetHoroResponse('#MU') != undefined) {
+              // this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
+              this.router.navigate(["/purchase/paidServices"]);
+            }
+            else {
+              this.loadingSwitchService.loading = false;
+              if (this.loginService.path != undefined) {
+                this.router.navigate([this.loginService.path]);
+              }
+              else{
+                this.router.navigate(["/services"]);
+              } 
+            }
+          }
+        }
+      }
+      else {
+        this.loadingSwitchService.loading = false;
+        this.loginForm.controls['UserName'].setValue('');
+        this.loginForm.controls['Password'].setValue('');
+        document.getElementById('err_UserName').innerHTML='';
+        document.getElementById('err_Password').innerHTML='';
+      }
+    });
+  }
   ValidateUserByOTP() {
     var UserOTP = {
       UserName: this.loginForm.get('UserName').value,
@@ -297,48 +367,55 @@ export class LoginFormComponent {
           UserName: this.loginForm.get('UserName').value,
           Password: this.loginForm.get('Password').value
         }
-        this.loginService.Login(loginModel).subscribe((data) => {
-          if (data.Errors == undefined) {
-            this.registrationService.registered = false;
-            this.loadingSwitchService.loading = false;
-            if (data.IsActivated == true) {
-              this.loginService.PartyMastId = data.PartyMastId;
-              if(data.Token!=undefined&&data.PartyMastId!=undefined){
-                this.loginService.Token = data.Token;
-                this.loginService.Name = data.Name;
-                StorageService.SetItem('Token',data.Token);
-                StorageService.SetItem('PartyMastId',data.PartyMastId);
-                StorageService.SetItem('Name',data.Name);
-                this.loginService.userProfileVisible = true;
-                if (window.innerWidth < 768) {
-                  this.loginService.menuItems = navigationAfterLogin;
-                }
-                else{
-                  this.loginService.menuItems = navigationAfterLoginForSystem;
-                  this.loginService.serviceMenus= serviceMenusAfterLogin;
-                  this.loginService.serviceList= serviceListAfterLogin;
-                }
-               // this.loginService.navBarData = menusAfterLogin;
-                this.close.emit("hi");
+        // this.loginService.Login(loginModel).subscribe((data) => {
+        //   if (data.Errors == undefined) {
+        //     this.registrationService.registered = false;
+        //     this.loadingSwitchService.loading = false;
+        //     if (data.IsActivated == true) {
+        //       this.loginService.PartyMastId = data.PartyMastId;
+        //       if(data.Token!=undefined&&data.PartyMastId!=undefined){
+        //         this.loginService.Token = data.Token;
+        //         this.loginService.Name = data.Name;
+        //         StorageService.SetItem('Token',data.Token);
+        //         StorageService.SetItem('PartyMastId',data.PartyMastId);
+        //         StorageService.SetItem('Name',data.Name);
+        //         this.loginService.userProfileVisible = true;
+        //         if (window.innerWidth < 768) {
+        //           this.loginService.menuItems = navigationAfterLogin;
+        //         }
+        //         else{
+        //           this.loginService.menuItems = navigationAfterLoginForSystem;
+        //           this.loginService.serviceMenus= serviceMenusAfterLogin;
+        //           this.loginService.serviceList= serviceListAfterLogin;
+        //         }
+        //        // this.loginService.navBarData = menusAfterLogin;
+        //         this.close.emit("hi");
                
-                if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined|| this.storageService.GetHoroResponse('#MU') != undefined) {
-                  // this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
-                  this.router.navigate(["/purchase/paidServices"]);
-                }
-                else {
-                  this.loadingSwitchService.loading = false;
-                  if (this.loginService.path != undefined) {
-                    this.router.navigate([this.loginService.path]);
-                  }
-                  else{
-                    this.router.navigate(["/services"]);
-                  } 
-                }
-              }
-            }
-          }
-        });
-
+        //         if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined|| this.storageService.GetHoroResponse('#MU') != undefined) {
+        //           // this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
+        //           this.router.navigate(["/purchase/paidServices"]);
+        //         }
+        //         else {
+        //           this.loadingSwitchService.loading = false;
+        //           if (this.loginService.path != undefined) {
+        //             this.router.navigate([this.loginService.path]);
+        //           }
+        //           else{
+        //             this.router.navigate(["/services"]);
+        //           } 
+        //         }
+        //       }
+        //     }
+        //     // else {
+        //     //   this.loadingSwitchService.loading = false;
+        //     //   this.loginForm.controls['UserName'].setValue('');
+        //     //   this.loginForm.controls['Password'].setValue('');
+        //     //   document.getElementById('err_UserName').innerHTML='';
+        //     //   document.getElementById('err_Password').innerHTML='';
+        //     // }
+        //   }
+        // });
+        this.Login(loginModel);
         this.needtoEnterOTP = false;
       }
     });
