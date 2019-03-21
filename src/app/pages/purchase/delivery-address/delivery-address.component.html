@@ -9,7 +9,7 @@
 <div class="dx-field">
         <div class="dx-field-label">EMail</div>
         <div class="dx-field-value">
-            <dx-text-box formControlName="EMail" [(ngModel)]="email" showClearButton="true"></dx-text-box>
+            <dx-text-box formControlName="EMail" [(ngModel)]="email" placeholder="Enter your EMail ID here..." showClearButton="true"></dx-text-box>
             <p style="color:red" id='err_Name'></p>
         </div>
     </div>
@@ -54,20 +54,20 @@
 <div class="dx-field">
         <div class="dx-field-label">Name of the Reciever</div>
         <div class="dx-field-value">
-            <dx-text-box formControlName="Name" showClearButton="true"></dx-text-box>
+            <dx-text-box formControlName="Name" showClearButton="true" placeholder="Enter here..."></dx-text-box>
             <p style="color:red" id='err_Name'></p>
         </div>
     </div>
             <div class="dx-field">
                 <div class="dx-field-label">Mobile No</div>
                 <div class="dx-field-value">
-                    <dx-text-box formControlName="MobileNo" showClearButton="true"></dx-text-box>
+                    <dx-text-box formControlName="MobileNo" showClearButton="true" placeholder="Enter here..."></dx-text-box>
             </div>
         </div>
 <div class="dx-field">
         <div class="dx-field-label">Address 1</div>
         <div class="dx-field-value">
-            <dx-text-box formControlName="Address1" showClearButton="true"></dx-text-box>
+            <dx-text-box formControlName="Address1" showClearButton="true" placeholder="Enter here..."></dx-text-box>
             <p style="color:red" id='err_Address1'></p>
         </div>
     </div>
@@ -75,14 +75,14 @@
 <div class="dx-field">
         <div class="dx-field-label">Address 2</div>
         <div class="dx-field-value">
-            <dx-text-box formControlName="Address2" showClearButton="true"></dx-text-box>
+            <dx-text-box formControlName="Address2" showClearButton="true" placeholder="Enter here..."></dx-text-box>
             <p style="color:red" id='err_Address2'></p>
         </div>
     </div>
 <div class="dx-field">
         <div class="dx-field-label">City</div>
         <div class="dx-field-value">
-            <dx-text-box formControlName="Address3" showClearButton="true"></dx-text-box>
+            <dx-text-box formControlName="Address3" showClearButton="true" placeholder="Enter here..."></dx-text-box>
             <p style="color:red" id='err_Address3'></p>
         </div>
     </div>
@@ -103,7 +103,7 @@
             placeholder="Select State" 
             [items]="statesOfIndia" >
             </dx-select-box> -->
-            <p style="color:red" id='err_state'></p>
+            <p style="color:red" id='err_State'></p>
         </div>
     </div>
 
@@ -117,7 +117,7 @@
 <div class="dx-field">
         <div class="dx-field-label">Postal Code</div>
         <div class="dx-field-value">
-            <dx-text-box formControlName="PinCode" showClearButton="true"></dx-text-box>
+            <dx-text-box formControlName="PinCode" showClearButton="true" placeholder="Enter here..."></dx-text-box>
             <p style="color:red" id='err_PinCode'></p>
         </div>
     </div>

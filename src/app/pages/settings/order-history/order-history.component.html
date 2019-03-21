@@ -83,4 +83,22 @@
                 
             </div>
         </dx-accordion>
+
+        <dx-popup
+    class="popup"
+    [width]="350"
+    [height]="200"
+    [showTitle]="true"
+    title="Alert"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="deleteConfirmPopUp">
+    <div *dxTemplate="let data of 'content'">
+        <p>
+            <span>Are you Sure to delete this record?</span>
+        </p>
+        <dx-button text='Yes' (onClick)="OnYes_click()"></dx-button>
+        <dx-button text='No' (onClick)="OnNo_click()"></dx-button>
+    </div>
+</dx-popup>
         </div>

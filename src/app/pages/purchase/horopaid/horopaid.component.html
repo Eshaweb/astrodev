@@ -67,7 +67,8 @@
        
             <dx-check-box 
                 id="check"
-                (onValueChanged)="hardcopyRequired_Click(service.ItMastId)"
+                [value]='checkBoxValue'
+                (onValueChanged)="hardcopyRequired_Click($event, service.ItMastId)"
                 text="Hardcopy Required">
             </dx-check-box>
             <!-- <dx-check-box 
