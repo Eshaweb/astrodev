@@ -6,63 +6,19 @@
         <dx-accordion #accordion [dataSource]="configerationService.accordian"[collapsible]="true"  [multiple]="false" [animationDuration]="300">
           <div *dxTemplate="let accordian of 'title'">
             
-            <div>{{ accordian.name }}</div>
+            <div class="cap">{{ accordian.name }}</div>
           </div>
           <div *dxTemplate="let accordian of 'item'">
-            <div class="dx-fieldset dx-fieldset-modiied"  *ngIf="accordian.name == 'Dasha Type'">
-                <div class="dx-field-value">
+            
+                <div class="data" *ngIf="accordian.name == 'Dasha Type'">
                   <dx-radio-group  [items]="configerationService.dashatype" [(value)]="partyGeneralConfig.Config.YearValue"valueExpr="id" displayExpr="name">
                   </dx-radio-group>
                 </div>
               
-            </div>
-            <div class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'Dasha Start'">
-              <!-- <div class="dx-field">
-                <div class="dx-field-label">
-                  <dx-radio-group
-                    [items]="configerationService.dashastart"
-                    [(value)]="partyGeneralConfig.Config.DashaStartType"
-                    valueExpr="id"
-                    displayExpr="name"
-                  >
-                  </dx-radio-group>
-                </div>
-              </div>
-              <div class="dx-field">
-                <div class="dx-field-label">From Age</div>
-                <div class="dx-field-value">
-                  <dx-number-box
-                    #numberBox
-                    [max]="100"
-                    [min]="0"
-                    formControlName="DashaStartFromAge"
-                    [showSpinButtons]="true"
-                    [(value)]="partyGeneralConfig.Config.DashaStartValue"
-                  ></dx-number-box>
-                  <p
-                    style="color:red;font-size: 14px;"
-                    id="err_DashaStartFromAge"
-                  ></p>
-                </div>
-              </div>
-              <div class="dx-field">
-                <div class="dx-field-label">To Age</div>
-                <div class="dx-field-value">
-                  <dx-number-box
-                    #numberBox
-                    [max]="100"
-                    [min]="0"
-                    formControlName="DashaStarttoAge"
-                    [showSpinButtons]="true"
-                    [(value)]="partyGeneralConfig.Config.DashaEndValue"
-                  ></dx-number-box>
-                  <p
-                    style="color:red;font-size: 14px;"
-                    id="err_DashaStarttoAge"
-                  ></p>
-                </div>
-              </div> -->
+          
+
+
+            <div   *ngIf="accordian.name == 'Dasha Start'">
               <div class="dx-fieldset-column">
               
                 <div class="dx-field-label">
@@ -108,8 +64,7 @@
                     [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.DashaEndValue"
                   ></dx-number-box>
-                  <p
-                    style="color:red;font-size: 14px;"
+                  <p  style="color:red;font-size: 14px;"
                     id="err_DashaStarttoAge"
                   ></p>
                 </div>
@@ -117,13 +72,11 @@
               </div>
 
             </div>
-            <div
-              class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'Dasha Prediction'">
-              <div class="dx-field"></div>
+            <div *ngIf="accordian.name == 'Dasha Prediction'">
+                <div class="dx-fieldset-column">
               <div class="dx-field">
                 <div class="dx-field-label">From Age</div>
-                <div class="dx-field-label">
+                <div class="dx-field-value">
                   <dx-number-box
                     #numberBox
                     [max]="100"
@@ -138,9 +91,11 @@
                   ></p>
                 </div>
               </div>
+                </div>
+                <div class="dx-fieldset-column">
               <div class="dx-field">
                 <div class="dx-field-label">To Age</div>
-                <div class="dx-field-label">
+                <div class="dx-field-value">
                   <dx-number-box
                     #numberBox
                     [max]="100"
@@ -155,11 +110,9 @@
                   ></p>
                 </div>
               </div>
+              </div>
             </div>
-            <div
-              class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'Ayanamsha'"
-            >
+            <div  *ngIf="accordian.name == 'Ayanamsha'"  >
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-radio-group
@@ -208,10 +161,7 @@
                 </div>
               </div>
             </div>
-            <div
-              class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'Astaka Varga Type'"
-            >
+            <div  *ngIf="accordian.name == 'Astaka Varga Type'"  >
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-radio-group
@@ -224,10 +174,7 @@
                 </div>
               </div>
             </div>
-            <div
-              class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'Bhava Phal'"
-            >
+            <div  *ngIf="accordian.name == 'Bhava Phal'" >
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-radio-group
@@ -240,10 +187,7 @@
                 </div>
               </div>
             </div>
-            <div
-              class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'Match Making'"
-            >
+            <div  *ngIf="accordian.name == 'Match Making'">
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-check-box
@@ -254,10 +198,7 @@
               </div>
             </div>
 
-            <div
-              class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'Adhipathi Phal'"
-            >
+            <div *ngIf="accordian.name == 'Adhipathi Phal'" >
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-radio-group
@@ -270,9 +211,7 @@
                 </div>
               </div>
             </div>
-            <div
-              class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'Sadesathi Shani'">
+            <div  *ngIf="accordian.name == 'Sadesathi Shani'">
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-check-box
@@ -282,9 +221,7 @@
                 </div>
               </div>
             </div>
-            <div
-              class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'SunRise/SunSet'">
+            <div  *ngIf="accordian.name == 'SunRise/SunSet'">
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-radio-group
@@ -297,10 +234,7 @@
                 </div>
               </div>
             </div>
-            <div
-              class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'Chart Type'"
-            >
+            <div *ngIf="accordian.name == 'Chart Type'">
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-select-box
@@ -317,10 +251,8 @@
                 </div>
               </div>
             </div>
-            <div
-              class="dx-fieldset dx-fieldset-modiied"
-              *ngIf="accordian.name == 'Moudya Settings'"
-            >
+            <div *ngIf="accordian.name == 'Moudya Settings'">
+                <div class="dx-fieldset-column">
               <div class="dx-field">
                 <div class="dx-field-label">Chandra</div>
                 <div class="dx-field-label">
@@ -332,6 +264,8 @@
                   <p style="color:red;font-size: 14px;" id="err_Chandra"></p>
                 </div>
               </div>
+                </div>
+                <div class="dx-fieldset-column">
               <div class="dx-field">
                 <div class="dx-field-label">Kuja</div>
                 <div class="dx-field-label">
@@ -343,7 +277,8 @@
                   <p style="color:red;font-size: 14px;" id="err_Kuja"></p>
                 </div>
               </div>
-
+                </div>
+                <div class="dx-fieldset-column">
               <div class="dx-field">
                 <div class="dx-field-label">Budha</div>
                 <div class="dx-field-label">
@@ -355,7 +290,8 @@
                   <p style="color:red;font-size: 14px;" id="err_Budha"></p>
                 </div>
               </div>
-
+                </div>
+                <div class="dx-fieldset-column">
               <div class="dx-field">
                 <div class="dx-field-label">Guru</div>
                 <div class="dx-field-label">
@@ -367,6 +303,8 @@
                   <p style="color:red;font-size: 14px;" id="err_Guru"></p>
                 </div>
               </div>
+                </div>
+                <div class="dx-fieldset-column">
               <div class="dx-field">
                 <div class="dx-field-label">Shukra</div>
                 <div class="dx-field-label">
@@ -378,6 +316,8 @@
                   <p style="color:red;font-size: 14px;" id="err_Shukra"></p>
                 </div>
               </div>
+                </div>
+                <div class="dx-fieldset-column">
               <div class="dx-field">
                 <div class="dx-field-label">Shani</div>
                 <div class="dx-field-label">
@@ -389,6 +329,7 @@
                   <p style="color:red;font-size: 14px;" id="err_Shani"></p>
                 </div>
               </div>
+                </div>
             </div>
           </div>
         </dx-accordion>
