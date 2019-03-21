@@ -26,6 +26,8 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
 import { HeaderComponent } from '../header/header.component';
 import { navigationAfterLogin, navigationAfterLoginForSystem, serviceMenusAfterLogin, serviceListAfterLogin } from 'src/app/app-navigation';
+import { timer, Subscription } from 'rxjs';
+import { OrderService } from 'src/Services/OrderService/OrderService';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -48,6 +50,7 @@ export class LoginFormComponent {
   title: string;
   message: string;
   OTPRefNo: any;
+  subscribe: Subscription;
 
   ngAfterViewInit(): void {
 
@@ -86,7 +89,7 @@ export class LoginFormComponent {
   Name: any;
   horoInfo: any;
 
-  constructor(public storageService:StorageService, private muhurthaService:MuhurthaService,private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
+  constructor(public orderService:OrderService,public storageService:StorageService, private muhurthaService:MuhurthaService,private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
     private astamangalaService: AstamangalaService, public registrationService: RegistrationService, public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager,
     public _location: Location, public route: ActivatedRoute, public router: Router, public http: HttpClient,
     public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService,
@@ -178,9 +181,6 @@ export class LoginFormComponent {
         this.loadingSwitchService.loading = false;
       });
     }
-  }
-  onRegenerateOTP() {
-
   }
   Login_Click() {
     this.loadingSwitchService.loading = true;
@@ -340,6 +340,24 @@ export class LoginFormComponent {
               else{
                 this.router.navigate(["/services"]);
               } 
+              if(StorageService.GetItem('Token')!=undefined&&window.location.pathname != '/settings/orderHistory') {
+                const source = timer(1000, 1000);
+                this.subscribe =source.subscribe(val =>{
+                  if(val==3) {
+                    this.orderService.LastPendingTransaction(StorageService.GetItem('PartyMastId')).subscribe((data:any)=>{
+                      this.loginService.orderHistoryResponse = data;
+                      if(data.StatusCode=='AP'){
+                        this.loginService.proceedDeliveryAddress=true;
+                      }
+                      else if(data.StatusCode=='BP'||data.StatusCode=='PP'){
+                        this.loginService.proceedPayment=true;
+                      }
+                      this.loginService.orderhistorypopupVisible=true;
+                    });
+                    this.subscribe.unsubscribe();
+                  }
+                });
+              }
             }
           }
         }
@@ -421,6 +439,7 @@ export class LoginFormComponent {
     });
   }
   ResendOTP_click(){
+    this.loadingSwitchService.loading = true;
     var UserName = {
       UserName: this.loginForm.get('UserName').value
     }
@@ -429,6 +448,7 @@ export class LoginFormComponent {
         this.title= 'Message';
         this.message = 'Please enter OTP And Submit';
       }
+      this.loadingSwitchService.loading = false;
     });
   }
   onBackClick() {
