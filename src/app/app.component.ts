@@ -3,7 +3,7 @@ import { ScreenService, AppInfoService, AuthenticationService } from './shared/s
 import { RegistrationService } from 'src/Services/registration/registration.service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { ErrorService } from 'src/Services/Error/error.service';
-import { Subscription, timer } from 'rxjs';
+import { Subscription, timer, interval } from 'rxjs';
 import { ErrorData } from 'src/Services/Error/ErrorData';
 import {
   Router,
@@ -17,6 +17,8 @@ import {
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { OrderHistoryResponse } from 'src/Models/OrderHistoryResponse';
+import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
+import { ItemService } from 'src/Services/ItemService/ItemService';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -34,11 +36,13 @@ export class AppComponent  {
   orderhistoryMessage: string;
   subscribe: Subscription;
   orderHistoryResponse: OrderHistoryResponse;
+  sub: Subscription;
+  buttonId: any;
   @HostBinding('class') get getClass() {
     return Object.keys(this.screen.sizes).filter(cl => this.screen.sizes[cl]).join(' ');
   }
 
-  constructor(public orderService:OrderService,public router: Router, private errorService: ErrorService, public loadingSwitchService: LoadingSwitchService, public registrationService:RegistrationService,public authService: AuthenticationService, private screen: ScreenService, public appInfo: AppInfoService) { 
+  constructor(public itemService:ItemService,public horoScopeService:HoroScopeService,public storageService:StorageService,public orderService:OrderService,public router: Router, private errorService: ErrorService, public loadingSwitchService: LoadingSwitchService, public registrationService:RegistrationService,public authService: AuthenticationService, private screen: ScreenService, public appInfo: AppInfoService) { 
     this.subscription = this.errorService.loaderState
     .subscribe((errorData: ErrorData) => {
       if (errorData != undefined) {
@@ -92,6 +96,71 @@ export class AppComponent  {
       });
     }
   }
+
+  onstatus_Click(item) {
+    this.itemService.ItemAmount = item.Amount;
+    this.orderService.orderResponse = {
+        OrderId: item.OrderId,
+        ItMastId: null,
+        ItName: item.ItName
+    };
+    StorageService.SetItem('OrderId', item.OrderId)
+    this.storageService.SetOrderResponse(JSON.stringify(this.orderService.orderResponse));
+    if (item.StatusCode == 'AP') {
+        this.router.navigate(["/purchase/deliveryAddress", { 'OrderId': item.OrderId }]);
+    }
+    else if (item.StatusCode == 'BP' || item.StatusCode == 'PP') {
+        this.router.navigate(["/purchase/payment"]);
+    }
+    else if (item.StatusCode == 'RD') {
+        //this.router.navigate(['/purchase/paymentProcessing']);
+        this.loadingSwitchService.loading = true;
+        this.orderService.CheckForResult(item.OrderId).subscribe((data) => {
+            if (data.AstroReportId.length != 0) {
+                this.buttonId = data.AstroReportId[0].split('_')[0];
+                this.horoScopeService.DownloadResult(this.buttonId, (data) => {
+                    var newBlob = new Blob([data], { type: "application/pdf" });
+                    const fileName: string = item.ItName + '.pdf';
+                    const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+                    var url = window.URL.createObjectURL(newBlob);
+                    a.href = url;
+                    a.download = fileName;
+                    document.body.appendChild(a);
+                    this.loadingSwitchService.loading = false;
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                });
+            }
+            else {
+                this.sub = interval(10000).subscribe((val) => {
+                    this.orderService.CheckForResult(StorageService.GetItem('OrderId')).subscribe((data) => {
+                        if (data.AstroReportId.length != 0) {
+                            this.buttonId = data.AstroReportId[0].split('_')[0];
+                            this.horoScopeService.DownloadResult(this.buttonId, (data) => {
+                                var newBlob = new Blob([data], { type: "application/pdf" });
+                                const fileName: string = this.storageService.GetOrderResponse().ItName + '.pdf';
+                                const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+                                var url = window.URL.createObjectURL(newBlob);
+                                a.href = url;
+                                a.download = fileName;
+                                document.body.appendChild(a);
+                                a.click();
+                                document.body.removeChild(a);
+                                URL.revokeObjectURL(url);
+                                this.loadingSwitchService.loading = false;
+                                this.storageService.RemoveDataFromSession();
+                                this.sub.unsubscribe();
+                            });
+                        }
+
+                    });
+                });
+
+            }
+        });
+    }
+}
   ClosePopUp(){
     this.popupVisible = false;
     this.orderhistorypopupVisible=false;
