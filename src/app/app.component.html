@@ -61,15 +61,19 @@
 <dx-popup
     class="popup"
     [width]="350"
-    [height]="200"
+    [height]="400"
     [showTitle]="true"
     title="Note"
     [dragEnabled]="false"
     [closeOnOutsideClick]="true"
     [(visible)]="orderhistorypopupVisible">
     <div *dxTemplate="let data of 'content'">
+        <p>{{orderHistoryResponse.Date|  date:'dd/MM/yyyy'}}</p>
+        <p>{{orderHistoryResponse.Hint}}</p>
+        <p>{{orderHistoryResponse.ItName}}</p>
+        <p>{{orderHistoryResponse.OrderId}}</p>
         <p>
-            <span>{{orderhistoryMessage}}</span>
+            <span>{{orderHistoryResponse.Amount}}</span>
         </p>
         <dx-button text='Continue' (onClick)="onContinue_Click()"></dx-button>
         <dx-button text='Close' (onClick)="ClosePopUp()"></dx-button>

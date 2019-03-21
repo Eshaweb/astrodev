@@ -54,4 +54,9 @@ export class OrderService {
         var endPoint = "Order/DeleteOrder";
         return this.httpService.Post(endPoint, deleteOrder);
     }
+
+    LastPendingTransaction(PartyMastId):Observable<any>{
+        var endPoint = "Order/LastPendingTransaction?PartyMastId="+ PartyMastId;
+        return this.httpService.Get(endPoint);
+    }
 }

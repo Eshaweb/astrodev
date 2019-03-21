@@ -3,7 +3,7 @@ import { ScreenService, AppInfoService, AuthenticationService } from './shared/s
 import { RegistrationService } from 'src/Services/registration/registration.service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { ErrorService } from 'src/Services/Error/error.service';
-import { Subscription } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 import { ErrorData } from 'src/Services/Error/ErrorData';
 import {
   Router,
@@ -14,6 +14,9 @@ import {
   NavigationError,
   NavigationCancel
 } from '@angular/router';
+import { OrderService } from 'src/Services/OrderService/OrderService';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { OrderHistoryResponse } from 'src/Models/OrderHistoryResponse';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,11 +32,13 @@ export class AppComponent  {
   showAddButton: boolean;
   orderhistorypopupVisible: boolean;
   orderhistoryMessage: string;
+  subscribe: Subscription;
+  orderHistoryResponse: OrderHistoryResponse;
   @HostBinding('class') get getClass() {
     return Object.keys(this.screen.sizes).filter(cl => this.screen.sizes[cl]).join(' ');
   }
 
-  constructor(public router: Router, private errorService: ErrorService, public loadingSwitchService: LoadingSwitchService, public registrationService:RegistrationService,public authService: AuthenticationService, private screen: ScreenService, public appInfo: AppInfoService) { 
+  constructor(public orderService:OrderService,public router: Router, private errorService: ErrorService, public loadingSwitchService: LoadingSwitchService, public registrationService:RegistrationService,public authService: AuthenticationService, private screen: ScreenService, public appInfo: AppInfoService) { 
     this.subscription = this.errorService.loaderState
     .subscribe((errorData: ErrorData) => {
       if (errorData != undefined) {
@@ -73,9 +78,19 @@ export class AppComponent  {
     router.events.subscribe((routerEvent: Event) => {
       this.processRouterEvent(routerEvent);
     });
-
-    this.orderhistorypopupVisible=true;
-    this.orderhistoryMessage='';
+    if(StorageService.GetItem('Token')!=undefined){
+      const source = timer(1000, 1000);
+      this.subscribe =source.subscribe(val =>{
+        if(val==3) {
+          orderService.LastPendingTransaction(StorageService.GetItem('PartyMastId')).subscribe((data:any)=>{
+            this.orderHistoryResponse = data;
+            this.orderhistorypopupVisible=true;
+            this.orderhistoryMessage='';
+          });
+          this.subscribe.unsubscribe();
+        }
+      });
+    }
   }
   ClosePopUp(){
     this.popupVisible = false;
