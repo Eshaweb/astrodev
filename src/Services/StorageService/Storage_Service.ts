@@ -20,7 +20,7 @@ export class StorageService {
 
         sessionStorage.setItem(param1, param2);
     }
-    static GetItem(param) {
+    static GetItem(param):any {
 
         return sessionStorage.getItem(param);
 
@@ -105,5 +105,7 @@ export class StorageService {
         sessionStorage.removeItem('ItemOrdered');
         sessionStorage.removeItem('OrderId');
         sessionStorage.removeItem('ItActId');
+        sessionStorage.removeItem('IsDeliverable');
+        sessionStorage.removeItem('ItMastId');
     }
 }

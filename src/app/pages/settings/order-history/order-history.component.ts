@@ -42,6 +42,9 @@ export class OrderHistoryComponent implements OnInit {
     sortorderdata: ArrayStore;
     buttonId: any;
     sub: import("d:/shailesh_bhat/Angular2Projects/DevExtreme/WorkingFolder/Astrodev/node_modules/rxjs/internal/Subscription").Subscription;
+    deleteConfirmPopUp: boolean;
+    OrderId: any;
+    ItActId: any;
 
     constructor(public horoScopeService: HoroScopeService, public storageService: StorageService, public loadingSwitchService: LoadingSwitchService, public sortingOrderHistoryPipe: SortingOrderHistoryPipe, private router: Router, private itemService: ItemService, private loginService: LoginService, service: OrderHistoryService, private orderService: OrderService) {
         this.services = service.getServices();
@@ -59,6 +62,7 @@ export class OrderHistoryComponent implements OnInit {
     }
     ngOnInit() {
         this.loadingSwitchService.loading = true;
+        this.ItActId="#SH";
         var orderHistory = {
             PartyMastId: StorageService.GetItem('PartyMastId'),
             ItActId: "#SH"
@@ -101,6 +105,7 @@ export class OrderHistoryComponent implements OnInit {
 
     onItemClick(event) {
         this.loadingSwitchService.loading = true;
+        this.ItActId=event.itemData.ItActId
         var orderHistory = {
             PartyMastId: StorageService.GetItem('PartyMastId'),
             ItActId: event.itemData.ItActId
@@ -174,17 +179,42 @@ export class OrderHistoryComponent implements OnInit {
             });
         }
     }
-
-
-    ondelete_Click(item){
+    OnYes_click() {
+        this.deleteConfirmPopUp=false;
         this.loadingSwitchService.loading = true;
         var deleteOrder = {
             PartyMastId: StorageService.GetItem('PartyMastId'),
-            OrderId: item.OrderId
+            OrderId: this.OrderId
         }
         this.orderService.DeleteOrder(deleteOrder).subscribe((data: any) => {
-            this.loadingSwitchService.loading = false;
+            if(data==true){
+                var orderHistory = {
+                    PartyMastId: StorageService.GetItem('PartyMastId'),
+                    ItActId: this.ItActId
+                }
+                this.orderService.OrderHistory(orderHistory).subscribe((data: any) => {
+                    this.orderHistoryResponse = data;
+                    this.loadingSwitchService.loading = false;
+                    if (this.sortordervalue == 'D') {
+                        var args: string[] = ["-" + this.fieldvalue, "OrderId"];
+                    }
+                    else if (this.sortordervalue == 'A') {
+                        var args: string[] = [this.fieldvalue, "OrderId"]
+                    }
+                    this.sortingOrderHistoryPipe.transform(this.orderHistoryResponse, args);
+                });
+            }
+            else{
+                this.loadingSwitchService.loading = false;
+            }
         });
+    }
+    OnNo_click() {
+        this.deleteConfirmPopUp=false;
+    }
+    ondelete_Click(item){
+        this.OrderId=item.OrderId; 
+        this.deleteConfirmPopUp=true;
     }
 }
 

@@ -47,11 +47,11 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     Id: any;
     customerEMailAddressForm: FormGroup;
     email: string;
-    DeliveryAddressRequired: boolean;
+    DeliveryAddressRequired: any;
     constructor(public storageService:StorageService,public _location: Location, public route: ActivatedRoute, public router: Router, public loginService: LoginService,
         public horoScopeService: HoroScopeService, private orderService:OrderService, public partyService:PartyService,
         public uiService: UIService, public formbuilder: FormBuilder, public loadingSwitchService:LoadingSwitchService) {
-        this.DeliveryAddressRequired = this.horoScopeService.IsDeliverable
+        this.DeliveryAddressRequired = Boolean(JSON.parse(StorageService.GetItem('IsDeliverable')));
         this.loadingSwitchService.loading=true;
         //this.OrderId = this.orderService.orderResponse.OrderId;
         this.OrderId = StorageService.GetItem('OrderId');
@@ -72,7 +72,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
             Address2: ['Temple Street', [Validators.required, Validators.minLength(4)]],
             Address3: ['#4/5-2', [Validators.required, Validators.minLength(4)]],
             PinCode: ['574 154', [Validators.required, Validators.minLength(6)]],
-            state: ['Karnataka', [Validators.required, Validators.minLength(4)]],
+            State: ['Karnataka', [Validators.required, Validators.minLength(4)]],
         });
         const EMailContrl_customerEMailAddressForm = this.customerEMailAddressForm.get('EMail');
         EMailContrl_customerEMailAddressForm.valueChanges.subscribe(value => this.setErrorMessage(EMailContrl_customerEMailAddressForm));
@@ -88,8 +88,8 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         Address3Contrl.valueChanges.subscribe(value => this.setErrorMessage(Address3Contrl));
         const PinCodeContrl = this.customerAddressForm.get('PinCode');
         PinCodeContrl.valueChanges.subscribe(value => this.setErrorMessage(PinCodeContrl));
-        const stateContrl = this.customerAddressForm.get('state');
-        stateContrl.valueChanges.subscribe(value => this.setErrorMessage(stateContrl));
+        const StateContrl = this.customerAddressForm.get('State');
+        StateContrl.valueChanges.subscribe(value => this.setErrorMessage(StateContrl));
         // this.horoScopeService.GetEMailAddress(this.loginService.PartyMastId, (data) => {
         //     this.email = data.EMail;
         //     var PartyMastId = this.loginService.PartyMastId;
