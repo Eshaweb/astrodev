@@ -53,17 +53,22 @@
                         
                             <div class="dx-field-label">{{item.Hint}}</div>
                             <div class="dx-field-value" *ngIf="(item.StatusCode)=='AP'">
+                                    
                                 <div class="dx-field">
 
                                     <dx-button class="buttonClass1" text="Proceed to Delivery Address" type="default" (onClick)="onstatus_Click(item)"></dx-button>
+                                   <span>&nbsp;&nbsp;&nbsp;</span>
+                                   
                                     <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(item)"></dx-button>
 
-                                </div>
+                              </div>
                             </div>
                             <div class="dx-field-value" *ngIf="(item.StatusCode)=='BP'||(item.StatusCode)=='PP'">
                                 <div class="dx-field">
 
                                     <dx-button class="buttonClass1" text="Proceed to Payment" type="default" (onClick)="onstatus_Click(item)"></dx-button>
+                                   </div>
+                                   <div class="dx-field"> 
                                     <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(item)"></dx-button>
                                 </div>
                             </div>
@@ -75,30 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                <!-- <div>
-                    <p>
-                        <b>{{company.City}}</b>
-                        (<span>{{company.State}}</span>)
-                    </p>
-                    <p>
-                        <span>{{company.Zipcode}}</span>
-                        <span>{{company.Address}}</span>
-                    </p>
-                </div>
-                <div>
-                    <p>
-                        Phone: <b>{{company.Phone}}</b>
-                    </p>
-                    <p>
-                        Fax: <b>{{company.ItActId}}</b>
-                    </p>
-                    <p>
-                        Website:
-                        <a href="{{company.Website}}" target="_blank">
-                            {{company.Website}}
-                        </a>
-                    </p>
-                </div> -->
+                
             </div>
         </dx-accordion>
 
