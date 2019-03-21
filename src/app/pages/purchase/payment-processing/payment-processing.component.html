@@ -1,3 +1,5 @@
+<div class="dx-card responsive-paddings"></div>
+
 
 <div *ngIf='!timeExceeded'>
 <h2 *ngIf='showSuccess' class="content-block">Download Succesful</h2>
@@ -9,6 +11,8 @@
 </div>
 </div>
 </div>
+</div>
+<div class="dx-card responsive-paddings">
 <div *ngIf='timeExceeded'>
         <div class="centre">
                 <i class="dx-icon-check dx-icon-custom-style"></i>
@@ -17,4 +21,5 @@
         <p>Your Order Id is {{OrderId}}</p> 
         <button (click)='gotoOrderHistory()'>Go to Order History</button>
         </div>
+</div>
 </div>
