@@ -41,14 +41,7 @@ export class OrderHistoryComponent implements OnInit {
     fielddata: ArrayStore;
     sortorderdata: ArrayStore;
     buttonId: any;
-<<<<<<< HEAD
     sub:Subscription;
-=======
-    sub: import("d:/shailesh_bhat/Angular2Projects/DevExtreme/WorkingFolder/Astrodev/node_modules/rxjs/internal/Subscription").Subscription;
-    deleteConfirmPopUp: boolean;
-    OrderId: any;
-    ItActId: any;
->>>>>>> dc8cbbca600ac763445d60323c7729ec63ed2325
 
     constructor(public horoScopeService: HoroScopeService, public storageService: StorageService, public loadingSwitchService: LoadingSwitchService, public sortingOrderHistoryPipe: SortingOrderHistoryPipe, private router: Router, private itemService: ItemService, private loginService: LoginService, service: OrderHistoryService, private orderService: OrderService) {
         this.services = service.getServices();
