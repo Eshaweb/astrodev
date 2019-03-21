@@ -58,6 +58,7 @@ export class OrderHistoryComponent implements OnInit {
         this.sortordervalue = this.sortorders[0].Id;
     }
     ngOnInit() {
+        this.loadingSwitchService.loading = true;
         var orderHistory = {
             PartyMastId: StorageService.GetItem('PartyMastId'),
             ItActId: "#SH"
@@ -66,6 +67,7 @@ export class OrderHistoryComponent implements OnInit {
             this.orderHistoryResponse = data;
             var args: string[] = [this.fieldvalue, "OrderId"];
             this.sortingOrderHistoryPipe.transform(this.orderHistoryResponse, args);
+            this.loadingSwitchService.loading = false;
         });
     }
 
@@ -171,6 +173,18 @@ export class OrderHistoryComponent implements OnInit {
                 }
             });
         }
+    }
+
+
+    ondelete_Click(item){
+        this.loadingSwitchService.loading = true;
+        var deleteOrder = {
+            PartyMastId: StorageService.GetItem('PartyMastId'),
+            OrderId: item.OrderId
+        }
+        this.orderService.DeleteOrder(deleteOrder).subscribe((data: any) => {
+            this.loadingSwitchService.loading = false;
+        });
     }
 }
 

@@ -21,8 +21,9 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   countDown;
   counter = 20;
   tick = 1000;
-  timeExceeded: boolean;
+  timeExceeded: boolean=false;
   OrderId: string;
+  subscribe: any;
   constructor(public storageService:StorageService,private orderService:OrderService,private loadingSwitchService:LoadingSwitchService,
     public location: Location,public router: Router, public horoScopeService: HoroScopeService) {
 this.OrderId=StorageService.GetItem('OrderId');
@@ -40,11 +41,11 @@ this.OrderId=StorageService.GetItem('OrderId');
       }
       else {
         const source = timer(1000, 1000);
-        const subscribe =source.subscribe(val =>{
+        this.subscribe =source.subscribe(val =>{
           if(val==2) {
             this.loadingSwitchService.loading=false;
             this.sub.unsubscribe();
-            subscribe.unsubscribe();
+            this.subscribe.unsubscribe();
             this.timeExceeded=true;
           }
         });
@@ -80,6 +81,7 @@ this.OrderId=StorageService.GetItem('OrderId');
       this.clearParameters();
       this.storageService.RemoveDataFromSession();
       this.sub.unsubscribe();
+      this.subscribe.unsubscribe();
       console.clear();
     });
   }
@@ -106,7 +108,9 @@ this.OrderId=StorageService.GetItem('OrderId');
   //   };
   // });
     //window.history.replaceState(null, null, '/home');
-    this.router.navigate(['/home'], { replaceUrl: true });
+    if(this.timeExceeded!=true){
+      this.router.navigate(['/home'], { replaceUrl: true });
+    }
     //window.history.go(-4);
     location.pathname = '/home';
     location.reload(true);

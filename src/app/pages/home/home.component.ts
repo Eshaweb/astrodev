@@ -6,7 +6,7 @@ import { services } from 'src/app/app-navigation';
 
 @Component({
   templateUrl: 'home.component.html',
-  styleUrls: [ './home.component.scss' ]
+  styleUrls: ['./home.component.scss']
 })
 
 export class HomeComponent {
@@ -16,46 +16,49 @@ export class HomeComponent {
   showSubmenuModes: any;
   showFirstSubmenuModes: any;
   serviceList: any;
-  constructor(public loginService:LoginService,public router: Router) {
+  constructor(public loginService: LoginService, public router: Router) {
     this.defaultVisible = false;
-  
+
     // history.pushState(null, null, location.href);
     // window.onpopstate = function () {       
     //   if (window.location.pathname == '/services') { 
     //     history.go(1);
     //   }
     // };
-  //   window.onpopstate= (response) => {
-  //     if (window.location.pathname == '/home') {
-  //       history.pushState(null, null, "/home");
-        
-  //     }
-  // }
-  if (window.location.pathname == '/home') {
-    this.loginService.isHomePage=true;
-   }
-  this.showSubmenuModes = [{
-    name: "onHover",
-    delay: { show: 0, hide: 500 }
-  }, {
-    name: "onClick",
-    delay: { show: 0, hide: 300 }
-  }];
-  this.showFirstSubmenuModes = this.showSubmenuModes[0];
-  this.menuItems=services;
+    //   window.onpopstate= (response) => {
+    //     if (window.location.pathname == '/home') {
+    //       history.pushState(null, null, "/home");
+
+    //     }
+    // }
+    if (window.location.pathname == '/home') {
+      this.loginService.isHomePage = true;
+    }
+    this.showSubmenuModes = [{
+      name: "onHover",
+      delay: { show: 0, hide: 500 }
+    }, {
+      name: "onClick",
+      delay: { show: 0, hide: 300 }
+    }];
+    this.showFirstSubmenuModes = this.showSubmenuModes[0];
+    this.menuItems = services;
+
+
+    
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;
-}
-OnServiceClick(path){
-  this.router.navigate([path]);
-  // if (path == '/home') {
-  //   this.loginService.isHomePage=true;
-  //  }
-  //  else{
-  //   this.loginService.isHomePage=false;
-  //  }
-}
+  }
+  OnServiceClick(path) {
+    this.router.navigate([path]);
+    // if (path == '/home') {
+    //   this.loginService.isHomePage=true;
+    //  }
+    //  else{
+    //   this.loginService.isHomePage=false;
+    //  }
+  }
   OnHoroScope_Click() {
     this.router.navigate(["/horoscope"]);
   }
@@ -71,7 +74,7 @@ OnServiceClick(path){
   OnPanchanga_Click() {
     this.router.navigate(["/panchanga"]);
   }
-  OnWalletDeposit_Click(){
+  OnWalletDeposit_Click() {
     if (StorageService.GetItem('Token') != undefined) {
       this.router.navigate(['/wallet/depoToWallet']);
     }
