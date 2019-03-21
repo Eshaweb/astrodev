@@ -6,7 +6,7 @@
         <dx-accordion #accordion [dataSource]="configerationService.accordian"[collapsible]="true"  [multiple]="false" [animationDuration]="300">
           <div *dxTemplate="let accordian of 'title'">
             
-            <h1>{{ accordian.name }}</h1>
+            <div>{{ accordian.name }}</div>
           </div>
           <div *dxTemplate="let accordian of 'item'">
             <div class="dx-fieldset dx-fieldset-modiied"  *ngIf="accordian.name == 'Dasha Type'">
