@@ -42,7 +42,7 @@ this.OrderId=StorageService.GetItem('OrderId');
       else {
         const source = timer(1000, 1000);
         this.subscribe =source.subscribe(val =>{
-          if(val==20) {
+          if(val==2) {
             this.loadingSwitchService.loading=false;
             this.sub.unsubscribe();
             this.subscribe.unsubscribe();

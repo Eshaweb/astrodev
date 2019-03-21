@@ -49,4 +49,9 @@ export class OrderService {
         var endPoint = "Order/GetItemAmountByOrderId?OrderId="+ OrderId;
         return this.httpService.Get(endPoint);
     }
+
+    DeleteOrder(deleteOrder):Observable<any>{
+        var endPoint = "Order/DeleteOrder";
+        return this.httpService.Post(endPoint, deleteOrder);
+    }
 }

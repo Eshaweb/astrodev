@@ -27,6 +27,8 @@ export class AppComponent  {
   popupVisible: boolean;
   navigationInProgress: boolean;
   showAddButton: boolean;
+  orderhistorypopupVisible: boolean;
+  orderhistoryMessage: string;
   @HostBinding('class') get getClass() {
     return Object.keys(this.screen.sizes).filter(cl => this.screen.sizes[cl]).join(' ');
   }
@@ -71,9 +73,16 @@ export class AppComponent  {
     router.events.subscribe((routerEvent: Event) => {
       this.processRouterEvent(routerEvent);
     });
+
+    this.orderhistorypopupVisible=true;
+    this.orderhistoryMessage='';
   }
   ClosePopUp(){
     this.popupVisible = false;
+    this.orderhistorypopupVisible=false;
+  }
+  onContinue_Click(){
+
   }
   onShown() {
     setTimeout(() => {
