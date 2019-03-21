@@ -15,13 +15,7 @@
 
     <div class="service-menu">
         <ul>
-            <!-- <li><a ngClass="active">Horoscope</a></li>
-            <li><a href="/matchMaking">Match Making</a></li>
-            <li><a href="#contact">Astamangala</a></li>
-            <li><a href="#about">Muhurta</a></li>
-            <li><a href="#about">Numerology</a></li>
-            <li><a href="#about">Nithya Panchanga</a></li>
-            <li><a href="#about">Wallet</a></li> -->
+           
             <li *ngFor="let item of loginService.serviceList">
                 <a (click)='OnServiceClick(item.Path)'>{{item.Name}}</a>
             </li>
