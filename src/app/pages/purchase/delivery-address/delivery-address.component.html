@@ -26,7 +26,7 @@
         <div class="existing-add" *ngIf="existingAddress">
                 <div *ngFor="let order of existingAddress; trackBy: trackByFn">
                   <div (click)="OnChangeDefaultAddress(order.Id)" [ngClass]="order.Id === Id? 'class-1':'class-2'">
-                        <dx-button icon="close" (onClick)='onRemoveAddress(order.Id)'></dx-button>
+                        <div class="close-button"><dx-button icon="close" (onClick)='onRemoveAddress(order.Id)'></dx-button></div>
                         <p>Name:&nbsp;&nbsp;{{ order.Name }} </p>
                         <p>City:&nbsp;&nbsp;{{ order.Address1 }} </p>
                         <p>Street/Area:&nbsp;&nbsp;{{ order.Address2 }} </p>
