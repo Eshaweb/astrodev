@@ -63,7 +63,7 @@
     [width]="350"
     [height]="400"
     [showTitle]="true"
-    title="Note"
+    title="Last Transaction Details"
     [dragEnabled]="false"
     [closeOnOutsideClick]="true"
     [(visible)]="loginService.orderhistorypopupVisible">
@@ -94,7 +94,7 @@
             <dx-button class="buttonClass1" text="Proceed to Payment" type="default" (onClick)="onstatus_Click(loginService.orderHistoryResponse)"></dx-button>
             <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(loginService.orderHistoryResponse)"></dx-button>
         </div>
-        <dx-button text='Close' (onClick)="ClosePopUp()"></dx-button>
+        <!-- <dx-button text='Close' (onClick)="ClosePopUp()"></dx-button> -->
     </div>
 </dx-popup>
 
