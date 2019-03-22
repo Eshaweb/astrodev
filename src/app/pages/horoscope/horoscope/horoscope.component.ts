@@ -29,12 +29,27 @@ export class HoroscopeComponent {
   genders: SelectBoxModel[];
   intLongDeg: number;
   intLatDeg: number;
-  timeformatdata: any;
   timeformatvalue: string;
+  reportSizevalue: string;
+  languagevalue: string;
+  products: SelectBoxModelNew[];
+  genderValue: string;
+  genderdata: ArrayStore;
+  reportSizedata: ArrayStore;
+  languagedata: ArrayStore;
+  timeformatdata: ArrayStore;
+  public checkBoxValue: boolean = false;
   birthDateinDateFormat: Date;
   birthTimeinDateFormat: Date;
-  errorMessage: any;
-  subscription: Subscription;
+  horoscopeForm: FormGroup;
+  latitude: number;
+  longitude: number;
+  timeZoneName: string;
+  timeZoneId: any;
+
+  long: number;
+  lat: number;
+  horoRequest: HoroRequest;
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
     { Id: "SUMMER", Text: 'Summer Time' },
@@ -51,35 +66,6 @@ export class HoroscopeComponent {
     { Id: "A4", Text: "A4" },
     { Id: "A5", Text: "A5" },
     { Id: "A6", Text: "Small(6inch X 6inch)" }];
-  reportSizevalue: string;
-  languagevalue: string;
-  products: SelectBoxModelNew[];
-  reportSizedata: any;
-  languagedata: ArrayStore;
-  genderValue: string;
-  genderdata: ArrayStore;
-  password: any;
-  public selectedColor: string = 'transparent';
-  horoscopeForm: FormGroup;
-  latitude: number;
-  longitude: number;
-  timeZoneName: string;
-  timeZoneId: any;
-
-  public checkBoxValue: boolean = false;
-  long: number;
-  lat: number;
-  horoRequest: HoroRequest;
-  LatDegMessage: string;
-  LatMtMessage: string;
-  payusing: PaymentInfo[];
-  using: string[];
-  paymentForm: FormGroup;
-  Shloka1: string;
-  JanmaNakshatra: string;
-  Shloka2: string;
-  serviceInfo: ServiceInfo[];
-
   constructor(public loginService: LoginService, public storageService: StorageService, service: Service, public loadingSwitchService: LoadingSwitchService, private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public horoScopeService: HoroScopeService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {

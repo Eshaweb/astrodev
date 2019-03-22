@@ -12,6 +12,7 @@ import { UnUsedPromoCodesComponent } from './unusedPromoCodes/unusedPromoCodes.c
 import { CreatePromoCodeComponent } from './createPromoCode/createPromoCode.component';
 import { UsedPromoCodesComponent } from './usedPromoCodes/usedPromoCodes.component';
 import { PendingtoDeliveryComponent } from './pendingtoDelivery/pendingtoDelivery.component';
+import { DeliveredListComponent } from './deliveredList/deliveredList.component';
 
 const routes: Routes = [
     {
@@ -61,6 +62,10 @@ const routes: Routes = [
     {
       path: 'pendingtoDelivery',
       component:PendingtoDeliveryComponent
+    },
+    {
+      path: 'deliveredList',
+      component:DeliveredListComponent
     }
   ];
   

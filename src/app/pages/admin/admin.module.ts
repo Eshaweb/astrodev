@@ -18,6 +18,7 @@ import { CreatePromoCodeComponent } from './createPromoCode/createPromoCode.comp
 import { UsedPromoCodesComponent } from './usedPromoCodes/usedPromoCodes.component';
 import { PendingtoDeliveryComponent } from './pendingtoDelivery/pendingtoDelivery.component';
 import { ArchwizardModule } from 'angular-archwizard';
+import { DeliveredListComponent } from './deliveredList/deliveredList.component';
 
 @NgModule({
     imports: [
@@ -52,7 +53,8 @@ import { ArchwizardModule } from 'angular-archwizard';
         UnUsedPromoCodesComponent,
         UsedPromoCodesComponent,
         CreatePromoCodeComponent,
-        PendingtoDeliveryComponent
+        PendingtoDeliveryComponent,
+        DeliveredListComponent
     ],
 })
 export class AdminModule{
