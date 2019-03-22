@@ -1,0 +1,52 @@
+
+<h2 class="content-block">Pending To Delivery</h2>
+<div class="dx-card content-block responsive-paddings price-grid">
+        <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'">
+                <aw-wizard-step [stepTitle]="'Muhurtha'" [navigationSymbol]="{ symbol: '&#xf0b1;', fontFamily: 'FontAwesome' }">
+                    <div class="centered-content">
+                            <div id="data-grid-demo" #datagridBasePrice>
+                                    <dx-data-grid (onToolbarPreparing)="onToolbarPreparing($event)"
+                                        id="gridContainer"
+                                        [dataSource]="dataSource"
+                                        keyExpr="Id"
+                                        [showBorders]="true">
+                                        
+                                        <dxo-paging [enabled]="false"></dxo-paging>
+                                        <dxo-editing 
+                                            mode="batch"
+                                            [allowUpdating]="allowUpdate">
+                                        </dxo-editing>
+                                        <dxi-column dataField="Description" [allowEditing]="false"></dxi-column>
+                                        <dxi-column dataField="MRP" [width]="100"></dxi-column>
+                                        <dxi-column dataField="PrintMRP" [width]="100"></dxi-column>
+                                    </dx-data-grid>
+                            </div>
+                            <div class="dx-fieldset">      
+                                    <dx-button text="Continue" type="success"[useSubmitBehavior]="true" awNextStep>
+                                    </dx-button>
+                                </div>
+                    </div>
+                  </aw-wizard-step>
+                    <aw-wizard-step (stepEnter)="OnEnterStep($event)" [stepTitle]="'Rashi/Nakshatra'" [navigationSymbol]="{ symbol: '&#xf085;', fontFamily: 'FontAwesome' }">
+                      <div class="centered-content">
+                            
+                        <div class="dx-fieldset">
+                                <dx-button text="Back" type="success" [useSubmitBehavior]="true" awPreviousStep>
+                                </dx-button>
+                                <dx-button text="Continue" type="success" (onClick)='submit_click(dataSource)' [useSubmitBehavior]="true" awNextStep>
+                                </dx-button>
+                                </div>
+                      </div>
+                    </aw-wizard-step>
+                    <aw-wizard-step (stepExit)="OnExitStep($event)" [stepTitle]="'Date Range'" [navigationSymbol]="{ symbol: '&#xf00c;', fontFamily: 'FontAwesome' }">
+                      <div class="centered-content">          
+                        <div class="dx-fieldset">
+                                <dx-button text="Back" type="success" [useSubmitBehavior]="true" awPreviousStep>
+                                </dx-button>
+                                <dx-button text="Submit" (onClick)='OnSubmit_click()' type="success" [useSubmitBehavior]="true">
+                                </dx-button>
+                                </div>
+                      </div>
+                    </aw-wizard-step>
+                  </aw-wizard>
+</div>

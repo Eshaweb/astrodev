@@ -24,6 +24,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
 
     statedata: ArrayStore;
     statevalue: any;
+    deleteConfirmPopUp: boolean;
     ngOnInit() {
         this.statedata = new ArrayStore({
             data: this.partyService.statesOfIndia,
@@ -105,8 +106,13 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
             this.email = data.EMail;
             this.horoScopeService.GetAllAddress(PartyMastId).subscribe((data:any) => {
                 this.existingAddress = data;
+                if(data.length==1){
+                    this.OnChangeDefaultAddress(data[0].Id);
+                }
                 this.horoScopeService.GetDefaultAddress(PartyMastId).subscribe((data:any) => {
-                    this.Id = String(data);
+                    if(data!=null){
+                        this.Id = String(data);
+                    }
                     this.loadingSwitchService.loading=false;
                 });
             });
@@ -160,28 +166,42 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         this.showAddAddressForm = true;
     }
     onRemoveAddress(Id) {
-        this.loadingSwitchService.loading=true;
-        // var DeleteAddress = {
-        //     PartyMastId: this.loginService.PartyMastId,
-        //     AddressId: Id
-        // }
+        this.deleteConfirmPopUp=true;
+        this.Id=Id;
+    }
+
+    OnYes_click() {
+        this.deleteConfirmPopUp=false;
+        this.loadingSwitchService.loading = true;
         var DeleteAddress = {
             PartyMastId: StorageService.GetItem('PartyMastId'),
-            AddressId: Id
+            AddressId: this.Id
         }
         this.horoScopeService.DeleteAddress(DeleteAddress).subscribe((data:any) => {
             if (data == true) {
-                this.horoScopeService.GetAllAddress(this.loginService.PartyMastId).subscribe((data:any) => {
+                this.horoScopeService.GetAllAddress(StorageService.GetItem('PartyMastId')).subscribe((data:any) => {
                     this.existingAddress = data;
-                    this.horoScopeService.GetDefaultAddress(this.loginService.PartyMastId).subscribe((data:any) => {
-                        this.Id = String(data);
+                    if(data.length==1){
+                        this.OnChangeDefaultAddress(data[0].Id);
+                    }
+                    this.horoScopeService.GetDefaultAddress(StorageService.GetItem('PartyMastId')).subscribe((data:any) => {
+                        if(data!=null){
+                            this.Id = String(data);
+                        }
+                        else{
+                            this.Id =null;
+                        }
                         this.loadingSwitchService.loading=false;
                     });
                 });
             }
-
+            this.loadingSwitchService.loading = false;
         });
     }
+    OnNo_click() {
+        this.deleteConfirmPopUp=false;
+    }
+
     onCancel() {
         this.showAddAddressForm = !this.showAddAddressForm;
     }
@@ -203,9 +223,17 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         this.horoScopeService.CreateAddress(AddressModel).subscribe((data:any) => {
             this.horoScopeService.GetAllAddress(StorageService.GetItem('PartyMastId')).subscribe((data:any) => {
                 this.existingAddress = data;
+                if(data.length==1){
+                    this.OnChangeDefaultAddress(data[0].Id);
+                }
                 this.showAddAddressForm = !this.showAddAddressForm;
                 this.horoScopeService.GetDefaultAddress(StorageService.GetItem('PartyMastId')).subscribe((data:any) => {
-                    this.Id = String(data);
+                    if(data!=null){
+                        this.Id = String(data);
+                    }
+                    else{
+                        this.Id =null;
+                    }
                     this.loadingSwitchService.loading=false;
                 });
             });
@@ -222,8 +250,10 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
             OrderId: this.OrderId
         }
         this.orderService.UpdateAddressToOrder(orderAddress).subscribe((data:any) => {
+            if (data.Errors == undefined) {
             this.loadingSwitchService.loading=false;
             this.router.navigate(["/purchase/payment"]);
+            }
         });
     }
 

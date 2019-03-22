@@ -122,4 +122,9 @@ export class ItemService {
         var endPoint = "Promo/OccupyPromoCode";
         return this.httpService.Post(endPoint, Couponcode);
     }
+
+    GetPendingToDelvery(PartyMastId):Observable<any> {
+        var endPoint = "Delivery/GetPendingToDelivery?PartyMastId=" + PartyMastId;
+        return this.httpService.Get(endPoint);
+    }
 }

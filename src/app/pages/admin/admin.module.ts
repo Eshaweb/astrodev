@@ -16,6 +16,8 @@ import { PromoCodeComponent } from './promoCode/promoCode.component';
 import { UnUsedPromoCodesComponent } from './unusedPromoCodes/unusedPromoCodes.component';
 import { CreatePromoCodeComponent } from './createPromoCode/createPromoCode.component';
 import { UsedPromoCodesComponent } from './usedPromoCodes/usedPromoCodes.component';
+import { PendingtoDeliveryComponent } from './pendingtoDelivery/pendingtoDelivery.component';
+import { ArchwizardModule } from 'angular-archwizard';
 
 @NgModule({
     imports: [
@@ -33,7 +35,7 @@ import { UsedPromoCodesComponent } from './usedPromoCodes/usedPromoCodes.compone
         DxCheckBoxModule,
         DxSliderModule,
         DxTagBoxModule,
-        DxTemplateModule,
+        DxTemplateModule,ArchwizardModule,
         DxDataGridModule, DxListModule,
         DxLoadPanelModule,DxPopupModule, DxPopoverModule,
         DxResponsiveBoxModule,DxiRowModule
@@ -49,7 +51,8 @@ import { UsedPromoCodesComponent } from './usedPromoCodes/usedPromoCodes.compone
         PromoCodeComponent,
         UnUsedPromoCodesComponent,
         UsedPromoCodesComponent,
-        CreatePromoCodeComponent
+        CreatePromoCodeComponent,
+        PendingtoDeliveryComponent
     ],
 })
 export class AdminModule{
