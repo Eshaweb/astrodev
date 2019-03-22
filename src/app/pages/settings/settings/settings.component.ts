@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
+import { OrderService } from 'src/Services/OrderService/OrderService';
 
 @Component({
   templateUrl: 'settings.component.html',
@@ -10,13 +13,16 @@ export class SettingsComponent {
   items: { Id: number; Text: string; }[];
   defaultVisible: boolean;
   settingsMenu:any;
-  constructor(public router: Router) {
+  constructor(public orderService:OrderService,public horoScopeService:HoroScopeService,public storageService:StorageService,public router: Router) {
     this.defaultVisible = false;
     this.items=[{Id:0,Text:'Raju'},{Id:1,Text:'Raju'}];
     this.settingsMenu=[{Path:'/settings/orderHistory',Name:'Order History'},
     {Path:'/settings/generalConfig',Name:'General Configuration'},
     {Path:'/settings/muhurthaConfig',Name:'Muhurtha Configuration'},
     {Path:'/settings/changePassword',Name:'Change Password'}];
+    storageService.RemoveDataFromSession();
+    this.horoScopeService.birthplace='';
+    this.orderService.orderResponse=null;
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;

@@ -42,10 +42,16 @@ export class OrderHistoryComponent implements OnInit {
     sortorderdata: ArrayStore;
     buttonId: any;
     sub:Subscription;
+<<<<<<< HEAD
     ItActId: string;
     deleteConfirmPopUp: boolean;
     OrderId: any;
 
+=======
+    deleteConfirmPopUp: boolean;
+    OrderId: string;
+    ItActId: string;
+>>>>>>> 3a68d7631e511d6c7a772f13cee549ba857ade39
     constructor(public horoScopeService: HoroScopeService, public storageService: StorageService, public loadingSwitchService: LoadingSwitchService, public sortingOrderHistoryPipe: SortingOrderHistoryPipe, private router: Router, private itemService: ItemService, private loginService: LoginService, service: OrderHistoryService, private orderService: OrderService) {
         this.services = service.getServices();
         this.fielddata = new ArrayStore({

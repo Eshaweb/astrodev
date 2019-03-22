@@ -4,6 +4,7 @@ import { ErrorService } from '../Error/error.service';
 import { HttpService } from '../Error/http.service';
 import { Observable } from 'rxjs';
 import { navigationBeforeLogin, navigationAfterLogin, } from 'src/app/app-navigation';
+import { OrderHistoryResponse } from 'src/Models/OrderHistoryResponse';
 
 
 
@@ -18,7 +19,11 @@ export class LoginService {
   menuItems:any;
   isHomePage: boolean;
   serviceMenus:any;
+  orderhistorypopupVisible: boolean;
+  orderHistoryResponse: OrderHistoryResponse;
   serviceList: { Path: string; Name: string; }[];
+  proceedDeliveryAddress: boolean;
+  proceedPayment: boolean;
     constructor(private httpService: HttpService, private errorService: ErrorService, public http: HttpClient) {
        this.menuItems = navigationBeforeLogin;
        //this.serviceMenus=serviceMenus;

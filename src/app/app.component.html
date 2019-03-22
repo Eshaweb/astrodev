@@ -66,25 +66,33 @@
     title="Note"
     [dragEnabled]="false"
     [closeOnOutsideClick]="true"
-    [(visible)]="orderhistorypopupVisible">
+    [(visible)]="loginService.orderhistorypopupVisible">
     <div *dxTemplate="let data of 'content'">
-        <p>Date: {{orderHistoryResponse.Date|  date:'dd/MM/yyyy'}}</p>
-        <p>Name: {{orderHistoryResponse.Hint}}</p>
-        <p>Item Ordered: {{orderHistoryResponse.ItName}}</p>
-        <p>Order Id: {{orderHistoryResponse.OrderId}}</p>
+        <p>Date: {{loginService.orderHistoryResponse.Date|  date:'dd/MM/yyyy'}}</p>
+        <p>Name: {{loginService.orderHistoryResponse.Hint}}</p>
+        <p>Item Ordered: {{loginService.orderHistoryResponse.ItName}}</p>
+        <p>Order Id: {{loginService.orderHistoryResponse.OrderId}}</p>
         <p>
-            <span>Amount: {{orderHistoryResponse.Amount}}</span>
+            <span>Amount: {{loginService.orderHistoryResponse.Amount}}</span>
         </p>
-        <div *ngIf="(orderHistoryResponse.StatusCode)=='AP'">
-                <dx-button class="buttonClass1" text="Proceed to Delivery Address" type="default" (onClick)="onstatus_Click(item)"></dx-button>
-                <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(item)"></dx-button>
+        <!-- <div *ngIf="(loginService.orderHistoryResponse.StatusCode)=='AP'">
+                <dx-button class="buttonClass1" text="Proceed to Delivery Address" type="default" (onClick)="onstatus_Click(loginService.orderHistoryResponse)"></dx-button>
+                <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(loginService.orderHistoryResponse)"></dx-button>
         </div>
-        <div *ngIf="(orderHistoryResponse.StatusCode)=='BP'||(orderHistoryResponse.StatusCode)=='PP'">
-                <dx-button class="buttonClass1" text="Proceed to Payment" type="default" (onClick)="onstatus_Click(item)"></dx-button>
-                <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(item)"></dx-button>
+        <div *ngIf="(loginService.orderHistoryResponse.StatusCode)=='BP'||(orderHistoryResponse.StatusCode)=='PP'">
+                <dx-button class="buttonClass1" text="Proceed to Payment" type="default" (onClick)="onstatus_Click(loginService.orderHistoryResponse)"></dx-button>
+                <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(loginService.orderHistoryResponse)"></dx-button>
         </div>
-        <div *ngIf="(orderHistoryResponse.StatusCode)=='RD'">
-                <dx-button class="buttonClass1" text="Download" type="success" (onClick)="onstatus_Click(item)"></dx-button>
+        <div *ngIf="(loginService.orderHistoryResponse.StatusCode)=='RD'">
+                <dx-button class="buttonClass1" text="Download" type="success" (onClick)="onstatus_Click(loginService.orderHistoryResponse)"></dx-button>
+        </div> -->
+        <div *ngIf="loginService.proceedDeliveryAddress">
+            <dx-button class="buttonClass1" text="Proceed to Delivery Address" type="default" (onClick)="onstatus_Click(loginService.orderHistoryResponse)"></dx-button>
+            <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(loginService.orderHistoryResponse)"></dx-button>
+        </div>
+        <div *ngIf="loginService.proceedPayment">
+            <dx-button class="buttonClass1" text="Proceed to Payment" type="default" (onClick)="onstatus_Click(loginService.orderHistoryResponse)"></dx-button>
+            <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(loginService.orderHistoryResponse)"></dx-button>
         </div>
         <dx-button text='Close' (onClick)="ClosePopUp()"></dx-button>
     </div>

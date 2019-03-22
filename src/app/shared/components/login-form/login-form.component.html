@@ -27,7 +27,7 @@
 
     <div class="dx-field">
         <dx-button type="default" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" width="100%"></dx-button>
-        <dx-button type="default" text="Resend OTP" *ngIf='isOTPRequested' (onClick)="onRegenerateOTP()" width="100%"></dx-button>
+        <dx-button type="default" text="Resend OTP" *ngIf='isOTPRequested' (onClick)="ResendOTP_click()" width="100%"></dx-button>
     </div>
 </div>
 <div class="clear"></div>

@@ -19,6 +19,7 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { OrderHistoryResponse } from 'src/Models/OrderHistoryResponse';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { ItemService } from 'src/Services/ItemService/ItemService';
+import { LoginService } from 'src/Services/login/login.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -33,7 +34,6 @@ export class AppComponent  {
   navigationInProgress: boolean;
   showAddButton: boolean;
   orderhistorypopupVisible: boolean;
-  orderhistoryMessage: string;
   subscribe: Subscription;
   orderHistoryResponse: OrderHistoryResponse;
   sub: Subscription;
@@ -42,7 +42,7 @@ export class AppComponent  {
     return Object.keys(this.screen.sizes).filter(cl => this.screen.sizes[cl]).join(' ');
   }
 
-  constructor(public itemService:ItemService,public horoScopeService:HoroScopeService,public storageService:StorageService,public orderService:OrderService,public router: Router, private errorService: ErrorService, public loadingSwitchService: LoadingSwitchService, public registrationService:RegistrationService,public authService: AuthenticationService, private screen: ScreenService, public appInfo: AppInfoService) { 
+  constructor(public loginService:LoginService,public itemService:ItemService,public horoScopeService:HoroScopeService,public storageService:StorageService,public orderService:OrderService,public router: Router, private errorService: ErrorService, public loadingSwitchService: LoadingSwitchService, public registrationService:RegistrationService,public authService: AuthenticationService, private screen: ScreenService, public appInfo: AppInfoService) { 
     this.subscription = this.errorService.loaderState
     .subscribe((errorData: ErrorData) => {
       if (errorData != undefined) {
@@ -82,14 +82,19 @@ export class AppComponent  {
     router.events.subscribe((routerEvent: Event) => {
       this.processRouterEvent(routerEvent);
     });
-    if(StorageService.GetItem('Token')!=undefined){
+    if(StorageService.GetItem('Token')!=undefined&&window.location.pathname != '/settings/orderHistory') {
       const source = timer(1000, 1000);
       this.subscribe =source.subscribe(val =>{
         if(val==3) {
           orderService.LastPendingTransaction(StorageService.GetItem('PartyMastId')).subscribe((data:any)=>{
-            this.orderHistoryResponse = data;
-            this.orderhistorypopupVisible=true;
-            this.orderhistoryMessage='';
+            this.loginService.orderHistoryResponse = data;
+            if(data.StatusCode=='AP'){
+              this.loginService.proceedDeliveryAddress=true;
+            }
+            else if(data.StatusCode=='BP'||data.StatusCode=='PP'){
+              this.loginService.proceedPayment=true;
+            }
+            this.loginService.orderhistorypopupVisible=true;
           });
           this.subscribe.unsubscribe();
         }
@@ -112,58 +117,29 @@ export class AppComponent  {
     else if (item.StatusCode == 'BP' || item.StatusCode == 'PP') {
         this.router.navigate(["/purchase/payment"]);
     }
-    else if (item.StatusCode == 'RD') {
-        //this.router.navigate(['/purchase/paymentProcessing']);
-        this.loadingSwitchService.loading = true;
-        this.orderService.CheckForResult(item.OrderId).subscribe((data) => {
-            if (data.AstroReportId.length != 0) {
-                this.buttonId = data.AstroReportId[0].split('_')[0];
-                this.horoScopeService.DownloadResult(this.buttonId, (data) => {
-                    var newBlob = new Blob([data], { type: "application/pdf" });
-                    const fileName: string = item.ItName + '.pdf';
-                    const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
-                    var url = window.URL.createObjectURL(newBlob);
-                    a.href = url;
-                    a.download = fileName;
-                    document.body.appendChild(a);
-                    this.loadingSwitchService.loading = false;
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                });
+    this.loginService.orderhistorypopupVisible=false;
+}
+
+ondelete_Click(item){
+  this.loadingSwitchService.loading = true;
+        var deleteOrder = {
+            PartyMastId: StorageService.GetItem('PartyMastId'),
+            OrderId: StorageService.GetItem('OrderId')
+        }
+        this.orderService.DeleteOrder(deleteOrder).subscribe((data: any) => {
+            if(data==true){
+              this.loadingSwitchService.loading = false;
             }
-            else {
-                this.sub = interval(10000).subscribe((val) => {
-                    this.orderService.CheckForResult(StorageService.GetItem('OrderId')).subscribe((data) => {
-                        if (data.AstroReportId.length != 0) {
-                            this.buttonId = data.AstroReportId[0].split('_')[0];
-                            this.horoScopeService.DownloadResult(this.buttonId, (data) => {
-                                var newBlob = new Blob([data], { type: "application/pdf" });
-                                const fileName: string = this.storageService.GetOrderResponse().ItName + '.pdf';
-                                const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
-                                var url = window.URL.createObjectURL(newBlob);
-                                a.href = url;
-                                a.download = fileName;
-                                document.body.appendChild(a);
-                                a.click();
-                                document.body.removeChild(a);
-                                URL.revokeObjectURL(url);
-                                this.loadingSwitchService.loading = false;
-                                this.storageService.RemoveDataFromSession();
-                                this.sub.unsubscribe();
-                            });
-                        }
-
-                    });
-                });
-
+            else{
+                this.loadingSwitchService.loading = false;
             }
         });
-    }
 }
   ClosePopUp(){
     this.popupVisible = false;
-    this.orderhistorypopupVisible=false;
+    this.loginService.orderhistorypopupVisible=false;
+    this.loginService.proceedDeliveryAddress=false;
+    this.loginService.proceedPayment=false;
   }
   onContinue_Click(){
 
