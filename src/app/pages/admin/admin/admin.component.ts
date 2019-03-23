@@ -15,7 +15,9 @@ export class AdminComponent {
     {Path:'/admin/masterDetail',Name:'Price List'},
     {Path:'/admin/assignPriceList',Name:'Assign Price List'},
     {Path:'/admin/welcomeOffer',Name:'Welcome Offer'},
-    {Path:'/admin/promoCode',Name:'Promo Codes'}];  
+    {Path:'/admin/promoCode',Name:'Promo Codes'},
+    {Path:'/admin/pendingtoDelivery',Name:'Pending To Delivery'},
+    {Path:'/admin/deliveredList',Name:'Delivered List'}];  
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;

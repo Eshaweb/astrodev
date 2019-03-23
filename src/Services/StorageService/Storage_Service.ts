@@ -108,4 +108,13 @@ export class StorageService {
         sessionStorage.removeItem('IsDeliverable');
         sessionStorage.removeItem('ItMastId');
     }
+
+    // RemoveParticularDataFromSession(){
+    //     sessionStorage.removeItem('OrderResponse');
+    //     sessionStorage.removeItem('ItemOrdered');
+    //     sessionStorage.removeItem('OrderId');
+    //     sessionStorage.removeItem('ItActId');
+    //     sessionStorage.removeItem('IsDeliverable');
+    //     sessionStorage.removeItem('ItMastId');
+    // }
 }

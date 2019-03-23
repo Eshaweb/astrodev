@@ -1,0 +1,52 @@
+
+<h2 class="content-block">Delivered List</h2>
+<div class="dx-card content-block responsive-paddings price-grid">
+        <div class="centered-content">
+                <div class="dx-fieldset" [formGroup]="deliveredListSearchForm">
+                        <div class="dx-fieldset-column">
+                                <div class="dx-field">
+                                    <div class="dx-field-label">From Date</div>
+                                    <div class="dx-field-value">
+                                        <dx-date-box formControlName="From" type="date" displayFormat="dd/MM/yyyy">
+                                        </dx-date-box>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">To Date</div>
+                                    <div class="dx-field-value">
+                                        <dx-date-box formControlName="To" type="date" displayFormat="dd/MM/yyyy">
+                                        </dx-date-box>
+                                        <p style="color:red" id='err_To'></p>
+                                    </div>
+                            </div>
+                        </div>
+                </div>   
+                <div class="dx-fieldset">
+                        <dx-button text="Search" type="success" (onClick)='OnSearch_click()' [useSubmitBehavior]="true">
+                        </dx-button>
+                        </div>
+          </div>
+<div id="data-grid-demo" #datagridDeliveredList *ngIf='dataSource'>
+    <dx-data-grid (onToolbarPreparing)="onToolbarPreparing($event)"
+        id="gridContainer"
+        [dataSource]="dataSource"
+        keyExpr="OrderId"
+        [showBorders]="true">
+        
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-editing 
+            mode="batch"
+            [allowUpdating]="allowUpdate">
+        </dxo-editing>
+        <dxi-column dataField="TrackingRef" [allowEditing]="false"></dxi-column>
+        <dxi-column dataField="Service" [width]="100"></dxi-column>
+        <dxi-column dataField="DispatchBy" [width]="100"></dxi-column>
+        <dxi-column dataField="OrderDate" caption="Order Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
+        <dxi-column dataField="DispatchDate" caption="Dispatch Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
+        <dxi-column dataField="Address" [width]="100"></dxi-column>
+    </dx-data-grid>
+</div>    
+
+</div>

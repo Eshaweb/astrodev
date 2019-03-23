@@ -1,0 +1,73 @@
+
+<h2 class="content-block">Pending To Delivery</h2>
+<div class="dx-card content-block responsive-paddings price-grid">
+        <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'">
+                <aw-wizard-step [stepTitle]="'Pending Dispatch'" [navigationSymbol]="{ symbol: '&#xf0b1;', fontFamily: 'FontAwesome' }">
+                    <div class="centered-content">
+                            <!-- <div id="data-grid-demo" #datagridBasePrice>
+                                    <dx-data-grid (onToolbarPreparing)="onToolbarPreparing($event)"
+                                        id="gridContainer"
+                                        [dataSource]="dataSource"
+                                        keyExpr="Id"
+                                        [showBorders]="true">
+                                        
+                                        <dxo-paging [enabled]="false"></dxo-paging>
+                                        <dxo-editing 
+                                            mode="batch"
+                                            [allowUpdating]="allowUpdate">
+                                        </dxo-editing>
+                                        <dxi-column dataField="Description" [allowEditing]="false"></dxi-column>
+                                        <dxi-column dataField="MRP" [width]="100"></dxi-column>
+                                        <dxi-column dataField="PrintMRP" [width]="100"></dxi-column>
+                                    </dx-data-grid>
+                            </div> -->
+                            
+                            <dx-list #list [dataSource]="dataSource" (onItemClick)="onItemClick($event)" [height]="400">
+                                <div *dxTemplate="let data of 'item'">
+                                    <div awNextStep style="background-color:goldenrod">
+                                            <p>OrderDate: {{data.OrderDate|  date:'dd/MM/yyyy'}}</p>
+                                            <p>OrderId: {{data.OrderId}}</p> 
+                                            <p>Service:{{data.Service}}</p>
+                                            <p>Address:{{data.Address}}</p>
+                                    </div>
+                                </div>
+                            </dx-list>
+                            <div class="dx-fieldset">      
+                                    <dx-button text="Continue" type="success"[useSubmitBehavior]="true" awNextStep>
+                                    </dx-button>
+                                </div>
+                    </div>
+                  </aw-wizard-step>
+                    <aw-wizard-step (stepEnter)="OnEnterStep($event)" (stepExit)="OnExitStep($event)" [stepTitle]="'Dispatch'" [navigationSymbol]="{ symbol: '&#xf00c;', fontFamily: 'FontAwesome' }">
+                      <div class="centered-content">
+                            <div class="dx-fieldset" [formGroup]="updateDeliveryForm">
+                                <div class="dx-fieldset-column">
+                                    <div class="dx-field">
+                                        <div class="dx-field-label">Tracking Reference</div>
+                                        <div class="dx-field-value">
+                                            <dx-text-box formControlName="TrackingRef" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
+                                            <p style="color:red" id='err_Name'></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dx-fieldset-column">
+                                    <div class="dx-field">
+                                        <div class="dx-field-label">Dispatch Date </div>
+                                        <div class="dx-field-value">
+                                            <dx-date-box formControlName="DispatchDate" type="date" displayFormat="dd/MM/yyyy"
+                                                dateSerializationFormat="yyyy-MM-dd">
+                                            </dx-date-box>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="dx-fieldset">
+                                <dx-button text="Back" type="success" [useSubmitBehavior]="true" awPreviousStep>
+                                </dx-button>
+                                <dx-button text="Submit" type="success" (onClick)='submit_click()' [useSubmitBehavior]="true" awNextStep>
+                                </dx-button>
+                                </div>
+                      </div>
+                    </aw-wizard-step>
+                  </aw-wizard>
+</div>

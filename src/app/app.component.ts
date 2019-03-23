@@ -82,24 +82,24 @@ export class AppComponent  {
     router.events.subscribe((routerEvent: Event) => {
       this.processRouterEvent(routerEvent);
     });
-    if(StorageService.GetItem('Token')!=undefined&&window.location.pathname != '/settings/orderHistory') {
-      const source = timer(1000, 1000);
-      this.subscribe =source.subscribe(val =>{
-        if(val==3) {
-          orderService.LastPendingTransaction(StorageService.GetItem('PartyMastId')).subscribe((data:any)=>{
-            this.loginService.orderHistoryResponse = data;
-            if(data.StatusCode=='AP'){
-              this.loginService.proceedDeliveryAddress=true;
-            }
-            else if(data.StatusCode=='BP'||data.StatusCode=='PP'){
-              this.loginService.proceedPayment=true;
-            }
-            this.loginService.orderhistorypopupVisible=true;
-          });
-          this.subscribe.unsubscribe();
-        }
-      });
-    }
+    // if(StorageService.GetItem('Token')!=undefined&&window.location.pathname != '/settings/orderHistory') {
+    //   const source = timer(1000, 1000);
+    //   this.subscribe =source.subscribe(val =>{
+    //     if(val==3) {
+    //       orderService.LastPendingTransaction(StorageService.GetItem('PartyMastId')).subscribe((data:any)=>{
+    //         this.loginService.orderHistoryResponse = data;
+    //         if(data.StatusCode=='AP'){
+    //           this.loginService.proceedDeliveryAddress=true;
+    //         }
+    //         else if(data.StatusCode=='BP'||data.StatusCode=='PP'){
+    //           this.loginService.proceedPayment=true;
+    //         }
+    //         this.loginService.orderhistorypopupVisible=true;
+    //       });
+    //       this.subscribe.unsubscribe();
+    //     }
+    //   });
+    // }
   }
 
   onstatus_Click(item) {
@@ -124,7 +124,7 @@ ondelete_Click(item){
   this.loadingSwitchService.loading = true;
         var deleteOrder = {
             PartyMastId: StorageService.GetItem('PartyMastId'),
-            OrderId: StorageService.GetItem('OrderId')
+            OrderId: item.OrderId
         }
         this.orderService.DeleteOrder(deleteOrder).subscribe((data: any) => {
             if(data==true){
@@ -133,6 +133,7 @@ ondelete_Click(item){
             else{
                 this.loadingSwitchService.loading = false;
             }
+            this.loginService.orderhistorypopupVisible=false;
         });
 }
   ClosePopUp(){
@@ -144,6 +145,8 @@ ondelete_Click(item){
   onContinue_Click(){
 
   }
+
+  
   onShown() {
     setTimeout(() => {
         this.loadingSwitchService.loading = false;
