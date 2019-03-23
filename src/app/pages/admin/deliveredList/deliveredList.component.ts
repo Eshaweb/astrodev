@@ -16,8 +16,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
     dataSource: any;
     @ViewChild(DxDataGridComponent) public datagridDeliveredList: DxDataGridComponent;  
     deliveredListSearchForm: FormGroup;
+    dateinDateFormat: Date;
     
     constructor(public formBuilder:FormBuilder,public itemService:ItemService, public loadingSwitchService:LoadingSwitchService) {
+        this.dateinDateFormat = new Date();
         this.deliveredListSearchForm=this.formBuilder.group({
             From: new Date(),
             To: new Date()

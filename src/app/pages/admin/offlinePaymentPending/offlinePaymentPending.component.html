@@ -5,8 +5,6 @@
     <dx-data-grid id="gridContainer" 
         [dataSource]="dataSource" 
         (onSelectionChanged)="selectionChanged($event)"
-        (onRowCollapsed)="onRowCollapsed($event)"
-         (onRowRemoving)="onRowRemoving($event)" 
          [masterDetail]="{ enabled: false, template: 'detail' }"
          [showBorders]="true">
         <dxo-selection mode="single"></dxo-selection>
