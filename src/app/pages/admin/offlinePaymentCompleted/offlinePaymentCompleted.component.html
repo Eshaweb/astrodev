@@ -1,8 +1,8 @@
 
-<h2 class="content-block">Delivered List</h2>
+<h2 class="content-block">Offline Payment Completed List</h2>
 <div class="dx-card content-block responsive-paddings price-grid">
         <div class="centered-content">
-                <div class="dx-fieldset" [formGroup]="deliveredListSearchForm">
+                <div class="dx-fieldset" [formGroup]="offlinePaymentListSearchForm">
                         <div class="dx-fieldset-column">
                                 <div class="dx-field">
                                     <div class="dx-field-label">From Date</div>
@@ -22,31 +22,38 @@
                                     </div>
                             </div>
                         </div>
-                </div>   
+                </div>  
+                <div class="clear"></div> 
                 <div class="dx-fieldset">
                         <dx-button text="Search" type="success" (onClick)='OnSearch_click()' [useSubmitBehavior]="true">
                         </dx-button>
                         </div>
           </div>
 <div id="data-grid-demo" #datagridDeliveredList *ngIf='dataSource'>
-    <dx-data-grid (onToolbarPreparing)="onToolbarPreparing($event)"
-        id="gridContainer"
-        [dataSource]="dataSource"
-        keyExpr="OrderId"
+    <dx-data-grid id="gridContainer" 
+    [dataSource]="dataSource" 
+    (onSelectionChanged)="selectionChanged($event)"
+    (onRowCollapsed)="onRowCollapsed($event)"
+     (onRowRemoving)="onRowRemoving($event)" 
+     [masterDetail]="{ enabled: false, template: 'detail' }"
+     [showBorders]="true">
+    <dxo-selection mode="single"></dxo-selection>
+    <dxi-column dataField="OrderId" caption="Order Id"></dxi-column>
+    <dxi-column dataField="OrderDt" caption="Order Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
+    <dxi-column dataField="ServiceName" caption="Service Name"></dxi-column>
+    
+    <div *dxTemplate="let priceListItem of 'detail'">
+        <dx-data-grid id="gridContainer" 
+        [dataSource]="billPayModes" 
         [showBorders]="true">
-        
-        <dxo-paging [enabled]="false"></dxo-paging>
-        <dxo-editing 
-            mode="batch"
-            [allowUpdating]="allowUpdate">
-        </dxo-editing>
-        <dxi-column dataField="TrackingRef" [allowEditing]="false"></dxi-column>
-        <dxi-column dataField="Service" [width]="100"></dxi-column>
-        <dxi-column dataField="DispatchBy" [width]="100"></dxi-column>
-        <dxi-column dataField="OrderDate" caption="Order Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
-        <dxi-column dataField="DispatchDate" caption="Dispatch Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
-        <dxi-column dataField="Address" [width]="100"></dxi-column>
-    </dx-data-grid>
+            <dxo-paging [enabled]="false"></dxo-paging>
+            <dxo-editing mode="batch">
+            </dxo-editing>
+            <dxi-column dataField="Amount" [width]="80"></dxi-column>
+            <dxi-column dataField="PayCode" [width]="100"></dxi-column>
+        </dx-data-grid>
+    </div>
+</dx-data-grid>
 </div>    
 
 </div>

@@ -29,13 +29,11 @@
                                             <p>OrderId: {{data.OrderId}}</p> 
                                             <p>Service:{{data.Service}}</p>
                                             <p>Address:{{data.Address}}</p>
+                                            <!-- <dx-button text="Download" (onClick)='onItemClick($event)' type="success"[useSubmitBehavior]="true">
+                                            </dx-button> -->
                                     </div>
                                 </div>
                             </dx-list>
-                            <div class="dx-fieldset">      
-                                    <dx-button text="Continue" type="success"[useSubmitBehavior]="true" awNextStep>
-                                    </dx-button>
-                                </div>
                     </div>
                   </aw-wizard-step>
                     <aw-wizard-step (stepEnter)="OnEnterStep($event)" (stepExit)="OnExitStep($event)" [stepTitle]="'Dispatch'" [navigationSymbol]="{ symbol: '&#xf00c;', fontFamily: 'FontAwesome' }">
@@ -60,6 +58,10 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="dx-fieldset">      
+                                <dx-button text="Download" (onClick)='onDownload_click()' type="success"[useSubmitBehavior]="true" >
+                                </dx-button>
                             </div>
                         <div class="dx-fieldset">
                                 <dx-button text="Back" type="success" [useSubmitBehavior]="true" awPreviousStep>

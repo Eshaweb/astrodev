@@ -19,6 +19,8 @@ import { UsedPromoCodesComponent } from './usedPromoCodes/usedPromoCodes.compone
 import { PendingtoDeliveryComponent } from './pendingtoDelivery/pendingtoDelivery.component';
 import { ArchwizardModule } from 'angular-archwizard';
 import { DeliveredListComponent } from './deliveredList/deliveredList.component';
+import { OfflinePaymentPendingComponent } from './offlinePaymentPending/offlinePaymentPending.component';
+import { OfflinePaymentCompletedComponent } from './offlinePaymentCompleted/offlinePaymentCompleted.component';
 
 @NgModule({
     imports: [
@@ -54,7 +56,8 @@ import { DeliveredListComponent } from './deliveredList/deliveredList.component'
         UsedPromoCodesComponent,
         CreatePromoCodeComponent,
         PendingtoDeliveryComponent,
-        DeliveredListComponent
+        DeliveredListComponent,
+        OfflinePaymentPendingComponent,OfflinePaymentCompletedComponent
     ],
 })
 export class AdminModule{

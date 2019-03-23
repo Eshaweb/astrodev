@@ -1,0 +1,53 @@
+
+<h2 class="content-block">Offline Payment Pending List</h2>
+<div class="dx-card content-block responsive-paddings price-grid">
+<div id="data-grid-demo" #datagridBasePrice>
+    <dx-data-grid id="gridContainer" 
+        [dataSource]="dataSource" 
+        (onSelectionChanged)="selectionChanged($event)"
+        (onRowCollapsed)="onRowCollapsed($event)"
+         (onRowRemoving)="onRowRemoving($event)" 
+         [masterDetail]="{ enabled: false, template: 'detail' }"
+         [showBorders]="true">
+        <dxo-selection mode="single"></dxo-selection>
+        <dxi-column dataField="OrderId" caption="Order Id"></dxi-column>
+        <dxi-column dataField="OrderDt" caption="Order Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
+        <dxi-column dataField="ServiceName" caption="Service Name"></dxi-column>
+        <dxi-column cellTemplate="AuthorizeCellTemplate"></dxi-column>
+        <div *dxTemplate="let d of 'AuthorizeCellTemplate'">
+            <div class="chart-cell">
+                <a (click)="OnAuthorize_click(d)">Authorize</a>
+            </div>
+        </div>
+        <div *dxTemplate="let priceListItem of 'detail'">
+            <dx-data-grid id="gridContainer" 
+            [dataSource]="billPayModes" 
+            [showBorders]="true">
+                <dxo-paging [enabled]="false"></dxo-paging>
+                <dxo-editing mode="batch">
+                </dxo-editing>
+                <dxi-column dataField="Amount" [width]="80"></dxi-column>
+                <dxi-column dataField="PayCode" [width]="100"></dxi-column>
+            </dx-data-grid>
+        </div>
+    </dx-data-grid>
+</div>    
+<dx-popup
+class="popup"
+[width]="350"
+[height]="200"
+[showTitle]="true"
+title="Alert"
+[dragEnabled]="false"
+[closeOnOutsideClick]="true"
+[(visible)]="authorizeConfirmPopUp">
+<div *dxTemplate="let data of 'content'">
+    <p>
+        <span>Are you Sure to Authorize this record?</span>
+    </p>
+    <dx-button text='Yes' (onClick)="OnYes_click()"></dx-button>
+    <dx-button text='No' (onClick)="OnNo_click()"></dx-button>
+</div>
+</dx-popup>
+</div>
+

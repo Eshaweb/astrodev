@@ -137,4 +137,19 @@ export class ItemService {
         var endPoint = "Delivery/DeliveredList";
         return this.httpService.Post(endPoint, DeliveredList);
     }
+
+    OfflinePaymentList():Observable<any> {
+        var endPoint = "Admin/OfflinePaymentList";
+        return this.httpService.Get(endPoint);
+    }
+
+    AuthorizePayment(AuthorizePayment):Observable<any> {
+        var endPoint = "Admin/AuthorizePayment";
+        return this.httpService.Post(endPoint, AuthorizePayment);
+    }
+
+    AuthorizedPaymentList(AuthorizedPaymentList):Observable<any> {
+        var endPoint = "Admin/AuthorizedPaymentList";
+        return this.httpService.Post(endPoint, AuthorizedPaymentList);
+    }
 }

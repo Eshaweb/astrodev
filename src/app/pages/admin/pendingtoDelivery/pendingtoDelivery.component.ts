@@ -7,6 +7,9 @@ import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingS
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { WizardComponent } from 'angular-archwizard';
+import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
+import { OrderService } from 'src/Services/OrderService/OrderService';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
     templateUrl: 'pendingtoDelivery.component.html',
@@ -18,7 +21,10 @@ import { WizardComponent } from 'angular-archwizard';
     @ViewChild(WizardComponent) public wizard: WizardComponent;  
     updateDeliveryForm: FormGroup;
     OrderId: any;
-    constructor(public formBuilder:FormBuilder,public itemService:ItemService, public loadingSwitchService:LoadingSwitchService) {
+  buttonId: any;
+  sub:Subscription;
+  ItName: any;
+    constructor(public storageService:StorageService,public orderService:OrderService,public horoScopeService:HoroScopeService,public formBuilder:FormBuilder,public itemService:ItemService, public loadingSwitchService:LoadingSwitchService) {
         this.loadingSwitchService.loading=true;
         this.itemService.GetPendingToDelvery(StorageService.GetItem('PartyMastId')).subscribe((data:any)=>{
             if (data.Errors == undefined) {
@@ -45,6 +51,7 @@ import { WizardComponent } from 'angular-archwizard';
     
     onItemClick(event){
         this.OrderId=event.itemData.OrderId;
+        this.ItName=event.itemData.Service;
       }
    
       submit_click(){
@@ -67,4 +74,58 @@ import { WizardComponent } from 'angular-archwizard';
             this.loadingSwitchService.loading=false;
           });  
       }
+      OnEnterStep(event){
+
+      }
+      OnExitStep(event){
+          
+    }
+
+    onDownload_click(){
+      this.loadingSwitchService.loading = true;
+            this.orderService.CheckForResult(this.OrderId).subscribe((data) => {
+                if (data.AstroReportId.length != 0) {
+                    this.buttonId = data.AstroReportId[0].split('_')[0];
+                    this.horoScopeService.DownloadResult(this.buttonId, (data) => {
+                        var newBlob = new Blob([data], { type: "application/pdf" });
+                        const fileName: string = this.ItName + '.pdf';
+                        const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+                        var url = window.URL.createObjectURL(newBlob);
+                        a.href = url;
+                        a.download = fileName;
+                        document.body.appendChild(a);
+                        this.loadingSwitchService.loading = false;
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    });
+                }
+                else {
+                    this.sub = interval(10000).subscribe((val) => {
+                        this.orderService.CheckForResult(this.OrderId).subscribe((data) => {
+                            if (data.AstroReportId.length != 0) {
+                                this.buttonId = data.AstroReportId[0].split('_')[0];
+                                this.horoScopeService.DownloadResult(this.buttonId, (data) => {
+                                    var newBlob = new Blob([data], { type: "application/pdf" });
+                                    const fileName: string = this.ItName + '.pdf';
+                                    const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+                                    var url = window.URL.createObjectURL(newBlob);
+                                    a.href = url;
+                                    a.download = fileName;
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
+                                    URL.revokeObjectURL(url);
+                                    this.loadingSwitchService.loading = false;
+                                    this.storageService.RemoveDataFromSession();
+                                    this.sub.unsubscribe();
+                                });
+                            }
+
+                        });
+                    });
+
+                }
+            });
+    }
   }

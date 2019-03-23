@@ -17,7 +17,9 @@ export class AdminComponent {
     {Path:'/admin/welcomeOffer',Name:'Welcome Offer'},
     {Path:'/admin/promoCode',Name:'Promo Codes'},
     {Path:'/admin/pendingtoDelivery',Name:'Pending To Delivery'},
-    {Path:'/admin/deliveredList',Name:'Delivered List'}];  
+    {Path:'/admin/deliveredList',Name:'Delivered List'},
+    {Path:'/admin/offlinePaymentPending',Name:'Offline Payment Pending'},
+    {Path:'/admin/offlinePaymentCompleted',Name:'Offline Payment Completed'}];  
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;
