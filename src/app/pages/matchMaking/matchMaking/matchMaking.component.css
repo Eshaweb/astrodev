@@ -15,7 +15,7 @@
 
 .dx-fieldset-column {
     float: left;
-    width: 45%;
+    width: 46%;
     margin-right: 40px;
     margin-top: 24px !important;
 }
@@ -43,7 +43,19 @@
 .dx-fieldset-header {
     margin-top: 25px;
 }
+.content-padding{
+margin-left: 20px;
+margin-right: 20px;
+margin-top: 10px;
+}
+::ng-deep a {
+    text-transform: capitalize !important;
+}
 
+.dx-fieldset {
+    margin: 0;
+    padding: 0;
+}
 @media (max-width: 800px) {
     .dx-fieldset-column {
         float: left;
@@ -75,6 +87,18 @@
         width: 50% !important;
         padding: 10px;
     }
+    .first-row {
+        margin-top: 30px;
+    }
+    .dx-card{
+        border: none;
+    }
+    .content-padding{
+        margin-left: 2px;
+       margin-right: 2px;
+        margin-top: 10px;
+    }
+
 }
 
 .dx-field-value,
@@ -101,7 +125,7 @@
 }
 
 .f-label {
-    width: 37%;
+ /*   width: 37%;*/
     float: left;
     margin-top: 10px;
 }
