@@ -141,6 +141,7 @@ export class RegistrationFormComponent {
               else if (data.OTPType == "S") {
                   //this.toastrService.successToastr('You Successfully registered. Please check your SMS and enter OTP to verify your Account', 'Success!');
                   this.SMSOTPType='You will get an OTP. Please enter the OTP here';
+                  //'OTP Sent to ' + oTPRequest.MobileNo + ' with Reference No. ' + data.OTPRef
                 }
           }
           // else {

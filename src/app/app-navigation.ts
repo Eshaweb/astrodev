@@ -439,14 +439,14 @@ export const services = [
 
     export const serviceListBeforeLogin=[{Path:'/astamangala',Name:'Astamangala'},
     {Path:'/horoscope',Name:'Horoscope'},
-    {Path:'/matchMaking',Name:'Mela Meli'},
+    {Path:'/matchMaking',Name:'Match Making'},
     {Path:'/muhurtha',Name:'Muhurtha'},
     {Path:'/panchanga',Name:'Panchanga'},
     {Path:'/numerology',Name:'Numerology'}];
 
     export const serviceListAfterLogin=[{Path:'/astamangala',Name:'Astamangala'},
     {Path:'/horoscope',Name:'Horoscope'},
-    {Path:'/matchMaking',Name:'Mela Meli'},
+    {Path:'/matchMaking',Name:'Match Making'},
     {Path:'/muhurtha',Name:'Muhurtha'},
     {Path:'/panchanga',Name:'Panchanga'},
     {Path:'/numerology',Name:'Numerology'},

@@ -13,6 +13,8 @@ import { CreatePromoCodeComponent } from './createPromoCode/createPromoCode.comp
 import { UsedPromoCodesComponent } from './usedPromoCodes/usedPromoCodes.component';
 import { PendingtoDeliveryComponent } from './pendingtoDelivery/pendingtoDelivery.component';
 import { DeliveredListComponent } from './deliveredList/deliveredList.component';
+import { OfflinePaymentPendingComponent } from './offlinePaymentPending/offlinePaymentPending.component';
+import { OfflinePaymentCompletedComponent } from './offlinePaymentCompleted/offlinePaymentCompleted.component';
 
 const routes: Routes = [
     {
@@ -66,6 +68,14 @@ const routes: Routes = [
     {
       path: 'deliveredList',
       component:DeliveredListComponent
+    },
+    {
+      path: 'offlinePaymentPending',
+      component:OfflinePaymentPendingComponent
+    },
+    {
+      path: 'offlinePaymentCompleted',
+      component:OfflinePaymentCompletedComponent
     }
   ];
   
