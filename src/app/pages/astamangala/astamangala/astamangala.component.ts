@@ -39,50 +39,50 @@ export class AstamangalaComponent {
     { Id: "A4", Text: "A4" },
     { Id: "A5", Text: "A5" }];
   pruchakaStars: SelectBoxModel[] = [
-      { Id: "1", Text: "Ashwini" },
-      { Id: "2", Text: "Bharani" },
-      { Id: "3", Text: "Krittika" },
-      { Id: "4", Text: "Rohini" },
-      { Id: "5", Text: "Mrigashira" },
-      { Id: "6", Text: "Ardra" },
-      { Id: "7", Text: "Punarvasu" },
-      { Id: "8", Text: "Pushya" },
-      { Id: "9", Text: "Ashlesha" },
-      { Id: "10", Text: "Magha" },
-      { Id: "11", Text: "Poorva(Hubba)" },
-      { Id: "12", Text: "Uttara" },
-      { Id: "13", Text: "Hasta" },
-      { Id: "14", Text: "Chithra" },
-      { Id: "15", Text: "Swathi" },
-      { Id: "16", Text: "Vishakha" },
-      { Id: "17", Text: "Anuradha" },
-      { Id: "18", Text: "Jyeshta" },
-      { Id: "19", Text: "Moola" },
-      { Id: "20", Text: "Poorvashada" },
-      { Id: "21", Text: "Uttarashada" },
-      { Id: "22", Text: "Shravana" },
-      { Id: "23", Text: "Dhanishta" },
-      { Id: "24", Text: "Shatabhisha" },
-      { Id: "25", Text: "Poorvabhadra" },
-      { Id: "26", Text: "Uttarabhadra" },
-      { Id: "27", Text: "Revathi" },
-    ];
-    
-    pruchakaRashis: SelectBoxModel[] = [
-      { Id: "1", Text: "Mesha" },
-      { Id: "2", Text: "Vrishabha" },
-      { Id: "3", Text: "Mithuna" },
-      { Id: "4", Text: "Karkataka" },
-      { Id: "5", Text: "Simha" },
-      { Id: "6", Text: "Kanya" },
-      { Id: "7", Text: "Tula" },
-      { Id: "8", Text: "Vrishchika" },
-      { Id: "9", Text: "Dhanu" },
-      { Id: "10", Text: "Makara" },
-      { Id: "11", Text: "Kumbha" },
-      { Id: "12", Text: "Meena" }
-    ];
-    genders: SelectBoxModel[];
+    { Id: "1", Text: "Ashwini" },
+    { Id: "2", Text: "Bharani" },
+    { Id: "3", Text: "Krittika" },
+    { Id: "4", Text: "Rohini" },
+    { Id: "5", Text: "Mrigashira" },
+    { Id: "6", Text: "Ardra" },
+    { Id: "7", Text: "Punarvasu" },
+    { Id: "8", Text: "Pushya" },
+    { Id: "9", Text: "Ashlesha" },
+    { Id: "10", Text: "Magha" },
+    { Id: "11", Text: "Poorva(Hubba)" },
+    { Id: "12", Text: "Uttara" },
+    { Id: "13", Text: "Hasta" },
+    { Id: "14", Text: "Chithra" },
+    { Id: "15", Text: "Swathi" },
+    { Id: "16", Text: "Vishakha" },
+    { Id: "17", Text: "Anuradha" },
+    { Id: "18", Text: "Jyeshta" },
+    { Id: "19", Text: "Moola" },
+    { Id: "20", Text: "Poorvashada" },
+    { Id: "21", Text: "Uttarashada" },
+    { Id: "22", Text: "Shravana" },
+    { Id: "23", Text: "Dhanishta" },
+    { Id: "24", Text: "Shatabhisha" },
+    { Id: "25", Text: "Poorvabhadra" },
+    { Id: "26", Text: "Uttarabhadra" },
+    { Id: "27", Text: "Revathi" },
+  ];
+
+  pruchakaRashis: SelectBoxModel[] = [
+    { Id: "1", Text: "Mesha" },
+    { Id: "2", Text: "Vrishabha" },
+    { Id: "3", Text: "Mithuna" },
+    { Id: "4", Text: "Karkataka" },
+    { Id: "5", Text: "Simha" },
+    { Id: "6", Text: "Kanya" },
+    { Id: "7", Text: "Tula" },
+    { Id: "8", Text: "Vrishchika" },
+    { Id: "9", Text: "Dhanu" },
+    { Id: "10", Text: "Makara" },
+    { Id: "11", Text: "Kumbha" },
+    { Id: "12", Text: "Meena" }
+  ];
+  genders: SelectBoxModel[];
   dateModel: string;
   isLoading: boolean;
   public loading = false;
@@ -126,13 +126,13 @@ export class AstamangalaComponent {
   pruchakaStarvalue: any;
   pruchakaRashidata: ArrayStore;
   pruchakaRashivalue: any;
-  
-  constructor(public loginService:LoginService,public storageService:StorageService, service: Service, public loadingSwitchService: LoadingSwitchService, private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
+
+  constructor(public loginService: LoginService, public storageService: StorageService, service: Service, public loadingSwitchService: LoadingSwitchService, private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public astamangalaService: AstamangalaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
     //this.serviceInfo =  horoScopeService.getCustomers();
     //this.genders = ["Male", "Female"];
-    this.loginService.isHomePage=false;
+    this.loginService.isHomePage = false;
     this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
     this.using = ["AstroLite Wallet", "Payment Gateway"];
     this.astamangalaForm = this.formbuilder.group({
@@ -154,14 +154,14 @@ export class AstamangalaComponent {
       ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
       ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
       PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]],
-      Swarna: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
-      Tambula: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
-      AshtaMangalaNo: [444, [Validators.required, Validators.min(0)]],
+      Swarna: [1, [Validators.required, Validators.min(0), Validators.max(12)]],
+      Tambula: [1, [Validators.required, Validators.min(0), Validators.max(100)]],
+      AshtaMangalaNo: [444, [Validators.required, Validators.pattern("^[1-8]{3}$")]],
       //Pruchaka: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
       //JanmaRashi: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
-      Sprushtanga: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
+      Sprushtanga: [1, [Validators.required, Validators.min(0), Validators.max(12)]],
     });
-    
+
     // const LatDegContrl = this.astamangalaForm.get('LatDeg');
     // LatDegContrl.valueChanges.subscribe(value => this.setErrorMessage(LatDegContrl));
     // const LatMtContrl = this.astamangalaForm.get('LatMt');
@@ -198,7 +198,7 @@ export class AstamangalaComponent {
       this.horoRequest = this.astamangalaService.horoRequest;
       this.birthDateinDateFormat = this.astamangalaService.DateinDateFormat;
       this.birthTimeinDateFormat = this.astamangalaService.TimeinDateFormat;
-      this.timeZoneName=this.astamangalaService.timeZoneName;
+      this.timeZoneName = this.astamangalaService.timeZoneName;
     }
     else {
       this.birthDateinDateFormat = this.astamangalaForm.controls['Date'].value;
@@ -243,6 +243,20 @@ export class AstamangalaComponent {
     if ((c.touched || c.dirty) && c.errors) {
       document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
     }
+    if (control == "AshtaMangalaNo") {
+      var number = this.astamangalaForm.controls['AshtaMangalaNo'].value;
+      var cast = number.toString(10).split('');
+      var ANo=0;
+      for (var i = 0, n = cast.length; i < n; i++) {
+        ANo += +cast[i];
+      }
+      if (ANo == 4 || ANo == 8 || ANo == 12) {
+
+      }
+      else {
+        document.getElementById('err_AshtaMangalaNo').innerHTML = 'Sum must be either 4,8 or 12';
+      }
+    }
   }
   private validationMessages = { //used in above method.
     LatDeg_required: '*Enter Latitude Degree',
@@ -279,28 +293,19 @@ export class AstamangalaComponent {
     PN_pattern: '*Only + or - is valid ',
 
     Swarna_required: '*Enter Swarna',
-    Swarna_min: '*Minimum value is 0',
-    Swarna_max: '*Maximum value is 13',
-
-    Pruchaka_required: '*Enter Pruchaka',
-    Pruchaka_min: '*Minimum value is 0',
-    Pruchaka_max: '*Maximum value is 13',
+    Swarna_min: '*Minimum value is 1',
+    Swarna_max: '*Maximum value is 12',
 
     Tambula_required: '*Enter Tambula',
-    Tambula_min: '*Minimum value is 0',
-    Tambula_max: '*Maximum value is 13',
+    Tambula_min: '*Minimum value is 1',
+    Tambula_max: '*Maximum value is 100',
 
     AshtaMangalaNo_required: '*Enter AshtaMangalaNo',
-    AshtaMangalaNo_min: '*Minimum value is 0',
-    AshtaMangalaNo_max: '*Maximum value is 13',
-
-    JanmaRashi_required: '*Enter JanmaRashi',
-    JanmaRashi_min: '*Minimum value is 0',
-    JanmaRashi_max: '*Maximum value is 13',
+    AshtaMangalaNo_pattern: "*No's from 1-8 of 3 digits is only allowed",
 
     Sprushtanga_required: '*Enter Sprushtanga',
-    Sprushtanga_min: '*Minimum value is 0',
-    Sprushtanga_max: '*Maximum value is 13',
+    Sprushtanga_min: '*Minimum value is 1',
+    Sprushtanga_max: '*Maximum value is 12',
 
     Date_required: '*Select Date of Birth',
 
@@ -434,100 +439,100 @@ export class AstamangalaComponent {
     this.pruchakaStarvalue = event.value;
     switch (event.value) {
       case "1":
-        this.pruchakaRashis = [{Id:'1',Text:'Mesha'}];
+        this.pruchakaRashis = [{ Id: '1', Text: 'Mesha' }];
         break;
       case "2":
-      this.pruchakaRashis = [{Id:'1',Text:'Mesha'}];
+        this.pruchakaRashis = [{ Id: '1', Text: 'Mesha' }];
         break;
       case "3":
-      this.pruchakaRashis = [{Id:'1',Text:'Mesha'},{Id:'2',Text:'Vrishabha'}];
+        this.pruchakaRashis = [{ Id: '1', Text: 'Mesha' }, { Id: '2', Text: 'Vrishabha' }];
         break;
       case "4":
-      this.pruchakaRashis = [{Id:'2',Text:'Vrishabha'}];
+        this.pruchakaRashis = [{ Id: '2', Text: 'Vrishabha' }];
         break;
       case "5":
-      this.pruchakaRashis = [{Id:'2',Text:'Vrishabha'},{Id:'3',Text:'Mithuna'}];
+        this.pruchakaRashis = [{ Id: '2', Text: 'Vrishabha' }, { Id: '3', Text: 'Mithuna' }];
         break;
       case "6":
-      this.pruchakaRashis = [{Id:'3',Text:'Mithuna'}];
+        this.pruchakaRashis = [{ Id: '3', Text: 'Mithuna' }];
         break;
       case "7":
-      this.pruchakaRashis = [{Id:'3',Text:'Mithuna'},{Id:'4',Text:'Karkataka'}];
+        this.pruchakaRashis = [{ Id: '3', Text: 'Mithuna' }, { Id: '4', Text: 'Karkataka' }];
         break;
       case "8":
-      this.pruchakaRashis = [{Id:'4',Text:'Karkataka'}];
+        this.pruchakaRashis = [{ Id: '4', Text: 'Karkataka' }];
         break;
       case "9":
-      this.pruchakaRashis = [{Id:'4',Text:'Karkataka'}];
+        this.pruchakaRashis = [{ Id: '4', Text: 'Karkataka' }];
         break;
       case "10":
-      this.pruchakaRashis = [{Id:'5',Text:'Simha'}];
+        this.pruchakaRashis = [{ Id: '5', Text: 'Simha' }];
         break;
       case "11":
-      this.pruchakaRashis = [{Id:'5',Text:'Simha'}];
+        this.pruchakaRashis = [{ Id: '5', Text: 'Simha' }];
         break;
       case "12":
-      this.pruchakaRashis = [{Id:'5',Text:'Simha'},{Id:'6',Text:'Kanya'}];
+        this.pruchakaRashis = [{ Id: '5', Text: 'Simha' }, { Id: '6', Text: 'Kanya' }];
         break;
       case "13":
-      this.pruchakaRashis = [{Id:'6',Text:'Kanya'}];
+        this.pruchakaRashis = [{ Id: '6', Text: 'Kanya' }];
         break;
       case "14":
-      this.pruchakaRashis = [{Id:'6',Text:'Kanya'},{Id:'7',Text:'Tula'}];
+        this.pruchakaRashis = [{ Id: '6', Text: 'Kanya' }, { Id: '7', Text: 'Tula' }];
         break;
       case "15":
-      this.pruchakaRashis = [{Id:'7',Text:'Tula'}];
+        this.pruchakaRashis = [{ Id: '7', Text: 'Tula' }];
         break;
       case "16":
-      this.pruchakaRashis = [{Id:'7',Text:'Tula'},{Id:'8',Text:'Vrishchika'}];
+        this.pruchakaRashis = [{ Id: '7', Text: 'Tula' }, { Id: '8', Text: 'Vrishchika' }];
         break;
       case "17":
-      this.pruchakaRashis = [{Id:'8',Text:'Vrishchika'}];
+        this.pruchakaRashis = [{ Id: '8', Text: 'Vrishchika' }];
         break;
       case "18":
-      this.pruchakaRashis = [{Id:'8',Text:'Vrishchika'}];
+        this.pruchakaRashis = [{ Id: '8', Text: 'Vrishchika' }];
         break;
       case "19":
-      this.pruchakaRashis = [{Id:'9',Text:'Dhanu'}];
+        this.pruchakaRashis = [{ Id: '9', Text: 'Dhanu' }];
         break;
       case "20":
-      this.pruchakaRashis = [{Id:'9',Text:'Dhanu'}];
+        this.pruchakaRashis = [{ Id: '9', Text: 'Dhanu' }];
         break;
       case "21":
-      this.pruchakaRashis = [{Id:'9',Text:'Dhanu'},{Id:'10',Text:'Makara'}];
+        this.pruchakaRashis = [{ Id: '9', Text: 'Dhanu' }, { Id: '10', Text: 'Makara' }];
         break;
       case "22":
-      this.pruchakaRashis = [{Id:'10',Text:'Makara'}];
+        this.pruchakaRashis = [{ Id: '10', Text: 'Makara' }];
         break;
-        case "23":
-        this.pruchakaRashis = [{Id:'10',Text:'Makara'},{Id:'11',Text:'Kumbha'}];
+      case "23":
+        this.pruchakaRashis = [{ Id: '10', Text: 'Makara' }, { Id: '11', Text: 'Kumbha' }];
         break;
       case "24":
-      this.pruchakaRashis = [{Id:'11',Text:'Kumbha'}];
+        this.pruchakaRashis = [{ Id: '11', Text: 'Kumbha' }];
         break;
       case "25":
-      this.pruchakaRashis = [{Id:'11',Text:'Kumbha'}, {Id:'12',Text:'Meena'}];
+        this.pruchakaRashis = [{ Id: '11', Text: 'Kumbha' }, { Id: '12', Text: 'Meena' }];
         break;
       case "26":
-      this.pruchakaRashis = [{Id:'12',Text:'Meena'}];
+        this.pruchakaRashis = [{ Id: '12', Text: 'Meena' }];
         break;
       case "27":
-      this.pruchakaRashis = [{Id:'12',Text:'Meena'}];
+        this.pruchakaRashis = [{ Id: '12', Text: 'Meena' }];
         break;
       default:
-        this.pruchakaRashis =  [
-      { Id: "1", Text: "Mesha" },
-      { Id: "2", Text: "Vrishabha" },
-      { Id: "3", Text: "Mithuna" },
-      { Id: "4", Text: "Karkataka" },
-      { Id: "5", Text: "Simha" },
-      { Id: "6", Text: "Kanya" },
-      { Id: "7", Text: "Tula" },
-      { Id: "8", Text: "Vrishchika" },
-      { Id: "9", Text: "Dhanu" },
-      { Id: "10", Text: "Makara" },
-      { Id: "11", Text: "Kumbha" },
-      { Id: "12", Text: "Meena" }
+        this.pruchakaRashis = [
+          { Id: "1", Text: "Mesha" },
+          { Id: "2", Text: "Vrishabha" },
+          { Id: "3", Text: "Mithuna" },
+          { Id: "4", Text: "Karkataka" },
+          { Id: "5", Text: "Simha" },
+          { Id: "6", Text: "Kanya" },
+          { Id: "7", Text: "Tula" },
+          { Id: "8", Text: "Vrishchika" },
+          { Id: "9", Text: "Dhanu" },
+          { Id: "10", Text: "Makara" },
+          { Id: "11", Text: "Kumbha" },
+          { Id: "12", Text: "Meena" }
         ];
     }
     this.pruchakaRashidata = new ArrayStore({
@@ -584,20 +589,20 @@ export class AstamangalaComponent {
     // if(typeof this.horoscopeForm.controls['Date'].value ==='string'){
 
     // }
-    var bdate:Date= this.astamangalaForm.controls['Date'].value;
-    var btime:Date= this.astamangalaForm.controls['Time'].value;
-    if(bdate instanceof Date){
+    var bdate: Date = this.astamangalaForm.controls['Date'].value;
+    var btime: Date = this.astamangalaForm.controls['Time'].value;
+    if (bdate instanceof Date) {
       var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
-      }
-      else{
-        dateinString=bdate;
-      }
-      if(btime instanceof Date){
-        var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
-      }
-      else{
-         timeinString =btime;
-      } 
+    }
+    else {
+      dateinString = bdate;
+    }
+    if (btime instanceof Date) {
+      var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
+    }
+    else {
+      timeinString = btime;
+    }
 
     this.horoRequest = {
       //Date: "2018-12-28",
@@ -637,7 +642,7 @@ export class AstamangalaComponent {
     this.astamangalaService.horoRequest = this.horoRequest;
     this.astamangalaService.DateinDateFormat = bdate;
     this.astamangalaService.TimeinDateFormat = btime;
-    this.astamangalaService.timeZoneName=this.timeZoneName;
+    this.astamangalaService.timeZoneName = this.timeZoneName;
     this.storageService.SetHoroModel(JSON.stringify(this.horoRequest));
     this.astamangalaService.GetFreeData(this.horoRequest).subscribe((data: any) => {
       this.astamangalaService.horoResponse = data;
