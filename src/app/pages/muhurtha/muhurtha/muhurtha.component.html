@@ -134,16 +134,17 @@
                                     <dxo-paging [enabled]="false"></dxo-paging>
                                     <dxo-editing
                                         mode="batch"
+                                        [allowUpdating]="true"
                                         [allowDeleting]="true">
                                     </dxo-editing>
-                                        <dxi-column dataField="Nakshatra" placeholder="Enter Gothra here..." [setCellValue]="setStarValue">
+                                        <dxi-column [width]="50" dataField="Nakshatra" placeholder="Enter Gothra here..." [setCellValue]="setStarValue">
                                         <dxo-lookup
                                         [dataSource]="stars"
                                         displayExpr="Text"
                                         valueExpr="Id">
                                     </dxo-lookup>
                                     </dxi-column>
-                                        <dxi-column dataField="Rashi" [setCellValue]="setRashiValue">
+                                        <dxi-column [width]="50" dataField="Rashi" [setCellValue]="setRashiValue">
                                     <dxo-lookup
                                             [dataSource]="getFilteredRashis"
                                             displayExpr="Text"
@@ -169,7 +170,7 @@
                                 <div class="dx-field">
                                     <div class="dx-field-label">From Date</div>
                                     <div class="dx-field-value">
-                                        <dx-date-box formControlName="FromDate" [(ngModel)]="fromdateinDateFormat" [(min)]="dateinDateFormat" type="date" displayFormat="dd/MM/yyyy" dateSerializationFormat="yyyy-MM-dd">
+                                        <dx-date-box formControlName="FromDate" [(ngModel)]="fromdateinDateFormat" [(min)]="dateinDateFormat" type="date" displayFormat="dd/MM/yyyy" (onValueChanged)='setToDateinDateFormat()'>
                                         </dx-date-box>
                                         </div>
                                 </div>
@@ -178,7 +179,7 @@
                                     <div class="dx-field">
                                         <div class="dx-field-label">To Date</div>
                                         <div class="dx-field-value">
-                                            <dx-date-box formControlName="ToDate" [(ngModel)]="todateinDateFormat" [(min)]="dateinDateFormat" type="date" displayFormat="dd/MM/yyyy" dateSerializationFormat="yyyy-MM-dd">
+                                            <dx-date-box id='tod' formControlName="ToDate" [(ngModel)]="todateinDateFormat" [(min)]="dateinDateFormat" type="date" displayFormat="dd/MM/yyyy">
                                             </dx-date-box>
                                             <p style="color:red" id='err_ToDate'></p>
                                         </div>
@@ -190,7 +191,7 @@
                     <!-- <div class="dx-field-label">Vivaha Muhurtha</div>
                     <div class="dx-field-value"> -->
                         <div>
-                            <dx-check-box id="check" (onValueChanged)="EndTimeCheckBoxValueChanged($event)" text="End Time Required">
+                            <dx-check-box id="check" (onValueChanged)="EndTimeCheckBoxValueChanged($event)" text="Muhurtha End Time Required">
                             </dx-check-box>
                         </div>
                     

@@ -5,6 +5,10 @@
     
   
   <div class="dx-fieldset">
+        <div  *ngIf="muhurthaResponse.CountDesc!=null">
+                <p style="color:green">Dates With Green Color indicates the Matching Dates</p>
+                <p style="color:red">Dates With Red Color indicates the Non-Matching Dates</p>
+        </div>
        <p> {{muhurthaResponse.CountDesc}}</p>
     <div >
         <div >
@@ -28,8 +32,6 @@
         </div>
 </div>
         <div  *ngIf="muhurthaResponse.CountDesc!=null">
-              <p style="color:green">Dates With Green Color indicates the Matching Dates</p>
-              <p style="color:red">Dates With Red Color indicates the Non-Matching Dates</p>
             <dx-button
                   icon="cart"
                   type="success"

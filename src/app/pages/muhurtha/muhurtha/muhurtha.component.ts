@@ -248,7 +248,7 @@ export class MuhurthaComponent {
       this.fromdateinDateFormat = this.dateRangeForm.controls['FromDate'].value;
       this.todateinDateFormat = this.dateRangeForm.controls['ToDate'].value;
       this.todateinDateFormat.setMonth(this.todateinDateFormat.getMonth()+3);
-      this.dataSource = [];
+      this.dataSource = [{Rashi: "0", Nakshatra: "0"}];
       this.muhurthaRequest={
         MuhurthaType:null,
         FromDate:null,
@@ -292,7 +292,14 @@ export class MuhurthaComponent {
     language_required: '*Select Language',
 
   };
-
+  setToDateinDateFormat() {  
+      // var todateinDateFormat:Date = this.dateRangeForm.controls['FromDate'].value;
+      // //this.dateRangeForm.controls['ToDate'].setValue(new Date());
+      // //this.todateinDateFormat=this.dateRangeForm.controls['ToDate'].value;
+      // this.todateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate()+1);
+      // this.dateRangeForm.controls['ToDate'].setValue(this.todateinDateFormat);
+      // this.fromdateinDateFormat = this.dateRangeForm.controls['FromDate'].value;
+  }
   ngOnInit() {
     this.loadingSwitchService.loading = true;
     this.muhurthaService.GetMuhurthaList().subscribe((data: any) => {
@@ -380,9 +387,9 @@ export class MuhurthaComponent {
 
   }
   onToolbarPreparing(e) {
-    if (this.muhurthaService.muhurthaRequest == null) {
-      this.muhurtha.instance.addRow();
-    }
+    // if (this.muhurthaService.muhurthaRequest == null) {
+    //   this.muhurtha.instance.addRow();
+    // }
   //  this.muhurtha.instance.d
     var toolbarItems = e.toolbarOptions.items;
     toolbarItems.forEach(function (item) {
