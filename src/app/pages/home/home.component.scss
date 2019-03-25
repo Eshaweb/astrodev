@@ -97,7 +97,7 @@ padding-top: 25px;
   color: #D05B19;
   text-align: center;
 }
-img {
+.service-image {
     width: 45%;
     margin-left: auto;
     margin-right: auto;
@@ -151,13 +151,45 @@ h3 {
   margin-left: 20px !important;
   margin-top: 10px;
 }
+.footer-menu{
 
+  //overflow: hidden;
+  bottom: 0;
+  width: 22%;
+  float: left;
+  margin-right: 20px;
+ // border: 1px solid #ddd;
+}
+.footer-menu a{
+
+    //float: left;
+    display: block;
+    margin-left:75px;
+    padding: 4px 6px;
+    text-decoration: none;
+    font-size: 17px;
+}
 
 .home-content {
     padding-left: 40px;
     padding-right: 40px;
 }
+.social{
+    width: 50%;
+    padding: 20px;
+    float: left;
+}
 
+.footer-images{
+
+    margin-top: 10px;
+}
+
+.footer-image{
+
+margin-right: 15px;
+
+}
 .hlink {
     color: #f7d430;
     font-size: medium;
