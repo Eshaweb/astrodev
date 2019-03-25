@@ -345,14 +345,16 @@ export class LoginFormComponent {
                 this.subscribe =source.subscribe(val =>{
                   if(val==3) {
                     this.orderService.LastPendingTransaction(StorageService.GetItem('PartyMastId')).subscribe((data:any)=>{
-                      this.loginService.orderHistoryResponse = data;
-                      if(data.StatusCode=='AP'){
-                        this.loginService.proceedDeliveryAddress=true;
+                      if(data!=null){
+                        this.loginService.orderHistoryResponse = data;
+                        if(data.StatusCode=='AP'){
+                          this.loginService.proceedDeliveryAddress=true;
+                        }
+                        else if(data.StatusCode=='BP'||data.StatusCode=='PP'){
+                          this.loginService.proceedPayment=true;
+                        }
+                        this.loginService.orderhistorypopupVisible=true;
                       }
-                      else if(data.StatusCode=='BP'||data.StatusCode=='PP'){
-                        this.loginService.proceedPayment=true;
-                      }
-                      this.loginService.orderhistorypopupVisible=true;
                     });
                     this.subscribe.unsubscribe();
                   }

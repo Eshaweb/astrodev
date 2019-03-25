@@ -152,4 +152,9 @@ export class ItemService {
         var endPoint = "Admin/AuthorizedPaymentList";
         return this.httpService.Post(endPoint, AuthorizedPaymentList);
     }
+
+    WalletStatement(WalletStatement):Observable<any> {
+        var endPoint = "Wallet/WalletStatement";
+        return this.httpService.Post(endPoint, WalletStatement);
+    }
 }

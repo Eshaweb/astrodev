@@ -19,7 +19,8 @@ export class SettingsComponent {
     this.settingsMenu=[{Path:'/settings/orderHistory',Name:'Order History'},
     {Path:'/settings/generalConfig',Name:'General Configuration'},
     {Path:'/settings/muhurthaConfig',Name:'Muhurtha Configuration'},
-    {Path:'/settings/changePassword',Name:'Change Password'}];
+    {Path:'/settings/changePassword',Name:'Change Password'},
+    {Path:'/settings/walletStatement',Name:'Wallet Statement'}];
     storageService.RemoveDataFromSession();
     this.horoScopeService.birthplace='';
     this.orderService.orderResponse=null;
@@ -50,5 +51,8 @@ export class SettingsComponent {
   }
   OnChangePassword_Click(){
     this.router.navigate(["/settings/changePassword"]);
+  }
+  OnWalletStatement_Click(){
+    this.router.navigate(["/settings/walletStatement"]);
   }
 }

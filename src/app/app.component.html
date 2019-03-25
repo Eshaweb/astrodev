@@ -61,7 +61,7 @@
     </div>
 </dx-popup>
 
-<dx-popup
+<dx-popup *ngIf="loginService.orderhistorypopupVisible"
     class="popup"
     [width]="350"
     [height]="400"

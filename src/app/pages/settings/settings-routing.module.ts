@@ -6,6 +6,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { GeneralConfigComponent } from './generalConfig/generalConfig.component';
 import { MuhurthaConfigComponent } from './muhurthaConfig/muhurthaConfig.component';
+import { WalletStatementComponent } from './wallet-statement/wallet-statement.component';
 
 const routes: Routes = [
     {
@@ -31,6 +32,10 @@ const routes: Routes = [
     {
       path: 'muhurthaConfig',
       component:MuhurthaConfigComponent
+    },
+    {
+      path: 'walletStatement',
+      component:WalletStatementComponent
     },
   ];
   

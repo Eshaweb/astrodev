@@ -1,0 +1,45 @@
+
+<h2 class="content-block">Wallet Statement</h2>
+<div class="dx-card content-block responsive-paddings price-grid">
+        <div class="centered-content">
+                <div class="dx-fieldset" [formGroup]="walletStatementSearchForm">
+                        <div class="dx-fieldset-column">
+                                <div class="dx-field">
+                                    <div class="dx-field-label">From Date</div>
+                                    <div class="dx-field-value">
+                                        <dx-date-box formControlName="From" [(max)]="dateinDateFormat" type="date" displayFormat="dd/MM/yyyy">
+                                        </dx-date-box>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">To Date</div>
+                                    <div class="dx-field-value">
+                                        <dx-date-box formControlName="To" [(max)]="dateinDateFormat" type="date" displayFormat="dd/MM/yyyy">
+                                        </dx-date-box>
+                                        <p style="color:red" id='err_To'></p>
+                                    </div>
+                            </div>
+                        </div>
+                </div>  
+                <div class="clear"></div> 
+                <div class="dx-fieldset">
+                        <dx-button text="Search" type="success" (onClick)='OnSearch_click()' [useSubmitBehavior]="true">
+                        </dx-button>
+                        </div>
+          </div>
+<div id="data-grid-demo" #datagridDeliveredList *ngIf='dataSource'>
+    <dx-data-grid id="gridContainer" 
+    [dataSource]="dataSource" 
+    (onSelectionChanged)="selectionChanged($event)"
+     [masterDetail]="{ enabled: false, template: 'detail' }"
+     [showBorders]="true">
+     <dxi-column dataField="Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
+    <dxi-column dataField="Cr" caption="Credit"></dxi-column>
+    <dxi-column dataField="Dr" caption="Debit"></dxi-column>
+    <dxi-column dataField="Remarks" [width]='320'></dxi-column>
+</dx-data-grid>
+</div>    
+<h3 *ngIf='walletBalanceAmount'>Wallet Balance:  {{walletBalanceAmount|currency:'INR'}}</h3>
+</div>
