@@ -46,6 +46,7 @@
                           (onValueChanged)="languagedataSelection($event)"
                           displayExpr="Text"
                           valueExpr="Id"
+                          [searchEnabled]="true"
                           [value]="languagevalue" >
                       </dx-select-box>
                         </div>
@@ -62,6 +63,7 @@
                                       [dataSource]="reportSizedata"
                                       displayExpr="Text"
                                       valueExpr="Id"
+                                      [searchEnabled]="true"
                                       [value]="reportSizevalue">
                                   </dx-select-box>
                                 </div>

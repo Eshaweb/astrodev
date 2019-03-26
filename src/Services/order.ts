@@ -25,7 +25,12 @@ let services: Services[] = [{
 },{
     "ID": 5,
     "ServiceName": "Muhurtha",
-    "ItActId": "#MU"}
+    "ItActId": "#MU"
+},{
+    "ID": 6,
+    "ServiceName": "Wallet",
+    "ItActId": "#W"
+}
 ];
 
 @Injectable()

@@ -8,6 +8,41 @@
           <div>{{item.Prediction}}</div>
 
 </div>
+
+<div class="dx-card content-block responsive-paddings "    >
+    <div class="calender">
+            <div class="header">{{manthcaption}}</div>
+    <table>
+    
+    <thead>
+    
+    <tr>
+    <td style='background-color:crimson' [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Sunday}}</td>
+    <td style='background-color:white' [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Monday}}</td>
+    <td style='background-color:red' [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Tuesday}}</td>
+    <td style='background-color:green' [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Wednesday}}</td>
+    <td style='background-color:yellow' [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Thursday}}</td>
+    <td style='background-color:white' [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Friday}}</td>
+    <td style='background-color:#02B0D9' [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Saturday}}</td>
+    
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of serialseMonth">
+    <td [ngStyle]="{'background-color':GetBackColor(item.Sunday),'color':GetForeColor(item.Sunday)}">{{split(item.Sunday)}}</td>
+    <td [ngStyle]="{'background-color':GetBackColor(item.Monday),'color':GetForeColor(item.Monday)}">{{split(item.Monday)}}</td>
+    <td [ngStyle]="{'background-color':GetBackColor(item.Tuesday),'color':GetForeColor(item.Tuesday)}">{{split(item.Tuesday)}}</td>
+    <td [ngStyle]="{'background-color':GetBackColor(item.Wednesday),'color':GetForeColor(item.Wednesday)}">{{split(item.Wednesday)}}</td>
+    <td [ngStyle]="{'background-color':GetBackColor(item.Thursday),'color':GetForeColor(item.Thursday)}">{{split(item.Thursday)}}</td>
+    <td [ngStyle]="{'background-color':GetBackColor(item.Friday),'color':GetForeColor(item.Friday)}">{{split(item.Friday)}}</td>
+    <td [ngStyle]="{'background-color':GetBackColor(item.Saturday),'color':GetForeColor(item.Saturday)}">{{split(item.Saturday)}}</td>
+    
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    
 <div [ngClass]="getFont(numerologyRequest.LangCode)"  >
 <div class="dx-card content-block responsive-paddings">
 <div class="dx-card content-block responsive-paddings col-sm-4" style="float:left; background-color:#5FAF0A;color:white"  >
@@ -63,40 +98,6 @@
 </div>
 </div>
 
-</div>
-
-<div class="dx-card content-block responsive-paddings "    >
-<div class="calender">
-        <div class="header">{{manthcaption}}</div>
-<table>
-
-<thead>
-
-<tr>
-<td [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Sunday}}</td>
-<td [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Monday}}</td>
-<td [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Tuesday}}</td>
-<td [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Wednesday}}</td>
-<td [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Thursday}}</td>
-<td [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Friday}}</td>
-<td [ngClass]="getFont(numerologyRequest.LangCode)" >{{caption.Saturday}}</td>
-
-</tr>
-</thead>
-<tbody>
-<tr *ngFor="let item of serialseMonth">
-<td [ngStyle]="{'background-color':GetBackColor(item.Sunday),'color':GetForeColor(item.Sunday)}">{{split(item.Sunday)}}</td>
-<td [ngStyle]="{'background-color':GetBackColor(item.Monday),'color':GetForeColor(item.Monday)}">{{split(item.Monday)}}</td>
-<td [ngStyle]="{'background-color':GetBackColor(item.Tuesday),'color':GetForeColor(item.Tuesday)}">{{split(item.Tuesday)}}</td>
-<td [ngStyle]="{'background-color':GetBackColor(item.Wednesday),'color':GetForeColor(item.Wednesday)}">{{split(item.Wednesday)}}</td>
-<td [ngStyle]="{'background-color':GetBackColor(item.Thursday),'color':GetForeColor(item.Thursday)}">{{split(item.Thursday)}}</td>
-<td [ngStyle]="{'background-color':GetBackColor(item.Friday),'color':GetForeColor(item.Friday)}">{{split(item.Friday)}}</td>
-<td [ngStyle]="{'background-color':GetBackColor(item.Saturday),'color':GetForeColor(item.Saturday)}">{{split(item.Saturday)}}</td>
-
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 
 <div class="dx-card content-block responsive-paddings ">

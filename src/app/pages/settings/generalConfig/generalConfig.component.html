@@ -10,7 +10,7 @@
           </div>
           <div *dxTemplate="let accordian of 'item'">
             
-                <div class="data" *ngIf="accordian.name == 'Dasha Type'">
+                <div class="data" *ngIf="accordian.name == 'Dasha Calculation Type'">
                   <dx-radio-group  [items]="configerationService.dashatype" [(value)]="partyGeneralConfig.Config.YearValue"valueExpr="id" displayExpr="name">
                   </dx-radio-group>
                 </div>
@@ -26,14 +26,14 @@
                     [items]="configerationService.dashastart"
                     [(value)]="partyGeneralConfig.Config.DashaStartType"
                     valueExpr="id"
-                    displayExpr="name"
-                  >
+                    (onValueChanged)="OndashastartChanged($event)"
+                    displayExpr="name">
                   </dx-radio-group>
                 </div>
               
               </div>
               <div class="clear"></div>
-              <div class="dx-fieldset-column">
+              <div class="dx-fieldset">
               <div class="dx-field">
                 <div class="dx-field-label">From Age</div>
                 <div class="dx-field-value">
@@ -41,6 +41,8 @@
                     #numberBox
                     [max]="100"
                     [min]="0"
+                    [width]='150'
+                    [disabled]='fromAgeDisabled'
                     formControlName="DashaStartFromAge"
                     [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.DashaStartValue"
@@ -51,15 +53,12 @@
                   ></p>
                 </div>
               </div>
-              </div>
-              <div class="dx-fieldset-column">
               <div class="dx-field">
                 <div class="dx-field-label">To Age</div>
                 <div class="dx-field-value">
                   <dx-number-box
                     #numberBox
-                    [max]="100"
-                    [min]="0"
+                    [width]='150'
                     formControlName="DashaStarttoAge"
                     [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.DashaEndValue"
@@ -73,7 +72,7 @@
 
             </div>
             <div *ngIf="accordian.name == 'Dasha Prediction'">
-                <div class="dx-fieldset-column">
+                <div class="dx-fieldset">
               <div class="dx-field">
                 <div class="dx-field-label">From Age</div>
                 <div class="dx-field-value">
@@ -81,6 +80,7 @@
                     #numberBox
                     [max]="100"
                     [min]="0"
+                    [disabled]='fromAgeDisabled'
                     formControlName="DashapredictfromAge"
                     [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.PredStDt"
@@ -91,22 +91,18 @@
                   ></p>
                 </div>
               </div>
-                </div>
-                <div class="dx-fieldset-column">
               <div class="dx-field">
                 <div class="dx-field-label">To Age</div>
                 <div class="dx-field-value">
                   <dx-number-box
                     #numberBox
-                    [max]="100"
-                    [min]="0"
                     formControlName="DashapredicttoAge"
                     [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.PredEndDt"
                   ></dx-number-box>
                   <p
                     style="color:red;font-size: 14px;"
-                    id="err_DashaStartFromAge"
+                    id="err_DashapredicttoAge"
                   ></p>
                 </div>
               </div>
@@ -120,8 +116,7 @@
                     [(value)]="partyGeneralConfig.Config.AyanaType"
                     valueExpr="id"
                     displayExpr="name"
-                    (onValueChanged)="ayanaValueChanged($event)"
-                  >
+                    (onValueChanged)="ayanaValueChanged($event)">
                   </dx-radio-group>
                 </div>
               </div>
@@ -225,11 +220,11 @@
               <div class="dx-field">
                 <div class="dx-field-label">
                   <dx-radio-group
-                    [items]="configerationService.sunriseset"
+                    [dataSource]="configerationService.sunrisesetdata"
                     [value]="partyGeneralConfig.Config.SunSetting"
                     valueExpr="id"
-                    displayExpr="name"
-                  >
+                    (onValueChanged)="SunSettingSelection($event)"
+                    displayExpr="name">
                   </dx-radio-group>
                 </div>
               </div>
@@ -242,9 +237,10 @@
                     name="ChartType"
                     autofocus="autofocus"
                     [value]="partyGeneralConfig.Config.ChartType"
-                    [dataSource]="configerationService.charttypesource"
+                    [dataSource]="configerationService.charttypedata"
                     displayExpr="name"
                     valueExpr="id"
+                    (onValueChanged)="charttypedataSelection($event)"
                     [searchEnabled]="true"
                     showClearButton="true">
                   </dx-select-box>
@@ -340,7 +336,7 @@
             <div class="dx-fieldset-column">
         <div class="dx-field">
           <div class="cs-button">
-            <dx-button text="Update" (onClick)="Update()"> </dx-button>
+            <dx-button text="Update" [disabled]='!configform.valid' (onClick)="Update()"> </dx-button>
           </div>
         </div>
             </div>

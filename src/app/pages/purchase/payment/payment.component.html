@@ -88,6 +88,7 @@ text='Pay using Astrolite wallet      {{walletbalance|currency:"INR"}}(Wallet Ba
     [dataSource]="paymentModedata" 
     displayExpr="Text" 
     valueExpr="Id"
+    [searchEnabled]="true"
     [disabled]="selectboxdisabled"
     [value]='paymentModedatavalue'>
     </dx-select-box>

@@ -53,7 +53,6 @@ export class NumerologyFreeDataComponent implements OnInit {
 
     //this.numerologyResponse = this.numerologyService.numerologyResponse;
     this.numerologyResponse=this.storageService.GetHoroResponse('#NM');
-    this.numerologyResponse.Predictions= this.numerologyService.numerologyResponse.Predictions;
     this.serialseMonth = JSON.parse(this.numerologyResponse.Month);
     this.manthcaption = this.serialseMonth[0].Caption;
   }

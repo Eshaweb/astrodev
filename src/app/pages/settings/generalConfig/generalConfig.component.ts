@@ -17,13 +17,14 @@ export class GeneralConfigComponent {
   configform: FormGroup;
   partyGeneralConfig: PartyGeneralConfig;
   isvisibleayana: boolean;
+  fromAgeDisabled: boolean;
 
   constructor(public router:Router,public loadingSwitchService:LoadingSwitchService,public uiService: UIService, public formbuilder: FormBuilder, private httpService: HttpService, public configerationService: ConfigerationService) {
     this.configform = this.formbuilder.group({
       DashaStartFromAge: [''],
-      DashaStarttoAge: [''],
+      DashaStarttoAge: ['',[Validators.min(0), Validators.max(100)]],
       DashapredictfromAge: [''],
-      DashapredicttoAge: [''],
+      DashapredicttoAge: ['',[Validators.min(0), Validators.max(100)] ],
       Chandra: [''],
       Kuja: [''],
       Budha: [''],
@@ -78,6 +79,11 @@ export class GeneralConfigComponent {
     }
   }
   private validationMessages = {
+    DashaStarttoAge_min: '*Minimum value is 0',
+    DashaStarttoAge_max: '*Maximum value is 100',
+
+    DashapredicttoAge_min: '*Minimum value is 0',
+    DashapredicttoAge_max: '*Maximum value is 100',
   };
 
 
@@ -87,28 +93,54 @@ export class GeneralConfigComponent {
     this.partyGeneralConfig.Config = new Config();
     this.configerationService.GetGeneralconfig(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
       this.partyGeneralConfig.Config = data;
+      if(this.partyGeneralConfig.Config.DashaStartType=='SD'){
+         this.fromAgeDisabled=true;
+      }
+      else{
+        this.fromAgeDisabled=false;
+      }
     });
   }
-  ayanaValueChanged(e) {
 
+  ayanaValueChanged(e) {
     if (e.value == 'UD') {
       this.isvisibleayana = true;
     }
     else {
       this.isvisibleayana = false;
     }
-
   }
-
+  OndashastartChanged(event) {
+    if (event.value == 'SD') {
+      this.fromAgeDisabled = true;
+    }
+    else {
+      this.fromAgeDisabled = false;
+    }
+  }
+  SunSettingSelection(event){
+    this.partyGeneralConfig.Config.SunSetting=event.value;
+  }
+charttypedataSelection(event){
+  this.partyGeneralConfig.Config.ChartType=event.value;
+}
   Update() {
     this.loadingSwitchService.loading = true;
-    this.partyGeneralConfig.PartyMastId=StorageService.GetItem('PartyMastId');
-    this.configerationService.UpdateGeneralconfig(this.partyGeneralConfig).subscribe((data: any) => {
+    if(this.configform.get('DashapredicttoAge').value<=this.configform.get('DashaStarttoAge').value){
+      this.partyGeneralConfig.PartyMastId=StorageService.GetItem('PartyMastId');
+      this.configerationService.UpdateGeneralconfig(this.partyGeneralConfig).subscribe((data: any) => {
+        this.loadingSwitchService.loading = false;
+        this.router.navigate(["/settings"]);
+        // this.loadingSwitchService.popupVisible = true;
+        // this.loadingSwitchService.message = 'Configuration Updated Successfully';
+      });
+    }
+    else{
       this.loadingSwitchService.loading = false;
-      this.router.navigate(["/settings"]);
-      // this.loadingSwitchService.popupVisible = true;
-      // this.loadingSwitchService.message = 'Configuration Updated Successfully';
-    });
+      this.loadingSwitchService.title='Alert';
+      this.loadingSwitchService.popupVisible=true;
+      this.loadingSwitchService.message='Dasha Prediction To Age should be less than Dasha Start To Age';
+    }
   }
   Deafult() {
     this.loadingSwitchService.loading = true;

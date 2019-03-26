@@ -54,6 +54,7 @@
                                       [dataSource]="femaletimeformatdata"
                                       displayExpr="Text"
                                       valueExpr="Id"
+                                      [searchEnabled]="true"
                                       [value]="female_timeformatvalue">
                                   </dx-select-box>
                                   <p style="color:red" id='err_TimeFormat'></p>
@@ -277,6 +278,7 @@
                                       [dataSource]="maletimeformatdata"
                                       displayExpr="Text"
                                       valueExpr="Id"
+                                      [searchEnabled]="true"
                                       [value]="male_timeformatvalue">
                                   </dx-select-box>
                                   <p style="color:red" id='err_TimeFormat'></p>
@@ -467,6 +469,7 @@
                   (onValueChanged)="languagedataSelection($event)"
                   displayExpr="Text"
                   valueExpr="Id"
+                  [searchEnabled]="true"
                   [value]="languagevalue" >
               </dx-select-box>
                 </div>
@@ -482,6 +485,7 @@
                   (onValueChanged)="reportTypedataSelection($event)"
                   displayExpr="Text"
                   valueExpr="Id"
+                  [searchEnabled]="true"
                   [value]="reportTypevalue" >
               </dx-select-box>
                 </div>
@@ -498,6 +502,7 @@
                       [dataSource]="reportSizedata"
                       displayExpr="Text"
                       valueExpr="Id"
+                      [searchEnabled]="true"
                       [value]="reportSizevalue">
                   </dx-select-box>
                 </div>

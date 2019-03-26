@@ -207,50 +207,49 @@ export class CaptionDbService {
             caption.WeakDesc="ClÉ ÌSlÉÉåÇ qÉåÇ AÉmÉMüÐ iÉMüSÏU MüÉ oÉsÉ AÉæU DµÉU MüÐ xÉWûÉrÉiÉÉ pÉÏ SÒoÉïsÉ UWûlÉå Måü MüÉUhÉ UÉåÄeÉ Måü MüÉqÉÉåÇ Måü AsÉÉuÉÉ MüÉåD pÉÏ mÉëqÉÑZÉ ÌlÉkÉÉïU sÉålÉå Måü ÍsÉL AlÉÑMÔüsÉMüÉUMü lÉWûÏÇ WæûÇ|";
         }
        else if(langCode=="MAL")
-        {
-          
-            caption.Nityapanchanga='Nitya Panchanga';
-            caption.ShakaVarsha='Shaka Varsha';
-            caption.Kollam='Kollam';
-            caption.Samvathsara='Samvathsara';
-            caption.Aayana='Aayana ';
-            caption.Ruthu='Ruthu';
-            caption.ChandraMasa='Chandr Masa';
-            caption.SouraMasa='Soura Masa';
-            caption.Paksha='Paksha';
-            caption.MahaNakshatra='Maha Nakshatra';
-            caption.NityaTithi='Nitya Tithi';
-            caption.NityaNakshatra='Nitya Nakshatra';
-            caption.ChandrarkaYoga='Chandrarka Yoga';
-            caption.NityaKarana='Nitya Karana';
-            caption.VishaGhati='Visha Ghati';
-            caption.AmrithaGhati='Amritha Ghati';
-            caption.Grahachakram='Graha Chakram'
-            caption.CaptionRight="Note : Hour minute format is used inside the parenthesis."
-            caption.GocharaPhala="Gochara Phala";
+        {        
+            caption.Nityapanchanga='dyZõ eºxMI';
+            caption.ShakaVarsha='MZ qxmypxtd qKI';
+            caption.Kollam='¥KxmøpªrI';
+            caption.Samvathsara='sIpÄkI';
+            caption.Aayana='AjdI';
+            caption.Ruthu='EZ¡';
+            caption.ChandraMasa='PxöÉixsI';
+            caption.SouraMasa='¤s¦k ixsI';
+            caption.Paksha='e±I';
+            caption.MahaNakshatra='itxd±öZI';
+            caption.NityaTithi='Zyay';
+            caption.NityaNakshatra='dyZõ d±öZI';
+            caption.ChandrarkaYoga='PöÉxªK ¥jxMI';
+            caption.NityaKarana='KkYI';
+            caption.VishaGhati='pyr dxoyK';
+            caption.AmrithaGhati='Ai£Z dxoyK';
+            caption.Grahachakram='öMtPöKI'
+            caption.CaptionRight="öe. A :  BpkYÀyd¡×y« iYy¯¢l¡I iydyl÷¡I Bjy ¤KxU¡Àyky¯¡Ë¡."
+            caption.GocharaPhala="¥MxPxk fmI";
     
-            caption.JanmaNakshthra="Janma Nakshthra";
-            caption.JanmaRashi="Janma Rashi";
-            caption.Aroodha="Aroodha";
-            caption.SunRise="SunRise";
-            caption.Udaya="Udaya";
-            caption.SunSet="SunSet";
-            caption.Lagnamsha="Lagnamsha";
-            caption.DinaMana="Dinamana";
-            caption.ChatraRashi="Chatra Rashi";
-            caption.SprushtangaRashi="Sprushtanga Rashi";
-            caption.Tambula="Tambula Rashi";
-            caption.ChandradishtithaRashi="Chandradishtitha Rashi";
+            caption.JanmaNakshthra="RÍ d±öZ";
+            caption.JanmaRashi="RÍ kxqy";
+            caption.Aroodha="Bk¢XI";
+            caption.SunRise="s¢¥kõxbjI";
+            caption.Udaya="DbjI";
+            caption.SunSet="s¢kõxsëI";
+            caption.Lagnamsha="m²xIqI";
+            caption.DinaMana="bydixdI";
+            caption.ChatraRashi="QöZ kxqy";
+            caption.SprushtangaRashi="sð£ræxIM kxqy";
+            caption.Tambula="ZxIg¢m kxqy";
+            caption.ChandradishtithaRashi="PöÉxcyrçyZ kxqy";
     
-            caption.MoonRise="MoonRise";
-            caption.MoonSet="MoonSet"; 
-            caption.Rahu="Rahu";
-            caption.Gulika="Gulika"; 
+            caption.MoonRise="P¥öbxbjI";
+            caption.MoonSet="PöÉxsëI"; 
+            caption.Rahu="kxt¡";
+            caption.Gulika="M¡nyK©"; 
             caption.Yama="Yama"; 
-            caption.Tithi="Tithi"; 
-            caption.Nak="Nakshatra"; 
+            caption.Tithi="Zyay"; 
+            caption.Nak="d±öZI"; 
          
-            caption.Yoga="Yoga";
+            caption.Yoga="Pöbxk§K ¥jxMI";
     
     
             caption.Sunday="Txjª";
@@ -275,8 +274,6 @@ export class CaptionDbService {
         }
        else if(langCode=="TAM")
         {
-          
-    
             caption.Nityapanchanga='¿¢òÂ Àïº¡í¸õ';
             caption.ShakaVarsha='¸¼ó¾ „¡Ä¢Å¡†É ÅÕ¼õ';
             caption.Kollam='¦¸¡øÄõ (ÅÕ„õ)';
@@ -316,9 +313,7 @@ export class CaptionDbService {
             caption.Yama=""; 
             caption.Tithi=""; 
             caption.Nak=""; 
-         
             caption.Yoga="";
-    
             caption.Sunday="»¡Â¢Ú";
             caption.Monday="¾¢í¸û"; 
             caption.Tuesday="¦ºùÅ¡ö";

@@ -51,6 +51,7 @@ export class LoginFormComponent {
   message: string;
   OTPRefNo: any;
   subscribe: Subscription;
+  disableResendOTP: boolean;
 
   ngAfterViewInit(): void {
 
@@ -113,7 +114,11 @@ export class LoginFormComponent {
     UserNameContrl.valueChanges.subscribe(value => this.setErrorMessage(UserNameContrl));
 
     const PasswordControl = this.loginForm.get('Password');
-    PasswordControl.valueChanges.subscribe(value => this.setErrorMessage(PasswordControl));
+    PasswordControl.valueChanges.subscribe(value => 
+      {
+        this.setErrorMessage(PasswordControl);
+        this.disableResendOTP=true;
+      });
 
     this.uservalidateForm = this.formbuilder.group({
       OTP: ['', [Validators.required]]
@@ -139,6 +144,7 @@ export class LoginFormComponent {
   };
 
   dismiss() {
+    var dd='';
   }
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);

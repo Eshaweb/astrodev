@@ -20,6 +20,7 @@
                                       [dataSource]="timeformatdata"
                                       displayExpr="Text"
                                       valueExpr="Id"
+                                      [searchEnabled]="true"
                                       [value]="timeformatvalue">
                                   </dx-select-box>
                                   <p style="color:red" id='err_TimeFormat'></p>
@@ -44,6 +45,7 @@
                                   (onValueChanged)="languagedataSelection($event)"
                                   displayExpr="Text"
                                   valueExpr="Id"
+                                  [searchEnabled]="true"
                                   [value]="languagevalue" >
                               </dx-select-box>
                                 </div>

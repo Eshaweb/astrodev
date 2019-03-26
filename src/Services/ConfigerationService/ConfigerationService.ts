@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Accordian, RadioSource, NumericRadioSource, ComboSource } from 'src/Models/inputdto2';
 import { HttpService } from '../Error/http.service';
 import { Observable } from 'rxjs';
+import ArrayStore from 'devextreme/data/array_store';
 
 
 
@@ -11,7 +12,7 @@ export class ConfigerationService {
 
     }
     accordian: Accordian[] = [
-        { id: "1", name: "Dasha Type" },
+        { id: "1", name: "Dasha Calculation Type" },
         { id: "2", name: "Dasha Start" },
         { id: "3", name: "Dasha Prediction" },
 
@@ -49,12 +50,19 @@ export class ConfigerationService {
 
     Adipatathaphala: RadioSource[] = [{ id: "B", name: "Adhipathi Phala Based on Bhava Chakram" }, { id: "G", name: "Adhipathi Phala Based on Graha Chakram" }]
     sunriseset: NumericRadioSource[] = [{ id: 1, name: "Center" }, { id: 2, name: "Upper Limb" }]
+    sunrisesetdata = new ArrayStore({
+        data: this.sunriseset,
+        key: "id"
+      });
     charttypesource: ComboSource[] = [
         { id: "N", name: "North" },
         { id: "E", name: "East" },
         { id: "S", name: "South" },
-
     ]
+    charttypedata = new ArrayStore({
+        data: this.charttypesource,
+        key: "Id"
+      });
     UpdateMuhurthaConfig(partymuhurthaconfig):Observable<any> {
         var endPoint = "PartyConfig/UpdateMuhurthaConfig";
         return this.httpService.Post(endPoint, partymuhurthaconfig);

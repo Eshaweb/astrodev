@@ -49,6 +49,7 @@
                                       [dataSource]="timeformatdata"
                                       displayExpr="Text"
                                       valueExpr="Id"
+                                      [searchEnabled]="true"
                                       [value]="timeformatvalue">
                                   </dx-select-box>
                                   <p style="color:red" id='err_TimeFormat'></p>
@@ -65,6 +66,7 @@
                                       [dataSource]="reportSizedata"
                                       displayExpr="Text"
                                       valueExpr="Id"
+                                      [searchEnabled]="true"
                                       [value]="reportSizevalue">
                                   </dx-select-box>
                                 </div>
@@ -88,6 +90,7 @@
                                   (onValueChanged)="languagedataSelection($event)"
                                   displayExpr="Text"
                                   valueExpr="Id"
+                                  [searchEnabled]="true"
                                   [value]="languagevalue" >
                               </dx-select-box>
                                 </div>
@@ -277,6 +280,7 @@
                         (onValueChanged)="pruchakaStardataSelection($event)"
                         displayExpr="Text"
                         valueExpr="Id"
+                        [searchEnabled]="true"
                         [value]="pruchakaStarvalue" >
                     </dx-select-box>
                         <!-- <p style="color:red" id='err_Pruchaka'></p> -->
@@ -292,6 +296,7 @@
                         (onValueChanged)="pruchakaRashidataSelection($event)"
                         displayExpr="Text"
                         valueExpr="Id"
+                        [searchEnabled]="true"
                         [value]="pruchakaRashivalue" >
                     </dx-select-box>
                     </div>

@@ -18,7 +18,7 @@
                             <div class="dx-field-label">Field</div>
                             <div class="dx-field-value">
                                 <dx-select-box (onValueChanged)="fielddataSelection($event)" [dataSource]="fielddata" displayExpr="Text"
-                                    valueExpr="Id" [value]="fieldvalue">
+                                    valueExpr="Id" [value]="fieldvalue" [searchEnabled]="true">
                                 </dx-select-box>                    
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                             <div class="dx-field-label">Sort Order</div>
                             <div class="dx-field-value">
                                 <dx-select-box (onValueChanged)="sortorderdataSelection($event)" [dataSource]="sortorderdata" displayExpr="Text"
-                                    valueExpr="Id" [value]="sortordervalue">
+                                    valueExpr="Id" [value]="sortordervalue" [searchEnabled]="true">
                                 </dx-select-box>                    
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                                     <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(item)"></dx-button>
                                 </div>
                             </div>
-                            <div class="dx-field-value" *ngIf="(item.StatusCode)=='RD'">
+                            <div class="dx-field-value" *ngIf="(item.StatusCode)=='RD'&&(item.ItName)!='Wallet'">
                                 <div class="dx-field">
 
                                     <dx-button class="buttonClass1" text="Download" type="success" (onClick)="onstatus_Click(item)"></dx-button>

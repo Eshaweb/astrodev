@@ -20,14 +20,14 @@
     <div class="dx-field" style="margin-right: 12px;" >
         <dx-text-box mode="password" formControlName="Password" *ngIf='!isOTPRequested' [(value)]="password" placeholder="Password" width="100%">
         </dx-text-box>
-        <dx-text-box mode="password" formControlName="Password" *ngIf='isOTPRequested' [(value)]="password" placeholder="Enter OTP" width="100%">
+        <dx-text-box mode="password" (onKeyDown)='dismiss()' formControlName="Password" *ngIf='isOTPRequested' [(value)]="password" placeholder="Enter OTP" width="100%">
         </dx-text-box>
         <p style="color:red;font-size: 12px;" id='err_Password'></p>
     </div>
 
     <div class="dx-field">
         <dx-button type="default" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" width="100%"></dx-button>
-        <dx-button type="default" text="Resend OTP" *ngIf='isOTPRequested' (onClick)="ResendOTP_click()" width="100%"></dx-button>
+        <dx-button type="default" text="Resend OTP" [disabled]="!disableResendOTP" *ngIf='isOTPRequested' (onClick)="ResendOTP_click()" width="100%"></dx-button>
     </div>
 </div>
 <div class="clear"></div>
