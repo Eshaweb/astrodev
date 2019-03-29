@@ -44,6 +44,12 @@
 }
 .main-image {
     margin-top: 10px;
+    /* margin-right: auto; */
+    /* display: block; */
+    /* margin-left: auto; */
+    /* width: 15%; */
+    display: flex;
+    justify-content: center;
 }
 // Horizontal menu start
 ul {
