@@ -46,7 +46,7 @@ const routes: Routes = [
   },
   {
     path: 'login-form',
-    component: LoginFormComponent,
+    component: LoginFormComponent, 
     canActivate: [ AuthGuardService ]
   },
   {

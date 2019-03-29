@@ -116,18 +116,24 @@ export class HeaderComponent {
     this.loginService.isHomePage=false;
     this.router.navigate(['/services']);
   }
-  onHomeClick(event){
+  onHomeClick(){
     this.loginService.isHomePage=true;
     this.router.navigate(['/home']);
   }
-  onSettingsClick(event){
+  onSettingsClick(){
     this.router.navigate(['/settings']);
   }
-  onProfileClick(event){
+  onProfileClick(){
     this.router.navigate(['/profile']);
   }
-  onAdminClick(event){
+  onAdminClick(){
     this.router.navigate(['/admin']);
+  }
+  onAboutUsClick(){
+    this.router.navigate(['/aboutus']);
+  }
+  onContactUsClick(){
+    this.router.navigate(['/contactus']);
   }
   OnLogin_click(){
     this.router.navigate(['/login-form']);

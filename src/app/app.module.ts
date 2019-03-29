@@ -44,6 +44,11 @@ import { PanchangaModule } from './pages/panchanga/panchanga.module';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
 import { PanchaPakshiService } from 'src/Services/PanchaPakshiService/PanchaPakshiService';
 import { ConfigerationService } from 'src/Services/ConfigerationService/ConfigerationService';
+import { TermsandConditionsComponent } from './pages/termsand-conditions/termsand-conditions.component';
+import { DisclaimerComponent } from './pages/disclaimer/disclaimer.component';
+import { PrivacyComponent } from './pages/privacy/privacy.component';
+import { AboutusComponent } from './pages/aboutus/aboutus.component';
+import { ContactusComponent } from './pages/contactus/contactus.component';
 
 
 let config = new AuthServiceConfig([
@@ -68,7 +73,7 @@ export function provideConfig() {
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent, TermsandConditionsComponent, DisclaimerComponent, PrivacyComponent, AboutusComponent, ContactusComponent
   ],
   imports: [
     NgxLoadingModule.forRoot({}),
