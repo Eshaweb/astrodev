@@ -7,7 +7,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Name*</div>
                     <div class="dx-field-value">
-                        <dx-text-box formControlName="Name" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
+                        <dx-text-box formControlName="Name" valueChangeEvent="keyup" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
                         <p style="color:red" id='err_Name'></p>
                     </div>
                 </div>
@@ -17,7 +17,6 @@
                     <div class="dx-field-label">Father Name</div>
                     <div class="dx-field-value">
                         <dx-text-box formControlName="fatherName" [(ngModel)]="horoRequest.Father" placeholder="Enter Father Name here..." showClearButton="true"></dx-text-box>
-                        <p style="color:red" id='err_fatherName'></p>
                     </div>
                 </div>
                 </div>
@@ -28,7 +27,6 @@
                         <div class="dx-field-label">Mother Name</div>
                         <div class="dx-field-value">
                             <dx-text-box id="txtmname" formControlName="motherName" [(ngModel)]="horoRequest.Mother" placeholder="Enter Mother Name here..." showClearButton="true"></dx-text-box>
-                            <p style="color:red" id='err_motherName'></p>
                         </div>
                     </div>
                     </div>
@@ -38,7 +36,6 @@
                         <div class="dx-field-value">
                             <dx-text-box formControlName="gotra" [(ngModel)]="horoRequest.Gothra" placeholder="Enter Gothra here..." [showClearButton]="true">
                             </dx-text-box>
-                            <p style="color:red" id='err_gotra'></p>
                         </div>
                     </div>
                     </div>
@@ -99,8 +96,6 @@
                                       [searchEnabled]="true"
                                       [value]="timeformatvalue">
                                   </dx-select-box>
-                                  <p style="color:red" id='err_TimeFormat'></p>
-
                                 </div>
                             </div>
                         </div>
@@ -117,7 +112,6 @@
                                       [value]="reportSizevalue">
                                   </dx-select-box>
                                 </div>
-                                <p style="color:red" id='err_ReportSize'></p>
                             </div>
                         </div>
                         <div class="clear"></div>
@@ -141,14 +135,13 @@
                                   [value]="languagevalue" >
                               </dx-select-box>
                                 </div>
-                                <p style="color:red" id='err_language'></p>
                             </div>
                         </div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
                                 <div class="dx-field-label">Birth Place*</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="horoRequest.Place" (mouseup)="OnMouseUp($event.target.value)"></dx-text-box>
+                                    <dx-text-box id="txtHome" formControlName="birthPlace" valueChangeEvent="keyup" showClearButton="true" [(ngModel)]="horoRequest.Place" (mouseup)="OnMouseUp($event.target.value)"></dx-text-box>
                                     <p style="color:red" id='err_birthPlace'></p>
                             </div>
                         </div>

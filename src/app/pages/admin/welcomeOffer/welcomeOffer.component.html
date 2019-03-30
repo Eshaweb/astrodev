@@ -6,7 +6,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">While Registration</div>
                     <div class="dx-field-value">
-                        <dx-number-box formControlName="Own" [disabled]="allowUpdate" placeholder="Enter value here..." showClearButton="true"></dx-number-box>
+                        <dx-number-box formControlName="Own" valueChangeEvent="keyup" [disabled]="allowUpdate" placeholder="Enter value here..." showClearButton="true"></dx-number-box>
                         <p style="color:red" id='err_Own'></p>
                     </div>
                 </div>
@@ -15,7 +15,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Refferance Benefit</div>
                     <div class="dx-field-value">
-                        <dx-number-box formControlName="Reff" [disabled]="allowUpdate" placeholder="Enter value here..." showClearButton="true"></dx-number-box>
+                        <dx-number-box formControlName="Reff" valueChangeEvent="keyup" [disabled]="allowUpdate" placeholder="Enter value here..." showClearButton="true"></dx-number-box>
                         <p style="color:red" id='err_Reff'></p>
                     </div>
                 </div>

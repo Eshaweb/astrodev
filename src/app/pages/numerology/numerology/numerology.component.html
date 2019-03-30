@@ -7,7 +7,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Name</div>
                     <div class="dx-field-value">
-                        <dx-text-box formControlName="Name" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
+                        <dx-text-box formControlName="Name" valueChangeEvent="keyup" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
                         <p style="color:red" id='err_Name'></p>
                     </div>
                 </div>
@@ -50,7 +50,6 @@
                           [value]="languagevalue" >
                       </dx-select-box>
                         </div>
-                        <p style="color:red" id='err_language'></p>
                     </div>
                 </div>                        
                         <div class="clear"></div>
@@ -67,7 +66,6 @@
                                       [value]="reportSizevalue">
                                   </dx-select-box>
                                 </div>
-                                <p style="color:red" id='err_ReportSize'></p>
                             </div>
                         </div>
                         <div class="clear"></div>

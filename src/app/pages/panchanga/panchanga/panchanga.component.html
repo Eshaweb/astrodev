@@ -23,8 +23,6 @@
                                       [searchEnabled]="true"
                                       [value]="timeformatvalue">
                                   </dx-select-box>
-                                  <p style="color:red" id='err_TimeFormat'></p>
-
                                 </div>
                             </div>
                         </div>
@@ -49,14 +47,13 @@
                                   [value]="languagevalue" >
                               </dx-select-box>
                                 </div>
-                                <p style="color:red" id='err_language'></p>
                             </div>
                         </div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
                                 <div class="dx-field-label">Place</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="panchangaRequest.Place"></dx-text-box>
+                                    <dx-text-box id="txtHome" valueChangeEvent="keyup" formControlName="birthPlace" showClearButton="true" [(ngModel)]="panchangaRequest.Place"></dx-text-box>
                                     <p style="color:red" id='err_birthPlace'></p>
                             </div>
                         </div>

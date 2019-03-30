@@ -13,6 +13,7 @@ import { MatchResponse } from 'src/Models/MatchMaking/match';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -190,23 +191,79 @@ export class MatchMakingComponent {
     public matchMakingService: MatchMakingService, public ngZone: NgZone, public mapsAPILoader: MapsAPILoader,
     public uiService: UIService, public formbuilder: FormBuilder) {
       this.loginService.isHomePage=false;
-      this.maleMatchMakingForm = this.formbuilder.group({
-      maleName: ['Shamanth', [Validators.required, Validators.minLength(4)]],
-      MaleBdate: new Date(),
-      MaleBtime: new Date(),
-      MaleBplace: ['', [Validators.required]],
-      latitude: [''],
-      longitude: [''],
-      Male_LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
-      Male_LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
-      Male_LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
-      Male_LongMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
-      Male_NS: ['', [Validators.required, Validators.pattern("^[NS]?$")]],
-      Male_EW: ['', [Validators.required, Validators.pattern("^[EW]?$")]],
-      Male_ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
-      Male_ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
-      Male_PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
-    });
+      if (environment.production) {
+        this.maleMatchMakingForm = this.formbuilder.group({
+          maleName: ['', [Validators.required, Validators.minLength(4)]],
+          MaleBdate: new Date(),
+          MaleBtime: new Date(),
+          MaleBplace: ['', [Validators.required]],
+          latitude: [''],
+          longitude: [''],
+          Male_LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
+          Male_LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
+          Male_LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+          Male_LongMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+          Male_NS: ['', [Validators.required, Validators.pattern("^[NS]?$")]],
+          Male_EW: ['', [Validators.required, Validators.pattern("^[EW]?$")]],
+          Male_ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
+          Male_ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
+          Male_PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
+        });
+        this.femaleMatchMakingForm = this.formbuilder.group({
+          femaleName: ['', [Validators.required, Validators.minLength(4)]],
+          FemaleBdate: new Date(),
+          FemaleBtime: new Date(),
+          FemaleBplace: ['', [Validators.required]],
+          latitude: [''],
+          longitude: [''],
+          Female_LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
+          Female_LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
+          Female_LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+          Female_LongMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+          Female_NS: ['', [Validators.required, Validators.pattern("^[NS]?$")]],
+          Female_EW: ['', [Validators.required, Validators.pattern("^[EW]?$")]],
+          Female_ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
+          Female_ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
+          Female_PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
+        });
+      }
+      else{
+        this.maleMatchMakingForm = this.formbuilder.group({
+          maleName: ['Shamanth', [Validators.required, Validators.minLength(4)]],
+          MaleBdate: new Date(),
+          MaleBtime: new Date(),
+          MaleBplace: ['', [Validators.required]],
+          latitude: [''],
+          longitude: [''],
+          Male_LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
+          Male_LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
+          Male_LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+          Male_LongMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+          Male_NS: ['', [Validators.required, Validators.pattern("^[NS]?$")]],
+          Male_EW: ['', [Validators.required, Validators.pattern("^[EW]?$")]],
+          Male_ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
+          Male_ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
+          Male_PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
+        });
+        this.femaleMatchMakingForm = this.formbuilder.group({
+          femaleName: ['Vaasanthi', [Validators.required, Validators.minLength(4)]],
+          FemaleBdate: new Date(),
+          FemaleBtime: new Date(),
+          FemaleBplace: ['', [Validators.required]],
+          latitude: [''],
+          longitude: [''],
+          Female_LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
+          Female_LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
+          Female_LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+          Female_LongMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+          Female_NS: ['', [Validators.required, Validators.pattern("^[NS]?$")]],
+          Female_EW: ['', [Validators.required, Validators.pattern("^[EW]?$")]],
+          Female_ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
+          Female_ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
+          Female_PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
+        });
+      }
+      
     const maleNameContrl = this.maleMatchMakingForm.get('maleName');
     maleNameContrl.valueChanges.subscribe(value => this.setErrorMessage(maleNameContrl));
     const MaleBdateContrl = this.maleMatchMakingForm.get('MaleBdate');
@@ -252,23 +309,7 @@ export class MatchMakingComponent {
       PN: null,
       Gender: null,
     }
-    this.femaleMatchMakingForm = this.formbuilder.group({
-      femaleName: ['Vaasanthi', [Validators.required, Validators.minLength(4)]],
-      FemaleBdate: new Date(),
-      FemaleBtime: new Date(),
-      FemaleBplace: ['', [Validators.required]],
-      latitude: [''],
-      longitude: [''],
-      Female_LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
-      Female_LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
-      Female_LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
-      Female_LongMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
-      Female_NS: ['', [Validators.required, Validators.pattern("^[NS]?$")]],
-      Female_EW: ['', [Validators.required, Validators.pattern("^[EW]?$")]],
-      Female_ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
-      Female_ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
-      Female_PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
-    });
+    
     const femaleNameContrl = this.femaleMatchMakingForm.get('femaleName');
     femaleNameContrl.valueChanges.subscribe(value => this.setErrorMessage(femaleNameContrl));
     const FemaleBdateContrl = this.femaleMatchMakingForm.get('FemaleBdate');

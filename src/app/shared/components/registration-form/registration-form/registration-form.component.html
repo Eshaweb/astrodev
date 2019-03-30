@@ -47,8 +47,9 @@
                 id="check"
                 [(value)]="TandC_checkBoxValue"
                 (onValueChanged)="TandC_Click($event)"
-                text="I agree to the terms and conditions">
+                text="I agree to the ">
             </dx-check-box>
+            <a [routerLink]="['/TandC']">terms and conditions</a>
         </div>
     </div>
     <div class="dx-field">
@@ -60,10 +61,19 @@
     <p style="color:green;">{{EMailOTPType}}</p>
     <p style="color:green;">{{SMSOTPType}}</p>
     <div class="dx-field">
-        <dx-text-box mode="password" formControlName="OTP" placeholder="Enter OTP" width="100%">
+        <dx-text-box mode="password" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="OTP" placeholder="Enter OTP" width="100%">
         </dx-text-box>
         <p style="color:red;" id='err_OTP'></p>
-        <a (click)="ResendOTP_click()">Resend OTP</a>
+        
+        <div style="width: 175px;" *ngIf='(disableResendOTP==false)'>
+            <a (click)="ResendOTP_click()">Resend OTP</a>
+        </div>
+        <div style="width: 175px;" *ngIf='(disableResendOTP==true)'>
+            <a class="isDisabled" (click)="ResendOTP_click()">Resend OTP</a>
+        </div>
+        <!-- <a *ngIf='!disableResendOTP' (click)="ResendOTP_click()">Resend OTP</a>
+        <a *ngIf='disableResendOTP' class="isDisabled">Resend OTP</a> -->
+
     </div>
     <div class="dx-field">
         <!-- <dx-button  text="Submit" (onClick)="ValidateUserByOTP()"[disabled]="!uservalidateForm.valid" width="100%"></dx-button> -->

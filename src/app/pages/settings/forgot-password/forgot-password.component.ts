@@ -29,6 +29,7 @@ export class ForgotPasswordComponent {
     passwordEntry: boolean;
     Token: string;
   UserId: any;
+  disableResendOTP: boolean;
  
   public onDialogOKSelected(event) {
       event.dialog.close();
@@ -124,6 +125,24 @@ export class ForgotPasswordComponent {
       this._location.back();
   }
   ngAfterViewInit(): void {
+  }
+  
+  onValueChanged(event) {
+    if (event.value == "") {
+      this.disableResendOTP = false;
+    }
+    else {
+      this.disableResendOTP = true;
+    }
+    this.getisDisabled();
+  }
+  getisDisabled(){
+    if(this.disableResendOTP == true){
+      return 'isDisabled';
+    }
+    else{
+      return 'notDisabled';
+    }
   }
   ngOnDestroy(): void {
 

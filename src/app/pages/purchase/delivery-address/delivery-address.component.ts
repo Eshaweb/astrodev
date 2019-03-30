@@ -12,6 +12,7 @@ import { OrderService } from 'src/Services/OrderService/OrderService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -65,16 +66,30 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         this.customerEMailAddressForm = this.formbuilder.group({
             EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]]
         });
-        this.customerAddressForm = this.formbuilder.group({
-            Name: ['Shailesh', [Validators.required, Validators.minLength(3)]],
-            //EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
-            MobileNo:[8277033170,[Validators.required]],
-            Address1: ['Bappanadu', [Validators.required, Validators.minLength(3)]],
-            Address2: ['Temple Street', [Validators.required, Validators.minLength(4)]],
-            Address3: ['#4/5-2', [Validators.required, Validators.minLength(4)]],
-            PinCode: ['574 154', [Validators.required, Validators.minLength(6)]],
-            State: ['Karnataka', [Validators.required, Validators.minLength(4)]],
-        });
+        if (environment.production) {
+            this.customerAddressForm = this.formbuilder.group({
+                Name: ['', [Validators.required, Validators.minLength(3)]],
+                //EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
+                MobileNo:[null,[Validators.required]],
+                Address1: ['', [Validators.required, Validators.minLength(3)]],
+                Address2: ['', [Validators.required, Validators.minLength(4)]],
+                Address3: ['', [Validators.required, Validators.minLength(4)]],
+                PinCode: ['', [Validators.required, Validators.minLength(6)]],
+                State: ['', [Validators.required, Validators.minLength(4)]],
+            });
+        }
+        else{
+            this.customerAddressForm = this.formbuilder.group({
+                Name: ['Shailesh', [Validators.required, Validators.minLength(3)]],
+                //EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
+                MobileNo:[8277033170,[Validators.required]],
+                Address1: ['Bappanadu', [Validators.required, Validators.minLength(3)]],
+                Address2: ['Temple Street', [Validators.required, Validators.minLength(4)]],
+                Address3: ['#4/5-2', [Validators.required, Validators.minLength(4)]],
+                PinCode: ['574 154', [Validators.required, Validators.minLength(6)]],
+                State: ['Karnataka', [Validators.required, Validators.minLength(4)]],
+            });
+        }
         const EMailContrl_customerEMailAddressForm = this.customerEMailAddressForm.get('EMail');
         EMailContrl_customerEMailAddressForm.valueChanges.subscribe(value => this.setErrorMessage(EMailContrl_customerEMailAddressForm));
         const NameContrl = this.customerAddressForm.get('Name');

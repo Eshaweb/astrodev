@@ -13,14 +13,13 @@
                                                       displayExpr="Name" valueExpr="Id" [value]="muhurthasvalue" [searchEnabled]="true">
                                                   </dx-select-box>
                                               </div>
-                                              <p style="color:red" id='err_language'></p>
                                           </div>
                                       </div>
                                       <div class="dx-fieldset-column">
                                           <div class="dx-field">
                                               <div class="dx-field-label">Place</div>
                                               <div class="dx-field-value">
-                                                  <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="muhurthaRequest.Place"></dx-text-box>
+                                                  <dx-text-box id="txtHome" valueChangeEvent="keyup" formControlName="birthPlace" showClearButton="true" [(ngModel)]="muhurthaRequest.Place"></dx-text-box>
                                                   <p style="color:red" id='err_birthPlace'></p>
                                               </div>
                                           </div>
@@ -80,7 +79,6 @@
                                                     [value]="reportSizevalue">
                                                 </dx-select-box>
                                               </div>
-                                              <p style="color:red" id='err_ReportSize'></p>
                                           </div>
                                       </div>
                                       <div class="clear"></div>
@@ -107,7 +105,6 @@
                                             [value]="languagevalue" >
                                         </dx-select-box>
                                           </div>
-                                          <p style="color:red" id='err_language'></p>
                                       </div>
                                   </div>
                               <div class="clear"></div>

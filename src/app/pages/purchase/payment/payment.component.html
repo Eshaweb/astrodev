@@ -23,7 +23,7 @@
             </div> -->
             <div class="dx-field">
                     <div class="cap">
-                         <dx-text-box formControlName="CouponCode" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box>
+                         <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box>
                         <p style="color:red" id='err_CouponCode'></p>
                     </div>
                     <div class="data">
