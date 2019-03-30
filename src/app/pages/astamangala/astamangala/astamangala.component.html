@@ -52,8 +52,6 @@
                                       [searchEnabled]="true"
                                       [value]="timeformatvalue">
                                   </dx-select-box>
-                                  <p style="color:red" id='err_TimeFormat'></p>
-
                                 </div>
                             </div>
                         </div>
@@ -70,7 +68,6 @@
                                       [value]="reportSizevalue">
                                   </dx-select-box>
                                 </div>
-                                <p style="color:red" id='err_ReportSize'></p>
                             </div>
                         </div>
                         <div class="clear"></div>
@@ -94,14 +91,13 @@
                                   [value]="languagevalue" >
                               </dx-select-box>
                                 </div>
-                                <p style="color:red" id='err_language'></p>
                             </div>
                         </div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
                                 <div class="dx-field-label">Place</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box id="txtHome" formControlName="birthPlace" showClearButton="true" [(ngModel)]="horoRequest.Place"></dx-text-box>
+                                    <dx-text-box id="txtHome" valueChangeEvent="keyup" formControlName="birthPlace" showClearButton="true" [(ngModel)]="horoRequest.Place"></dx-text-box>
                                     <p style="color:red" id='err_birthPlace'></p>
                             </div>
                         </div>
@@ -255,7 +251,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Swarna Aarooda</div>
                     <div class="dx-field-value">
-                        <dx-number-box formControlName="Swarna" [(ngModel)]="horoRequest.Swarna" placeholder="Enter Swarna Aarooda here..."></dx-number-box>
+                        <dx-number-box formControlName="Swarna" valueChangeEvent="keyup" [(ngModel)]="horoRequest.Swarna" placeholder="Enter Swarna Aarooda here..."></dx-number-box>
                         <p style="color:red" id='err_Swarna'></p>
                     </div>
                 </div>
@@ -264,7 +260,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Tambula</div>
                     <div class="dx-field-value">
-                        <dx-number-box formControlName="Tambula" [(ngModel)]="horoRequest.Tambula" placeholder="Enter Tambula here..."></dx-number-box>
+                        <dx-number-box formControlName="Tambula" valueChangeEvent="keyup" [(ngModel)]="horoRequest.Tambula" placeholder="Enter Tambula here..."></dx-number-box>
                         <p style="color:red" id='err_Tambula'></p>
                     </div>
                 </div>
@@ -283,7 +279,6 @@
                         [searchEnabled]="true"
                         [value]="pruchakaStarvalue" >
                     </dx-select-box>
-                        <!-- <p style="color:red" id='err_Pruchaka'></p> -->
                     </div>
                 </div>
             </div>
@@ -307,7 +302,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Asta Mangala No</div>
                     <div class="dx-field-value">
-                        <dx-number-box formControlName="AshtaMangalaNo" [(ngModel)]="horoRequest.AshtaMangalaNo" placeholder="Enter AshtaMangala No here..."></dx-number-box>
+                        <dx-number-box formControlName="AshtaMangalaNo" valueChangeEvent="keyup" [(ngModel)]="horoRequest.AshtaMangalaNo" placeholder="Enter AshtaMangala No here..."></dx-number-box>
                         <p style="color:red" id='err_AshtaMangalaNo'></p>
                     </div>
                 </div>
@@ -316,7 +311,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Sprushtanga</div>
                     <div class="dx-field-value">
-                        <dx-number-box formControlName="Sprushtanga" [(ngModel)]="horoRequest.Sprushtanga" placeholder="Enter Sprushtanga here..."></dx-number-box>
+                        <dx-number-box formControlName="Sprushtanga" valueChangeEvent="keyup" [(ngModel)]="horoRequest.Sprushtanga" placeholder="Enter Sprushtanga here..."></dx-number-box>
                         <p style="color:red" id='err_Sprushtanga'></p>
                     </div>
                 </div>

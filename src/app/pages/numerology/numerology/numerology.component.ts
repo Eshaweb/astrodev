@@ -19,6 +19,7 @@ import { NumerologyService } from 'src/Services/NumerologyService/NumerologyServ
 import { NumerologyRequest } from 'src/Models/Numerology/numerologyRequest';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
+import { environment } from 'src/environments/environment';
 
 // if (!/localhost/.test(document.location.host)) {
 //   enableProdMode();
@@ -62,16 +63,31 @@ export class NumerologyComponent {
     public partyService: PartyService, public numerologyService: NumerologyService, public uiService: UIService,
     public formbuilder: FormBuilder) {
       this.loginService.isHomePage=false;
-      this.numerologyForm = this.formbuilder.group({
-      Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],
-      Date: new Date(),
-      language: ['', []],
-      gender: ['M', []],
-      houseName: [''],
-      mobileNo: [null],
-      vehicleNo: [''],
-      cityName: ['', []]
-    });
+      if (environment.production) {
+        this.numerologyForm = this.formbuilder.group({
+          Name: ['', [Validators.required, Validators.minLength(4)]],
+          Date: new Date(),
+          language: ['', []],
+          gender: ['M', []],
+          houseName: [''],
+          mobileNo: [null],
+          vehicleNo: [''],
+          cityName: ['', []]
+        });
+      }
+      else{
+        this.numerologyForm = this.formbuilder.group({
+          Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],
+          Date: new Date(),
+          language: ['', []],
+          gender: ['M', []],
+          houseName: [''],
+          mobileNo: [null],
+          vehicleNo: [''],
+          cityName: ['', []]
+        });
+      }
+      
     const NameContrl = this.numerologyForm.get('Name');
     NameContrl.valueChanges.subscribe(value => this.setErrorMessage(NameContrl));
     if (this.numerologyService.numerologyRequest != null) {

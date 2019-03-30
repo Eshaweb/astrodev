@@ -28,6 +28,8 @@ import { HeaderComponent } from '../header/header.component';
 import { navigationAfterLogin, navigationAfterLoginForSystem, serviceMenusAfterLogin, serviceListAfterLogin } from 'src/app/app-navigation';
 import { timer, Subscription } from 'rxjs';
 import { OrderService } from 'src/Services/OrderService/OrderService';
+import { environment } from 'src/environments/environment';
+import { take, map } from 'rxjs/operators';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -36,8 +38,8 @@ import { OrderService } from 'src/Services/OrderService/OrderService';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
-  password = '';
-  login = '';
+  // password = '';
+  // login = '';
   @Output() close: EventEmitter<any> = new EventEmitter();
   isLoading: boolean = false;
   loading: boolean = false;
@@ -51,15 +53,12 @@ export class LoginFormComponent {
   message: string;
   OTPRefNo: any;
   subscribe: Subscription;
-  disableResendOTP: boolean;
+  disableResendOTP: boolean=false;
 
   ngAfterViewInit(): void {
 
   }
-  public onDialogOKSelected(event) {
-    event.dialog.close();
-  }
-
+  
   public signIn(event) {
     event.dialog.close();
   }
@@ -102,14 +101,23 @@ export class LoginFormComponent {
     //     this.horoInfo = params['HoroInfo'];
     //     // In a real app: dispatch action to load the details here.
     // });
+    if (environment.production) {
+      this.loginForm = this.formbuilder.group({
+        UserName: [null, [Validators.required, Validators.minLength(8)]],
+        Password: ['', [Validators.required, Validators.minLength(4)]]
+      });
+    }
+    else{
+      this.loginForm = this.formbuilder.group({
+          UserName: [8277033170, [Validators.required, Validators.minLength(8)]],
+          Password: ['1234', [Validators.required, Validators.minLength(4)]]
+        });
+    }
     // this.loginForm = this.formbuilder.group({
     //   UserName: [8277033170, [Validators.required, Validators.minLength(8)]],
     //   Password: ['1234', [Validators.required, Validators.minLength(4)]]
     // });
-    this.loginForm = this.formbuilder.group({
-      UserName: [null, [Validators.required, Validators.minLength(8)]],
-      Password: ['', [Validators.required, Validators.minLength(4)]]
-    });
+   
     const UserNameContrl = this.loginForm.get('UserName');
     UserNameContrl.valueChanges.subscribe(value => this.setErrorMessage(UserNameContrl));
 
@@ -117,7 +125,7 @@ export class LoginFormComponent {
     PasswordControl.valueChanges.subscribe(value => 
       {
         this.setErrorMessage(PasswordControl);
-        this.disableResendOTP=true;
+        //this.disableResendOTP=true;
       });
 
     this.uservalidateForm = this.formbuilder.group({
@@ -143,8 +151,22 @@ export class LoginFormComponent {
     Password_minlength: 'Minimum length should be 4',
   };
 
-  dismiss() {
-    var dd='';
+  onValueChanged(event) {
+    if (event.value == "") {
+      this.disableResendOTP = false;
+    }
+    else {
+      this.disableResendOTP = true;
+    }
+    this.getisDisabled();
+  }
+  getisDisabled(){
+    if(this.disableResendOTP == true){
+      return 'isDisabled';
+    }
+    else{
+      return 'notDisabled';
+    }
   }
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
@@ -162,12 +184,17 @@ export class LoginFormComponent {
     this.registrationService.registered = true;
     this.router.navigate(["/registration-form"]);
   }
+
+  countDown;
+  counter = 20;
+  tick = 1000;
   onRequestOTP() {
     if (this.loginForm.get('UserName').value == ''||this.loginForm.get('UserName').value == null) {
       document.getElementById('err_UserName').innerHTML = 'Please Enter Mobile Number'
     }
     else{
       this.loadingSwitchService.loading = true;
+      this.disableResendOTP=true;
       var GetOTP={
         MobileNo:this.loginForm.get('UserName').value
       }
@@ -181,9 +208,22 @@ export class LoginFormComponent {
         this.message='You will get an OTP. Please enter it';
         this.loginForm.controls['Password'].setValue('');
         }
+        this.disableResendOTP=false;
         this.loadingSwitchService.loading = false;
+
+        // var interval = setInterval(() => {
+        //   this.counter--;
+        //   if (this.counter < 0) {
+        //     clearInterval(interval);
+        //   };
+        // }, 1000);
+        this.countDown = timer(0, this.tick).pipe(
+        take(this.counter),
+        map(() => --this.counter)); //To count down the time.
+        
       },(error)=>{
         this.isOTPRequested = false;
+        this.disableResendOTP=false;
         this.loadingSwitchService.loading = false;
       });
     }
@@ -462,6 +502,7 @@ export class LoginFormComponent {
   onBackClick() {
     this.isOTPRequested = false;
     document.getElementById('err_UserName').innerHTML = '';
+    this.message='';
     this.loginForm.controls['Password'].setValue('');
   }
 }

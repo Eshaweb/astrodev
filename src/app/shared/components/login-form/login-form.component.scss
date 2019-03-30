@@ -61,3 +61,15 @@ a {
   color: #b74610;
   cursor: pointer;
 }
+
+.isDisabled {
+  color: #b74610;
+  cursor: pointer;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+.notDisabled {
+  color: #b74610;
+  cursor: pointer;
+}

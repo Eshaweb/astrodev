@@ -17,6 +17,7 @@ import ArrayStore from 'devextreme/data/array_store';
 import { isString } from 'util';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -72,30 +73,58 @@ export class HoroscopeComponent {
 
     this.loginService.isHomePage = false;
     this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
-    this.horoscopeForm = this.formbuilder.group({
-      Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],
-      fatherName: [''],
-      motherName: [''],
-      gotra: [''],
-      Date: new Date(),
-      Time: new Date(),
-      TimeFormat: ['', []],
-      ReportSize: ['', []],
-      birthPlace: ['', [Validators.required]],
-      language: ['', []],
-      latitude: [''],
-      longitude: [''],
-      gender: ['M', []],
-      LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
-      LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
-      LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
-      LongMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
-      NS: ['', [Validators.required, Validators.pattern("^[NS]?$")]],
-      EW: ['', [Validators.required, Validators.pattern("^[EW]?$")]],
-      ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
-      ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
-      PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
-    });
+    if (environment.production) {
+      this.horoscopeForm = this.formbuilder.group({
+        Name: ['', [Validators.required, Validators.minLength(4)]],
+        fatherName: [''],
+        motherName: [''],
+        gotra: [''],
+        Date: new Date(),
+        Time: new Date(),
+        TimeFormat: ['', []],
+        ReportSize: ['', []],
+        birthPlace: ['', [Validators.required]],
+        language: ['', []],
+        latitude: [''],
+        longitude: [''],
+        gender: ['M', []],
+        LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
+        LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
+        LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+        LongMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+        NS: ['', [Validators.required, Validators.pattern("^[NS]?$")]],
+        EW: ['', [Validators.required, Validators.pattern("^[EW]?$")]],
+        ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
+        ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
+        PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
+      });
+    }
+    else{
+      this.horoscopeForm = this.formbuilder.group({
+        Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],
+        fatherName: [''],
+        motherName: [''],
+        gotra: [''],
+        Date: new Date(),
+        Time: new Date(),
+        TimeFormat: ['', []],
+        ReportSize: ['', []],
+        birthPlace: ['', [Validators.required]],
+        language: ['', []],
+        latitude: [''],
+        longitude: [''],
+        gender: ['M', []],
+        LatDeg: [null, [Validators.required, Validators.min(0), Validators.max(90)]],
+        LongDeg: [null, [Validators.required, Validators.min(0), Validators.max(180)]],
+        LatMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+        LongMt: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
+        NS: ['', [Validators.required, Validators.pattern("^[NS]?$")]],
+        EW: ['', [Validators.required, Validators.pattern("^[EW]?$")]],
+        ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
+        ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
+        PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
+      });
+    }
     const NameContrl = this.horoscopeForm.get('Name');
     NameContrl.valueChanges.subscribe(value => this.setErrorMessage(NameContrl));
     const fatherNameContrl = this.horoscopeForm.get('fatherName');

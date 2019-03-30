@@ -6,7 +6,7 @@
                         <div class="dx-field">
                             <div class="dx-field-label">Amount</div>
                             <div class="dx-field-value">
-                                <dx-number-box formControlName="Amount" placeholder="Enter value here..." showClearButton="true"></dx-number-box>
+                                <dx-number-box formControlName="Amount" valueChangeEvent="keyup" placeholder="Enter value here..." showClearButton="true"></dx-number-box>
                                 <p style="color:red" id='err_Amount'></p>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                         <div class="dx-field">
                             <div class="dx-field-label">Mobile No.</div>
                                 <div class="dx-field-value">
-                                    <dx-number-box formControlName="MobileNo" placeholder="Enter here..." showClearButton="true">
+                                    <dx-number-box formControlName="MobileNo" valueChangeEvent="keyup" placeholder="Enter here..." showClearButton="true">
                                     </dx-number-box>
                                     <p style="color:red" id='err_MobileNo'></p>
                                 </div>

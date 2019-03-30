@@ -8,8 +8,7 @@
                 <div class="dx-field">
                 <div class="dx-field-label">Amount</div>
                 <div class="dx-field-value">
-                    <dx-text-box formControlName="Amount" (keyup)="onAmount($event.target.value)"  placeholder="Enter Amount" width="100%">
-
+                    <dx-text-box formControlName="Amount" valueChangeEvent="keyup" (keyup)="onAmount($event.target.value)"  placeholder="Enter Amount" width="100%">
                     </dx-text-box>
                 </div>
                 

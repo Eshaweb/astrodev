@@ -8,12 +8,12 @@
 
 <form *ngIf='passwordEntry' [formGroup]="passwordEntryForm">
         <div class="dx-field">
-            <dx-text-box mode="password" formControlName="NewPassword" placeholder="New Password(4-8 Characters)" width="100%">
+            <dx-text-box mode="password" valueChangeEvent="keyup" formControlName="NewPassword" placeholder="New Password(4-8 Characters)" width="100%">
             </dx-text-box>
             <p style="color:red;" id='err_NewPassword'></p>
         </div>
         <div class="dx-field">
-            <dx-text-box mode="password" formControlName="confirm_NewPassword" placeholder="Re Enter New Password" width="100%">
+            <dx-text-box mode="password" valueChangeEvent="keyup" formControlName="confirm_NewPassword" placeholder="Re Enter New Password" width="100%">
             </dx-text-box>
             <p style="color:red;" id='err_confirm_NewPassword'></p>
             <p style="color:red" *ngIf="passwordEntryForm.errors?.notSame">Passwords do not match</p>

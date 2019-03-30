@@ -7,7 +7,7 @@
             <div class="dx-field">
                 <div class="dx-field-label">Name</div>
                 <div class="dx-field-value">
-                    <dx-text-box formControlName="Name" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
+                    <dx-text-box formControlName="Name" valueChangeEvent="keyup" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
                     <p style="color:red" id='err_Name'></p>
                 </div>
             </div>
@@ -16,7 +16,7 @@
             <div class="dx-field">
                 <div class="dx-field-label">Discount</div>
                 <div class="dx-field-value">
-                    <dx-number-box formControlName="Formula" placeholder="Enter Discount here..." showClearButton="true"></dx-number-box>
+                    <dx-number-box formControlName="Formula" valueChangeEvent="keyup" placeholder="Enter Discount here..." showClearButton="true"></dx-number-box>
                     <p style="color:red" id='err_Formula'></p>
                 </div>
             </div>

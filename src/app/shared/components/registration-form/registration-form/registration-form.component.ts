@@ -37,6 +37,7 @@ export class RegistrationFormComponent {
     OTPValidatedVisible: boolean;
     message: string;
     TandC_checkBoxValue: boolean=false;
+    disableResendOTP: boolean;
   public changeIcon() {
       return this.interval ? "pause" : "play_arrow";
   }
@@ -152,9 +153,30 @@ export class RegistrationFormComponent {
           // }
       });
   }
+
   ngOnInit(){
 
   }
+    onKeyDown() {
+        this.disableResendOTP = true;
+    }
+    onValueChanged(event) {
+        if (event.value == "") {
+          this.disableResendOTP = false;
+        }
+        else {
+          this.disableResendOTP = true;
+        }
+        this.getisDisabled();
+      }
+      getisDisabled(){
+        if(this.disableResendOTP == true){
+          return 'isDisabled';
+        }
+        else{
+          return 'notDisabled';
+        }
+      }
   backClicked() {
       this._location.back();
   }
@@ -167,6 +189,7 @@ export class RegistrationFormComponent {
         this.NewsLetter_checkBoxValue=false;
     }
   }
+
   TandC_Click(event){
     if(event.value==true){
         this.TandC_checkBoxValue=true;
@@ -175,11 +198,15 @@ export class RegistrationFormComponent {
         this.TandC_checkBoxValue=false;
     }
   }
+
   ngAfterViewInit(): void {
+
   }
+
   ngOnDestroy(): void {
       this.registrationService.registered=true;
   }
+
   ValidateUserByOTP(){
     this.loadingSwitchService.loading = true;
     var UserOTP={
@@ -196,6 +223,7 @@ export class RegistrationFormComponent {
         }
     });
   }
+
   ResendOTP_click(){
     var UserName = {
       UserName: this.registrationForm.get('UserName').value
@@ -206,4 +234,6 @@ export class RegistrationFormComponent {
       }
     });
   }
+
+
 }

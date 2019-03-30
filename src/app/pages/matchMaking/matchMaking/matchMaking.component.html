@@ -18,7 +18,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Name</div>
                     <div class="dx-field-value">
-                        <dx-text-box formControlName="femaleName" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
+                        <dx-text-box formControlName="femaleName" valueChangeEvent="keyup" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
                         <p style="color:red" id='err_femaleName'></p>
                     </div>
                 </div>
@@ -57,8 +57,6 @@
                                       [searchEnabled]="true"
                                       [value]="female_timeformatvalue">
                                   </dx-select-box>
-                                  <p style="color:red" id='err_TimeFormat'></p>
-
                                 </div>
                             </div>
                         </div>
@@ -66,7 +64,7 @@
                             <div class="dx-field">
                                 <div class="dx-field-label">Birth Place</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box id="female_birthplace_txt" formControlName="FemaleBplace" [(ngModel)]="matchMakingService.female_birthplace" showClearButton="true"></dx-text-box>
+                                    <dx-text-box id="female_birthplace_txt" valueChangeEvent="keyup" formControlName="FemaleBplace" [(ngModel)]="matchMakingService.female_birthplace" showClearButton="true"></dx-text-box>
                                     <p style="color:red" id='err_FemaleBplace'></p>
                             </div>
                         </div>
@@ -242,7 +240,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Name</div>
                     <div class="dx-field-value">
-                        <dx-text-box formControlName="maleName" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
+                        <dx-text-box formControlName="maleName" valueChangeEvent="keyup" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
                         <p style="color:red" id='err_maleName'></p>
                     </div>
                 </div>
@@ -281,8 +279,6 @@
                                       [searchEnabled]="true"
                                       [value]="male_timeformatvalue">
                                   </dx-select-box>
-                                  <p style="color:red" id='err_TimeFormat'></p>
-
                                 </div>
                             </div>
                         </div>
@@ -290,7 +286,7 @@
                             <div class="dx-field">
                                 <div class="dx-field-label">Birth Place</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box id="male_birthplace_txt" formControlName="MaleBplace"[(ngModel)]="matchMakingService.male_birthplace" showClearButton="true"></dx-text-box>
+                                    <dx-text-box id="male_birthplace_txt" valueChangeEvent="keyup" formControlName="MaleBplace"[(ngModel)]="matchMakingService.male_birthplace" showClearButton="true"></dx-text-box>
                                     <p style="color:red" id='err_MaleBplace'></p>
                             </div>
                         </div>
@@ -473,7 +469,6 @@
                   [value]="languagevalue" >
               </dx-select-box>
                 </div>
-                <p style="color:red" id='err_language'></p>
             </div>
         </div>
         <div class="dx-fieldset-column">
@@ -489,7 +484,6 @@
                   [value]="reportTypevalue" >
               </dx-select-box>
                 </div>
-                <p style="color:red" id='err_language'></p>
             </div>
         </div>
         <div class="clear"></div>
@@ -506,7 +500,6 @@
                       [value]="reportSizevalue">
                   </dx-select-box>
                 </div>
-                <p style="color:red" id='err_ReportSize'></p>
             </div>
         </div>
         <div class="clear"></div>

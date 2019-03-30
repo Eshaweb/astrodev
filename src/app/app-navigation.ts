@@ -139,10 +139,12 @@ export const navigationAfterLogin = [
   },
   {
     text: 'About Us',
+    path:'/aboutus',
     icon: 'folder',
   },
   {
     text: 'Contact Us',
+    path:'/contactus',
     icon: 'folder',
   },
 ];
@@ -204,10 +206,12 @@ export const navigationBeforeLogin = [
   },
   {
     text: 'About Us',
+    path:'/aboutus',
     icon: 'folder',
   },
   {
     text: 'Contact Us',
+    path:'/contactus',
     icon: 'folder',
   },
 ];
