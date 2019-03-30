@@ -26,7 +26,9 @@
 
     <div class="dx-field">
         <dx-button type="default" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" width="100%"></dx-button>
+        <div id='resendbutton'>
         <dx-button type="default" text="Resend OTP" [disabled]="disableResendOTP||counter!= 0" *ngIf='isOTPRequested' (onClick)="ResendOTP_click()" width="100%"></dx-button>
+        </div>
         <p *ngIf='counter!= 0'>{{countDown | async }}</p>
     </div>
 </div>
@@ -94,3 +96,15 @@
         </p>
     </div>
 </dx-popup>
+
+<!-- <dx-load-panel
+    #loadPanel
+    [(message)]='countDown'
+    shadingColor="rgba(0,0,0,0.4)"
+    [(visible)]="loading"
+    [position]="{ of: '#resendbutton' }"
+    [showIndicator]="true"
+    [showPane]="true"
+    [shading]="true"
+    [closeOnOutsideClick]="false">
+</dx-load-panel> -->

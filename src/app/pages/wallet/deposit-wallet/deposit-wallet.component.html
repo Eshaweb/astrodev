@@ -6,15 +6,16 @@
                 <h3 id="employee">Wallet Balance:  {{walletBalanceAmount|currency:'INR'}}</h3>
 <br>
                 <div class="dx-field">
-                <div class="dx-field-label">Amount</div>
+                <div class="dx-field-label">Add Amount</div>
                 <div class="dx-field-value">
                     <dx-text-box formControlName="Amount" valueChangeEvent="keyup" (keyup)="onAmount($event.target.value)"  placeholder="Enter Amount" width="100%">
+
                     </dx-text-box>
                 </div>
                 
                 </div>
                 <p style="color:red" id='err_Amount'></p>
-                <p style="color: red" *ngIf="showError">Amount should be in the range Rs.50-Rs.20000</p>
+                <p style="color: red" *ngIf="showError">Amount should be in the range {{minAmount|currency:'INR'}}-{{maxAmount|currency:'INR'}}</p>
                 <div class="dx-field-label2" *ngIf="bonusAmount!=null">Bonus Amount:  {{bonusAmount|currency:'INR'}}</div>
 
                 <br>
@@ -34,7 +35,7 @@
                     
                 
                 <div class="dx-field">
-                    <dx-button type="default" [disabled]="!depositToWalletForm.valid" text="Add Money" (onClick)="onClick()" width="100%"></dx-button>
+                    <dx-button type="default" [disabled]="!depositToWalletForm.valid||!paymentModedatavalue" text="Add Money" (onClick)="onClick()" width="100%"></dx-button>
                 </div>
                
             </form>
