@@ -24,23 +24,15 @@ import { APP_BASE_HREF } from '@angular/common';
 import { ErrorService } from 'src/Services/Error/error.service';
 import { HttpService, applicationHttpClientCreator } from 'src/Services/Error/http.service';
 import { RegistrationFormModule } from './shared/components/registration-form/registration-form.module';
-import { PurchaseModule } from './pages/purchase/purchase.module';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
 import { NgxLoadingModule } from 'ngx-loading';
-import { HoroscopeModule } from './pages/horoscope/horoscope.module';
-import { WalletModule } from './pages/wallet/wallet.module';
-import { DxPopupModule, DxButtonModule, DxLoadPanelModule, DevExtremeModule, DxNavBarModule } from 'devextreme-angular';
-import { AstamangalaModule } from './pages/astamangala/astamangala.module';
-import { MatchMakingModule } from './pages/matchMaking/matchMaking.module';
+import { DxPopupModule, DxButtonModule, DxLoadPanelModule } from 'devextreme-angular';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
-import { NumerologyModule } from './pages/numerology/numerology.module';
-import { OrderHistoryService } from 'src/Services/order';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
-import { PanchangaModule } from './pages/panchanga/panchanga.module';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
 import { PanchaPakshiService } from 'src/Services/PanchaPakshiService/PanchaPakshiService';
 import { ConfigerationService } from 'src/Services/ConfigerationService/ConfigerationService';
@@ -49,6 +41,7 @@ import { DisclaimerComponent } from './pages/disclaimer/disclaimer.component';
 import { PrivacyComponent } from './pages/privacy/privacy.component';
 import { AboutusComponent } from './pages/aboutus/aboutus.component';
 import { ContactusComponent } from './pages/contactus/contactus.component';
+import { OrderHistoryService } from 'src/Services/OrderHistoryService/OrderHistoryService';
 
 
 let config = new AuthServiceConfig([

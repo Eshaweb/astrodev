@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderHistoryService, Services } from 'src/Services/order';
 import ArrayStore from 'devextreme/data/array_store';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
 import { OrderService } from 'src/Services/OrderService/OrderService';
@@ -12,6 +11,7 @@ import { SortingOrderHistoryPipe } from 'src/pipes/sorting-orders.pipe';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { interval, Subscription } from 'rxjs';
+import { Services, OrderHistoryService } from 'src/Services/OrderHistoryService/OrderHistoryService';
 
 
 
@@ -45,7 +45,10 @@ export class OrderHistoryComponent implements OnInit {
     deleteConfirmPopUp: boolean;
     OrderId: string;
     ItActId: string;
-    constructor(public horoScopeService: HoroScopeService, public storageService: StorageService, public loadingSwitchService: LoadingSwitchService, public sortingOrderHistoryPipe: SortingOrderHistoryPipe, private router: Router, private itemService: ItemService, private loginService: LoginService, service: OrderHistoryService, private orderService: OrderService) {
+    constructor(public horoScopeService: HoroScopeService, public storageService: StorageService, public loadingSwitchService: LoadingSwitchService, 
+        public sortingOrderHistoryPipe: SortingOrderHistoryPipe, private router: Router, private itemService: ItemService, private loginService: LoginService, 
+        service: OrderHistoryService, private orderService: OrderService) {
+            
         this.services = service.getServices();
         this.fielddata = new ArrayStore({
             data: this.fields,
