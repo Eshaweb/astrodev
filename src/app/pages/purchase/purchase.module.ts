@@ -10,7 +10,6 @@ import { DeliveryAddressComponent } from './delivery-address/delivery-address.co
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentProcessingComponent } from './payment-processing/payment-processing.component';
 import { DxiRowModule } from 'devextreme-angular/ui/nested/row-dxi';
-import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
 
 @NgModule({
     imports: [

@@ -13,47 +13,45 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
   styleUrls: ['./payment-processing.component.scss']
 })
 export class PaymentProcessingComponent implements OnInit, OnDestroy {
-  ShowMessage: string;
   buttonId: any;
-  loading: boolean;
   sub: any;
   showSuccess: boolean;
   countDown;
   counter = 20;
   tick = 1000;
-  timeExceeded: boolean=false;
+  timeExceeded: boolean = false;
   OrderId: string;
   subscribe: any;
-  constructor(public storageService:StorageService,private orderService:OrderService,private loadingSwitchService:LoadingSwitchService,
-    public location: Location,public router: Router, public horoScopeService: HoroScopeService) {
-this.OrderId=StorageService.GetItem('OrderId');
+  constructor(public storageService: StorageService, private orderService: OrderService, private loadingSwitchService: LoadingSwitchService,
+    public location: Location, public router: Router, public horoScopeService: HoroScopeService) {
+    this.OrderId = StorageService.GetItem('OrderId');
   }
-  
+
   ngOnInit() {
     //this.loading = true;
-    this.loadingSwitchService.loading=true;
+    this.loadingSwitchService.loading = true;
     // this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
     this.orderService.CheckForResult(StorageService.GetItem('OrderId')).subscribe((data) => {
-    if (data.AstroReportId.length != 0) {
-        this.loadingSwitchService.loading=false;
+      if (data.AstroReportId.length != 0) {
+        this.loadingSwitchService.loading = false;
         this.buttonId = data.AstroReportId[0].split('_')[0];
         this.DownloadResult(this.buttonId);
       }
       else {
         const source = timer(1000, 1000);
-        this.subscribe =source.subscribe(val =>{
-          if(val==2) {
-            this.loadingSwitchService.loading=false;
+        this.subscribe = source.subscribe(val => {
+          if (val == 2) {
+            this.loadingSwitchService.loading = false;
             this.sub.unsubscribe();
             this.subscribe.unsubscribe();
-            this.timeExceeded=true;
+            this.timeExceeded = true;
           }
         });
-        this.sub=interval(10000).subscribe((val) =>{
+        this.sub = interval(10000).subscribe((val) => {
           // this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
           this.orderService.CheckForResult(StorageService.GetItem('OrderId')).subscribe((data) => {
-          if (data.AstroReportId.length != 0) {
-              this.loadingSwitchService.loading=false;
+            if (data.AstroReportId.length != 0) {
+              this.loadingSwitchService.loading = false;
               this.buttonId = data.AstroReportId[0].split('_')[0];
               this.DownloadResult(this.buttonId);
             }
@@ -61,13 +59,13 @@ this.OrderId=StorageService.GetItem('OrderId');
         });
       }
     });
-    this.horoScopeService.horoRequest =null;
+    this.horoScopeService.horoRequest = null;
   }
-  DownloadResult(buttonId){
+  DownloadResult(buttonId) {
     this.horoScopeService.DownloadResult(buttonId, (data) => {
       var newBlob = new Blob([data], { type: "application/pdf" });
       // const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
-      const fileName: string = this.storageService.GetOrderResponse().ItName+'.pdf';
+      const fileName: string = this.storageService.GetOrderResponse().ItName + '.pdf';
       const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
       var url = window.URL.createObjectURL(newBlob);
       a.href = url;
@@ -77,7 +75,7 @@ this.OrderId=StorageService.GetItem('OrderId');
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
       //this.loading = false;
-      this.showSuccess=true;
+      this.showSuccess = true;
       this.clearParameters();
       this.storageService.RemoveDataFromSession();
       this.sub.unsubscribe();
@@ -85,11 +83,11 @@ this.OrderId=StorageService.GetItem('OrderId');
       console.clear();
     });
   }
-  clearParameters(){
-    this.horoScopeService.birthplace='';
-    this.orderService.orderResponse=null;
+  clearParameters() {
+    this.horoScopeService.birthplace = '';
+    this.orderService.orderResponse = null;
   }
-  gotoOrderHistory(){
+  gotoOrderHistory() {
     this.router.navigate(['/settings/orderHistory']);
   }
   ngOnDestroy(): void {
@@ -98,17 +96,17 @@ this.OrderId=StorageService.GetItem('OrderId');
     //   writable: true,
     //   value: '/home'
     // });
-  //   window.onpopstate= function(event) {
-  //     history.pushState(null, null, '/home');
-  //  }
-  // this.router.events.filter(event => event instanceof NavigationEnd)
-  // .subscribe(event => {
-  //   if (event instanceof NavigationEnd) {        
-      
-  //   };
-  // });
+    //   window.onpopstate= function(event) {
+    //     history.pushState(null, null, '/home');
+    //  }
+    // this.router.events.filter(event => event instanceof NavigationEnd)
+    // .subscribe(event => {
+    //   if (event instanceof NavigationEnd) {        
+
+    //   };
+    // });
     //window.history.replaceState(null, null, '/home');
-    if(this.timeExceeded!=true){
+    if (this.timeExceeded != true) {
       this.router.navigate(['/home'], { replaceUrl: true });
     }
     //window.history.go(-4);

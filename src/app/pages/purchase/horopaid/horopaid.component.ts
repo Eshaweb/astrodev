@@ -25,35 +25,17 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
     @Input()
     service: ServiceInfo;
     serviceInfo: ServiceInfo[];
-    serviceInformation: ServiceInformation[];
-    horoInfo: any;
-    public loading = false;
-    horoRequest: HoroRequest;
     checkBoxValue: boolean = false;
-    FH_PDFSelected: boolean = false;
-    FH_HardcopySelected: boolean = false;
-    MH_PDFSelected: boolean = false;
-    MH_HardcopySelected: boolean = false;
-    PH_PDFSelected: boolean = false;
-    PH_HardcopySelected: boolean = false;
-    FH_price: number = 0;
-    MH_price: number = 0;
-    PH_price: number = 0;
-    totalprice: number = 0;
     requireDeliveryAddress: boolean;
     PartyMastId: any;
-    serviceHardCopy: ServiceInfo[];
     SoftCopyDifference: number;
     HardCopyDifference: number;
     itemAmount: number;
-    isLoading: boolean;
     errorMessage: any;
-    hardcopyRequired: boolean;
     constructor(public storageService: StorageService, private muhurthaService: MuhurthaService, private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
         private orderService: OrderService, private astamangalaService: AstamangalaService, private itemService: ItemService,
         public _location: Location, public route: ActivatedRoute, public router: Router, public loadingSwitchService: LoadingSwitchService,
         public loginService: LoginService, public horoScopeService: HoroScopeService) {
-        this.serviceInformation = [{ ItMastId: '', Name: 'Horo', MRP: 33, Amount: 44, Description: '', PrintMRP: 6, PrintAmount: 5 }]
         
     }
 
@@ -274,6 +256,5 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
             }
         });
     }
-
 
 }

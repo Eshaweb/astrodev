@@ -1,8 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { Service } from 'src/app/shared/services/app.service';
 import { ItemService } from 'src/Services/ItemService/ItemService';
-import { DxDataGridComponent } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { FormGroup, FormBuilder } from '@angular/forms';

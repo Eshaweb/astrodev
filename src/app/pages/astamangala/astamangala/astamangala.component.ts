@@ -1,4 +1,4 @@
-import { Component, NgModule, enableProdMode, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, NgZone, ChangeDetectorRef } from '@angular/core';
 import notify from 'devextreme/ui/notify';
 import { Service } from 'src/app/shared/services/app.service';
 import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
@@ -6,7 +6,7 @@ import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/fo
 import { from, Subscription } from 'rxjs';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
-import { PaymentInfo, ServiceInfo, HoroScopeService, SelectBoxModelNew } from 'src/Services/HoroScopeService/HoroScopeService';
+import { PaymentInfo, ServiceInfo, SelectBoxModelNew } from 'src/Services/HoroScopeService/HoroScopeService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { UIService } from 'src/Services/UIService/ui.service';
@@ -83,18 +83,12 @@ export class AstamangalaComponent {
     { Id: "12", Text: "Meena" }
   ];
   genders: SelectBoxModel[];
-  dateModel: string;
-  isLoading: boolean;
   public loading = false;
   intLongDeg: number;
   intLatDeg: number;
-  timeformatdata: any;
-  timeformatvalue: string;
   birthDateinDateFormat: Date;
   birthTimeinDateFormat: Date;
-  errorMessage: any;
   subscription: Subscription;
-  public selectedColor: string = 'transparent';
   astamangalaForm: FormGroup;
   latitude: number;
   longitude: number;
@@ -102,39 +96,27 @@ export class AstamangalaComponent {
   timeZoneId: any;
   public checkBoxValue: boolean = false;
   public enabletoEdit: boolean = false;
-  long: number;
-  lat: number;
   horoRequest: HoroRequest;
   LatDegMessage: string;
   LatMtMessage: string;
-  payusing: PaymentInfo[];
-  using: string[];
-  paymentForm: FormGroup;
-  Shloka1: string;
-  JanmaNakshatra: string;
-  Shloka2: string;
-  serviceInfo: ServiceInfo[];
+  reportSizedata: ArrayStore;
+  languagedata: ArrayStore;
+  genderdata: ArrayStore;
+  pruchakaStardata: ArrayStore;
+  pruchakaRashidata: ArrayStore;
+  timeformatdata: ArrayStore;
+  timeformatvalue: string;
   reportSizevalue: string;
   languagevalue: string;
-  products: SelectBoxModelNew[];
-  reportSizedata: any;
-  languagedata: ArrayStore;
   genderValue: string;
-  genderdata: ArrayStore;
-  password: any;
-  pruchakaStardata: ArrayStore;
   pruchakaStarvalue: any;
-  pruchakaRashidata: ArrayStore;
   pruchakaRashivalue: any;
 
   constructor(public loginService: LoginService, public storageService: StorageService, service: Service, public loadingSwitchService: LoadingSwitchService, private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public astamangalaService: AstamangalaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
-    //this.serviceInfo =  horoScopeService.getCustomers();
-    //this.genders = ["Male", "Female"];
     this.loginService.isHomePage = false;
     this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
-    this.using = ["AstroLite Wallet", "Payment Gateway"];
     this.astamangalaForm = this.formbuilder.group({
       Date: new Date(),
       Time: new Date(),
@@ -231,10 +213,7 @@ export class AstamangalaComponent {
         IsMarried: true,
       }
     }
-    this.paymentForm = this.formbuilder.group({
-      using: ['']
-    });
-
+    
   }
 
   setErrorMessage(c: AbstractControl): void {
@@ -342,7 +321,6 @@ export class AstamangalaComponent {
       data: this.genders,
       key: "Id"
     });
-    this.currentValue = 0;
     this.mapsAPILoader.load().then(() => {
       let nativeHomeInputBox = document.getElementById('txtHome').getElementsByTagName('input')[0];
       let autocomplete = new google.maps.places.Autocomplete(nativeHomeInputBox, {
@@ -560,31 +538,11 @@ export class AstamangalaComponent {
     }
   }
 
-  public date: Date = new Date(Date.now());
-  private monthFormatter = new Intl.DateTimeFormat("en", { month: "long" });
-  public formatter = (date: Date) => {
-    return `${date.getDate()} ${this.monthFormatter.format(date)}, ${date.getFullYear()}`;
-  }
-  public currentValue: number;
-  public interval: any;
-  public maxvalue: number;
-  public changeIcon() {
-    return this.interval ? "pause" : "play_arrow";
-  }
 
-  public progresChanged(progress) {
-
-  }
-  private randomIntFromInterval(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-
-  submit_click() {
-    this.isLoading = true;
+  OnSubmit_click() {
     //this.tick();
     //this.loading = true;
     this.loadingSwitchService.loading = true;
-    this.maxvalue = 100;
     this.astamangalaService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
     // if(typeof this.horoscopeForm.controls['Date'].value ==='string'){
 

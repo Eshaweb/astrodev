@@ -75,7 +75,7 @@
                             <div class="dx-field">
                                 <div class="dx-field-label">House Name</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box id="txtmname" placeholder="Enter House Name here..." showClearButton="true"></dx-text-box>
+                                    <dx-text-box id="txtmname" formControlName="houseName" placeholder="Enter House Name here..." showClearButton="true"></dx-text-box>
                                 </div>
                             </div>
                             </div>
@@ -83,7 +83,11 @@
                             <div class="dx-field">
                                 <div class="dx-field-label">Mobile No</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box placeholder="Enter Mobile No here..." [showClearButton]="true">
+                                    <!-- <dx-text-box mode='tel' placeholder="Enter Mobile No here..." mask="0000000000"
+                                    maskChar=" "formControlName="mobileNo" [showClearButton]="true">
+                                    </dx-text-box> -->
+                                    <dx-text-box mode='tel' placeholder="Enter Mobile No here..."
+                                    formControlName="mobileNo" [showClearButton]="true">
                                     </dx-text-box>
                                 </div>
                             </div>
@@ -92,8 +96,10 @@
                             <div class="dx-fieldset-column">
                                 <div class="dx-field">
                                     <div class="dx-field-label">Vehicle No</div>
-                                    <div class="dx-field-value">
-                                        <dx-text-box id="txtmname" placeholder="KL 14 MQ 3456" showClearButton="true"></dx-text-box>
+                                    <div class="dx-field-value" style="text-transform:uppercase" >
+                                        <dx-text-box mode='text' valueChangeEvent="keyup" formControlName="vehicleNo" style="text-transform:uppercase" (onInitialized)='onInitialized($event)'[elementAttr]="{ id: 'elementId', class: 'uppercase' }" placeholder="Kl 14 MQ 3456" showClearButton="true">
+                                            <!-- <dx-validator [validationRules]="loginRules"></dx-validator> -->
+                                        </dx-text-box>
                                     </div>
                                 </div>
                                 </div>
@@ -101,7 +107,7 @@
                                 <div class="dx-field">
                                     <div class="dx-field-label">City Name</div>
                                     <div class="dx-field-value">
-                                        <dx-text-box placeholder="Enter City Name here..." [showClearButton]="true">
+                                        <dx-text-box formControlName="cityName" placeholder="Enter City Name here..." [showClearButton]="true">
                                         </dx-text-box>
                                     </div>
                                 </div>

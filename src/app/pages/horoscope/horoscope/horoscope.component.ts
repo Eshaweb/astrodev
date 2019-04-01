@@ -3,10 +3,9 @@ import notify from 'devextreme/ui/notify';
 import { Service } from 'src/app/shared/services/app.service';
 import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { from, Subscription } from 'rxjs';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
-import { PaymentInfo, ServiceInfo, HoroScopeService, SelectBoxModelNew } from 'src/Services/HoroScopeService/HoroScopeService';
+import { HoroScopeService, SelectBoxModelNew } from 'src/Services/HoroScopeService/HoroScopeService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { UIService } from 'src/Services/UIService/ui.service';
@@ -14,7 +13,6 @@ import { ErrorService } from 'src/Services/Error/error.service';
 import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
-import { isString } from 'util';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
 import { environment } from 'src/environments/environment';
@@ -27,29 +25,6 @@ import { environment } from 'src/environments/environment';
 })
 export class HoroscopeComponent {
   //genders:string[];
-  genders: SelectBoxModel[];
-  intLongDeg: number;
-  intLatDeg: number;
-  timeformatvalue: string;
-  reportSizevalue: string;
-  languagevalue: string;
-  products: SelectBoxModelNew[];
-  genderValue: string;
-  genderdata: ArrayStore;
-  reportSizedata: ArrayStore;
-  languagedata: ArrayStore;
-  timeformatdata: ArrayStore;
-  public checkBoxValue: boolean = false;
-  birthDateinDateFormat: Date;
-  birthTimeinDateFormat: Date;
-  horoscopeForm: FormGroup;
-  latitude: number;
-  longitude: number;
-  timeZoneName: string;
-  timeZoneId: any;
-
-  long: number;
-  lat: number;
   horoRequest: HoroRequest;
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
@@ -67,6 +42,26 @@ export class HoroscopeComponent {
     { Id: "A4", Text: "A4" },
     { Id: "A5", Text: "A5" },
     { Id: "A6", Text: "Small(6inch X 6inch)" }];
+  genders: SelectBoxModel[];
+  genderdata: ArrayStore;
+  reportSizedata: ArrayStore;
+  languagedata: ArrayStore;
+  timeformatdata: ArrayStore;
+  
+  timeformatvalue: string;
+  reportSizevalue: string;
+  languagevalue: string;
+  genderValue: string;
+  intLongDeg: number;
+  intLatDeg: number;
+  public checkBoxValue: boolean = false;
+  birthDateinDateFormat: Date;
+  birthTimeinDateFormat: Date;
+  horoscopeForm: FormGroup;
+  latitude: number;
+  longitude: number;
+  timeZoneName: string;
+  timeZoneId: any;
   constructor(public loginService: LoginService, public storageService: StorageService, service: Service, public loadingSwitchService: LoadingSwitchService, private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public horoScopeService: HoroScopeService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
@@ -372,7 +367,7 @@ export class HoroscopeComponent {
   }
 
 
-  submit_click() {
+  OnSubmit_click() {
     this.loadingSwitchService.loading = true;
     this.horoScopeService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
     // if(typeof this.horoscopeForm.controls['Date'].value ==='string'){

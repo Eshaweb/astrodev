@@ -1,3 +1,7 @@
+.dx-texteditor-input    {        text-transform: uppercase;    } 
+.uppercase  {
+    text-transform: uppercase;
+  }
 ::ng-deep #summary {
     padding-left: 10px;
     margin-top: 20px;

@@ -1,22 +1,12 @@
-import { Component, NgModule, enableProdMode, NgZone, ChangeDetectorRef } from '@angular/core';
-import notify from 'devextreme/ui/notify';
-import { Service } from 'src/app/shared/services/app.service';
-import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
-import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { from, Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { NavigationExtras, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
-import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
-import { PaymentInfo, ServiceInfo, HoroScopeService, SelectBoxModelNew } from 'src/Services/HoroScopeService/HoroScopeService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
-import { UIService } from 'src/Services/UIService/ui.service';
-import { ErrorService } from 'src/Services/Error/error.service';
-import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
-import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
-import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 
@@ -26,15 +16,14 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 })
 
 export class ProfileComponent {
-  isLoading: boolean;
   public loading = false;
   profileForm: FormGroup;
   statesOfIndia: SelectBoxModel[];
-  statevalue: any;
+  statedata: ArrayStore;
+  statevalue: string;
   Id: any;
   MobileNoDisabled: boolean=true;
   EMailDisabled: boolean=true;
-  statedata: ArrayStore;
   constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, 
     public partyService: PartyService, public panchangaService: PanchangaService, public route: ActivatedRoute, 
     public formbuilder: FormBuilder, public formBuilder: FormBuilder,) {
@@ -83,18 +72,9 @@ export class ProfileComponent {
       data: this.statesOfIndia,
       key: "Id"
     });
-
-
-  }
-  ngAfterViewInit(): void {
-    
   }
 
-  ngOnDestroy(): void {
-
-  }
   OnSave_click() {
-    this.isLoading = true;
     this.loadingSwitchService.loading = true;
     var ProfileData = {
       Id: this.Id,

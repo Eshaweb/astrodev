@@ -1,7 +1,7 @@
-import { Component, NgModule, enableProdMode, NgZone, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, enableProdMode, NgZone, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { from, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
@@ -9,12 +9,9 @@ import { UIService } from 'src/Services/UIService/ui.service';
 import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
-import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
 import { MuhurthaService, Star } from 'src/Services/MuhoorthaService/MuhoorthaService';
 import { DxDataGridComponent } from 'devextreme-angular';
-import { getLocaleDateTimeFormat } from '@angular/common';
 import { MuhurthaRequest, RashiNak } from 'src/Models/Muhurtha/MuhurthaRequest';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
 
@@ -26,14 +23,10 @@ import { LoginService } from 'src/Services/login/login.service';
 
 export class MuhurthaComponent {
   @ViewChild(DxDataGridComponent) public muhurtha: DxDataGridComponent;
+  muhurthaRequest: MuhurthaRequest;
+  muhurthaaForm: FormGroup;
+  dateRangeForm: FormGroup;
 
-  languages: SelectBoxModel[] = [
-    { Id: "ENG", Text: "English" },
-    { Id: "HIN", Text: "Hindi" },
-    { Id: "KAN", Text: "Kannada" },
-    { Id: "MAL", Text: "Malayalam" },
-    { Id: "TAM", Text: "Tamil" }];
-  isLoading: boolean;
   public loading = false;
   intLongDeg: number;
   intLatDeg: number;
@@ -42,17 +35,46 @@ export class MuhurthaComponent {
   birthTimeinDateFormat: Date;
   errorMessage: any;
   subscription: Subscription;
-  muhurthaaForm: FormGroup;
   latitude: number;
   longitude: number;
   timeZoneName: string;
   timeZoneId: any;
   long: number;
   lat: number;
-  muhurthaRequest: MuhurthaRequest;
   rashiNak: RashiNak[];
   muhurthasvalue: string;
   muhurthasdata: ArrayStore;
+  timeformatdata: ArrayStore;
+  languagedata: ArrayStore;
+  yathradirectionsdata: ArrayStore;
+  stardata: ArrayStore;
+  rashidata: ArrayStore;
+  reportSizedata: ArrayStore;
+
+  timeformatvalue: string;
+  languagevalue: string;
+  yathradirectionsvalue: string;
+  nakshathraValue: string;
+  rashiValue: string;
+  reportSizevalue: string;
+  muhurthas: any;
+  public checkBoxValue: boolean = false;
+  vivahaSelected: boolean;
+  upanayanaSelected: boolean;
+  yathraSelected: boolean;
+  abhijinCheckBoxValue: boolean=false;
+  godhuliCheckBoxValue: boolean=false;
+  endTimeCheckBoxValue: boolean=false;
+  
+  birthDateinDateFormat: Date;
+  dateinDateFormat: Date;
+  dataSource: RashiNak[];
+  languages: SelectBoxModel[] = [
+    { Id: "ENG", Text: "English" },
+    { Id: "HIN", Text: "Hindi" },
+    { Id: "KAN", Text: "Kannada" },
+    { Id: "MAL", Text: "Malayalam" },
+    { Id: "TAM", Text: "Tamil" }];
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
     { Id: "SUMMER", Text: 'Summer Time' },
@@ -186,37 +208,10 @@ export class MuhurthaComponent {
     { "Id": "12", "Text": "Meena", "StarId": "26" },
     { "Id": "12", "Text": "Meena", "StarId": "27" }
   ];
-  timeformatdata: ArrayStore;
-  timeformatvalue: string;
-  languagedata: ArrayStore;
-  languagevalue: string;
-  muhurthas: any;
-  public checkBoxValue: boolean = false;
-  vivahaSelected: boolean;
-  upanayanaSelected: boolean;
-  yathradirectionsdata: ArrayStore;
-  yathradirectionsvalue: string;
-  yathraSelected: boolean;
-  stardata: ArrayStore;
-  starvalue: any;
-  rashidata: ArrayStore;
-  rashivalue: string;
-  dateRangeForm: FormGroup;
-  abhijinCheckBoxValue: boolean=false;
-  godhuliCheckBoxValue: boolean=false;
-  endTimeCheckBoxValue: boolean=false;
-  nakshathraValue: string;
-  rashiValue: string;
-  reportSizevalue: any;
-  reportSizedata: ArrayStore;
-  birthDateinDateFormat: Date;
-  dateinDateFormat: Date;
-  dataSource: RashiNak[];
-
+  
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public muhurthaService: MuhurthaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
-    this.maxDate = new Date(this.maxDate.setFullYear(this.maxDate.getFullYear() - 21));
     this.loginService.isHomePage=false;
     this.muhurthaaForm = this.formbuilder.group({
       Date: new Date(),
@@ -532,11 +527,8 @@ export class MuhurthaComponent {
   EndTimeCheckBoxValueChanged(event){
     this.endTimeCheckBoxValue=event.value;
   }
-  submit_click(dataSource){
-
-  }
+  
   OnSubmit_click() {
-    this.isLoading = true;
     this.loadingSwitchService.loading = true;
     this.muhurthaService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
     var fromdate: Date = this.dateRangeForm.controls['FromDate'].value;
@@ -607,16 +599,5 @@ export class MuhurthaComponent {
   public onDialogOKSelected(event) {
     event.dialog.close();
   }
-
-
-  maxDate: Date = new Date();
-  cityPattern = "^[^0-9]+$";
-  namePattern: any = /^[^0-9]+$/;
-  phonePattern: any = /^\+\s*1\s*\(\s*[02-9]\d{2}\)\s*\d{3}\s*-\s*\d{4}$/;
-  countries: string[];
-  phoneRules: any = {
-    X: /[02-9]/
-  }
-  now: Date = new Date();
 
 }
