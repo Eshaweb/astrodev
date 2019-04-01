@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { AdminService } from 'src/Services/AdminService/AdminService';
 
 
 
@@ -18,8 +19,8 @@ export class AssignPriceListComponent implements OnInit {
   priceList: any;
   priceListUpdated: boolean;
 
-  constructor(public router: Router, public loadingSwitchService: LoadingSwitchService, public itemService: ItemService) {
-    this.itemService.GetAssignedPriceList().subscribe((data: any) => {
+  constructor(public router: Router, public loadingSwitchService: LoadingSwitchService, public adminService: AdminService) {
+    this.adminService.GetAssignedPriceList().subscribe((data: any) => {
       if (data.Errors == undefined) {
         this.priceListUpdated = true;
         if (data.length != 0) {
@@ -36,11 +37,11 @@ export class AssignPriceListComponent implements OnInit {
     var List = {
       Id: event.data.Id
     }
-    this.itemService.DeleteAssignedPriceList(List).subscribe((data: any) => {
+    this.adminService.DeleteAssignedPriceList(List).subscribe((data: any) => {
       this.loadingSwitchService.loading = false;
       if (data.Errors == undefined) {
         if (data == true) {
-          this.itemService.GetAssignedPriceList().subscribe((data: any) => {
+          this.adminService.GetAssignedPriceList().subscribe((data: any) => {
             if (data.Errors == undefined) {
               this.priceListUpdated = true;
               if (data.length != 0) {
@@ -59,7 +60,7 @@ export class AssignPriceListComponent implements OnInit {
     var Rate = {
       PriceListId: e.selectedRowsData[0].Id
     }
-    this.itemService.GetRate(Rate).subscribe((data: any) => {
+    this.adminService.GetRate(Rate).subscribe((data: any) => {
       this.loadingSwitchService.loading = false;
       if (data.Errors == undefined) {
         this.priceListUpdated = true;

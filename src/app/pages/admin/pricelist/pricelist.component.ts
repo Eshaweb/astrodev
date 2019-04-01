@@ -3,6 +3,7 @@ import { ItemService } from 'src/Services/ItemService/ItemService';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AdminService } from 'src/Services/AdminService/AdminService';
 export class BasePrice {
     Id: string;
     Description: string;
@@ -25,7 +26,7 @@ export class PriceListComponent {
     priceListUpdated: boolean=false;
     popupVisible: boolean;
 
-    constructor(public itemService: ItemService, public loadingSwitchService: LoadingSwitchService,
+    constructor(public adminService: AdminService, public loadingSwitchService: LoadingSwitchService,
         public formbuilder: FormBuilder) {
         // this.itemService.GetBasePrice().subscribe((data: any) => {
         //     if (data.Errors == undefined) {
@@ -59,7 +60,7 @@ export class PriceListComponent {
             Name:this.priceListForm.controls['Name'].value,
             Formula:this.priceListForm.controls['Formula'].value
         }
-        this.itemService.GeneratePriceList(Item).subscribe((data: any) => {
+        this.adminService.GeneratePriceList(Item).subscribe((data: any) => {
             if (data.Errors == undefined) {
                 this.priceListUpdated=true;
                 this.dataSource = data;
@@ -75,7 +76,7 @@ export class PriceListComponent {
                 Formula:this.priceListForm.controls['Formula'].value,
                 GeneratedRateDets:this.dataSource
             }
-            this.itemService.CreatePriceList(Item).subscribe((data: any) => {
+            this.adminService.CreatePriceList(Item).subscribe((data: any) => {
                 if (data.Errors == undefined) {
                     if (data == true) {
                         this.priceListUpdated=false;

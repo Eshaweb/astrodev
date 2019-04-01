@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 import { RegistrationService } from 'src/Services/registration/registration.service';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginFormComponent, LoginFormModule } from '../login-form/login-form.component';
-import { LoginService } from 'src/Services/login/login.service';
 import { navigationBeforeLogin, navigationAfterLogin, serviceMenusBeforeLogin, serviceMenusAfterLogin, serviceListBeforeLogin } from 'src/app/app-navigation';
 import { DxMenuModule } from 'devextreme-angular';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 @Component({
   selector: 'app-header',

@@ -26,4 +26,9 @@ GetWalletBalance(PartyMastId):Observable<any> {
         var endPoint = "Wallet/PaymentComplete";
         return this.httpService.Post(endPoint,payment);
     }
+
+    WalletStatement(WalletStatement):Observable<any> {
+        var endPoint = "Wallet/WalletStatement";
+        return this.httpService.Post(endPoint, WalletStatement);
+    }
 }

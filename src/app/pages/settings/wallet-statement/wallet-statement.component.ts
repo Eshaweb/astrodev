@@ -1,6 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { Service } from 'src/app/shared/services/app.service';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
@@ -47,7 +45,7 @@ import { WalletService } from 'src/Services/Wallet/WalletService';
             To:this.walletStatementSearchForm.controls['To'].value,
             PartyMastId:StorageService.GetItem('PartyMastId')
         }
-        this.itemService.WalletStatement(WalletStatement).subscribe((data:any)=>{
+        this.walletService.WalletStatement(WalletStatement).subscribe((data:any)=>{
             if (data.Errors == undefined) {
              this.dataSource=data;
             }

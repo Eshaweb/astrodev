@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Party } from "../../Models/Party/Party";
-import { LoginService } from '../login/login.service';
 import { HttpService } from '../Error/http.service';
 import { Observable } from 'rxjs';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
+import { LoginService } from '../LoginService/LoginService';
 
 
 

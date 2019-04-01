@@ -19,7 +19,7 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { OrderHistoryResponse } from 'src/Models/OrderHistoryResponse';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { ItemService } from 'src/Services/ItemService/ItemService';
-import { LoginService } from 'src/Services/login/login.service';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

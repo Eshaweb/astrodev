@@ -12,7 +12,7 @@ import ArrayStore from 'devextreme/data/array_store';
 import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
 import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
-import { LoginService } from 'src/Services/login/login.service';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 
 @Component({

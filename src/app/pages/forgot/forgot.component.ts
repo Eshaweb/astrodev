@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/Services/login/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { UIService } from 'src/Services/UIService/ui.service';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 @Component({
     selector: 'app-forgot',

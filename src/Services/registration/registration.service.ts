@@ -11,8 +11,6 @@ export class RegisterResponse{
     OTPType: string;
 }
 
-
-
 @Injectable()
 export class RegistrationService {
     errorMessage: any;

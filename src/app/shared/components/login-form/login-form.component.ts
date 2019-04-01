@@ -13,7 +13,6 @@ import { SocialUser, AuthService, GoogleLoginProvider, FacebookLoginProvider } f
 import { OrderModel } from 'src/Models/HoroScope/OrderModel';
 import { UIService } from 'src/Services/UIService/ui.service';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
-import { LoginService } from 'src/Services/login/login.service';
 import { HttpClient } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
@@ -30,6 +29,7 @@ import { timer, Subscription } from 'rxjs';
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { environment } from 'src/environments/environment';
 import { take, map } from 'rxjs/operators';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 //import { EventsService } from 'angular4-events';
 
 @Component({

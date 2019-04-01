@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AdminService } from 'src/Services/AdminService/AdminService';
 
 
 
@@ -15,13 +16,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   popupVisible: boolean;
   saveButtonName: string;
   allowUpdate: boolean;
-    constructor(public loadingSwitchService: LoadingSwitchService, public itemService:ItemService,public formBuilder: FormBuilder){
+    constructor(public loadingSwitchService: LoadingSwitchService, public adminService:AdminService,public formBuilder: FormBuilder){
       this.welcomeOfferForm=this.formBuilder.group({
         Own: [null,[Validators.required]],
         Reff: [null]
       });
       this.loadingSwitchService.loading = true;
-      this.itemService.GetGiftAmount().subscribe((data:any)=>{
+      this.adminService.GetGiftAmount().subscribe((data:any)=>{
         this.welcomeOfferForm.controls['Own'].setValue(data.Own);
         this.welcomeOfferForm.controls['Reff'].setValue(data.Reff);
       });
@@ -40,7 +41,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
         Own: this.welcomeOfferForm.controls['Own'].value,
         Reff: this.welcomeOfferForm.controls['Reff'].value
       }
-      this.itemService.UpdateGiftAmount(WO).subscribe((data: any) => {
+      this.adminService.UpdateGiftAmount(WO).subscribe((data: any) => {
         if (data.Errors == undefined) {
           if (data == true) {
             this.popupVisible = true;

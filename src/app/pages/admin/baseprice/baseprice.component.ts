@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { AdminService } from 'src/Services/AdminService/AdminService';
 export class BasePrice {
     Id: string;
     Description: string;
@@ -21,8 +22,8 @@ export class BasePrice {
     saveButtonName: string;
     allowUpdate: boolean;
 
-    constructor(public itemService:ItemService, public loadingSwitchService:LoadingSwitchService) {
-        this.itemService.GetBasePrice().subscribe((data:any)=>{
+    constructor(public adminService:AdminService, public loadingSwitchService:LoadingSwitchService) {
+        this.adminService.GetBasePrice().subscribe((data:any)=>{
             if (data.Errors == undefined) {
              this.dataSource=data;
              
@@ -51,10 +52,10 @@ export class BasePrice {
             this.loadingSwitchService.loading = true;
             this.datagridBasePrice.instance.saveEditData();
             //alert(this.dataSource[0].MRP);
-            this.itemService.UpdateBasePrice(this.dataSource).subscribe((data: any) => {
+            this.adminService.UpdateBasePrice(this.dataSource).subscribe((data: any) => {
                 if (data.Errors == undefined) {
                     if (data == true) {
-                        this.itemService.GetBasePrice().subscribe((data: any) => {
+                        this.adminService.GetBasePrice().subscribe((data: any) => {
                             if (data.Errors == undefined) {
                                 this.dataSource = data;
                                 this.saveButtonName = 'Edit';

@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { Service } from './shared/services/app.service';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingService';
-import { LoginService } from 'src/Services/login/login.service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { RegistrationService } from 'src/Services/registration/registration.service';
@@ -42,6 +41,8 @@ import { PrivacyComponent } from './pages/privacy/privacy.component';
 import { AboutusComponent } from './pages/aboutus/aboutus.component';
 import { ContactusComponent } from './pages/contactus/contactus.component';
 import { OrderHistoryService } from 'src/Services/OrderHistoryService/OrderHistoryService';
+import { AdminService } from 'src/Services/AdminService/AdminService';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 
 let config = new AuthServiceConfig([
@@ -87,7 +88,7 @@ export function provideConfig() {
     Service, AuthenticationService, CaptionDbService, OrderService, NumerologyService, PanchaPakshiService,
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService, MuhurthaService,
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
-    LoaderService, SalesService, WalletService, OrderHistoryService, StorageService,
+    LoaderService, SalesService, WalletService, OrderHistoryService, StorageService, AdminService,
     { provide: APP_BASE_HREF, useValue: '/' },
     {
       provide: HTTP_INTERCEPTORS,

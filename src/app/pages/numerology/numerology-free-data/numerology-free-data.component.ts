@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from 'src/Services/login/login.service';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
@@ -17,6 +16,7 @@ import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaSer
 import { AuthService } from 'angularx-social-login';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { Location } from "@angular/common";
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 @Component({
   selector: 'app-numerology-free-data',

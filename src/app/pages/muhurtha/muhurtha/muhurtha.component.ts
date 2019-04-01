@@ -13,7 +13,7 @@ import { MuhurthaService, Star } from 'src/Services/MuhoorthaService/MuhoorthaSe
 import { DxDataGridComponent } from 'devextreme-angular';
 import { MuhurthaRequest, RashiNak } from 'src/Models/Muhurtha/MuhurthaRequest';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
-import { LoginService } from 'src/Services/login/login.service';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 
 @Component({

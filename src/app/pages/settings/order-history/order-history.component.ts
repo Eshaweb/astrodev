@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import ArrayStore from 'devextreme/data/array_store';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
 import { OrderService } from 'src/Services/OrderService/OrderService';
-import { LoginService } from 'src/Services/login/login.service';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { OrderHistoryResponse } from 'src/Models/OrderHistoryResponse';
 import { Router } from '@angular/router';
@@ -12,6 +11,7 @@ import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingS
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { interval, Subscription } from 'rxjs';
 import { Services, OrderHistoryService } from 'src/Services/OrderHistoryService/OrderHistoryService';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 
 

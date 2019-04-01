@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpService } from '../Error/http.service';
 import { HttpClient, HttpBackend } from '@angular/common/http';
-import { PanchangaResponse } from 'src/Models/Panchanga/PanchangaResponse';
-import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
 import { MuhurthaRequest } from 'src/Models/Muhurtha/MuhurthaRequest';
 import { MuhurthaResponse } from 'src/Models/Muhurtha/MuhurthaResponse';
 

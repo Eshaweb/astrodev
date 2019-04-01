@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CaptionDbService } from '../CaptionService/captionDb.service';
 import { HttpService } from '../Error/http.service';
 import { HttpClient, HttpBackend } from '@angular/common/http';
 import { NumerologyRequest } from 'src/Models/Numerology/numerologyRequest';

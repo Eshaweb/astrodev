@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
 import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
-import { LoginService } from 'src/Services/login/login.service';
 import { Router } from '@angular/router';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { Caption } from 'src/Models/Caption';
@@ -12,6 +11,7 @@ import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService'
 import { MuhurthaResponse } from 'src/Models/Muhurtha/MuhurthaResponse';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { RegistrationService } from 'src/Services/registration/registration.service';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 
 @Component({

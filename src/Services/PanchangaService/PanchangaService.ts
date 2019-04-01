@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CaptionDbService } from '../CaptionService/captionDb.service';
 import { HttpService } from '../Error/http.service';
 import { HttpClient, HttpBackend } from '@angular/common/http';
-import { ErrorService } from '../Error/error.service';
-import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
-import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
-import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 import { PanchangaResponse } from 'src/Models/Panchanga/PanchangaResponse';
 import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
 

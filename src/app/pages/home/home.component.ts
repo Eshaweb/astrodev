@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
-import { LoginService } from 'src/Services/login/login.service';
 import { services } from 'src/app/app-navigation';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 @Component({
   templateUrl: 'home.component.html',

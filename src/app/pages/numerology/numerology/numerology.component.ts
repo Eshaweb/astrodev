@@ -12,8 +12,8 @@ import ArrayStore from 'devextreme/data/array_store';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 import { NumerologyRequest } from 'src/Models/Numerology/numerologyRequest';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
-import { LoginService } from 'src/Services/login/login.service';
 import { environment } from 'src/environments/environment';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 @Component({
   //selector: 'app-horopage',
@@ -124,7 +124,7 @@ export class NumerologyComponent {
 
   };
   onInitialized(e) {
-    e.component.options('elementAttr',{'class':'uppercase'});
+    e.component.option('elementAttr',{'class':'uppercase'});
 }
   ngOnInit() {
     this.languagedata = new ArrayStore({

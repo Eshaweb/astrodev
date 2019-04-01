@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { BasePrice } from '../pricelist/pricelist.component';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { AdminService } from 'src/Services/AdminService/AdminService';
 
 export class PriceList {
     Id: number;
@@ -20,9 +21,9 @@ export class PriceList {
     dataSource: BasePrice[];
     priceListUpdated: boolean;
 
-    constructor(public loadingSwitchService:LoadingSwitchService, public router: Router, private service: Service, private itemService:ItemService) {
+    constructor(public loadingSwitchService:LoadingSwitchService, public router: Router, private service: Service, private adminService:AdminService) {
         this.loadingSwitchService.loading = true;
-        this.itemService.GetPriceList().subscribe((data:any)=>{
+        this.adminService.GetPriceList().subscribe((data:any)=>{
             if (data.Errors == undefined) {
                 this.priceListUpdated=true;
                 this.loadingSwitchService.loading = false;
@@ -37,11 +38,11 @@ export class PriceList {
         var Rate={
             PriceListId:event.data.Id
         }
-      this.itemService.DeletePriceList(Rate).subscribe((data:any)=>{
+      this.adminService.DeletePriceList(Rate).subscribe((data:any)=>{
         this.loadingSwitchService.loading = false;
         if (data.Errors == undefined) {
               if(data==true){
-                this.itemService.GetPriceList().subscribe((data:any)=>{
+                this.adminService.GetPriceList().subscribe((data:any)=>{
                     if (data.Errors == undefined) {
                         this.priceListUpdated=true;
                         if(data.length!=0){
@@ -64,7 +65,7 @@ export class PriceList {
         var Rate={
             PriceListId:e.selectedRowsData[0].Id
         }
-      this.itemService.GetRate(Rate).subscribe((data:any)=>{
+      this.adminService.GetRate(Rate).subscribe((data:any)=>{
         this.loadingSwitchService.loading = false;
         if (data.Errors == undefined) {
               this.priceListUpdated=true;

@@ -3,11 +3,11 @@ import { Injectable, ViewChild } from "@angular/core";
 // import { Router } from "@angular/router";
 // import { StorageService } from '../services/Storage_Service';
 import { PartyService } from "../../Services/PartyService/PartyService";
-import { LoginService } from "../../Services/login/login.service";
 import { ActivatedRoute, Router } from "../../../node_modules/@angular/router";
 import { Observable } from 'rxjs';
 import {tap} from 'rxjs/internal/operators';
 import { StorageService } from '../StorageService/Storage_Service';
+import { LoginService } from '../LoginService/LoginService';
 // import { RegisterService } from "../services/app-data.service";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

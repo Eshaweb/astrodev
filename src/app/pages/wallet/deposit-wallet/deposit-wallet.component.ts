@@ -7,10 +7,10 @@ import { SalesService } from 'src/Services/sales/sales.service';
 import { UIService } from 'src/Services/UIService/ui.service';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { WalletService } from 'src/Services/Wallet/WalletService';
-import { LoginService } from 'src/Services/login/login.service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import ArrayStore from 'devextreme/data/array_store';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 declare var Razorpay: any;
 

@@ -14,8 +14,8 @@ import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
-import { LoginService } from 'src/Services/login/login.service';
 import { environment } from 'src/environments/environment';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 
 @Component({

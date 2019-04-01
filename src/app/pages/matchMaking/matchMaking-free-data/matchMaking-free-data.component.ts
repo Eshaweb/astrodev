@@ -4,10 +4,10 @@ import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service'
 import { MatchResponse } from 'src/Models/MatchMaking/match';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/Services/login/login.service';
 import { MatchRequest } from 'src/Models/MatchMaking/MatchRequest';
 import { Caption } from 'src/Models/Caption';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 
 @Component({

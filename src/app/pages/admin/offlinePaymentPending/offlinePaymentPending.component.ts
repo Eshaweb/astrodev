@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { AdminService } from 'src/Services/AdminService/AdminService';
 
 @Component({
     templateUrl: 'offlinePaymentPending.component.html',
@@ -16,10 +17,10 @@ import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingS
     OrderId: any;
     dateinDateFormat: Date;
 
-    constructor(public itemService:ItemService, public loadingSwitchService:LoadingSwitchService) {
+    constructor(public adminService:AdminService, public loadingSwitchService:LoadingSwitchService) {
         this.dateinDateFormat = new Date();
         this.loadingSwitchService.loading=true;
-        this.itemService.OfflinePaymentList().subscribe((data:any)=>{
+        this.adminService.OfflinePaymentList().subscribe((data:any)=>{
             if (data.Errors == undefined) {
              this.dataSource=data;
             }
@@ -56,7 +57,7 @@ import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingS
         var AuthorizePayment = {
             OrderId:this.OrderId
         }
-        this.itemService.AuthorizePayment(AuthorizePayment).subscribe((data:any)=>{
+        this.adminService.AuthorizePayment(AuthorizePayment).subscribe((data:any)=>{
             if (data.Errors == undefined) {
              this.dataSource=data;
             }

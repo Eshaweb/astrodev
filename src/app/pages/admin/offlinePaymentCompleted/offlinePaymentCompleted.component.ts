@@ -3,6 +3,7 @@ import { ItemService } from 'src/Services/ItemService/ItemService';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { AdminService } from 'src/Services/AdminService/AdminService';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
     billPayModes: any;
     dateinDateFormat: Date;
     
-    constructor(public formBuilder:FormBuilder,public itemService:ItemService, public loadingSwitchService:LoadingSwitchService) {
+    constructor(public formBuilder:FormBuilder,public adminService:AdminService, public loadingSwitchService:LoadingSwitchService) {
         this.dateinDateFormat = new Date();
         this.offlinePaymentListSearchForm=this.formBuilder.group({
             From: new Date(),
@@ -41,7 +42,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
             From:this.offlinePaymentListSearchForm.controls['From'].value,
             To:this.offlinePaymentListSearchForm.controls['To'].value,
         }
-        this.itemService.AuthorizedPaymentList(AuthorizedPaymentList).subscribe((data:any)=>{
+        this.adminService.AuthorizedPaymentList(AuthorizedPaymentList).subscribe((data:any)=>{
             if (data.Errors == undefined) {
              this.dataSource=data;
             }

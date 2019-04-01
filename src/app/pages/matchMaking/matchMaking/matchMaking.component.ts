@@ -12,8 +12,8 @@ import ArrayStore from 'devextreme/data/array_store';
 import { MatchResponse } from 'src/Models/MatchMaking/match';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
-import { LoginService } from 'src/Services/login/login.service';
 import { environment } from 'src/environments/environment';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 
 @Component({

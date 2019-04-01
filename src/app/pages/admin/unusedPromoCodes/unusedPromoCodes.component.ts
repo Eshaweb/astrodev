@@ -4,6 +4,7 @@ import { ItemService } from 'src/Services/ItemService/ItemService';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AdminService } from 'src/Services/AdminService/AdminService';
 
 
 @Component({
@@ -20,7 +21,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
     AskMobileNoForm: FormGroup;
     Id: any;
 
-    constructor(public formBuilder: FormBuilder, public router: Router, public itemService:ItemService, public loadingSwitchService:LoadingSwitchService) {
+    constructor(public formBuilder: FormBuilder, public router: Router, public adminService:AdminService, 
+        public itemService:ItemService, public loadingSwitchService:LoadingSwitchService) {
         this.loadingSwitchService.loading=true;
         this.itemService.GetUnUsedPromoCodes().subscribe((data:any)=>{
             if (data.Errors == undefined) {
@@ -95,10 +97,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
             this.loadingSwitchService.loading = true;
             this.datagridBasePrice.instance.saveEditData();
             //alert(this.dataSource[0].MRP);
-            this.itemService.UpdateBasePrice(this.dataSource).subscribe((data: any) => {
+            this.adminService.UpdateBasePrice(this.dataSource).subscribe((data: any) => {
                 if (data.Errors == undefined) {
                     if (data == true) {
-                        this.itemService.GetBasePrice().subscribe((data: any) => {
+                        this.adminService.GetBasePrice().subscribe((data: any) => {
                             if (data.Errors == undefined) {
                                 this.saveButtonName = 'Edit';
                                 this.allowUpdate = false;

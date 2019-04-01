@@ -3,7 +3,6 @@ import { ServiceInfo, HoroScopeService } from 'src/Services/HoroScopeService/Hor
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Platform } from '@angular/cdk/platform';
-import { LoginService } from 'src/Services/login/login.service';
 import { Location } from "@angular/common";
 import { RegistrationService } from 'src/Services/registration/registration.service';
 import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
@@ -12,6 +11,7 @@ import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { Caption } from 'src/Models/Caption';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 @Component({
     selector: 'app-horoscope-free-data',

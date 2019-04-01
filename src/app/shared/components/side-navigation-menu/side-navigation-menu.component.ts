@@ -3,8 +3,8 @@ import { DxTreeViewModule, DxTreeViewComponent } from 'devextreme-angular/ui/tre
 import * as events from 'devextreme/events';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/Services/login/login.service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 @Component({
   selector: 'app-side-navigation-menu',

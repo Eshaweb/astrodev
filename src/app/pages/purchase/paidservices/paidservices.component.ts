@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChildren, ElementRef, ViewChild } from '@angular/core';
 import { ServiceInfo, HoroScopeService, ServiceInformation } from 'src/Services/HoroScopeService/HoroScopeService';
-import { LoginService } from 'src/Services/login/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
 import { FormControlName } from '@angular/forms';
@@ -8,6 +7,7 @@ import { Location } from "@angular/common";
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 @Component({
   selector: 'app-paidservices',
   templateUrl: './paidservices.component.html',

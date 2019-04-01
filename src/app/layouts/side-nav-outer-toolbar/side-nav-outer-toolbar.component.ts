@@ -7,11 +7,11 @@ import { CommonModule } from '@angular/common';
 
 import { Router, NavigationEnd } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
-import { LoginService } from 'src/Services/login/login.service';
 // import { navigation } from 'src/app/app-navigation';
 import { navigationAfterLogin, navigationBeforeLogin, navigationAfterLoginForSystem, navigationBeforeLoginForSystem, services, serviceListAfterLogin, serviceListBeforeLogin } from 'src/app/app-navigation';
 import { DxNavBarModule, DxButtonModule, DxMenuModule } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 @Component({
   selector: 'app-side-nav-outer-toolbar',
   templateUrl: './side-nav-outer-toolbar.component.html',

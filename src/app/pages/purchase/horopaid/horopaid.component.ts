@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from "@angular/common";
 import { ServiceInfo, ServiceInformation, HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
-import { LoginService } from 'src/Services/login/login.service';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { OrderService } from 'src/Services/OrderService/OrderService';
@@ -13,6 +12,7 @@ import { NumerologyService } from 'src/Services/NumerologyService/NumerologyServ
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 
 @Component({

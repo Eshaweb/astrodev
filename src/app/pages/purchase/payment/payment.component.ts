@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy, ViewChildren, ElementRef, AfterViewInit, 
 import { FormBuilder, FormGroup, Validators, FormControlName, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from "@angular/common";
-import { LoginService } from 'src/Services/login/login.service';
 import { UIService } from 'src/Services/UIService/ui.service';
 import { HoroScopeService, ServiceInfo } from 'src/Services/HoroScopeService/HoroScopeService';
 import { Platform } from '@angular/cdk/platform';
@@ -13,6 +12,7 @@ import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingS
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 declare var Razorpay: any;
 
@@ -56,10 +56,11 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   payableAmountthroughPaymentGateWay: any;
   paymentModeId: any;
   
-    constructor(public storageService:StorageService,private itemService:ItemService,private orderService:OrderService,private loadingSwitchService:LoadingSwitchService, public walletService:WalletService, public _location: Location, public route: ActivatedRoute, public router: Router,
+    constructor(public storageService:StorageService,private itemService:ItemService,private orderService:OrderService,
+      private loadingSwitchService:LoadingSwitchService, public walletService:WalletService, public _location: Location, 
       public formBuilder: FormBuilder, public platform: Platform, public formbuilder: FormBuilder,
-      public loginService: LoginService, public horoScopeService: HoroScopeService,
-      public uiService: UIService) {
+      public loginService: LoginService, public horoScopeService: HoroScopeService,public route: ActivatedRoute, 
+      public uiService: UIService, public router: Router,) {
       this.discountAmount = 0;
       
       //this.OrderId = this.orderService.orderResponse.OrderId;
