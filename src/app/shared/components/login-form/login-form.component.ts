@@ -184,7 +184,7 @@ export class LoginFormComponent {
     this.registrationService.registered = true;
     this.router.navigate(["/registration-form"]);
   }
-
+  
   countDown;
   counter = 20;
   tick = 1000;

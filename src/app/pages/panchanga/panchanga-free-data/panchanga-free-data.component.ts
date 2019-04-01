@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
-import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 import { LoginService } from 'src/Services/login/login.service';
 import { Router } from '@angular/router';

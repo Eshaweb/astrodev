@@ -14,69 +14,38 @@ import { Caption } from 'src/Models/Caption';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 
 @Component({
-  selector: 'app-horoscope-free-data',
-  templateUrl: './horoscope-free-data.component.html',
-  styleUrls: ['./horoscope-free-data.component.scss']
+    selector: 'app-horoscope-free-data',
+    templateUrl: './horoscope-free-data.component.html',
+    styleUrls: ['./horoscope-free-data.component.scss']
 })
 export class HoroscopeFreeDataComponent implements OnInit {
-  Shloka1: string;
-  Shloka2: string;
-  Name: string;
-  Fathername: string;
-  Mothername: string;
-  ItMastId: any;
-  serviceInfo: ServiceInfo[];
-  horoRequest: HoroRequest;
-  horoInfo: any;
-  JanmaNakshathra: string;
-  JanmaRashi: string;
-  BirthPlace: string;
-  SunRise: string;
-  SunSet: string;
-  DinaMana: string;
-  ShakaVarsha: string;
-  Kollam: string;
-  Samvathsara: string;
-  Aayana: string;
-  ChandraMasa: string;
-  Ruthu: string;
-  SouraMasa: string;
-  Paksha: string;
-  MahaNakshatra: string;
-  Tithi: string;
-  NithyaNakshatra: string;
-  ChandrarkaYoga: string;
-  Karana: string;
-  VishaGhati: string;
-  AmrithaGhati: string;
-  BDate: string;
-  systemDate: string;
+    Name: string;
+    horoInfo: any;
     horoModel: HoroRequest;
     caption: any;
     horoResponse: any;
-  ngOnInit(): void {
-    this.caption=new Caption();
-    this.GetCaption(this.horoModel.LangCode, this.caption);
-  }
-  constructor(public storageService:StorageService, private itemService:ItemService,public captionDbService:CaptionDbService,
-    public _location: Location, public route: ActivatedRoute, public router: Router, public registrationService:RegistrationService,
-    public platform: Platform, public loginService: LoginService, public horoScopeService: HoroScopeService) {
-    
-    //this.horoModel=this.horoScopeService.horoRequest;
-    this.horoModel=this.storageService.GetHoroRequest('#SH');
-    this.horoResponse=new HoroResponse();
-    //this.horoResponse=this.horoScopeService.horoResponse;
-    this.horoResponse=this.storageService.GetHoroResponse('#SH');
-  }
+    ngOnInit(): void {
+        this.caption = new Caption();
+        this.GetCaption(this.horoModel.LangCode, this.caption);
+    }
+    constructor(public storageService: StorageService, private itemService: ItemService, public captionDbService: CaptionDbService,
+        public _location: Location, public route: ActivatedRoute, public router: Router, public registrationService: RegistrationService,
+        public platform: Platform, public loginService: LoginService, public horoScopeService: HoroScopeService) {
 
-  GetCaption(langCode:string,caption:Caption)
-    {
-     this.captionDbService.GetCaption(langCode,caption);
+        //this.horoModel=this.horoScopeService.horoRequest;
+        this.horoModel = this.storageService.GetHoroRequest('#SH');
+        this.horoResponse = new HoroResponse();
+        //this.horoResponse=this.horoScopeService.horoResponse;
+        this.horoResponse = this.storageService.GetHoroResponse('#SH');
     }
 
-  backClicked() {
-      this._location.back();
-  }
+    GetCaption(langCode: string, caption: Caption) {
+        this.captionDbService.GetCaption(langCode, caption);
+    }
+
+    backClicked() {
+        this._location.back();
+    }
     getFont(LangCode) {
         switch (LangCode) {
             case "KAN":
@@ -91,26 +60,18 @@ export class HoroscopeFreeDataComponent implements OnInit {
                 return "TamilFont";
         }
     }
-  onClick() {
-    this.itemService.ItActId='#SH';
-    StorageService.SetItem('ItActId','#SH');
-      if (StorageService.GetItem('Token')==undefined) {
-          this.registrationService.registered=true;
-          this.router.navigate(["/login-form"]);
-      }
-      else {
-          // this.router.navigate(["/purchase/paidServices", { "PartyMastId": this.loginService.PartyMastId}]);
-          this.router.navigate(["/purchase/paidServices"]);
+    onClick() {
+        this.itemService.ItActId = '#SH';
+        StorageService.SetItem('ItActId', '#SH');
+        if (StorageService.GetItem('Token') == undefined) {
+            this.registrationService.registered = true;
+            this.router.navigate(["/login-form"]);
+        }
+        else {
+            // this.router.navigate(["/purchase/paidServices", { "PartyMastId": this.loginService.PartyMastId}]);
+            this.router.navigate(["/purchase/paidServices"]);
 
-      }
-  }
-
-  ngAfterViewInit(): void {
-
-  }
-
-  ngOnDestroy(): void {
-
-  }
+        }
+    }
 
 }

@@ -25,34 +25,36 @@ declare var Razorpay: any;
 export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
     //WalletCheckBoxValueWalletCheckBoxValue: boolean = false;
-
-    loading: boolean = false;
-    paymentModes: any;
-    walletbalance: any;
+    paymentModeForm: FormGroup;
     ItemOrdered: ServiceInfo;
     CoupenCodeForm: FormGroup;
+    paycodes: PayCode[] = [];
+    paymentModedata: ArrayStore;
+    paymentModedatavalue: string;
+
+    loading: boolean = false;
+    checkClicked: boolean= false;
+  disableButton: boolean;
+  firstClick: boolean;
+  alterationDisabled: boolean;
+  paymentmodeSelected: boolean = false;
+  selectboxdisabled: boolean = false;
+
+  paymentModevalue: string;
+    selectMeMessage: string;
+    ShowMessage: string;
     couponcodeMessage: string;
     discountAmount: number;
+
+    paymentModes: any;
+    walletbalance: any;
     payableAmount: any;
-    paycodes: PayCode[] = [];
     differenceAmount: any;
-    selectMeMessage: string;
-    paymentmodeSelected: boolean = false;
-    ShowMessage: string;
-    selectboxdisabled: boolean = false;
     OrderId: any;
     paymentId: any;
   errorMessage: any;
-  checkClicked: boolean= false;
   payableAmountthroughPaymentGateWay: any;
-  disableButton: boolean;
-  firstClick: boolean;
-  paymentModeForm: FormGroup;
-  paymentModevalue: any;
   paymentModeId: any;
-  paymentModedata: ArrayStore;
-  paymentModedatavalue: any;
-  alterationDisabled: boolean;
   
     constructor(public storageService:StorageService,private itemService:ItemService,private orderService:OrderService,private loadingSwitchService:LoadingSwitchService, public walletService:WalletService, public _location: Location, public route: ActivatedRoute, public router: Router,
       public formBuilder: FormBuilder, public platform: Platform, public formbuilder: FormBuilder,
@@ -122,6 +124,17 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         this.selectMeMessage = '';
       }
     }
+    setErrorMessage(c: AbstractControl): void {
+      let control = this.uiService.getControlName(c);
+      document.getElementById('err_' + control).innerHTML = '';//To not display the error message, if there is no error.
+      if ((c.touched || c.dirty) && c.errors) {
+        document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
+      }
+    }
+    private validationMessages = {
+      CouponCode_required: 'Enter Coupon Code if you have',
+      CouponCode_minlength: 'Minimum length should be 6'
+    };
     ngOnInit(): void {
       //this.paymentModevalue = this.paymentModes[0].Text;
     }
@@ -136,17 +149,6 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       this._location.back();
     }
   
-    setErrorMessage(c: AbstractControl): void {
-      let control = this.uiService.getControlName(c);
-      document.getElementById('err_' + control).innerHTML = '';//To not display the error message, if there is no error.
-      if ((c.touched || c.dirty) && c.errors) {
-        document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
-      }
-    }
-    private validationMessages = {
-      CouponCode_required: 'Enter Coupon Code if you have',
-      CouponCode_minlength: 'Minimum length should be 6'
-    };
     GetWalletBalance() {
       this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
         if (data.Errors == undefined) {

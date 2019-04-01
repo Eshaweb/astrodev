@@ -23,7 +23,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Mobile No</div>
                     <div class="dx-field-value">
-                        <dx-text-box formControlName="MobileNo" [disabled]="MobileNoDisabled" showClearButton="true"></dx-text-box>
+                        <dx-text-box mode='tel' formControlName="MobileNo" [disabled]="MobileNoDisabled" showClearButton="true"></dx-text-box>
                 </div>
             </div>
             </div>
@@ -92,7 +92,7 @@
                         <div class="dx-field">
                                 <div class="dx-field-label">Postal Code</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box formControlName="PinCode" valueChangeEvent="keyup" showClearButton="true"></dx-text-box>
+                                    <dx-text-box mode='tel' formControlName="PinCode" valueChangeEvent="keyup" showClearButton="true"></dx-text-box>
                                     <p style="color:red" id='err_PinCode'></p>
                                 </div>
                             </div>

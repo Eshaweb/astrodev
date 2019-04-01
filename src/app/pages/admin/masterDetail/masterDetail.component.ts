@@ -1,7 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Service } from 'src/app/shared/services/app.service';
-import ArrayStore from 'devextreme/data/array_store';
-import DataSource from 'devextreme/data/data_source';
 import { Router } from '@angular/router';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { BasePrice } from '../pricelist/pricelist.component';

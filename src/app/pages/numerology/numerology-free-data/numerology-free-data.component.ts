@@ -8,13 +8,13 @@ import { Caption } from 'src/Models/Caption';
 import { NumerologyResponse, SerialseMonth } from 'src/Models/Numerology/numerologyResponse';
 import { NumerologyRequest } from 'src/Models/Numerology/numerologyRequest';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { UIService } from 'src/Services/UIService/ui.service';
 import { RegistrationService } from 'src/Services/registration/registration.service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingService';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
-import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { AuthService } from 'angularx-social-login';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { Location } from "@angular/common";
 

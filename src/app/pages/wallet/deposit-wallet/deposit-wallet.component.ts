@@ -24,23 +24,26 @@ export class DepositWalletComponent {
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   depositToWalletForm: FormGroup;
-  showError: boolean = false;
-  walletAmount: number;
-  bonusAmount: number;
-  amountMessage: string;
-  paymentModes: any;
   paycode: PayCode[];
   servtrDets: ServtrDet[];
-  paymentId: any;
-  loading: boolean;
-  errorMessage: any;
-  walletBalanceAmount: any;
-  message: string;
   paymentModedata: ArrayStore;
-  paymentModedatavalue: any;
+  paymentModedatavalue: string;
+  showError: boolean = false;
+  loading: boolean;
+
+  message: string;
+  amountMessage: string;
+  walletAmount: number;
+  bonusAmount: number;
   PurchaseAmount: number;
   minAmount: number;
   maxAmount: number;
+  paymentModes: any;
+  paymentId: any;
+  errorMessage: any;
+  walletBalanceAmount: any;
+  
+  
 
   constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, public walletService: WalletService, public horoScopeService: HoroScopeService, public route: ActivatedRoute, public router: Router, public salesService: SalesService,
     public uiService: UIService, public formbuilder: FormBuilder) {
@@ -113,6 +116,9 @@ export class DepositWalletComponent {
       this.walletAmount = null;
       this.bonusAmount = null;
       this.loading=false;
+      if(value==""){
+        this.showError=false
+      }
     }
     else {
       this.showError = false;

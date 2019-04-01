@@ -17,26 +17,13 @@ export class PaidservicesComponent implements OnInit {
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   @ViewChildren('cmp') components: ElementRef;
   serviceInfo: ServiceInfo[];
-  serviceInformation: ServiceInformation[];
-  horoRequest: HoroRequest;
   checkBoxValue: boolean = false;
-  FH_PDFSelected: boolean = false;
-  FH_HardcopySelected: boolean = false;
-  MH_PDFSelected: boolean = false;
-  MH_HardcopySelected: boolean = false;
-  PH_PDFSelected: boolean = false;
-  PH_HardcopySelected: boolean = false;
-  FH_price: number = 0;
-  MH_price: number = 0;
-  PH_price: number = 0;
   totalprice: number = 0;
   requireDeliveryAddress: boolean;
   PartyMastId: string;
   serviceHardCopy: ServiceInfo[];
-    errorMessage: any;
-  ngAfterViewInit(){
-
-}
+  errorMessage: any;
+  
   constructor(public _location: Location, public route: ActivatedRoute, public router: Router,
     public loginService: LoginService, public itemService: ItemService, public loadingSwitchService:LoadingSwitchService) {
         this.loadingSwitchService.loading=true; 
@@ -57,12 +44,14 @@ export class PaidservicesComponent implements OnInit {
         }
         this.loadingSwitchService.loading=false;
     });
-      //this.serviceInformation = [{ ItMastId: '', Name: 'Horo', MRP: 33, Amount: 44, Description: '',PrintMRP:6,PrintAmount:5 }]
     }
   ngOnInit(): void {
       /*
       */
   }
+  ngAfterViewInit(){
+
+}
   backClicked() {
     this._location.back();
 }

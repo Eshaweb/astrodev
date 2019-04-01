@@ -1,20 +1,14 @@
-import { Component, NgModule, enableProdMode, NgZone, ChangeDetectorRef } from '@angular/core';
-import notify from 'devextreme/ui/notify';
-import { Service } from 'src/app/shared/services/app.service';
+import { Component, NgZone, ChangeDetectorRef } from '@angular/core';
 import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { from, Subscription } from 'rxjs';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
-import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
-import { PaymentInfo, ServiceInfo, HoroScopeService, SelectBoxModelNew } from 'src/Services/HoroScopeService/HoroScopeService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { UIService } from 'src/Services/UIService/ui.service';
-import { ErrorService } from 'src/Services/Error/error.service';
 import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
-import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
 import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
@@ -27,38 +21,36 @@ import { LoginService } from 'src/Services/login/login.service';
 })
 
 export class PanchangaComponent {
+  panchangaRequest: PanchangaRequest;
+  panchangaForm: FormGroup;
+  languagedata: ArrayStore;
+  timeformatdata: ArrayStore;
+  languagevalue: string;
+  timeformatvalue: string;
+
+  public loading = false;
+  intLongDeg: number;
+  intLatDeg: number;
+  birthDateinDateFormat: Date;
+  birthTimeinDateFormat: Date;
+  subscription: Subscription;
+  latitude: number;
+  longitude: number;
+  timeZoneName: string;
+  timeZoneId: any;
+  
   languages: SelectBoxModel[] = [
     { Id: "ENG", Text: "English" },
     { Id: "HIN", Text: "Hindi" },
     { Id: "KAN", Text: "Kannada" },
     { Id: "MAL", Text: "Malayalam" },
     { Id: "TAM", Text: "Tamil" }];
-  isLoading: boolean;
-  public loading = false;
-  intLongDeg: number;
-  intLatDeg: number;
-  birthDateinDateFormat: Date;
-  birthTimeinDateFormat: Date;
-  errorMessage: any;
-  subscription: Subscription;
-  panchangaForm: FormGroup;
-  latitude: number;
-  longitude: number;
-  timeZoneName: string;
-  timeZoneId: any;
-  long: number;
-  lat: number;
-  panchangaRequest: PanchangaRequest;
-  languagevalue: string;
-  languagedata: ArrayStore;
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
     { Id: "SUMMER", Text: 'Summer Time' },
     { Id: "DOUBLE", Text: 'Double Summer Time' },
     { Id: "WAR", Text: 'War Time' }
   ];
-  timeformatdata: ArrayStore;
-  timeformatvalue: string;
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public panchangaService: PanchangaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
@@ -154,10 +146,6 @@ export class PanchangaComponent {
 
   }
 
-  ngOnDestroy(): void {
-
-  }
-
   getTimezone(lat, long) {
     this.panchangaRequest.LatDeg = Math.abs(parseInt(lat));
     this.panchangaRequest.LongDeg = Math.abs(parseInt(long));
@@ -198,10 +186,7 @@ export class PanchangaComponent {
     this.languagevalue = event.value;
   }
 
-  public date: Date = new Date(Date.now());
-
-  submit_click() {
-    this.isLoading = true;
+  OnSubmit_click() {
     this.loadingSwitchService.loading = true;
     this.panchangaService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
     var bdate: Date = this.panchangaForm.controls['Date'].value;

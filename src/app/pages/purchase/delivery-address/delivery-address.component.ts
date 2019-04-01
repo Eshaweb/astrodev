@@ -6,7 +6,6 @@ import { ExistingAddress } from 'src/Models/ExistingAddress';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { UIService } from 'src/Services/UIService/ui.service';
 import { LoginService } from 'src/Services/login/login.service';
-import { SelectBoxModel } from 'src/Models/SelectBoxModel';
 import ArrayStore from 'devextreme/data/array_store';
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
@@ -22,32 +21,22 @@ import { environment } from 'src/environments/environment';
 })
 export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewInit {
     ItName: string;
-
     statedata: ArrayStore;
-    statevalue: any;
+    statevalue: string;
     deleteConfirmPopUp: boolean;
-    ngOnInit() {
-        this.statedata = new ArrayStore({
-            data: this.partyService.statesOfIndia,
-            key: "Id"
-          });
-    }
-    statedataSelection(event){
-        this.statevalue=event.value;
-      }
+    customerEMailAddressForm: FormGroup;
     customerAddressForm: FormGroup;
+    existingAddress: ExistingAddress[];
     address1Message: string;
+    address2Message: string;
     address3Message: string;
     pincodeMessage: string;
     stateMessage: string;
-    address2Message: string;
     OrderId: any;
     checkBoxValue: boolean = false;
-    existingAddress: ExistingAddress[];
     showAddAddressForm: boolean = false;
     nameMessage: string;
     Id: any;
-    customerEMailAddressForm: FormGroup;
     email: string;
     DeliveryAddressRequired: any;
     constructor(public storageService:StorageService,public _location: Location, public route: ActivatedRoute, public router: Router, public loginService: LoginService,
@@ -164,7 +153,15 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         state_minlength: '*Minimum length is 4',
 
     };
-  
+    ngOnInit() {
+        this.statedata = new ArrayStore({
+            data: this.partyService.statesOfIndia,
+            key: "Id"
+          });
+    }
+    statedataSelection(event){
+        this.statevalue=event.value;
+      }
     OnChangeDefaultAddress(Id) {
         this.Id = Id;
     }

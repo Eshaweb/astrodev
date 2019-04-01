@@ -25,127 +25,44 @@ export class MatchMakingComponent {
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   matchRequest: MatchRequest;
+  matchResponse: MatchResponse;
+  maleMatchMakingRequest: MaleMatchMakingRequest;
+  femaleMatchMakingRequest: FemaleMatchMakingRequest;
+  maleMatchMakingForm: FormGroup;
+  femaleMatchMakingForm: FormGroup;
+
   enabletoEdit_MaleBDetails: boolean = false;
   enabletoEdit_FemaleBDetails: boolean = false;
-  languagedata: ArrayStore;
-  languagevalue: any;
-  male_timeformatvalue: any;
   maletimeformatdata: ArrayStore;
   femaletimeformatdata: ArrayStore;
-  female_timeformatvalue: any;
-  male_birthDateinDateFormat: any;
-  male_birthTimeinDateFormat: any;
-  female_birthDateinDateFormat: any;
-  female_birthTimeinDateFormat: any;
+  languagedata: ArrayStore;
+  reportTypedata: ArrayStore;
+  reportSizedata: ArrayStore;
+
+  male_timeformatvalue: string;
+  female_timeformatvalue: string;
+  languagevalue: string;
+  reportTypevalue: string;
+  reportSizevalue: string;
+
+  male_birthDateinDateFormat: Date;
+  male_birthTimeinDateFormat: Date;
+  female_birthDateinDateFormat: Date;
+  female_birthTimeinDateFormat: Date;
   intLongDeg_male: number;
   intLatDeg_male: number;
   intLongDeg_female: number;
   intLatDeg_female: number;
-  matchResponse: MatchResponse;
-  reportTypevalue: any;
-  reportTypedata: ArrayStore;
-  reportSizevalue: any;
-  reportSizedata: ArrayStore;
-
-  ngAfterViewInit(): void {
-    if (this.matchMakingService.matchRequest != null) {
-      this.male_timeformatvalue = this.matchMakingService.matchRequest.Male.TimeFormat;
-      this.female_timeformatvalue = this.matchMakingService.matchRequest.Female.TimeFormat;
-      this.languagevalue = this.matchMakingService.matchRequest.LangCode;
-      this.reportSizevalue = this.matchMakingService.matchRequest.ReportSize;
-      this.reportTypevalue= this.matchMakingService.matchRequest.UserOrSystem;
-    }
-    else {
-      this.male_timeformatvalue = this.maletimeformats[0].Id;
-      this.female_timeformatvalue = this.femaletimeformats[0].Id;
-      this.languagevalue = this.languages[2].Id;
-      this.reportTypevalue= this.reportTypes[0].Id;
-      this.reportSizevalue = this.reportSizes[1].Id;
-    }
-  }
-
-  ngOnDestroy(): void {
-
-  }
-
-  maleMatchMakingForm: FormGroup;
-  femaleMatchMakingForm: FormGroup;
   longitude: number;
   latitude: number;
-  maleMatchMakingRequest: MaleMatchMakingRequest;
-  femaleMatchMakingRequest: FemaleMatchMakingRequest;
   timeZoneId_Male: any;
-  timeZoneName_Male: any;
-  timeZoneId_Female: any;
+  timeZoneName_Male: string;
+  timeZoneId_Female: string;
   timeZoneName_Female: any;
   checkBoxValue_Male: boolean = false;
   checkBoxValue_Female: boolean = false;
   LatDegMessage: string;
   LatMtMessage: string;
-  ngOnInit() {
-    this.femaletimeformatdata = new ArrayStore({
-      data: this.femaletimeformats,
-      key: "Id"
-    });
-    this.maletimeformatdata = new ArrayStore({
-      data: this.maletimeformats,
-      key: "Id"
-    });
-    this.reportSizedata = new ArrayStore({
-      data: this.reportSizes,
-      key: "Id"
-    });
-    this.languagedata = new ArrayStore({
-      data: this.languages,
-      key: "Id"
-    });
-    this.reportTypedata = new ArrayStore({
-      data: this.reportTypes,
-      key: "Id"
-    });
-    this.mapsAPILoader.load().then(() => {
-      let nativeHome1InputBox = document.getElementById('male_birthplace_txt').getElementsByTagName('input')[0];
-      let autocomplete1 = new google.maps.places.Autocomplete(nativeHome1InputBox, {
-        types: ["geocode"]
-      });
-      console.log(autocomplete1);
-      autocomplete1.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          let place: google.maps.places.PlaceResult = autocomplete1.getPlace();
-          this.matchMakingService.male_birthplace = place.formatted_address;
-          this.matchMakingService.male_birthplaceShort = place.address_components[0].long_name;
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
-          this.getTimezone_Male(this.latitude, this.longitude);
-        });
-      });
-      let nativeHome2InputBox = document.getElementById('female_birthplace_txt').getElementsByTagName('input')[0];
-      let autocomplete2 = new google.maps.places.Autocomplete(nativeHome2InputBox, {
-        types: ["geocode"]
-      });
-      console.log(autocomplete2);
-      autocomplete2.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          let place: google.maps.places.PlaceResult = autocomplete2.getPlace();
-          this.matchMakingService.female_birthplace = place.formatted_address;
-          this.matchMakingService.female_birthplaceShort = place.address_components[0].long_name;
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
-          this.getTimezone_Female(this.latitude, this.longitude);
-        });
-      });
-    });
-  }
-
-  opened(e) {
-    e.component
-      .content()
-      .getElementsByClassName("dx-box-item")[0].style.display =
-      "none";
-    // e.component.content().getElementsByClassName("dx-toolbar-button")[0].style.padding =
-    // "25px";
-    e.component.content().style.width = "320px";
-  }
   maletimeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
     { Id: "SUMMER", Text: 'Summer Time' },
@@ -172,21 +89,17 @@ export class MatchMakingComponent {
     reportSizes: SelectBoxModel[] = [
       { Id: "A4", Text: "A4" },
       { Id: "A5", Text: "A5" }];
-  femaletimeformatdataSelection(event) {
-    this.female_timeformatvalue = event.value;
+
+  opened(e) {
+    e.component
+      .content()
+      .getElementsByClassName("dx-box-item")[0].style.display =
+      "none";
+    // e.component.content().getElementsByClassName("dx-toolbar-button")[0].style.padding =
+    // "25px";
+    e.component.content().style.width = "320px";
   }
-  maletimeformatdataSelection(event) {
-    this.male_timeformatvalue = event.value;
-  }
-  languagedataSelection(event) {
-    this.languagevalue = event.value;
-  }
-  reportTypedataSelection(event){
-    this.reportTypevalue = event.value;
-  }
-  reportSizedataSelection(event) {
-    this.reportSizevalue = event.value;
-  }
+  
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService:LoadingSwitchService,public route: ActivatedRoute, public router: Router, public cdr: ChangeDetectorRef,
     public matchMakingService: MatchMakingService, public ngZone: NgZone, public mapsAPILoader: MapsAPILoader,
     public uiService: UIService, public formbuilder: FormBuilder) {
@@ -503,6 +416,78 @@ export class MatchMakingComponent {
 
   };
 
+  ngOnInit() {
+    this.femaletimeformatdata = new ArrayStore({
+      data: this.femaletimeformats,
+      key: "Id"
+    });
+    this.maletimeformatdata = new ArrayStore({
+      data: this.maletimeformats,
+      key: "Id"
+    });
+    this.reportSizedata = new ArrayStore({
+      data: this.reportSizes,
+      key: "Id"
+    });
+    this.languagedata = new ArrayStore({
+      data: this.languages,
+      key: "Id"
+    });
+    this.reportTypedata = new ArrayStore({
+      data: this.reportTypes,
+      key: "Id"
+    });
+    this.mapsAPILoader.load().then(() => {
+      let nativeHome1InputBox = document.getElementById('male_birthplace_txt').getElementsByTagName('input')[0];
+      let autocomplete1 = new google.maps.places.Autocomplete(nativeHome1InputBox, {
+        types: ["geocode"]
+      });
+      console.log(autocomplete1);
+      autocomplete1.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          let place: google.maps.places.PlaceResult = autocomplete1.getPlace();
+          this.matchMakingService.male_birthplace = place.formatted_address;
+          this.matchMakingService.male_birthplaceShort = place.address_components[0].long_name;
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.getTimezone_Male(this.latitude, this.longitude);
+        });
+      });
+      let nativeHome2InputBox = document.getElementById('female_birthplace_txt').getElementsByTagName('input')[0];
+      let autocomplete2 = new google.maps.places.Autocomplete(nativeHome2InputBox, {
+        types: ["geocode"]
+      });
+      console.log(autocomplete2);
+      autocomplete2.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          let place: google.maps.places.PlaceResult = autocomplete2.getPlace();
+          this.matchMakingService.female_birthplace = place.formatted_address;
+          this.matchMakingService.female_birthplaceShort = place.address_components[0].long_name;
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.getTimezone_Female(this.latitude, this.longitude);
+        });
+      });
+    });
+  }
+
+  ngAfterViewInit(): void {
+    if (this.matchMakingService.matchRequest != null) {
+      this.male_timeformatvalue = this.matchMakingService.matchRequest.Male.TimeFormat;
+      this.female_timeformatvalue = this.matchMakingService.matchRequest.Female.TimeFormat;
+      this.languagevalue = this.matchMakingService.matchRequest.LangCode;
+      this.reportSizevalue = this.matchMakingService.matchRequest.ReportSize;
+      this.reportTypevalue= this.matchMakingService.matchRequest.UserOrSystem;
+    }
+    else {
+      this.male_timeformatvalue = this.maletimeformats[0].Id;
+      this.female_timeformatvalue = this.femaletimeformats[0].Id;
+      this.languagevalue = this.languages[2].Id;
+      this.reportTypevalue= this.reportTypes[0].Id;
+      this.reportSizevalue = this.reportSizes[1].Id;
+    }
+  }
+
   getTimezone_Male(lat, long) {
     this.matchRequest.Male.LatDeg = Math.abs(parseInt(lat));
     this.matchRequest.Male.LongDeg = Math.abs(parseInt(long));
@@ -569,12 +554,23 @@ export class MatchMakingComponent {
       this.cdr.detectChanges();
     }));
   }
-  public date: Date = new Date(Date.now());
-  private monthFormatter = new Intl.DateTimeFormat("en", { month: "long" });
-  public formatter = (date: Date) => {
-    return `${date.getDate()} ${this.monthFormatter.format(date)}, ${date.getFullYear()}`;
-  }
 
+  femaletimeformatdataSelection(event) {
+    this.female_timeformatvalue = event.value;
+  }
+  maletimeformatdataSelection(event) {
+    this.male_timeformatvalue = event.value;
+  }
+  languagedataSelection(event) {
+    this.languagevalue = event.value;
+  }
+  reportTypedataSelection(event){
+    this.reportTypevalue = event.value;
+  }
+  reportSizedataSelection(event) {
+    this.reportSizevalue = event.value;
+  }
+  
   OnMouseUp_Male(event) {
     if (event == null) {
       this.timeZoneName_Male = null;

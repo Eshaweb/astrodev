@@ -1,30 +1,19 @@
 import { Component, NgModule, enableProdMode, NgZone, ChangeDetectorRef } from '@angular/core';
 import notify from 'devextreme/ui/notify';
-import { Service } from 'src/app/shared/services/app.service';
 import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { from, Subscription } from 'rxjs';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
-import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
-import { PaymentInfo, ServiceInfo, HoroScopeService, SelectBoxModelNew } from 'src/Services/HoroScopeService/HoroScopeService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { UIService } from 'src/Services/UIService/ui.service';
-import { ErrorService } from 'src/Services/Error/error.service';
-import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
-import { isString } from 'util';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
 import { NumerologyRequest } from 'src/Models/Numerology/numerologyRequest';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/login/login.service';
 import { environment } from 'src/environments/environment';
-
-// if (!/localhost/.test(document.location.host)) {
-//   enableProdMode();
-// }
-
 
 @Component({
   //selector: 'app-horopage',
@@ -33,20 +22,22 @@ import { environment } from 'src/environments/environment';
 })
 export class NumerologyComponent {
   //genders:string[];
+  numerologyRequest: NumerologyRequest;
+  numerologyForm: FormGroup;
+  birthDateinDateFormat: Date;
+  birthTimeinDateFormat: Date;
+  subscription: Subscription;
+  
+  languagedata: ArrayStore;
+  genderdata: ArrayStore;
+  reportSizedata: ArrayStore;
+  reportSizevalue: string;
+  languagevalue: string;
+  genderValue: string;
+  
   genders: SelectBoxModel[]=[
     { Id: "M", Text: "Male" }, 
     { Id: "F", Text: "Female" }];
-  isLoading: boolean;
-  birthDateinDateFormat: Date;
-  birthTimeinDateFormat: Date;
-  errorMessage: any;
-  subscription: Subscription;
-  languagevalue: string;
-  languagedata: ArrayStore;
-  genderValue: string;
-  genderdata: ArrayStore;
-  numerologyRequest: NumerologyRequest;
-  numerologyForm: FormGroup;
   languages: SelectBoxModel[] = [
     { Id: "ENG", Text: "English" },
     { Id: "HIN", Text: "Hindi" },
@@ -56,8 +47,6 @@ export class NumerologyComponent {
     reportSizes: SelectBoxModel[] = [
       { Id: "A4", Text: "A4" },
       { Id: "A5", Text: "A5" }];
-  reportSizedata: ArrayStore;
-  reportSizevalue: any;
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager,
     public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     public partyService: PartyService, public numerologyService: NumerologyService, public uiService: UIService,
@@ -123,6 +112,8 @@ export class NumerologyComponent {
     Name_minlength: '*Minimum length is 4',
     Name_pattern: 'Name should be character only',
 
+    vehicleNo_pattern: 'Vehicle No should be No. and Uppercase character only',
+
     Date_required: '*Select Date of Birth',
 
     gender_required: '*Select Date of Birth',
@@ -132,7 +123,9 @@ export class NumerologyComponent {
     language_required: '*Select Language',
 
   };
-
+  onInitialized(e) {
+    e.component.options('elementAttr',{'class':'uppercase'});
+}
   ngOnInit() {
     this.languagedata = new ArrayStore({
       data: this.languages,
@@ -185,9 +178,7 @@ export class NumerologyComponent {
     }
   }
 
-  public date: Date = new Date(Date.now());
   submit_click() {
-    this.isLoading = true;
     this.loadingSwitchService.loading = true;
     this.numerologyService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
     var bdate: Date = this.numerologyForm.controls['Date'].value;
@@ -223,4 +214,27 @@ export class NumerologyComponent {
   public onDialogOKSelected(event) {
     event.dialog.close();
   }
+//   maskRules = {
+//     // a single character
+//     'S': '$',
+
+//     // a regular expression
+//     'H': /[0-9A-F]/,
+
+//     // an array of characters
+//     'N': ['$', '%', '&', '@'],
+
+//     // a function
+//     'F': function (char) {
+//         return char == char.toUpperCase();
+//     }
+// };
+
+loginRules = [{
+  type: 'required'
+}, {
+  type: 'pattern',
+  pattern: '^[A-Z]+$',
+  message: 'Do not use digits.'
+}];
 }

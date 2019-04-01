@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
-import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 import { LoginService } from 'src/Services/login/login.service';
 import { Router } from '@angular/router';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { Caption } from 'src/Models/Caption';
-import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
-import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
 import { SerialisedPanchangaResponse } from 'src/Models/Panchanga/PanchangaResponse';
 import { MuhurthaRequest } from 'src/Models/Muhurtha/MuhurthaRequest';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
