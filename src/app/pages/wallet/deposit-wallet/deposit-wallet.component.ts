@@ -39,10 +39,14 @@ export class DepositWalletComponent {
   paymentModedata: ArrayStore;
   paymentModedatavalue: any;
   PurchaseAmount: number;
+  minAmount: number;
+  maxAmount: number;
 
   constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, public walletService: WalletService, public horoScopeService: HoroScopeService, public route: ActivatedRoute, public router: Router, public salesService: SalesService,
     public uiService: UIService, public formbuilder: FormBuilder) {
     var endPoint = "Sales/GetPayCodes";
+    this.minAmount=50;
+    this.maxAmount=20000;
     this.depositToWalletForm = this.formbuilder.group({
       // amount: [null, [Validators.required, Validators.minLength(1),Validators.pattern("^[a-z0-9_-]{8,15}$"),Validators.min(50),Validators.max(20000)]],
       // Amount: [null, [Validators.required, Validators.pattern("[50<>20000]=?|="), Validators.min(50), Validators.max(20000)]],

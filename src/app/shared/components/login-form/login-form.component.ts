@@ -21,7 +21,7 @@ import { RegistrationService } from 'src/Services/registration/registration.serv
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingService';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
-import { DxPopupModule } from 'devextreme-angular';
+import { DxPopupModule, DxLoadPanelModule } from 'devextreme-angular';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
 import { HeaderComponent } from '../header/header.component';
@@ -210,16 +210,15 @@ export class LoginFormComponent {
         }
         this.disableResendOTP=false;
         this.loadingSwitchService.loading = false;
-
-        // var interval = setInterval(() => {
-        //   this.counter--;
-        //   if (this.counter < 0) {
-        //     clearInterval(interval);
-        //   };
-        // }, 1000);
+        //this.loading=true;
         this.countDown = timer(0, this.tick).pipe(
         take(this.counter),
-        map(() => --this.counter)); //To count down the time.
+        map(() => {
+          --this.counter;
+          // if(this.counter==0){
+          //   this.loading=false;
+          // }
+        })); //To count down the time.
         
       },(error)=>{
         this.isOTPRequested = false;
@@ -517,7 +516,7 @@ export class LoginFormComponent {
     DxValidationGroupModule,
     DxPopupModule,
     ReactiveFormsModule,
-    FormsModule,
+    FormsModule, DxLoadPanelModule
   ],
   providers: [AuthService],
   declarations: [LoginFormComponent],
