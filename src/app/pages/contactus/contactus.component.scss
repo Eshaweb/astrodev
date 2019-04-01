@@ -1,0 +1,24 @@
+.address{
+
+    width: 60%;
+    float: left;
+}
+.map{
+
+    width:35%;
+    float: left;
+}
+
+@media (max-width: 640px) {
+
+    .address{
+
+        width: 90%;
+        
+    }
+    .map{
+    
+        width:90%;
+      
+    } 
+}
