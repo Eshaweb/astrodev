@@ -203,12 +203,12 @@ export class LoginFormComponent {
         //this.loading=true;
         this.countDown = timer(0, this.tick).pipe(
           take(this.counter),
-          map(() => {
-            --this.counter;
+          map(() => 
+            --this.counter
             // if(this.counter==0){
             //   this.loading=false;
             // }
-          })); //To count down the time.
+          )); //To count down the time.
 
       }, (error) => {
         this.isOTPRequested = false;
@@ -320,6 +320,13 @@ export class LoginFormComponent {
               this.router.navigate(["/services"]);
             }
           }
+        }
+        else{
+          const loginModel = {
+            UserName: this.loginForm.get('UserName').value,
+            Password: this.loginForm.get('Password').value
+          }
+          this.Login(loginModel);
         }
         this.loadingSwitchService.loading = false;
       });

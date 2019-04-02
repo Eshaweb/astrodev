@@ -138,6 +138,9 @@ export class HeaderComponent {
   OnLogin_click(){
     this.router.navigate(['/login-form']);
   }
+  onProductsClick(){
+    this.router.navigate(['/products']);
+  }
   OnRegister_click(){
     this.router.navigate(['/registration-form']);
   }

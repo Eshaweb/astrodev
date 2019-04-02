@@ -123,6 +123,11 @@ export const navigationAfterLogin = [
     
   },
   {
+    text: 'Products',
+    path:'/products',
+    icon: 'folder'
+  },
+  {
     text: 'Settings',
     icon: 'folder',
     path:'/settings',
@@ -205,6 +210,11 @@ export const navigationBeforeLogin = [
     icon: 'folder'
   },
   {
+    text: 'Products',
+    path:'/products',
+    icon: 'folder'
+  },
+  {
     text: 'About Us',
     path:'/aboutus',
     icon: 'folder',
@@ -256,6 +266,11 @@ export const navigationAfterLoginForSystem = [
       },
     ],
     
+  },
+  {
+    text: 'Products',
+    path:'/products',
+    icon: 'folder'
   },
   {
     text: 'Settings',
@@ -323,7 +338,12 @@ export const navigationBeforeLoginForSystem = [
     text: 'Login',
     path:'/login-form',
     icon: 'folder'
-  }
+  },
+  {
+    text: 'Products',
+    path:'/products',
+    icon: 'folder'
+  },
 ];
 
 export const serviceMenusBeforeLogin = [

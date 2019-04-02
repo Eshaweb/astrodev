@@ -20,6 +20,7 @@ import { DisclaimerComponent } from './pages/disclaimer/disclaimer.component';
 import { PrivacyComponent } from './pages/privacy/privacy.component';
 import { AboutusComponent } from './pages/aboutus/aboutus.component';
 import { ContactusComponent } from './pages/contactus/contactus.component';
+import { ProductComponent } from './product/product.component';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'privacy', component:PrivacyComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contactus', component: ContactusComponent },
+  { path: 'products', component: ProductComponent },
   {
     path:'offlinePayment', component:OfflinepaymentComponent
   },

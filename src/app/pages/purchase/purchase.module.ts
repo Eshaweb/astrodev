@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
 import { PaidservicesComponent } from './paidservices/paidservices.component';
 import { HoropaidComponent } from './horopaid/horopaid.component';
-import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule, DxLoadPanelModule, DxResponsiveBoxModule, DxPopupModule } from 'devextreme-angular';
+import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule, DxLoadPanelModule, DxResponsiveBoxModule, DxPopupModule, DxNumberBoxModule } from 'devextreme-angular';
 import { PurchaseRoutingModule } from './purchase-routing.module';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 import { PaymentComponent } from './payment/payment.component';
@@ -21,7 +21,7 @@ import { DxiRowModule } from 'devextreme-angular/ui/nested/row-dxi';
         DxCheckBoxModule,
         DxButtonModule,
         DxTextBoxModule,
-        DxSelectBoxModule,
+        DxSelectBoxModule, DxNumberBoxModule,
         DxLoadPanelModule,DxPopupModule,
         DxResponsiveBoxModule,DxiRowModule
     ],
