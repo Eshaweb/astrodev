@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxCheckBoxModule } from 'devextreme-angular/ui/check-box';
 import { DxTextBoxModule } from 'devextreme-angular/ui/text-box';
@@ -194,8 +194,8 @@ export class LoginFormComponent {
           this.loginService.oTPRef = data;
           //this.popUpVisible=true;
           //this.title='Note';
-          //this.message='You Received an OTP with Reference No.'+this.loginService.oTPRef;
-          this.message = 'You will get an OTP. Please enter it';
+          this.message='You Received an OTP with Reference No. '+this.loginService.oTPRef+'. Please enter it';
+          //this.message = 'You will get an OTP. Please enter it';
           this.loginForm.controls['Password'].setValue('');
         }
         this.disableResendOTP = false;
@@ -293,6 +293,7 @@ export class LoginFormComponent {
         this.loginService.PartyMastId = data.PartyMastId;
         if (data.Token != undefined && data.PartyMastId != undefined) {
           this.loginService.Token = data.Token;
+          this.loginService.Name = data.Name;
           StorageService.SetItem('Token', data.Token);
           StorageService.SetItem('PartyMastId', data.PartyMastId);
           StorageService.SetItem('Name', data.Name);
@@ -320,6 +321,7 @@ export class LoginFormComponent {
               this.router.navigate(["/services"]);
             }
           }
+          this.loadingSwitchService.loading = false;
         }
         else{
           const loginModel = {
@@ -328,7 +330,6 @@ export class LoginFormComponent {
           }
           this.Login(loginModel);
         }
-        this.loadingSwitchService.loading = false;
       });
     }
   }
@@ -502,6 +503,18 @@ export class LoginFormComponent {
     this.loginForm.controls['Password'].setValue('');
   }
 }
+const routes: Routes = [
+  {
+    path: '',
+    component: LoginFormComponent,
+  }
+];
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+ //imports: [RouterModule.forChild(routesnew)],
+ exports: [RouterModule]
+})
+export class LoginFormRoutingModule { }
 @NgModule({
   imports: [
     CommonModule,
@@ -512,7 +525,7 @@ export class LoginFormComponent {
     DxValidatorModule,
     DxValidationGroupModule,
     DxPopupModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule, LoginFormRoutingModule,
     FormsModule, DxLoadPanelModule
   ],
   providers: [AuthService],

@@ -43,7 +43,7 @@ import { ContactusComponent } from './pages/contactus/contactus.component';
 import { OrderHistoryService } from 'src/Services/OrderHistoryService/OrderHistoryService';
 import { AdminService } from 'src/Services/AdminService/AdminService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
-import { ProductComponent } from './product/product.component';
+import { ProductComponent } from './pages/product/product.component';
 
 
 let config = new AuthServiceConfig([
@@ -71,13 +71,13 @@ export function provideConfig() {
     AppComponent, TermsandConditionsComponent, DisclaimerComponent, PrivacyComponent, AboutusComponent, ContactusComponent, ProductComponent
   ],
   imports: [
-    NgxLoadingModule.forRoot({}),
+    //NgxLoadingModule.forRoot({}),
     BrowserModule,
     SideNavOuterToolbarModule,
-    SingleCardModule,
+    //SingleCardModule,
     FooterModule,
-    LoginFormModule,
-    RegistrationFormModule,
+    //LoginFormModule,
+    //RegistrationFormModule,
     AppRoutingModule,
     HttpClientModule,
     DxPopupModule,

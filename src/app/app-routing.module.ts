@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LoginFormComponent } from './shared/components';
 import { AuthGuardService } from './shared/services';
-import { DxDataGridModule, DxFormModule, DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule, DxPopupModule, DxNumberBoxModule, DxResponsiveBoxModule, DxPopoverModule, DxListModule, DxMenuModule } from 'devextreme-angular';
+import { DxDataGridModule, DxFormModule, DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule, DxPopupModule, DxNumberBoxModule, DxResponsiveBoxModule, DxPopoverModule, DxListModule, DxMenuModule, DevExtremeModule } from 'devextreme-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { AgmCoreModule } from '@agm/core';
@@ -20,7 +20,7 @@ import { DisclaimerComponent } from './pages/disclaimer/disclaimer.component';
 import { PrivacyComponent } from './pages/privacy/privacy.component';
 import { AboutusComponent } from './pages/aboutus/aboutus.component';
 import { ContactusComponent } from './pages/contactus/contactus.component';
-import { ProductComponent } from './product/product.component';
+import { ProductComponent } from './pages/product/product.component';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [
@@ -42,25 +42,30 @@ const routes: Routes = [
     component: ServicesComponent,
     canActivate: [ AuthGuardService ]
   },
-  {
-    path: 'login-form',
-    component: LoginFormComponent, 
-    canActivate: [ AuthGuardService ]
-  },
-  {
-    path: 'registration-form',
-    component: RegistrationFormComponent,
-    canActivate: [ AuthGuardService ]
-  },
+  // {
+  //   path: 'login-form',
+  //   component: LoginFormComponent, 
+  //   canActivate: [ AuthGuardService ]
+  // },
+  // {
+  //   path: 'registration-form',
+  //   component: RegistrationFormComponent,
+  //   canActivate: [ AuthGuardService ]
+  // },
+  
   {
     path: 'horoscope',
     //component: HoroscopeComponent,
     loadChildren: './pages/horoscope/horoscope.module#HoroscopeModule'
   },
-  // {
-  //   path: 'horoscope/getHoroscopeFreeData',
-  //   component: HoroscopeFreeDataComponent,
-  // },
+  {
+    path: 'registration-form',
+    loadChildren: './shared/components/registration-form/registration-form.module#RegistrationFormModule'
+  },
+  {
+    path: 'login-form',
+    loadChildren: './shared/components/login-form/login-form.component#LoginFormModule'
+  },
   {
     path: 'astamangala',
     loadChildren: './pages/astamangala/astamangala.module#AstamangalaModule'
@@ -111,7 +116,7 @@ const routes: Routes = [
     //   preloadingStrategy: PreloadAllModules
     // }
     ), 
-    NgxLoadingModule.forRoot({}),
+    //NgxLoadingModule.forRoot({}),
     //EventsModule.forRoot(),
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
@@ -121,12 +126,13 @@ const routes: Routes = [
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
-    DxMenuModule,
-    DxDataGridModule, DxFormModule, DxPopoverModule,
-    DxValidatorModule,DxButtonModule,DxValidationSummaryModule,
-    DxDateBoxModule,DxSelectBoxModule,DxCheckBoxModule,
-    DxTextBoxModule, DxRadioGroupModule,
-    DxPopupModule, DxNumberBoxModule,DxResponsiveBoxModule, DxListModule
+    DevExtremeModule
+    // DxMenuModule,
+    // DxDataGridModule, DxFormModule, DxPopoverModule,
+    // DxValidatorModule,DxButtonModule,DxValidationSummaryModule,
+    // DxDateBoxModule,DxSelectBoxModule,DxCheckBoxModule,
+    // DxTextBoxModule, DxRadioGroupModule,
+    // DxPopupModule, DxNumberBoxModule,DxResponsiveBoxModule, DxListModule
   ],  
   providers: [AuthGuardService],
   exports: [RouterModule],

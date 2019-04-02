@@ -22,6 +22,7 @@
         <dx-text-box mode="password" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="Password" *ngIf='isOTPRequested' placeholder="Enter OTP" width="100%">
         </dx-text-box>
         <p style="color:red;font-size: 12px;" id='err_Password'></p>
+        <p style="color:red;font-size: 12px;" id='err_OTP'></p>
     </div>
 
     <div class="dx-field">
@@ -48,7 +49,9 @@
     </div>
     <div class="dx-fieldset-column">
         <!-- <a routerLink="/registration-form">Register</a> -->
-        <a (click)="goToRegistration()">Register</a>
+        <!-- <a (click)="goToRegistration()" style="border-bottom: 1px solid #b74610;">Register</a> -->
+        <a (click)="goToRegistration()" style="text-decoration: underline">Register</a>
+
     </div>
   </div>
 
@@ -68,10 +71,10 @@
         <p style="color:red;" id='err_OTP'></p>
         <p style="color:red;" id='err_OTPRef'></p>
         <div style="width: 175px;" *ngIf='!disableResendOTP'>
-            <a (click)="ResendOTP_click()">Resend OTP</a>
+            <a (click)="ResendOTP_click()" style="text-decoration: underline">Resend OTP</a>
         </div>
         <div style="width: 175px;" *ngIf='disableResendOTP'>
-            <a class="isDisabled" (click)="ResendOTP_click()">Resend OTP</a>
+            <a class="isDisabled" (click)="ResendOTP_click()" style="text-decoration: underline">Resend OTP</a>
         </div>
     </div>
     <div class="dx-field">

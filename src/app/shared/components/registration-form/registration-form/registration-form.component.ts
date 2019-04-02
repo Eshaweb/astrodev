@@ -8,6 +8,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { RegistrationService } from 'src/Services/registration/registration.service';
 import { RegisterModel } from 'src/Models/Register';
+import { timer } from 'rxjs';
+import { take, map } from 'rxjs/operators';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -34,13 +36,15 @@ export class RegistrationFormComponent {
     public currentValue: number;
     public interval: any;
     public maxvalue: number;
-    popupVisible: boolean;
+    OTPEntryFormVisible: boolean;
     OTPValidatedVisible: boolean;
     TandC_checkBoxValue: boolean = false;
     disableResendOTP: boolean;
     isLoading: boolean;
     NewsLetter_checkBoxValue: boolean = true;
-
+    countDown;
+    counter = 20;
+    tick = 1000;
     constructor(public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, public uiService: UIService, public registrationService: RegistrationService,
         public route: ActivatedRoute, public _location: Location,
         public router: Router, public formBuilder: FormBuilder) {
@@ -71,6 +75,15 @@ export class RegistrationFormComponent {
         });
         const OTPControl = this.uservalidateForm.get('OTP');
         OTPControl.valueChanges.subscribe(value => this.setErrorMessage(OTPControl));
+    
+        if (this.registrationService.registerModel != null) {
+            this.registrationForm.controls['UserName'].setValue(this.registrationService.registerModel.UserName);
+            this.registrationForm.controls['Password'].setValue(this.registrationService.registerModel.Password);
+            this.registrationForm.controls['confirm_Password'].setValue(this.registrationService.registerModel.Password);
+            this.registrationForm.controls['IntroParty'].setValue(this.registrationService.registerModel.IntroParty);
+            this.TandC_checkBoxValue=this.registrationService.registerModel.TermsandConditions;
+            this.NewsLetter_checkBoxValue=this.registrationService.registerModel.NewsLetter;
+        } 
     }
     setErrorMessage(c: AbstractControl): void {
         let control = this.uiService.getControlName(c);
@@ -123,6 +136,17 @@ export class RegistrationFormComponent {
     public onDialogOKSelected(event) {
         event.dialog.close();
     }
+    goToTermsandConditions(){
+        var registerModel = {
+            UserName: this.registrationForm.get('UserName').value,
+            Password: this.registrationForm.get('Password').value,
+            IntroParty: this.registrationForm.get('IntroParty').value,
+            NewsLetter: this.NewsLetter_checkBoxValue,
+            TermsandConditions:this.TandC_checkBoxValue
+        }
+        this.registrationService.registerModel=registerModel;
+        this.router.navigate(["/TandC"]);
+    }
     Register_Click() {
         this.loadingSwitchService.loading = true;
         var registerModel = {
@@ -136,7 +160,8 @@ export class RegistrationFormComponent {
             if (data.IsValid != undefined) {
                 //IsValid: true 
                 this.loadingSwitchService.loading = false;
-                this.popupVisible = true;
+                this.OTPEntryFormVisible = true;
+                this.disableResendOTP = true;
                 if (data.OTPType == "E") {
                     //this.toastrService.successToastr('You Successfully registered. Please check your EMail and click on link we sent to verify your Account', 'Success!');
                     this.EMailOTPType = 'Please check your EMail. You have received a link to verify your Account';
@@ -146,6 +171,13 @@ export class RegistrationFormComponent {
                     this.SMSOTPType = 'You will get an OTP. Please enter the OTP here';
                     //'OTP Sent to ' + oTPRequest.MobileNo + ' with Reference No. ' + data.OTPRef
                 }
+                this.countDown = timer(0, this.tick).pipe(
+                    take(this.counter),
+                    map(() => {--this.counter;
+                        if(this.counter==0){
+                            this.disableResendOTP = false;
+                        }
+                    }));
             }
             // else {
             //     this.loadingSwitchService.loading = false;
@@ -217,12 +249,20 @@ export class RegistrationFormComponent {
     }
 
     ResendOTP_click() {
+        this.disableResendOTP = true;
+        this.countDown = timer(0, this.tick).pipe(
+            take(this.counter),
+            map(() => {--this.counter;
+                if(this.counter==0){
+                    this.disableResendOTP = false;
+                }
+            }));
         var UserName = {
             UserName: this.registrationForm.get('UserName').value
         }
         this.registrationService.ResendUserOTP(UserName).subscribe((data: any) => {
             if (data.Errors == undefined) {
-                this.SMSOTPType = 'Please enter OTP And Submit';
+                this.SMSOTPType = 'OTP Resent. Please enter OTP And Submit';
             }
         });
     }
