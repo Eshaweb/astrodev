@@ -1,183 +1,259 @@
-
-
 <div class="hero-unit">
   <div class="main-slider">
-<h1 class="slider"> DOING MORE <br></h1>
-  <h1 class="slider2">FOR YOUR SUCCESS</h1>
-</div>
+    <h1 class="slider">DOING MORE <br /></h1>
+    <h1 class="slider2">FOR YOUR SUCCESS</h1>
+  </div>
 </div>
 
 <!-- <dx-menu class="service-menu" #menu [dataSource]="menuItems" displayExpr="text" [showFirstSubmenuMode]="showFirstSubmenuModes" orientation="horizontal"
     submenuDirection="auto" [hideSubmenuOnMouseLeave]="true" (onItemClick)="itemClick($event)">
 </dx-menu> -->
 
-<div class="dx-card home-content"  >
+<div class="dx-card home-content">
+  <div class="service-menu">
+    <ul>
+      <li *ngFor="let item of loginService.serviceList">
+        <a (click)="OnServiceClick(item.Path)">{{ item.Name }}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="main-image">
+    <img src="assets/images/main.png" />
+  </div>
 
-    <div class="service-menu">
-        <ul>
-           
-            <li *ngFor="let item of loginService.serviceList">
-                <a (click)='OnServiceClick(item.Path)'>{{item.Name}}</a>
-            </li>
-          </ul>
-        </div>
-        <div class="main-image">
-    <img src="assets/images/main.png"></div>
-<h1 class="slider2"> Indian Astrology("Jyothisha Shastra")</h1>
-<p>Indian Astrology ("Jyothisha shastra") comprises of thee parts - "Siddanth", "Samhita", "Hora". Among these, Hora conveys the attributes of the Jataka. Using this one can analyse future of an individual. The Hora is further divided into - "Samhithe", "Muhurtha", "Jathaka" and "Prashna".Vedanga Jyothisha The nature around us is so strange that many aspects can only be felt or their presence is not visible to the naked eye. The tides have a direct relation to the movement of moon. Similarly the presence of sun. For eg: a person born during a low lunar influence is susceptible to mental disorders. Modern science is very competitive or has answer to many aspects but still there's a lot to wonder. The Vedanga Jyothisha is highly capable in knowing about the planetary position , eclipse, the sun rise and sun set etc. Since ancient times, Vedas have been used to interpret the natural aspects which have been along to the human senses.That's why it's said अतीन्द्रियार्थविज्ञानॆ प्रमाणं श्रुतिरॆव हि.
-
-</p>
-<h1 class="slider2"> "वॆदस्यचक्षुःकिलशास्त्रमॆतत् प्रधानतांगॆषु ततॊस्य युक्ता  </h1>
-<h1 class="slider2">अंगॆर्युतॊन्यैरपिपूर्णमूर्तिः चक्षुर्विना कःपुरुषत्वमॆति  "</h1>
-<p>Accordingly , it is said, Jyothisha is the eye of Veda. पूर्वकर्मफलं भॊक्तुं जन्तॊर्यदिह जीवनम् means a person is believed to reborn according to his wrong doings or good deeds. This science leads a person to solve the problem related to Aadhibhouthika, Aadhidaivika and Aadhyathmika and there are Devaruna, Pithruruna and Rishiruna too, which are believed to have an effect on rebirth and evade the troubles of life. There for a common man is blessed with Jyothisha given by renowed sages. According to Vedas, there are prescribed measure and their way in order to help an individual seeking his desires. So, the timing of any auspicious deeds brought the relevance of "Muhurta" through Jyothisha . But of late Jyothisha is being used to know the present, past and future.Astrolite Product and Services imbibed all these aspects in of Vedanga Jyotisha which havebeen so accurate making its highlly competitive in its class. Our research is still on to make it one of the novel one. We invite suggestions from people associated to this field to make it more efficient.
+  <h1 class="slider2">Indian Astrology("Jyothisha Shastra")</h1>
+  <p>
+    Indian Astrology ("Jyothisha shastra") comprises of thee parts - "Siddanth",
+    "Samhita", "Hora". Among these, Hora conveys the attributes of the Jataka.
+    Using this one can analyse future of an individual. The Hora is further
+    divided into - "Samhithe", "Muhurtha", "Jathaka" and "Prashna".Vedanga
+    Jyothisha The nature around us is so strange that many aspects can only be
+    felt or their presence is not visible to the naked eye. The tides have a
+    direct relation to the movement of moon. Similarly the presence of sun. For
+    eg: a person born during a low lunar influence is susceptible to mental
+    disorders. Modern science is very competitive or has answer to many aspects
+    but still there's a lot to wonder. The Vedanga Jyothisha is highly capable
+    in knowing about the planetary position , eclipse, the sun rise and sun set
+    etc. Since ancient times, Vedas have been used to interpret the natural
+    aspects which have been along to the human senses.That's why it's said
+    अतीन्द्रियार्थविज्ञानॆ प्रमाणं श्रुतिरॆव हि.
+  </p>
+  <h1 class="slider2">
+    "वॆदस्यचक्षुःकिलशास्त्रमॆतत् प्रधानतांगॆषु ततॊस्य युक्ता
+  </h1>
+  <h1 class="slider2">
+    अंगॆर्युतॊन्यैरपिपूर्णमूर्तिः चक्षुर्विना कःपुरुषत्वमॆति "
+  </h1>
+  <p>
+    Accordingly , it is said, Jyothisha is the eye of Veda. पूर्वकर्मफलं भॊक्तुं
+    जन्तॊर्यदिह जीवनम् means a person is believed to reborn according to his
+    wrong doings or good deeds. This science leads a person to solve the problem
+    related to Aadhibhouthika, Aadhidaivika and Aadhyathmika and there are
+    Devaruna, Pithruruna and Rishiruna too, which are believed to have an effect
+    on rebirth and evade the troubles of life. There for a common man is blessed
+    with Jyothisha given by renowed sages. According to Vedas, there are
+    prescribed measure and their way in order to help an individual seeking his
+    desires. So, the timing of any auspicious deeds brought the relevance of
+    "Muhurta" through Jyothisha . But of late Jyothisha is being used to know
+    the present, past and future.Astrolite Product and Services imbibed all
+    these aspects in of Vedanga Jyotisha which havebeen so accurate making its
+    highlly competitive in its class. Our research is still on to make it one of
+    the novel one. We invite suggestions from people associated to this field to
+    make it more efficient.
   </p>
 </div>
 
 <div class="card-background">
-
-
   <h4 class="service-header">Jyothisha Shastra</h4>
 
-
-<div class="content-block">
-    <div class="dx-card responsive-paddings service-box " (click)='OnAstamangala_Click()'>
-
-<img src="assets/images/Astamangala.png" class="service-image">
-<h3>Astamangala</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-   nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor </p>
-   <div class="hlink">Explore More</div>
+  <div class="content-block">
+    <div
+      class="dx-card responsive-paddings service-box "
+      (click)="OnAstamangala_Click()"
+    >
+      <img src="assets/images/Astamangala.png" class="service-image" />
+      <h3>Astamangala</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor
+      </p>
+      <div class="hlink">Explore More</div>
     </div>
-    <div class="dx-card responsive-paddings service-box" id="link1" (mouseenter)="toggleDefault()" (mouseleave)="toggleDefault()" (click)='OnHoroScope_Click()'>
-           
-  <img src="assets/images/Horoscope.png" class="service-image">
-  <h3>Horoscope</h3>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-       nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor </p>
-       <div class="hlink">Explore More</div> 
-      </div>
-        <div class="dx-card responsive-paddings service-box" (click)='OnMatchMaking_Click()'>
-               
-  <img src="assets/images/MelaMeli.png"class="service-image">
-  <h3>  Mela Meli</h3>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-       nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor </p>
-    <div class="hlink">Explore More</div>
-    
-      </div>
-
+    <div
+      class="dx-card responsive-paddings service-box"
+      id="link1"
+      (mouseenter)="toggleDefault()"
+      (mouseleave)="toggleDefault()"
+      (click)="OnHoroScope_Click()"
+    >
+      <img src="assets/images/Horoscope.png" class="service-image" />
+      <h3>Horoscope</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor
+      </p>
+      <div class="hlink">Explore More</div>
+    </div>
+    <div
+      class="dx-card responsive-paddings service-box"
+      (click)="OnMatchMaking_Click()"
+    >
+      <img src="assets/images/MelaMeli.png" class="service-image" />
+      <h3>Mela Meli</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor
+      </p>
+      <div class="hlink">Explore More</div>
+    </div>
   </div>
   <div class="content-block">
-      <div class="dx-card responsive-paddings service-box" (click)='OnAstamangala_Click()'>
-  
-  <img src="assets/images/Astamangala.png" class="service-image">
-  <h3>Astamangala</h3>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-     nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor </p>
-     <div class="hlink">Explore More</div>
-      </div>
-      <div class="dx-card responsive-paddings service-box" id="link1" (mouseenter)="toggleDefault()" (mouseleave)="toggleDefault()" (click)='OnHoroScope_Click()'>
-             
-            <div class="dx-card responsive-paddings product-list">test</div>
-    <h3>Horoscope</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-         nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor </p>
-         <div class="hlink">Explore More</div> 
-        </div>
-          <div class="dx-card responsive-paddings service-box" (click)='OnMatchMaking_Click()'>
-                 
-    <img src="assets/images/MelaMeli.png" class="service-image">
-    <h3>  Mela Meli</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-         nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor </p>
+    <div
+      class="dx-card responsive-paddings service-box"
+      (click)="OnAstamangala_Click()"
+    >
+      <img src="assets/images/Muhurtha.png" class="service-image" />
+      <h3>Muhurtha</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor
+      </p>
       <div class="hlink">Explore More</div>
-      
-        </div>
-  
     </div>
-
+    <div
+      class="dx-card responsive-paddings service-box"
+      id="link1"
+      (mouseenter)="toggleDefault()"
+      (mouseleave)="toggleDefault()"
+      (click)="OnHoroScope_Click()"
+    >
+      <img src="assets/images/panchanga.png" class="service-image" />
+      <h3>Panchanga</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor
+      </p>
+      <div class="hlink">Explore More</div>
+    </div>
+    <div
+      class="dx-card responsive-paddings service-box"
+      (click)="OnMatchMaking_Click()"
+    >
+      <img src="assets/images/Pancha-Pakshi.png" class="service-image" />
+      <h3>Pancha Pakshi</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor
+      </p>
+      <div class="hlink">Explore More</div>
+    </div>
+    <div
+      class="dx-card responsive-paddings service-box"
+      (click)="OnMatchMaking_Click()"
+    >
+      <img src="assets/images/Hanuma Jothisya.png" class="service-image" />
+      <h3>Hanuman Jyothisha</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor
+      </p>
+      <div class="hlink">Explore More</div>
+    </div>
+    <div
+      class="dx-card responsive-paddings service-box"
+      (click)="OnMatchMaking_Click()"
+    >
+      <img src="assets/images/Srardha Masika.png" class="service-image" />
+      <h3>Srardha Masika</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor
+      </p>
+      <div class="hlink">Explore More</div>
+    </div>
+  </div>
 </div>
 
-<div class="dx-card responsive-paddings " >
-
-    <div class="dx-card responsive-paddings product-box" >
-
-        <img src="assets/images/product1.png"style="width: 100%;margin-left: -21px;">
-    </div>
-    <div class="dx-card responsive-paddings product-box" >
-        <img src="assets/images/product2.png"style="width: 100%;margin-left: -21px;">
-    </div>
-
+<div class="dx-card responsive-paddings ">
+  <div class="dx-card responsive-paddings product-box">
+    <img
+      src="assets/images/product1.png"
+      style="width: 100%;margin-left: -21px;"
+    />
+  </div>
+  <div class="dx-card responsive-paddings product-box">
+    <img
+      src="assets/images/product2.png"
+      style="width: 100%;margin-left: -21px;"
+    />
+  </div>
 </div>
 
-<div class="dx-card responsive-paddings" >
-
-    <div class="dx-card responsive-paddings menu" >
-        <img src="assets/images/trust.png" style="width: 100%;">
-    </div>
-    <div class="dx-card responsive-paddings menu" >
-        <img src="assets/images/secure .png" style="width: 93%;">
-    </div>
-    <div class="dx-card responsive-paddings menu" >
-        <img src="assets/images/help.png" style="width: 114%;">
-    </div>
-    <div class="dx-card responsive-paddings menu" >
-        <img src="assets/images/shop.png"style="width: 90%;">
-    </div>
-
+<div class="dx-card responsive-paddings">
+  <div class="dx-card responsive-paddings menu">
+    <img src="assets/images/trust.png" style="width: 100%;" />
+  </div>
+  <div class="dx-card responsive-paddings menu">
+    <img src="assets/images/secure .png" style="width: 93%;" />
+  </div>
+  <div class="dx-card responsive-paddings menu">
+    <img src="assets/images/help.png" style="width: 114%;" />
+  </div>
+  <div class="dx-card responsive-paddings menu">
+    <img src="assets/images/shop.png" style="width: 90%;" />
+  </div>
 </div>
 
-<div class="dx-card footer-menu-padding" >
-
-    <div class=" footer-menu" >
-        <a [routerLink]="['/aboutus']">About Us</a>
-        <a href="#">Services</a>
-        <a href="#">Sitemap</a>
-    </div>
-    <div class=" footer-menu" >
-        <a [routerLink]="['/privacy']">Privacy Policy</a>
-        <a [routerLink]="['/TandC']">Terms of Use</a>
-        <a [routerLink]="['/disclaimer']">Disclaimer</a>
-    </div>
-    <div class="footer-menu" >
-        <a href="#" >Support</a>
-        <a href="#">FAQ</a>
-        <a [routerLink]="['/contactus']">Contact</a>
-    </div>
-    <div class=" footer-menu" >
-        
-    </div>
-
+<div class="dx-card footer-menu-padding">
+  <div class=" footer-menu">
+    <a [routerLink]="['/aboutus']">About Us</a>
+    <a href="#">Services</a>
+    <a href="#">Sitemap</a>
+  </div>
+  <div class=" footer-menu">
+    <a [routerLink]="['/privacy']">Privacy Policy</a>
+    <a [routerLink]="['/TandC']">Terms of Use</a>
+    <a [routerLink]="['/disclaimer']">Disclaimer</a>
+  </div>
+  <div class="footer-menu">
+    <a href="#">Support</a>
+    <a href="#">FAQ</a>
+    <a [routerLink]="['/contactus']">Contact</a>
+  </div>
+  <div class=" footer-menu"></div>
 </div>
-<div class="dx-card" >
-<div class=" social" >
+<div class="dx-card">
+  <div class=" social">
     Payment
     <div class="footer-images">
-<img src="assets/images/master.png" class="footer-image">
-<img src="assets/images/card.png" class="footer-image">
-<img src="assets/images/ccard.png" class="footer-image">
-<img src="assets/images/america.png" class="footer-image">
-</div>
-</div>
-<div class="social" >
-  Connect
-  <div class="footer-images">
-  <img src="assets/images/facebook.png" class="footer-image">
-<img src="assets/images/twitter.png" class="footer-image">
-<img src="assets/images/youtube.png" class="footer-image">
-</div>
-</div>
-
+      <img src="assets/images/master.png" class="footer-image" />
+      <img src="assets/images/card.png" class="footer-image" />
+      <img src="assets/images/ccard.png" class="footer-image" />
+      <img src="assets/images/america.png" class="footer-image" />
+    </div>
+  </div>
+  <div class="social">
+    Connect
+    <div class="footer-images">
+      <img src="assets/images/facebook.png" class="footer-image" />
+      <img src="assets/images/twitter.png" class="footer-image" />
+      <img src="assets/images/youtube.png" class="footer-image" />
+    </div>
+  </div>
 </div>
