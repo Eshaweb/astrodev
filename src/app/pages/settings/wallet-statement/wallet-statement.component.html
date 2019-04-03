@@ -44,6 +44,9 @@
       </dx-button>
     </div>
   </div>
+  <h3 *ngIf="walletBalanceAmount">
+        Wallet Balance: {{ walletBalanceAmount | currency: "INR" }}
+      </h3>
   <div id="data-grid-demo" #datagridDeliveredList *ngIf="dataSource">
     <dx-data-grid
       id="gridContainer"
@@ -62,7 +65,5 @@
       <dxi-column dataField="Remarks" [width]="320"></dxi-column>
     </dx-data-grid>
   </div>
-  <h3 *ngIf="walletBalanceAmount">
-    Wallet Balance: {{ walletBalanceAmount | currency: "INR" }}
-  </h3>
+ 
 </div>

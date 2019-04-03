@@ -33,9 +33,12 @@ h3 {
 }
 .service-list{
   cursor: pointer;
+  border-radius: 10px;
   
 }
-
+.service-list:hover{
+box-shadow: 4px 4px 6px #ddd;
+}
 .dx-button-mode-contained.dx-button-success{
   background-color:rgb(194, 128, 6);
 
