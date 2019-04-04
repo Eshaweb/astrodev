@@ -139,7 +139,14 @@ h3 {
     margin-top: 10px;
     cursor: pointer;
     border-radius: 10px;
+ //   background-image: url(https://testastroapi.azurewebsites.net/assets/images/astrologo.png);
+    background-image: url(/assets/images/Intersection.png);
+    background-repeat: no-repeat;
+    background-position:-12px 321px;
+
 }
+
+
 
 .product-box{
   padding: 22px;
@@ -212,6 +219,9 @@ margin-right: 15px;
     border-bottom: 1px solid;
     width: 100px;
     margin-left: 30%;
+}
+a {
+    cursor: pointer;
 }
 
 @media (max-width: 800px) {
