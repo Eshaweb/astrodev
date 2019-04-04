@@ -29,10 +29,19 @@ h3 {
   float: left !important;
   margin-left: 20px !important;
   margin-top: 10px;
+  width:23%;
 }
 .service-list{
   cursor: pointer;
+  border-radius: 10px;
   
+}
+.service-list:hover{
+box-shadow: 4px 4px 6px #ddd;
+}
+.dx-button-mode-contained.dx-button-success{
+  background-color:rgb(194, 128, 6);
+
 }
 @media (max-width: 800px) {
   .dx-fieldset-column {
@@ -43,7 +52,7 @@ h3 {
 
   .dx-card.responsive-paddings{
     padding: 20px;
-    width: 48% !important;
+    width: 96% !important;
     float: left !important;
     margin-left: 5px !important;
     margin-top: 10px;

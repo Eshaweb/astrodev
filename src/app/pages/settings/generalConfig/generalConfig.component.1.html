@@ -33,7 +33,7 @@
               
               </div>
               <div class="clear"></div>
-              <div class="dx-fieldset-column">
+            
               <div class="dx-field">
                 <div class="dx-field-label">From Age</div>
                 <div class="dx-field-value">
@@ -53,8 +53,6 @@
                   ></p>
                 </div>
               </div>
-              </div>
-              <div class="dx-fieldset-column">
               <div class="dx-field">
                 <div class="dx-field-label">To Age</div>
                 <div class="dx-field-value">
@@ -70,19 +68,16 @@
                   ></p>
                 </div>
               </div>
-              </div>
              
 
             </div>
             <div *ngIf="accordian.name == 'Dasha Prediction'">
-                
-                <div class="dx-fieldset-column">
+                <div class="dx-fieldset">
               <div class="dx-field">
                 <div class="dx-field-label">From Age</div>
                 <div class="dx-field-value">
                   <dx-number-box
                     #numberBox
-                    [width]='150'
                     [max]="100"
                     [min]="0"
                     [disabled]='fromAgeDisabled'
@@ -96,14 +91,11 @@
                   ></p>
                 </div>
               </div>
-                </div>
-                <div class="dx-fieldset-column">
               <div class="dx-field">
                 <div class="dx-field-label">To Age</div>
                 <div class="dx-field-value">
                   <dx-number-box
                     #numberBox
-                    [width]='150'
                     formControlName="DashapredicttoAge"
                     [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.PredEndDt"
@@ -114,8 +106,7 @@
                   ></p>
                 </div>
               </div>
-                </div>
-             
+              </div>
             </div>
             <div  *ngIf="accordian.name == 'Ayanamsha'"  >
               <div class="dx-field">
