@@ -33,13 +33,6 @@ export class LoginService {
         this.menuItems = navigationBeforeLogin;
         //this.serviceMenus=serviceMenus;
     }
-    // SetToken(Token: string) {
-    //     this.AccessToken = Token;
-    //     return "true";
-    // }
-    getAccessToken() {
-        return this.AccessToken;
-    }
     
     refreshToken(): Observable<any> {
         /*

@@ -81,7 +81,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 return next.handle(req);
             }
             if (this.loginService.AccessToken != null) {
-                    return next.handle(this.addToken(req, authService.getAccessToken())).pipe(
+                    return next.handle(this.addToken(req, this.loginService.AccessToken)).pipe(
                         catchError(error => {
                             if (error instanceof HttpErrorResponse) {
                                 switch ((<HttpErrorResponse>error).status) {
