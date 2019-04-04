@@ -102,7 +102,7 @@ export class NumerologyFreeDataComponent implements OnInit {
   onClick() {
     this.itemService.ItActId = '#NM';
     StorageService.SetItem('ItActId', '#NM');
-    if (StorageService.GetItem('Token') == undefined) {
+    if (StorageService.GetItem('refreshToken') == undefined) {
       this.router.navigate(["/login-form"]);
       //this.popupVisible=true;
     }

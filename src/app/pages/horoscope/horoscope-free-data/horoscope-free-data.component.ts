@@ -63,7 +63,7 @@ export class HoroscopeFreeDataComponent implements OnInit {
     onClick() {
         this.itemService.ItActId = '#SH';
         StorageService.SetItem('ItActId', '#SH');
-        if (StorageService.GetItem('Token') == undefined) {
+        if (StorageService.GetItem('refreshToken') == undefined) {
             this.registrationService.registered = true;
             this.router.navigate(["/login-form"]);
         }
