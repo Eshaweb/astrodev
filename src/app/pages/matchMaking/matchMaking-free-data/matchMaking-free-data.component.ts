@@ -53,7 +53,7 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
    onClick() {
     this.itemService.ItActId='#SM';
     StorageService.SetItem('ItActId','#SM');
-      if (StorageService.GetItem('Token')==undefined) {
+      if (StorageService.GetItem('refreshToken')==undefined) {
           this.router.navigate(["/login-form"]);
       }
       else {
