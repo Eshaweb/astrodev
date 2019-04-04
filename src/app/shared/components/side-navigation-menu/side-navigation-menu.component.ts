@@ -73,14 +73,14 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
          this.router.navigate(['/services']);
     }
     else if (event.itemData.path == '/settings' || event.itemData.path == '/wallet/depoToWallet' ||event.itemData.path == '/profile'||event.itemData.path == '/admin') {
-      if (StorageService.GetItem('Token') != undefined) {
+      if (StorageService.GetItem('refreshToken') != undefined) {
         this.router.navigate([event.itemData.path]);
       }
       // else if (event.itemData.path == '/home'){
       //   this.loginService.isHomePage=true;
       // }
       else if (event.itemData.path == '/registration-form'){
-        if (StorageService.GetItem('Token') != undefined) {
+        if (StorageService.GetItem('refreshToken') != undefined) {
           this.loadingSwitchService.popupVisible=true;
           this.loadingSwitchService.message='Please Logout, to Register with New UserID';
         }

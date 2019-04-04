@@ -5,6 +5,8 @@ import { HttpService } from '../Error/http.service';
 import { Observable } from 'rxjs';
 import { navigationBeforeLogin, navigationAfterLogin, } from 'src/app/app-navigation';
 import { OrderHistoryResponse } from 'src/Models/OrderHistoryResponse';
+import { tap } from 'rxjs/operators';
+import { StorageService } from '../StorageService/Storage_Service';
 
 
 
@@ -31,32 +33,29 @@ export class LoginService {
         this.menuItems = navigationBeforeLogin;
         //this.serviceMenus=serviceMenus;
     }
-    SetToken(Token: string) {
-        this.AccessToken = Token;
-        return "true";
+    // SetToken(Token: string) {
+    //     this.AccessToken = Token;
+    //     return "true";
+    // }
+    getAccessToken() {
+        return this.AccessToken;
     }
     
-    GetToken(refreshToken: string, callback: (data) => void) {
-        this.RefreshToken = refreshToken;
-        // var url = this.uIHelperService.CallWebAPIUrl("/User/GetToken") + "?" + data;
-        // return this.httpclient.get<Tenant>(url).pipe(tap((data: any) => {
-        //     this.RefreshToken = data.RefreshToken;
-        //     this.AccessToken = data.AccessToken;
-        // })).catch(this.handleError);
-        var RefreshToken = {
-            RefreshToken: refreshToken
-        }
-        var endPoint = "Party/GetAccessToken";
-        //let headers = new HttpHeaders();
-        //headers = headers.append('No-Auth', 'True');
-        //this.httpService.Post(endPoint, RefreshToken,{headers: headers}).subscribe((data: any) => {
-        this.httpService.Post(endPoint, RefreshToken).subscribe((data: any) => {
-        this.RefreshToken = data.RefreshToken;
-            this.AccessToken = data.AccessToken;
-            callback(data);
-        //}, (err) => {
+    refreshToken(): Observable<any> {
+        /*
+            The call that goes in here will use the existing refresh token to call
+            a method on the oAuth server (usually called refreshToken) to get a new
+            authorization token for the API calls.
+        */
 
-        });
+        var RefreshToken = {
+            RefreshToken: StorageService.GetItem('refreshToken')
+        }
+        // Just to keep HttpClient from getting tree shaken.
+        return this.http.post('https://astroliteapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(tap(res => {
+            this.AccessToken = res.AccessToken;
+            StorageService.SetItem('refreshToken', res.RefreshToken)
+        }));
     }
     GetOTP(GetOTP): Observable<any> {
         var endPoint = "Party/GetOTP";

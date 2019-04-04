@@ -55,7 +55,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
     this.menuItems=services;
     if (window.innerWidth < 768) {
       this.isMobileResolution = true;
-      if (StorageService.GetItem('Token') != undefined) {
+      if (StorageService.GetItem('refreshToken') != undefined) {
         this.loginService.menuItems = navigationAfterLogin;
       }
       else {
@@ -63,7 +63,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
       }
     } else {
       this.isMobileResolution = false;
-      if (StorageService.GetItem('Token') != undefined) {
+      if (StorageService.GetItem('refreshToken') != undefined) {
         this.loginService.menuItems = navigationAfterLoginForSystem;
         this.loginService.serviceList= serviceListAfterLogin;
       }
@@ -102,7 +102,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
       // if (val instanceof NavigationEnd) {
       //   this.selectedRoute = val.urlAfterRedirects.split('?')[0];
       // }
-      if (StorageService.GetItem('Token') == undefined) {
+      if (StorageService.GetItem('refreshToken') == undefined) {
         // this.router.navigate(['/login-form']);
         //this.selectedRoute = "/login-form";
       }

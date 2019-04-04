@@ -40,7 +40,7 @@ export class HeaderComponent {
     icon: 'runner',
     onClick: () => {
       //this.authService.logOut();
-      StorageService.RemoveItem('Token');
+      //StorageService.RemoveItem('Token');
       StorageService.RemoveItem('PartyMastId');
       this.storageService.RemoveDataFromSession();
       this.loginService.userProfileVisible=false;
@@ -65,7 +65,7 @@ export class HeaderComponent {
   showFirstSubmenuModes: { name: string; delay: { show: number; hide: number; }; };
 
   constructor(public storageService:StorageService,public loginService:LoginService,public registrationService:RegistrationService,private router: Router, private authService: AuthenticationService) { 
-    if(StorageService.GetItem('Token')!=undefined){
+    if(StorageService.GetItem('refreshToken')!=undefined){
       this.loginService.userProfileVisible=true;
       this.loginService.Name=StorageService.GetItem('Name');
       this.loginService.serviceMenus=serviceMenusAfterLogin;

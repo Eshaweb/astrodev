@@ -296,7 +296,6 @@ export class LoginFormComponent {
           this.loginService.AccessToken = data.Token;
           StorageService.SetItem('refreshToken', data.RefreshToken);
           this.loginService.Name = data.Name;
-          StorageService.SetItem('Token', data.Token);
           StorageService.SetItem('PartyMastId', data.PartyMastId);
           StorageService.SetItem('Name', data.Name);
           this.loginService.userProfileVisible = true;
@@ -358,7 +357,6 @@ export class LoginFormComponent {
             this.loginService.AccessToken = data.Token;
             StorageService.SetItem('refreshToken', data.RefreshToken);
             this.loginService.Name = data.Name;
-            StorageService.SetItem('Token', data.Token);
             StorageService.SetItem('PartyMastId', data.PartyMastId);
             StorageService.SetItem('Name', data.Name);
             this.loginService.userProfileVisible = true;
@@ -387,7 +385,7 @@ export class LoginFormComponent {
               else {
                 this.router.navigate(["/services"]);
               }
-              if (StorageService.GetItem('Token') != undefined && window.location.pathname != '/settings/orderHistory') {
+              if (StorageService.GetItem('refreshToken') != undefined && window.location.pathname != '/settings/orderHistory') {
                 const source = timer(1000, 1000);
                 this.subscribe = source.subscribe(val => {
                   if (val == 3) {
