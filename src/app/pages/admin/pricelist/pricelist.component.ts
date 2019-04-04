@@ -66,6 +66,10 @@ export class PriceListComponent {
                 this.dataSource = data;
             }
             this.loadingSwitchService.loading = false;
+        // }, (error) => {
+        //     if(error==''){
+
+        //     }
         });
     }
 

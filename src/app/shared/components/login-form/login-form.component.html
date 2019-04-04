@@ -70,11 +70,14 @@
         </dx-text-box>
         <p style="color:red;" id='err_OTP'></p>
         <p style="color:red;" id='err_OTPRef'></p>
-        <div style="width: 175px;" *ngIf='!disableResendOTP'>
+        <!-- <div style="width: 175px;" *ngIf='!disableResendOTP'>
             <a (click)="ResendOTP_click()" style="text-decoration: underline">Resend OTP</a>
         </div>
         <div style="width: 175px;" *ngIf='disableResendOTP'>
             <a class="isDisabled" (click)="ResendOTP_click()" style="text-decoration: underline">Resend OTP</a>
+        </div> -->
+        <div style="width: 175px;">
+            <a (click)="ResendOTP_click()" style="text-decoration: underline">Resend OTP</a>
         </div>
     </div>
     <div class="dx-field">
@@ -100,7 +103,7 @@
     </div>
 </dx-popup>
 
-<!-- <dx-load-panel
+<dx-load-panel
     #loadPanel
     [(message)]='countDown'
     shadingColor="rgba(0,0,0,0.4)"
@@ -110,4 +113,4 @@
     [showPane]="true"
     [shading]="true"
     [closeOnOutsideClick]="false">
-</dx-load-panel> -->
+</dx-load-panel>

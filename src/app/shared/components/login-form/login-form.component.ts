@@ -192,7 +192,7 @@ export class LoginFormComponent {
         if (data.Errors == undefined) {
           this.isOTPRequested = true;
           this.loginService.oTPRef = data;
-          //this.popUpVisible=true;
+          
           //this.title='Note';
           this.message='You Received an OTP with Reference No. '+this.loginService.oTPRef+'. Please enter it';
           //this.message = 'You will get an OTP. Please enter it';
@@ -293,6 +293,8 @@ export class LoginFormComponent {
         this.loginService.PartyMastId = data.PartyMastId;
         if (data.Token != undefined && data.PartyMastId != undefined) {
           this.loginService.Token = data.Token;
+          this.loginService.AccessToken = data.Token;
+          StorageService.SetItem('refreshToken', data.RefreshToken);
           this.loginService.Name = data.Name;
           StorageService.SetItem('Token', data.Token);
           StorageService.SetItem('PartyMastId', data.PartyMastId);
@@ -353,6 +355,8 @@ export class LoginFormComponent {
           this.loginService.PartyMastId = data.PartyMastId;
           if (data.Token != undefined && data.PartyMastId != undefined) {
             this.loginService.Token = data.Token;
+            this.loginService.AccessToken = data.Token;
+            StorageService.SetItem('refreshToken', data.RefreshToken);
             this.loginService.Name = data.Name;
             StorageService.SetItem('Token', data.Token);
             StorageService.SetItem('PartyMastId', data.PartyMastId);

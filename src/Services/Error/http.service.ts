@@ -6,6 +6,8 @@ import { isObject } from 'util';
 import { of, Subscription } from 'rxjs';
 import { ModelError, ErrorContainer, ErrorData } from './ErrorData';
 import { shareReplay } from 'rxjs/operators';
+import { LoginService } from '../LoginService/LoginService';
+import { StorageService } from '../StorageService/Storage_Service';
 
 export interface IRequestOptions {
   headers?: HttpHeaders;
@@ -27,12 +29,22 @@ export function applicationHttpClientCreator(http: HttpClient, errorService: Err
 export class HttpService {
   private api = 'https://astroliteapi.azurewebsites.net/api/';
   private errorData: ErrorData;
-  public constructor(public http: HttpClient, private errorService: ErrorService) {
+  url: string;
+  params: Object;
+  method: string;
+  RefreshToken: { RefreshToken: any; };
+  urlnew: string;
+  AccessToken: any;
+   constructor(public http: HttpClient, private errorService: ErrorService) {
     // If you don't want to use the extended versions in some cases you can access the public property and use the original one.
     // for ex. this.httpClient.http.get(...)
     this.errorData = {
       errorContainer: null,
     };
+    // this.url='Party/GetAccessToken';
+    // this.RefreshToken={
+    //   RefreshToken:StorageService.GetItem('refreshToken')
+    // }
   }
 
   /**
@@ -43,7 +55,7 @@ export class HttpService {
   */
   public Get<T>(endPoint: string, options?: IRequestOptions): Observable<T> {
     let subscription = this.http.get<T>(this.api + endPoint, options).pipe(shareReplay());
-    //this.errorSuscription(subscription);
+    this.errorSuscription(subscription);
     return subscription;
   }
 
@@ -55,6 +67,10 @@ export class HttpService {
    * @returns {Observable<T>}
    */
   public Post<T>(endPoint: string, params: Object, options?: IRequestOptions): Observable<T> {
+    // if(endPoint!='Party/GetAccessToken'){
+    //   this.urlnew=endPoint;
+    //   this.params=params;
+    // }
     let subscription = this.http.post<T>(this.api + endPoint, params, options).pipe(shareReplay());
     this.errorSuscription(subscription);
     return subscription;
@@ -117,16 +133,25 @@ export class HttpService {
           errorMessage: err.error,
         };
       }
+      
     }
     else if (err.status == 401) {
       this.errorData = {
         errorMessage: err.statusText,
       };
+      // this.Post(this.url, this.RefreshToken).subscribe((data: any) => {
+      //   this.AccessToken=data.AccessToken;
+      //   this.Post(this.urlnew, this.params);
+      //   // errorService.myErrorSubscription(this.errorData);
+      //   // return of(null);
+      // });
+     
     }
     else if (err.status == 405) {
       this.errorData = {
         errorMessage: err.statusText,
       };
+      
     }
     errorService.myErrorSubscription(this.errorData);
     return of(null);
