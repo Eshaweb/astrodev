@@ -1,4 +1,5 @@
 import { Component, NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -12,6 +13,7 @@ export class FooterComponent {
 
 @NgModule({
   declarations: [ FooterComponent ],
+  imports:[RouterModule],
   exports: [ FooterComponent ]
 })
 export class FooterModule { }
