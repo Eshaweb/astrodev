@@ -21,6 +21,7 @@ import { ArchwizardModule } from 'angular-archwizard';
 import { DeliveredListComponent } from './deliveredList/deliveredList.component';
 import { OfflinePaymentPendingComponent } from './offlinePaymentPending/offlinePaymentPending.component';
 import { OfflinePaymentCompletedComponent } from './offlinePaymentCompleted/offlinePaymentCompleted.component';
+import { AssignRoleComponent } from './assignRole/assignRole.component';
 
 @NgModule({
     imports: [
@@ -56,7 +57,7 @@ import { OfflinePaymentCompletedComponent } from './offlinePaymentCompleted/offl
         UsedPromoCodesComponent,
         CreatePromoCodeComponent,
         PendingtoDeliveryComponent,
-        DeliveredListComponent,
+        DeliveredListComponent, AssignRoleComponent,
         OfflinePaymentPendingComponent,OfflinePaymentCompletedComponent
     ],
 })

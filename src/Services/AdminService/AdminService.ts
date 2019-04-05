@@ -9,9 +9,9 @@ export class AdminService {
 
     }
 
-    GetBasePrice():Observable<BasePrice[]>{
+    GetBasePrice(Type):Observable<BasePrice[]>{
         var endPoint = "Admin/GetBasePrice";
-        return this.httpService.Get(endPoint);
+        return this.httpService.Post(endPoint, Type);
     }
 
     UpdateBasePrice(item):Observable<any>{
@@ -60,6 +60,16 @@ export class AdminService {
     GetAssignedPriceList():Observable<any>{
         var endPoint = "Admin/GetAssignedPriceList";
         return this.httpService.Get(endPoint);
+    }
+
+    GetParty(FindParty):Observable<any>{
+        var endPoint = "Admin/GetParty";
+        return this.httpService.Post(endPoint,FindParty);
+    }
+
+    UpdateCustomerCategory(CustomerCategory):Observable<any>{
+        var endPoint = "Admin/UpdateCustomerCategory";
+        return this.httpService.Post(endPoint,CustomerCategory);
     }
 
     DeleteAssignedPriceList(List):Observable<any>{

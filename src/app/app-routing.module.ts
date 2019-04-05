@@ -126,13 +126,13 @@ const routes: Routes = [
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
-    DevExtremeModule
-    // DxMenuModule,
-    // DxDataGridModule, DxFormModule, DxPopoverModule,
-    // DxValidatorModule,DxButtonModule,DxValidationSummaryModule,
-    // DxDateBoxModule,DxSelectBoxModule,DxCheckBoxModule,
-    // DxTextBoxModule, DxRadioGroupModule,
-    // DxPopupModule, DxNumberBoxModule,DxResponsiveBoxModule, DxListModule
+    //DevExtremeModule
+    DxMenuModule,
+    DxDataGridModule, DxFormModule, DxPopoverModule,
+    DxValidatorModule,DxButtonModule,DxValidationSummaryModule,
+    DxDateBoxModule,DxSelectBoxModule,DxCheckBoxModule,
+    DxTextBoxModule, DxRadioGroupModule,
+    DxPopupModule, DxNumberBoxModule,DxResponsiveBoxModule, DxListModule
   ],  
   providers: [AuthGuardService],
   exports: [RouterModule],

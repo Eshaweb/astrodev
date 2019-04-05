@@ -5,8 +5,6 @@ import { HttpClient, HttpBackend } from '@angular/common/http';
 import { PanchangaResponse } from 'src/Models/Panchanga/PanchangaResponse';
 import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
 
-
-
 @Injectable()
 export class PanchangaService {
     systemDate:string;
@@ -21,7 +19,7 @@ export class PanchangaService {
         handler: HttpBackend, public http: HttpClient) {
         this.http = new HttpClient(handler);
     }
-
+    
     GetPanchanga(horoRequest):Observable<any> {
     var endPoint = "DayPanchanga/GetPanchanga";
     return this.httpService.Post(endPoint, horoRequest);

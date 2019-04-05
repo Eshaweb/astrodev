@@ -90,32 +90,4 @@ import { AdminService } from 'src/Services/AdminService/AdminService';
           }
         });
     }
-    saveRecords(){
-         
-        if(this.datagridBasePrice.instance.hasEditData())
-        {
-            this.loadingSwitchService.loading = true;
-            this.datagridBasePrice.instance.saveEditData();
-            //alert(this.dataSource[0].MRP);
-            this.adminService.UpdateBasePrice(this.dataSource).subscribe((data: any) => {
-                if (data.Errors == undefined) {
-                    if (data == true) {
-                        this.adminService.GetBasePrice().subscribe((data: any) => {
-                            if (data.Errors == undefined) {
-                                this.saveButtonName = 'Edit';
-                                this.allowUpdate = false;
-                                this.loadingSwitchService.loading = false;
-                            }
-                        });
-                    }
-
-                }
-            });
-        }
-        else{
-            this.saveButtonName='Save'; 
-            this.allowUpdate=true;  
-        }
-     
-    }
   }
