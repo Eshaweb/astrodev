@@ -63,6 +63,12 @@ img.site-logo {
 ::ng-deep.dx-button-text {
   height: 18px;
 }
+
+::ng-deep.dx-button-mode-contained {
+  background-color: #FEFCEF;
+  border-color: #FADB32;}
+
+
 @media (max-width: 800px) {
   .menu-item{
 display: none;
