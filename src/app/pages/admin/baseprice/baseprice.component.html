@@ -1,6 +1,23 @@
 
 <h2 class="content-block">Price List</h2>
 <div class="dx-card content-block responsive-paddings price-grid">
+        <div class="dx-fieldset">
+            <div class="dx-field">
+                <div class="cap">
+                    <div class="payment-mode">
+                        <dx-select-box 
+                            (onValueChanged)="OnTypeSelection($event)"
+                            [dataSource]="typedata" 
+                            displayExpr="Text" 
+                            valueExpr="Id" 
+                            [searchEnabled]="true" 
+                            [disabled]="selectboxdisabled"
+                            [value]='typevalue'>
+                        </dx-select-box>
+                    </div>
+                </div>
+            </div>
+        </div>
 <div id="data-grid-demo" #datagridBasePrice>
     <dx-data-grid (onToolbarPreparing)="onToolbarPreparing($event)"
         id="gridContainer"
@@ -16,6 +33,7 @@
         <dxi-column dataField="Description" [allowEditing]="false"></dxi-column>
         <dxi-column dataField="MRP" [width]="100"></dxi-column>
         <dxi-column dataField="PrintMRP" [width]="100"></dxi-column>
+        <dxi-column dataField="Remark"></dxi-column>
     </dx-data-grid>
     <div class="dx-fieldset"> 
     <dx-button id="gridDeleteSelected"

@@ -1,4 +1,12 @@
 
+.custom-css aw-wizard-navigation-bar.horizontal ul.steps-indicator li.current div a {
+    color: violet;
+  }
+  
+  .custom-css aw-wizard-navigation-bar.horizontal ul.steps-indicator li.current:after {
+    border-color: violet !important;
+    background-color: violet !important;
+  }
 .centered-content {
     margin: auto;
     text-align: center;

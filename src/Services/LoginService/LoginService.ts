@@ -33,7 +33,9 @@ export class LoginService {
         this.menuItems = navigationBeforeLogin;
         //this.serviceMenus=serviceMenus;
     }
-    
+    getAuthToken() {
+        return this.AccessToken;
+    }
     refreshToken(): Observable<any> {
         /*
             The call that goes in here will use the existing refresh token to call

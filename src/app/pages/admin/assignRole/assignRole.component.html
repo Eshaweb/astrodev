@@ -1,0 +1,44 @@
+<h2 class="content-block">Report</h2>
+<div class="dx-card content-block responsive-paddings">
+
+<div class="dx-fieldset">
+        <div class="dx-fieldset-column">
+                <div class="dx-field">
+                    <div class="dx-field-label">User ID</div>
+                    <div class="dx-field-value">
+                        <dx-text-box (focusout)="onUserId($event.target.value)" valueChangeEvent="keyup" showClearButton="true" ></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf='userdata'>
+            <p>{{userdata.Name}}</p>
+            <p>{{userdata.Mobile}}</p>
+            <p>{{userdata.EMail}}</p>
+            <p>{{userdata.Category}}</p>
+        </div>
+            </div>
+        <div class="dx-fieldset-column">
+                <div class="dx-field">
+                    <div class="dx-field-label">Category</div>
+                    <div class="dx-field-value">
+                      <dx-select-box
+                      [dataSource]="categorydata"
+                      (onValueChanged)="categorydataSelection($event)"
+                      displayExpr="Text"
+                      valueExpr="Id"
+                      [searchEnabled]="true"
+                      [value]="categoryvalue" >
+                  </dx-select-box>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+    </div>
+    <div class="dx-fieldset">
+            <dx-button [disabled]="!userdata||!categoryvalue"(onClick)='OnSubmit_click()'
+            id="button"
+            text="Submit"
+            type="success"  
+            [useSubmitBehavior]="true">
+        </dx-button>    
+        </div>
+</div>

@@ -15,6 +15,7 @@ import { PendingtoDeliveryComponent } from './pendingtoDelivery/pendingtoDeliver
 import { DeliveredListComponent } from './deliveredList/deliveredList.component';
 import { OfflinePaymentPendingComponent } from './offlinePaymentPending/offlinePaymentPending.component';
 import { OfflinePaymentCompletedComponent } from './offlinePaymentCompleted/offlinePaymentCompleted.component';
+import { AssignRoleComponent } from './assignRole/assignRole.component';
 
 const routes: Routes = [
     {
@@ -40,6 +41,10 @@ const routes: Routes = [
     {
       path: 'assignNewPriceList',
       component:AssignNewPriceListComponent
+    },
+    {
+      path: 'assignRole',
+      component:AssignRoleComponent
     },
     {
       path: 'welcomeOffer',

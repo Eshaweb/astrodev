@@ -1,4 +1,4 @@
-import { Component, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, NgZone, ChangeDetectorRef, ViewChild, AfterViewInit } from '@angular/core';
 import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { from, Subscription } from 'rxjs';
@@ -38,7 +38,7 @@ export class PanchangaComponent {
   longitude: number;
   timeZoneName: string;
   timeZoneId: any;
-  
+  simpleProducts: string[];
   languages: SelectBoxModel[] = [
     { Id: "ENG", Text: "English" },
     { Id: "HIN", Text: "Hindi" },
@@ -51,9 +51,13 @@ export class PanchangaComponent {
     { Id: "DOUBLE", Text: 'Double Summer Time' },
     { Id: "WAR", Text: 'War Time' }
   ];
+ 
+
+
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public panchangaService: PanchangaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
+      
       this.loginService.isHomePage=false;
       this.panchangaForm = this.formbuilder.group({
       Date: new Date(),
@@ -143,7 +147,7 @@ export class PanchangaComponent {
       this.timeformatvalue = this.timeformats[0].Id;
       this.languagevalue = this.languages[2].Id;
     }
-
+    
   }
 
   getTimezone(lat, long) {

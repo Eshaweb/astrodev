@@ -19,7 +19,8 @@ export class AdminComponent {
     {Path:'/admin/pendingtoDelivery',Name:'Pending To Delivery'},
     {Path:'/admin/deliveredList',Name:'Delivered List'},
     {Path:'/admin/offlinePaymentPending',Name:'Offline Payment Pending'},
-    {Path:'/admin/offlinePaymentCompleted',Name:'Offline Payment Completed'}];  
+    {Path:'/admin/offlinePaymentCompleted',Name:'Offline Payment Completed'},
+    {Path:'/admin/assignRole',Name:'Assign Role'}];  
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;
