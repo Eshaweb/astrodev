@@ -25,7 +25,7 @@
   margin-top: 2px;
   margin-bottom: 2px;
   padding-top: 110px;
-  color: #d05b19;
+  color: #7E3F08;
   text-align: center;
   font-weight: 400;
 }
@@ -39,9 +39,18 @@
   line-height: normal;
   letter-spacing: -0.03em;
   font-weight: 400;
-  color: #d05b19;
+  color: #7E3F08;
   text-align: center;
 }
+
+.main-content {
+    font-size: 40px;
+    line-height: normal;
+    letter-spacing: -0.03em;
+    font-weight: 400;
+    color: #D05B19;
+    text-align: center;
+  }
 .main-image {
   margin-top: 10px;
   /* margin-right: auto; */
@@ -95,6 +104,9 @@ li a:hover:not(.active) {
 }
 p {
   text-align: center;
+  font-family: open-sans,sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 .service-header {
   margin-top: 2px;
@@ -114,6 +126,7 @@ p {
 h3 {
   margin-top: 2px;
   text-align: center;
+  color: #D05B19;
 }
 
 :host-context(.screen-x-small) .logos-container {
@@ -145,8 +158,9 @@ h3 {
   border-radius: 10px;
   //   background-image: url(https://testastroapi.azurewebsites.net/assets/images/astrologo.png);
   background-image: url(/assets/images/Intersection.png);
-  background-repeat: no-repeat;
-  background-position: -12px 321px;
+  background-position-x: left;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
 }
 
 .product-box {
@@ -216,18 +230,16 @@ h3 {
 a {
   cursor: pointer;
 }
+.clear {
+    clear: both;
+    }
 
 @media (max-width: 800px) {
   .dx-fieldset-column {
     float: left;
     width: 100%;
   }
-  .service-box {
-  background-image: url(/assets/images/Intersection.png);
-  background-repeat: no-repeat;
-  background-position: -9px 287px;
-}
-
+  
 
   .dx-card.responsive-paddings {
     padding: 20px;

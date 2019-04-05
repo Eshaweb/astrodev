@@ -9,6 +9,7 @@ img {
 h3 {
  
   text-align: center;
+  color: #D05B19;
 }
 
 
@@ -35,8 +36,9 @@ h3 {
   cursor: pointer;
   border-radius: 10px;
   background-image: url(/assets/images/Intersection.png);
+  background-position-x: left;
+  background-position-y: bottom;
   background-repeat: no-repeat;
-  background-position:-12px 321px;
   
 }
 .service-list:hover{
@@ -70,6 +72,7 @@ box-shadow: 4px 4px 6px #ddd;
 h3{
 font-size: 16px;
 text-align: center;
+color: #D05B19;
 
 }
 .content-block {
