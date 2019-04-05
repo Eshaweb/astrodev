@@ -43,7 +43,6 @@ import { ContactusComponent } from './pages/contactus/contactus.component';
 import { OrderHistoryService } from 'src/Services/OrderHistoryService/OrderHistoryService';
 import { AdminService } from 'src/Services/AdminService/AdminService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
-import { ProductComponent } from './pages/product/product.component';
 
 
 let config = new AuthServiceConfig([
@@ -68,7 +67,7 @@ export function provideConfig() {
 
 @NgModule({
   declarations: [
-    AppComponent, TermsandConditionsComponent, DisclaimerComponent, PrivacyComponent, AboutusComponent, ContactusComponent, ProductComponent
+    AppComponent, TermsandConditionsComponent, DisclaimerComponent, PrivacyComponent, AboutusComponent, ContactusComponent
   ],
   imports: [
     //NgxLoadingModule.forRoot({}),
