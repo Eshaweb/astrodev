@@ -69,7 +69,7 @@
     <dxi-item location="after" *ngIf="!loginService.userProfileVisible">
         <div class="login-register menu-item">
         <dx-button text="Login" (onClick)="OnLogin_click()" style="border-radius: 15px 0px 0px 15px;"></dx-button>
-        <dx-button text="Register" (onClick)="OnRegister_click()"style="border-radius: 0px 15px 15px 0px;"></dx-button>
+        <dx-button text="Register" icon = "assets/images/user.png" (onClick)="OnRegister_click()"style="border-radius: 0px 15px 15px 0px;"></dx-button>
     </div>
 </dxi-item>
         <dxi-item *ngIf="loginService.userProfileVisible" 
