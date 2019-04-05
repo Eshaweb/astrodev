@@ -2456,7 +2456,7 @@
   color: #fff;
 }
 .dx-button-mode-contained.dx-button-success {
-  background-color: #5cb85c;
+  background-color: #daa034;
   border-color: transparent;
   color: #fff;
 }
@@ -2464,15 +2464,15 @@
   color: #fff;
 }
 .dx-button-mode-contained.dx-button-success.dx-state-hover {
-  background-color: #449d44;
+  background-color: #c49a41;
   border-color: transparent;
 }
 .dx-button-mode-contained.dx-button-success.dx-state-focused {
-  background-color: #3d8b3d;
+  background-color: #ce9f1d;
   border-color: transparent;
 }
 .dx-button-mode-contained.dx-button-success.dx-state-active {
-  background-color: #357935;
+  background-color: #ddbb22;
   border-color: transparent;
   color: #fff;
 }
