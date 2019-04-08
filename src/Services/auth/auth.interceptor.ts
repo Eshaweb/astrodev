@@ -140,10 +140,10 @@ export class AuthInterceptor implements HttpInterceptor {
                 const authService = this.injector.get(LoginService);
                 
                 return authService.refreshToken().pipe(
-                    switchMap((newToken: any) => {
-                        if (newToken.AccessToken) {
-                            this.tokenSubject.next(newToken.AccessToken);
-                            return next.handle(this.addToken(this.getNewRequest(req), newToken.AccessToken));
+                    switchMap((data: any) => {
+                        if (data.AccessToken) {
+                            this.tokenSubject.next(data.AccessToken);
+                            return next.handle(this.addToken(this.getNewRequest(req), data.AccessToken));
                         }
     
                         // If we don't get a new token, we are in trouble so logout.

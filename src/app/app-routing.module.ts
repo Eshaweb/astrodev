@@ -15,11 +15,6 @@ import { ServicesComponent } from './pages/services/services.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { HomeComponent } from './pages/home/home.component';
-import { TermsandConditionsComponent } from './pages/termsand-conditions/termsand-conditions.component';
-import { DisclaimerComponent } from './pages/disclaimer/disclaimer.component';
-import { PrivacyComponent } from './pages/privacy/privacy.component';
-import { AboutusComponent } from './pages/aboutus/aboutus.component';
-import { ContactusComponent } from './pages/contactus/contactus.component';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [
@@ -27,11 +22,6 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'Forgot', component:ForgotComponent },
   { path: 'Verify', component: EmailVerifyComponent },
-  { path: 'TandC', component: TermsandConditionsComponent },
-  { path: 'disclaimer', component: DisclaimerComponent },
-  { path: 'privacy', component:PrivacyComponent },
-  { path: 'aboutus', component: AboutusComponent },
-  { path: 'contactus', component: ContactusComponent },
   {
     path:'offlinePayment', component:OfflinepaymentComponent
   },
@@ -67,6 +57,10 @@ const routes: Routes = [
   {
     path: 'astamangala',
     loadChildren: './pages/astamangala/astamangala.module#AstamangalaModule'
+  },
+  {
+    path: 'staticforms',
+    loadChildren: './pages/staticforms/staticforms.module#StaticFormsModule'
   },
   {
     path: 'matchMaking',
