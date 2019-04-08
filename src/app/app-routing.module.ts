@@ -25,25 +25,14 @@ const routes: Routes = [
   {
     path:'offlinePayment', component:OfflinepaymentComponent
   },
-  {
-    path: 'services',
-    component: ServicesComponent,
-    canActivate: [ AuthGuardService ]
-  },
   // {
-  //   path: 'login-form',
-  //   component: LoginFormComponent, 
+  //   path: 'services',
+  //   component: ServicesComponent,
   //   canActivate: [ AuthGuardService ]
   // },
-  // {
-  //   path: 'registration-form',
-  //   component: RegistrationFormComponent,
-  //   canActivate: [ AuthGuardService ]
-  // },
-  
+ 
   {
     path: 'horoscope',
-    //component: HoroscopeComponent,
     loadChildren: './pages/horoscope/horoscope.module#HoroscopeModule'
   },
   {
@@ -81,6 +70,10 @@ const routes: Routes = [
   {
     path: 'muhurtha',
     loadChildren: './pages/muhurtha/muhurtha.module#MuhurthaModule'
+  },
+  {
+    path: 'services',
+    loadChildren: './pages/services/services.component#ServicesModule'
   },
   {
     path: 'settings',
@@ -132,7 +125,9 @@ const routes: Routes = [
   ],  
   providers: [AuthGuardService],
   exports: [RouterModule],
-  declarations: [ServicesComponent, ProfileComponent,
+  declarations: [
+    //ServicesComponent, 
+    ProfileComponent,
     EmailVerifyComponent, ForgotComponent,
     // SortingOrderHistoryPipe,
     OfflinepaymentComponent, HomeComponent,

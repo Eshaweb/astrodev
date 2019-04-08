@@ -4,6 +4,9 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AdminService } from 'src/Services/AdminService/AdminService';
+import ArrayStore from 'devextreme/data/array_store';
+import { SelectBoxModel } from 'src/Models/SelectBoxModel';
+
 export class BasePrice {
     Id: string;
     Description: string;
@@ -25,7 +28,11 @@ export class PriceListComponent {
     priceListForm: FormGroup;
     priceListUpdated: boolean=false;
     popupVisible: boolean;
-
+    typedata: ArrayStore;
+    types: SelectBoxModel[] = [
+        { Id: "#S", Text: "Services" },
+        { Id: "#P", Text: "Products" }];
+    typevalue: any;
     constructor(public adminService: AdminService, public loadingSwitchService: LoadingSwitchService,
         public formbuilder: FormBuilder) {
         // this.itemService.GetBasePrice().subscribe((data: any) => {
@@ -37,7 +44,10 @@ export class PriceListComponent {
 
         this.saveButtonName = 'Edit';
         this.allowUpdate = false;
-
+        this.typedata = new ArrayStore({
+            data: this.types,
+            key: "Id"
+        });
         this.priceListForm = this.formbuilder.group({
             Name: ['', [Validators.required, Validators.minLength(4)]],
             Formula: ['', []]
@@ -53,12 +63,23 @@ export class PriceListComponent {
 
         });
     }
-
+    OnTypeSelection(event) {
+        this.typevalue = event.value;
+        // var Type={
+        //     Type:event.value
+        // }
+        // this.adminService.GetBasePrice(Type).subscribe((data: any) => {
+        //     if (data.Errors == undefined) {
+        //         this.dataSource = data;
+        //     }
+        // });
+    }
     OnGenerate_click() {
         this.loadingSwitchService.loading = true;
         var Item = {
             Name:this.priceListForm.controls['Name'].value,
-            Formula:this.priceListForm.controls['Formula'].value
+            Formula:this.priceListForm.controls['Formula'].value,
+            Type: this.typevalue 
         }
         this.adminService.GeneratePriceList(Item).subscribe((data: any) => {
             if (data.Errors == undefined) {
@@ -78,7 +99,8 @@ export class PriceListComponent {
             var Item={
                 Name:this.priceListForm.controls['Name'].value,
                 Formula:this.priceListForm.controls['Formula'].value,
-                GeneratedRateDets:this.dataSource
+                GeneratedRateDets:this.dataSource,
+                Type: this.typevalue 
             }
             this.adminService.CreatePriceList(Item).subscribe((data: any) => {
                 if (data.Errors == undefined) {

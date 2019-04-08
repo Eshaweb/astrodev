@@ -20,7 +20,7 @@ import { RegistrationService } from 'src/Services/registration/registration.serv
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingService';
 import { NumerologyService } from 'src/Services/NumerologyService/NumerologyService';
-import { DxPopupModule, DxLoadPanelModule } from 'devextreme-angular';
+import { DxPopupModule, DxLoadPanelModule, DxLoadIndicatorModule } from 'devextreme-angular';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
 import { HeaderComponent } from '../header/header.component';
@@ -62,6 +62,7 @@ export class LoginFormComponent {
   orderModel: OrderModel;
   Name: any;
   horoInfo: any;
+  loading: boolean;
 
   constructor(public orderService: OrderService, public storageService: StorageService, private muhurthaService: MuhurthaService, private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
     private astamangalaService: AstamangalaService, public registrationService: RegistrationService, public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager,
@@ -200,7 +201,8 @@ export class LoginFormComponent {
         }
         this.disableResendOTP = false;
         this.loadingSwitchService.loading = false;
-        //this.loading=true;
+
+        this.loading=true;
         this.countDown = timer(0, this.tick).pipe(
           take(this.counter),
           map(() => 
@@ -208,8 +210,7 @@ export class LoginFormComponent {
             // if(this.counter==0){
             //   this.loading=false;
             // }
-          )); //To count down the time.
-
+          )); 
       }, (error) => {
         this.isOTPRequested = false;
         this.disableResendOTP = false;
@@ -224,61 +225,6 @@ export class LoginFormComponent {
         UserName: this.loginForm.get('UserName').value,
         Password: this.loginForm.get('Password').value
       }
-      // this.loginService.Login(loginModel).subscribe((data) => {
-      //   if (data.Errors == undefined) {
-      //     this.registrationService.registered = false;
-      //     this.loadingSwitchService.loading = false;
-      //     if (data.IsActivated == false) {
-      //       this.needtoEnterOTP = true;
-      //       this.title='Alert';
-      //       this.message= 'Please Enter OTP(since you loginnig for the first time)';
-      //     }
-      //     else if (data.IsActivated == true) {
-      //       this.loginService.PartyMastId = data.PartyMastId;
-      //       if(data.Token!=undefined&&data.PartyMastId!=undefined){
-      //         this.loginService.Token = data.Token;
-      //         this.loginService.Name = data.Name;
-      //         StorageService.SetItem('Token',data.Token);
-      //         StorageService.SetItem('PartyMastId',data.PartyMastId);
-      //         StorageService.SetItem('Name',data.Name);
-      //         this.loginService.userProfileVisible = true;
-      //         if (window.innerWidth < 768) {
-      //           this.loginService.menuItems = navigationAfterLogin;
-      //         }
-      //         else{
-      //           this.loginService.menuItems = navigationAfterLoginForSystem;
-      //           this.loginService.serviceMenus= serviceMenusAfterLogin;
-      //           this.loginService.serviceList= serviceListAfterLogin;
-      //         }
-      //        // this.loginService.navBarData = menusAfterLogin;
-      //         this.close.emit("hi");
-      //         // if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
-      //         //   this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
-      //         // }
-      //         if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined|| this.storageService.GetHoroResponse('#MU') != undefined) {
-      //           // this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
-      //           this.router.navigate(["/purchase/paidServices"]);
-      //         }
-      //         else {
-      //           this.loadingSwitchService.loading = false;
-      //           if (this.loginService.path != undefined) {
-      //             this.router.navigate([this.loginService.path]);
-      //           }
-      //           else{
-      //             this.router.navigate(["/services"]);
-      //           } 
-      //         }
-      //       }
-      //     }
-      //   }
-      //   else {
-      //     this.loadingSwitchService.loading = false;
-      //     this.loginForm.controls['UserName'].setValue('');
-      //     this.loginForm.controls['Password'].setValue('');
-      //     document.getElementById('err_UserName').innerHTML='';
-      //     document.getElementById('err_Password').innerHTML='';
-      //   }
-      // });
       this.Login(loginModel);
     }
     else {
@@ -432,60 +378,13 @@ export class LoginFormComponent {
           UserName: this.loginForm.get('UserName').value,
           Password: this.loginForm.get('Password').value
         }
-        // this.loginService.Login(loginModel).subscribe((data) => {
-        //   if (data.Errors == undefined) {
-        //     this.registrationService.registered = false;
-        //     this.loadingSwitchService.loading = false;
-        //     if (data.IsActivated == true) {
-        //       this.loginService.PartyMastId = data.PartyMastId;
-        //       if(data.Token!=undefined&&data.PartyMastId!=undefined){
-        //         this.loginService.Token = data.Token;
-        //         this.loginService.Name = data.Name;
-        //         StorageService.SetItem('Token',data.Token);
-        //         StorageService.SetItem('PartyMastId',data.PartyMastId);
-        //         StorageService.SetItem('Name',data.Name);
-        //         this.loginService.userProfileVisible = true;
-        //         if (window.innerWidth < 768) {
-        //           this.loginService.menuItems = navigationAfterLogin;
-        //         }
-        //         else{
-        //           this.loginService.menuItems = navigationAfterLoginForSystem;
-        //           this.loginService.serviceMenus= serviceMenusAfterLogin;
-        //           this.loginService.serviceList= serviceListAfterLogin;
-        //         }
-        //        // this.loginService.navBarData = menusAfterLogin;
-        //         this.close.emit("hi");
-
-        //         if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined|| this.storageService.GetHoroResponse('#MU') != undefined) {
-        //           // this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
-        //           this.router.navigate(["/purchase/paidServices"]);
-        //         }
-        //         else {
-        //           this.loadingSwitchService.loading = false;
-        //           if (this.loginService.path != undefined) {
-        //             this.router.navigate([this.loginService.path]);
-        //           }
-        //           else{
-        //             this.router.navigate(["/services"]);
-        //           } 
-        //         }
-        //       }
-        //     }
-        //     // else {
-        //     //   this.loadingSwitchService.loading = false;
-        //     //   this.loginForm.controls['UserName'].setValue('');
-        //     //   this.loginForm.controls['Password'].setValue('');
-        //     //   document.getElementById('err_UserName').innerHTML='';
-        //     //   document.getElementById('err_Password').innerHTML='';
-        //     // }
-        //   }
-        // });
         this.Login(loginModel);
         this.needtoEnterOTP = false;
       }
     });
   }
   ResendOTP_click() {
+    this.counter = 20;
     this.loadingSwitchService.loading = true;
     var UserName = {
       UserName: this.loginForm.get('UserName').value
@@ -495,9 +394,19 @@ export class LoginFormComponent {
         this.title = 'Message';
         this.message = 'Please enter OTP And Submit';
       }
+      this.disableResendOTP = false;
+      this.countDown = timer(0, this.tick).pipe(
+        take(this.counter),
+        map(() => 
+          --this.counter
+          // if(this.counter==0){
+          //   this.loading=false;
+          // }
+        )); 
       this.loadingSwitchService.loading = false;
     });
   }
+  
   onBackClick() {
     this.isOTPRequested = false;
     document.getElementById('err_UserName').innerHTML = '';
@@ -526,7 +435,7 @@ export class LoginFormRoutingModule { }
     DxTextBoxModule,
     DxValidatorModule,
     DxValidationGroupModule,
-    DxPopupModule,
+    DxPopupModule, DxLoadIndicatorModule,
     ReactiveFormsModule, LoginFormRoutingModule,
     FormsModule, DxLoadPanelModule
   ],

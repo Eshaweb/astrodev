@@ -49,13 +49,13 @@ import { WalletService } from 'src/Services/Wallet/WalletService';
             if (data.Errors == undefined) {
              this.dataSource=data;
             }
-                this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
+            this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
                   if (data.Errors == undefined) {
                     this.walletBalanceAmount = data;
                   }
-                });
+            });
             this.loadingSwitchService.loading=false;
-          });   
+        });   
     }
 
     selectionChanged(event) {

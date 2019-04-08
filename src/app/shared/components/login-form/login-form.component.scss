@@ -17,7 +17,14 @@
 margin-bottom: 22px;
   
    }
-
+   .not-active {
+    pointer-events: none;
+    cursor: default;
+    color: currentColor;
+  opacity: 0.5;
+  text-decoration: none;
+   }
+   
    .dx-card[_ngcontent-c3]{
     width: 350px !important;
     margin: auto auto;
