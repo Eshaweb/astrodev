@@ -38,6 +38,7 @@ import { ConfigerationService } from 'src/Services/ConfigerationService/Configer
 import { OrderHistoryService } from 'src/Services/OrderHistoryService/OrderHistoryService';
 import { AdminService } from 'src/Services/AdminService/AdminService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
+import { ProductService } from 'src/Services/ProductService/ProductService';
 
 
 let config = new AuthServiceConfig([
@@ -84,6 +85,7 @@ export function provideConfig() {
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService, MuhurthaService,
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
     LoaderService, SalesService, WalletService, OrderHistoryService, StorageService, AdminService,
+    ProductService,
     { provide: APP_BASE_HREF, useValue: '/' },
     {
       provide: HTTP_INTERCEPTORS,

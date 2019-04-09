@@ -372,36 +372,6 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         });
     }
    
-    public onpaymentModeSelection(eventArgs) {
-      var paymentModeId=eventArgs.newSelection.value;
-      this.paymentModevalue = this.paymentModes.find(function (obj) { return obj.Id === paymentModeId }).Text;
-    
-      if (this.checkClicked == true && this.differenceAmount > 0) {
-        this.paycodes=[];
-        if(this.discountAmount>0){
-          this.paycodes.push({
-            Code: eventArgs.newSelection.value,
-            Amount: this.differenceAmount-this.discountAmount
-          });
-          this.payableAmountthroughPaymentGateWay=this.differenceAmount-this.discountAmount;
-        }
-        else{
-          this.paycodes.push({
-            Code: eventArgs.newSelection.value,
-            Amount: this.differenceAmount
-          });
-          this.payableAmountthroughPaymentGateWay=this.differenceAmount;
-        }
-        this.paymentmodeSelected = true;
-        this.selectMeMessage = '';
-      }
-  
-      else {
-        this.paycodes = [{ Code: eventArgs.newSelection.value, Amount: this.payableAmount }];
-        this.paymentmodeSelected = true;
-        this.selectMeMessage = '';
-      }
-    }
     pay() {
       var options = {
         description: 'Credits towards AstroLite',
@@ -415,7 +385,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           var Payment = {
             PaymentId: this.paymentId
           }
-          this.next(Payment);
+          this.PaymentComplete(Payment);
         },
         prefill: {
           email: 'shailesh@eshaweb.com',
@@ -445,7 +415,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       //  RazorpayCheckout.open(options, successCallback, cancelCallback);
     }
   
-    next(Payment) {
+    PaymentComplete(Payment) {
       //this.loading = true;
       this.loadingSwitchService.loading=true;
       this.orderService.PaymentComplete(Payment).subscribe((data) => {

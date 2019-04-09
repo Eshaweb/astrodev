@@ -1,0 +1,103 @@
+
+
+<h2 class="content-block">AstroLite Gold </h2>
+
+<div class="dx-card content-block responsive-paddings">
+    <div class="dx-fieldset">
+        <!-- <div class="dx-field">
+            <div *ngFor="let item of chekboxes">
+                <dx-check-box 
+                    [(value)]="item.Value"
+                    (onValueChanged)="chekboxes_Click($event, item.Value)"
+                    [text]="item.Text">
+                </dx-check-box>
+            </div>
+          </div> -->
+<div class="dx-field">
+  <div>
+      <dx-check-box 
+          [(value)]="Horoscope_checkBoxValue"
+          (onValueChanged)="Horoscope_Click($event)"
+          text="Horoscope">
+      </dx-check-box>
+  </div>
+</div>
+<div class="dx-field">
+  <div>
+      <dx-check-box 
+          [(value)]="MatchMaking_checkBoxValue"
+          (onValueChanged)="MatchMaking_Click($event,'#PAMM')"
+          text="Match Making">
+      </dx-check-box>
+  </div>
+</div>
+<div class="dx-field">
+  <div>
+      <dx-check-box 
+          [(value)]="Astamangala_checkBoxValue"
+          (onValueChanged)="Astamangala_Click($event, '#PMMM')"
+          text="Astamangala">
+      </dx-check-box>
+  </div>
+</div>
+</div>
+<h2 class="content-block">Price :{{payableAmount|currency:'INR'}}</h2>
+<div class="dx-fieldset" [formGroup]="CoupenCodeForm">
+    <div class="dx-feldset-column">
+    <div class="dx-field">
+            <div class="cap">
+                 <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box>
+                <p style="color:red" id='err_CouponCode'></p>
+            </div>
+            <div class="data">
+                    <dx-button (onClick)='onApplyCouponCode_click()' [disabled]="!CoupenCodeForm.valid||disableButton" id="button" text="Apply" type="success"
+                    [useSubmitBehavior]="true">
+                </dx-button>
+            </div>         
+        </div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="dx-fieldset">
+    
+    <div class="dx-field" *ngIf="discountAmount">
+        <div class="cap">Coupon Discount</div>
+        <div class="data">{{discountAmount|currency:'INR'}}
+        </div>
+    </div>
+    
+    <div class="dx-field" *ngIf="(discountAmount>0)">
+        <div class="cap">Order Total</div>
+        <div class="data">{{payableAmount-discountAmount|currency:'INR'}}
+        </div>
+    </div>
+    <p style="color:green"> {{selectMeMessage}}</p>
+    </div>
+    <div class="dx-fieldset">
+    <div class="dx-field">
+      <div class="cap">
+         <div class="payment-mode" [formGroup]="paymentModeForm">
+             <dx-select-box formControlName="paymentMode"
+                 (onValueChanged)="paymentModeSelection($event)" 
+                 [dataSource]="paymentModedata" 
+                  displayExpr="Text" 
+                  valueExpr="Id"
+                  [searchEnabled]="true"
+                  [disabled]="selectboxdisabled"
+                  [value]='paymentModedatavalue'>
+               </dx-select-box>
+           </div>
+        </div>
+      </div>
+
+        <div class="dx-field">
+            <div class="continue-button">
+                <dx-button (onClick)='onPay_click()' 
+                text="Pay" 
+                type="success" 
+                [useSubmitBehavior]="true">
+                </dx-button>
+            </div>
+        </div>
+        </div>
+</div>

@@ -6,6 +6,8 @@ import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule, D
 import { DxiRowModule } from 'devextreme-angular/ui/nested/row-dxi';
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product/product.component';
+import { AstrolitegoldsilverComponent } from './astrolitegoldsilver/astrolitegoldsilver.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 @NgModule({
     imports: [
@@ -22,7 +24,8 @@ import { ProductComponent } from './product/product.component';
         DxResponsiveBoxModule,DxiRowModule
     ],
     declarations: [
-        ProductComponent
+        ProductComponent, AstrolitegoldsilverComponent,
+        PaymentSuccessComponent
     ]
 })
 export class ProductModule{

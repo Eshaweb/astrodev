@@ -1,6 +1,22 @@
 <h2 class="content-block">Assign Price List</h2>
 <div class="dx-card content-block responsive-paddings">
     <form action="your-action" [formGroup]="assignNewPriceListForm">
+            <div class="dx-fieldset">
+                    <div class="dx-field">
+                        <div class="cap">
+                            <div class="payment-mode">
+                                <dx-select-box 
+                                    (onValueChanged)="OnTypeSelection($event)"
+                                    [dataSource]="typedata" 
+                                    displayExpr="Text" 
+                                    valueExpr="Id" 
+                                    [searchEnabled]="true"
+                                    [value]='typevalue'>
+                                </dx-select-box>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         <div class="dx-fieldset">
                 <div class="dx-fieldset-column">
                         <div class="dx-field">
@@ -25,6 +41,7 @@
                                   [dataSource]="priceListData"
                                   displayExpr="Name"
                                   valueExpr="Id"
+                                  [disabled]="!typevalue"
                                   [value]="priceListvalue">
                               </dx-select-box>
                             </div>

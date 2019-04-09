@@ -47,9 +47,9 @@ export class AdminService {
         return this.httpService.Get(endPoint);
     }
 
-    GetPriceListSource():Observable<any>{
+    GetPriceListSource(PriceListRequest):Observable<any>{
         var endPoint = "Admin/GetPriceListSource";
-        return this.httpService.Get(endPoint);
+        return this.httpService.Post(endPoint,PriceListRequest);
     }
 
     AssignPriceList(AssignPrice):Observable<any>{

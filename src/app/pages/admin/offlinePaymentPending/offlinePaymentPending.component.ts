@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
@@ -9,7 +9,7 @@ import { AdminService } from 'src/Services/AdminService/AdminService';
     styleUrls: [ './offlinePaymentPending.component.scss' ]
   })
   
-  export class OfflinePaymentPendingComponent {
+  export class OfflinePaymentPendingComponent implements OnInit{
     dataSource: any;
     @ViewChild(DxDataGridComponent) public datagridBasePrice: DxDataGridComponent;  
     billPayModes: any;
@@ -18,14 +18,16 @@ import { AdminService } from 'src/Services/AdminService/AdminService';
     dateinDateFormat: Date;
 
     constructor(public adminService:AdminService, public loadingSwitchService:LoadingSwitchService) {
-        this.dateinDateFormat = new Date();
+        this.dateinDateFormat = new Date();   
+    }
+    ngOnInit(){
         this.loadingSwitchService.loading=true;
         this.adminService.OfflinePaymentList().subscribe((data:any)=>{
             if (data.Errors == undefined) {
              this.dataSource=data;
             }
             this.loadingSwitchService.loading=false;
-          });   
+          });
     }
     onToolbarPreparing (e) { 
         

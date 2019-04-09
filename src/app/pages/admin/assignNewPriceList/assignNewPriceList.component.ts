@@ -4,6 +4,7 @@ import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingS
 import ArrayStore from 'devextreme/data/array_store';
 import { FormGroup, FormBuilder, } from '@angular/forms';
 import { AdminService } from 'src/Services/AdminService/AdminService';
+import { SelectBoxModel } from 'src/Models/SelectBoxModel';
 
 
 
@@ -25,11 +26,20 @@ export class ComboBoxModel{
   priceListData: ArrayStore;
   priceList: ComboBoxModel[];
   popupVisible: boolean;
+  typedata: ArrayStore;
+  types: SelectBoxModel[] = [
+    { Id: "#S", Text: "Services" },
+    { Id: "#P", Text: "Products" }];
+  typevalue: any;
     constructor(public loadingSwitchService: LoadingSwitchService, public adminService:AdminService,public formBuilder: FormBuilder){
       this.assignNewPriceListForm=this.formBuilder.group({
         FromDate: new Date(),
         To: new Date()
       });
+      this.typedata = new ArrayStore({
+        data: this.types,
+        key: "Id"
+    });
       this.loadingSwitchService.loading = true;
       this.adminService.GetCategoryList().subscribe((data:any)=>{
         if (data.Errors == undefined) {
@@ -40,7 +50,18 @@ export class ComboBoxModel{
         });
         }
       });
-      this.adminService.GetPriceListSource().subscribe((data:any)=>{
+      
+    }
+
+    ngOnInit() {
+      
+    }
+    OnTypeSelection(event) {
+      this.typevalue = event.value;
+      var PriceListRequest={
+        Type:this.typevalue
+      }
+      this.adminService.GetPriceListSource(PriceListRequest).subscribe((data:any)=>{
         if (data.Errors == undefined) {
          this.priceList=data;
          this.priceListData = new ArrayStore({
@@ -50,11 +71,7 @@ export class ComboBoxModel{
         this.loadingSwitchService.loading = false;
         }
       });
-    }
-
-    ngOnInit() {
-      
-    }
+  }
     priceListDataSelection(event){
       this.priceListvalue=event.value;
     }
@@ -68,7 +85,8 @@ export class ComboBoxModel{
       CategoryId:this.categoryListvalue,
       PriceListId:this.priceListvalue,
       From:this.assignNewPriceListForm.controls['FromDate'].value,
-      To:this.assignNewPriceListForm.controls['To'].value
+      To:this.assignNewPriceListForm.controls['To'].value,
+      Type:this.typevalue
     }
     this.adminService.AssignPriceList(AssignPrice).subscribe((data: any) => {
       if (data.Errors == undefined) {
