@@ -35,11 +35,6 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { MuhurthaService } from 'src/Services/MuhoorthaService/MuhoorthaService';
 import { PanchaPakshiService } from 'src/Services/PanchaPakshiService/PanchaPakshiService';
 import { ConfigerationService } from 'src/Services/ConfigerationService/ConfigerationService';
-import { TermsandConditionsComponent } from './pages/termsand-conditions/termsand-conditions.component';
-import { DisclaimerComponent } from './pages/disclaimer/disclaimer.component';
-import { PrivacyComponent } from './pages/privacy/privacy.component';
-import { AboutusComponent } from './pages/aboutus/aboutus.component';
-import { ContactusComponent } from './pages/contactus/contactus.component';
 import { OrderHistoryService } from 'src/Services/OrderHistoryService/OrderHistoryService';
 import { AdminService } from 'src/Services/AdminService/AdminService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
@@ -70,7 +65,7 @@ export function provideConfig() {
 
 @NgModule({
   declarations: [
-    AppComponent, TermsandConditionsComponent, DisclaimerComponent, PrivacyComponent, AboutusComponent, ContactusComponent, ProductComponent
+    AppComponent,
   ],
   imports: [
     //NgxLoadingModule.forRoot({}),

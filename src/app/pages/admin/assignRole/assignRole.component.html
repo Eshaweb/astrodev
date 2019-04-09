@@ -1,4 +1,4 @@
-<h2 class="content-block">Report</h2>
+<h2 class="content-block">Assign Role</h2>
 <div class="dx-card content-block responsive-paddings">
 
 <div class="dx-fieldset">
@@ -9,7 +9,7 @@
                         <dx-text-box (focusout)="onUserId($event.target.value)" valueChangeEvent="keyup" showClearButton="true" ></dx-text-box>
                 </div>
             </div>
-            <div *ngIf='userdata'>
+            <div *ngIf='userdata' style="background-color:blanchedalmond">
             <p>{{userdata.Name}}</p>
             <p>{{userdata.Mobile}}</p>
             <p>{{userdata.EMail}}</p>

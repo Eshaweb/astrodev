@@ -8,6 +8,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { RegistrationService } from 'src/Services/registration/registration.service';
+import { timer } from 'rxjs';
+import { take, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-forgot-password',
@@ -19,18 +21,18 @@ export class ForgotPasswordComponent {
   EMailOTPType: string;
   SMSOTPType: string;
   value: string;
-    popupVisible: boolean;
-    userOTPValidateForm: FormGroup;
-    OTPValidated: string;
-    OTPValidatedVisible: boolean;
-    message: string;
-    changePasswordSuccessful: boolean;
-    forgotPassword: boolean;
-    passwordEntry: boolean;
-    Token: string;
+  popupVisible: boolean;
+  userOTPValidateForm: FormGroup;
+  OTPValidated: string;
+  OTPValidatedVisible: boolean;
+  message: string;
+  changePasswordSuccessful: boolean;
+  forgotPassword: boolean;
+  passwordEntry: boolean;
+  Token: string;
   UserId: any;
   disableResendOTP: boolean;
- 
+
   public onDialogOKSelected(event) {
       event.dialog.close();
   }
@@ -52,7 +54,6 @@ export class ForgotPasswordComponent {
       });
       const UserNameContrl = this.forgotPasswordForm.get('UserName');
       UserNameContrl.valueChanges.subscribe(value => this.setErrorMessage(UserNameContrl));
-
       this.userOTPValidateForm = this.formBuilder.group({
         //UserName: [null, [Validators.required, Validators.minLength(8)]],
         OTP: ['', [Validators.required]],
@@ -98,7 +99,9 @@ export class ForgotPasswordComponent {
     confirm_NewPassword_minlength: 'Minimum length is 4',
     confirm_NewPassword_invalid: 'Password doesnot match',
   };
-  
+  countDown;
+  counter = 20;
+  tick = 1000;
   OnGetOTP_Click() {
       this.loadingSwitchService.loading = true;
       var ForgotPassword = {
@@ -110,6 +113,12 @@ export class ForgotPasswordComponent {
               this.popupVisible=true;
               this.forgotPassword=false;
               this.SMSOTPType='You will get an OTP. Please enter the OTP';
+              //this.disableResendOTP = true;
+              this.countDown = timer(0, this.tick).pipe(
+                take(this.counter),
+                map(() => 
+                  --this.counter
+                )); 
             }
             else if (data.Type== 'E') {
               this.loadingSwitchService.loading = false;
@@ -125,6 +134,7 @@ export class ForgotPasswordComponent {
       this._location.back();
   }
   ngAfterViewInit(): void {
+
   }
   
   onValueChanged(event) {

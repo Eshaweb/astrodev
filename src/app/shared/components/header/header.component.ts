@@ -130,10 +130,10 @@ export class HeaderComponent {
     this.router.navigate(['/admin']);
   }
   onAboutUsClick(){
-    this.router.navigate(['/aboutus']);
+    this.router.navigate(['/staticforms/aboutus']);
   }
   onContactUsClick(){
-    this.router.navigate(['/contactus']);
+    this.router.navigate(['/staticforms/contactus']);
   }
   OnLogin_click(){
     this.router.navigate(['/login-form']);

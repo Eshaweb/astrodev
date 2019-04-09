@@ -28,8 +28,20 @@
     <div class="dx-field">
         <dx-button type="default" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" width="100%"></dx-button>
         <div id='resendbutton'>
-        <dx-button type="default" text="Resend OTP" [disabled]="disableResendOTP||counter!= 0" *ngIf='isOTPRequested' (onClick)="ResendOTP_click()" width="100%"></dx-button>
-        </div>
+        <!-- <dx-button type="default" text="Resend OTP" [disabled]="disableResendOTP||counter!= 0" *ngIf='isOTPRequested' (onClick)="ResendOTP_click()" width="100%"></dx-button> -->
+        <dx-button type="default" text="Resend OTP" 
+                   [disabled]="disableResendOTP||counter!= 0"
+                   *ngIf='isOTPRequested' 
+                   (onClick)="ResendOTP_click()" width="100%">
+                   <div *dxTemplate="let data of 'content'">
+                        <span *ngIf='counter!= 0'>{{countDown | async }}</span>
+                    <dx-load-indicator class='button-indicator' height="20" width="100"
+                        [visible]="disableResendOTP||counter!= 0">
+                    </dx-load-indicator>
+                    <span *ngIf='counter== 0' class='dx-button-text'>Resend OTP</span>
+                </div>
+        </dx-button>     
+    </div>
         <p *ngIf='counter!= 0'>{{countDown | async }}</p>
     </div>
 </div>
@@ -50,7 +62,7 @@
     <div class="dx-fieldset-column">
         <!-- <a routerLink="/registration-form">Register</a> -->
         <!-- <a (click)="goToRegistration()" style="border-bottom: 1px solid #b74610;">Register</a> -->
-        <a (click)="goToRegistration()" style="text-decoration: underline">Register</a>
+        <a (click)="goToRegistration()" class="not-active" style="text-decoration: underline">Register</a>
 
     </div>
   </div>
@@ -106,6 +118,17 @@
 <!-- <dx-load-panel
     #loadPanel
     [(message)]='countDown'
+    shadingColor="rgba(0,0,0,0.4)"
+    [(visible)]="loading"
+    [position]="{ of: '#resendbutton' }"
+    [showIndicator]="true"
+    [showPane]="false"
+    [shading]="true"
+    [closeOnOutsideClick]="false">
+</dx-load-panel> -->
+<!-- <dx-load-panel
+    #loadPanel
+    [(message)]='countDown | async'
     shadingColor="rgba(0,0,0,0.4)"
     [(visible)]="loading"
     [position]="{ of: '#resendbutton' }"

@@ -27,10 +27,6 @@ export class RegistrationService {
                 this.isLoading = false;
                 this.errorMessage = data.Errors[0].ErrorString;
             }
-            // else {
-            //     this.errorMessage = null;
-            //     this.isLoading = true;
-            // }
             callback(data);
         }, (error) => {
             if (typeof error === 'string') {

@@ -69,6 +69,7 @@
   <div class="dx-card responsive-paddings service-list" (click)="OnWalletDeposit_Click()">
     <img src="assets/images/Sankyashasthra.png" />
     <h3>Wallet</h3>
+    <h2 *ngIf="walletBalanceAmount">Wallet Balance:  {{walletBalanceAmount|currency:'INR'}}</h2>
     <dx-button id="button"text="Explore More" type="success" [useSubmitBehavior]="true"></dx-button>
   </div>
 </div>
