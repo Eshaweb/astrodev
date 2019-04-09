@@ -38,7 +38,7 @@ import { ConfigerationService } from 'src/Services/ConfigerationService/Configer
 import { OrderHistoryService } from 'src/Services/OrderHistoryService/OrderHistoryService';
 import { AdminService } from 'src/Services/AdminService/AdminService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
-import { ProductComponent } from './pages/product/product.component';
+//import { ProductComponent } from './pages/product/product.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
