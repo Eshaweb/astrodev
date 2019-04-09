@@ -38,13 +38,10 @@ import { ConfigerationService } from 'src/Services/ConfigerationService/Configer
 import { OrderHistoryService } from 'src/Services/OrderHistoryService/OrderHistoryService';
 import { AdminService } from 'src/Services/AdminService/AdminService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
-<<<<<<< HEAD
-import { ProductService } from 'src/Services/ProductService/ProductService';
-=======
 //import { ProductComponent } from './pages/product/product.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
->>>>>>> 7955914c804e930c8899fcbd738d2a1c94c9b55c
+import { ProductService } from 'src/Services/ProductService/ProductService';
 
 
 let config = new AuthServiceConfig([
