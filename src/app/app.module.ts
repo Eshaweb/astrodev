@@ -44,6 +44,8 @@ import { OrderHistoryService } from 'src/Services/OrderHistoryService/OrderHisto
 import { AdminService } from 'src/Services/AdminService/AdminService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 import { ProductComponent } from './pages/product/product.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 let config = new AuthServiceConfig([
@@ -83,6 +85,7 @@ export function provideConfig() {
     DxPopupModule,
     DxButtonModule,
     DxLoadPanelModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     //DevExtremeModule
   ],
   providers: [AuthService, ScreenService, AppInfoService, ItemService, PanchangaService, ConfigerationService,
