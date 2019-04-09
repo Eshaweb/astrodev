@@ -65,6 +65,8 @@
 }
 // Horizontal menu start
 ul {
+  background-image: url(/assets/images/menu-background.png);
+  background-repeat: no-repeat;
   list-style-type: none;
   margin: 0;
   padding: 16px;
@@ -224,8 +226,10 @@ h3 {
   font-size: medium;
   font-weight: 500;
   border-bottom: 1px solid;
-  width: 100px;
-  margin-left: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 45%;
 }
 a {
   cursor: pointer;

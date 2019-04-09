@@ -7,7 +7,10 @@ a {
     margin: auto;
     text-align: center;
   }
+  ::ng-deep aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.current:after{
 
+    border: 2px solid #ff5722;
+  }
 ::ng-deep #summary {
     padding-left: 10px;
     margin-top: 20px;

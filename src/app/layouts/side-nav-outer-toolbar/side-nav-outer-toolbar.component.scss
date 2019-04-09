@@ -16,8 +16,14 @@
 
 .content {
   flex-grow: 1;
+
+}
+.service-menu{
+ 
 }
 ul {
+  background-image: url(/assets/images/menu-background.png);
+  background-repeat: no-repeat;
   list-style-type: none;
   margin: 0;
   padding: 16px;
