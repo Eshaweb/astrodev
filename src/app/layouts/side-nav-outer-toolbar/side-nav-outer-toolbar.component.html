@@ -16,17 +16,19 @@
     [shading]="shaderEnabled"
     [(opened)]="menuOpened">
 
-<div *ngIf='isMobileResolution'>
-    <app-side-navigation-menu
-    [items]="loginService.menuItems"
-    [compactMode]="!menuOpened"
-    [selectedItem]="selectedRoute"
-    class="dx-swatch-additional"
-    *dxTemplate="let dataMenu of 'panel'"
-    (selectedItemChanged)="navigationChanged($event)"
-    (openMenu)="navigationClick()">
-</app-side-navigation-menu>
-</div>
+    
+    <div *ngIf='isMobileResolution'>
+        <app-side-navigation-menu
+        [items]="loginService.menuItems"
+        [compactMode]="!menuOpened"
+        [selectedItem]="selectedRoute"
+        class="dx-swatch-additional"
+        *dxTemplate="let dataMenu of 'panel'"
+        (selectedItemChanged)="navigationChanged($event)"
+        (openMenu)="navigationClick()">
+    </app-side-navigation-menu>
+    </div>
+
 
 <!-- <dx-nav-bar (onItemClick)="selectionChanged($event)"
 [selectedIndex]="0" *ngIf='!isMobileResolution'>
