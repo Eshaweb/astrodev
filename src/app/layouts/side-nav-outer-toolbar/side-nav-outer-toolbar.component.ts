@@ -55,7 +55,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
     }];
     this.showFirstSubmenuModes = this.showSubmenuModes[0];
     this.menuItems=services;
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 900) {
       this.isMobileResolution = true;
       if (StorageService.GetItem('refreshToken') != undefined) {
         this.loginService.menuItems = navigationAfterLogin;
