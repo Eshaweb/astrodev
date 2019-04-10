@@ -17,18 +17,26 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
     templateUrl: './panchanga-free-data.component.html',
     styleUrls: [ './panchanga-free-data.component.scss' ]
   })
-  
+
   export class PanchangaFreeDataComponent {
   horoModel: HoroRequest;
   caption: Caption;
   prashnaFreeModel: PrashnaFreeModel;
   panchangaRequest: PanchangaRequest;
   serialisedPanchangaResponse: SerialisedPanchangaResponse;
+  slideshowDelay = 2000;
+    isMobileResolution: boolean;
+  
     ngOnInit(): void {
       this.caption=new Caption();
       //this.panchangaRequest=this.panchangaService.panchangaRequest;
       this.panchangaRequest=this.storageService.GetHoroRequest('#PA');
       this.GetCaption(this.panchangaRequest.LangCode, this.caption);
+      if (window.innerWidth < 768) {
+        this.isMobileResolution = true;
+      } else {
+        this.isMobileResolution = false;
+      }
     }
     constructor(public storageService:StorageService,private itemService:ItemService, public router: Router, public loginService: LoginService, 
       public captionDbService:CaptionDbService, public panchangaService: PanchangaService) {

@@ -1,5 +1,12 @@
-<dx-tile-view #tileView [height]="1100" [baseItemHeight]="1300" [baseItemWidth]="350" width="100%" [itemMargin]="10"
-    direction="horizontal">
+<dx-tile-view #tileView 
+              [height]="1100" 
+              [baseItemHeight]="1300" 
+              [baseItemWidth]="350" 
+              width="100%" 
+              [itemMargin]="10"
+              [showScrollbar]="true"
+              showNavButtons="true"
+    direction="horizontal" *ngIf="!isMobileResolution">
     <dxi-item *ngFor="let item of serialisedPanchangaResponse">
         <div class="dx-field">
             <div class="dx-field-label">{{item.Date}}
@@ -95,3 +102,110 @@
 
     </dxi-item>
 </dx-tile-view>
+
+<div *ngIf="isMobileResolution" class="widget-container">
+    <dx-gallery #gallery
+        id="gallery"
+        [dataSource]="serialisedPanchangaResponse"
+        height="100%"
+        [width]="400"
+        [loop]="true"
+        [showNavButtons]="true"
+        [showIndicator]="false">
+    <div *dxTemplate="let galleryItem of 'item'">
+        <div class="dx-field">
+            <div class="dx-field-label">{{galleryItem.Date}}
+            </div>
+        </div>
+        <div class="dx-field" [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label">{{galleryItem.Ayana}}
+            </div>
+        </div>
+        <div class="dx-field" [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label">{{galleryItem.RuthuText}}
+            </div>
+        </div>
+        <div class="dx-field" [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label">{{galleryItem.Paksha}}
+            </div>
+        </div>
+
+        <div class="dx-field ">
+            <div class="dx-field-label" [ngClass]="getFont(panchangaRequest.LangCode)"> {{ caption.SunRise}}:</div>
+            <div class="dx-field-value"> {{galleryItem.Sunrise}}
+            </div>
+        </div>
+        <div class="dx-field ">
+            <div class="dx-field-label" [ngClass]="getFont(panchangaRequest.LangCode)"> {{ caption.SunSet}}:</div>
+            <div class="dx-field-value"> {{galleryItem.Sunset}}
+            </div>
+        </div>
+        <div class="dx-field ">
+            <div class="dx-field-label" [ngClass]="getFont(panchangaRequest.LangCode)"> {{ caption.MoonRise}}:</div>
+            <div class="dx-field-value"> {{galleryItem.MoonRise}}
+            </div>
+        </div>
+
+        <div class="dx-field ">
+            <div class="dx-field-label" [ngClass]="getFont(panchangaRequest.LangCode)"> {{ caption.MoonSet}}:</div>
+            <div class="dx-field-value"> {{galleryItem.MoonSet}}
+            </div>
+        </div>
+        <div class="dx-field ">
+            <div class="dx-field-label" [ngClass]="getFont(panchangaRequest.LangCode)"> {{ caption.Rahu}}:</div>
+            <div class="dx-field-value"> {{galleryItem.Rahu}}
+            </div>
+        </div>
+        <div class="dx-field ">
+            <div class="dx-field-label" [ngClass]="getFont(panchangaRequest.LangCode)"> {{ caption.Gulika}}:</div>
+            <div class="dx-field-value"> {{galleryItem.Gulika}}
+            </div>
+        </div>
+        <div class="dx-field ">
+            <div class="dx-field-label" [ngClass]="getFont(panchangaRequest.LangCode)"> {{ caption.Yama}}:</div>
+            <div class="dx-field-value"> {{galleryItem.Yama}}
+            </div>
+        </div>
+
+        <div class="dx-field " [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label"> {{caption.SouraMasa}}:</div>
+            <div class="dx-field-value"> {{galleryItem.Masa}}
+            </div>
+        </div>
+
+        <div class="dx-field " [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label"> {{ caption.Tithi}}:</div>
+            <div class="dx-field-value"> {{galleryItem.Tithi}}
+            </div>
+        </div>
+
+        <div class="dx-field " [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label"> {{ caption.Nak}}:</div>
+            <div class="dx-field-value"> {{galleryItem.Nak}}
+            </div>
+        </div>
+        <div class="dx-field " [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label"> {{ caption.Yoga}}:</div>
+            <div class="dx-field-value"> {{galleryItem.Yoga}}
+            </div>
+        </div>
+        <div class="dx-field " [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label"> {{ caption.NityaKarana}}:</div>
+            <div class="dx-field-value"> {{galleryItem.Karana}}
+            </div>
+        </div>
+        <div class="dx-field " [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label"> {{ caption.VishaGhati}}:</div>
+            <div class="dx-field-value"> {{galleryItem.Visha}}
+            </div>
+        </div>
+        <div class="dx-field " [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label"> {{ caption.AmrithaGhati}}:</div>
+            <div class="dx-field-value"> {{galleryItem.Amritha}}
+            </div>
+        </div>
+    </div>
+</dx-gallery>
+</div>
+
+

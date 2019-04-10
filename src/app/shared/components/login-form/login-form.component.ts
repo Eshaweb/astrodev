@@ -133,7 +133,9 @@ export class LoginFormComponent {
     });
   }
   ngAfterViewInit(): void {
-
+    if(this.registrationService.UserName!=undefined){
+      this.loginForm.controls['UserName'].setValue(this.registrationService.UserName);
+    }
   }
 
   public signIn(event) {

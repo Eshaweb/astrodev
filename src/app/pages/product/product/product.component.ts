@@ -13,7 +13,13 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
 
   }
-  OnAstroLiteGoldSilver_Click() {
+  OnAstroLiteProducts_Click(value) {
+    if(value=="Gold"){
+
+    }
+    else if(value=="Silver"){
+
+    }
     this.router.navigate(["/products/astrogoldsilver"]);
   }
 }

@@ -46,8 +46,8 @@
     <div class="dx-feldset-column">
     <div class="dx-field">
             <div class="cap">
-                 <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box>
-                 <!-- <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box> -->
+                 <!-- <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box> -->
+                 <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box>
                  <p style="color:red" id='err_CouponCode'></p>
                  <p style="color:red"> {{errorMessage}}</p>
 

@@ -17,6 +17,7 @@ export class RegistrationService {
     isLoading: boolean;
     registerModel:RegisterModel;
     registered: boolean;
+    UserName: any;
     constructor(private loadingSwitchService:LoadingSwitchService,private httpService: HttpService, private errorService: ErrorService, public toastrService: ToastrManager) {
         this.registered = false;
     }

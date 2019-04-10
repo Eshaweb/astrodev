@@ -155,7 +155,8 @@ export class RegistrationFormComponent {
             IntroParty: this.registrationForm.get('IntroParty').value,
             NewsLetter: this.NewsLetter_checkBoxValue
         }
-        this.maxvalue = 100;
+        
+        this.registrationService.UserName=registerModel.UserName;
         this.registrationService.RegisterParty(registerModel, (data) => {
             if (data.IsValid != undefined) {
                 //IsValid: true 
