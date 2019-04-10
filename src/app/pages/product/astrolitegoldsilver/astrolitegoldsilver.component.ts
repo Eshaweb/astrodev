@@ -133,6 +133,15 @@ export class AstrolitegoldsilverComponent implements OnInit {
       this.loadingSwitchService.loading=false; 
     }
   }
+  OnCouponCode(value){
+    if (value.length < 6) {  //checks for couponcode length
+      this.discountAmount = 0;
+    }
+    else{
+      this.disableButton=false;
+    }
+    this.errorMessage='';
+  }
   onApplyCouponCode_click() {
     this.loadingSwitchService.loading = true;
     this.disableButton = true;

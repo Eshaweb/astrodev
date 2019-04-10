@@ -47,7 +47,10 @@
     <div class="dx-field">
             <div class="cap">
                  <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box>
-                <p style="color:red" id='err_CouponCode'></p>
+                 <!-- <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box> -->
+                 <p style="color:red" id='err_CouponCode'></p>
+                 <p style="color:red"> {{errorMessage}}</p>
+
             </div>
             <div class="data">
                     <dx-button (onClick)='onApplyCouponCode_click()' [disabled]="!CoupenCodeForm.valid||disableButton" id="button" text="Apply" type="success"
@@ -71,7 +74,7 @@
         <div class="data">{{payableAmount-discountAmount|currency:'INR'}}
         </div>
     </div>
-    <p style="color:green"> {{selectMeMessage}}</p>
+    <!-- <p style="color:green"> {{selectMeMessage}}</p> -->
     </div>
     <div class="dx-fieldset">
     <div class="dx-field">
@@ -83,7 +86,6 @@
                   displayExpr="Text" 
                   valueExpr="Id"
                   [searchEnabled]="true"
-                  [disabled]="selectboxdisabled"
                   [value]='paymentModedatavalue'>
                </dx-select-box>
            </div>

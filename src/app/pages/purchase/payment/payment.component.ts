@@ -161,6 +161,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       });
     }
+    
     OnCouponCode(value){
       if (value.length < 6) {  //checks for couponcode length
         this.discountAmount = 0;
@@ -169,6 +170,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         this.disableButton=false;
       }
     }
+
     onApply() {
       //this.loading=true;
       this.loadingSwitchService.loading=true;
@@ -198,6 +200,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       });
     }
+
     checkBox_valueChanged(event) {
       this.checkClicked = !this.checkClicked;
       if (this.checkClicked ==false) {
