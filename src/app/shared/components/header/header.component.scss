@@ -8,7 +8,11 @@
 
   ::ng-deep .dx-toolbar .dx-toolbar-item.menu-button>.dx-toolbar-item-content .dx-icon {
     //color: $base-accent;
-    color:#ffffff;
+    color:#ad2828;
+    border: 1px solid #ec963ad4;
+    padding: 5px;
+    border-radius: 5px;
+
   }
 }
 
@@ -74,5 +78,10 @@ img.site-logo {
   .menu-item{
 display: none;
 
+}
+
+img.site-logo {
+  margin-top: -12px;
+  margin-left: 2px;
 }
 }
