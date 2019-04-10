@@ -21,6 +21,11 @@
 .service-menu{
  
 }
+.buynow-footer {
+  margin-left: 40%;
+  margin-top: 40px;
+}
+
 ul {
   background-image: url(/assets/images/menu-background.png);
   background-repeat: no-repeat;
@@ -52,4 +57,12 @@ li a:hover:not(.active) {
 
 .active {
   background-color: rgb(180, 131, 24);
+}
+@media (max-width: 800px) {
+
+  .buynow-footer {
+    margin-left: 20%;
+    margin-top: 40px;
+  }
+  
 }

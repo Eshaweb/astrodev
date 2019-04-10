@@ -74,7 +74,7 @@ export class HeaderComponent {
       this.loginService.userProfileVisible=false;
       this.loginService.serviceMenus=serviceMenusBeforeLogin;
     }
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 900) {
       this.isMobileResolution = true;
     } else {
       this.isMobileResolution = false;
