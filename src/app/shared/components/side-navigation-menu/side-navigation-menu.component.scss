@@ -35,10 +35,10 @@
         padding-left: 0;
         padding-right: 0;
 
-        .dx-icon {
-          width: $side-panel-min-width !important;
-          margin: 0 !important;
-        }
+        // .dx-icon {
+        //   width: $side-panel-min-width !important;
+        //   margin: 0 !important;
+        // }
       }
       // ##
       
@@ -65,10 +65,10 @@
           border-bottom: 1px solid #a76017 !important;
         }
   
-        &[aria-level='2'] .dx-treeview-item-content {
-          font-weight: normal;
-          padding: 0 $side-panel-min-width;
-        }
+        // &[aria-level='2'] .dx-treeview-item-content {
+        //   font-weight: normal;
+        //   padding: 0 $side-panel-min-width;
+        // }
       }
       // ##
     }
