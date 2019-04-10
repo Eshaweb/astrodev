@@ -108,4 +108,10 @@
 </dx-drawer>
 
 
-<!-- <app-footer></app-footer> -->
+<app-footer *ngIf='itemService.BuyNowVisible'>
+    <dx-button
+    icon="cart"
+    type="success"
+    text="For More Details Buy Now">
+    </dx-button>
+</app-footer>

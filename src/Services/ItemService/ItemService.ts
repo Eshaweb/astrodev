@@ -7,6 +7,7 @@ import { BasePrice } from 'src/app/pages/admin/baseprice/baseprice.component';
 export class ItemService {
     ItActId:string;
     ItemAmount: any;
+    BuyNowVisible: boolean;
     constructor(public httpService: HttpService) {
 
     }

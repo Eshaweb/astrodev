@@ -7,6 +7,7 @@ import { OrderResponse } from 'src/Models/OrderResponse';
 
 @Injectable()
 export class ProductService {
+  ProductName: string;
     
     constructor(public httpService: HttpService){
 

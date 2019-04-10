@@ -24,21 +24,24 @@ export class HoroscopeFreeDataComponent implements OnInit {
     horoModel: HoroRequest;
     caption: any;
     horoResponse: any;
-    ngOnInit(): void {
-        this.caption = new Caption();
-        this.GetCaption(this.horoModel.LangCode, this.caption);
-    }
+    
     constructor(public storageService: StorageService, private itemService: ItemService, public captionDbService: CaptionDbService,
         public _location: Location, public route: ActivatedRoute, public router: Router, public registrationService: RegistrationService,
         public platform: Platform, public loginService: LoginService, public horoScopeService: HoroScopeService) {
-
+        this.itemService.BuyNowVisible=true;
         //this.horoModel=this.horoScopeService.horoRequest;
         this.horoModel = this.storageService.GetHoroRequest('#SH');
         this.horoResponse = new HoroResponse();
         //this.horoResponse=this.horoScopeService.horoResponse;
         this.horoResponse = this.storageService.GetHoroResponse('#SH');
     }
-
+    ngOnInit(): void {
+        this.caption = new Caption();
+        this.GetCaption(this.horoModel.LangCode, this.caption);
+    }
+    ngOnDestroy(): void {
+        this.itemService.BuyNowVisible=false;
+    }
     GetCaption(langCode: string, caption: Caption) {
         this.captionDbService.GetCaption(langCode, caption);
     }

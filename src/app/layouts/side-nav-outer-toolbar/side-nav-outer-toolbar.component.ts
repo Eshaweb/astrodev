@@ -12,6 +12,7 @@ import { navigationAfterLogin, navigationBeforeLogin, navigationAfterLoginForSys
 import { DxNavBarModule, DxButtonModule, DxMenuModule } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
+import { ItemService } from 'src/Services/ItemService/ItemService';
 @Component({
   selector: 'app-side-nav-outer-toolbar',
   templateUrl: './side-nav-outer-toolbar.component.html',
@@ -40,7 +41,8 @@ export class SideNavOuterToolbarComponent implements OnInit {
   menuItems: any;
   serviceList:any;
 
-  constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, private screen: ScreenService, private router: Router) {
+  constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, private screen: ScreenService, 
+    private router: Router, public itemService:ItemService) {
     if (window.location.pathname == '/home') {
       this.loginService.isHomePage=true;
      }
@@ -179,7 +181,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
 
 @NgModule({
   imports: [SideNavigationMenuModule, DxButtonModule, DxMenuModule, DxDrawerModule, HeaderModule, DxScrollViewModule, CommonModule, DxNavBarModule, 
-    //FooterModule
+    FooterModule
   ],
   exports: [SideNavOuterToolbarComponent],
   declarations: [SideNavOuterToolbarComponent]
