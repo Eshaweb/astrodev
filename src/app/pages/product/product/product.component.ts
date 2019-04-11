@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/Services/ProductService/ProductService';
+import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 @Component({
   selector: 'app-product',
@@ -9,18 +11,30 @@ import { ProductService } from 'src/Services/ProductService/ProductService';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(public productService:ProductService,public router: Router) { }
+  constructor(public loginService:LoginService,public productService:ProductService,public router: Router) { }
 
   ngOnInit() {
 
   }
   OnAstroLiteProducts_Click(value) {
-    if (value == "Gold") {
-      this.productService.ProductName = "Gold";
+    if (StorageService.GetItem('refreshToken') != undefined) {
+      if (value == "Gold") {
+        this.productService.ProductName = "Gold";
+      }
+      else if (value == "Silver") {
+        this.productService.ProductName = "Silver";
+      }
+      this.router.navigate(["/products/astrogoldsilver"]);
     }
-    else if (value == "Silver") {
-      this.productService.ProductName = "Silver";
+    else {
+      if (value == "Gold") {
+        this.productService.ProductName = "Gold";
+      }
+      else if (value == "Silver") {
+        this.productService.ProductName = "Silver";
+      }
+      this.loginService.path = "/products/astrogoldsilver";
+      this.router.navigate(["/login-form"]);
     }
-    this.router.navigate(["/products/astrogoldsilver"]);
   }
 }

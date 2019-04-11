@@ -4,56 +4,66 @@
     class="dx-card responsive-paddings service-list">
     <img src="assets/images/Astamangala.png" />
     <h3>Astamangala</h3>
-    <div class="content-summary" *ngIf="!contentFullAstamangala"> Ashtamangala prashne is a form of practice under Vedic astrology, followed widely in Kerala, where usually a Navagraha pooja is performed to seek blessings from the Navagraha. After the pooja, with the arrangement of cowry shells, sandalwood, floral offerings, gold coin etc..</div>
+    <!-- <div class="content-summary" *ngIf="!contentFullAstamangala"> Ashtamangala prashne is a form of practice under Vedic astrology, followed widely in Kerala, where usually a Navagraha pooja is performed to seek blessings from the Navagraha. After the pooja, with the arrangement of cowry shells, sandalwood, floral offerings, gold coin etc..</div>
     <div class="content-full" *ngIf="contentFullAstamangala"> Ashtamangala prashne is a form of practice under Vedic astrology, followed widely in Kerala, where usually a Navagraha pooja is performed to seek blessings from the Navagraha. After the pooja, with the arrangement of cowry shells, sandalwood, floral offerings, gold coin etc are placed in the hands of a little child. On the basis of the placement of the gold coin randomly in one of the twelve houses drawn in front of the astrologer, a review or diagnosis is done, which in turn takes some other aspects or omens also into consideration, like a lamp, Tamboola etc for a proper assessment. This software could be useful for the astrologers to get the requisite readings for the said purpose. Shadarooda, the corresponding Yoni, Jantu, Rashi or Nakshatra with respect to the Ashtamangala Number, Panchasootra, Chandrakriya, Chandraavastha, Chandravela Phala, Dinaashtabhaaga, Saptabhaaga, Tamboola graha, Baalaanna Varjya Nakshatra corresponding to the time of arrival of the Astrologer or Daivanjna, Gandanta, Ushnashikha etc, Thrisphuta, Chathusphuta and more than 70 other Sphutas as well as many other calculations for the DevaPrashna have been provided. 
     </div>
     <dx-button id="button" *ngIf="!contentFullAstamangala" text= "Read More" type="success" [useSubmitBehavior]="true" (onClick)='OnReadMore_click("Astamangala")'></dx-button>&nbsp;&nbsp;
     <dx-button id="button" *ngIf="contentFullAstamangala" text= "Read Less" type="success" [useSubmitBehavior]="true" (onClick)='OnReadLess_click("Astamangala")'></dx-button>&nbsp;&nbsp;
-    <dx-button id="button" text="Explore More" (onClick)="OnAstamangala_Click()" type="success" [useSubmitBehavior]="true"></dx-button>
-    
+    <dx-button id="button" text="Explore More" (onClick)="OnAstamangala_Click()" type="success" [useSubmitBehavior]="true"></dx-button> -->
+    <div class="content-full"> Ashtamangala prashne is a form of practice under Vedic astrology, followed widely in Kerala, where usually a Navagraha pooja is performed to seek blessings from the Navagraha. After the pooja, with the arrangement of cowry shells, sandalwood, floral offerings, gold coin etc are placed in the hands of a little child. On the basis of the placement of the gold coin randomly in one of the twelve houses drawn in front of the astrologer, a review or diagnosis is done, which in turn takes some other aspects or omens also into consideration, like a lamp, Tamboola etc for a proper assessment. This software could be useful for the astrologers to get the requisite readings for the said purpose. Shadarooda, the corresponding Yoni, Jantu, Rashi or Nakshatra with respect to the Ashtamangala Number, Panchasootra, Chandrakriya, Chandraavastha, Chandravela Phala, Dinaashtabhaaga, Saptabhaaga, Tamboola graha, Baalaanna Varjya Nakshatra corresponding to the time of arrival of the Astrologer or Daivanjna, Gandanta, Ushnashikha etc, Thrisphuta, Chathusphuta and more than 70 other Sphutas as well as many other calculations for the DevaPrashna have been provided. 
+    </div>
+    <div class="hlink" (click)="OnAstamangala_Click()">Explore More</div>
 </div>
   <div
     class="dx-card responsive-paddings service-list">
     <img src="assets/images/Horoscope.png" />
     <h3>Horoscope</h3>
-    <div class="content-summary" *ngIf="!contentFullHoroscope">It is believed that a person experiences benefic or malefic virtues according to his deeds during his lifetime. Moreover, the deeds of the present lifespan determine the benefic or malefic experience in our rebirth, be it in the form of any being.According to Vedic astrology,..</div>
+    <!-- <div class="content-summary" *ngIf="!contentFullHoroscope">It is believed that a person experiences benefic or malefic virtues according to his deeds during his lifetime. Moreover, the deeds of the present lifespan determine the benefic or malefic experience in our rebirth, be it in the form of any being.According to Vedic astrology,..</div>
     <div class="content-full" *ngIf="contentFullHoroscope">It is believed that a person experiences benefic or malefic virtues according to his deeds during his lifetime. Moreover, the deeds of the present lifespan determine the benefic or malefic experience in our rebirth, be it in the form of any being.
       According to Vedic astrology, it can be clearly predicted whether the deeds performed by an individual were good or bad in his previous lives through one's horoscope. As per this, based on some authentic calculations the predictions are made with respect to one's education, occupation, marriage, marital life, issues of children, health, dealings or any other pros and cons experienced by a person, thereby suggesting some relief measures too. The above said matters depend on the accuracy of the time, date and place of birth of an individual. So, a horoscope prepared on the basis of the above credentials could help a person lead a fruitful life knowing how to deal with matters one experiences and act accordingly. Hence, the horoscope is prepared very carefully on the basis of aspects like Samvatsara, Solar or lunar months, Nithyapanchanga, Grahasputa, Shadbala, Saptavarga, Ashtakavarga, Bindushodhane, Rashmibala, Kaalachakra dasha, Bhava shashtyamsha, details of Dashasandhi, Balarishta at the time of birth, Sadyorishta, Nakshatra sookshma phala, details of Vamsharishtha if any, Arishtabhanga, details of Bhavashashtyamsha for Bhava Phala, importance of Ashtakavarga phala, Samudayashtaka varga phala etc, which have been taken into consideration.</div>
       
     <dx-button id="button"text= "Read More" *ngIf="!contentFullHoroscope" type="success" [useSubmitBehavior]="true" (onClick)='OnReadMore_click("Horoscope")'></dx-button>&nbsp;&nbsp;
     <dx-button id="button"text= "Read Less" *ngIf="contentFullHoroscope" type="success" [useSubmitBehavior]="true" (onClick)='OnReadLess_click("Horoscope")'></dx-button>&nbsp;&nbsp;
-    <dx-button id="button" text="Explore More" (onClick)="OnHoroScope_Click()" type="success" [useSubmitBehavior]="true"></dx-button>
-  </div>
+    <dx-button id="button" text="Explore More" (onClick)="OnHoroScope_Click()" type="success" [useSubmitBehavior]="true"></dx-button> -->
+    <div class="content-full">It is believed that a person experiences benefic or malefic virtues according to his deeds during his lifetime. Moreover, the deeds of the present lifespan determine the benefic or malefic experience in our rebirth, be it in the form of any being.
+      According to Vedic astrology, it can be clearly predicted whether the deeds performed by an individual were good or bad in his previous lives through one's horoscope. As per this, based on some authentic calculations the predictions are made with respect to one's education, occupation, marriage, marital life, issues of children, health, dealings or any other pros and cons experienced by a person, thereby suggesting some relief measures too. The above said matters depend on the accuracy of the time, date and place of birth of an individual. So, a horoscope prepared on the basis of the above credentials could help a person lead a fruitful life knowing how to deal with matters one experiences and act accordingly. Hence, the horoscope is prepared very carefully on the basis of aspects like Samvatsara, Solar or lunar months, Nithyapanchanga, Grahasputa, Shadbala, Saptavarga, Ashtakavarga, Bindushodhane, Rashmibala, Kaalachakra dasha, Bhava shashtyamsha, details of Dashasandhi, Balarishta at the time of birth, Sadyorishta, Nakshatra sookshma phala, details of Vamsharishtha if any, Arishtabhanga, details of Bhavashashtyamsha for Bhava Phala, importance of Ashtakavarga phala, Samudayashtaka varga phala etc, which have been taken into consideration.</div>
+      <div class="hlink" (click)="OnHoroScope_Click()">Explore More</div>
+    </div>
   <div
     class="dx-card responsive-paddings service-list">
     <img src="assets/images/MelaMeli.png" />
     <h3>Match Making</h3>
-    <div class="content-summary" *ngIf="!contentFullMatchMaking">The compatibility between a male and female could be assessed precisely based on the date, time and place of birth to match the horoscopes of prospective brides and bridegrooms in order to achieve marital harmony.. </div>
+    <!-- <div class="content-summary" *ngIf="!contentFullMatchMaking">The compatibility between a male and female could be assessed precisely based on the date, time and place of birth to match the horoscopes of prospective brides and bridegrooms in order to achieve marital harmony.. </div>
     <div class="content-full" *ngIf="contentFullMatchMaking">The compatibility between a male and female could be assessed precisely based on the date, time and place of birth to match the horoscopes of prospective brides and bridegrooms in order to achieve marital harmony. The software furnishes Dashakoota as well as Ashtakoota, which is also depicted in terms of percentage (%). The assessment of Dashasandhi at the same time in both the horoscopes, the resemblance in malefic planets and a review of the planets in the Seventh and Eighth house (Sapthamashtama bhava) have been provided. Although the assessment is given over here as an authentic report, it is at the discretion of the astrologer to get a report of his choice. A concise report has also been provided for a person who has just an input of Rashi and Nakshatra.</div>
-
     <dx-button id="button"text= "Read More" *ngIf="!contentFullMatchMaking" type="success" [useSubmitBehavior]="true" (onClick)='OnReadMore_click("MatchMaking")'></dx-button>&nbsp;&nbsp;
     <dx-button id="button"text= "Read Less" *ngIf="contentFullMatchMaking" type="success" [useSubmitBehavior]="true" (onClick)='OnReadLess_click("MatchMaking")'></dx-button>&nbsp;&nbsp;
-    <dx-button id="button"text="Explore More" (onClick)="OnMatchMaking_Click()" type="success" [useSubmitBehavior]="true"></dx-button>
-</div>
+    <dx-button id="button"text="Explore More" (onClick)="OnMatchMaking_Click()" type="success" [useSubmitBehavior]="true"></dx-button> -->
+    <div class="content-full">The compatibility between a male and female could be assessed precisely based on the date, time and place of birth to match the horoscopes of prospective brides and bridegrooms in order to achieve marital harmony. The software furnishes Dashakoota as well as Ashtakoota, which is also depicted in terms of percentage (%). The assessment of Dashasandhi at the same time in both the horoscopes, the resemblance in malefic planets and a review of the planets in the Seventh and Eighth house (Sapthamashtama bhava) have been provided. Although the assessment is given over here as an authentic report, it is at the discretion of the astrologer to get a report of his choice. A concise report has also been provided for a person who has just an input of Rashi and Nakshatra.</div>
+    <div class="hlink" (click)="OnMatchMaking_Click()">Explore More</div>
+  </div>
   <div
     class="dx-card responsive-paddings service-list">
     <img src="assets/images/Muhurtha.png" />
     <h3>Muhurtha</h3>
-    <div class="content-summary" *ngIf="!contentFullMuhurtha">Muhurtha have been generated on the basis of the calculations formulated in the books like Muhurtha Padavi and Muhurtha Madhavi, through which one could easily access the most auspicious time with respect to some special occasion or ceremony to be .. </div>
+    <!-- <div class="content-summary" *ngIf="!contentFullMuhurtha">Muhurtha have been generated on the basis of the calculations formulated in the books like Muhurtha Padavi and Muhurtha Madhavi, through which one could easily access the most auspicious time with respect to some special occasion or ceremony to be .. </div>
     <div class="content-full" *ngIf="contentFullMuhurtha">Muhurtha have been generated on the basis of the calculations formulated in the books like Muhurtha Padavi and Muhurtha Madhavi, through which one could easily access the most auspicious time with respect to some special occasion or ceremony to be held in any part of the world. During Brahmopadesham or Upanayana, it could be extremely useful to know the purity of the Eighth house as well as the Gurubala to decide the most auspicious Muhurtha. It could be also useful to know the Muhurtha for buying a vehicle, beginning a house construction, a new job or a new journey etc. It also depicts the arrangement of planets as well as the Bhavashuddhi at the given Muhurtha through a GrahaKundali. Anyone can have easy access to Muhurtha if he has the relevant inputs.</div>
     <dx-button id="button" text= "Read More" *ngIf="!contentFullMuhurtha" type="success" [useSubmitBehavior]="true" (onClick)='OnReadMore_click("Muhurtha")'></dx-button>&nbsp;&nbsp;
     <dx-button id="button" text= "Read Less" *ngIf="contentFullMuhurtha" type="success" [useSubmitBehavior]="true" (onClick)='OnReadLess_click("Muhurtha")'></dx-button>&nbsp;&nbsp;
-    <dx-button id="button"text="Explore More" (onClick)="OnMuhurtha_Click()" type="success" [useSubmitBehavior]="true"></dx-button>
-</div>
+    <dx-button id="button"text="Explore More" (onClick)="OnMuhurtha_Click()" type="success" [useSubmitBehavior]="true"></dx-button> -->
+    <div class="content-full">Muhurtha have been generated on the basis of the calculations formulated in the books like Muhurtha Padavi and Muhurtha Madhavi, through which one could easily access the most auspicious time with respect to some special occasion or ceremony to be held in any part of the world. During Brahmopadesham or Upanayana, it could be extremely useful to know the purity of the Eighth house as well as the Gurubala to decide the most auspicious Muhurtha. It could be also useful to know the Muhurtha for buying a vehicle, beginning a house construction, a new job or a new journey etc. It also depicts the arrangement of planets as well as the Bhavashuddhi at the given Muhurtha through a GrahaKundali. Anyone can have easy access to Muhurtha if he has the relevant inputs.</div>
+    <div class="hlink" (click)="OnMuhurtha_Click()">Explore More</div>
+  </div>
   <div
     class="dx-card responsive-paddings service-list">
     <img src="assets/images/panchanga.png" />
     <h3>Panchanga</h3>
-    <div class="content-summary" *ngIf="!contentFullPanchanga">Panchangam or to get the information with respect to Thithi, Vara, Nakshatra, Yoga, Karana at any location across the world could be known in terms of Ghati- Vighati as well as in hours and minutes separately. One could even know about the speciality of .. </div>
+    <!-- <div class="content-summary" *ngIf="!contentFullPanchanga">Panchangam or to get the information with respect to Thithi, Vara, Nakshatra, Yoga, Karana at any location across the world could be known in terms of Ghati- Vighati as well as in hours and minutes separately. One could even know about the speciality of .. </div>
     <div class="content-full" *ngIf="contentFullPanchanga">Panchangam or to get the information with respect to Thithi, Vara, Nakshatra, Yoga, Karana at any location across the world could be known in terms of Ghati- Vighati as well as in hours and minutes separately. One could even know about the speciality of the day; for eg; Shivarathri, Ramanavami, Akshaya Thritiya etc</div>
     <dx-button id="button"text= "Read More" *ngIf="!contentFullPanchanga" type="success" [useSubmitBehavior]="true" (onClick)='OnReadMore_click("Panchanga")'></dx-button>&nbsp;&nbsp;
     <dx-button id="button"text= "Read Less" *ngIf="contentFullPanchanga" type="success" [useSubmitBehavior]="true" (onClick)='OnReadLess_click("Panchanga")'></dx-button>&nbsp;&nbsp;
-    <dx-button id="button"text="Explore More" type="success" (onClick)='OnPanchanga_Click()' [useSubmitBehavior]="true"></dx-button>
+    <dx-button id="button"text="Explore More" type="success" (onClick)='OnPanchanga_Click()' [useSubmitBehavior]="true"></dx-button> -->
+    <div class="content-full">Panchangam or to get the information with respect to Thithi, Vara, Nakshatra, Yoga, Karana at any location across the world could be known in terms of Ghati- Vighati as well as in hours and minutes separately. One could even know about the speciality of the day; for eg; Shivarathri, Ramanavami, Akshaya Thritiya etc</div>
+    <div class="hlink" (click)="OnPanchanga_Click()">Explore More</div>
 </div>
 
   <!-- <div class="dx-card responsive-paddings service-list" (click)='OnPanchaPakshi_Click()'>
@@ -65,28 +75,33 @@
     class="dx-card responsive-paddings service-list">
     <img src="assets/images/Sankyashasthra.png" />
     <h3>Numerology</h3>
-    <div class="content-summary" *ngIf="!contentFullNumerology">One could suggest the lucky number, colour or a gemstone according to Numerology. Even the names could be suggested as well accordingly. The upcoming lucky or unlucky days could be predicted too, along with some other details.</div>
+    <!-- <div class="content-summary" *ngIf="!contentFullNumerology">One could suggest the lucky number, colour or a gemstone according to Numerology. Even the names could be suggested as well accordingly. The upcoming lucky or unlucky days could be predicted too, along with some other details.</div>
     <div class="content-full" *ngIf="contentFullNumerology">One could suggest the lucky number, colour or a gemstone according to Numerology. Even the names could be suggested as well accordingly. The upcoming lucky or unlucky days could be predicted too, along with some other details.</div>
     <dx-button id="button"text= "Read More" *ngIf="!contentFullNumerology" type="success" [useSubmitBehavior]="true" (onClick)='OnReadMore_click("Numerology")'></dx-button>&nbsp;&nbsp;
     <dx-button id="button"text= "Read Less" *ngIf="contentFullNumerology" type="success" [useSubmitBehavior]="true" (onClick)='OnReadLess_click("Numerology")'></dx-button>&nbsp;&nbsp;
-    <dx-button id="button"text="Explore More" type="success" (onClick)='OnNumerology_Click()' [useSubmitBehavior]="true"></dx-button>
-</div>
+    <dx-button id="button"text="Explore More" type="success" (onClick)='OnNumerology_Click()' [useSubmitBehavior]="true"></dx-button> -->
+    <div class="content-full">One could suggest the lucky number, colour or a gemstone according to Numerology. Even the names could be suggested as well accordingly. The upcoming lucky or unlucky days could be predicted too, along with some other details.</div>
+    <div class="hlink" (click)="OnNumerology_Click()">Explore More</div>
+  </div>
 <div class="dx-card responsive-paddings service-list">
         <img src="assets/images/Hanuma Jothisya.png" />
         <h3>Hanuman Jyothisha</h3>
-        <div class="content-summary" *ngIf="!contentFullHanumanJyothisha">In this app, one could select a relevant question from the list provided to know the solutions to the doubts arising in the life of an individual. For e.g; Can a particular subject be learnt? Will there be a chance to get a good job?Are there chances of marriage? Etc</div>
+        <!-- <div class="content-summary" *ngIf="!contentFullHanumanJyothisha">In this app, one could select a relevant question from the list provided to know the solutions to the doubts arising in the life of an individual. For e.g; Can a particular subject be learnt? Will there be a chance to get a good job?Are there chances of marriage? Etc</div>
         <div class="content-full" *ngIf="contentFullHanumanJyothisha">In this app, one could select a relevant question from the list provided to know the solutions to the doubts arising in the life of an individual. For e.g; Can a particular subject be learnt? Will there be a chance to get a good job? Are there chances of marriage? Etc</div>
         <dx-button id="button"text= "Read More" *ngIf="!contentFullHanumanJyothisha" type="success" [useSubmitBehavior]="true" (onClick)='OnReadMore_click("HanumanJyothisha")'></dx-button>&nbsp;&nbsp;
         <dx-button id="button"text= "Read Less" *ngIf="contentFullHanumanJyothisha" type="success" [useSubmitBehavior]="true" (onClick)='OnReadLess_click("HanumanJyothisha")'></dx-button>&nbsp;&nbsp;
-        <dx-button id="button"text="Explore More" (onClick)='OnPanchanga_Click()' type="success" [useSubmitBehavior]="true"></dx-button>
+        <dx-button id="button"text="Explore More" (onClick)='OnPanchanga_Click()' type="success" [useSubmitBehavior]="true"></dx-button> -->
+        <div class="content-full">In this app, one could select a relevant question from the list provided to know the solutions to the doubts arising in the life of an individual. For e.g; Can a particular subject be learnt? Will there be a chance to get a good job? Are there chances of marriage? Etc</div>
+        <div class="hlink" (click)="OnPanchanga_Click()">Explore More</div>
     </div>
   <div class="dx-card responsive-paddings service-list">
-    <img src="assets/images/Sankyashasthra.png" />
+    <img src="assets/images/Wallet.png" />
     <h3>Wallet</h3>
     <h2 *ngIf="walletBalanceAmount">Wallet Balance:  {{walletBalanceAmount|currency:'INR'}}</h2>
-    <dx-button id="button"text= "Read More" *ngIf="!contentFullWallet" type="success" [useSubmitBehavior]="true"></dx-button>&nbsp;&nbsp;
+    <!-- <dx-button id="button"text= "Read More" *ngIf="!contentFullWallet" type="success" [useSubmitBehavior]="true"></dx-button>&nbsp;&nbsp;
     <dx-button id="button"text= "Read Less" *ngIf="contentFullWallet" type="success" [useSubmitBehavior]="true"></dx-button>&nbsp;&nbsp;
-    <dx-button id="button"text="Explore More" (onClick)='OnWalletDeposit_Click()' type="success" [useSubmitBehavior]="true"></dx-button>
+    <dx-button id="button"text="Explore More" (onClick)='OnWalletDeposit_Click()' type="success" [useSubmitBehavior]="true"></dx-button> -->
+    <div class="hlink" (click)="OnWalletDeposit_Click()">Explore More</div>
     <div class="content-full"></div>
   </div>
 </div>

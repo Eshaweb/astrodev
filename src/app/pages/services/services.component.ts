@@ -98,65 +98,65 @@ onServiceClick(event){
     }
   }
 
-  OnReadMore_click(value) {
-    switch (value) {
-      case "Astamangala":
-        this.contentFullAstamangala = true;
-        break;
-      case "Horoscope":
-        this.contentFullHoroscope = true;
-        break;
-      case "MatchMaking":
-        this.contentFullMatchMaking = true;
-        break;
-      case "Muhurtha":
-        this.contentFullMuhurtha = true;
-        break;
-      case "Panchanga":
-        this.contentFullPanchanga = true;
-        break;
-      case "Numerology":
-        this.contentFullNumerology = true;
-        break;
-      case "HanumanJyothisha":
-        this.contentFullHanumanJyothisha = true;
-        break;
-      case "Wallet":
-        this.contentFullWallet = true;
-        break;
-      default: break;
-    }
+  // OnReadMore_click(value) {
+  //   switch (value) {
+  //     case "Astamangala":
+  //       this.contentFullAstamangala = true;
+  //       break;
+  //     case "Horoscope":
+  //       this.contentFullHoroscope = true;
+  //       break;
+  //     case "MatchMaking":
+  //       this.contentFullMatchMaking = true;
+  //       break;
+  //     case "Muhurtha":
+  //       this.contentFullMuhurtha = true;
+  //       break;
+  //     case "Panchanga":
+  //       this.contentFullPanchanga = true;
+  //       break;
+  //     case "Numerology":
+  //       this.contentFullNumerology = true;
+  //       break;
+  //     case "HanumanJyothisha":
+  //       this.contentFullHanumanJyothisha = true;
+  //       break;
+  //     case "Wallet":
+  //       this.contentFullWallet = true;
+  //       break;
+  //     default: break;
+  //   }
 
-  }
-  OnReadLess_click(value) {
-    switch (value) {
-      case "Astamangala":
-        this.contentFullAstamangala = false;
-        break;
-      case "Horoscope":
-        this.contentFullHoroscope = false;
-        break;
-      case "MatchMaking":
-        this.contentFullMatchMaking = false;
-        break;
-      case "Muhurtha":
-        this.contentFullMuhurtha = false;
-        break;
-      case "Panchanga":
-        this.contentFullPanchanga = false;
-        break;
-      case "Numerology":
-        this.contentFullNumerology = false;
-        break;
-      case "HanumanJyothisha":
-        this.contentFullHanumanJyothisha = false;
-        break;
-      case "Wallet":
-        this.contentFullWallet = false;
-        break;
-      default: break;
-    }
-  }
+  // }
+  // OnReadLess_click(value) {
+  //   switch (value) {
+  //     case "Astamangala":
+  //       this.contentFullAstamangala = false;
+  //       break;
+  //     case "Horoscope":
+  //       this.contentFullHoroscope = false;
+  //       break;
+  //     case "MatchMaking":
+  //       this.contentFullMatchMaking = false;
+  //       break;
+  //     case "Muhurtha":
+  //       this.contentFullMuhurtha = false;
+  //       break;
+  //     case "Panchanga":
+  //       this.contentFullPanchanga = false;
+  //       break;
+  //     case "Numerology":
+  //       this.contentFullNumerology = false;
+  //       break;
+  //     case "HanumanJyothisha":
+  //       this.contentFullHanumanJyothisha = false;
+  //       break;
+  //     case "Wallet":
+  //       this.contentFullWallet = false;
+  //       break;
+  //     default: break;
+  //   }
+  // }
 }
 
 

@@ -37,6 +37,10 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
       public captionDbService:CaptionDbService, public muhurthaService: MuhurthaService) {
         //this.muhurthaResponse=muhurthaService.muhurthaResponse;
         this.muhurthaResponse=this.storageService.GetHoroResponse('#MU');
+        if(this.muhurthaResponse.CountDesc!=null){
+          this.itemService.BuyNowVisible=true;
+          this.itemService.ItemName = 'Muhurtha';
+        }
     }
 
     GetCaption(langCode:string,caption:Caption)

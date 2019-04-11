@@ -37,6 +37,9 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
       } else {
         this.isMobileResolution = false;
       }
+
+      // this.itemService.BuyNowVisible=true;
+      // this.itemService.ItemName = 'Panchanga';
     }
     constructor(public storageService:StorageService,private itemService:ItemService, public router: Router, public loginService: LoginService, 
       public captionDbService:CaptionDbService, public panchangaService: PanchangaService) {

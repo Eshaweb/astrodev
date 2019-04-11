@@ -29,6 +29,7 @@ export class HoroscopeFreeDataComponent implements OnInit {
         public _location: Location, public route: ActivatedRoute, public router: Router, public registrationService: RegistrationService,
         public platform: Platform, public loginService: LoginService, public horoScopeService: HoroScopeService) {
         this.itemService.BuyNowVisible=true;
+        this.itemService.ItemName = 'Horoscope';
         //this.horoModel=this.horoScopeService.horoRequest;
         this.horoModel = this.storageService.GetHoroRequest('#SH');
         this.horoResponse = new HoroResponse();

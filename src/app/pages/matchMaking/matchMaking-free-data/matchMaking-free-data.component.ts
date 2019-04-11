@@ -28,6 +28,8 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
       //this.matchRequest=this.matchMakingService.matchRequest;
       this.matchRequest=this.storageService.GetHoroRequest('#SM');
       this.GetCaption(this.matchRequest.LangCode, this.caption);
+      this.itemService.BuyNowVisible=true;
+      this.itemService.ItemName = 'Match Making';
     }
 
     getFont(LangCode) {

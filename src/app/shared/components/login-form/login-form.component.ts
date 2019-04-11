@@ -63,6 +63,8 @@ export class LoginFormComponent {
   Name: any;
   horoInfo: any;
   loading: boolean;
+  ShowPassword_checkBoxValue: boolean;
+  textboxMode: string="password";
 
   constructor(public orderService: OrderService, public storageService: StorageService, private muhurthaService: MuhurthaService, private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
     private astamangalaService: AstamangalaService, public registrationService: RegistrationService, public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager,
@@ -131,13 +133,23 @@ export class LoginFormComponent {
       this.loggedIn = (user != null);
       // alert(user.authToken);
     });
+    this.ShowPassword_checkBoxValue=false;
   }
   ngAfterViewInit(): void {
     if(this.registrationService.UserName!=undefined){
       this.loginForm.controls['UserName'].setValue(this.registrationService.UserName);
     }
   }
-
+  ShowPassword_Click(event) {
+    if (event.value == true) {
+      this.ShowPassword_checkBoxValue = true;
+      this.textboxMode="text";
+    }
+    else {
+      this.ShowPassword_checkBoxValue = false;
+      this.textboxMode="password";
+    }
+  }
   public signIn(event) {
     event.dialog.close();
   }

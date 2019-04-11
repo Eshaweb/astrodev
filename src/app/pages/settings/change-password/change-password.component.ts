@@ -33,6 +33,8 @@ export class ChangePasswordComponent {
   confirm_PasswordMessage: string;
   refCodeMessage: string;
   isLoading: boolean;
+    ShowPassword_checkBoxValue: boolean;
+    textboxMode: string="password";
 
 
   constructor(public registrationService:RegistrationService,public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, public uiService: UIService, public partyService: PartyService,
@@ -75,6 +77,7 @@ export class ChangePasswordComponent {
       confirm_NewPassword_invalid: 'Password doesnot match',
 
   };
+
   matchingPasswords(group: FormGroup) { // here we have the 'passwords' group
       let password = group.controls.NewPassword.value;
       let confirmpwd = group.controls.confirm_NewPassword.value;
@@ -82,6 +85,21 @@ export class ChangePasswordComponent {
           return null;
       }
       return password === confirmpwd ? null : { notSame: true }
+  }
+
+  ngOnInit(){
+    this.ShowPassword_checkBoxValue=false;
+  }
+
+  ShowPassword_Click(event) {
+    if (event.value == true) {
+      this.ShowPassword_checkBoxValue = true;
+      this.textboxMode="text";
+    }
+    else {
+      this.ShowPassword_checkBoxValue = false;
+      this.textboxMode="password";
+    }
   }
   OnSave_Click() {
       this.loadingSwitchService.loading = true;
@@ -96,9 +114,7 @@ export class ChangePasswordComponent {
           }
       });
   }
-  ngOnInit(){
-
-  }
+  
   backClicked() {
       this._location.back();
   }

@@ -24,6 +24,8 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
       this.caption=new Caption();
       this.horoModel=this.storageService.GetHoroRequest('#SA');
       this.GetCaption(this.horoModel.LangCode, this.caption);
+      this.itemService.BuyNowVisible=true;
+      this.itemService.ItemName = 'Astamangala';
     }
     constructor(public storageService:StorageService, private itemService:ItemService, public router: Router, public loginService: LoginService, public captionDbService:CaptionDbService, public astamangalaService: AstamangalaService) {
       this.prashnaFreeModel=this.astamangalaService.horoResponse;

@@ -43,6 +43,8 @@ export class NumerologyFreeDataComponent implements OnInit {
     //this.numerologyRequest = this.numerologyService.numerologyRequest;
     this.numerologyRequest=this.storageService.GetHoroRequest('#NM');
     this.GetCaption(this.numerologyRequest.LangCode, this.caption);
+    this.itemService.BuyNowVisible=true;
+    this.itemService.ItemName = 'Numerology';
   }
   constructor(public storageService: StorageService, public uiService: UIService, public formBuilder: FormBuilder, private itemService: ItemService,
     public router: Router, public loginService: LoginService, public registrationService: RegistrationService,
