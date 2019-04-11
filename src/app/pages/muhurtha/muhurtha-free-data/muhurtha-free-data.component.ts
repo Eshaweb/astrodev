@@ -27,12 +27,7 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
   muhurthaRequest: MuhurthaRequest;
   muhurthaResponse: MuhurthaResponse;
   serialisedPanchangaResponse: SerialisedPanchangaResponse;
-    ngOnInit(): void {
-      this.caption=new Caption();
-      //this.muhurthaRequest=this.muhurthaService.muhurthaRequest;
-      this.muhurthaRequest=this.storageService.GetHoroRequest('#MU');
-      this.GetCaption(this.muhurthaRequest.LangCode, this.caption);
-    }
+    
     constructor(public storageService:StorageService, private registrationService:RegistrationService,private itemService:ItemService, public router: Router, public loginService: LoginService, 
       public captionDbService:CaptionDbService, public muhurthaService: MuhurthaService) {
         //this.muhurthaResponse=muhurthaService.muhurthaResponse;
@@ -40,9 +35,16 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
         if(this.muhurthaResponse.CountDesc!=null){
           this.itemService.BuyNowVisible=true;
           this.itemService.ItemName = 'Muhurtha';
+          this.itemService.ItActId='#MU';
+          StorageService.SetItem('ItActId','#MU');
         }
     }
-
+    ngOnInit(): void {
+      this.caption=new Caption();
+      //this.muhurthaRequest=this.muhurthaService.muhurthaRequest;
+      this.muhurthaRequest=this.storageService.GetHoroRequest('#MU');
+      this.GetCaption(this.muhurthaRequest.LangCode, this.caption);
+    }
     GetCaption(langCode:string,caption:Caption)
    {
     this.captionDbService.GetCaption(langCode,caption);
@@ -62,18 +64,22 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
         return "TamilFont";
     }
   }
-  onClick() {
-    this.itemService.ItActId='#MU';
-    StorageService.SetItem('ItActId','#MU');
-      if (StorageService.GetItem('refreshToken')==undefined) {
-          this.registrationService.registered=true;
-          this.router.navigate(["/login-form"]);
-      }
-      else {
-          // this.router.navigate(["/purchase/paidServices", { "PartyMastId": this.loginService.PartyMastId}]);
-          this.router.navigate(["/purchase/paidServices"]);
 
-      }
-  }
+  ngOnDestroy(): void {
+    this.itemService.BuyNowVisible=false;
+}
+  // onClick() {
+  //   this.itemService.ItActId='#MU';
+  //   StorageService.SetItem('ItActId','#MU');
+  //     if (StorageService.GetItem('refreshToken')==undefined) {
+  //         this.registrationService.registered=true;
+  //         this.router.navigate(["/login-form"]);
+  //     }
+  //     else {
+  //         // this.router.navigate(["/purchase/paidServices", { "PartyMastId": this.loginService.PartyMastId}]);
+  //         this.router.navigate(["/purchase/paidServices"]);
+
+  //     }
+  // }
   }
   

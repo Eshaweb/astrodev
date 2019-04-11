@@ -39,6 +39,8 @@ export class HoroscopeFreeDataComponent implements OnInit {
     ngOnInit(): void {
         this.caption = new Caption();
         this.GetCaption(this.horoModel.LangCode, this.caption);
+        this.itemService.ItActId = '#SH';
+        StorageService.SetItem('ItActId', '#SH');
     }
     ngOnDestroy(): void {
         this.itemService.BuyNowVisible=false;
@@ -64,18 +66,18 @@ export class HoroscopeFreeDataComponent implements OnInit {
                 return "TamilFont";
         }
     }
-    onClick() {
-        this.itemService.ItActId = '#SH';
-        StorageService.SetItem('ItActId', '#SH');
-        if (StorageService.GetItem('refreshToken') == undefined) {
-            this.registrationService.registered = true;
-            this.router.navigate(["/login-form"]);
-        }
-        else {
-            // this.router.navigate(["/purchase/paidServices", { "PartyMastId": this.loginService.PartyMastId}]);
-            this.router.navigate(["/purchase/paidServices"]);
+    // onClick() {
+    //     this.itemService.ItActId = '#SH';
+    //     StorageService.SetItem('ItActId', '#SH');
+    //     if (StorageService.GetItem('refreshToken') == undefined) {
+    //         this.registrationService.registered = true;
+    //         this.router.navigate(["/login-form"]);
+    //     }
+    //     else {
+    //         // this.router.navigate(["/purchase/paidServices", { "PartyMastId": this.loginService.PartyMastId}]);
+    //         this.router.navigate(["/purchase/paidServices"]);
 
-        }
-    }
+    //     }
+    // }
 
 }

@@ -30,6 +30,8 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
       this.GetCaption(this.matchRequest.LangCode, this.caption);
       this.itemService.BuyNowVisible=true;
       this.itemService.ItemName = 'Match Making';
+      this.itemService.ItActId='#SM';
+      StorageService.SetItem('ItActId','#SM');
     }
 
     getFont(LangCode) {
@@ -51,15 +53,16 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
    {
     this.captionDbService.GetCaption(langCode,caption);
    }
-
-   onClick() {
-    this.itemService.ItActId='#SM';
-    StorageService.SetItem('ItActId','#SM');
-      if (StorageService.GetItem('refreshToken')==undefined) {
-          this.router.navigate(["/login-form"]);
-      }
-      else {
-          this.router.navigate(["/purchase/paidServices"]);
-      }
-  }
+   ngOnDestroy(): void {
+    this.itemService.BuyNowVisible=false;
+}
+  //  onClick() {
+    
+  //     if (StorageService.GetItem('refreshToken')==undefined) {
+  //         this.router.navigate(["/login-form"]);
+  //     }
+  //     else {
+  //         this.router.navigate(["/purchase/paidServices"]);
+  //     }
+  // }
   }
