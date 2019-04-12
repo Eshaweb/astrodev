@@ -8499,7 +8499,7 @@
 }
 .dx-calendar-navigator .dx-calendar-caption-button.dx-button .dx-button-content {
   padding: 2px 15px 4px;
-  color: #337ab7;
+  color:#D97227;
 }
 .dx-calendar-navigator-previous-month {
   width: 32px;
@@ -8537,7 +8537,7 @@
 }
 .dx-calendar-navigator-previous-view.dx-button .dx-icon,
 .dx-calendar-navigator-previous-month.dx-button .dx-icon {
-  color: #337ab7;
+  color: #D97227;
 }
 .dx-calendar-navigator-next-view,
 .dx-calendar-navigator-next-month {
@@ -8549,7 +8549,7 @@
 }
 .dx-calendar-navigator-next-view.dx-button .dx-icon,
 .dx-calendar-navigator-next-month.dx-button .dx-icon {
-  color: #337ab7;
+  color: #D97227;
 }
 .dx-calendar-body {
   top: 52px;
@@ -8619,12 +8619,12 @@
 .dx-calendar-cell.dx-calendar-selected-date,
 .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today {
   color: #fff;
-  box-shadow: inset 0px 0px 0px 1000px #337ab7;
+  box-shadow: inset 0px 0px 0px 1000px #D97227;
   font-weight: normal;
 }
 .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-contoured-date,
 .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today.dx-calendar-contoured-date {
-  box-shadow: inset 0px 0px 0px 1px #bebebe, inset 0px 0px 0px 1000px #337ab7;
+  box-shadow: inset 0px 0px 0px 1px #bebebe, inset 0px 0px 0px 1000px #D97227;
 }
 .dx-invalid.dx-calendar {
   border-color: rgba(217, 83, 79, 0.4);
