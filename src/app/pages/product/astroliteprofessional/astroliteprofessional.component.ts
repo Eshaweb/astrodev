@@ -155,11 +155,11 @@ export class AstroliteProfessionalComponent implements OnInit {
   Numerology_Click(event) {
     this.loadingSwitchService.loading = true;
     if (event.value == true) {
-      this.Horoscope_checkBoxValue = true;
+      this.Numerology_checkBoxValue = true;
       this.WindowsPriceRequest.Products.push('#PNM');
     }
     else {
-      this.Horoscope_checkBoxValue = false;
+      this.Numerology_checkBoxValue = false;
       this.WindowsPriceRequest.Products.splice(this.WindowsPriceRequest.Products.indexOf('#PNM'), 1);
     }
     this.GetWindowsPrice(this.WindowsPriceRequest);
@@ -167,11 +167,11 @@ export class AstroliteProfessionalComponent implements OnInit {
   Muhurtha_Click(event) {
     this.loadingSwitchService.loading = true;
     if (event.value == true) {
-      this.MatchMaking_checkBoxValue = true;
+      this.Muhurtha_checkBoxValue = true;
       this.WindowsPriceRequest.Products.push('#PMU');
     }
     else {
-      this.MatchMaking_checkBoxValue = false;
+      this.Muhurtha_checkBoxValue = false;
       this.WindowsPriceRequest.Products.splice(this.WindowsPriceRequest.Products.indexOf('#PMU'), 1);
     }
     this.GetWindowsPrice(this.WindowsPriceRequest);
@@ -179,11 +179,11 @@ export class AstroliteProfessionalComponent implements OnInit {
   Horoview_Click(event) {
     this.loadingSwitchService.loading = true;
     if (event.value == true) {
-      this.Horoscope_checkBoxValue = true;
+      this.Horoview_checkBoxValue = true;
       this.WindowsPriceRequest.Products.push('#PHV');
     }
     else {
-      this.Horoscope_checkBoxValue = false;
+      this.Horoview_checkBoxValue = false;
       this.WindowsPriceRequest.Products.splice(this.WindowsPriceRequest.Products.indexOf('#PHV'), 1);
     }
     this.GetWindowsPrice(this.WindowsPriceRequest);
@@ -198,8 +198,10 @@ export class AstroliteProfessionalComponent implements OnInit {
     else {
       this.Kannada_checkBoxValue = false;
       this.WindowsPriceRequest.Language.splice(this.WindowsPriceRequest.Language.indexOf('KAN'), 1);
-    if(this.WindowsPriceRequest.Language.length==0){
-      this.Kannada_checkBoxValue = true;
+    //if(this.WindowsPriceRequest.Language.length==0&&this.WindowsPriceRequest.Products.length==1&&this.WindowsPriceRequest.Products[0]=='KAN'){
+      if(this.WindowsPriceRequest.Language.length==0){
+
+    this.Kannada_checkBoxValue = true;
       this.WindowsPriceRequest.Language.push('KAN');
     }
     }
