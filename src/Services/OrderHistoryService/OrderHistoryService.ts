@@ -30,6 +30,14 @@ let services: Services[] = [{
     "ID": 6,
     "ServiceName": "Wallet",
     "ItActId": "#W"
+},{
+    "ID": 7,
+    "ServiceName": "Android Products",
+    "ItActId": "#PAND"
+},{
+    "ID": 8,
+    "ServiceName": "Windows Product",
+    "ItActId": "#PWIN"
 }
 ];
 
