@@ -18,7 +18,10 @@ h3{
    
     text-align: center !important;
 }
-
+::ng-deep #button {
+    width: 150px;
+    margin-left: 35%;
+}
 .dx-button-mode-contained.dx-button-default {
     background-color: #e07333;
     border-color: transparent;

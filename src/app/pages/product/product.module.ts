@@ -8,6 +8,7 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product/product.component';
 import { AstrolitegoldsilverComponent } from './astrolitegoldsilver/astrolitegoldsilver.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { AstroliteProfessionalComponent } from './astroliteprofessional/astroliteprofessional.component';
 
 @NgModule({
     imports: [
@@ -25,7 +26,7 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
     ],
     declarations: [
         ProductComponent, AstrolitegoldsilverComponent,
-        PaymentSuccessComponent
+        PaymentSuccessComponent, AstroliteProfessionalComponent
     ]
 })
 export class ProductModule{

@@ -20,21 +20,33 @@ export class ProductComponent implements OnInit {
     if (StorageService.GetItem('refreshToken') != undefined) {
       if (value == "Gold") {
         this.productService.ProductName = "Gold";
+        this.router.navigate(["/products/astrogoldsilver"]);
       }
       else if (value == "Silver") {
         this.productService.ProductName = "Silver";
+        this.router.navigate(["/products/astrogoldsilver"]);
       }
-      this.router.navigate(["/products/astrogoldsilver"]);
+      else if (value == "Professional") {
+        this.productService.ProductName = "Professional";
+        this.router.navigate(["/products/astroprofessional"]);
+      }
     }
     else {
       if (value == "Gold") {
         this.productService.ProductName = "Gold";
+        this.loginService.path = "/products/astrogoldsilver";
+      this.router.navigate(["/login-form"]);
       }
       else if (value == "Silver") {
         this.productService.ProductName = "Silver";
-      }
-      this.loginService.path = "/products/astrogoldsilver";
+        this.loginService.path = "/products/astrogoldsilver";
       this.router.navigate(["/login-form"]);
+      }
+      else if (value == "Professional") {
+        this.productService.ProductName = "Professional";
+        this.loginService.path = "/products/astroprofessional";
+        this.router.navigate(["/login-form"]);
+      }
     }
   }
 }
