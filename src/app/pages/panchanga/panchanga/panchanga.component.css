@@ -30,6 +30,10 @@
     }
     
     @media (max-width: 800px) {
+
+        .dx-fieldset {
+            margin: 50px 20px !important;
+        }
     .dx-fieldset-column {
     float: left;
     width: 100%;
