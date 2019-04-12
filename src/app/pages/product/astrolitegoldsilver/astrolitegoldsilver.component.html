@@ -13,8 +13,9 @@
                 </dx-check-box>
             </div>
           </div> -->
+          <div class="dx-fieldset-column">
 <div class="dx-field">
-  <div>
+  
       <dx-check-box 
           [(value)]="Horoscope_checkBoxValue"
           (onValueChanged)="Horoscope_Click($event)"
@@ -22,8 +23,9 @@
       </dx-check-box>
   </div>
 </div>
+<div class="dx-fieldset-column">
 <div class="dx-field">
-  <div>
+  
       <dx-check-box 
           [(value)]="MatchMaking_checkBoxValue"
           (onValueChanged)="MatchMaking_Click($event)"
@@ -31,8 +33,9 @@
       </dx-check-box>
   </div>
 </div>
+<div class="dx-fieldset-column">
 <div class="dx-field">
-  <div>
+  
       <dx-check-box 
           [(value)]="Astamangala_checkBoxValue"
           (onValueChanged)="Astamangala_Click($event)"
@@ -41,6 +44,7 @@
   </div>
 </div>
 </div>
+<div class="clear"></div>
 <h2 class="content-block">Price :{{payableAmount|currency:'INR'}}</h2>
 <div class="dx-fieldset" [formGroup]="CoupenCodeForm">
     <div class="dx-feldset-column">
@@ -93,11 +97,11 @@
         </div>
       </div>
 
-        <div class="dx-field">
-            <div class="continue-button">
+        <div class="dx-fieldset">
+            <div class="dx-field">
                 <dx-button (onClick)='onPay_click()' 
                 [disabled]="!paymentModedatavalue"
-                text="Pay" 
+                text="Buy Now" 
                 type="success" 
                 [useSubmitBehavior]="true">
                 </dx-button>
