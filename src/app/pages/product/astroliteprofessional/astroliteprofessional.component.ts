@@ -38,11 +38,12 @@ export class AstroliteProfessionalComponent implements OnInit {
   Numerology_checkBoxValue: boolean;
   Muhurtha_checkBoxValue: boolean;
   Horoview_checkBoxValue: boolean;
-  WindowsPriceRequest: { PartyMastId: any; Products: string[]; Language: string[]; };
+  WindowsPriceRequest: any;
   Kannada_checkBoxValue: boolean;
   Malayalam_checkBoxValue: boolean;
   Tamilu_checkBoxValue: boolean;
   Hindi_checkBoxValue: boolean;
+  AdditionalLisence_checkBoxValue: boolean;
   constructor(public formbuilder: FormBuilder, public uiService: UIService, private loadingSwitchService: LoadingSwitchService,
     private itemService: ItemService, public productService: ProductService, public horoScopeService: HoroScopeService,
     public router: Router, public orderService: OrderService, public loginService: LoginService) {
@@ -65,6 +66,7 @@ export class AstroliteProfessionalComponent implements OnInit {
     this.Malayalam_checkBoxValue = true;
     this.Tamilu_checkBoxValue = true;
     this.Hindi_checkBoxValue = true;
+    this.AdditionalLisence_checkBoxValue=false;
   }
   setErrorMessage(c: AbstractControl): void {
     let control = this.uiService.getControlName(c);
@@ -88,7 +90,8 @@ export class AstroliteProfessionalComponent implements OnInit {
       this.WindowsPriceRequest = {
         PartyMastId: StorageService.GetItem('PartyMastId'),
         Products: ['#PFH', '#PMM', '#PAM', '#PNM', '#PMU', '#PHV'],
-        Language:['KAN','MAL','TAM','HIN']
+        Language:['KAN','MAL','TAM','HIN'],
+        Additional:this.AdditionalLisence_checkBoxValue
       }
     }
     // else if(this.productService.ProductName == "Silver"){
@@ -195,6 +198,10 @@ export class AstroliteProfessionalComponent implements OnInit {
     else {
       this.Kannada_checkBoxValue = false;
       this.WindowsPriceRequest.Language.splice(this.WindowsPriceRequest.Language.indexOf('KAN'), 1);
+    if(this.WindowsPriceRequest.Language.length==0){
+      this.Kannada_checkBoxValue = true;
+      this.WindowsPriceRequest.Language.push('KAN');
+    }
     }
     this.GetWindowsPrice(this.WindowsPriceRequest);
   }
@@ -235,7 +242,18 @@ export class AstroliteProfessionalComponent implements OnInit {
     this.GetWindowsPrice(this.WindowsPriceRequest);
   }
 
-
+  AdditionalLisence_Click(event){
+    this.loadingSwitchService.loading = true;
+    if (event.value == true) {
+      this.AdditionalLisence_checkBoxValue = true;
+      this.WindowsPriceRequest.Additional=true;
+    }
+    else {
+      this.AdditionalLisence_checkBoxValue = false;
+      this.WindowsPriceRequest.Additional=false;
+    }
+    this.GetWindowsPrice(this.WindowsPriceRequest);
+  }
   GetWindowsPrice(WindowsPriceRequest) {
     if (WindowsPriceRequest.Products.length != 0) {
       this.productService.GetWindowsPrice(WindowsPriceRequest).subscribe((data) => {

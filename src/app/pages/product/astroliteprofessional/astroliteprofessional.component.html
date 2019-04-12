@@ -13,6 +13,8 @@
                 </dx-check-box>
             </div>
           </div> -->
+          <div class="dx-fieldset-column">
+          <h4>Products</h4>
 <div class="dx-field">
   <div>
       <dx-check-box 
@@ -40,6 +42,7 @@
       </dx-check-box>
   </div>
 </div>
+
 <div class="dx-field">
     <div>
         <dx-check-box 
@@ -68,7 +71,10 @@
     </div>
   </div>
 </div>
+</div>
+<div class="dx-fieldset-column">
 <div class="dx-fieldset">
+    <h4>Languages</h4>
     <div class="dx-field">
         <div>
             <dx-check-box disabled="true"
@@ -80,7 +86,7 @@
       <div class="dx-field">
         <div>
             <dx-check-box 
-                [(value)]="Kannada_checkBoxValue"
+                [value]="Kannada_checkBoxValue"
                 (onValueChanged)="Kannada_Click($event)"
                 text="Kannada">
             </dx-check-box>
@@ -112,7 +118,22 @@
                 text="Hindi">
             </dx-check-box>
         </div>
-      </div>  
+      </div> 
+      <div class="dx-field">
+      </div>
+      </div>
+</div>
+<div class="dx-fieldset">
+        <div class="dx-field">
+            <div>
+            <h4>Additionals</h4>
+            <dx-check-box 
+                [(value)]="AdditionalLisence_checkBoxValue"
+                (onValueChanged)="AdditionalLisence_Click($event)"
+                text="Additional Lisence">
+            </dx-check-box>
+        </div>
+    </div>
 </div>
 <h2 class="content-block">Price :{{payableAmount|currency:'INR'}}</h2>
 <div class="dx-fieldset" [formGroup]="CoupenCodeForm">
