@@ -44,6 +44,7 @@ export class AstroliteProfessionalComponent implements OnInit {
   Tamilu_checkBoxValue: boolean;
   Hindi_checkBoxValue: boolean;
   AdditionalLisence_checkBoxValue: boolean;
+  ProductName: any;
   constructor(public formbuilder: FormBuilder, public uiService: UIService, private loadingSwitchService: LoadingSwitchService,
     private itemService: ItemService, public productService: ProductService, public horoScopeService: HoroScopeService,
     public router: Router, public orderService: OrderService, public loginService: LoginService) {
@@ -85,7 +86,8 @@ export class AstroliteProfessionalComponent implements OnInit {
     // {Text:"Astamangala",Value:true}];
     this.loadingSwitchService.loading = true;
     this.discountAmount = 0;
-    if(this.productService.ProductName == "Professional"){
+    this.ProductName=StorageService.GetItem('ProductName');
+    if(StorageService.GetItem('ProductName') == "Professional"){
       this.Astamangala_checkBoxValue = true;
       this.WindowsPriceRequest = {
         PartyMastId: StorageService.GetItem('PartyMastId'),
@@ -155,11 +157,11 @@ export class AstroliteProfessionalComponent implements OnInit {
   Numerology_Click(event) {
     this.loadingSwitchService.loading = true;
     if (event.value == true) {
-      this.Horoscope_checkBoxValue = true;
+      this.Numerology_checkBoxValue = true;
       this.WindowsPriceRequest.Products.push('#PNM');
     }
     else {
-      this.Horoscope_checkBoxValue = false;
+      this.Numerology_checkBoxValue = false;
       this.WindowsPriceRequest.Products.splice(this.WindowsPriceRequest.Products.indexOf('#PNM'), 1);
     }
     this.GetWindowsPrice(this.WindowsPriceRequest);
@@ -167,11 +169,11 @@ export class AstroliteProfessionalComponent implements OnInit {
   Muhurtha_Click(event) {
     this.loadingSwitchService.loading = true;
     if (event.value == true) {
-      this.MatchMaking_checkBoxValue = true;
+      this.Muhurtha_checkBoxValue = true;
       this.WindowsPriceRequest.Products.push('#PMU');
     }
     else {
-      this.MatchMaking_checkBoxValue = false;
+      this.Muhurtha_checkBoxValue = false;
       this.WindowsPriceRequest.Products.splice(this.WindowsPriceRequest.Products.indexOf('#PMU'), 1);
     }
     this.GetWindowsPrice(this.WindowsPriceRequest);
@@ -179,11 +181,11 @@ export class AstroliteProfessionalComponent implements OnInit {
   Horoview_Click(event) {
     this.loadingSwitchService.loading = true;
     if (event.value == true) {
-      this.Horoscope_checkBoxValue = true;
+      this.Horoview_checkBoxValue = true;
       this.WindowsPriceRequest.Products.push('#PHV');
     }
     else {
-      this.Horoscope_checkBoxValue = false;
+      this.Horoview_checkBoxValue = false;
       this.WindowsPriceRequest.Products.splice(this.WindowsPriceRequest.Products.indexOf('#PHV'), 1);
     }
     this.GetWindowsPrice(this.WindowsPriceRequest);
@@ -198,8 +200,10 @@ export class AstroliteProfessionalComponent implements OnInit {
     else {
       this.Kannada_checkBoxValue = false;
       this.WindowsPriceRequest.Language.splice(this.WindowsPriceRequest.Language.indexOf('KAN'), 1);
-    if(this.WindowsPriceRequest.Language.length==0){
-      this.Kannada_checkBoxValue = true;
+    //if(this.WindowsPriceRequest.Language.length==0&&this.WindowsPriceRequest.Products.length==1&&this.WindowsPriceRequest.Products[0]=='KAN'){
+      if(this.WindowsPriceRequest.Language.length==0){
+
+    this.Kannada_checkBoxValue = true;
       this.WindowsPriceRequest.Language.push('KAN');
     }
     }
@@ -314,14 +318,16 @@ export class AstroliteProfessionalComponent implements OnInit {
     else {
       this.paycodes = [{ Code: this.paymentModedatavalue, Amount: this.payableAmount - this.discountAmount }];
     }
-    var BuyAndroid = {
+    var BuyWindows = {
       PartyMastId: StorageService.GetItem('PartyMastId'),
       Products: this.WindowsPriceRequest.Products,
+      Additional:this.AdditionalLisence_checkBoxValue,
+      Language:this.WindowsPriceRequest.Language,
       Amount: this.payableAmount - this.discountAmount,
       PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
       PayCodes: this.paycodes
     }
-    this.productService.BuyAndroid(BuyAndroid).subscribe((data) => {
+    this.productService.BuyWindows(BuyWindows).subscribe((data) => {
       this.loadingSwitchService.loading = false;
       if (data.Error == undefined) {
         this.horoScopeService.ExtCode = data.ExtCode;
@@ -373,7 +379,7 @@ export class AstroliteProfessionalComponent implements OnInit {
       },
       modal: {
         ondismiss: () => {
-          //alert('dismissed');
+          this.loadingSwitchService.loading = false;
         }
       }
     };

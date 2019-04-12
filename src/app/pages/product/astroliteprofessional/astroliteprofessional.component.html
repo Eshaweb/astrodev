@@ -1,4 +1,4 @@
-<h2 class="content-block">AstroLite {{ productService.ProductName }}</h2>
+<h2 class="content-block">AstroLite {{ ProductName }}</h2>
 
 <div class="dx-card content-block responsive-paddings">
 
@@ -15,11 +15,9 @@
           <div class="dx-fieldset-column">
         <h4>Products</h4>
         <div class="dx-field">
-            <div>
                 <dx-check-box [(value)]="Horoscope_checkBoxValue" (onValueChanged)="Horoscope_Click($event)"
                     text="Horoscope">
                 </dx-check-box>
-            </div>
         </div>
         <div class="dx-field">
             <div>
@@ -156,11 +154,13 @@
 
         <div class="dx-field">
             <div class="continue-button">
-                <dx-button (onClick)="onPay_click()" [disabled]="!paymentModedatavalue" text="Pay" type="success"
+                <dx-button (onClick)="onPay_click()" 
+                    [disabled]="!paymentModedatavalue" 
+                    text="Buy Now" 
+                    type="success"
                     [useSubmitBehavior]="true">
                 </dx-button>
             </div>
         </div>
     </div>
-
-       
+</div>

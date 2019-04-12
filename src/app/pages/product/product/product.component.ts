@@ -20,14 +20,17 @@ export class ProductComponent implements OnInit {
     if (StorageService.GetItem('refreshToken') != undefined) {
       if (value == "Gold") {
         this.productService.ProductName = "Gold";
+        StorageService.SetItem('ProductName', this.productService.ProductName);
         this.router.navigate(["/products/astrogoldsilver"]);
       }
       else if (value == "Silver") {
         this.productService.ProductName = "Silver";
+        StorageService.SetItem('ProductName', this.productService.ProductName);
         this.router.navigate(["/products/astrogoldsilver"]);
       }
       else if (value == "Professional") {
         this.productService.ProductName = "Professional";
+        StorageService.SetItem('ProductName', this.productService.ProductName);
         this.router.navigate(["/products/astroprofessional"]);
       }
     }
@@ -35,16 +38,19 @@ export class ProductComponent implements OnInit {
       if (value == "Gold") {
         this.productService.ProductName = "Gold";
         this.loginService.path = "/products/astrogoldsilver";
+        StorageService.SetItem('ProductName', this.productService.ProductName);
       this.router.navigate(["/login-form"]);
       }
       else if (value == "Silver") {
         this.productService.ProductName = "Silver";
         this.loginService.path = "/products/astrogoldsilver";
+        StorageService.SetItem('ProductName', this.productService.ProductName);
       this.router.navigate(["/login-form"]);
       }
       else if (value == "Professional") {
         this.productService.ProductName = "Professional";
         this.loginService.path = "/products/astroprofessional";
+        StorageService.SetItem('ProductName', this.productService.ProductName);
         this.router.navigate(["/login-form"]);
       }
     }

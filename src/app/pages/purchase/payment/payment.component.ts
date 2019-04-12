@@ -402,7 +402,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         },
         modal: {
           ondismiss: () => {
-            //alert('dismissed');
+            this.loadingSwitchService.loading = false;
           }
         }
       };
