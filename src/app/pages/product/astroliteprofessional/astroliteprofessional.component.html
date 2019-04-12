@@ -40,6 +40,79 @@
       </dx-check-box>
   </div>
 </div>
+<div class="dx-field">
+    <div>
+        <dx-check-box 
+            [(value)]="Muhurtha_checkBoxValue"
+            (onValueChanged)="Muhurtha_Click($event)"
+            text="Muhurtha">
+        </dx-check-box>
+    </div>
+  </div>
+  <div class="dx-field">
+    <div>
+        <dx-check-box 
+            [(value)]="Numerology_checkBoxValue"
+            (onValueChanged)="Numerology_Click($event)"
+            text="Numerology">
+        </dx-check-box>
+    </div>
+  </div>
+  <div class="dx-field">
+    <div>
+        <dx-check-box 
+            [(value)]="Horoview_checkBoxValue"
+            (onValueChanged)="Horoview_Click($event)"
+            text="Horoview">
+        </dx-check-box>
+    </div>
+  </div>
+</div>
+<div class="dx-fieldset">
+    <div class="dx-field">
+        <div>
+            <dx-check-box disabled="true"
+                value="true"
+                text="English">
+            </dx-check-box>
+        </div>
+      </div>
+      <div class="dx-field">
+        <div>
+            <dx-check-box 
+                [(value)]="Kannada_checkBoxValue"
+                (onValueChanged)="Kannada_Click($event)"
+                text="Kannada">
+            </dx-check-box>
+        </div>
+      </div>
+      <div class="dx-field">
+        <div>
+            <dx-check-box 
+                [(value)]="Malayalam_checkBoxValue"
+                (onValueChanged)="Malayalam_Click($event)"
+                text="Malayalam">
+            </dx-check-box>
+        </div>
+      </div>
+      <div class="dx-field">
+        <div>
+            <dx-check-box 
+                [(value)]="Tamilu_checkBoxValue"
+                (onValueChanged)="Tamilu_Click($event)"
+                text="Tamilu">
+            </dx-check-box>
+        </div>
+      </div>  
+      <div class="dx-field">
+        <div>
+            <dx-check-box 
+                [(value)]="Hindi_checkBoxValue"
+                (onValueChanged)="Hindi_Click($event)"
+                text="Hindi">
+            </dx-check-box>
+        </div>
+      </div>  
 </div>
 <h2 class="content-block">Price :{{payableAmount|currency:'INR'}}</h2>
 <div class="dx-fieldset" [formGroup]="CoupenCodeForm">

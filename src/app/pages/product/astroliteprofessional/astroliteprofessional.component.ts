@@ -15,17 +15,16 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
 declare var Razorpay: any;
 
 @Component({
-  selector: 'app-astrolitegoldsilver',
-  templateUrl: './astrolitegoldsilver.component.html',
-  styleUrls: ['./astrolitegoldsilver.component.scss']
+  selector: 'app-astroliteprofessional',
+  templateUrl: './astroliteprofessional.component.html',
+  styleUrls: ['./astroliteprofessional.component.scss']
 })
-export class AstrolitegoldsilverComponent implements OnInit {
+export class AstroliteProfessionalComponent implements OnInit {
   Astamangala_checkBoxValue: boolean;
   MatchMaking_checkBoxValue: boolean;
   Horoscope_checkBoxValue: boolean;
   CoupenCodeForm: FormGroup;
   payableAmount: any;
-  AndroidPriceRequest: { PartyMastId: any; Products: string[]; };
   chekboxes: { Text: string; Value: any; }[];
   disableButton: boolean;
   discountAmount: number;
@@ -36,6 +35,14 @@ export class AstrolitegoldsilverComponent implements OnInit {
   paymentModedatavalue: any;
   paycodes: PayCode[] = [];
   paymentId: any;
+  Numerology_checkBoxValue: boolean;
+  Muhurtha_checkBoxValue: boolean;
+  Horoview_checkBoxValue: boolean;
+  WindowsPriceRequest: { PartyMastId: any; Products: string[]; Language: string[]; };
+  Kannada_checkBoxValue: boolean;
+  Malayalam_checkBoxValue: boolean;
+  Tamilu_checkBoxValue: boolean;
+  Hindi_checkBoxValue: boolean;
   constructor(public formbuilder: FormBuilder, public uiService: UIService, private loadingSwitchService: LoadingSwitchService,
     private itemService: ItemService, public productService: ProductService, public horoScopeService: HoroScopeService,
     public router: Router, public orderService: OrderService, public loginService: LoginService) {
@@ -50,6 +57,14 @@ export class AstrolitegoldsilverComponent implements OnInit {
     CouponCodeContrl.valueChanges.subscribe(value => this.setErrorMessage(CouponCodeContrl));
     this.Horoscope_checkBoxValue = true;
     this.MatchMaking_checkBoxValue = true;
+    this.Astamangala_checkBoxValue = true;
+    this.Numerology_checkBoxValue = true;
+    this.Muhurtha_checkBoxValue = true;
+    this.Horoview_checkBoxValue = true;
+    this.Kannada_checkBoxValue = true;
+    this.Malayalam_checkBoxValue = true;
+    this.Tamilu_checkBoxValue = true;
+    this.Hindi_checkBoxValue = true;
   }
   setErrorMessage(c: AbstractControl): void {
     let control = this.uiService.getControlName(c);
@@ -68,21 +83,22 @@ export class AstrolitegoldsilverComponent implements OnInit {
     // {Text:"Astamangala",Value:true}];
     this.loadingSwitchService.loading = true;
     this.discountAmount = 0;
-    if(this.productService.ProductName == "Gold"){
+    if(this.productService.ProductName == "Professional"){
       this.Astamangala_checkBoxValue = true;
-      this.AndroidPriceRequest = {
+      this.WindowsPriceRequest = {
         PartyMastId: StorageService.GetItem('PartyMastId'),
-        Products: ['#PHM', '#PMMM', '#PAMM']
+        Products: ['#PFH', '#PMM', '#PAM', '#PNM', '#PMU', '#PHV'],
+        Language:['KAN','MAL','TAM','HIN']
       }
     }
-    else if(this.productService.ProductName == "Silver"){
-      this.Astamangala_checkBoxValue = false;
-      this.AndroidPriceRequest = {
-        PartyMastId: StorageService.GetItem('PartyMastId'),
-        Products: ['#PHM', '#PMMM']
-      }
-    }
-    this.productService.GetAndroidPrice(this.AndroidPriceRequest).subscribe((data) => {
+    // else if(this.productService.ProductName == "Silver"){
+    //   this.Astamangala_checkBoxValue = false;
+    //   this.AndroidPriceRequest = {
+    //     PartyMastId: StorageService.GetItem('PartyMastId'),
+    //     Products: ['#PHM', '#PMMM']
+    //   }
+    // }
+    this.productService.GetWindowsPrice(this.WindowsPriceRequest).subscribe((data) => {
       this.payableAmount = data;
       this.loadingSwitchService.loading = false
     });
@@ -101,43 +117,128 @@ export class AstrolitegoldsilverComponent implements OnInit {
     this.loadingSwitchService.loading = true;
     if (event.value == true) {
       this.Horoscope_checkBoxValue = true;
-      this.AndroidPriceRequest.Products.push('#PHM');
+      this.WindowsPriceRequest.Products.push('#PFH');
     }
     else {
       this.Horoscope_checkBoxValue = false;
-      this.AndroidPriceRequest.Products.splice(this.AndroidPriceRequest.Products.indexOf('#PHM'), 1);
+      this.WindowsPriceRequest.Products.splice(this.WindowsPriceRequest.Products.indexOf('#PFH'), 1);
     }
-    this.GetAndroidPrice(this.AndroidPriceRequest);
+    this.GetWindowsPrice(this.WindowsPriceRequest);
   }
   MatchMaking_Click(event) {
     this.loadingSwitchService.loading = true;
     if (event.value == true) {
       this.MatchMaking_checkBoxValue = true;
-      this.AndroidPriceRequest.Products.push('#PMMM');
+      this.WindowsPriceRequest.Products.push('#PMM');
     }
     else {
       this.MatchMaking_checkBoxValue = false;
-      this.AndroidPriceRequest.Products.splice(this.AndroidPriceRequest.Products.indexOf('#PMMM'), 1);
+      this.WindowsPriceRequest.Products.splice(this.WindowsPriceRequest.Products.indexOf('#PMM'), 1);
     }
-    this.GetAndroidPrice(this.AndroidPriceRequest);
+    this.GetWindowsPrice(this.WindowsPriceRequest);
   }
   Astamangala_Click(event) {
     this.loadingSwitchService.loading = true;
     if (event.value == true) {
       this.Astamangala_checkBoxValue = true;
-      this.productService.ProductName="Gold";
-      this.AndroidPriceRequest.Products.push('#PAMM');
+      this.WindowsPriceRequest.Products.push('#PAM');
     }
     else {
       this.Astamangala_checkBoxValue = false;
-      this.productService.ProductName="Silver";
-      this.AndroidPriceRequest.Products.splice(this.AndroidPriceRequest.Products.indexOf('#PAMM'), 1);
+      this.WindowsPriceRequest.Products.splice(this.WindowsPriceRequest.Products.indexOf('#PAM'), 1);
     }
-    this.GetAndroidPrice(this.AndroidPriceRequest);
+    this.GetWindowsPrice(this.WindowsPriceRequest);
   }
-  GetAndroidPrice(AndroidPriceRequest) {
-    if (AndroidPriceRequest.Products.length != 0) {
-      this.productService.GetAndroidPrice(AndroidPriceRequest).subscribe((data) => {
+  Numerology_Click(event) {
+    this.loadingSwitchService.loading = true;
+    if (event.value == true) {
+      this.Horoscope_checkBoxValue = true;
+      this.WindowsPriceRequest.Products.push('#PNM');
+    }
+    else {
+      this.Horoscope_checkBoxValue = false;
+      this.WindowsPriceRequest.Products.splice(this.WindowsPriceRequest.Products.indexOf('#PNM'), 1);
+    }
+    this.GetWindowsPrice(this.WindowsPriceRequest);
+  }
+  Muhurtha_Click(event) {
+    this.loadingSwitchService.loading = true;
+    if (event.value == true) {
+      this.MatchMaking_checkBoxValue = true;
+      this.WindowsPriceRequest.Products.push('#PMU');
+    }
+    else {
+      this.MatchMaking_checkBoxValue = false;
+      this.WindowsPriceRequest.Products.splice(this.WindowsPriceRequest.Products.indexOf('#PMU'), 1);
+    }
+    this.GetWindowsPrice(this.WindowsPriceRequest);
+  }
+  Horoview_Click(event) {
+    this.loadingSwitchService.loading = true;
+    if (event.value == true) {
+      this.Horoscope_checkBoxValue = true;
+      this.WindowsPriceRequest.Products.push('#PHV');
+    }
+    else {
+      this.Horoscope_checkBoxValue = false;
+      this.WindowsPriceRequest.Products.splice(this.WindowsPriceRequest.Products.indexOf('#PHV'), 1);
+    }
+    this.GetWindowsPrice(this.WindowsPriceRequest);
+  }
+
+  Kannada_Click(event) {
+    this.loadingSwitchService.loading = true;
+    if (event.value == true) {
+      this.Kannada_checkBoxValue = true;
+      this.WindowsPriceRequest.Language.push('KAN');
+    }
+    else {
+      this.Kannada_checkBoxValue = false;
+      this.WindowsPriceRequest.Language.splice(this.WindowsPriceRequest.Language.indexOf('KAN'), 1);
+    }
+    this.GetWindowsPrice(this.WindowsPriceRequest);
+  }
+  Malayalam_Click(event) {
+    this.loadingSwitchService.loading = true;
+    if (event.value == true) {
+      this.Malayalam_checkBoxValue = true;
+      this.WindowsPriceRequest.Language.push('MAL');
+    }
+    else {
+      this.Malayalam_checkBoxValue = false;
+      this.WindowsPriceRequest.Language.splice(this.WindowsPriceRequest.Language.indexOf('MAL'), 1);
+    }
+    this.GetWindowsPrice(this.WindowsPriceRequest);
+  }
+  Tamilu_Click(event) {
+    this.loadingSwitchService.loading = true;
+    if (event.value == true) {
+      this.Tamilu_checkBoxValue = true;
+      this.WindowsPriceRequest.Language.push('TAM');
+    }
+    else {
+      this.Tamilu_checkBoxValue = false;
+      this.WindowsPriceRequest.Language.splice(this.WindowsPriceRequest.Language.indexOf('TAM'), 1);
+    }
+    this.GetWindowsPrice(this.WindowsPriceRequest);
+  }
+  Hindi_Click(event) {
+    this.loadingSwitchService.loading = true;
+    if (event.value == true) {
+      this.Hindi_checkBoxValue = true;
+      this.WindowsPriceRequest.Language.push('HIN');
+    }
+    else {
+      this.Hindi_checkBoxValue = false;
+      this.WindowsPriceRequest.Language.splice(this.WindowsPriceRequest.Language.indexOf('HIN'), 1);
+    }
+    this.GetWindowsPrice(this.WindowsPriceRequest);
+  }
+
+
+  GetWindowsPrice(WindowsPriceRequest) {
+    if (WindowsPriceRequest.Products.length != 0) {
+      this.productService.GetWindowsPrice(WindowsPriceRequest).subscribe((data) => {
         this.payableAmount = data;
         this.loadingSwitchService.loading = false;
       });
@@ -197,7 +298,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
     }
     var BuyAndroid = {
       PartyMastId: StorageService.GetItem('PartyMastId'),
-      Products: this.AndroidPriceRequest.Products,
+      Products: this.WindowsPriceRequest.Products,
       Amount: this.payableAmount - this.discountAmount,
       PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
       PayCodes: this.paycodes

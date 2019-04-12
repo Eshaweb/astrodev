@@ -33,11 +33,11 @@ let services: Services[] = [{
 },{
     "ID": 7,
     "ServiceName": "Android Products",
-    "ItActId": "#PAND"
+    "ItActId": "#AND"
 },{
     "ID": 8,
     "ServiceName": "Windows Product",
-    "ItActId": "#PWIN"
+    "ItActId": "#WIN"
 }
 ];
 
