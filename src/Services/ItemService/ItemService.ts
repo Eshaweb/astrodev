@@ -8,6 +8,7 @@ export class ItemService {
     ItActId:string;
     ItemAmount: any;
     BuyNowVisible: boolean;
+    ItemName: string;
     constructor(public httpService: HttpService) {
 
     }

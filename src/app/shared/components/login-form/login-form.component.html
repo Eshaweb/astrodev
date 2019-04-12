@@ -17,14 +17,13 @@
     </div>
    <div class="twocol">
     <div class="dx-field" style="margin-right: 12px;" >
-        <dx-text-box mode="password" valueChangeEvent="keyup" formControlName="Password" *ngIf='!isOTPRequested' [(value)]="password" placeholder="Password" width="100%">
+        <dx-text-box [mode]="textboxMode" valueChangeEvent="keyup" formControlName="Password" *ngIf='!isOTPRequested' [(value)]="password" placeholder="Password" width="100%">
         </dx-text-box>
-        <dx-text-box mode="password" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="Password" *ngIf='isOTPRequested' placeholder="Enter OTP" width="100%">
+        <dx-text-box [mode]="textboxMode" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="Password" *ngIf='isOTPRequested' placeholder="Enter OTP" width="100%">
         </dx-text-box>
         <p style="color:red;font-size: 12px;" id='err_Password'></p>
         <p style="color:red;font-size: 12px;" id='err_OTP'></p>
     </div>
-
     <div class="dx-field">
         <dx-button type="default" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" width="100%"></dx-button>
         <div id='resendbutton'>
@@ -44,6 +43,13 @@
     </div>
         <p *ngIf='counter!= 0'>{{countDown | async }}</p>
     </div>
+</div>
+<div class="dx-field">
+    <dx-check-box id="check" 
+        [(value)]="ShowPassword_checkBoxValue" 
+        (onValueChanged)="ShowPassword_Click($event)"
+        text="Show Password">
+    </dx-check-box>
 </div>
 <div class="clear"></div>
     <!-- <div class="dx-field">

@@ -38,12 +38,7 @@ export class NumerologyFreeDataComponent implements OnInit {
   oTPRef: any;
   isLoginByOTP: boolean;
   uservalidateForm: FormGroup;
-  ngOnInit(): void {
-    this.caption = new Caption();
-    //this.numerologyRequest = this.numerologyService.numerologyRequest;
-    this.numerologyRequest=this.storageService.GetHoroRequest('#NM');
-    this.GetCaption(this.numerologyRequest.LangCode, this.caption);
-  }
+  
   constructor(public storageService: StorageService, public uiService: UIService, public formBuilder: FormBuilder, private itemService: ItemService,
     public router: Router, public loginService: LoginService, public registrationService: RegistrationService,
     public loadingSwitchService: LoadingSwitchService, private matchMakingService: MatchMakingService, private astamangalaService: AstamangalaService,
@@ -56,6 +51,18 @@ export class NumerologyFreeDataComponent implements OnInit {
     this.serialseMonth = JSON.parse(this.numerologyResponse.Month);
     this.manthcaption = this.serialseMonth[0].Caption;
   }
+
+  ngOnInit(): void {
+    this.caption = new Caption();
+    //this.numerologyRequest = this.numerologyService.numerologyRequest;
+    this.numerologyRequest=this.storageService.GetHoroRequest('#NM');
+    this.GetCaption(this.numerologyRequest.LangCode, this.caption);
+    this.itemService.BuyNowVisible=true;
+    this.itemService.ItemName = 'Numerology';
+    this.itemService.ItActId = '#NM';
+    StorageService.SetItem('ItActId', '#NM');
+  }
+
   GetCaption(langCode: string, caption: Caption) {
     this.captionDbService.GetCaption(langCode, caption);
   }
@@ -99,16 +106,20 @@ export class NumerologyFreeDataComponent implements OnInit {
       
       }
     }
-  onClick() {
-    this.itemService.ItActId = '#NM';
-    StorageService.SetItem('ItActId', '#NM');
-    if (StorageService.GetItem('refreshToken') == undefined) {
-      this.router.navigate(["/login-form"]);
-      //this.popupVisible=true;
-    }
-    else {
-      this.router.navigate(["/purchase/paidServices"]);
-    }
+
+    ngOnDestroy(): void {
+      this.itemService.BuyNowVisible=false;
   }
+  // onClick() {
+  //   this.itemService.ItActId = '#NM';
+  //   StorageService.SetItem('ItActId', '#NM');
+  //   if (StorageService.GetItem('refreshToken') == undefined) {
+  //     this.router.navigate(["/login-form"]);
+  //     //this.popupVisible=true;
+  //   }
+  //   else {
+  //     this.router.navigate(["/purchase/paidServices"]);
+  //   }
+  // }
 }
 

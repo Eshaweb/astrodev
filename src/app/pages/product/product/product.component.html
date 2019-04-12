@@ -1,7 +1,7 @@
 
     <div class="hero-unit">
         <div class="main-slider">
-      <div class="dx-card product-list" (click)='OnAstroLiteProducts_Click("Gold")'>
+      <div class="dx-card product-list">
         <div class="product-image">
           <img src="assets/images/MelaMeli.png" class="service-image">
           <h3>AstroLite Gold</h3>
@@ -13,12 +13,12 @@
         <p>Motive of Horoscope as per astrology</p>
         <p>Shloka Also Included</p>
       </div>
-      <dx-button id="button"text="Explore More" type="success" [useSubmitBehavior]="true"></dx-button>
+      <dx-button id="button" (onClick)='OnAstroLiteProducts_Click("Gold")' text="Explore More" type="success" [useSubmitBehavior]="true"></dx-button>
       
         
       </div>
 
-      <div class="dx-card product-list" (click)='OnAstroLiteProducts_Click("Silver")'>
+      <div class="dx-card product-list">
           <div class="product-image">
             <img src="assets/images/MelaMeli.png" class="service-image">
             <h3>AstroLite Silver</h3>
@@ -30,7 +30,7 @@
           <p>Motive of Horoscope as per astrology</p>
           <p>Shloka Also Included</p>
         </div>
-        <dx-button id="button"text="Explore More" type="success" [useSubmitBehavior]="true"></dx-button>
+        <dx-button id="button" (onClick)='OnAstroLiteProducts_Click("Silver")' text="Explore More" type="success" [useSubmitBehavior]="true"></dx-button>
         
           
         </div>

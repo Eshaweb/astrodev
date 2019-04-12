@@ -20,16 +20,20 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
   horoModel: HoroRequest;
   caption: Caption;
   prashnaFreeModel: PrashnaFreeModel;
-    ngOnInit(): void {
-      this.caption=new Caption();
-      this.horoModel=this.storageService.GetHoroRequest('#SA');
-      this.GetCaption(this.horoModel.LangCode, this.caption);
-    }
+    
     constructor(public storageService:StorageService, private itemService:ItemService, public router: Router, public loginService: LoginService, public captionDbService:CaptionDbService, public astamangalaService: AstamangalaService) {
       this.prashnaFreeModel=this.astamangalaService.horoResponse;
       this.prashnaFreeModel=this.storageService.GetHoroResponse('#SA');
     }
-
+    ngOnInit(): void {
+      this.caption=new Caption();
+      this.horoModel=this.storageService.GetHoroRequest('#SA');
+      this.GetCaption(this.horoModel.LangCode, this.caption);
+      this.itemService.BuyNowVisible=true;
+      this.itemService.ItemName = 'Astamangala';
+      this.itemService.ItActId='#SA';
+      StorageService.SetItem('ItActId','#SA');
+    }
     GetCaption(langCode:string,caption:Caption)
    {
     this.captionDbService.GetCaption(langCode,caption);
@@ -49,18 +53,20 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
         return "TamilFont";
     }
   }
-
-  onClick() {
-    this.itemService.ItActId='#SA';
-    StorageService.SetItem('ItActId','#SA');
-    if (StorageService.GetItem('refreshToken')==undefined) {
-        this.router.navigate(["/login-form"]);
-    }
-    else {
-        // this.router.navigate(["/purchase/paidServices", { "PartyMastId": this.loginService.PartyMastId}]);
-        this.router.navigate(["/purchase/paidServices"]);
-
-    }
+  ngOnDestroy(): void {
+    this.itemService.BuyNowVisible=false;
 }
+  // onClick() {
+  //   this.itemService.ItActId = '#SA';
+  //   StorageService.SetItem('ItActId', '#SA');
+  //   if (StorageService.GetItem('refreshToken') == undefined) {
+  //     this.router.navigate(["/login-form"]);
+  //   }
+  //   else {
+  //     // this.router.navigate(["/purchase/paidServices", { "PartyMastId": this.loginService.PartyMastId}]);
+  //     this.router.navigate(["/purchase/paidServices"]);
+
+  //   }
+  // }
   }
   
