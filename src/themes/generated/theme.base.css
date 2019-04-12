@@ -2468,11 +2468,11 @@
   border-color: transparent;
 }
 .dx-button-mode-contained.dx-button-success.dx-state-focused {
-  background-color: #3d8b3d;
+  background-color: rgb(170, 100, 9);
   border-color: transparent;
 }
 .dx-button-mode-contained.dx-button-success.dx-state-active {
-  background-color: #357935;
+  background-color: #a06a07;
   border-color: transparent;
   color: #fff;
 }
