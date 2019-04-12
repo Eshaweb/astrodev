@@ -68,6 +68,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
     // {Text:"Match Making",Value:true},
     // {Text:"Astamangala",Value:true}];
     this.loadingSwitchService.loading = true;
+    this.discountAmount = 0;
     this.AndroidPriceRequest = {
       PartyMastId: StorageService.GetItem('PartyMastId'),
       Products: ['#PHM', '#PMMM', '#PAMM']

@@ -26,6 +26,7 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
   serialisedPanchangaResponse: SerialisedPanchangaResponse;
   slideshowDelay = 2000;
     isMobileResolution: boolean;
+  direction: string;
   
     ngOnInit(): void {
       this.caption=new Caption();
@@ -34,8 +35,10 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
       this.GetCaption(this.panchangaRequest.LangCode, this.caption);
       if (window.innerWidth < 768) {
         this.isMobileResolution = true;
+        this.direction="vertical";
       } else {
         this.isMobileResolution = false;
+        this.direction="horizontal";
       }
 
       // this.itemService.BuyNowVisible=true;

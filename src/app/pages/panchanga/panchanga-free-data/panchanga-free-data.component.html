@@ -1,12 +1,21 @@
-<dx-tile-view #tileView 
-              [height]="1100" 
+<!-- <dx-tile-view #tileView 
+              [height]="1200" 
               [baseItemHeight]="1300" 
               [baseItemWidth]="350" 
               width="100%" 
               [itemMargin]="10"
               [showScrollbar]="true"
               showNavButtons="true"
-    direction="horizontal" *ngIf="!isMobileResolution">
+              direction="vertical" *ngIf="!isMobileResolution"> -->
+     <dx-tile-view #tileView 
+              [height]="1200" 
+              [baseItemHeight]="1300" 
+              [baseItemWidth]="350" 
+              width="100%" 
+              [itemMargin]="10"
+              [showScrollbar]="true"
+              showNavButtons="true"
+              [direction]="direction">
     <dxi-item *ngFor="let item of serialisedPanchangaResponse">
         <div class="dx-field">
             <div class="dx-field-label">{{item.Date}}
@@ -103,7 +112,8 @@
     </dxi-item>
 </dx-tile-view>
 
-<div *ngIf="isMobileResolution" class="widget-container">
+<!-- <div *ngIf="isMobileResolution" class="widget-container">
+        
     <dx-gallery #gallery
         id="gallery"
         [dataSource]="serialisedPanchangaResponse"
@@ -113,6 +123,7 @@
         [showNavButtons]="true"
         [showIndicator]="false">
     <div *dxTemplate="let galleryItem of 'item'">
+            <div class="dx-card content-block responsive-paddings">  
         <div class="dx-field">
             <div class="dx-field-label">{{galleryItem.Date}}
             </div>
@@ -204,8 +215,9 @@
             <div class="dx-field-value"> {{galleryItem.Amritha}}
             </div>
         </div>
+            </div>
     </div>
 </dx-gallery>
-</div>
+</div> -->
 
 
