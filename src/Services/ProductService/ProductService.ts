@@ -25,6 +25,10 @@ export class ProductService {
         var endPoint = "Product/BuyAndroid";
         return this.httpService.Post(endPoint, BuyAndroid);
     }
+    BuyWindows(BuyWindows):Observable<any> {
+        var endPoint = "Product/BuyWindows";
+        return this.httpService.Post(endPoint, BuyWindows);
+    }
     // CheckForResult(OrderId):Observable<any> {
     //     var endPoint = "Order/CheckForResult?OrderId=" + OrderId;
     //     return this.httpService.Get(endPoint);

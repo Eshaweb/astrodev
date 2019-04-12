@@ -36,6 +36,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
   paymentModedatavalue: any;
   paycodes: PayCode[] = [];
   paymentId: any;
+  ProductName: any;
   constructor(public formbuilder: FormBuilder, public uiService: UIService, private loadingSwitchService: LoadingSwitchService,
     private itemService: ItemService, public productService: ProductService, public horoScopeService: HoroScopeService,
     public router: Router, public orderService: OrderService, public loginService: LoginService) {
@@ -68,14 +69,15 @@ export class AstrolitegoldsilverComponent implements OnInit {
     // {Text:"Astamangala",Value:true}];
     this.loadingSwitchService.loading = true;
     this.discountAmount = 0;
-    if(this.productService.ProductName == "Gold"){
+    this.ProductName=StorageService.GetItem('ProductName');
+    if(StorageService.GetItem('ProductName') == "Gold"){
       this.Astamangala_checkBoxValue = true;
       this.AndroidPriceRequest = {
         PartyMastId: StorageService.GetItem('PartyMastId'),
         Products: ['#PHM', '#PMMM', '#PAMM']
       }
     }
-    else if(this.productService.ProductName == "Silver"){
+    else if(StorageService.GetItem('ProductName') == "Silver"){
       this.Astamangala_checkBoxValue = false;
       this.AndroidPriceRequest = {
         PartyMastId: StorageService.GetItem('PartyMastId'),
@@ -254,7 +256,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
       },
       modal: {
         ondismiss: () => {
-          //alert('dismissed');
+          this.loadingSwitchService.loading = false;
         }
       }
     };

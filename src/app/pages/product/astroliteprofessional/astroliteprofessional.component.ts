@@ -44,6 +44,7 @@ export class AstroliteProfessionalComponent implements OnInit {
   Tamilu_checkBoxValue: boolean;
   Hindi_checkBoxValue: boolean;
   AdditionalLisence_checkBoxValue: boolean;
+  ProductName: any;
   constructor(public formbuilder: FormBuilder, public uiService: UIService, private loadingSwitchService: LoadingSwitchService,
     private itemService: ItemService, public productService: ProductService, public horoScopeService: HoroScopeService,
     public router: Router, public orderService: OrderService, public loginService: LoginService) {
@@ -85,7 +86,8 @@ export class AstroliteProfessionalComponent implements OnInit {
     // {Text:"Astamangala",Value:true}];
     this.loadingSwitchService.loading = true;
     this.discountAmount = 0;
-    if(this.productService.ProductName == "Professional"){
+    this.ProductName=StorageService.GetItem('ProductName');
+    if(StorageService.GetItem('ProductName') == "Professional"){
       this.Astamangala_checkBoxValue = true;
       this.WindowsPriceRequest = {
         PartyMastId: StorageService.GetItem('PartyMastId'),
@@ -316,14 +318,16 @@ export class AstroliteProfessionalComponent implements OnInit {
     else {
       this.paycodes = [{ Code: this.paymentModedatavalue, Amount: this.payableAmount - this.discountAmount }];
     }
-    var BuyAndroid = {
+    var BuyWindows = {
       PartyMastId: StorageService.GetItem('PartyMastId'),
       Products: this.WindowsPriceRequest.Products,
+      Additional:this.AdditionalLisence_checkBoxValue,
+      Language:this.WindowsPriceRequest.Language,
       Amount: this.payableAmount - this.discountAmount,
       PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
       PayCodes: this.paycodes
     }
-    this.productService.BuyAndroid(BuyAndroid).subscribe((data) => {
+    this.productService.BuyWindows(BuyWindows).subscribe((data) => {
       this.loadingSwitchService.loading = false;
       if (data.Error == undefined) {
         this.horoScopeService.ExtCode = data.ExtCode;
@@ -375,7 +379,7 @@ export class AstroliteProfessionalComponent implements OnInit {
       },
       modal: {
         ondismiss: () => {
-          //alert('dismissed');
+          this.loadingSwitchService.loading = false;
         }
       }
     };
