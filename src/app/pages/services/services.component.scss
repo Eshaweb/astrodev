@@ -1,11 +1,13 @@
-.content-summary {
-  height: 155px;
+.content-full:hover{
+
+  height: 150px;
+  overflow: auto;
 }
 
 .content-full{
 
-  height: 155px;
-  overflow: auto;
+  height: 150px;
+  overflow: hidden;
 }
 .hlink {
   color: #f7d430;
@@ -17,6 +19,7 @@
   margin-right: auto;
   width: 45%;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 img {
