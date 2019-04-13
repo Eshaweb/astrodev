@@ -45,6 +45,17 @@ export class AstroliteProfessionalComponent implements OnInit {
   Hindi_checkBoxValue: boolean;
   AdditionalLisence_checkBoxValue: boolean;
   ProductName: any;
+  WindowsYearlyPriceRequest: any;
+  yearvalue: any;
+  professional: boolean;
+  professionalyearly: boolean;
+  years: any[] = [
+    { Id: 1, Text: "1 Year" },
+    { Id: 2, Text: "2 Year" },
+    { Id: 3, Text: "3 Year" },
+    { Id: 4, Text: "4 Year" },
+    { Id: 5, Text: "5 Year" }];
+  yearsdata: ArrayStore;
   constructor(public formbuilder: FormBuilder, public uiService: UIService, private loadingSwitchService: LoadingSwitchService,
     private itemService: ItemService, public productService: ProductService, public horoScopeService: HoroScopeService,
     public router: Router, public orderService: OrderService, public loginService: LoginService) {
@@ -88,6 +99,8 @@ export class AstroliteProfessionalComponent implements OnInit {
     this.discountAmount = 0;
     this.ProductName=StorageService.GetItem('ProductName');
     if(StorageService.GetItem('ProductName') == "Professional"){
+      this.professional=true;
+      this.professionalyearly=false;
       this.Astamangala_checkBoxValue = true;
       this.WindowsPriceRequest = {
         PartyMastId: StorageService.GetItem('PartyMastId'),
@@ -95,18 +108,29 @@ export class AstroliteProfessionalComponent implements OnInit {
         Language:['KAN','MAL','TAM','HIN'],
         Additional:this.AdditionalLisence_checkBoxValue
       }
+      this.productService.GetWindowsPrice(this.WindowsPriceRequest).subscribe((data) => {
+        this.payableAmount = data;
+        this.loadingSwitchService.loading = false
+      });
     }
-    // else if(this.productService.ProductName == "Silver"){
-    //   this.Astamangala_checkBoxValue = false;
-    //   this.AndroidPriceRequest = {
-    //     PartyMastId: StorageService.GetItem('PartyMastId'),
-    //     Products: ['#PHM', '#PMMM']
-    //   }
-    // }
-    this.productService.GetWindowsPrice(this.WindowsPriceRequest).subscribe((data) => {
-      this.payableAmount = data;
-      this.loadingSwitchService.loading = false
-    });
+    else if(StorageService.GetItem('ProductName') == "ProfessionalYearlySubscription"){
+      this.professional=false;
+      this.professionalyearly=true;
+      this.yearvalue=2;
+      this.yearsdata = new ArrayStore({
+        data: this.years,
+        key: "Id"
+      });
+      this.WindowsYearlyPriceRequest = {
+        PartyMastId: StorageService.GetItem('PartyMastId'),
+        Years: this.yearvalue
+      }
+      this.productService.GetWindowsYearlyPrice(this.WindowsYearlyPriceRequest).subscribe((data) => {
+        this.payableAmount = data;
+        this.loadingSwitchService.loading = false
+      });
+    }
+    
 
     this.horoScopeService.GetPayCodes().subscribe(data => {
       if (data.Error == undefined) {
@@ -257,6 +281,18 @@ export class AstroliteProfessionalComponent implements OnInit {
       this.WindowsPriceRequest.Additional=false;
     }
     this.GetWindowsPrice(this.WindowsPriceRequest);
+  }
+
+  yearSelection(event) {
+    this.yearvalue = event.value;
+    this.WindowsYearlyPriceRequest = {
+      PartyMastId: StorageService.GetItem('PartyMastId'),
+      Years: this.yearvalue
+    }
+    this.productService.GetWindowsYearlyPrice(this.WindowsYearlyPriceRequest).subscribe((data) => {
+      this.payableAmount = data;
+      this.loadingSwitchService.loading = false
+    });
   }
   GetWindowsPrice(WindowsPriceRequest) {
     if (WindowsPriceRequest.Products.length != 0) {

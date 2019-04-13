@@ -21,6 +21,10 @@ export class ProductService {
         var endPoint = "Product/GetWindowsPrice";
         return this.httpService.Post(endPoint, WindowsPriceRequest);
     }
+    GetWindowsYearlyPrice(WindowsYearlyPriceRequest):Observable<any> {
+        var endPoint = "Product/GetWindowsYearlyPrice";
+        return this.httpService.Post(endPoint, WindowsYearlyPriceRequest);
+    }
     BuyAndroid(BuyAndroid):Observable<any> {
         var endPoint = "Product/BuyAndroid";
         return this.httpService.Post(endPoint, BuyAndroid);

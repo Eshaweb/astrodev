@@ -2,7 +2,16 @@
 
 <div class="dx-card content-block responsive-paddings">
 
-    <div class="dx-fieldset">
+    <div class="dx-fieldset" *ngIf="professional">
+        <!-- <div class="dx-field">
+            <div *ngFor="let item of chekboxes">
+                <dx-check-box 
+                    [(value)]="item.Value"
+                    (onValueChanged)="chekboxes_Click($event, item.Value)"
+                    [text]="item.Text">
+                </dx-check-box>
+            </div>
+          </div> -->
           <div class="dx-fieldset-column">
         <h4>Products</h4>
         <div class="dx-field">
@@ -50,7 +59,7 @@
         </div>
 
       <div class="dx-fieldset-column">  
-    <div class="dx-fieldset">
+    <div class="dx-fieldset" *ngIf="professional">
         <h4>Languages</h4>
         <div class="dx-field">
             <div>
@@ -85,14 +94,30 @@
         </div>
         <div class="dx-field"></div>
     </div>
-    </div>
-    <div class="dx-fieldset">
+    <div class="dx-fieldset" *ngIf="professional">
         <div class="dx-field">
             <div>
                 <h4>Additionals</h4>
                 <dx-check-box [(value)]="AdditionalLisence_checkBoxValue"
                     (onValueChanged)="AdditionalLisence_Click($event)" text="Additional Lisence">
                 </dx-check-box>
+            </div>
+        </div>
+    </div>
+    <div class="dx-fieldset" *ngIf="professionalyearly">
+        <div class="dx-field">
+            <div class="cap">
+                <div class="payment-mode">
+                    <dx-select-box (onValueChanged)="yearSelection($event)"
+                        [dataSource]="yearsdata" 
+                        displayExpr="Text" 
+                        valueChangeEvent="keyup" 
+                        valueExpr="Id"
+                        placeholder="Select Years"
+                        [searchEnabled]="true" 
+                        [value]="yearvalue">
+                    </dx-select-box>
+                </div>
             </div>
         </div>
     </div>
@@ -103,8 +128,7 @@
                 <div class="cap">
                     <!-- <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box> -->
                     <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup"
-                        (keyup)="OnCouponCode($event.target.value)" showClearButton="true"
-                        placeholder="Enter Coupon Code"></dx-text-box>
+                        (keyup)="OnCouponCode($event.target.value)" placeholder="Enter Coupon Code"></dx-text-box>
                     <p style="color:red" id="err_CouponCode"></p>
                     <p style="color:red">{{ errorMessage }}</p>
                 </div>
