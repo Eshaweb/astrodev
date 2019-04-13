@@ -2582,20 +2582,20 @@
   color: #2d6da3;
 }
 .dx-button-mode-text {
-  background-color: transparent;
-  border-color: transparent;
+  background-color: #db7234;
+  border-color: #e29263;
   color: #333;
 }
 .dx-button-mode-text .dx-icon {
   color: #333;
 }
 .dx-button-mode-text.dx-state-hover {
-  background-color: rgba(51, 51, 51, 0.1);
-  border-color: transparent;
+  background-color:  #db7234;
+  border-color:  #e29263;
 }
 .dx-button-mode-text.dx-state-focused {
-  background-color: rgba(51, 51, 51, 0.2);
-  border-color: transparent;
+  background-color:  #db7234;
+  border-color: #e29263;
 }
 .dx-button-mode-text.dx-state-active {
   background-color: rgba(51, 51, 51, 0.3);
