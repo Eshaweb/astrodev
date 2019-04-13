@@ -70,6 +70,21 @@ box-shadow: 4px 4px 6px #ddd;
   background-color:rgb(194, 128, 6);
 
 }
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 58%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+}
+
+
 @media (max-width: 800px) {
   .dx-fieldset-column {
   float: left;
