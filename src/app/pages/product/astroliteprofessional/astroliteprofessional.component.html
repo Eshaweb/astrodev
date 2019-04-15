@@ -170,7 +170,7 @@
         <div class="dx-field">
             <div class="continue-button">
                 <dx-button (onClick)="onPay_click()" 
-                    [disabled]="!paymentModedatavalue" 
+                    [disabled]="!paymentModedatavalue||disableBuyNow" 
                     text="Buy Now" 
                     type="success"
                     [useSubmitBehavior]="true">

@@ -259,7 +259,7 @@ export class LoginFormComponent {
           StorageService.SetItem('PartyMastId', data.PartyMastId);
           StorageService.SetItem('Name', data.Name);
           this.loginService.userProfileVisible = true;
-          if (window.innerWidth < 768) {
+          if (window.innerWidth < 900) {
             this.loginService.menuItems = navigationAfterLogin;
           }
           else {
@@ -320,7 +320,7 @@ export class LoginFormComponent {
             StorageService.SetItem('PartyMastId', data.PartyMastId);
             StorageService.SetItem('Name', data.Name);
             this.loginService.userProfileVisible = true;
-            if (window.innerWidth < 768) {
+            if (window.innerWidth < 900) {
               this.loginService.menuItems = navigationAfterLogin;
             }
             else {

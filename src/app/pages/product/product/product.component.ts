@@ -35,7 +35,7 @@ export class ProductComponent implements OnInit {
       }
       else if (value == "ProfessionalYearlySubscription") {
         this.productService.ProductName = "Professional Full Package";
-        StorageService.SetItem('ProductName', value);
+        StorageService.SetItem('ProductName', "Professional Full Package");
         this.router.navigate(["/products/astroprofessional"]);
       }
     }
@@ -59,9 +59,9 @@ export class ProductComponent implements OnInit {
         this.router.navigate(["/login-form"]);
       }
       else if (value == "ProfessionalYearlySubscription") {
-        this.productService.ProductName = "ProfessionalYearlySubscription";
+        this.productService.ProductName = "Professional Full Package";
         this.loginService.path = "/products/astroprofessional";
-        StorageService.SetItem('ProductName', value);
+        StorageService.SetItem('ProductName', "Professional Full Package");
         this.router.navigate(["/login-form"]);
       }
     }

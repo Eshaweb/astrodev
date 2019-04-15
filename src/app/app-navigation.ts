@@ -132,11 +132,11 @@ export const navigationAfterLogin = [
     icon: 'folder',
     path:'/settings',
   },
-  {
-    text: 'Profile',
-    icon: 'user',
-    path:'/profile',
-  },
+  // {
+  //   text: 'Profile',
+  //   icon: 'user',
+  //   path:'/profile',
+  // },
   {
     text: 'Admin',
     icon: 'user',
@@ -277,11 +277,11 @@ export const navigationAfterLoginForSystem = [
     icon: 'folder',
     path:'/settings',
   },
-  {
-    text: 'Profile',
-    icon: 'user',
-    path:'/profile',
-  },
+  // {
+  //   text: 'Profile',
+  //   icon: 'user',
+  //   path:'/profile',
+  // },
   {
     text: 'Admin',
     icon: 'user',

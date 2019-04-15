@@ -56,6 +56,7 @@ export class AstroliteProfessionalComponent implements OnInit {
     { Id: 4, Text: "4 Year" },
     { Id: 5, Text: "5 Year" }];
   yearsdata: ArrayStore;
+  disableBuyNow: boolean;
   constructor(public formbuilder: FormBuilder, public uiService: UIService, private loadingSwitchService: LoadingSwitchService,
     private itemService: ItemService, public productService: ProductService, public horoScopeService: HoroScopeService,
     public router: Router, public orderService: OrderService, public loginService: LoginService) {
@@ -113,7 +114,7 @@ export class AstroliteProfessionalComponent implements OnInit {
         this.loadingSwitchService.loading = false
       });
     }
-    else if(StorageService.GetItem('ProductName') == "ProfessionalYearlySubscription"){
+    else if(StorageService.GetItem('ProductName') == "Professional Full Package"){
       this.professional=false;
       this.professionalyearly=true;
       this.yearvalue=2;
@@ -127,7 +128,7 @@ export class AstroliteProfessionalComponent implements OnInit {
       }
       this.productService.GetWindowsYearlyPrice(this.WindowsYearlyPriceRequest).subscribe((data) => {
         this.payableAmount = data;
-        this.loadingSwitchService.loading = false
+        this.loadingSwitchService.loading = false;
       });
     }
     
@@ -285,6 +286,7 @@ export class AstroliteProfessionalComponent implements OnInit {
 
   yearSelection(event) {
     this.yearvalue = event.value;
+    this.loadingSwitchService.loading = true;
     this.WindowsYearlyPriceRequest = {
       PartyMastId: StorageService.GetItem('PartyMastId'),
       Years: this.yearvalue
@@ -309,6 +311,10 @@ export class AstroliteProfessionalComponent implements OnInit {
   OnCouponCode(value) {
     if (value.length < 6) {  //checks for couponcode length
       this.discountAmount = 0;
+      this.disableBuyNow = true;
+      if (value.length==0){
+        this.disableBuyNow = false;
+      }
     }
     else {
       this.disableButton = false;
@@ -354,6 +360,7 @@ export class AstroliteProfessionalComponent implements OnInit {
     else {
       this.paycodes = [{ Code: this.paymentModedatavalue, Amount: this.payableAmount - this.discountAmount }];
     }
+    if(StorageService.GetItem('ProductName') == "Professional"){
     var BuyWindows = {
       PartyMastId: StorageService.GetItem('PartyMastId'),
       Products: this.WindowsPriceRequest.Products,
@@ -382,9 +389,45 @@ export class AstroliteProfessionalComponent implements OnInit {
       }
       else {
         this.errorMessage = data.Error;
+        this.CoupenCodeForm.controls['CouponCode'].setValue('');
+        document.getElementById('err_CouponCode').innerHTML='';
         this.loadingSwitchService.loading = false;
       }
     });
+  }
+  else if(StorageService.GetItem('ProductName') == "Professional Full Package"){
+    var BuyWindowsYearly = {
+      PartyMastId: StorageService.GetItem('PartyMastId'),
+      Years: this.yearvalue,
+      Amount: this.payableAmount - this.discountAmount,
+      PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
+      PayCodes: this.paycodes
+    }
+    this.productService.BuyWindowsYearly(BuyWindowsYearly).subscribe((data) => {
+      this.loadingSwitchService.loading = false;
+      if (data.Errors == undefined) {
+        this.horoScopeService.ExtCode = data.ExtCode;
+        for (var i = 0; i < data.PayModes.length; i++) {
+          if (data.PayModes[i] == "ON") {
+            this.loadingSwitchService.loading = true;
+            this.pay();
+            break;
+          }
+          else if (data.PayModes[i] == "OFF") {
+            this.loadingSwitchService.loading = false;
+            this.router.navigate(['/offlinePayment']);
+            break;
+          }
+        }
+      }
+      else {
+        this.errorMessage = data.Error;
+        this.CoupenCodeForm.controls['CouponCode'].setValue('');
+        document.getElementById('err_CouponCode').innerHTML='';
+        this.loadingSwitchService.loading = false;
+      }
+    });
+  }
   }
 
 

@@ -33,11 +33,10 @@
                         </div>
                     </div>
                     
-                
+
                 <div class="dx-field">
                     <dx-button type="default" [disabled]="!depositToWalletForm.valid||!paymentModedatavalue" text="Add Money" (onClick)="onClick()" width="100%"></dx-button>
                 </div>
-               
             </form>
 </div>
 <div *ngIf='message' class="dx-card content-block responsive-paddings">
@@ -47,9 +46,11 @@
 <p><b>  Succesfully added to the wallet</b></p>
 
 <p><b>  Updated Wallet Balance is :  {{walletBalanceAmount|currency:'INR'}}</b></p>
+<div class="dx-fieldset">   
 <div class="dx-field">
-        <dx-button id="button" type="success" text="Go to Home" (click)='gotoServies()'></dx-button>
+        <dx-button type="success" text="Go to Home" (click)='gotoServies()'></dx-button>
     </div>
+</div>
 </div>
 </div>
 </div>
