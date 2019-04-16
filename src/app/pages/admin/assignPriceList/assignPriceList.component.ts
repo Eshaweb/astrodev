@@ -20,6 +20,11 @@ export class AssignPriceListComponent implements OnInit {
   priceListUpdated: boolean;
 
   constructor(public router: Router, public loadingSwitchService: LoadingSwitchService, public adminService: AdminService) {
+    
+  }
+
+  ngOnInit() {
+    this.loadingSwitchService.loading=true;
     this.adminService.GetAssignedPriceList().subscribe((data: any) => {
       if (data.Errors == undefined) {
         this.priceListUpdated = true;
@@ -27,11 +32,8 @@ export class AssignPriceListComponent implements OnInit {
           this.priceList = data;
         }
       }
+      this.loadingSwitchService.loading=false;
     });
-  }
-
-  ngOnInit() {
-
   }
   onRowRemoving(event) {
     var List = {

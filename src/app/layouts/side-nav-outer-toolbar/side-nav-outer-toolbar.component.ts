@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 // import { navigation } from 'src/app/app-navigation';
-import { navigationAfterLogin, navigationBeforeLogin, navigationAfterLoginForSystem, navigationBeforeLoginForSystem, services, serviceListAfterLogin, serviceListBeforeLogin } from 'src/app/app-navigation';
+import { navigationAfterLogin, navigationBeforeLogin, navigationAfterLoginForSystem, navigationBeforeLoginForSystem, services, serviceListAfterLogin, serviceListBeforeLogin, navigationAfterLoginForSystemForAdmin } from 'src/app/app-navigation';
 import { DxNavBarModule, DxButtonModule, DxMenuModule } from 'devextreme-angular';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
@@ -59,6 +59,9 @@ export class SideNavOuterToolbarComponent implements OnInit {
       this.isMobileResolution = true;
       if (StorageService.GetItem('refreshToken') != undefined) {
         this.loginService.menuItems = navigationAfterLogin;
+        if(StorageService.GetItem('isAdmin')=='true'){
+          this.loginService.menuItems = navigationAfterLogin;
+        }
       }
       else {
         this.loginService.menuItems = navigationBeforeLogin;
@@ -68,6 +71,9 @@ export class SideNavOuterToolbarComponent implements OnInit {
       if (StorageService.GetItem('refreshToken') != undefined) {
         this.loginService.menuItems = navigationAfterLoginForSystem;
         this.loginService.serviceList= serviceListAfterLogin;
+        if(StorageService.GetItem('isAdmin')=='true'){
+          this.loginService.menuItems = navigationAfterLoginForSystemForAdmin;
+        }
       }
       else {
         this.loginService.menuItems = navigationBeforeLoginForSystem;

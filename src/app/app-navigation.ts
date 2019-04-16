@@ -74,10 +74,7 @@
 //   },
 // ];
 
-
-
-
-export const navigationAfterLogin = [
+export const navigationAfterLoginForAdmin = [
   {
     text: 'Home',
     path:'/home',
@@ -141,6 +138,74 @@ export const navigationAfterLogin = [
     text: 'Admin',
     icon: 'user',
     path:'/admin',
+  },
+  {
+    text: 'About Us',
+    path:'/staticforms/aboutus',
+    icon: 'folder',
+  },
+  {
+    text: 'Contact Us',
+    path:'/staticforms/contactus',
+    icon: 'folder',
+  },
+];
+
+
+export const navigationAfterLogin = [
+  {
+    text: 'Home',
+    path:'/home',
+    icon: 'home'
+  },
+  {
+    text: 'Services',
+    icon: 'fields',
+    items: [
+      {
+        text: 'Horoscope',
+        path: '/horoscope',
+      },
+      {
+        text: 'Match Making',
+        path: '/matchMaking',
+      },
+      {
+        text: 'Astamangala',
+        path: '/astamangala',
+      },
+      {
+        text: 'Numerology',
+        path: '/numerology',
+      },
+      {
+        text: 'Nithya Panchanga',
+        path: '/panchanga',
+      },
+      {
+        text: 'Muhurtha',
+        path:'/muhurtha'
+      },
+      // {
+      //   text: 'Panchapakshi',
+      //   path: '/panchapakshi',
+      // },
+      {
+        text: 'Wallet',
+        path: '/wallet/depoToWallet'
+      },
+    ],
+    
+  },
+  {
+    text: 'Products',
+    path:'/products',
+    icon: 'folder'
+  },
+  {
+    text: 'Settings',
+    icon: 'folder',
+    path:'/settings',
   },
   {
     text: 'About Us',
@@ -226,7 +291,7 @@ export const navigationBeforeLogin = [
   },
 ];
 
-export const navigationAfterLoginForSystem = [
+export const navigationAfterLoginForSystemForAdmin = [
   {
     text: 'Services',
     icon: 'fields',
@@ -286,6 +351,59 @@ export const navigationAfterLoginForSystem = [
     text: 'Admin',
     icon: 'user',
     path:'/admin',
+  }
+];
+
+export const navigationAfterLoginForSystem = [
+  {
+    text: 'Services',
+    icon: 'fields',
+    path:'/services',
+    items: [
+      {
+        text: 'Horoscope',
+        path: '/horoscope',
+      },
+      {
+        text: 'Match Making',
+        path: '/matchMaking',
+      },
+      {
+        text: 'Astamangala',
+        path: '/astamangala',
+      },
+      {
+        text: 'Numerology',
+        path: '/numerology',
+      },
+      {
+        text: 'Nithya Panchanga',
+        path: '/panchanga',
+      },
+      {
+        text: 'Muhurtha',
+        path:'/muhurtha'
+      },
+      // {
+      //   text: 'Panchapakshi',
+      //   path: '/panchapakshi',
+      // },
+      {
+        text: 'Wallet',
+        path: '/wallet/depoToWallet'
+      },
+    ],
+    
+  },
+  {
+    text: 'Products',
+    path:'/products',
+    icon: 'folder'
+  },
+  {
+    text: 'Settings',
+    icon: 'folder',
+    path:'/settings',
   }
 ];
 

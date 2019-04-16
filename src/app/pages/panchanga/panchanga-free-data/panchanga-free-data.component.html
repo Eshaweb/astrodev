@@ -8,7 +8,7 @@
               showNavButtons="true"
               direction="vertical" *ngIf="!isMobileResolution"> -->
      <dx-tile-view #tileView 
-              [height]="1200" 
+              [height]="1500" 
               [baseItemHeight]="1300" 
               [baseItemWidth]="350" 
               width="100%" 
@@ -22,11 +22,28 @@
             </div>
         </div>
         <div class="dx-field" [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label">{{item.Week}}
+            </div>
+        </div>
+        <div class="dx-field" [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label">{{item.Samvathsara}} {{caption.Samvathsara}}
+            </div>
+        </div>
+        <div class="dx-field" [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label"> {{caption.SouraMasa}}:</div>
+            <div class="dx-field-value"> {{item.Masa}}
+            </div>
+        </div>
+        <div class="dx-field" [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label">{{item.ChandraMasa}}
+            </div>
+        </div>
+        <div class="dx-field" [ngClass]="getFont(panchangaRequest.LangCode)">
             <div class="dx-field-label">{{item.Ayana}}
             </div>
         </div>
         <div class="dx-field" [ngClass]="getFont(panchangaRequest.LangCode)">
-            <div class="dx-field-label">{{item.RuthuText}}
+            <div class="dx-field-label">{{item.RuthuText}} {{caption.Ruthu}}
             </div>
         </div>
         <div class="dx-field" [ngClass]="getFont(panchangaRequest.LangCode)">
@@ -72,12 +89,6 @@
         </div>
 
         <div class="dx-field " [ngClass]="getFont(panchangaRequest.LangCode)">
-            <div class="dx-field-label"> {{caption.SouraMasa}}:</div>
-            <div class="dx-field-value"> {{item.Masa}}
-            </div>
-        </div>
-
-        <div class="dx-field " [ngClass]="getFont(panchangaRequest.LangCode)">
             <div class="dx-field-label"> {{ caption.Tithi}}:</div>
             <div class="dx-field-value"> {{item.Tithi}}
             </div>
@@ -108,7 +119,11 @@
             <div class="dx-field-value"> {{item.Amritha}}
             </div>
         </div>
-
+        <div class="dx-field " [ngClass]="getFont(panchangaRequest.LangCode)">
+            <div class="dx-field-label"> {{ caption.DinaVishesha}}:</div>
+            <div class="dx-field-value"> {{item.DinaVishesha}}
+            </div>
+        </div>
     </dxi-item>
 </dx-tile-view>
 

@@ -3,6 +3,7 @@ export class Caption {
     Kollam: string;
     Samvathsara: string;
     Aayana: string;
+    DinaVishesha:string;
     Ruthu: string;
     ChandraMasa: string;
     SouraMasa: string;
