@@ -15,6 +15,8 @@ export class CaptionDbService {
         var arr = [];
         if(langCode=="KAN")
         {
+            caption.Ruthu='¢£À «±ÉÃµÀ';
+            caption.DinaVishesha='¢£À «±ÉÃµÀ';
             caption.Nityapanchanga='¤vÀå ¥ÀAZÁAUÀ';
             caption.ShakaVarsha='UÀvÀ±Á°ªÁºÀ£À ±ÀPÀªÀµÀð';
             caption.Kollam='PÉÆÃ®A§ªÀµÀð';
@@ -79,8 +81,7 @@ export class CaptionDbService {
         }
         else if(langCode=="ENG")
         {
-          
-    
+            caption.DinaVishesha='Dina Vishesha';
             caption.Nityapanchanga='Nitya Panchanga';
             caption.ShakaVarsha='Shaka Varsha';
             caption.Kollam='Kollam';
@@ -144,8 +145,7 @@ export class CaptionDbService {
         }
        else if(langCode=="HIN")
         {
-          
-    
+            caption.DinaVishesha='ÌSlÉ ÌuÉzÉãwÉ';
             caption.Nityapanchanga='ÌlÉirÉ mÉÇcÉÉÇaÉ';
             caption.ShakaVarsha='zÉÉÍsÉuÉÉWûlÉ zÉMüuÉwÉï';
             caption.Kollam='MüÉåsÉÇoÉ uÉwÉï';
@@ -207,7 +207,8 @@ export class CaptionDbService {
             caption.WeakDesc="ClÉ ÌSlÉÉåÇ qÉåÇ AÉmÉMüÐ iÉMüSÏU MüÉ oÉsÉ AÉæU DµÉU MüÐ xÉWûÉrÉiÉÉ pÉÏ SÒoÉïsÉ UWûlÉå Måü MüÉUhÉ UÉåÄeÉ Måü MüÉqÉÉåÇ Måü AsÉÉuÉÉ MüÉåD pÉÏ mÉëqÉÑZÉ ÌlÉkÉÉïU sÉålÉå Måü ÍsÉL AlÉÑMÔüsÉMüÉUMü lÉWûÏÇ WæûÇ|";
         }
        else if(langCode=="MAL")
-        {        
+        {    
+            caption.DinaVishesha='py¥qrbypsµ¬';    
             caption.Nityapanchanga='dyZõ eºxMI';
             caption.ShakaVarsha='MZ qxmypxtd qKI';
             caption.Kollam='¥KxmøpªrI';
@@ -274,6 +275,7 @@ export class CaptionDbService {
         }
        else if(langCode=="TAM")
         {
+            caption.DinaVishesha='¾¢É Å¢§º„õ'; 
             caption.Nityapanchanga='¿¢òÂ Àïº¡í¸õ';
             caption.ShakaVarsha='¸¼ó¾ „¡Ä¢Å¡†É ÅÕ¼õ';
             caption.Kollam='¦¸¡øÄõ (ÅÕ„õ)';

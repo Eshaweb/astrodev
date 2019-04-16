@@ -30,6 +30,7 @@ import { OrderService } from 'src/Services/OrderService/OrderService';
 import { environment } from 'src/environments/environment';
 import { take, map } from 'rxjs/operators';
 import { LoginService } from 'src/Services/LoginService/LoginService';
+import { PartyService } from 'src/Services/PartyService/PartyService';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -68,7 +69,7 @@ export class LoginFormComponent {
 
   constructor(public orderService: OrderService, public storageService: StorageService, private muhurthaService: MuhurthaService, private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
     private astamangalaService: AstamangalaService, public registrationService: RegistrationService, public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager,
-    public _location: Location, public route: ActivatedRoute, public router: Router, public http: HttpClient,
+    public _location: Location, public route: ActivatedRoute, public router: Router, public http: HttpClient, public partyService:PartyService,
     public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService,
     public uiService: UIService, public formbuilder: FormBuilder) {
 
@@ -376,6 +377,12 @@ export class LoginFormComponent {
         document.getElementById('err_UserName').innerHTML = '';
         document.getElementById('err_Password').innerHTML = '';
       }
+      this.partyService.IsAdmin().subscribe((data) => {
+        if(data==true){
+          this.loginService.isAdmin=true;
+          StorageService.SetItem('isAdmin',data);
+        }
+      });
     });
   }
   ValidateUserByOTP() {

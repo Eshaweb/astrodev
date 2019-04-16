@@ -47,6 +47,7 @@ export class HeaderComponent {
       this.loginService.menuItems=navigationBeforeLogin;
       this.loginService.serviceMenus=serviceMenusBeforeLogin;
       this.loginService.serviceList=serviceListBeforeLogin;
+      this.loginService.isAdmin=false;
       this.router.navigate(['/login-form']);
     }
   },
@@ -69,6 +70,9 @@ export class HeaderComponent {
       this.loginService.userProfileVisible=true;
       this.loginService.Name=StorageService.GetItem('Name');
       this.loginService.serviceMenus=serviceMenusAfterLogin;
+      if(StorageService.GetItem('isAdmin')=='true'){
+        this.loginService.isAdmin=true;
+      }
     }
     else{
       this.loginService.userProfileVisible=false;

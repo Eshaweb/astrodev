@@ -47,8 +47,11 @@ this.statesOfIndia = [
         { Id: "WB", Text: 'West Bengal' }
       ];
     }
-
-    GetProfile(PartyMastId):Observable<any>{
+    IsAdmin(): Observable<any> {
+        var endPoint = "Party/IsAdmin";
+        return this.httpService.Get(endPoint);
+    }
+    GetProfile(PartyMastId): Observable<any> {
         var endPoint = "Party/GetProfile?PartyMastId=" + PartyMastId;
         return this.httpService.Get(endPoint);
     }

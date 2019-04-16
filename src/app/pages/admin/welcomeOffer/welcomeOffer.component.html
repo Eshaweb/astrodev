@@ -1,6 +1,6 @@
 <h2 class="content-block">Welcome Offer</h2>
 <div class="dx-card content-block responsive-paddings">
-    <form action="your-action" [formGroup]="welcomeOfferForm">
+    <!-- <form action="your-action" [formGroup]="welcomeOfferForm">
         <div class="dx-fieldset" #datagridBasePrice>
             <div class="dx-fieldset-column">
                 <div class="dx-field">
@@ -13,7 +13,7 @@
             </div>
             <div class="dx-fieldset-column">
                 <div class="dx-field">
-                    <div class="dx-field-label">Refferance Benefit</div>
+                    <div class="dx-field-label">Refferal Benefit</div>
                     <div class="dx-field-value">
                         <dx-number-box formControlName="Reff" valueChangeEvent="keyup" [disabled]="allowUpdate" placeholder="Enter value here..." showClearButton="true"></dx-number-box>
                         <p style="color:red" id='err_Reff'></p>
@@ -27,7 +27,37 @@
                 [useSubmitBehavior]="true">
             </dx-button>
         </div>
-    </form>
+    </form> -->
+
+<div #datagridBasePrice>
+    <dx-data-grid (onToolbarPreparing)="onToolbarPreparing($event)"
+        id="gridContainer"
+        [dataSource]="dataSource"
+        [showBorders]="true">
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-editing 
+            mode="batch"
+            [allowUpdating]="allowUpdate">
+        </dxo-editing>
+        <dxi-column dataField="Name" [width]="300" [allowEditing]="false"></dxi-column>
+        <dxi-column dataField="ValueType" caption="Value Type" [width]="200">
+            <dxo-lookup
+            [dataSource]="valueType"
+            displayExpr="Text"
+            valueExpr="Id">
+        </dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="Value" [width]="100"></dxi-column>
+    </dx-data-grid>
+</div>
+<div class="dx-fieldset"> 
+    <dx-button id="gridDeleteSelected"
+        [text]="saveButtonName"
+        [height]="34"
+        [width]="195"
+        (onClick)="onSaveClick()">
+    </dx-button>
+    </div>
 </div>
 <dx-popup
     class="popup"
