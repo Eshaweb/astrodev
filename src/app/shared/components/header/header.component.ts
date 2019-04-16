@@ -12,6 +12,7 @@ import { LoginFormComponent, LoginFormModule } from '../login-form/login-form.co
 import { navigationBeforeLogin, navigationAfterLogin, serviceMenusBeforeLogin, serviceMenusAfterLogin, serviceListBeforeLogin } from 'src/app/app-navigation';
 import { DxMenuModule } from 'devextreme-angular';
 import { LoginService } from 'src/Services/LoginService/LoginService';
+import { AuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-header',
@@ -48,6 +49,9 @@ export class HeaderComponent {
       this.loginService.serviceMenus=serviceMenusBeforeLogin;
       this.loginService.serviceList=serviceListBeforeLogin;
       this.loginService.isAdmin=false;
+      // this.authService.signOut().then(() => {
+      //   window.location.assign('https://accounts.google.com/Logout');
+      // });
       this.router.navigate(['/login-form']);
     }
   },
@@ -65,7 +69,8 @@ export class HeaderComponent {
   showSubmenuModes: { name: string; delay: { show: number; hide: number; }; }[];
   showFirstSubmenuModes: { name: string; delay: { show: number; hide: number; }; };
 
-  constructor(public storageService:StorageService,public loginService:LoginService,public registrationService:RegistrationService,private router: Router, private authService: AuthenticationService) { 
+  constructor(public storageService:StorageService,public loginService:LoginService,public registrationService:RegistrationService,
+    private router: Router, private authenticationService: AuthenticationService, public authService: AuthService) { 
     if(StorageService.GetItem('refreshToken')!=undefined){
       this.loginService.userProfileVisible=true;
       this.loginService.Name=StorageService.GetItem('Name');

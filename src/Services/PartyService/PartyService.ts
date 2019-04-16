@@ -55,7 +55,10 @@ this.statesOfIndia = [
         var endPoint = "Party/GetProfile?PartyMastId=" + PartyMastId;
         return this.httpService.Get(endPoint);
     }
-
+    ExternalLogin(ExternalLogin):Observable<any> {
+        var endPoint = "Party/ExternalLogin";
+        return this.httpService.Post(endPoint,ExternalLogin);
+    }
     UpdateProfile(ProfileData):Observable<any> {
         var endPoint = "Party/UpdateProfile";
         return this.httpService.Post(endPoint,ProfileData);
