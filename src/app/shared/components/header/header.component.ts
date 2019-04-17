@@ -49,9 +49,9 @@ export class HeaderComponent {
       this.loginService.serviceMenus=serviceMenusBeforeLogin;
       this.loginService.serviceList=serviceListBeforeLogin;
       this.loginService.isAdmin=false;
-      // this.authService.signOut().then(() => {
-      //   window.location.assign('https://accounts.google.com/Logout');
-      // });
+      this.authService.signOut().then(() => {
+        window.location.assign('https://accounts.google.com/Logout');
+      });
       this.router.navigate(['/login-form']);
     }
   },

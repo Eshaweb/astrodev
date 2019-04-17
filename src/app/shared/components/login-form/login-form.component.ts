@@ -172,7 +172,7 @@ export class LoginFormComponent {
     this.authService.authState.subscribe((user) => {
       this.user = user;
       //this.loggedIn = (user != null);
-      if (user != null) {
+      if (user != null&&this.loginService.userProfileVisible==false) {
         var ExternalLogin = {
           Provider: user.provider,
           Token: user.authToken
@@ -195,7 +195,7 @@ export class LoginFormComponent {
     this.authService.authState.subscribe((user) => {
       this.user = user;
       //this.loggedIn = (user != null);
-      if (user != null) {
+      if (user != null&&this.loginService.userProfileVisible==false) {
         var ExternalLogin = {
           Provider: user.provider,
           Token: user.authToken
