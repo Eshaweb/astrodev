@@ -29,7 +29,11 @@
     .dx-texteditor-container {
     margin-bottom: 14px;
     }
-    
+    dx-button.dx-button.dx-button-normal.dx-button-mode-contained.dx-widget.dx-button-has-text {
+        left: 35%;
+        right: 35%;
+        position: absolute;
+    }
     @media (max-width: 800px) {
     .dx-fieldset-column {
     float: left;
