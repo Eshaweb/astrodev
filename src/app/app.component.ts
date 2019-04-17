@@ -20,6 +20,7 @@ import { OrderHistoryResponse } from 'src/Models/OrderHistoryResponse';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
+import { AuthService } from 'angularx-social-login';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -42,7 +43,10 @@ export class AppComponent  {
     return Object.keys(this.screen.sizes).filter(cl => this.screen.sizes[cl]).join(' ');
   }
 
-  constructor(public loginService:LoginService,public itemService:ItemService,public horoScopeService:HoroScopeService,public storageService:StorageService,public orderService:OrderService,public router: Router, private errorService: ErrorService, public loadingSwitchService: LoadingSwitchService, public registrationService:RegistrationService,public authService: AuthenticationService, private screen: ScreenService, public appInfo: AppInfoService) { 
+  constructor(public loginService:LoginService,public itemService:ItemService,public horoScopeService:HoroScopeService,
+    public storageService:StorageService,public orderService:OrderService,public router: Router, private errorService: ErrorService, 
+    public loadingSwitchService: LoadingSwitchService, public registrationService:RegistrationService,public authenticationService: AuthenticationService, 
+    private screen: ScreenService, public appInfo: AppInfoService, public authService: AuthService) { 
     this.subscription = this.errorService.loaderState
     .subscribe((errorData: ErrorData) => {
       if (errorData != undefined) {
@@ -145,7 +149,11 @@ ondelete_Click(item){
   onContinue_Click(){
 
   }
-
+  // ngOnDestroy(): void {
+  //   this.authService.signOut().then(() => {
+  //     window.location.assign('https://accounts.google.com/Logout');
+  //   });
+  // }
   
   onShown() {
     setTimeout(() => {
@@ -157,7 +165,7 @@ onHidden() {
     
 }
   isAutorized() {
-    return this.authService.isLoggedIn;
+    return this.authenticationService.isLoggedIn;
   }
   private processRouterEvent(routerEvent: Event): void {
     if (routerEvent instanceof NavigationStart) {

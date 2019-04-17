@@ -39,7 +39,6 @@ import { PartyService } from 'src/Services/PartyService/PartyService';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
-  @Output() close: EventEmitter<any> = new EventEmitter();
   needtoEnterOTP: boolean;
   uservalidateForm: FormGroup;
   loginForm: FormGroup;
@@ -65,11 +64,11 @@ export class LoginFormComponent {
   horoInfo: any;
   loading: boolean;
   ShowPassword_checkBoxValue: boolean;
-  textboxMode: string="password";
+  textboxMode: string = "password";
 
   constructor(public orderService: OrderService, public storageService: StorageService, private muhurthaService: MuhurthaService, private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
     private astamangalaService: AstamangalaService, public registrationService: RegistrationService, public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager,
-    public _location: Location, public route: ActivatedRoute, public router: Router, public http: HttpClient, public partyService:PartyService,
+    public _location: Location, public route: ActivatedRoute, public router: Router, public http: HttpClient, public partyService: PartyService,
     public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService,
     public uiService: UIService, public formbuilder: FormBuilder) {
 
@@ -129,34 +128,28 @@ export class LoginFormComponent {
   };
   ngOnInit() {
     //this.events.publish('REFRESH_DIGIPARTYNAME');
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-      // alert(user.authToken);
-    });
-    this.ShowPassword_checkBoxValue=false;
+
+    this.ShowPassword_checkBoxValue = false;
   }
   ngAfterViewInit(): void {
-    if(this.registrationService.UserName!=undefined){
+    if (this.registrationService.UserName != undefined) {
       this.loginForm.controls['UserName'].setValue(this.registrationService.UserName);
     }
   }
   ShowPassword_Click(event) {
     if (event.value == true) {
       this.ShowPassword_checkBoxValue = true;
-      this.textboxMode="text";
+      this.textboxMode = "text";
     }
     else {
       this.ShowPassword_checkBoxValue = false;
-      this.textboxMode="password";
+      this.textboxMode = "password";
     }
   }
   public signIn(event) {
     event.dialog.close();
   }
-  ngOnDestroy(): void {
-
-  }
+  
   onValueChanged(event) {
     if (event.value == "") {
       this.disableResendOTP = false;
@@ -176,16 +169,52 @@ export class LoginFormComponent {
   }
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      //this.loggedIn = (user != null);
+      if (user != null) {
+        var ExternalLogin = {
+          Provider: user.provider,
+          Token: user.authToken
+        }
+        if (user.provider == "GOOGLE") {
+          this.partyService.ExternalLogin(ExternalLogin).subscribe((data) => {
+            if (data.Errors == undefined) {
+              this.registrationService.registered = false;
+              this.loadingSwitchService.loading = false;
+              this.AfterLogin(data);
+            }
+            this.IsAdmin();
+          });
+        }
+      }
+    });
   }
   signInWithFB() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      //this.loggedIn = (user != null);
+      if (user != null) {
+        var ExternalLogin = {
+          Provider: user.provider,
+          Token: user.authToken
+        }
+        if (user.provider == "FACEBOOK") {
+          this.partyService.ExternalLogin(ExternalLogin).subscribe((data) => {
+            if (data.Errors == undefined) {
+              this.registrationService.registered = false;
+              this.loadingSwitchService.loading = false;
+              this.authService.signOut();
+              this.AfterLogin(data);
+            }
+            this.IsAdmin();
+          });
+        }
+      }
+    });
   }
-  signOut(): void {
-    this.authService.signOut();
-  }
-
+  
   goToRegistration() {
     this.registrationService.registered = true;
     this.router.navigate(["/registration-form"]);
@@ -208,24 +237,24 @@ export class LoginFormComponent {
         if (data.Errors == undefined) {
           this.isOTPRequested = true;
           this.loginService.oTPRef = data;
-          
+
           //this.title='Note';
-          this.message='You Received an OTP with Reference No. '+this.loginService.oTPRef+'. Please enter it';
+          this.message = 'You Received an OTP with Reference No. ' + this.loginService.oTPRef + '. Please enter it';
           //this.message = 'You will get an OTP. Please enter it';
           this.loginForm.controls['Password'].setValue('');
         }
         this.disableResendOTP = false;
         this.loadingSwitchService.loading = false;
 
-        this.loading=true;
+        this.loading = true;
         this.countDown = timer(0, this.tick).pipe(
           take(this.counter),
-          map(() => 
+          map(() =>
             --this.counter
             // if(this.counter==0){
             //   this.loading=false;
             // }
-          )); 
+          ));
       }, (error) => {
         this.isOTPRequested = false;
         this.disableResendOTP = false;
@@ -285,7 +314,7 @@ export class LoginFormComponent {
           }
           this.loadingSwitchService.loading = false;
         }
-        else{
+        else {
           const loginModel = {
             UserName: this.loginForm.get('UserName').value,
             Password: this.loginForm.get('Password').value
@@ -312,62 +341,7 @@ export class LoginFormComponent {
           this.message = 'Please Enter OTP(since you loginnig for the first time)';
         }
         else if (data.IsActivated == true) {
-          this.loginService.PartyMastId = data.PartyMastId;
-          if (data.Token != undefined && data.PartyMastId != undefined) {
-            this.loginService.Token = data.Token;
-            this.loginService.AccessToken = data.Token;
-            StorageService.SetItem('refreshToken', data.RefreshToken);
-            this.loginService.Name = data.Name;
-            StorageService.SetItem('PartyMastId', data.PartyMastId);
-            StorageService.SetItem('Name', data.Name);
-            this.loginService.userProfileVisible = true;
-            if (window.innerWidth < 900) {
-              this.loginService.menuItems = navigationAfterLogin;
-            }
-            else {
-              this.loginService.menuItems = navigationAfterLoginForSystem;
-              this.loginService.serviceMenus = serviceMenusAfterLogin;
-              this.loginService.serviceList = serviceListAfterLogin;
-            }
-            // this.loginService.navBarData = menusAfterLogin;
-            this.close.emit("hi");
-            // if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null|| this.muhurthaService.muhurthaRequest != null) {
-            //   this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
-            // }
-            if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined || this.storageService.GetHoroResponse('#MU') != undefined) {
-              // this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
-              this.router.navigate(["/purchase/paidServices"]);
-            }
-            else {
-              this.loadingSwitchService.loading = false;
-              if (this.loginService.path != undefined) {
-                this.router.navigate([this.loginService.path]);
-              }
-              else {
-                this.router.navigate(["/services"]);
-              }
-              if (StorageService.GetItem('refreshToken') != undefined && window.location.pathname != '/settings/orderHistory') {
-                const source = timer(1000, 1000);
-                this.subscribe = source.subscribe(val => {
-                  if (val == 3) {
-                    this.orderService.LastPendingTransaction(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
-                      if (data != null) {
-                        this.loginService.orderHistoryResponse = data;
-                        if (data.StatusCode == 'AP') {
-                          this.loginService.proceedDeliveryAddress = true;
-                        }
-                        else if (data.StatusCode == 'BP' || data.StatusCode == 'PP') {
-                          this.loginService.proceedPayment = true;
-                        }
-                        this.loginService.orderhistorypopupVisible = true;
-                      }
-                    });
-                    this.subscribe.unsubscribe();
-                  }
-                });
-              }
-            }
-          }
+          this.AfterLogin(data);
         }
       }
       else {
@@ -377,14 +351,71 @@ export class LoginFormComponent {
         document.getElementById('err_UserName').innerHTML = '';
         document.getElementById('err_Password').innerHTML = '';
       }
-      this.partyService.IsAdmin().subscribe((data) => {
-        if(data==true){
-          this.loginService.isAdmin=true;
-          StorageService.SetItem('isAdmin',data);
-        }
-      });
+      this.IsAdmin();
     });
   }
+  IsAdmin() {
+    this.partyService.IsAdmin().subscribe((data) => {
+      if (data == true) {
+        this.loginService.isAdmin = true;
+        StorageService.SetItem('isAdmin', data);
+      }
+    });
+  }
+  AfterLogin(data) {
+    this.loginService.PartyMastId = data.PartyMastId;
+    if (data.Token != undefined && data.PartyMastId != undefined) {
+      this.loginService.Token = data.Token;
+      this.loginService.AccessToken = data.Token;
+      StorageService.SetItem('refreshToken', data.RefreshToken);
+      this.loginService.Name = data.Name;
+      StorageService.SetItem('PartyMastId', data.PartyMastId);
+      StorageService.SetItem('Name', data.Name);
+      this.loginService.userProfileVisible = true;
+      if (window.innerWidth < 900) {
+        this.loginService.menuItems = navigationAfterLogin;
+      }
+      else {
+        this.loginService.menuItems = navigationAfterLoginForSystem;
+        this.loginService.serviceMenus = serviceMenusAfterLogin;
+        this.loginService.serviceList = serviceListAfterLogin;
+      }
+      if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined || this.storageService.GetHoroResponse('#MU') != undefined) {
+        // this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
+        this.router.navigate(["/purchase/paidServices"]);
+      }
+      else {
+        this.loadingSwitchService.loading = false;
+        if (this.loginService.path != undefined) {
+          this.router.navigate([this.loginService.path]);
+        }
+        else {
+          this.router.navigate(["/services"]);
+        }
+        if (StorageService.GetItem('refreshToken') != undefined && window.location.pathname != '/settings/orderHistory') {
+          const source = timer(1000, 1000);
+          this.subscribe = source.subscribe(val => {
+            if (val == 3) {
+              this.orderService.LastPendingTransaction(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
+                if (data != null) {
+                  this.loginService.orderHistoryResponse = data;
+                  if (data.StatusCode == 'AP') {
+                    this.loginService.proceedDeliveryAddress = true;
+                  }
+                  else if (data.StatusCode == 'BP' || data.StatusCode == 'PP') {
+                    this.loginService.proceedPayment = true;
+                  }
+                  this.loginService.orderhistorypopupVisible = true;
+                }
+              });
+              this.subscribe.unsubscribe();
+            }
+          });
+        }
+      }
+    }
+  }
+
   ValidateUserByOTP() {
     var UserOTP = {
       UserName: this.loginForm.get('UserName').value,
@@ -418,16 +449,16 @@ export class LoginFormComponent {
       this.disableResendOTP = false;
       this.countDown = timer(0, this.tick).pipe(
         take(this.counter),
-        map(() => 
+        map(() =>
           --this.counter
           // if(this.counter==0){
           //   this.loading=false;
           // }
-        )); 
+        ));
       this.loadingSwitchService.loading = false;
     });
   }
-  
+
   onBackClick() {
     this.isOTPRequested = false;
     document.getElementById('err_UserName').innerHTML = '';
@@ -443,8 +474,8 @@ const routes: Routes = [
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
- //imports: [RouterModule.forChild(routesnew)],
- exports: [RouterModule]
+  //imports: [RouterModule.forChild(routesnew)],
+  exports: [RouterModule]
 })
 export class LoginFormRoutingModule { }
 @NgModule({
