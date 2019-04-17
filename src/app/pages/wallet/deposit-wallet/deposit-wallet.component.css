@@ -1,6 +1,7 @@
 .two-column{
 /* display: flex; */
 width: 45%;
+float: left;
 
 
 }
