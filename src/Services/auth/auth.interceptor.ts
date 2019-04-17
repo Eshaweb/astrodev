@@ -72,115 +72,115 @@ export class AuthInterceptor implements HttpInterceptor {
 
 
         const authService = this.injector.get(LoginService);
-            if (req.headers.get('No-Auth') == "True") {
-                return next.handle(req.clone());
-            }
+        if (req.headers.get('No-Auth') == "True") {
+            return next.handle(req.clone());
+        }
 
-            if (req.url.indexOf("/token") > 0) {
-                var headersforTokenAPI = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded' })
-                return next.handle(req);
-            }
-            if (this.loginService.AccessToken != null) {
-                    return next.handle(this.addToken(req, authService.getAuthToken())).pipe(
-                        catchError(error => {
-                            if (error instanceof HttpErrorResponse) {
-                                switch ((<HttpErrorResponse>error).status) {
-                                    case 400:
-                                        return this.handle400Error(error);
-                                    case 401:
-                                        return this.handle401Error(req, next);
-                                    default:
-                                        return observableThrowError(error);
-                                }
-                            } else {
+        if (req.url.indexOf("/token") > 0) {
+            var headersforTokenAPI = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded' })
+            return next.handle(req);
+        }
+        if (this.loginService.AccessToken != null) {
+            return next.handle(this.addToken(req, authService.getAuthToken())).pipe(
+                catchError(error => {
+                    if (error instanceof HttpErrorResponse) {
+                        switch ((<HttpErrorResponse>error).status) {
+                            case 400:
+                                return this.handle400Error(error);
+                            case 401:
+                                return this.handle401Error(req, next);
+                            default:
                                 return observableThrowError(error);
-                            }
-                        }));
-                }
-            //}
-             else if (this.loginService.AccessToken == null) {//used while page refresh, without login
-
-                this.refreshToken = StorageService.GetItem('refreshToken');
-                return next.handle(this.addToken(req, authService.refreshToken().pipe(switchMap((newToken: any) => {return newToken.AccessToken;})))).pipe(
-                    catchError(error => {
-                        if (error instanceof HttpErrorResponse) {
-                            switch ((<HttpErrorResponse>error).status) {
-                                case 400:
-                                    return this.handle400Error(error);
-                                case 401:
-                                    return this.handle401Error(req, next);
-                                default:
-                                    return observableThrowError(error);
-                            }
-                        } else {
-                            return observableThrowError(error);
                         }
-                    })); 
-            }
-           
+                    } else {
+                        return observableThrowError(error);
+                    }
+                }));
+        }
+        //}
+        else if (this.loginService.AccessToken == null) {//used while page refresh, without login
+
+            this.refreshToken = StorageService.GetItem('refreshToken');
+            return next.handle(this.addToken(req, authService.refreshToken().pipe(switchMap((newToken: any) => { return newToken.AccessToken; })))).pipe(
+                catchError(error => {
+                    if (error instanceof HttpErrorResponse) {
+                        switch ((<HttpErrorResponse>error).status) {
+                            case 400:
+                                return this.handle400Error(error);
+                            case 401:
+                                return this.handle401Error(req, next);
+                            default:
+                                return observableThrowError(error);
+                        }
+                    } else {
+                        return observableThrowError(error);
+                    }
+                }));
         }
 
-        handle400Error(error) {
-            if (error && error.status === 400 && error.error && error.error.error === 'invalid_grant') {
-                // If we get a 400 and the error message is 'invalid_grant', the token is no longer valid so logout.
-                return this.logoutUser();
-            }
-    
-            return observableThrowError(error);
+    }
+
+    handle400Error(error) {
+        if (error && error.status === 400 && error.error && error.error.error === 'invalid_grant') {
+            // If we get a 400 and the error message is 'invalid_grant', the token is no longer valid so logout.
+            return this.logoutUser();
         }
-    
-        handle401Error(req: HttpRequest<any>, next: HttpHandler) {
-            if (!this.isRefreshingToken) {
-                this.isRefreshingToken = true;
-    
-                // Reset here so that the following requests wait until the token
-                // comes back from the refreshToken call.
-                this.tokenSubject.next(null);
-    
-                const authService = this.injector.get(LoginService);
-                
-                return authService.refreshToken().pipe(
-                    switchMap((data: any) => {
-                        if (data.AccessToken) {
-                            this.tokenSubject.next(data.AccessToken);
-                            return next.handle(this.addToken(this.getNewRequest(req), data.AccessToken));
-                        }
-                        // If we don't get a new token, we are in trouble so logout.
-                        else{
-                            return this.logoutUser();
-                        }
-                        //return this.logoutUser();
-                    }),
-                    catchError(error => {
-                        // If there is an exception calling 'refreshToken', bad news so logout.
+
+        return observableThrowError(error);
+    }
+
+    handle401Error(req: HttpRequest<any>, next: HttpHandler) {
+        if (!this.isRefreshingToken) {
+            this.isRefreshingToken = true;
+
+            // Reset here so that the following requests wait until the token
+            // comes back from the refreshToken call.
+            this.tokenSubject.next(null);
+
+            const authService = this.injector.get(LoginService);
+
+            return authService.refreshToken().pipe(
+                switchMap((data: any) => {
+                    if (data.AccessToken) {
+                        this.tokenSubject.next(data.AccessToken);
+                        return next.handle(this.addToken(this.getNewRequest(req), data.AccessToken));
+                    }
+                    // If we don't get a new token, we are in trouble so logout.
+                    else {
                         return this.logoutUser();
-                    }),
-                    finalize(() => {
-                        this.isRefreshingToken = false;
-                    }),);
-            } 
-            else {
-                return this.tokenSubject.pipe(
-                    filter(token => token != null),
-                    take(1),
-                    switchMap(token => {
-                        return next.handle(this.addToken(this.getNewRequest(req), token));
-                    }),);
-            }
+                    }
+                    //return this.logoutUser();
+                }),
+                catchError(error => {
+                    // If there is an exception calling 'refreshToken', bad news so logout.
+                    return this.logoutUser();
+                }),
+                finalize(() => {
+                    this.isRefreshingToken = false;
+                }));
         }
-    
-        getNewRequest(req: HttpRequest<any>): HttpRequest<any> {
-            if (req.method == "GET") {
-                return new HttpRequest('GET', req.url);
-            }
-            else if (req.method == "POST") {
-                return new HttpRequest('POST', req.url, req.body);
-            }
+        else {
+            return this.tokenSubject.pipe(
+                filter(token => token != null),
+                take(1),
+                switchMap(token => {
+                    return next.handle(this.addToken(this.getNewRequest(req), token));
+                }));
         }
-    
-        logoutUser() {
-            // Route to the login page (implementation up to you)
-            this.router.navigateByUrl('/login-form');
-            return observableThrowError("");
+    }
+
+    getNewRequest(req: HttpRequest<any>): HttpRequest<any> {
+        if (req.method == "GET") {
+            return new HttpRequest('GET', req.url);
         }
+        else if (req.method == "POST") {
+            return new HttpRequest('POST', req.url, req.body);
+        }
+    }
+
+    logoutUser() {
+        // Route to the login page (implementation up to you)
+        this.router.navigateByUrl('/login-form');
+        return observableThrowError("");
+    }
 }

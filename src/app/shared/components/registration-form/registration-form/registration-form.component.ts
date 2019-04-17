@@ -26,7 +26,7 @@ export class RegistrationFormComponent {
     EMailOTPType: string;
     SMSOTPType: string;
     value: string;
-    OTPValidated: string;
+    isReffered: boolean;
     message: string;
     mobilenoMessage: string;
     emailMessage: string;
@@ -45,6 +45,8 @@ export class RegistrationFormComponent {
     countDown;
     counter = 20;
     tick = 1000;
+    Own: any;
+    Ref: any;
     constructor(public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, public uiService: UIService, public registrationService: RegistrationService,
         public route: ActivatedRoute, public _location: Location,
         public router: Router, public formBuilder: FormBuilder) {
@@ -159,7 +161,6 @@ export class RegistrationFormComponent {
         this.registrationService.UserName=registerModel.UserName;
         this.registrationService.RegisterParty(registerModel, (data) => {
             if (data.IsValid != undefined) {
-                //IsValid: true 
                 this.loadingSwitchService.loading = false;
                 this.OTPEntryFormVisible = true;
                 this.disableResendOTP = true;
@@ -242,13 +243,28 @@ export class RegistrationFormComponent {
             this.loadingSwitchService.loading = false;
             if (data.Errors == undefined) {
                 this.OTPValidatedVisible = true;
-                //this.OTPValidated='OTP Validated Successfully';
+                if(this.registrationForm.get('IntroParty').value!=""){
+                    if(data.Own!=0){
+                        this.Own=data.Own;
+                        this.Ref=data.Ref;
+                        this.isReffered=true;
+                    }
+                }
+                else{
+                    if(data.Own!=0){
+                        this.Own=data.Own;
+                        this.isReffered=false;
+                    }
+                }
                 //document.getElementById('message').innerHTML = 'OTP Validated Successfully';
-                this.router.navigate(["/login-form"]);
+                
             }
         });
     }
-
+    ClosePopUp(){
+        this.OTPValidatedVisible = false;
+        this.router.navigate(["/login-form"]);
+      }
     ResendOTP_click() {
         this.disableResendOTP = true;
         this.countDown = timer(0, this.tick).pipe(
