@@ -4902,6 +4902,7 @@
   padding: 6px 20px;
   overflow: visible;
   box-shadow: none;
+  background: #f7d430;
 }
 .dx-popup-title.dx-toolbar .dx-toolbar-before {
   padding-right: 15px;
