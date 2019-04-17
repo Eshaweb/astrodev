@@ -116,12 +116,12 @@
 margin-right: 15px;
 
 }
-
-::ng-deep footer {
-  margin-left: -40px;
-  margin-right: -40px;
-  margin-top: -40px;
+dx-button.dx-button.dx-button-normal.dx-button-mode-contained.dx-widget.dx-button-has-text {
+  left: 35%;
+  right: 35%;
+  position: absolute;
 }
+
 @media (max-width: 800px) {
   .social{
     width:90%;
