@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LoginFormComponent } from './shared/components';
 import { AuthGuardService } from './shared/services';
-import { DxDataGridModule, DxFormModule, DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule, DxPopupModule, DxNumberBoxModule, DxResponsiveBoxModule, DxPopoverModule, DxListModule, DxMenuModule, DevExtremeModule } from 'devextreme-angular';
+import { DxDataGridModule, DxFormModule, DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule, DxPopupModule, DxNumberBoxModule, DxResponsiveBoxModule, DxPopoverModule, DxListModule, DxMenuModule, DevExtremeModule, DxGalleryModule } from 'devextreme-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { AgmCoreModule } from '@agm/core';
@@ -116,7 +116,7 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     //DevExtremeModule
-    DxMenuModule,
+    DxMenuModule, DxGalleryModule,
     DxDataGridModule, DxFormModule, DxPopoverModule,
     DxValidatorModule,DxButtonModule,DxValidationSummaryModule,
     DxDateBoxModule,DxSelectBoxModule,DxCheckBoxModule,

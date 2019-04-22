@@ -25,7 +25,7 @@ import { HttpService, applicationHttpClientCreator } from 'src/Services/Error/ht
 import { RegistrationFormModule } from './shared/components/registration-form/registration-form.module';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
 import { NgxLoadingModule } from 'ngx-loading';
-import { DxPopupModule, DxButtonModule, DxLoadPanelModule } from 'devextreme-angular';
+import { DxPopupModule, DxButtonModule, DxLoadPanelModule, DxGalleryModule } from 'devextreme-angular';
 import { AstamangalaService } from 'src/Services/AstamanglaService/AstamanglaService';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { OrderService } from 'src/Services/OrderService/OrderService';
@@ -80,7 +80,7 @@ export function provideConfig() {
     HttpClientModule,
     DxPopupModule,
     DxButtonModule,
-    DxLoadPanelModule,
+    DxLoadPanelModule, 
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     //DevExtremeModule
   ],

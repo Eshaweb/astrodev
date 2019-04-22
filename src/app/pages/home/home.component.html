@@ -9,9 +9,18 @@
 
 
 <div>
-<img src="assets/images/morefund_web.jpg"/>
-
+<!-- <img src="assets/images/morefund_web.jpg"/> -->
+<dx-gallery #gallery
+        id="gallery"
+        [dataSource]="dataSource"
+        [height]="300"
+        [slideshowDelay]="slideshowDelay"
+        [loop]="true"
+        [showNavButtons]="true"
+        [showIndicator]="true"
+    ></dx-gallery>
 </div>
+
 <!-- <dx-menu class="service-menu" #menu [dataSource]="menuItems" displayExpr="text" [showFirstSubmenuMode]="showFirstSubmenuModes" orientation="horizontal"
     submenuDirection="auto" [hideSubmenuOnMouseLeave]="true" (onItemClick)="itemClick($event)">
 </dx-menu> -->

@@ -3,13 +3,19 @@ import { Router } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { services } from 'src/app/app-navigation';
 import { LoginService } from 'src/Services/LoginService/LoginService';
-
+let webimages: string[] = [
+  "assets/images/morefund_web.jpg",
+  "assets/images/main.png"];
+  let mobileimages: string[] = [
+    "assets/images/morefund_mobile.jpg",
+    "assets/images/main.png"];
 @Component({
   templateUrl: 'home.component.html',
   styleUrls: ['./home.component.scss']
 })
 
 export class HomeComponent {
+  slideshowDelay = 3000;
   items: { Id: number; Text: string; }[];
   defaultVisible: boolean;
   menuItems: { text: string; path: string; }[];
@@ -26,9 +32,16 @@ export class HomeComponent {
   contentFullWallet: boolean;
   contentFullShraddhaMaasika: boolean;
   contentFullPanchaPakshi: boolean;
+  dataSource: string[];
   constructor(public loginService: LoginService, public router: Router) {
     this.defaultVisible = false;
-
+    this.dataSource =  webimages;
+    // if (window.innerWidth < 900) {
+    //   this.dataSource =  mobileimages;
+    // }
+    // else{
+    //   this.dataSource =  webimages;
+    // }
     // history.pushState(null, null, location.href);
     // window.onpopstate = function () {       
     //   if (window.location.pathname == '/services') { 
@@ -53,8 +66,6 @@ export class HomeComponent {
     }];
     this.showFirstSubmenuModes = this.showSubmenuModes[0];
     this.menuItems = services;
-
-
     
   }
   toggleDefault() {
