@@ -115,6 +115,7 @@ export class LoginFormComponent {
     let control = this.uiService.getControlName(c);
     document.getElementById('err_' + control).innerHTML = '';//To not display the error message, if there is no error.
     document.getElementById('err_MobileNo').innerHTML = '';
+    document.getElementById('err_OTP').innerHTML = '';
     if ((c.touched || c.dirty) && c.errors) {
       document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
     }

@@ -51,6 +51,7 @@ export class BasePriceComponent {
     }
 
     OnTypeSelection(event) {
+        this.loadingSwitchService.loading=true;
         this.typevalue = event.value;
         var Type={
             Type:event.value
@@ -58,6 +59,7 @@ export class BasePriceComponent {
         this.adminService.GetBasePrice(Type).subscribe((data: any) => {
             if (data.Errors == undefined) {
                 this.dataSource = data;
+                this.loadingSwitchService.loading=false;
             }
         });
     }

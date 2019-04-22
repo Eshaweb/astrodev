@@ -169,7 +169,7 @@ export class OrderHistoryComponent implements OnInit {
                                     document.body.removeChild(a);
                                     URL.revokeObjectURL(url);
                                     this.loadingSwitchService.loading = false;
-                                    this.storageService.RemoveDataFromSession();
+                                    //this.storageService.RemoveDataFromSession();
                                     this.sub.unsubscribe();
                                 });
                             }

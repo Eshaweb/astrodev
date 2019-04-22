@@ -21,7 +21,7 @@ export class SettingsComponent {
     {Path:'/settings/muhurthaConfig',Name:'Muhurtha Configuration'},
     {Path:'/settings/changePassword',Name:'Change Password'},
     {Path:'/settings/walletStatement',Name:'Wallet Statement'}];
-    storageService.RemoveDataFromSession();
+    //storageService.RemoveDataFromSession();
     this.horoScopeService.birthplace='';
     this.orderService.orderResponse=null;
   }
