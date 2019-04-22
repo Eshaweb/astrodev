@@ -33,14 +33,17 @@ export class HomeComponent {
   contentFullShraddhaMaasika: boolean;
   contentFullPanchaPakshi: boolean;
   dataSource: string[];
+  height: number;
   constructor(public loginService: LoginService, public router: Router) {
     this.defaultVisible = false;
-    //this.dataSource =  webimages;
+    // this.dataSource =  webimages;
     if (window.innerWidth < 900) {
       this.dataSource =  mobileimages;
+      this.height = 150;
     }
     else{
       this.dataSource =  webimages;
+      this.height = 350;
     }
     // history.pushState(null, null, location.href);
     // window.onpopstate = function () {       
