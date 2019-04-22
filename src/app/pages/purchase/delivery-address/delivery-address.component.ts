@@ -59,32 +59,33 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
             this.customerAddressForm = this.formbuilder.group({
                 Name: ['', [Validators.required, Validators.minLength(3)]],
                 //EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
-                MobileNo:[null,[Validators.required]],
+                MobileNo:[null,[Validators.required, Validators.minLength(10)]],
                 Address1: ['', [Validators.required, Validators.minLength(3)]],
                 Address2: ['', [Validators.required, Validators.minLength(4)]],
                 Address3: ['', [Validators.required, Validators.minLength(4)]],
                 PinCode: ['', [Validators.required, Validators.minLength(6)]],
-                State: ['', [Validators.required, Validators.minLength(4)]],
             });
         }
         else{
             this.customerAddressForm = this.formbuilder.group({
                 Name: ['Shailesh', [Validators.required, Validators.minLength(3)]],
                 //EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
-                MobileNo:[8277033170,[Validators.required]],
+                MobileNo:[8277033170,[Validators.required, Validators.minLength(10)]],
                 Address1: ['Bappanadu', [Validators.required, Validators.minLength(3)]],
                 Address2: ['Temple Street', [Validators.required, Validators.minLength(4)]],
                 Address3: ['#4/5-2', [Validators.required, Validators.minLength(4)]],
                 PinCode: ['574 154', [Validators.required, Validators.minLength(6)]],
-                State: ['Karnataka', [Validators.required, Validators.minLength(4)]],
             });
         }
+        
         const EMailContrl_customerEMailAddressForm = this.customerEMailAddressForm.get('EMail');
         EMailContrl_customerEMailAddressForm.valueChanges.subscribe(value => this.setErrorMessage(EMailContrl_customerEMailAddressForm));
         const NameContrl = this.customerAddressForm.get('Name');
         NameContrl.valueChanges.subscribe(value => this.setErrorMessage(NameContrl));
         // const EMailContrl = this.customerAddressForm.get('EMail');
         // EMailContrl.valueChanges.subscribe(value => this.setErrorMessage(EMailContrl));
+        const MobileNoContrl = this.customerAddressForm.get('MobileNo');
+        MobileNoContrl.valueChanges.subscribe(value => this.setErrorMessage(MobileNoContrl));
         const Address1Contrl = this.customerAddressForm.get('Address1');
         Address1Contrl.valueChanges.subscribe(value => this.setErrorMessage(Address1Contrl));
         const Address2Contrl = this.customerAddressForm.get('Address2');
@@ -93,8 +94,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         Address3Contrl.valueChanges.subscribe(value => this.setErrorMessage(Address3Contrl));
         const PinCodeContrl = this.customerAddressForm.get('PinCode');
         PinCodeContrl.valueChanges.subscribe(value => this.setErrorMessage(PinCodeContrl));
-        const StateContrl = this.customerAddressForm.get('State');
-        StateContrl.valueChanges.subscribe(value => this.setErrorMessage(StateContrl));
+       
         // this.horoScopeService.GetEMailAddress(this.loginService.PartyMastId, (data) => {
         //     this.email = data.EMail;
         //     var PartyMastId = this.loginService.PartyMastId;
@@ -146,11 +146,11 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         Name_required: '*Enter Name',
         Name_minlength: '*Minimum length is 4',
 
+        MobileNo_required: '*Enter Mobile No',
+        MobileNo_minlength: '*Minimum length is 4',
+
         PinCode_required: '*Enter Pin code',
         PinCode_minlength: '*Minimum length is 4',
-
-        state_required: '*Enter State',
-        state_minlength: '*Minimum length is 4',
 
     };
     ngOnInit() {

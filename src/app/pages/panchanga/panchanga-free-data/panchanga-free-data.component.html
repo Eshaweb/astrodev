@@ -119,7 +119,7 @@
             <div class="data"> :{{item.Amritha}}
             </div>
         </div>
-        <div class="dx-field " [ngClass]="getFont(panchangaRequest.LangCode)">
+        <div class="dx-field " *ngIf='item.DinaVishesha!=""' [ngClass]="getFont(panchangaRequest.LangCode)">
             <div class="cap"> {{ caption.DinaVishesha}}</div>
             <div class="data"> :{{item.DinaVishesha}}
             </div>
