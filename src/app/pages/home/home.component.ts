@@ -35,13 +35,13 @@ export class HomeComponent {
   dataSource: string[];
   constructor(public loginService: LoginService, public router: Router) {
     this.defaultVisible = false;
-    this.dataSource =  webimages;
-    // if (window.innerWidth < 900) {
-    //   this.dataSource =  mobileimages;
-    // }
-    // else{
-    //   this.dataSource =  webimages;
-    // }
+    //this.dataSource =  webimages;
+    if (window.innerWidth < 900) {
+      this.dataSource =  mobileimages;
+    }
+    else{
+      this.dataSource =  webimages;
+    }
     // history.pushState(null, null, location.href);
     // window.onpopstate = function () {       
     //   if (window.location.pathname == '/services') { 
