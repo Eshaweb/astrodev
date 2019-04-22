@@ -3,18 +3,18 @@
 <div class="dx-card content-block responsive-paddings price-grid">
 <div id="data-grid-demo" #datagridBasePrice>
     <dx-data-grid id="gridContainer" 
-        [dataSource]="dataSource" 
-        (onSelectionChanged)="selectionChanged($event)"
+        [dataSource]="dataSource"
          [masterDetail]="{ enabled: false, template: 'detail' }"
+         keyExpr="OrderId"
          [showBorders]="true">
         <dxo-selection mode="single"></dxo-selection>
         <dxi-column dataField="OrderId" caption="Order Id"></dxi-column>
         <dxi-column dataField="OrderDt" caption="Order Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
         <dxi-column dataField="ServiceName" caption="Service Name"></dxi-column>
-        <dxi-column cellTemplate="AuthorizeCellTemplate"></dxi-column>
-        <div *dxTemplate="let d of 'AuthorizeCellTemplate'">
+        <dxi-column cellTemplate="DetailsCellTemplate"></dxi-column>
+        <div *dxTemplate="let d of 'DetailsCellTemplate'">
             <div class="chart-cell">
-                <a (click)="OnAuthorize_click(d)">Authorize</a>
+                <a (click)="OnDetails_click(d)">Details</a>
             </div>
         </div>
         <div *dxTemplate="let priceListItem of 'detail'">
@@ -26,6 +26,12 @@
                 </dxo-editing>
                 <dxi-column dataField="Amount" [width]="80"></dxi-column>
                 <dxi-column dataField="PayCode" [width]="100"></dxi-column>
+                <dxi-column cellTemplate="AuthorizeCellTemplate"></dxi-column>
+                <div *dxTemplate="let d of 'AuthorizeCellTemplate'">
+                    <div class="chart-cell">
+                        <a (click)="OnAuthorize_click(d)">Authorize</a>
+                    </div>
+                </div>
             </dx-data-grid>
         </div>
     </dx-data-grid>
