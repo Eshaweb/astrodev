@@ -80,7 +80,7 @@ export function provideConfig() {
     HttpClientModule,
     DxPopupModule,
     DxButtonModule,
-    DxLoadPanelModule, 
+    DxLoadPanelModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     //DevExtremeModule
   ],

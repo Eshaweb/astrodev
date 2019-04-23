@@ -145,7 +145,7 @@ export class CaptionDbService {
         }
        else if(langCode=="HIN")
         {
-            caption.DinaVishesha='ÌSlÉ ÌuÉzÉãwÉ';
+            caption.DinaVishesha='ÌSlÉ ÌuÉzÉåwÉ';
             caption.Nityapanchanga='ÌlÉirÉ mÉÇcÉÉÇaÉ';
             caption.ShakaVarsha='zÉÉÍsÉuÉÉWûlÉ zÉMüuÉwÉï';
             caption.Kollam='MüÉåsÉÇoÉ uÉwÉï';
@@ -166,28 +166,28 @@ export class CaptionDbService {
             caption.CaptionRight="±ÉlÉ SåÇ : MüÉå¹Mü Måü AÇSU bÉÇOûÉ AÉæU ÍqÉlÉOû qÉåÇ ÌSrÉÉ aÉrÉÉ Wæû|"
             caption.GocharaPhala="aÉÉåcÉU TüsÉ"
     
-            caption.JanmaNakshthra="";
-            caption.JanmaRashi="";
+            caption.JanmaNakshthra="eÉlqÉ lÉ¤É§É";
+            caption.JanmaRashi="eÉlqÉ UÉÍzÉ";
             caption.Aroodha="";
-            caption.SunRise="";
+            caption.SunRise="xÉÔrÉÉåïSrÉ";
             caption.Udaya="";
-            caption.SunSet="";
+            caption.SunSet="xÉÔrÉÉïxiÉ";
             caption.Lagnamsha="";
-            caption.DinaMana="";
+            caption.DinaMana="ÌSlÉqÉÉlÉ";
             caption.ChatraRashi="";
             caption.SprushtangaRashi="";
             caption.Tambula="";
             caption.ChandradishtithaRashi="";
     
-            caption.MoonRise="";
-            caption.MoonSet=""; 
-            caption.Rahu="";
-            caption.Gulika=""; 
-            caption.Yama=""; 
-            caption.Tithi=""; 
-            caption.Nak=""; 
+            caption.MoonRise="cÉÇSìÉåSrÉ";
+            caption.MoonSet="cÉÇSìÉxiÉ"; 
+            caption.Rahu="UÉWÒûMüÉsÉ";
+            caption.Gulika="aÉÑÍVûMüMüÉsÉ"; 
+            caption.Yama="rÉqÉMÇüOûMü MüÉsÉ"; 
+            caption.Tithi="ÌiÉÍjÉ"; 
+            caption.Nak="lÉ¤É§É"; 
          
-            caption.Yoga="";
+            caption.Yoga="rÉÉåaÉ";
             caption.Sunday="UÌuÉuÉÉU";
             caption.Monday="xÉÉåqÉuÉÉU"; 
             caption.Tuesday="qÉÇaÉsÉuÉÉU";

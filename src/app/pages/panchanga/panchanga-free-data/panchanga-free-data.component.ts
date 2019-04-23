@@ -25,7 +25,7 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
   panchangaRequest: PanchangaRequest;
   serialisedPanchangaResponse: SerialisedPanchangaResponse;
   slideshowDelay = 2000;
-    isMobileResolution: boolean;
+  isMobileResolution: boolean;
   direction: string;
   
     ngOnInit(): void {
@@ -40,9 +40,10 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
         this.isMobileResolution = false;
         this.direction="horizontal";
       }
-
-      // this.itemService.BuyNowVisible=true;
-      // this.itemService.ItemName = 'Panchanga';
+      this.itemService.ItActId = '#PAN';
+      StorageService.SetItem('ItActId', '#PAN');
+      this.itemService.BuyNowVisible=true;
+      this.itemService.ItemName = 'Panchanga';
     }
     constructor(public storageService:StorageService,private itemService:ItemService, public router: Router, public loginService: LoginService, 
       public captionDbService:CaptionDbService, public panchangaService: PanchangaService) {
@@ -69,5 +70,9 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
         return "TamilFont";
     }
   }
+
+  ngOnDestroy(): void {
+    this.itemService.BuyNowVisible=false;
+}
   }
   
