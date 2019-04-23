@@ -20,22 +20,26 @@ let services: Services[] = [{
     "ItActId": "#SA"
 }, {
     "ID": 4,
+    "ServiceName": "Nithya Panchanga",
+    "ItActId": "#PAN"
+},{
+    "ID": 5,
     "ServiceName": "Numerology",
     "ItActId": "#NM"
 },{
-    "ID": 5,
+    "ID": 6,
     "ServiceName": "Muhurtha",
     "ItActId": "#MU"
 },{
-    "ID": 6,
+    "ID": 7,
     "ServiceName": "Wallet",
     "ItActId": "#W"
 },{
-    "ID": 7,
+    "ID": 8,
     "ServiceName": "Android Products",
     "ItActId": "#AND"
 },{
-    "ID": 8,
+    "ID": 9,
     "ServiceName": "Windows Product",
     "ItActId": "#WIN"
 }
