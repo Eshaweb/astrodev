@@ -4,18 +4,16 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { services } from 'src/app/app-navigation';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 let webimages: string[] = [
-  "assets/images/morefund_web.jpg",
-  "assets/images/main.png"];
+  "assets/images/morefund_web.jpg"];
   let mobileimages: string[] = [
-    "assets/images/morefund_mobile.jpg",
-    "assets/images/main.png"];
+    "assets/images/morefund_mobile.jpg"];
 @Component({
   templateUrl: 'home.component.html',
   styleUrls: ['./home.component.scss']
 })
 
 export class HomeComponent {
-  slideshowDelay = 3000;
+  slideshowDelay = 5000;
   items: { Id: number; Text: string; }[];
   defaultVisible: boolean;
   menuItems: { text: string; path: string; }[];

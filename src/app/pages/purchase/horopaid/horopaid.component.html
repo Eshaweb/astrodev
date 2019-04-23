@@ -53,13 +53,13 @@
             </div>
         </div>
         <div class="dx-field" *ngIf='!checkBoxValue'>
-            <div class="cap">Effective Price</div>
-            <div class="data">{{service.Amount|currency:'INR'}}
+            <div class="cap" style="color:#e4810f"><strong >Effective Price</strong></div>
+            <div class="data"><strong style="color:#e4810f">{{service.Amount|currency:'INR'}}</strong>
             </div>
         </div>
     
         <div class="dx-field" *ngIf='checkBoxValue'>
-            <div class="cap effective">Effective Price</div>
+            <div class="cap effective" > Price</div>
             <div class="data effective">{{service.PrintAmount|currency:'INR'}}
             </div>
         </div>
