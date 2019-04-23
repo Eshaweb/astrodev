@@ -15,7 +15,7 @@ let webimages: string[] = [
 })
 
 export class HomeComponent {
-  slideshowDelay = 3000;
+  slideshowDelay = 5000;
   items: { Id: number; Text: string; }[];
   defaultVisible: boolean;
   menuItems: { text: string; path: string; }[];
