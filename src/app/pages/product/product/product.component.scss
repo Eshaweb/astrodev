@@ -40,6 +40,7 @@
     border: 1px solid #e2c232;
     border-radius: 5px;
     margin-right: 15px;
+    width:20%
 }
 
 // .product-image{
@@ -47,10 +48,10 @@
 //     width: 19%;
 //     float: left;
 // }
-// .discription{
-//     width:78%;
-//     float: left;
-// }
+.discription{
+    width:78%;
+    float: right;
+}
 #button {
     text-align: center;
     display: inline-block;
@@ -59,14 +60,23 @@
 
   @media (max-width: 800px) {
   .main-slider {
-    padding: 50px 50px;
+    padding: 50px 20px;
 }
 .service-image{
+    width: 200px;
     float: none;
    // border: 1px solid #e2c232;
   //  border-radius: 5px;
     margin-right: 15px;
     margin-left: 10%;
 }
+.discription{
+    width:95%;
+    float: none;
+}
+#button {
 
+margin-left: 25%;
+margin-right: 50%;
+}
   }
