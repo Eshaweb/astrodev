@@ -53,7 +53,7 @@ export class CaptionDbService {
             caption.MoonSet="ZÀAzÁæ¸ÀÛ"; 
             caption.Rahu="gÁºÀÄPÁ®";
             caption.Gulika="UÀÄ½PÀPÁ®"; 
-            caption.Yama="AiÀÄªÀÄPÀAlPÀ"; 
+            caption.Yama="AiÀÄªÀÄPÀAlPÀPÁ®"; 
             caption.Tithi="wy"; 
             caption.Nak="£ÀPÀëvÀæ"; 
          
@@ -117,9 +117,9 @@ export class CaptionDbService {
             caption.ChandradishtithaRashi="Chandradishtitha Rashi";
             caption.MoonRise="MoonRise";
             caption.MoonSet="MoonSet"; 
-            caption.Rahu="Rahu";
-            caption.Gulika="Gulika"; 
-            caption.Yama="Yama"; 
+            caption.Rahu="Rahu Kaala";
+            caption.Gulika="Gulika Kaala"; 
+            caption.Yama="YamaKantaka Kaala"; 
             caption.Tithi="Tithi"; 
             caption.Nak="Nakshatra"; 
          

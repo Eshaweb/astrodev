@@ -43,15 +43,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         public horoScopeService: HoroScopeService, private orderService:OrderService, public partyService:PartyService,
         public uiService: UIService, public formbuilder: FormBuilder, public loadingSwitchService:LoadingSwitchService) {
         this.DeliveryAddressRequired = Boolean(JSON.parse(StorageService.GetItem('IsDeliverable')));
-        this.loadingSwitchService.loading=true;
-        //this.OrderId = this.orderService.orderResponse.OrderId;
-        this.OrderId = StorageService.GetItem('OrderId');
-        // if(this.orderService.orderResponse.ItName!=undefined){
-        //     this.ItName=this.orderService.orderResponse.ItName;
-        // }
-        if(this.storageService.GetOrderResponse().ItName!=undefined){
-            this.ItName=this.storageService.GetOrderResponse().ItName;
-        }
+        
         this.customerEMailAddressForm = this.formbuilder.group({
             EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]]
         });
@@ -105,22 +97,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         //         });
         //     });
         // });
-        var PartyMastId = StorageService.GetItem('PartyMastId');
-        this.horoScopeService.GetEMailAddress(PartyMastId).subscribe((data:any) => {
-            this.email = data.EMail;
-            this.horoScopeService.GetAllAddress(PartyMastId).subscribe((data:any) => {
-                this.existingAddress = data;
-                if(data.length==1){
-                    this.OnChangeDefaultAddress(data[0].Id);
-                }
-                this.horoScopeService.GetDefaultAddress(PartyMastId).subscribe((data:any) => {
-                    if(data!=null){
-                        this.Id = String(data);
-                    }
-                    this.loadingSwitchService.loading=false;
-                });
-            });
-        });
+        
     }
     setErrorMessage(c: AbstractControl): void {
         let control = this.uiService.getControlName(c);//gives the control name property from particular service.
@@ -158,6 +135,31 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
             data: this.partyService.statesOfIndia,
             key: "Id"
           });
+          this.loadingSwitchService.loading=true;
+          //this.OrderId = this.orderService.orderResponse.OrderId;
+          this.OrderId = StorageService.GetItem('OrderId');
+          // if(this.orderService.orderResponse.ItName!=undefined){
+          //     this.ItName=this.orderService.orderResponse.ItName;
+          // }
+          if(this.storageService.GetOrderResponse().ItName!=undefined){
+              this.ItName=this.storageService.GetOrderResponse().ItName;
+          }
+          var PartyMastId = StorageService.GetItem('PartyMastId');
+        this.horoScopeService.GetEMailAddress(PartyMastId).subscribe((data:any) => {
+            this.email = data.EMail;
+            this.horoScopeService.GetAllAddress(PartyMastId).subscribe((data:any) => {
+                this.existingAddress = data;
+                if(data.length==1){
+                    this.OnChangeDefaultAddress(data[0].Id);
+                }
+                this.horoScopeService.GetDefaultAddress(PartyMastId).subscribe((data:any) => {
+                    if(data!=null){
+                        this.Id = String(data);
+                    }
+                    this.loadingSwitchService.loading=false;
+                });
+            });
+        });
     }
     statedataSelection(event){
         this.statevalue=event.value;
