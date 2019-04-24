@@ -54,7 +54,9 @@ li a {
 li a:hover:not(.active) {
   background-color: rgb(224, 172, 28);
 }
-
+li:first-child {
+  margin-left: 20px;
+}
 .active {
   background-color: rgb(180, 131, 24);
 }
