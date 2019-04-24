@@ -2,7 +2,7 @@
   
   <div class="dx-fieldset-column">
   <div class="dx-card responsive-paddings list-padding pricelist">
-  
+  <div class="price-box">
   <h3 >{{service.Name}}</h3>
     <div class="full-horoscope-1" id='employee'>
     <h5 >{{service.Description}}</h5>
@@ -63,7 +63,7 @@
             <div class="data effective"><strong style="color:#e4810f">{{service.PrintAmount|currency:'INR'}}</strong>
             </div>
         </div>
-    <div class="dx-fieldset">
+    <div class="dx-field">
        
             <dx-check-box 
                 id="check"
@@ -91,7 +91,7 @@
                 [useSubmitBehavior]="true">
             </dx-button>
   </div>
-    
+</div>
 </div>
 </div>
 
