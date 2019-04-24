@@ -24,6 +24,7 @@ export class CaptionDbService {
             caption.Aayana='CAiÀÄ£À ';
             caption.Ruthu='IÄvÀÄ';
             caption.ChandraMasa='ZÁAzÀæªÀiÁ¸À';
+            caption.Masa="ªÀiÁ¸À";
             caption.SouraMasa='¸ËgÀªÀiÁ¸À';
             caption.Paksha='¥ÀPÀë';
             caption.MahaNakshatra='ªÀÄºÁ£ÀPÀëvÀæ';
@@ -88,7 +89,7 @@ export class CaptionDbService {
             caption.Samvathsara='Samvathsara';
             caption.Aayana='Aayana ';
             caption.Ruthu='Ruthu';
-            caption.ChandraMasa='Chandr Masa';
+            caption.ChandraMasa='Chandra Masa';
             caption.SouraMasa='Soura Masa';
             caption.Paksha='Paksha';
             caption.MahaNakshatra='Maha Nakshatra';
@@ -122,7 +123,8 @@ export class CaptionDbService {
             caption.Yama="YamaKantaka Kaala"; 
             caption.Tithi="Tithi"; 
             caption.Nak="Nakshatra"; 
-         
+            caption.Masa="Maasa"
+
             caption.Yoga="Yoga";
             caption.Sunday="Sun";
             caption.Monday="Mon"; 
@@ -159,6 +161,7 @@ export class CaptionDbService {
             caption.NityaTithi='ÌiÉÍjÉ';
             caption.NityaNakshatra='ÌlÉirÉlÉ¤É§É';
             caption.ChandrarkaYoga='cÉÇSìÉMïü rÉÉãaÉ';
+            caption.Masa="qÉÉxÉ";
             caption.NityaKarana='MüUhÉ';
             caption.VishaGhati='ÌuÉwÉbÉÌOûMüÉ';
             caption.AmrithaGhati='AqÉ×iÉbÉÌOûMüÉ';
@@ -208,7 +211,7 @@ export class CaptionDbService {
         }
        else if(langCode=="MAL")
         {    
-            caption.DinaVishesha='py¥qrbypsµ¬';    
+            caption.DinaVishesha='py¥qr bypsµ¬';    
             caption.Nityapanchanga='dyZõ eºxMI';
             caption.ShakaVarsha='MZ qxmypxtd qKI';
             caption.Kollam='¥KxmøpªrI';
@@ -216,6 +219,7 @@ export class CaptionDbService {
             caption.Aayana='AjdI';
             caption.Ruthu='EZ¡';
             caption.ChandraMasa='PxöÉixsI';
+            caption.Masa="ixsI";
             caption.SouraMasa='¤s¦k ixsI';
             caption.Paksha='e±I';
             caption.MahaNakshatra='itxd±öZI';
@@ -244,9 +248,9 @@ export class CaptionDbService {
     
             caption.MoonRise="P¥öbxbjI";
             caption.MoonSet="PöÉxsëI"; 
-            caption.Rahu="kxt¡";
-            caption.Gulika="M¡nyK©"; 
-            caption.Yama="Yama"; 
+            caption.Rahu="kxt¡KxmI";
+            caption.Gulika="M¡nyKKxmI"; 
+            caption.Yama="jiK½KKxmI"; 
             caption.Tithi="Zyay"; 
             caption.Nak="d±öZI"; 
          
@@ -283,6 +287,7 @@ export class CaptionDbService {
             caption.Aayana='«ÂÉÀ ';
             caption.Ruthu='ÀÕÅ ¸¡Äõ (ÕÐ)';
             caption.ChandraMasa='ºó¾¢Ã Á¡¾õ';
+            caption.Masa="ixsI";
             caption.SouraMasa='¾Á¢ú §¾¾¢';
             caption.Paksha='Àì„õ';
     
