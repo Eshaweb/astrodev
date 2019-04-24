@@ -139,11 +139,26 @@
     <!-- <a (click)="goToRegistration()" class="not-active" style="text-decoration: underline">Register</a> -->
 </div>
 </div>
-<div class="dx-field"> 
-        <a type="default" *ngIf='!isOTPRequested' (click)="onRequestOTP()" width="100%">Request OTP</a>
-            <a type="default" *ngIf='isOTPRequested&&counter!= 0'
+<div class="dx-field" > 
+        <!-- <a type="default" *ngIf='!isOTPRequested' (click)="onRequestOTP()" width="100%">Request OTP</a>
+            <a type="default" *ngIf='isOTPRequested'
                 (click)="ResendOTP_click()" width="100%">Resend OTP
-            </a>    
+            </a>    -->
+            <dx-button stylingMode="text" type="default" class="RequestOTPButton" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" [width]="120"></dx-button>
+            <div id='resendbutton'>
+            <dx-button stylingMode="text" type="default" text="Resend OTP" 
+                       [disabled]="disableResendOTP||counter!= 0"
+                       *ngIf='isOTPRequested' 
+                       (onClick)="ResendOTP_click()" [width]="120">
+                       <div *dxTemplate="let data of 'content'">
+                            <span *ngIf='counter!= 0'>{{countDown | async }}</span>
+                        <dx-load-indicator class='button-indicator' height="20" width="100"
+                            [visible]="disableResendOTP||counter!= 0">
+                        </dx-load-indicator>
+                        <span *ngIf='counter== 0' class='dx-button-text'>Resend OTP</span>
+                    </div>
+            </dx-button>     
+        </div>
 </div>
 <p>Login through Social Accounts</p>
 <div class="dx-field">
