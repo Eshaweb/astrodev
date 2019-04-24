@@ -18,7 +18,7 @@ declare var Razorpay: any;
 @Component({
   selector: 'app-deposit-wallet',
   templateUrl: './deposit-wallet.component.html',
-  styleUrls: ['./deposit-wallet.component.css']
+  styleUrls: ['./deposit-wallet.component.scss']
 })
 export class DepositWalletComponent {
 
