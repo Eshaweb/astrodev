@@ -1,5 +1,5 @@
 
-<div class="dx-card content-block responsive-paddings">
+<!-- <div class="dx-card content-block responsive-paddings">
         <dx-button icon="arrowleft" *ngIf='isOTPRequested' (onClick)='onBackClick()'></dx-button>
     <div class="login-header">
         <div class="title">
@@ -27,7 +27,6 @@
     <div class="dx-field">
         <dx-button type="default" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" width="100%"></dx-button>
         <div id='resendbutton'>
-        <!-- <dx-button type="default" text="Resend OTP" [disabled]="disableResendOTP||counter!= 0" *ngIf='isOTPRequested' (onClick)="ResendOTP_click()" width="100%"></dx-button> -->
         <dx-button type="default" text="Resend OTP" 
                    [disabled]="disableResendOTP||counter!= 0"
                    *ngIf='isOTPRequested' 
@@ -41,7 +40,6 @@
                 </div>
         </dx-button>     
     </div>
-        <!-- <p *ngIf='counter!= 0'>{{countDown | async }}</p> -->
     </div>
 </div>
 <div class="dx-field">
@@ -52,12 +50,7 @@
     </dx-check-box>
 </div>
 <div class="clear"></div>
-    <!-- <div class="dx-field">
-        <dx-check-box [value]="false" text="Remember me"></dx-check-box>
-    </div> -->
-
     <div class="dx-field">
-        <!-- <dx-button type="default" text="Login" [disabled]="!loginForm.valid" (onClick)="Login_Click()" width="100%"></dx-button> -->
         <dx-button type="default" text="Login" (onClick)="Login_Click()" width="100%"></dx-button>
     </div>
     
@@ -66,10 +59,7 @@
         <a routerLink="/settings/forgotPassword">Forgot password ?</a>
     </div>
     <div class="dx-fieldset-column">
-        <!-- <a routerLink="/registration-form">Register</a> -->
         <a (click)="goToRegistration()" >Register</a>
-        <!-- <a (click)="goToRegistration()" class="not-active" style="text-decoration: underline">Register</a> -->
-
     </div>
   </div>
 
@@ -88,12 +78,6 @@
         </dx-text-box>
         <p style="color:red;" id='err_OTP'></p>
         <p style="color:red;" id='err_OTPRef'></p>
-        <!-- <div style="width: 175px;" *ngIf='!disableResendOTP'>
-            <a (click)="ResendOTP_click()" style="text-decoration: underline">Resend OTP</a>
-        </div>
-        <div style="width: 175px;" *ngIf='disableResendOTP'>
-            <a class="isDisabled" (click)="ResendOTP_click()" style="text-decoration: underline">Resend OTP</a>
-        </div> -->
         <div style="width: 175px;">
             <a (click)="ResendOTP_click()" style="text-decoration: underline">Resend OTP</a>
         </div>
@@ -103,8 +87,97 @@
     </div>
     
 </form>
+</div> -->
+
+
+<div class="dx-card content-block responsive-paddings">
+    <dx-button icon="arrowleft" *ngIf='isOTPRequested' (onClick)='onBackClick()'></dx-button>
+<div class="login-header">
+    <div class="title">
+            <img src="assets/images/login.png" >
+    </div>
+    <div>Sign In to your account</div>
+</div>
+<form *ngIf='!needtoEnterOTP' [formGroup]="loginForm">
+        <p style="color:green;">{{message}}</p>
+<div class="dx-field">
+    <dx-text-box formControlName="UserName" valueChangeEvent="keyup" placeholder="Mobile No / Email" width="100%">
+    </dx-text-box>
+    <p style="color:red;font-size: 12px;" id='err_UserName'></p>
+    <p style="color:red;font-size: 12px;" id='err_MobileNo'></p>
+</div>
+<div class="dx-field">
+<div class="dx-fieldset-column" style="margin-right: 12px;" >
+    <dx-text-box [mode]="textboxMode" valueChangeEvent="keyup" formControlName="Password" *ngIf='!isOTPRequested' [(value)]="password" placeholder="Password" width="100%">
+    </dx-text-box>
+    <dx-text-box [mode]="textboxMode" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="Password" *ngIf='isOTPRequested' placeholder="Enter OTP" width="100%">
+    </dx-text-box>
+    <p style="color:red;font-size: 12px;" id='err_Password'></p>
+    <p style="color:red;font-size: 12px;" id='err_OTP'></p>
+</div>
+<div class="dx-fieldset-column">
+    <dx-button type="default" text="Login" (onClick)="Login_Click()"></dx-button>    
+</div>
+    <!-- <p *ngIf='counter!= 0'>{{countDown | async }}</p> -->
+</div>
+<div class="dx-field">
+<dx-check-box id="check" 
+    [(value)]="ShowPassword_checkBoxValue" 
+    (onValueChanged)="ShowPassword_Click($event)"
+    text="Show Password">
+</dx-check-box>
+</div>
+<div class="clear"></div>
+
+<div class="dx-field"> 
+<div class="dx-fieldset-column" style="width: 175px;">
+    <a routerLink="/settings/forgotPassword">Forgot password ?</a>
+</div>
+<div class="dx-fieldset-column">
+    <!-- <a routerLink="/registration-form">Register</a> -->
+    <a (click)="goToRegistration()" >Register</a>
+    <!-- <a (click)="goToRegistration()" class="not-active" style="text-decoration: underline">Register</a> -->
+</div>
+</div>
+<div class="dx-field"> 
+        <a type="default" *ngIf='!isOTPRequested' (click)="onRequestOTP()" width="100%">Request OTP</a>
+            <a type="default" *ngIf='isOTPRequested&&counter!= 0'
+                (click)="ResendOTP_click()" width="100%">Resend OTP
+            </a>    
+</div>
+<p>Login through Social Accounts</p>
+<div class="dx-field">
+        <div class="dx-fieldset-column">
+                <dx-button type="danger" text="Google" (onClick)="signInWithGoogle()" width="100%"></dx-button>
+        </div>
+        <div class="dx-fieldset-column">
+                <dx-button style="margin-left: 40px;" type="default" text="Facebook" (onClick)="signInWithFB()" width="100%"></dx-button>
+        </div>
+</div>
+</form>
+<form *ngIf='needtoEnterOTP' [formGroup]="uservalidateForm">
+<p>{{message}}</p>
+<div class="dx-field">
+    <dx-text-box mode="password" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="OTP" placeholder="Enter OTP" width="100%">
+    </dx-text-box>
+    <p style="color:red;" id='err_OTP'></p>
+    <p style="color:red;" id='err_OTPRef'></p>
+    <!-- <div style="width: 175px;" *ngIf='!disableResendOTP'>
+        <a (click)="ResendOTP_click()" style="text-decoration: underline">Resend OTP</a>
+    </div>
+    <div style="width: 175px;" *ngIf='disableResendOTP'>
+        <a class="isDisabled" (click)="ResendOTP_click()" style="text-decoration: underline">Resend OTP</a>
+    </div> -->
+    <div style="width: 175px;">
+        <a (click)="ResendOTP_click()" style="text-decoration: underline">Resend OTP</a>
+    </div>
+</div>
+<div class="dx-field">
+    <dx-button  text="Submit" (onClick)="ValidateUserByOTP()"[disabled]="!uservalidateForm.valid" width="100%"></dx-button>
 </div>
 
+</form>
+</div>
 <dx-popup
     class="popup"
     [width]="250"
