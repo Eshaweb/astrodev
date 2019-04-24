@@ -108,7 +108,11 @@ export class HomeComponent {
       this.router.navigate(['/login-form']);
     }
   }
-
+  onItemClick(event) {
+    if (event.itemIndex == 0) {
+      this.router.navigate(['/wallet/depoToWallet']);
+    }
+  }
   // OnReadMore_click(value) {
   //   switch (value) {
   //     case "Astamangala":

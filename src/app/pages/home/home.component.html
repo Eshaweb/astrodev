@@ -15,7 +15,10 @@
         [dataSource]="dataSource"
         [height]="height"
         [slideshowDelay]="slideshowDelay"
+        [hoverStateEnabled]="true"
+        [stretchImages]="true"
         [loop]="true"
+        (onItemClick)="onItemClick($event)"
         [showIndicator]="true"
     ></dx-gallery>
 </div>
