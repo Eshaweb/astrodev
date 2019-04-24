@@ -89,7 +89,7 @@ onServiceClick(event){
     this.router.navigate(["/panchapakshi"]);
   }
   OnWalletDeposit_Click(){
-    if (StorageService.GetItem('Token') != undefined) {
+    if (StorageService.GetItem('refreshToken') != undefined) {
       this.router.navigate(['/wallet/depoToWallet']);
     }
     else {

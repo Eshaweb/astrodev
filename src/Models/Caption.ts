@@ -40,6 +40,7 @@ export class Caption {
     Tithi: string;
     Nak: string;
     Yoga: string;
+    Masa:string;
     Sunday: string;
     Monday: string;
     Tuesday: string;
