@@ -107,14 +107,14 @@
     <p style="color:red;font-size: 12px;" id='err_MobileNo'></p>
 </div>
 <div class="dx-field">
-<div class="dx-fieldset-column">
+
     <dx-text-box [mode]="textboxMode" valueChangeEvent="keyup" formControlName="Password" *ngIf='!isOTPRequested' [(value)]="password" placeholder="Password" width="100%">
     </dx-text-box>
     <dx-text-box [mode]="textboxMode" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="Password" *ngIf='isOTPRequested' placeholder="Enter OTP" width="100%">
     </dx-text-box>
     <p style="color:red;font-size: 12px;" id='err_Password'></p>
     <p style="color:red;font-size: 12px;" id='err_OTP'></p>
-</div>
+
 
     <!-- <p *ngIf='counter!= 0'>{{countDown | async }}</p> -->
 </div>
@@ -131,7 +131,7 @@
                     <a type="default" *ngIf='isOTPRequested'
                         (click)="ResendOTP_click()" width="100%">Resend OTP
                     </a>    -->
-                    <dx-button stylingMode="text" type="default" class="RequestOTPButton" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" width="100%"></dx-button>
+                    <dx-button stylingMode="text" type="default" class="RequestOTPButton" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" width="100%" style="margin-left: 22px;margin-top: -4px;" ></dx-button>
                     <div id='resendbutton'>
                     <dx-button stylingMode="text" type="default" text="Resend OTP" 
                                [disabled]="disableResendOTP||counter!= 0"
@@ -153,7 +153,7 @@
     <dx-button type="default" text="Login" (onClick)="Login_Click()" width="100%"></dx-button>
 </div>
 <div class="dx-field"> 
-<div class="dx-fieldset-column" style="width: 175px;">
+<div class="dx-fieldset-column" style="width: 185px;">
     <a routerLink="/settings/forgotPassword">Forgot password ?</a>
 </div>
 <div class="dx-fieldset-column">
