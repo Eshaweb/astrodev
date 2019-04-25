@@ -23,7 +23,7 @@ export class RegistrationFormComponent {
     uservalidateForm: FormGroup;
     registerModel: RegisterModel;
 
-    EMailOTPType: string;
+    EMailOTPType: string="";
     SMSOTPType: string;
     value: string;
     isReffered: boolean;

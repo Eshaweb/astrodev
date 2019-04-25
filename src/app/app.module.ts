@@ -47,8 +47,8 @@ import { ProductService } from 'src/Services/ProductService/ProductService';
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('589412237379-s95au712mktgn6o0d9ebocp824si3d0c.apps.googleusercontent.com')
-
+    provider: new GoogleLoginProvider('117317761358-804guhn1j9vnuic2ee9flcohjsdkc3g6.apps.googleusercontent.com')
+    
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,

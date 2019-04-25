@@ -7,6 +7,7 @@ import { StorageService } from '../StorageService/Storage_Service';
 import { LoginService } from '../LoginService/LoginService';
 import { HttpService } from '../Error/http.service';
 import {throwError as observableThrowError,  BehaviorSubject } from 'rxjs';
+import { navigationBeforeLogin, serviceMenusBeforeLogin, serviceListBeforeLogin } from 'src/app/app-navigation';
 
 
 @Injectable()
@@ -18,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
     isRefreshingToken: boolean;
     tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
-    constructor(private injector: Injector, private route: ActivatedRoute, public httpService: HttpService,
+    constructor(public storageService:StorageService, private injector: Injector, private route: ActivatedRoute, public httpService: HttpService,
         private router: Router, private loginService: LoginService) {
 
     }
@@ -180,6 +181,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
     logoutUser() {
         // Route to the login page (implementation up to you)
+        StorageService.RemoveItem('PartyMastId');
+      this.storageService.RemoveDataFromSession();
+      this.loginService.userProfileVisible=false;
+      this.loginService.menuItems=navigationBeforeLogin;
+      this.loginService.serviceMenus=serviceMenusBeforeLogin;
+      this.loginService.serviceList=serviceListBeforeLogin;
+      this.loginService.isAdmin=false;
         this.router.navigateByUrl('/login-form');
         return observableThrowError("");
     }
