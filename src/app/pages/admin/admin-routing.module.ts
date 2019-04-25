@@ -16,11 +16,12 @@ import { DeliveredListComponent } from './deliveredList/deliveredList.component'
 import { OfflinePaymentPendingComponent } from './offlinePaymentPending/offlinePaymentPending.component';
 import { OfflinePaymentCompletedComponent } from './offlinePaymentCompleted/offlinePaymentCompleted.component';
 import { AssignRoleComponent } from './assignRole/assignRole.component';
+import { AuthGuard } from 'src/Services/auth/auth.guard';
 
 const routes: Routes = [
     {
       path: '',
-      component: AdminComponent,
+      component: AdminComponent, canActivate: [AuthGuard]
     },
     {
       path: 'basePrice',

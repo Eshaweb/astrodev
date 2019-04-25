@@ -7,11 +7,12 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { GeneralConfigComponent } from './generalConfig/generalConfig.component';
 import { MuhurthaConfigComponent } from './muhurthaConfig/muhurthaConfig.component';
 import { WalletStatementComponent } from './wallet-statement/wallet-statement.component';
+import { AuthGuard } from 'src/Services/auth/auth.guard';
 
 const routes: Routes = [
     {
       path: '',
-      component: SettingsComponent,
+      component: SettingsComponent, canActivate: [AuthGuard]
     },
     {
       path: 'orderHistory',

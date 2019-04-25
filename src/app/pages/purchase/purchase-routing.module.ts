@@ -4,20 +4,21 @@ import { PaidservicesComponent } from './paidservices/paidservices.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentProcessingComponent } from './payment-processing/payment-processing.component';
+import { AuthGuard } from 'src/Services/auth/auth.guard';
 
 const routes: Routes = [
     {
       path: 'paidServices',
-      component: PaidservicesComponent,
+      component: PaidservicesComponent, canActivate: [AuthGuard]
     },
     {
       path: 'deliveryAddress',
-      component:DeliveryAddressComponent
+      component:DeliveryAddressComponent, canActivate: [AuthGuard]
       //component:DeliveryAddressOldnewComponent
     },
     {
       path:'payment',
-      component:PaymentComponent
+      component:PaymentComponent, canActivate: [AuthGuard]
     },
     // {
     //   path:'offlinePayment',
@@ -26,7 +27,7 @@ const routes: Routes = [
     {
       path:'paymentProcessing',
       //component:DowloadedSuccesdfullyComponent
-      component:PaymentProcessingComponent
+      component:PaymentProcessingComponent, canActivate: [AuthGuard]
     }
   ];
   
