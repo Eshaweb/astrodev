@@ -99,18 +99,16 @@ export class HomeComponent {
   OnPanchanga_Click() {
     this.router.navigate(["/panchanga"]);
   }
-  OnWalletDeposit_Click() {
-    if (StorageService.GetItem('Token') != undefined) {
-      this.router.navigate(['/wallet/depoToWallet']);
-    }
-    else {
-      this.loginService.path = '/wallet/depoToWallet';
-      this.router.navigate(['/login-form']);
-    }
-  }
+ 
   onItemClick(event) {
     if (event.itemIndex == 0) {
-      this.router.navigate(['/wallet/depoToWallet']);
+      if (StorageService.GetItem('refreshToken') != undefined) {
+        this.router.navigate(['/wallet/depoToWallet']);
+      }
+      else {
+        this.loginService.path = '/wallet/depoToWallet';
+        this.router.navigate(['/login-form']);
+      }
     }
   }
   // OnReadMore_click(value) {

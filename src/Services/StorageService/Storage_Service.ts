@@ -108,6 +108,7 @@ export class StorageService {
         sessionStorage.removeItem('IsDeliverable');
         sessionStorage.removeItem('ItMastId');
         sessionStorage.removeItem('refreshToken');
+        sessionStorage.removeItem('isAdmin');
     }
 
     // RemoveParticularDataFromSession(){

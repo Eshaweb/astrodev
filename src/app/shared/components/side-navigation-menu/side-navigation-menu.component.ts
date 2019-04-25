@@ -5,6 +5,7 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { Router } from '@angular/router';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
+import { PageNotFoundComponent } from '../pagenotfound/pagenotfound.component';
 
 @Component({
   selector: 'app-side-navigation-menu',
@@ -112,7 +113,7 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
 
 @NgModule({
   imports: [ DxTreeViewModule ],
-  declarations: [ SideNavigationMenuComponent ],
+  declarations: [ SideNavigationMenuComponent, PageNotFoundComponent ],
   exports: [ SideNavigationMenuComponent ]
 })
 export class SideNavigationMenuModule { }

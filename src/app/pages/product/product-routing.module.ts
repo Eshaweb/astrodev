@@ -4,6 +4,7 @@ import { ProductComponent } from './product/product.component';
 import { AstrolitegoldsilverComponent } from './astrolitegoldsilver/astrolitegoldsilver.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import { AstroliteProfessionalComponent } from './astroliteprofessional/astroliteprofessional.component';
+import { AuthGuard } from 'src/Services/auth/auth.guard';
 
 
 const routes: Routes = [
@@ -13,15 +14,15 @@ const routes: Routes = [
     },
     {
       path: 'astrogoldsilver',
-      component: AstrolitegoldsilverComponent,
+      component: AstrolitegoldsilverComponent, canActivate: [AuthGuard]
     },
     {
       path: 'astroprofessional',
-      component: AstroliteProfessionalComponent,
+      component: AstroliteProfessionalComponent, canActivate: [AuthGuard]
     },
     {
       path: 'paymentsuccess',
-      component: PaymentSuccessComponent,
+      component: PaymentSuccessComponent, canActivate: [AuthGuard]
     },
   ];
   

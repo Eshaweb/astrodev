@@ -15,15 +15,17 @@ import { ServicesComponent } from './pages/services/services.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { HomeComponent } from './pages/home/home.component';
+import { PageNotFoundComponent } from './shared/components/pagenotfound/pagenotfound.component';
+import { AuthGuard } from 'src/Services/auth/auth.guard';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]  },
   { path: 'Forgot', component:ForgotComponent },
   { path: 'Verify', component: EmailVerifyComponent },
   {
-    path:'offlinePayment', component:OfflinepaymentComponent
+    path:'offlinePayment', component:OfflinepaymentComponent, canActivate: [AuthGuard]
   },
   // {
   //   path: 'services',
@@ -95,8 +97,9 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: './pages/admin/admin.module#AdminModule'
   },
-  { path: '**', redirectTo: 'home',canActivate: [ AuthGuardService ]},
+  
   { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '**', component: PageNotFoundComponent},
 ];
 
 @NgModule({
