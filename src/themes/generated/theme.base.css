@@ -2309,6 +2309,7 @@
 .dx-button-text {
   display: inline-block;
   line-height: normal;
+ /* display: flex;*/
 }
 .dx-button a {
   text-decoration: none;
@@ -2653,15 +2654,15 @@
   color: #2d6da3;
 }
 .dx-button-mode-text.dx-button-default.dx-state-hover {
-  background-color: rgba(45, 109, 163, 0.1);
+ /* background-color: rgba(45, 109, 163, 0.1);*/
   border-color: transparent;
 }
 .dx-button-mode-text.dx-button-default.dx-state-focused {
-  background-color: rgba(45, 109, 163, 0.2);
+ /* background-color: rgba(45, 109, 163, 0.2);*/
   border-color: transparent;
 }
 .dx-button-mode-text.dx-button-default.dx-state-active {
-  background-color: rgba(45, 109, 163, 0.3);
+   /* background-color: rgba(45, 109, 163, 0.3);*/
   border-color: transparent;
   color: #2d6da3;
 }
