@@ -12,7 +12,10 @@ GetWalletBalance(PartyMastId):Observable<any> {
         var endPoint = "Wallet/GetWalletBalance?PartyMastId=" + PartyMastId;
         return this.httpService.Get(endPoint);
     }
-
+    GetProductPurchaseWalletBenefit(amount):Observable<any> {
+        var endPoint = "Wallet/GetProductPurchaseWalletBenefit?amount=" + amount;
+        return this.httpService.Get(endPoint);
+    }
     GetFreeWallet(FreeWalletRequest):Observable<any> {
         var endPoint = "Wallet/GetFreeWallet";
         return this.httpService.Post(endPoint,FreeWalletRequest);

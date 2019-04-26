@@ -391,10 +391,10 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           }
           this.PaymentComplete(Payment);
         },
-        // prefill: {
-        //   email: 'shailesh@eshaweb.com',
-        //   contact: '9731927204'
-        // },
+        prefill: {
+          email: 'shailesh@eshaweb.com',
+          contact: '9731927204'
+        },
         notes: {
           order_id: this.horoScopeService.ExtCode,
         },
