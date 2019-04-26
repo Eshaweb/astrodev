@@ -31,7 +31,6 @@ constructor(private route: ActivatedRoute, private router: Router, private login
        }  
    }
 
-
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     return this.canActivate(route, state);
 }

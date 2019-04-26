@@ -7,55 +7,58 @@
         <div class="title">Register</div>
     </div>
     <form *ngIf='!SMSOTPType' [formGroup]="registrationForm">
-    <div class="dx-field">
-        <dx-text-box formControlName="UserName" valueChangeEvent="keyup" placeholder="Mobile No / Email" width="100%">
-        </dx-text-box>
-    </div>
-    <p style="color:red;font-size: 12px;" id='err_UserName'></p>
-    <div class="dx-field">
-        <dx-text-box mode="password" valueChangeEvent="keyup" formControlName="Password" placeholder="Password(4-8 Characters)" width="100%">
-        </dx-text-box>
-        <p style="color:red;" id='err_Password'></p>
-    </div>
-    <div class="dx-field">
-        <dx-text-box mode="password" valueChangeEvent="keyup" formControlName="confirm_Password" placeholder="Re Enter Password" width="100%">
-        </dx-text-box>
-        <p style="color:red;" id='err_confirm_Password'></p>
-        <p style="color:red" *ngIf="registrationForm.errors?.notSame">Passwords do not match</p>
-    </div>
-   
-    <div class="dx-field">
-        <dx-text-box formControlName="IntroParty" valueChangeEvent="keyup" placeholder="Refferal Code" width="100%">
-        </dx-text-box>
-        <p style="color:red;" id='err_IntroParty'></p>
-    </div>
-
-    <div class="dx-field">
-        <div>
-            <dx-check-box 
-                id="check"
-                [(value)]="NewsLetter_checkBoxValue"
-                (onValueChanged)="SubscibeNewsLetters_Click($event)"
-                text="Subscribe Newsletters from AstroLite">
-            </dx-check-box>
+        <div *ngIf='EMailOTPType==""'>
+                <div class="dx-field">
+                        <dx-text-box formControlName="UserName" valueChangeEvent="keyup" placeholder="Mobile No / Email" width="100%">
+                        </dx-text-box>
+                    </div>
+                    <p style="color:red;font-size: 12px;" id='err_UserName'></p>
+                    <div class="dx-field">
+                        <dx-text-box mode="password" valueChangeEvent="keyup" formControlName="Password" placeholder="Password(4-8 Characters)" width="100%">
+                        </dx-text-box>
+                        <p style="color:red;" id='err_Password'></p>
+                    </div>
+                    <div class="dx-field">
+                        <dx-text-box mode="password" valueChangeEvent="keyup" formControlName="confirm_Password" placeholder="Re Enter Password" width="100%">
+                        </dx-text-box>
+                        <p style="color:red;" id='err_confirm_Password'></p>
+                        <p style="color:red" *ngIf="registrationForm.errors?.notSame">Passwords do not match</p>
+                    </div>
+                   
+                    <div class="dx-field">
+                        <dx-text-box formControlName="IntroParty" valueChangeEvent="keyup" placeholder="Refferal Code" width="100%">
+                        </dx-text-box>
+                        <p style="color:red;" id='err_IntroParty'></p>
+                    </div>
+                
+                    <div class="dx-field">
+                        <div>
+                            <dx-check-box 
+                                id="check"
+                                [(value)]="NewsLetter_checkBoxValue"
+                                (onValueChanged)="SubscibeNewsLetters_Click($event)"
+                                text="Subscribe Newsletters from AstroLite">
+                            </dx-check-box>
+                        </div>
+                    </div>
+                
+                    <div class="dx-field">
+                        <div>
+                            <dx-check-box 
+                                id="check"
+                                [(value)]="TandC_checkBoxValue"
+                                (onValueChanged)="TandC_Click($event)"
+                                text="I agree to the ">
+                            </dx-check-box>
+                            <!-- <a [routerLink]="['/TandC']">terms and conditions</a> -->
+                            <a (click)="goToTermsandConditions()">terms and conditions</a>
+                        </div>
+                    </div>
+                    <div class="dx-field">
+                        <dx-button type="default" text="Register" (onClick)="Register_Click()"[disabled]="!registrationForm.valid||(TandC_checkBoxValue==false)" width="100%"></dx-button>
+                    </div>
         </div>
-    </div>
-
-    <div class="dx-field">
-        <div>
-            <dx-check-box 
-                id="check"
-                [(value)]="TandC_checkBoxValue"
-                (onValueChanged)="TandC_Click($event)"
-                text="I agree to the ">
-            </dx-check-box>
-            <!-- <a [routerLink]="['/TandC']">terms and conditions</a> -->
-            <a (click)="goToTermsandConditions()">terms and conditions</a>
-        </div>
-    </div>
-    <div class="dx-field">
-        <dx-button type="default" text="Register" (onClick)="Register_Click()"[disabled]="!registrationForm.valid||(TandC_checkBoxValue==false)" width="100%"></dx-button>
-    </div>
+    
     <p style="color:green;">{{EMailOTPType}}</p>
 </form>
 

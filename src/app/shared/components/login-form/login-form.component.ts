@@ -179,6 +179,7 @@ export class LoginFormComponent {
           Token: user.authToken
         }
         if (user.provider == "GOOGLE") {
+          this.loadingSwitchService.loading = true;
           this.partyService.ExternalLogin(ExternalLogin).subscribe((data) => {
             if (data.Errors == undefined) {
               this.registrationService.registered = false;
@@ -202,6 +203,7 @@ export class LoginFormComponent {
           Token: user.authToken
         }
         if (user.provider == "FACEBOOK") {
+          this.loadingSwitchService.loading = true;
           this.partyService.ExternalLogin(ExternalLogin).subscribe((data) => {
             if (data.Errors == undefined) {
               this.registrationService.registered = false;

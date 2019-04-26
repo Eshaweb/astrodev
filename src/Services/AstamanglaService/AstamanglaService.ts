@@ -19,19 +19,20 @@ export class AstamangalaService {
     place: string;
     placeShort: string;
   timeZoneName: string;
-    constructor(private captionDbService:CaptionDbService,private httpService: HttpService, 
+    constructor(private captionDbService: CaptionDbService, private httpService: HttpService,
         private errorService: ErrorService, handler: HttpBackend, public http: HttpClient) {
         this.http = new HttpClient(handler);
     }
 
-GetFreeData(horoRequest):Observable<any> {
-    var endPoint = "Horoscope/GetFreePrashnaData";
-    return this.httpService.Post(endPoint, horoRequest);
-}
+    GetFreeData(horoRequest): Observable<any> {
+        var endPoint = "Horoscope/GetFreePrashnaData";
+        return this.httpService.Post(endPoint, horoRequest);
+    }
 
-getTimezone(lat, long) {
-    var apiKey = 'AIzaSyD68pTd0CmqTXSqPHFpLrPWkiClqPBIpLQ'
-    var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey
-    return this.http.get(url);
-}
+    getTimezone(lat, long) {
+        //var apiKey = 'AIzaSyD68pTd0CmqTXSqPHFpLrPWkiClqPBIpLQ';
+        var apiKey = 'AIzaSyCvfK_tYN-xiSpc0leO9N-ffswKm4G49VI';
+        var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey
+        return this.http.get(url);
+    }
 }
