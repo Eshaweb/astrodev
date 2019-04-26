@@ -379,7 +379,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     pay() {
       var options = {
         description: 'Credits towards AstroLite',
-        image: 'https://i.imgur.com/3g7nmJC.png',
+        image: 'https://i.ibb.co/dkhhhR1/icon-72x72.png',
         currency: 'INR',
         key: 'rzp_test_fg8RMT6vcRs4DP',
         amount: this.payableAmountthroughPaymentGateWay * 100,
@@ -391,15 +391,15 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           }
           this.PaymentComplete(Payment);
         },
-        prefill: {
-          email: 'shailesh@eshaweb.com',
-          contact: '9731927204'
-        },
+        // prefill: {
+        //   email: 'shailesh@eshaweb.com',
+        //   contact: '9731927204'
+        // },
         notes: {
           order_id: this.horoScopeService.ExtCode,
         },
         theme: {
-          color: '#F37254'
+          color: '#d05b19'
         },
         modal: {
           ondismiss: () => {
@@ -407,8 +407,9 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           }
         }
       };
+      
       var rzp1 = new Razorpay(options, successCallback, cancelCallback);
-      rzp1.open();
+      //rzp1.open();
       var successCallback = (payment_id) => {
         alert('payment_id: ' + payment_id);
       };
@@ -416,7 +417,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       var cancelCallback = (error) => {
         alert(error.description + ' (Error ' + error.code + ')');
       };
-      //  RazorpayCheckout.open(options, successCallback, cancelCallback);
+      rzp1.open(options, successCallback, cancelCallback);
     }
   
     PaymentComplete(Payment) {
