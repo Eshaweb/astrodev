@@ -18,7 +18,7 @@
               [direction]="direction">
     <dxi-item *ngFor="let item of serialisedPanchangaResponse">
         <div class="dx-field">
-            <div class="dx-field-label">{{item.Date}}
+            <div class="dx-field-label panch-date">{{item.Date}}
             </div>
         </div>
         <div class="dx-field" [ngClass]="getFont(panchangaRequest.LangCode)">

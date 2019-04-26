@@ -32,6 +32,12 @@
     .dx-texteditor-container {
     margin-bottom: 14px;
     }
+
+    .centre-align{
+
+        left: 50%;
+        right: 50%;
+    }
     
     @media (max-width: 800px) {
     .dx-fieldset-column {
@@ -59,6 +65,12 @@
         float: none !important;
     }
 
+
+    .centre-align{
+
+        left: 35%;
+        right: 50%;
+    }
     }
     
     .dx-field-value, .dx-field-label {
