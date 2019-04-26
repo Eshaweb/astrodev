@@ -12,7 +12,7 @@
             </div>
             <div class="dx-fieldset-column">
                 <div class="dx-field">
-                    <div class="dx-field-label">EMail</div>
+                    <div class="dx-field-label">Email</div>
                     <div class="dx-field-value">
                         <dx-text-box formControlName="EMail" [disabled]="EMailDisabled" showClearButton="true"></dx-text-box>
                 </div>
@@ -111,11 +111,12 @@
             </div>
     
         <div class="dx-fieldset"> 
-                <div class="dx-field">   
+                <div class="dx-field centre-align">   
             <dx-button (onClick)='OnSave_click()'
                 id="button"
                 text="Save"
                 type="success"  
+                width="100"
                 [useSubmitBehavior]="true">
             </dx-button>
             </div>
