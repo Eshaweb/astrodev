@@ -22,7 +22,11 @@
         width: 40%;
         text-align: left;
     }
-   
+   .dx-fieldset-column-sub{
+
+    float: left;
+    width: 25%;
+   }
 
     @media (max-width: 800px) {
     .dx-fieldset-column{
@@ -32,4 +36,15 @@
         margin-top: 24px !important;
         margin-bottom: 20px;
     }
+
+    .dx-fieldset-column-sub{
+
+        float: left;
+        width: 50%;
+        margin-bottom: 12px;
+       }
+
+       .responsive-paddings{
+           padding: 0px;
+       }
 }
