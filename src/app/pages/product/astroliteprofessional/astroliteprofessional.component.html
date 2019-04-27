@@ -185,16 +185,40 @@
     </div>
     <div class="clear"></div>
     <div *ngIf="!payableAmount">
-        <h4 class="content-block" *ngIf="productPrice.BasePrice">Base Price :{{productPrice.BasePrice|currency:'INR'}}</h4>
-        <h4 class="content-block" *ngIf="productPrice.Discount">Discount :{{productPrice.Discount|currency:'INR'}}({{productPrice.DiscountRate}}%)</h4>
-        <h4 class="content-block" *ngIf="discountAmount">Coupon Discount :{{discountAmount|currency:'INR'}}</h4>
-        <h4 class="content-block" *ngIf="productPrice.ActualPrice">Net Price :{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</h4>
-        <h4 class="content-block" *ngIf="walletdiscountAmount">Wallet :{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</h4>
+        <div class="dx-field">
+            <div class="cap">Base Price</div>
+            <div class="data">{{productPrice.BasePrice|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">Discount</div>
+            <div class="data">{{productPrice.Discount|currency:'INR'}}({{productPrice.DiscountRate}}%)</div>
+        </div>
+        <div class="dx-field" *ngIf="discountAmount">
+            <div class="cap">Coupon Discount</div>
+            <div class="data">{{productPrice.discountAmount|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">Net Price</div>
+            <div class="data">{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">Wallet</div>
+            <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
+        </div>
     </div>
     <div *ngIf="payableAmount">
-            <h4 class="content-block" *ngIf="discountAmount">Coupon Discount :{{discountAmount|currency:'INR'}}</h4>
-            <h4 class="content-block" *ngIf="payableAmount">Price :{{payableAmount-discountAmount|currency:'INR'}}</h4>
-            <h4 class="content-block" *ngIf="walletdiscountAmount">Wallet :{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</h4>
+        <div class="dx-field" *ngIf="discountAmount">
+            <div class="cap">Coupon Discount</div>
+            <div class="data">{{discountAmount|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">Price</div>
+            <div class="data">{{payableAmount-discountAmount|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">Wallet</div>
+            <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
+        </div>
     </div>
     <!-- <div class="dx-fieldset">
             <div class="dx-field" *ngIf="discountAmount">
