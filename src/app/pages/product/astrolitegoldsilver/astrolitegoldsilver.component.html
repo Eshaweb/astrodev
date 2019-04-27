@@ -65,11 +65,12 @@
 </div>
 <div class="clear"></div>
 <h4 class="content-block">Base Price :{{productPrice.BasePrice|currency:'INR'}}</h4>
-    <h4 class="content-block">Discount :{{productPrice.Discount|currency:'INR'}}({{productPrice.DiscountRate}}%)</h4>
-        <h4 class="content-block">Net Price :{{productPrice.ActualPrice|currency:'INR'}}</h4>
-        <h4 class="content-block">Wallet :{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</h4>
-<div class="dx-fieldset">
-    
+<h4 class="content-block">Discount :{{productPrice.Discount|currency:'INR'}}({{productPrice.DiscountRate}}%)</h4>
+<h4 class="content-block" *ngIf="discountAmount">Coupon Discount :{{discountAmount|currency:'INR'}}</h4>
+<h4 class="content-block">Net Price :{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</h4>
+<h4 class="content-block">Wallet :{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</h4>
+
+<!-- <div class="dx-fieldset">
     <div class="dx-field" *ngIf="discountAmount">
         <div class="cap">Coupon Discount</div>
         <div class="data">{{discountAmount|currency:'INR'}}
@@ -81,8 +82,8 @@
         <div class="data">{{productPrice.ActualPrice-discountAmount|currency:'INR'}}
         </div>
     </div>
-    <!-- <p style="color:green"> {{selectMeMessage}}</p> -->
-    </div>
+    </div> -->
+
     <div class="dx-fieldset">
     <div class="dx-field">
       <div class="cap">
