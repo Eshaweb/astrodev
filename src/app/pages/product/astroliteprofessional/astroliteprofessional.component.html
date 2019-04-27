@@ -1,7 +1,7 @@
 <h2 class="content-block">AstroLite {{ ProductName }}</h2>
 
 <div class="dx-card content-block responsive-paddings">
-
+        
     <div class="dx-fieldset" *ngIf="professional"> 
         <!-- <div class="dx-field">     
             <div *ngFor="let item of chekboxes">
@@ -12,7 +12,6 @@
                 </dx-check-box>
             </div>
           </div> -->
-          <div class="dx-fieldset-column">
         <h4>Products</h4>
         <div class="dx-field">
                 <dx-check-box [(value)]="Horoscope_checkBoxValue" (onValueChanged)="Horoscope_Click($event)"
@@ -55,9 +54,8 @@
                 </dx-check-box>
             </div>
         </div>
-    </div>
 
-    <div class="dx-fieldset-column">
+    <!-- <div class="dx-fieldset-column">
         <h4>Add On Products</h4>
         <div class="dx-field">
                 <dx-check-box value="true" disabled="true"
@@ -100,10 +98,8 @@
                 </dx-check-box>
             </div>
         </div>
-    </div>
+    </div> -->
         </div>
-
-      <div class="dx-fieldset-column">  
     <div class="dx-fieldset" *ngIf="professional">
         <h4>Languages</h4>
         <div class="dx-field">
@@ -138,9 +134,8 @@
             </div>
         </div>
         <div class="dx-field"></div>
-    </div>
-      </div>
-
+    
+</div>
     <div class="dx-fieldset-column1">  
     <div class="dx-fieldset" *ngIf="professional">
         <div class="dx-field">
@@ -170,7 +165,6 @@
             </div>
         </div>
     </div>
-    <h2 class="content-block">Price :{{ payableAmount | currency: "INR" }}</h2>
     <div class="dx-fieldset" [formGroup]="CoupenCodeForm">
         <div class="dx-feldset-column">
             <div class="dx-field">
@@ -190,20 +184,31 @@
         </div>
     </div>
     <div class="clear"></div>
-    <div class="dx-fieldset">
-        <div class="dx-field" *ngIf="discountAmount">
-            <div class="cap">Coupon Discount</div>
-            <div class="data">{{ discountAmount | currency: "INR" }}</div>
-        </div>
-
-        <div class="dx-field" *ngIf="discountAmount > 0">
-            <div class="cap">Order Total</div>
-            <div class="data">
-                {{ payableAmount - discountAmount | currency: "INR" }}
-            </div>
-        </div>
-        <!-- <p style="color:green"> {{selectMeMessage}}</p> -->
+    <div *ngIf="!payableAmount">
+        <h4 class="content-block" *ngIf="productPrice.BasePrice">Base Price :{{productPrice.BasePrice|currency:'INR'}}</h4>
+        <h4 class="content-block" *ngIf="productPrice.Discount">Discount :{{productPrice.Discount|currency:'INR'}}({{productPrice.DiscountRate}}%)</h4>
+        <h4 class="content-block" *ngIf="discountAmount">Coupon Discount :{{discountAmount|currency:'INR'}}</h4>
+        <h4 class="content-block" *ngIf="productPrice.ActualPrice">Net Price :{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</h4>
+        <h4 class="content-block" *ngIf="walletdiscountAmount">Wallet :{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</h4>
     </div>
+    <div *ngIf="payableAmount">
+            <h4 class="content-block" *ngIf="discountAmount">Coupon Discount :{{discountAmount|currency:'INR'}}</h4>
+            <h4 class="content-block" *ngIf="payableAmount">Price :{{payableAmount-discountAmount|currency:'INR'}}</h4>
+            <h4 class="content-block" *ngIf="walletdiscountAmount">Wallet :{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</h4>
+    </div>
+    <!-- <div class="dx-fieldset">
+            <div class="dx-field" *ngIf="discountAmount">
+                <div class="cap">Coupon Discount</div>
+                <div class="data">{{ discountAmount | currency: "INR" }}</div>
+            </div>
+    
+            <div class="dx-field" *ngIf="discountAmount > 0">
+                <div class="cap">Order Total</div>
+                <div class="data">
+                    {{ payableAmount - discountAmount | currency: "INR" }}
+                </div>
+            </div>
+        </div> -->
     <div class="dx-fieldset">
         <div class="dx-field">
             <div class="cap">

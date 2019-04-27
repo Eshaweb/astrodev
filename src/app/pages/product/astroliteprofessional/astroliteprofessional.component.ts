@@ -12,6 +12,8 @@ import { PayCode } from 'src/Models/Sales/PayCode';
 import { Router } from '@angular/router';
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
+import { ProductPrice } from 'src/Models/ProductPrice';
+import { WalletService } from 'src/Services/Wallet/WalletService';
 declare var Razorpay: any;
 
 @Component({
@@ -57,7 +59,11 @@ export class AstroliteProfessionalComponent implements OnInit {
     { Id: 5, Text: "5 Year" }];
   yearsdata: ArrayStore;
   disableBuyNow: boolean;
-  constructor(public formbuilder: FormBuilder, public uiService: UIService, private loadingSwitchService: LoadingSwitchService,
+  productPrice: ProductPrice;
+  walletdiscountAmount: any;
+  walletdiscountPercentage: any;
+  Promo: any;
+  constructor(public walletService:WalletService, public formbuilder: FormBuilder, public uiService: UIService, private loadingSwitchService: LoadingSwitchService,
     private itemService: ItemService, public productService: ProductService, public horoScopeService: HoroScopeService,
     public router: Router, public orderService: OrderService, public loginService: LoginService) {
     this.loginService.path = undefined;
@@ -111,8 +117,8 @@ export class AstroliteProfessionalComponent implements OnInit {
         Additional:this.AdditionalLisence_checkBoxValue
       }
       this.productService.GetWindowsPrice(this.WindowsPriceRequest).subscribe((data) => {
-        this.payableAmount = data;
-        this.loadingSwitchService.loading = false
+        this.productPrice=data;
+        this.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice);
       });
     }
     else if(StorageService.GetItem('ProductName') == "Professional Full Package"){
@@ -128,8 +134,8 @@ export class AstroliteProfessionalComponent implements OnInit {
         Years: this.yearvalue
       }
       this.productService.GetWindowsYearlyPrice(this.WindowsYearlyPriceRequest).subscribe((data) => {
-        this.payableAmount = data;
-        this.loadingSwitchService.loading = false;
+        this.payableAmount=data;
+        this.GetProductPurchaseWalletBenefit(this.payableAmount);
       });
     }
     
@@ -293,21 +299,39 @@ export class AstroliteProfessionalComponent implements OnInit {
       Years: this.yearvalue
     }
     this.productService.GetWindowsYearlyPrice(this.WindowsYearlyPriceRequest).subscribe((data) => {
-      this.payableAmount = data;
-      this.loadingSwitchService.loading = false
+      this.payableAmount=data;
+      this.GetProductPurchaseWalletBenefit(this.payableAmount);
     });
   }
+  
   GetWindowsPrice(WindowsPriceRequest) {
     if (WindowsPriceRequest.Products.length != 0) {
       this.productService.GetWindowsPrice(WindowsPriceRequest).subscribe((data) => {
-        this.payableAmount = data;
+        this.productPrice=data;
+        if(this.CoupenCodeForm.controls['CouponCode'].value!=undefined){
+          this.onApplyCouponCode_click();
+        }
+        this.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice);
         this.loadingSwitchService.loading = false;
       });
     }
     else {
-      this.payableAmount = 0;
+      this.productPrice.ActualPrice=0;
+      this.productPrice.BasePrice=0;
+      this.productPrice.Discount=0;
+      this.productPrice.DiscountRate=0;
+      this.walletdiscountAmount=0;
+      this.walletdiscountPercentage=0;
       this.loadingSwitchService.loading = false;
     }
+  }
+
+  GetProductPurchaseWalletBenefit(ActualPrice){
+    this.walletService.GetProductPurchaseWalletBenefit(ActualPrice).subscribe((data) => {
+     this.walletdiscountAmount=data.Amount;
+     this.walletdiscountPercentage=data.Percent;
+      this.loadingSwitchService.loading = false;
+    });
   }
   OnCouponCode(value) {
     if (value.length < 6) {  //checks for couponcode length
@@ -325,11 +349,20 @@ export class AstroliteProfessionalComponent implements OnInit {
   onApplyCouponCode_click() {
     this.loadingSwitchService.loading = true;
     this.disableButton = true;
-    var Promo = {
-      PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
-      Amount: this.payableAmount
+    if(this.payableAmount!=undefined){
+      this.Promo = {
+        PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
+        Amount: this.payableAmount
+      }
     }
-    this.itemService.OccupyPromoCode(Promo).subscribe((data) => {
+    else{
+      this.Promo = {
+        PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
+        Amount: this.productPrice.ActualPrice
+      }
+    }
+    
+    this.itemService.OccupyPromoCode(this.Promo).subscribe((data) => {
       this.loadingSwitchService.loading = false;
       if (data.IsValid == true) {
         this.discountAmount = data.Amount;
@@ -341,7 +374,12 @@ export class AstroliteProfessionalComponent implements OnInit {
       else {
         this.errorMessage = data.Error;
       }
-
+      if(this.payableAmount!=undefined){
+        this.GetProductPurchaseWalletBenefit(this.payableAmount);
+      }
+      else{
+        this.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice);
+      }
       // if (this.checkClicked == true && this.firstClick == true) {
       //   this.payableAmount = this.payableAmount - this.discountAmount;
       //   this.differenceAmount = this.differenceAmount - this.discountAmount;
@@ -355,11 +393,22 @@ export class AstroliteProfessionalComponent implements OnInit {
   onPay_click() {
     this.loadingSwitchService.loading = true;
     if (this.discountAmount > 0) {
-      this.paycodes = [{ Code: 'D', Amount: this.discountAmount },
-      { Code: this.paymentModedatavalue, Amount: this.payableAmount - this.discountAmount }];
+      if(this.payableAmount!=undefined){
+        this.paycodes = [{ Code: 'D', Amount: this.discountAmount },
+        { Code: this.paymentModedatavalue, Amount: this.payableAmount - this.discountAmount }];
+      }
+      else{
+        this.paycodes = [{ Code: 'D', Amount: this.discountAmount },
+        { Code: this.paymentModedatavalue, Amount: this.productPrice.ActualPrice - this.discountAmount }];
+      }
     }
     else {
-      this.paycodes = [{ Code: this.paymentModedatavalue, Amount: this.payableAmount - this.discountAmount }];
+      if(this.payableAmount!=undefined){
+        this.paycodes = [{ Code: this.paymentModedatavalue, Amount: this.payableAmount - this.discountAmount }];
+      }
+      else{
+        this.paycodes = [{ Code: this.paymentModedatavalue, Amount: this.productPrice.ActualPrice - this.discountAmount }];
+      }
     }
     if(StorageService.GetItem('ProductName') == "Professional"){
     var BuyWindows = {
@@ -367,7 +416,7 @@ export class AstroliteProfessionalComponent implements OnInit {
       Products: this.WindowsPriceRequest.Products,
       Additional:this.AdditionalLisence_checkBoxValue,
       Language:this.WindowsPriceRequest.Language,
-      Amount: this.payableAmount - this.discountAmount,
+      Amount: this.productPrice.ActualPrice - this.discountAmount,
       PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
       PayCodes: this.paycodes
     }
@@ -433,36 +482,71 @@ export class AstroliteProfessionalComponent implements OnInit {
 
 
   pay() {
-    var options = {
-      description: 'Credits towards AstroLite',
-      image: 'https://i.imgur.com/3g7nmJC.png',
-      currency: 'INR',
-      key: 'rzp_test_fg8RMT6vcRs4DP',
-      amount: (this.payableAmount - this.discountAmount) * 100,
-      name: StorageService.GetItem('Name'),
-      "handler": (response) => {
-        this.paymentId = response.razorpay_payment_id;
-        var Payment = {
-          PaymentId: this.paymentId
+    if(this.payableAmount!=undefined){
+      var options = {
+        description: 'Credits towards AstroLite',
+        image: 'https://i.imgur.com/3g7nmJC.png',
+        currency: 'INR',
+        key: 'rzp_test_fg8RMT6vcRs4DP',
+        amount: (this.payableAmount - this.discountAmount) * 100,
+        name: StorageService.GetItem('Name'),
+        "handler": (response) => {
+          this.paymentId = response.razorpay_payment_id;
+          var Payment = {
+            PaymentId: this.paymentId
+          }
+          this.PaymentComplete(Payment);
+        },
+        prefill: {
+          email: 'shailesh@eshaweb.com',
+          contact: '9731927204'
+        },
+        notes: {
+          order_id: this.horoScopeService.ExtCode,
+        },
+        theme: {
+          color: '#F37254'
+        },
+        modal: {
+          ondismiss: () => {
+            this.loadingSwitchService.loading = false;
+          }
         }
-        this.PaymentComplete(Payment);
-      },
-      prefill: {
-        email: 'shailesh@eshaweb.com',
-        contact: '9731927204'
-      },
-      notes: {
-        order_id: this.horoScopeService.ExtCode,
-      },
-      theme: {
-        color: '#F37254'
-      },
-      modal: {
-        ondismiss: () => {
-          this.loadingSwitchService.loading = false;
+      };
+    }
+    else{
+      var options = {
+        description: 'Credits towards AstroLite',
+        image: 'https://i.imgur.com/3g7nmJC.png',
+        currency: 'INR',
+        key: 'rzp_test_fg8RMT6vcRs4DP',
+        amount: (this.productPrice.ActualPrice - this.discountAmount) * 100,
+        name: StorageService.GetItem('Name'),
+        "handler": (response) => {
+          this.paymentId = response.razorpay_payment_id;
+          var Payment = {
+            PaymentId: this.paymentId
+          }
+          this.PaymentComplete(Payment);
+        },
+        prefill: {
+          email: 'shailesh@eshaweb.com',
+          contact: '9731927204'
+        },
+        notes: {
+          order_id: this.horoScopeService.ExtCode,
+        },
+        theme: {
+          color: '#F37254'
+        },
+        modal: {
+          ondismiss: () => {
+            this.loadingSwitchService.loading = false;
+          }
         }
-      }
-    };
+      };
+    }
+    
     var rzp1 = new Razorpay(options, successCallback, cancelCallback);
     rzp1.open();
     var successCallback = (payment_id) => {

@@ -45,13 +45,12 @@
 </div>
 </div>
 <div class="clear"></div>
-<h2 class="content-block">Price :{{payableAmount|currency:'INR'}}</h2>
 <div class="dx-fieldset" [formGroup]="CoupenCodeForm">
     <div class="dx-feldset-column">
     <div class="dx-field">
             <div class="cap">
                  <!-- <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box> -->
-                 <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box>
+                 <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' placeholder="Enter Coupon Code"></dx-text-box>
                  <p style="color:red" id='err_CouponCode'></p>
                  <p style="color:red"> {{errorMessage}}</p>
 
@@ -65,8 +64,13 @@
 </div>
 </div>
 <div class="clear"></div>
-<div class="dx-fieldset">
-    
+<h4 class="content-block">Base Price :{{productPrice.BasePrice|currency:'INR'}}</h4>
+<h4 class="content-block">Discount :{{productPrice.Discount|currency:'INR'}}({{productPrice.DiscountRate}}%)</h4>
+<h4 class="content-block" *ngIf="discountAmount">Coupon Discount :{{discountAmount|currency:'INR'}}</h4>
+<h4 class="content-block">Net Price :{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</h4>
+<h4 class="content-block">Wallet :{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</h4>
+
+<!-- <div class="dx-fieldset">
     <div class="dx-field" *ngIf="discountAmount">
         <div class="cap">Coupon Discount</div>
         <div class="data">{{discountAmount|currency:'INR'}}
@@ -75,11 +79,11 @@
     
     <div class="dx-field" *ngIf="(discountAmount>0)">
         <div class="cap">Order Total</div>
-        <div class="data">{{payableAmount-discountAmount|currency:'INR'}}
+        <div class="data">{{productPrice.ActualPrice-discountAmount|currency:'INR'}}
         </div>
     </div>
-    <!-- <p style="color:green"> {{selectMeMessage}}</p> -->
-    </div>
+    </div> -->
+
     <div class="dx-fieldset">
     <div class="dx-field">
       <div class="cap">
