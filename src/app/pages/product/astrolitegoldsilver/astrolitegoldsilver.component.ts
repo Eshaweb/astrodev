@@ -13,13 +13,9 @@ import { Router } from '@angular/router';
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 import { WalletService } from 'src/Services/Wallet/WalletService';
+import { ProductPrice } from 'src/Models/ProductPrice';
 declare var Razorpay: any;
-export class ProductPrice{
-  ActualPrice: number;
-  BasePrice: number;
-  Discount: number;
-  DiscountRate: number;
-}
+
 @Component({
   selector: 'app-astrolitegoldsilver',
   templateUrl: './astrolitegoldsilver.component.html',
@@ -30,7 +26,6 @@ export class AstrolitegoldsilverComponent implements OnInit {
   MatchMaking_checkBoxValue: boolean;
   Horoscope_checkBoxValue: boolean;
   CoupenCodeForm: FormGroup;
-  payableAmount: any;
   AndroidPriceRequest: { PartyMastId: any; Products: string[]; };
   chekboxes: { Text: string; Value: any; }[];
   disableButton: boolean;
@@ -95,7 +90,6 @@ export class AstrolitegoldsilverComponent implements OnInit {
       }
     }
     this.productService.GetAndroidPrice(this.AndroidPriceRequest).subscribe((data) => {
-      this.payableAmount = data;
       this.productPrice=data;
       this.GetProductPurchaseWalletBenefit();
     });
@@ -151,7 +145,6 @@ export class AstrolitegoldsilverComponent implements OnInit {
   GetAndroidPrice(AndroidPriceRequest) {
     if (AndroidPriceRequest.Products.length != 0) {
       this.productService.GetAndroidPrice(AndroidPriceRequest).subscribe((data) => {
-        this.payableAmount = data;
         this.productPrice=data;
         if(this.CoupenCodeForm.controls['CouponCode'].value!=undefined){
           this.onApplyCouponCode_click();
@@ -161,7 +154,6 @@ export class AstrolitegoldsilverComponent implements OnInit {
       });
     }
     else {
-      this.payableAmount = 0;
       this.productPrice.ActualPrice=0;
       this.productPrice.BasePrice=0;
       this.productPrice.Discount=0;
@@ -196,7 +188,6 @@ export class AstrolitegoldsilverComponent implements OnInit {
     this.disableButton = true;
     var Promo = {
       PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
-      //Amount: this.payableAmount
       Amount: this.productPrice.ActualPrice
     }
     this.itemService.OccupyPromoCode(Promo).subscribe((data) => {
@@ -226,15 +217,16 @@ export class AstrolitegoldsilverComponent implements OnInit {
     this.loadingSwitchService.loading = true;
     if (this.discountAmount > 0) {
       this.paycodes = [{ Code: 'D', Amount: this.discountAmount },
-      { Code: this.paymentModedatavalue, Amount: this.payableAmount - this.discountAmount }];
+      { Code: this.paymentModedatavalue, Amount: this.productPrice.ActualPrice - this.discountAmount }];
     }
     else {
-      this.paycodes = [{ Code: this.paymentModedatavalue, Amount: this.payableAmount - this.discountAmount }];
+      this.paycodes = [{ Code: this.paymentModedatavalue, Amount: this.productPrice.ActualPrice - this.discountAmount }];
+
     }
     var BuyAndroid = {
       PartyMastId: StorageService.GetItem('PartyMastId'),
       Products: this.AndroidPriceRequest.Products,
-      Amount: this.payableAmount - this.discountAmount,
+      Amount: this.productPrice.ActualPrice - this.discountAmount,
       PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
       PayCodes: this.paycodes
     }
@@ -269,7 +261,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
       image: 'https://i.imgur.com/3g7nmJC.png',
       currency: 'INR',
       key: 'rzp_test_fg8RMT6vcRs4DP',
-      amount: (this.payableAmount - this.discountAmount) * 100,
+      amount: (this.productPrice.ActualPrice - this.discountAmount) * 100,
       name: StorageService.GetItem('Name'),
       "handler": (response) => {
         this.paymentId = response.razorpay_payment_id;
