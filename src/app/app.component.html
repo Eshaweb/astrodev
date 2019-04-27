@@ -114,8 +114,8 @@
 
 <dx-popup *ngIf="loginService.orderhistorypopupVisible"
     class="popup"
-    [width]="350"
-    [height]="400"
+    [width]="320"
+    [height]="300"
     [showTitle]="true"
     title="Last Transaction Details"
     [dragEnabled]="false"
@@ -140,11 +140,11 @@
         </div> -->
         <div class="clear"></div>
         <div *ngIf="loginService.proceedDeliveryAddress">
-            <dx-button class="proceed" text="Proceed to Delivery Address" type="default" (onClick)="onstatus_Click(loginService.orderHistoryResponse)"></dx-button>
+            <dx-button class="proceed" text="Proceed to Delivery Address" type="success" (onClick)="onstatus_Click(loginService.orderHistoryResponse)"></dx-button>
             &nbsp;   <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(loginService.orderHistoryResponse)"></dx-button>
         </div>
         <div *ngIf="loginService.proceedPayment">
-            <dx-button class="delete" text="Proceed to Payment" type="default" (onClick)="onstatus_Click(loginService.orderHistoryResponse)"></dx-button>
+            <dx-button class="delete" text="Proceed to Payment" type="success" (onClick)="onstatus_Click(loginService.orderHistoryResponse)"></dx-button>
           &nbsp; <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(loginService.orderHistoryResponse)"></dx-button>
         </div>
         <!-- <dx-button text='Close' (onClick)="ClosePopUp()"></dx-button> -->
