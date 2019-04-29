@@ -2,7 +2,7 @@
 
 .dx-card.responsive-paddings{
   padding: 40px;
-  width: 30% !important;
+  width: 23% !important;
   float: left !important;
   margin-left: 20px !important;
   margin-top: 10px;
@@ -20,11 +20,23 @@ width: 100%;
 height: auto;
 
 }
-
+.service-image {
+  width: 45%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
 .service-list{
   cursor: pointer;
   
 }
+
+h3{
+  font-size: 18px;
+  text-align: center;
+  color: #D05B19;
+  
+    }
 @media (max-width: 800px) {
   .dx-fieldset-column {
   float: left;
