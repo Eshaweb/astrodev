@@ -16,11 +16,11 @@
 <!-- <span>You are  purchasing {{ItName}}. You will get it to above entered Email Id</span>
 <p>Your Order Id is {{OrderId}}.</p> -->
 
-<p>You are  purchasing {{ItName}} You will get it to above entered Email Id.  Your Order Id is {{OrderId}}.</p>
+<p>You are  purchasing {{ItName}}. PDF will be sent immediately to the Email Id entered above.  Your Order Id is {{OrderId}}.</p>
 </div>
 </div>
 <div class="address" *ngIf="DeliveryAddressRequired">
-    <span >Since you need printed copy we will send it in post within 3-4 business days</span>
+    <span >Printed copy will be dispatched immediately/ by the next working day.</span>
 </div>
 
 <div class="saved-address" *ngIf="DeliveryAddressRequired">
@@ -127,7 +127,7 @@
             </div>
 
     <div class="dx-field">
-<dx-button class="buttonClass2" [disabled]="!customerAddressForm.valid" text="Save" type="default" (onClick)="onSaveAddress()" style="margin-right:44px;margin-left:55px;"></dx-button>
+<dx-button class="buttonClass2" [disabled]="!customerAddressForm.valid" text="Save" type="success" (onClick)="onSaveAddress()" style="margin-right:44px;margin-left:55px;"></dx-button>
 <dx-button class="buttonClass1" text="Cancel" type="submit" (onClick)="onCancel()" style="margin-left:55px;" ></dx-button>
 </div>
 

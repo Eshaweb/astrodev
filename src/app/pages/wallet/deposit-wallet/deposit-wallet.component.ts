@@ -163,6 +163,8 @@ export class DepositWalletComponent {
       image: 'https://i.imgur.com/3g7nmJC.png',
       currency: 'INR',
       key: 'rzp_test_fg8RMT6vcRs4DP',
+      // callback_url:'https://www.google.com/'+this.paymentId,
+      // redirect: "true",
       amount: this.depositToWalletForm.controls['Amount'].value * 100,
       name: StorageService.GetItem('Name'),
       "handler": (response) => {
@@ -186,7 +188,7 @@ export class DepositWalletComponent {
       },
       modal: {
         ondismiss: () => {
-          //alert('dismissed');
+          this.loadingSwitchService.loading=false;
         }
       }
     };

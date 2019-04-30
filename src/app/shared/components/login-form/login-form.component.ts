@@ -403,12 +403,20 @@ export class LoginFormComponent {
                 if (data != null) {
                   this.loginService.orderHistoryResponse = data;
                   if (data.StatusCode == 'AP') {
+                    this.loginService.orderhistorypopupVisible = true;
                     this.loginService.proceedDeliveryAddress = true;
                   }
                   else if (data.StatusCode == 'BP' || data.StatusCode == 'PP') {
+                    this.loginService.orderhistorypopupVisible = true;
                     this.loginService.proceedPayment = true;
                   }
-                  this.loginService.orderhistorypopupVisible = true;
+                  else if (data.StatusCode == 'RD' && data.ItName == 'Wallet' ) {
+                    this.loginService.orderhistorypopupVisible = false;
+                  }
+                  else{
+                    this.loginService.orderhistorypopupVisible = true;
+                  }
+                  
                 }
               });
               this.subscribe.unsubscribe();
