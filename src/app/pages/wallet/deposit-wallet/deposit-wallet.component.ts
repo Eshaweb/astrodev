@@ -145,7 +145,6 @@ export class DepositWalletComponent {
     this.PurchaseAmount=(+WalletPurchase.PurchaseAmount)+this.bonusAmount;
     this.walletService.PurchaseWallet(WalletPurchase).subscribe((data) => {
       if (data.IsValid == true && data.PayModes == "ON") {
-        this.loadingSwitchService.loading=false;
         this.pay(data.ExtCode);
       }
       else if (data.IsValid == true && data.PayModes == "OFF") {
@@ -164,8 +163,8 @@ export class DepositWalletComponent {
       image: 'https://i.imgur.com/3g7nmJC.png',
       currency: 'INR',
       key: 'rzp_test_fg8RMT6vcRs4DP',
-      callback_url:'https://www.google.com/'+this.paymentId,
-      redirect: "true",
+      // callback_url:'https://www.google.com/'+this.paymentId,
+      // redirect: "true",
       amount: this.depositToWalletForm.controls['Amount'].value * 100,
       name: StorageService.GetItem('Name'),
       "handler": (response) => {
@@ -176,11 +175,11 @@ export class DepositWalletComponent {
         this.next(Payment);
         this.loadingSwitchService.loading=false;
       },
-      // prefill: {
-      //   email: 'shailesh@eshaweb.com',
-      //   contact: '9731927204',
-      //   name: 'Shailesh'
-      // },
+      prefill: {
+        email: 'shailesh@eshaweb.com',
+        contact: '9731927204',
+        name: 'Shailesh'
+      },
       notes: {
         order_id: ExtCode,
       },
