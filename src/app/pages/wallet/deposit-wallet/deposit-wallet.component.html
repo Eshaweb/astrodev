@@ -6,7 +6,7 @@
                     <div class="cap">
                 <h3>Wallet Balance:  {{walletBalanceAmount|currency:'INR'}}</h3>
             </div>
-            <div class="cap"><h3>Wallet Bonus</h3></div>
+            <div class="cap"><h3>Wallet Bonus: {{bonusAmount|currency:'INR'}}</h3></div>
             </div>
             <div class="w-border"></div>
             <br>
@@ -23,7 +23,7 @@
 
                 <p style="color:red" id='err_Amount'></p>
                 <p style="color: red" *ngIf="showError">Amount should be in the range {{minAmount|currency:'INR'}}-{{maxAmount|currency:'INR'}}</p>
-                <div class="dx-field-label2" *ngIf="bonusAmount!=null">Bonus Amount:  {{bonusAmount|currency:'INR'}}</div>
+                <!-- <div class="dx-field-label2" *ngIf="bonusAmount!=null">Bonus Amount:  {{bonusAmount|currency:'INR'}}</div> -->
             </div>
                
                 <div class="dx-fieldset-column">
