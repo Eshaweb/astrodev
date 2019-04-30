@@ -3,6 +3,11 @@
 <h2 class="content-block">AstroLite {{ProductName}} </h2>
 
 <div class="dx-card content-block responsive-paddings">
+<div class="product-image">
+        <img src="assets/images/gold.png" class="service-image">
+        <h3>Astrolite {{ProductName}}</h3>
+    </div>
+    <div class="product-info">
     <div class="dx-fieldset">
         <!-- <div class="dx-field">
             <div *ngFor="let item of chekboxes">
@@ -13,6 +18,7 @@
                 </dx-check-box>
             </div>
           </div> -->
+          
           <div class="dx-fieldset-column">
 <div class="dx-field">
   
@@ -63,7 +69,9 @@
         </div>
 </div>
 </div>
+
 <div class="clear"></div>
+<div class="dx-fieldset">
 <div class="dx-field">
     <div class="cap">Base Price</div>
     <div class="data">{{productPrice.BasePrice|currency:'INR'}}</div>
@@ -84,7 +92,7 @@
         <div class="cap">Wallet</div>
         <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
     </div>
-
+</div>
     <div class="dx-fieldset">
     <div class="dx-field">
       <div class="cap">
@@ -113,4 +121,5 @@
             </div>
         </div>
         </div>
+</div>
 </div>
