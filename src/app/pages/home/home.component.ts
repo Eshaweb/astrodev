@@ -4,9 +4,11 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { services } from 'src/app/app-navigation';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 let webimages: string[] = [
-  "assets/images/morefund_web.jpg","assets/images/traditional.jpg"];
+  "assets/images/morefund_web.jpg",
+  "assets/images/traditional.jpg"];
   let mobileimages: string[] = [
-    "assets/images/morefund_mobile.jpg","assets/images/traditional_mobile.jpg"];
+    "assets/images/morefund_mobile.jpg",
+    "assets/images/traditional_mobile.jpg"];
 @Component({
   templateUrl: 'home.component.html',
   styleUrls: ['./home.component.scss']
@@ -109,6 +111,9 @@ export class HomeComponent {
         this.loginService.path = '/wallet/depoToWallet';
         this.router.navigate(['/login-form']);
       }
+    }
+    else if (event.itemIndex == 1) {
+        this.router.navigate(['/horoscope']);
     }
   }
   // OnReadMore_click(value) {
