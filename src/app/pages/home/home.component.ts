@@ -4,9 +4,9 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { services } from 'src/app/app-navigation';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 let webimages: string[] = [
-  "assets/images/morefund_web.jpg"];
+  "assets/images/morefund_web.jpg","assets/images/traditional.jpg"];
   let mobileimages: string[] = [
-    "assets/images/morefund_mobile.jpg"];
+    "assets/images/morefund_mobile.jpg","assets/images/traditional_mobile.jpg"];
 @Component({
   templateUrl: 'home.component.html',
   styleUrls: ['./home.component.scss']
@@ -37,7 +37,7 @@ export class HomeComponent {
     // this.dataSource =  webimages;
     if (window.innerWidth < 900) {
       this.dataSource =  mobileimages;
-      this.height = 150;
+      this.height = 250;
     }
     else{
       this.dataSource =  webimages;
