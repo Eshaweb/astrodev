@@ -112,10 +112,11 @@
 
                           <div class="dx-fieldset">
                               <dx-validation-summary id="summary"></dx-validation-summary>
-
+                              <div class="dx-field ">
                               <dx-button [disabled]="!muhurthaaForm.valid" text="Continue" type="success"
                                   [useSubmitBehavior]="true" awNextStep>
                               </dx-button>
+                              </div>
                           </div>
                       </form>
                 </div>
@@ -136,14 +137,14 @@
                                         [allowUpdating]="true"
                                         [allowDeleting]="true">
                                     </dxo-editing>
-                                        <dxi-column [width]="50" dataField="Nakshatra" placeholder="Enter Gothra here..." [setCellValue]="setStarValue">
+                                        <dxi-column  class="grid-column2" dataField="Nakshatra" placeholder="Enter Gothra here..." [setCellValue]="setStarValue">
                                         <dxo-lookup
                                         [dataSource]="stars"
                                         displayExpr="Text"
                                         valueExpr="Id">
                                     </dxo-lookup>
                                     </dxi-column>
-                                        <dxi-column [width]="50" dataField="Rashi" [setCellValue]="setRashiValue">
+                                        <dxi-column class="grid-column2" dataField="Rashi" [setCellValue]="setRashiValue">
                                     <dxo-lookup
                                             [dataSource]="getFilteredRashis"
                                             displayExpr="Text"
