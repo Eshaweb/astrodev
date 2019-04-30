@@ -18,7 +18,10 @@
     color: brown;
   }
 
+  .dx-button-mode-contained.dx-button-success{
 
+    margin-right:5%;
+}
 
 .centered-content {
     margin: auto;

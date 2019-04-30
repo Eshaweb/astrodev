@@ -330,3 +330,26 @@ a {
     display: none;
   }
 }
+@media (max-width: 450px) {
+
+  .main-content {
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: -0.03em;
+    font-weight: 400;
+    color: #D05B19;
+    text-align: center;
+}
+.home-content {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+p {
+  text-align: left;
+}
+
+.footer-menu a{
+  margin-left: 60px;
+}
+}

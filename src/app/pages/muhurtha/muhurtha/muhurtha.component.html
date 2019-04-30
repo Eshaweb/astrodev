@@ -84,7 +84,7 @@
                                       <div class="clear"></div>
                               <div class="dx-fieldset-column">
                                   <div class="dx-field">
-                                      <div class="dx-field-label">Time format*</div>
+                                      <div class="dx-field-label">Time Format*</div>
                                       <div class="dx-field-value">
                                           <dx-select-box (onValueChanged)="timeformatdataSelection($event)" [dataSource]="timeformatdata"
                                               displayExpr="Text" valueExpr="Id" [value]="timeformatvalue" [searchEnabled]="true">
@@ -191,8 +191,10 @@
                     <!-- <div class="dx-field-label">Vivaha Muhurtha</div>
                     <div class="dx-field-value"> -->
                         <div class="dx-field-value">
-                            <dx-check-box id="check" (onValueChanged)="EndTimeCheckBoxValueChanged($event)" text="Muhurtha End Time Required">
+                            <div>
+                            <dx-check-box id="check" (onValueChanged)="EndTimeCheckBoxValueChanged($event)" text="Muhurtha end time required">
                             </dx-check-box>
+                        </div>
                         </div>
                     
                     <!-- </div> -->
