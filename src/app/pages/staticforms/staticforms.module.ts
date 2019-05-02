@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
-import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule, DxLoadPanelModule, DxResponsiveBoxModule, DxPopupModule, DxPopoverModule, DxAccordionModule, DxTemplateModule, DxSliderModule, DxTagBoxModule, DxDataGridModule, DxNumberBoxModule, DxDateBoxModule, DxListModule } from 'devextreme-angular';
+import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule, DxLoadPanelModule, DxResponsiveBoxModule, DxPopupModule, DxPopoverModule, DxAccordionModule, DxTemplateModule, DxSliderModule, DxTagBoxModule, DxDataGridModule, DxNumberBoxModule, DxDateBoxModule, DxListModule, DxTextAreaModule } from 'devextreme-angular';
 import { DxiRowModule } from 'devextreme-angular/ui/nested/row-dxi';
 import { ArchwizardModule } from 'angular-archwizard';
 import { StaticFormsRoutingModule } from './staticforms-routing.module';
@@ -27,7 +27,7 @@ import { TermsandConditionsComponent } from './termsand-conditions/termsand-cond
         DxSelectBoxModule,DxAccordionModule,
         DxCheckBoxModule,
         DxSliderModule,
-        DxTagBoxModule,
+        DxTagBoxModule, DxTextAreaModule,
         DxTemplateModule,ArchwizardModule,
         DxDataGridModule, DxListModule,
         DxLoadPanelModule,DxPopupModule, DxPopoverModule,

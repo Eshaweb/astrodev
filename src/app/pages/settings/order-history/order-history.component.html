@@ -41,7 +41,7 @@
                             <div class="dx-card order-list" *ngFor="let item of orderHistoryResponse">  
                                 <div class="dx-field" >
                             <div class="dx-fieldset-column-sub">{{item.ItName}}</div>
-                            <div class="dx-fieldset-column-sub" *ngIf="(item.Amount)>0">
+                            <div class="dx-fieldset-column-sub">
                                 {{item.Amount|currency:'INR'}}
                             </div>
                             <div class="dx-fieldset-column-sub">Order Id : {{item.OrderId}}</div>
@@ -58,7 +58,7 @@
                                     <div class="dx-field" >
                                
 
-                                    <dx-button class="buttonClass1" text="Proceed to Delivery Address" type="success" (onClick)="onstatus_Click(item)"></dx-button>
+                                    <dx-button class="buttonClass1" text="Proceed to Delivery" type="success" (onClick)="onstatus_Click(item)"></dx-button>
                                    <span>&nbsp;&nbsp;&nbsp;</span>
                                    
                                     <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(item)"></dx-button>
