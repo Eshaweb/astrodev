@@ -72,8 +72,8 @@ export class OrderHistoryComponent implements OnInit {
         }
         this.orderService.OrderHistory(orderHistory).subscribe((data: any) => {
             this.orderHistoryResponse = data;
-            var args: string[] = [this.fieldvalue, "OrderId"];
-            this.sortingOrderHistoryPipe.transform(this.orderHistoryResponse, args);
+            this.args = [this.fieldvalue, "OrderId"];
+            this.sortingOrderHistoryPipe.transform(this.orderHistoryResponse, this.args);
             this.loadingSwitchService.loading = false;
         });
     }

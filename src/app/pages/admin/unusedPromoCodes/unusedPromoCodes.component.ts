@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { DxDataGridComponent } from 'devextreme-angular';
@@ -12,7 +12,8 @@ import { AdminService } from 'src/Services/AdminService/AdminService';
     styleUrls: [ './unusedPromoCodes.component.scss' ]
   })
   
-  export class UnUsedPromoCodesComponent {
+  export class UnUsedPromoCodesComponent implements OnInit {
+    
     @ViewChild(DxDataGridComponent) public datagridBasePrice: DxDataGridComponent;  
     saveButtonName: string;
     allowUpdate: boolean;
@@ -23,20 +24,24 @@ import { AdminService } from 'src/Services/AdminService/AdminService';
 
     constructor(public formBuilder: FormBuilder, public router: Router, public adminService:AdminService, 
         public itemService:ItemService, public loadingSwitchService:LoadingSwitchService) {
-        this.loadingSwitchService.loading=true;
-        this.itemService.GetUnUsedPromoCodes().subscribe((data:any)=>{
-            if (data.Errors == undefined) {
-                this.dataSource=data;
-                this.loadingSwitchService.loading=false;
-            }
-          });
-          
-    this.saveButtonName='Edit'; 
-    this.allowUpdate=false;   
+        
     this.AskMobileNoForm=this.formBuilder.group({
         MobileNo:[null]
       }); 
     }
+
+    ngOnInit() {
+        this.loadingSwitchService.loading = true;
+        this.itemService.GetUnUsedPromoCodes().subscribe((data: any) => {
+            if (data.Errors == undefined) {
+                this.dataSource = data;
+                this.loadingSwitchService.loading = false;
+            }
+        });
+        this.saveButtonName = 'Edit';
+        this.allowUpdate = false;
+    }
+
     onToolbarPreparing (e) { 
         
         var toolbarItems = e.toolbarOptions.items;
