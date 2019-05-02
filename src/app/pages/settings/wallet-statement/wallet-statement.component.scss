@@ -1,7 +1,10 @@
+
 .price-grid{
     width: 50%;
 }
-
+.dx-datebox.dx-auto-width.dx-dropdowneditor-button-visible .dx-texteditor-input, .dx-datebox:not(.dx-texteditor-empty).dx-auto-width.dx-dropdowneditor-button-visible .dx-texteditor-input {
+    padding-right: 0px;
+}
 @media (max-width: 800px) {
 
     .price-grid{

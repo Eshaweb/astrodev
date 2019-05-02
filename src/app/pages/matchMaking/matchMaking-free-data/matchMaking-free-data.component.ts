@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatchMakingService } from 'src/Services/MatchMakingService/MatchMakingService';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
-import { MatchResponse } from 'src/Models/MatchMaking/match';
+import { MatchResponse, Kuta } from 'src/Models/MatchMaking/match';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { Router } from '@angular/router';
 import { MatchRequest } from 'src/Models/MatchMaking/MatchRequest';
@@ -20,10 +20,16 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
   matchResponse: MatchResponse;
   caption: Caption;
   matchRequest: MatchRequest;
+  brideDetail:any;
+  groomDetail:any;
     constructor(public storageService:StorageService, private itemService:ItemService, public router: Router, public loginService: LoginService, 
       public captionDbService:CaptionDbService, public matchMakingService: MatchMakingService) {
       //this.matchResponse=matchMakingService.matchResponse;
       this.matchResponse=this.storageService.GetHoroResponse('#SM');
+      this.brideDetail=this.matchResponse.Left.splice(0,2);
+      this.groomDetail=this.matchResponse.Right.splice(0,2);
+      this.matchResponse.Left=this.matchResponse.Left.splice(2,13);
+      this.matchResponse.Right=this.matchResponse.Right.splice(2,13);
       this.caption=new Caption();
       //this.matchRequest=this.matchMakingService.matchRequest;
       this.matchRequest=this.storageService.GetHoroRequest('#SM');

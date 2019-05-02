@@ -1,4 +1,24 @@
 <div class="dx-card content-block responsive-paddings" [ngClass]="getFont(matchRequest.LangCode)">
+        <div class="dx-card content-block responsive-paddings">
+                <table>
+                        <tr  *ngFor="let item of brideDetail">
+                            <td>
+                                {{item.Name}}
+                            </td>
+                            <td>
+                                {{item.Value}}
+                            </td>
+                        </tr>
+                        <tr  *ngFor="let item of groomDetail">
+                                <td>
+                                    {{item.Name}}
+                                </td>
+                                <td>
+                                    {{item.Value}}
+                                </td>
+                            </tr>
+                       </table>    
+        </div>
     <div class="dx-card content-block responsive-paddings col-sm-6" style="float:left" >
                      <table>
                         <tr  *ngFor="let item of matchResponse.Left ">
