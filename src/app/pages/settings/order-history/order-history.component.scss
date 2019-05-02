@@ -31,6 +31,12 @@
     padding: 10px;
    }
 
+   .dx-fieldset-column-button{
+    float: left;
+    width: 30%;
+    padding: 10px;
+
+   }
     @media (max-width: 800px) {
     .dx-fieldset-column{
         float: left;
@@ -46,8 +52,16 @@
         width: 50%;
         margin-bottom: 12px;
        }
-
+       .dx-fieldset-column-button{
+        float: left;
+        width: 100%;
+        padding: 10px;
+    
+       }
        .responsive-paddings{
            padding: 0px;
        }
+       .buttonClass1 {
+        margin-bottom: 15px;
+    }
 }
