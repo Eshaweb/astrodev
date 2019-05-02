@@ -45,6 +45,7 @@ export class OrderHistoryComponent implements OnInit {
     deleteConfirmPopUp: boolean;
     OrderId: string;
     ItActId: string;
+    args: string[];
     constructor(public horoScopeService: HoroScopeService, public storageService: StorageService, public loadingSwitchService: LoadingSwitchService, 
         public sortingOrderHistoryPipe: SortingOrderHistoryPipe, private router: Router, private itemService: ItemService, private loginService: LoginService, 
         service: OrderHistoryService, private orderService: OrderService) {
@@ -80,24 +81,24 @@ export class OrderHistoryComponent implements OnInit {
     fielddataSelection(event) {
         this.fieldvalue = event.value;
         if (this.sortordervalue == 'D') {
-            var args: string[] = ["-" + this.fieldvalue, "OrderId"];
+            this.args = ["-" + this.fieldvalue, "OrderId"];
         }
         else if (this.sortordervalue == 'A') {
-            var args: string[] = [this.fieldvalue, "OrderId"]
+            this.args = [this.fieldvalue, "OrderId"]
         }
-        this.sortingOrderHistoryPipe.transform(this.orderHistoryResponse, args);
+        this.sortingOrderHistoryPipe.transform(this.orderHistoryResponse, this.args);
     }
     sortorderdataSelection(event) {
         this.sortordervalue = event.value;
         if (event.value == 'D') {
             // this.orderHistoryResponse=this.orderHistoryResponse*(-1);
-            var args: string[] = ["-" + this.fieldvalue, "OrderId"];
+            this.args = ["-" + this.fieldvalue, "OrderId"];
         }
         else if (event.value == 'A') {
-            var args: string[] = [this.fieldvalue, "OrderId"];
+            this.args = [this.fieldvalue, "OrderId"];
         }
         //this.sortTable(this.fieldvalue);
-        this.sortingOrderHistoryPipe.transform(this.orderHistoryResponse, args);
+        this.sortingOrderHistoryPipe.transform(this.orderHistoryResponse, this.args);
     }
     sortTable(prop: string) {
         this.path = prop.split('.')
@@ -114,6 +115,7 @@ export class OrderHistoryComponent implements OnInit {
         }
         this.orderService.OrderHistory(orderHistory).subscribe((data: any) => {
             this.orderHistoryResponse = data;
+            this.sortingOrderHistoryPipe.transform(this.orderHistoryResponse, this.args);
             this.loadingSwitchService.loading = false;
         });
     }

@@ -1,6 +1,28 @@
 <h2 class="content-block">Order History</h2>
 <div class="dx-card content-block responsive-paddings">
-
+<div class="dx-fieldset">
+    <div class="dx-fieldset-column">
+        <div class="dx-field">
+            <div class="dx-field-label">Field</div>
+            <div class="dx-field-value">
+                <dx-select-box (onValueChanged)="fielddataSelection($event)" [dataSource]="fielddata" displayExpr="Text"
+                    valueExpr="Id" [value]="fieldvalue" [searchEnabled]="true">
+                </dx-select-box>                    
+            </div>
+        </div>
+    </div>
+    <div class="dx-fieldset-column">
+        <div class="dx-field">
+            <div class="dx-field-label">Sort Order</div>
+            <div class="dx-field-value">
+                <dx-select-box (onValueChanged)="sortorderdataSelection($event)" [dataSource]="sortorderdata" displayExpr="Text"
+                    valueExpr="Id" [value]="sortordervalue" [searchEnabled]="true">
+                </dx-select-box>                    
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
 <div id="accordion">
         <dx-accordion
             #accordion
@@ -13,28 +35,6 @@
                 <div class="heading">{{company.ServiceName}}</div>
             </div>
             <div *dxTemplate="let service of 'item'">
-                    <div class="dx-fieldset-column">
-                        <div class="dx-field">
-                            <div class="dx-field-label">Field</div>
-                            <div class="dx-field-value">
-                                <dx-select-box (onValueChanged)="fielddataSelection($event)" [dataSource]="fielddata" displayExpr="Text"
-                                    valueExpr="Id" [value]="fieldvalue" [searchEnabled]="true">
-                                </dx-select-box>                    
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dx-fieldset-column">
-                        <div class="dx-field">
-                            <div class="dx-field-label">Sort Order</div>
-                            <div class="dx-field-value">
-                                <dx-select-box (onValueChanged)="sortorderdataSelection($event)" [dataSource]="sortorderdata" displayExpr="Text"
-                                    valueExpr="Id" [value]="sortordervalue" [searchEnabled]="true">
-                                </dx-select-box>                    
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <br/>
                     <!-- <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse | sortingOrders:path:order"> -->
                     <!-- <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse | orderBy:'ItName'">     -->
                         <!-- <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse | sortingOrders:['Amount', 'OrderId']">     -->
