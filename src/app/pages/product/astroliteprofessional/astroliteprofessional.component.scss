@@ -21,7 +21,36 @@
 }
 
 .dx-fieldset-column1 {
-    width: 40%;
+    width: 38%;
     float: left;
     margin-top: 4px;
+}
+
+.product-image{
+    width: 25%;
+    float: left;
+}
+
+@media (max-width: 450px) {
+    .cap {
+        float: left; //margin-right: 12%;
+        text-align: left;
+        width: 50%;
+    }
+    .dx-fieldset-column1 {
+        width: 100%;
+        float: left;
+        margin-top: 4px;
+    }
+    
+    .product-image{
+        width: 90%;
+        float: left;
+    }
+    .dx-fieldset-column {
+        float: left;
+        width: 30%;
+        margin-right: 40px;
+        margin-top: 24px !important;
+        }
 }
