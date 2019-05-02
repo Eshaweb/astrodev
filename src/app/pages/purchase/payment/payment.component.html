@@ -23,7 +23,7 @@
             </div> -->
             <div class="dx-field">
                     <div class="cap">
-                         <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box>
+                         <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" placeholder="Enter Coupon Code"></dx-text-box>
                         <p style="color:red" id='err_CouponCode'></p>
                     </div>
                     <div class="data">
@@ -76,7 +76,15 @@ text='Pay using Astrolite wallet      {{walletbalance|currency:"INR"}}(Wallet Ba
 </dx-check-box>
 </div>
 
-<p style="color:red" *ngIf="(differenceAmount>0)&&(differenceAmount>discountAmount)"> {{'Remaining amount '+(differenceAmount-discountAmount)+' Rs will be deducted from choosen payment modes'}} </p>
+<!-- <p style="color:red" *ngIf="(differenceAmount>0)&&(differenceAmount>discountAmount)"> {{'Remaining amount '+(differenceAmount-discountAmount)+' Rs will be deducted from choosen payment modes'}} </p> -->
+<p style="color:red" *ngIf="(differenceAmount>0)&&(differenceAmount>discountAmount)"> 
+    Remaining amount <span>{{(differenceAmount-discountAmount)| number:'1.2-2'|currency:"INR"}}</span> will be deducted from choosen payment modes 
+</p>
+<!-- <p style="color:red" *ngIf="(differenceAmount>0)&&(differenceAmount>discountAmount)"> {{'Remaining amount '+remainingAmount| number:2+' Rs will be deducted from choosen payment modes'}} </p> -->
+<!-- <p style="color:red" *ngIf="(differenceAmount>0)&&(differenceAmount>discountAmount)"> 
+    Remaining amount Rs <span>{{remainingAmount| number:'1.2-2'}}</span> will be deducted from choosen payment modes
+</p> -->
+
 <p style="color:red"> {{errorMessage}}</p>
 
 <div class="dx-fieldset">

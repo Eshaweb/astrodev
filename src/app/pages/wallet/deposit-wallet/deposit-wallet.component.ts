@@ -42,6 +42,7 @@ export class DepositWalletComponent {
   paymentId: any;
   errorMessage: any;
   walletBalanceAmount: any;
+  bonusPercent: string='0%';
   
   
 
@@ -129,6 +130,7 @@ export class DepositWalletComponent {
       this.walletService.GetFreeWallet(FreeWalletRequest).subscribe((data) => {
         if (data.Errors == undefined) {
           this.bonusAmount = data.Amount;
+          this.bonusPercent=data.Percent;
           this.loading=false;
         }
       });

@@ -55,6 +55,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   errorMessage: any;
   payableAmountthroughPaymentGateWay: any;
   paymentModeId: any;
+  remainingAmount: any;
   
     constructor(public storageService:StorageService,private itemService:ItemService,private orderService:OrderService,
       private loadingSwitchService:LoadingSwitchService, public walletService:WalletService, public _location: Location, 
@@ -197,8 +198,14 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         if (this.checkClicked ==true&&this.firstClick==true) {
           this.payableAmount=this.payableAmount-this.discountAmount;
           this.differenceAmount=this.differenceAmount-this.discountAmount;
+          this.remainingAmount=(this.differenceAmount-this.discountAmount).toFixed(2);
           this.firstClick=!this.firstClick;
         }
+        // if (this.checkClicked ==true) {
+        //   this.payableAmount=this.payableAmount-this.discountAmount;
+        //   this.differenceAmount=this.differenceAmount-this.discountAmount;
+        //   this.remainingAmount=(this.differenceAmount-this.discountAmount).toFixed(2);
+        // }
       });
     }
 
@@ -221,6 +228,9 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           if (this.discountAmount>this.differenceAmount) {
             this.selectboxdisabled = true;
           }
+          else{
+            this.remainingAmount=+(this.differenceAmount-this.discountAmount).toFixed(2);
+          }
           this.selectMeMessage = '';
         }
       }
@@ -242,7 +252,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         if (this.differenceAmount > 0 && this.paymentmodeSelected == true && this.discountAmount>0) {
           this.paycodes = [{
             Code: this.paymentModeForm.get('paymentMode').value,
-            Amount: this.differenceAmount-this.discountAmount
+            Amount: (this.differenceAmount-this.discountAmount).toFixed(2)
           }, {
             Code: "W",
             Amount: this.walletbalance
@@ -250,7 +260,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
             Code: "D",
             Amount: this.discountAmount
           }];
-          this.payableAmountthroughPaymentGateWay=this.differenceAmount-this.discountAmount;
+          this.payableAmountthroughPaymentGateWay=(this.differenceAmount-this.discountAmount).toFixed(2);
           this.CreateBillPayModeToOrder();
         }
         else if (this.differenceAmount > 0 && this.paymentmodeSelected == true) {
@@ -265,7 +275,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         }
         else if (this.differenceAmount > 0 && this.paymentmodeSelected == false) {
           this.selectMeMessage = "Please select any Payment modes for Remaining Amount";
-          //loading.dismiss();
+          this.loadingSwitchService.loading=false;
         }
         else if(this.discountAmount>0){
           //this.loading = true;

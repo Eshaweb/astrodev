@@ -40,7 +40,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
       else {
         const source = timer(1000, 1000);
         this.subscribe = source.subscribe(val => {
-          if (val == 10) {
+          if (val == 30) {
             this.loadingSwitchService.loading = false;
             this.sub.unsubscribe();
             this.subscribe.unsubscribe();

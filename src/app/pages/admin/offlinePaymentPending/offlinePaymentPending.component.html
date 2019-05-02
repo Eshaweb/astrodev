@@ -29,7 +29,7 @@
                 <dxi-column cellTemplate="AuthorizeCellTemplate"></dxi-column>
                 <div *dxTemplate="let d of 'AuthorizeCellTemplate'">
                     <div class="chart-cell">
-                        <a (click)="OnAuthorize_click(d)">Authorize</a>
+                        <a (click)="OnAuthorize_click(d)" *ngIf='d.data.PayCode=="OFF"'>Authorize</a>
                     </div>
                 </div>
             </dx-data-grid>
