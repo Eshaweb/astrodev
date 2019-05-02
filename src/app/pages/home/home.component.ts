@@ -39,7 +39,7 @@ export class HomeComponent {
     // this.dataSource =  webimages;
     if (window.innerWidth < 900) {
       this.dataSource =  mobileimages;
-      this.height = 250;
+      this.height = 130;
     }
     else{
       this.dataSource =  webimages;
