@@ -1,0 +1,20 @@
+
+<h2 class="content-block">Used Promo Codes</h2>
+<div class="dx-card content-block responsive-paddings price-grid">
+    <div id="data-grid-demo" #datagridBasePrice>
+    <dx-data-grid (onToolbarPreparing)="onToolbarPreparing($event)"
+        id="gridContainer"
+        [dataSource]="dataSource"
+        keyExpr="Id"
+        [showBorders]="true">
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxi-column dataField="PromoText" [allowEditing]="false"></dxi-column>
+        <dxi-column dataField="Amount" ></dxi-column>
+        <dxi-column dataField="ValueType" ></dxi-column>
+        <dxi-column dataField="UsedDate" dataType="date" format="MM/dd/yyyy"></dxi-column>
+        <dxi-column dataField="Party" ></dxi-column>
+        <dxi-column dataField="Value" ></dxi-column>
+        <dxi-column dataField="SentTo" caption="Sent To" ></dxi-column>
+    </dx-data-grid>
+</div>    
+</div>

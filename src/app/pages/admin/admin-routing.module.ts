@@ -17,6 +17,7 @@ import { OfflinePaymentPendingComponent } from './offlinePaymentPending/offlineP
 import { OfflinePaymentCompletedComponent } from './offlinePaymentCompleted/offlinePaymentCompleted.component';
 import { AssignRoleComponent } from './assignRole/assignRole.component';
 import { AuthGuard } from 'src/Services/auth/auth.guard';
+import { UnResolvedMessagesComponent } from './unresolvedMessages/unresolvedMessages.component';
 
 const routes: Routes = [
     {
@@ -82,6 +83,10 @@ const routes: Routes = [
     {
       path: 'offlinePaymentCompleted',
       component:OfflinePaymentCompletedComponent
+    },
+    {
+      path: 'unresolvedMessages',
+      component:UnResolvedMessagesComponent
     }
   ];
   

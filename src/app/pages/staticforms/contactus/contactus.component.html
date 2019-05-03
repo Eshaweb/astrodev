@@ -31,38 +31,31 @@
 <div class="clear"></div>
 
 </div>
-  <div class="dx-card content-block responsive-paddings">
+  <div *ngIf='!contactSubmitted' class="dx-card content-block responsive-paddings">
     <h2>Contact Form</h2>
     <form action="your-action" [formGroup]="contactusForm">
       <div class="dx-fieldset">
-          <div class="dx-fieldset-column">
               <div class="dx-field">
                   <div class="dx-field-label">Full Name</div>
                   <div class="dx-field-value">
-                      <dx-text-box formControlName="FullName" valueChangeEvent="keyup" placeholder="Enter Full Name here..." showClearButton="true"></dx-text-box>
-                      <span style="color:red" id='err_FullName'></span>
+                      <dx-text-box formControlName="Name" valueChangeEvent="keyup" placeholder="Enter Full Name here..." showClearButton="true"></dx-text-box>
+                      <span style="color:red" id='err_Name'></span>
                   </div>
               </div>
-              </div>
-              <div class="dx-fieldset-column">
               <div class="dx-field">
                   <div class="dx-field-label">Email</div>
                   <div class="dx-field-value">
                       <dx-text-box formControlName="Email" placeholder="Enter Email here..." showClearButton="true"></dx-text-box>
                   </div>
               </div>
-              </div>
               <div class="clear"></div>
-              <div class="dx-fieldset-column">
                 <div class="dx-field">
                     <div class="dx-field-label">Phone No</div>
                     <div class="dx-field-value">
-                        <dx-text-box formControlName="PhoneNo" valueChangeEvent="keyup" placeholder="Enter Phone No here..." showClearButton="true"></dx-text-box>
-                        <span style="color:red" id='err_PhoneNo'></span>
+                        <dx-text-box formControlName="Mobile" valueChangeEvent="keyup" placeholder="Enter Phone No here..." showClearButton="true"></dx-text-box>
+                        <span style="color:red" id='err_Mobile'></span>
                     </div>
                 </div>
-                </div>
-                <div class="dx-fieldset-column">
                   <div class="dx-field">
                       <div class="dx-field-label">Message</div>
                       <div class="dx-field-value">
@@ -71,7 +64,16 @@
                           <span style="color:red" id='err_Message'></span>
                       </div>
                   </div>
-                  </div>
+                  <!-- <ngx-recaptcha2 #captchaElem  siteKey="6LdXZqEUAAAAAKiZ85dV4ziune4W6-0z9Dx2CWi9" 
+                    [useGlobalDomain]="false" 
+                    formControlName="recaptcha">
+                  </ngx-recaptcha2> -->
+                  <div class="dx-field">
+                  <ngx-recaptcha2 #captchaElem  siteKey="6LcjZ6EUAAAAADTKsnrcM17RLIOyc3Or5fz3_IJK" 
+                    [useGlobalDomain]="false" 
+                    formControlName="recaptcha">
+                  </ngx-recaptcha2>
+                </div>
       </div>
 
       <div class="dx-fieldset">
@@ -86,3 +88,10 @@
     </div>
     </form>
     </div> 
+
+    <div *ngIf='contactSubmitted' class="dx-card content-block responsive-paddings">
+        <div class="centre">
+            <img src="assets/images/Success.png" />
+            <p><b>Contact request sent sucessfully</b></p>
+        </div>
+    </div>

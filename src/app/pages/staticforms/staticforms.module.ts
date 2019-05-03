@@ -11,6 +11,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsandConditionsComponent } from './termsand-conditions/termsand-conditions.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
     imports: [
@@ -26,7 +27,7 @@ import { TermsandConditionsComponent } from './termsand-conditions/termsand-cond
         DxNumberBoxModule,
         DxSelectBoxModule,DxAccordionModule,
         DxCheckBoxModule,
-        DxSliderModule,
+        DxSliderModule, NgxCaptchaModule,
         DxTagBoxModule, DxTextAreaModule,
         DxTemplateModule,ArchwizardModule,
         DxDataGridModule, DxListModule,

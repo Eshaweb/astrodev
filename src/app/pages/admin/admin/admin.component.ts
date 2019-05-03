@@ -20,7 +20,9 @@ export class AdminComponent {
     {Path:'/admin/deliveredList',Name:'Delivered List'},
     {Path:'/admin/offlinePaymentPending',Name:'Offline Payment Pending'},
     {Path:'/admin/offlinePaymentCompleted',Name:'Offline Payment Completed'},
-    {Path:'/admin/assignRole',Name:'Assign Role'}];  
+    {Path:'/admin/assignRole',Name:'Assign Role'},
+    {Path:'/admin/unresolvedMessages', Name:'UnResolved Messages'},
+    {Path:'/admin/assignRole',Name:'Resolved Messages'}];  
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;

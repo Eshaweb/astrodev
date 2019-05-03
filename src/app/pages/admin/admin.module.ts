@@ -22,6 +22,7 @@ import { DeliveredListComponent } from './deliveredList/deliveredList.component'
 import { OfflinePaymentPendingComponent } from './offlinePaymentPending/offlinePaymentPending.component';
 import { OfflinePaymentCompletedComponent } from './offlinePaymentCompleted/offlinePaymentCompleted.component';
 import { AssignRoleComponent } from './assignRole/assignRole.component';
+import { UnResolvedMessagesComponent } from './unresolvedMessages/unresolvedMessages.component';
 
 @NgModule({
     imports: [
@@ -56,7 +57,7 @@ import { AssignRoleComponent } from './assignRole/assignRole.component';
         UnUsedPromoCodesComponent,
         UsedPromoCodesComponent,
         CreatePromoCodeComponent,
-        PendingtoDeliveryComponent,
+        PendingtoDeliveryComponent, UnResolvedMessagesComponent,
         DeliveredListComponent, AssignRoleComponent,
         OfflinePaymentPendingComponent,OfflinePaymentCompletedComponent
     ],
