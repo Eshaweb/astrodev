@@ -48,17 +48,20 @@ li a {
   text-align: center;
   padding: 5px 16px;
   text-decoration: none;
-  border-right: 1px solid rgba(137,63,3, .40)
+  border-right: 1px solid rgba(137,63,3, .40);
+  cursor: pointer;
 }
 
 li a:hover:not(.active) {
   background-color: rgb(224, 172, 28);
+
 }
 li:first-child {
   margin-left: 20px;
 }
 .active {
   background-color: rgb(180, 131, 24);
+  color: #fff !important;
 }
 @media (max-width: 800px) {
 

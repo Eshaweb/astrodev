@@ -149,12 +149,12 @@
   color: #fff;
   font-weight: normal;
   font-size: 14px;
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'open-sans' 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-datagrid-column-chooser input,
 .dx-swatch-additional .dx-datagrid-column-chooser textarea {
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'open-sans' 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-datagrid-export-menu .dx-menu-item .dx-icon-exportxlsx {
@@ -335,12 +335,12 @@
   color: #fff;
   font-weight: normal;
   font-size: 14px;
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'open-sans' 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-pivotgrid .dx-ie .dx-pivotgrid-fields-area input,
 .dx-swatch-additional .dx-pivotgrid .dx-ie .dx-pivotgrid-fields-area textarea {
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'open-sans' 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-pivotgrid .dx-column-header .dx-pivotgrid-fields-area {
@@ -940,12 +940,12 @@
   color: #fff;
   font-weight: normal;
   font-size: 14px;
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'open-sans' 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-treelist-column-chooser input,
 .dx-swatch-additional .dx-treelist-column-chooser textarea {
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'open-sans' 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-treelist-export-menu .dx-menu-item .dx-icon-exportxlsx {
@@ -1253,12 +1253,12 @@
   color: #fff;
   font-weight: normal;
   font-size: 14px;
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family:'open-sans' 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional input,
 .dx-swatch-additional textarea {
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'open-sans' 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional h1 {
@@ -2366,12 +2366,12 @@
   color: #fff;
   font-weight: normal;
   font-size: 14px;
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'open-sans' 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-widget input,
 .dx-swatch-additional .dx-widget textarea {
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'open-sans' 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-state-disabled.dx-widget,
@@ -5824,12 +5824,12 @@
   color: #fff;
   font-weight: normal;
   font-size: 14px;
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'open-sans' 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-overlay-wrapper input,
 .dx-swatch-additional .dx-overlay-wrapper textarea {
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family:  'open-sans' 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-toast-content {
@@ -10165,12 +10165,12 @@
   color: #fff;
   font-weight: normal;
   font-size: 14px;
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'open-sans''Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-menu-base input,
 .dx-swatch-additional .dx-menu-base textarea {
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'open-sans' 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-menu-base.dx-state-focused {
@@ -10700,12 +10700,12 @@
   color: #fff;
   font-weight: normal;
   font-size: 14px;
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'open-sans''Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-field input,
 .dx-swatch-additional .dx-field textarea {
-  font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  font-family:'open-sans'  'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.2857;
 }
 .dx-swatch-additional .dx-field-label {
@@ -15411,7 +15411,7 @@
   border-top-color: #515159;
 }
 .dx-swatch-additional #devexpress-metadata-compiler {
-  base-font-family: 'Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
+  base-font-family: 'open-sans''Roboto', 'RobotoFallback', 'Helvetica', 'Arial', sans-serif;
   base-bg: #363640;
   base-text-color: #fff;
   base-border-color: #515159;
