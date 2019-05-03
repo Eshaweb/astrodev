@@ -22,7 +22,7 @@
                 </div>
 
                 <p style="color:red" id='err_Amount'></p>
-                <p style="color: red" *ngIf="showError">Amount should be in the range {{minAmount|currency:'INR'}}-{{maxAmount|currency:'INR'}}</p>
+                <p style="color: red" *ngIf="showError">Amount range should be{{minAmount|currency:'INR'}}-{{maxAmount|currency:'INR'}}</p>
                 <!-- <div class="dx-field-label2" *ngIf="bonusAmount!=null">Bonus Amount:  {{bonusAmount|currency:'INR'}}</div> -->
             </div>
                

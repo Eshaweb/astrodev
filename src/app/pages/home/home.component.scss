@@ -149,6 +149,7 @@ li a:hover:not(.active) {
 
 .active {
   background-color: rgb(180, 131, 24);
+  color: #fff !important;
 }
 
 // Horizontal menu end
@@ -297,7 +298,8 @@ a {
    ::ng-deep footer {
       margin-left: -40px;
       margin-right: -40px;
-      //margin-top: -40px;
+      margin-bottom: 2px;
+      padding-bottom: 2px;
     }
 @media (max-width: 800px) {
   .dx-fieldset-column {
