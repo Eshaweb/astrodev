@@ -79,4 +79,8 @@ this.statesOfIndia = [
         var endPoint = "Party/ResetPassword";
         return this.httpService.Post(endPoint,ResetPassword);
     }
+    AddMessage(AddMessage):Observable<any> {
+        var endPoint = "Contact/AddMessage";
+        return this.httpService.Post(endPoint,AddMessage);
+    }
 }
