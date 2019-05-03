@@ -14,7 +14,7 @@
         <div class="clear"></div>
         <div class="dx-fieldset">
             <div class="dx-field">
-                <dx-button [disabled]="!walletGiftForm.valid" (onClick)='OnSubmit_click()' id="button" text="Submit" type="success"
+                <dx-button [disabled]="!walletGiftForm.valid" (onClick)='OnSearch_click()' id="button" text="Search" type="success"
                     [useSubmitBehavior]="true">
                 </dx-button>
             </div>
@@ -23,37 +23,97 @@
         <div *ngIf='userdata'>
         <div style="background-color:blanchedalmond;text-align: center">
             <p>Name: {{userdata.Name}}</p>
-            <a>Balance: {{userdata.Balance}}</a>
+            <a (click)="OnBalanceClick()">Balance: {{userdata.Balance}}</a>
             <p>PartyMastId: {{userdata.PartyMastId}}</p>
         </div>
-        <form [formGroup]="Form">
+        <form [formGroup]="addWalletGiftForm">
             <div class="dx-fieldset">
                 <div class="dx-fieldset-column">
                     <div class="dx-field">
                         <div class="dx-field-label">Add Amount</div>
                         <div class="dx-field-value">
-                            <dx-text-box formControlName="Amount" valueChangeEvent="keyup" (keyup)="onAmount($event.target.value)"
-                                placeholder="Enter Amount" width="100%">
-                            </dx-text-box>
+                            <dx-number-box formControlName="Amount" valueChangeEvent="keyup" (keyup)="onAmount($event.target.value)" placeholder="Enter Amount">
+                            </dx-number-box>
                         </div>
                     </div>
                 </div>
-        
                 <div class="dx-fieldset-column">
                     <div class="dx-field">
-                        <div class="dx-field-label">Payment Mode</div>
+                        <div class="dx-field-label">Wallet Type</div>
                         <div class="dx-field-value">
-                            <dx-select-box formControlName="BillPayMode" (onValueChanged)="timeformatdataSelection($event)"
-                                [dataSource]="timeformatdata" displayExpr="Text" valueExpr="Id" [searchEnabled]="true" [value]='timeformatvalue'>
+                            <dx-select-box (onValueChanged)="walletTypedataSelection($event)" [disabled]="selectboxdisabled"
+                                [dataSource]="walletTypedata" displayExpr="Text" valueExpr="Id" [searchEnabled]="true" [value]='walletTypevalue'>
                             </dx-select-box>
                         </div>
                     </div>
                 </div>
-                <br>
+                <div class="clear"></div>
+                
+                <div class="dx-fieldset-column">
+                    <div class="dx-field">
+                        <div class="dx-field-label">Remarks</div>
+                        <div class="dx-field-value">
+                            <dx-text-box formControlName="Remarks" valueChangeEvent="keyup" placeholder="Enter Remarks">
+                            </dx-text-box>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
             </div>
-            <div class="dx-fieldset button-padding">
-                <dx-button [disabled]="!Form.valid" text="Wallet" (onClick)="onClick()" width="100%" style="margin-top:20px;"></dx-button>
+            <div class="dx-fieldset">
+                <div class="dx-field">
+                    <dx-button [disabled]="!addWalletGiftForm.valid" text="Submit" type="success" (onClick)="OnSubmit_click()"></dx-button>
+                </div>
             </div>
         </form>
     </div> 
 </div>
+<dx-popup
+    class="popup"
+    [width]="250"
+    [height]="200"
+    [showTitle]="true"
+    title="Error"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="popupVisible">
+    <div *dxTemplate="let data of 'content'">
+            <p>{{message}}</p>
+    </div>
+    </dx-popup>
+
+    <dx-popup
+    class="popup"
+    [width]="600"
+    [height]="600"
+    [showTitle]="true"
+    title="Statement"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="balancepopupVisible">
+    <div *dxTemplate="let data of 'content'">
+        <h3 *ngIf="walletBalanceAmount">
+            Wallet Balance: {{ walletBalanceAmount | currency: "INR" }}
+          </h3>
+      <div id="data-grid-demo" #datagridDeliveredList *ngIf="dataSource">
+        <dx-data-grid
+          id="gridContainer"
+          (onContentReady)="onContentReady($event)"
+          [dataSource]="dataSource"
+          (onSelectionChanged)="selectionChanged($event)"
+          [masterDetail]="{ enabled: false, template: 'detail' }"
+          [showBorders]="true">
+          <dxo-scrolling mode="virtual"></dxo-scrolling>
+          <dxi-column
+            dataField="Date"
+            dataType="date"
+            format="dd/MM/yyyy"
+          ></dxi-column>
+          <dxi-column dataField="Cr" caption="Credit"></dxi-column>
+          <dxi-column dataField="Dr" caption="Debit"></dxi-column>
+          <dxi-column dataField="Remarks"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
+    </dx-popup>

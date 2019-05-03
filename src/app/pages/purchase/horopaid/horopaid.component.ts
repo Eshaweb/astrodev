@@ -71,9 +71,45 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
         StorageService.SetItem('ItMastId', ItMastId);
     }
     onSamplePDF(item) {
-        var HoroSample = {
-            ItMastId: item.ItMastId,
-            LangCode: this.horoScopeService.horoRequest.LangCode
+        if (this.storageService.GetHoroResponse('#SH') != undefined) {
+            this.horoScopeService.horoRequest=this.storageService.GetHoroRequest('#SH')
+            var HoroSample = {
+                ItMastId: item.ItMastId,
+                Size:this.horoScopeService.horoRequest.ReportSize,
+                LangCode: this.horoScopeService.horoRequest.LangCode
+            }
+        }
+        else if (this.storageService.GetHoroResponse('#SA') != undefined) {
+            this.astamangalaService.horoRequest=this.storageService.GetHoroRequest('#SA')
+            var HoroSample = {
+                ItMastId: item.ItMastId,
+                Size:this.astamangalaService.horoRequest.ReportSize,
+                LangCode: this.astamangalaService.horoRequest.LangCode
+            }
+        }
+        else if (this.storageService.GetHoroResponse('#MU') != undefined) {
+            this.muhurthaService.muhurthaRequest=this.storageService.GetHoroRequest('#MU')
+            var HoroSample = {
+                ItMastId: item.ItMastId,
+                Size:this.muhurthaService.muhurthaRequest.ReportSize,
+                LangCode: this.muhurthaService.muhurthaRequest.LangCode
+            }
+        }
+        else if (this.storageService.GetHoroResponse('#SM') != undefined) {
+            this.matchMakingService.matchRequest=this.storageService.GetHoroRequest('#MU')
+            var HoroSample = {
+                ItMastId: item.ItMastId,
+                Size:this.matchMakingService.matchRequest.ReportSize,
+                LangCode: this.matchMakingService.matchRequest.LangCode
+            }
+        }
+        else if (this.storageService.GetHoroResponse('#NM') != undefined) {
+            this.numerologyService.numerologyRequest=this.storageService.GetHoroRequest('#MU')
+            var HoroSample = {
+                ItMastId: item.ItMastId,
+                Size:this.numerologyService.numerologyRequest.ReportSize,
+                LangCode: this.numerologyService.numerologyRequest.LangCode
+            }
         }
         this.horoScopeService.GetSample(HoroSample).subscribe((data: any) => {
             var newBlob = new Blob([data], { type: "application/pdf" });

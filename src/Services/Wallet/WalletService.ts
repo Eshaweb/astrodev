@@ -38,4 +38,8 @@ GetWalletBalance(PartyMastId):Observable<any> {
         var endPoint = "Wallet/GetCustomerWalletDetails";
         return this.httpService.Post(endPoint, GetWalletCustomerDetails);
     }
+    AddWalletGift(AddWalletGift):Observable<any> {
+        var endPoint = "Wallet/AddWalletGift";
+        return this.httpService.Post(endPoint, AddWalletGift);
+    }
 }

@@ -20,7 +20,7 @@ export class HoroRequest{
     ZM:number;
     PN:string;
     Gender:string;
-    LangCode:any;
+    LangCode:string;
     ReportType:string;
     ReportSize:string;
     IsMarried:boolean;

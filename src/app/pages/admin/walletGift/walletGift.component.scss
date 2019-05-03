@@ -3,8 +3,8 @@
     margin-top: 20px;
     margin-bottom: 10px;
     }
-    ::ng-deep #button {
-    display: block;
+    ::ng-deep #gridContainer {
+        height: 440px;
     }
     a {
         color: #b74610;
@@ -22,13 +22,6 @@
     margin-top: 24px !important;
     }
 
-    .dx-fieldset-column3 {
-        float: left;
-        width: 25%;
-        
-        margin-top: 24px !important;
-        }
-    
     .clear {
     clear: both;
     }

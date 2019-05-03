@@ -23,6 +23,7 @@ export class PaidservicesComponent implements OnInit {
   PartyMastId: string;
   serviceHardCopy: ServiceInfo[];
   errorMessage: any;
+    serviceListEmptyMessage: string;
   
   constructor(public _location: Location, public route: ActivatedRoute, public router: Router,
     public loginService: LoginService, public itemService: ItemService, public loadingSwitchService:LoadingSwitchService) {
@@ -36,7 +37,12 @@ export class PaidservicesComponent implements OnInit {
     }
     this.itemService.GetPriceListByItActId(itemMast).subscribe((data:any) => {
         if (data.Error == undefined) {
-            this.serviceInfo = data;
+            if(data.length!=0){
+                this.serviceInfo = data;
+            }
+            else{
+                this.serviceListEmptyMessage="Service List Is Empty";
+            }
         }
         else {
             this.errorMessage = data.Error;

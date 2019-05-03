@@ -21,10 +21,12 @@ import { PartyService } from 'src/Services/PartyService/PartyService';
     unresolvedMessagesSearchForm: FormGroup;
     commentForm: FormGroup;
     GetMessages: { From: any; To: any; };
+    dateinDateFormat: Date;
 
     constructor(public formBuilder: FormBuilder, public router: Router, public adminService: AdminService,
         public partyService: PartyService, public loadingSwitchService: LoadingSwitchService) {
-        this.unresolvedMessagesSearchForm = this.formBuilder.group({
+            this.dateinDateFormat = new Date();
+            this.unresolvedMessagesSearchForm = this.formBuilder.group({
             From: new Date(),
             To: new Date()
         });
