@@ -149,6 +149,10 @@ dx-button.dx-button.dx-button-normal.dx-button-mode-contained.dx-widget.dx-butto
 }
 
 .footer-menu a{
-  margin-left: 60px;
+  margin-left: 4px;
+}
+.footer-menu a:last-child {
+margin-left: 10px;
+
 }
 }

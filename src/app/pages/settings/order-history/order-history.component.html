@@ -54,7 +54,7 @@
                             <div class="dx-fieldset-column-sub">{{item.Hint}}</div>
 
 
-                            <div class="dx-fieldset-column-sub" *ngIf="(item.StatusCode)=='AP'">
+                            <div class="dx-fieldset-column-button" *ngIf="(item.StatusCode)=='AP'">
                                     <div class="dx-field" >
                                
 
@@ -66,7 +66,7 @@
                               
                               </div>
                             </div>
-                            <div class="dx-fieldset-column-sub" *ngIf="(item.StatusCode)=='BP'||(item.StatusCode)=='PP'">
+                            <div class="dx-fieldset-column-button" *ngIf="(item.StatusCode)=='BP'||(item.StatusCode)=='PP'">
                                 <div class="dx-field">
 
                                     <dx-button class="buttonClass1" text="Proceed to Payment" type="success" (onClick)="onstatus_Click(item)"></dx-button>
@@ -75,7 +75,7 @@
                                     <dx-button text="Delete" type="danger" (onClick)="ondelete_Click(item)"></dx-button>
                                 </div>
                             </div>
-                            <div class="dx-fieldset-column-sub" *ngIf="(item.StatusCode)=='RD'&&(item.ItName)!='Wallet'">
+                            <div class="dx-fieldset-column-button" *ngIf="(item.StatusCode)=='RD'&&(item.ItName)!='Wallet'">
                                 <div class="dx-field">
 
                                     <dx-button class="buttonClass1" text="Download" type="success" (onClick)="onstatus_Click(item)"></dx-button>
