@@ -1,7 +1,11 @@
 .price-grid{
     width: 50%;
 }
-
+a {
+    color: #b74610;
+    cursor: pointer;
+    text-decoration: underline;
+  }
 @media (max-width: 800px) {
 
     .price-grid{

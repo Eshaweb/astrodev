@@ -18,6 +18,8 @@ import { OfflinePaymentCompletedComponent } from './offlinePaymentCompleted/offl
 import { AssignRoleComponent } from './assignRole/assignRole.component';
 import { AuthGuard } from 'src/Services/auth/auth.guard';
 import { UnResolvedMessagesComponent } from './unresolvedMessages/unresolvedMessages.component';
+import { ResolvedMessagesComponent } from './resolvedMessages.1/resolvedMessages.component';
+import { WalletGiftComponent } from './walletGift/walletGift.component';
 
 const routes: Routes = [
     {
@@ -87,6 +89,14 @@ const routes: Routes = [
     {
       path: 'unresolvedMessages',
       component:UnResolvedMessagesComponent
+    },
+    {
+      path: 'resolvedMessages',
+      component:ResolvedMessagesComponent
+    },
+    {
+      path: 'walletGift',
+      component:WalletGiftComponent
     }
   ];
   

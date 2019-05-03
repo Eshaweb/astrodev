@@ -1,0 +1,59 @@
+<h2 class="content-block">Wallet Gift</h2>
+<div class="dx-card content-block responsive-paddings">
+        <form action="your-action" [formGroup]="walletGiftForm">
+        <div class="dx-fieldset">
+                <div class="dx-fieldset-column">
+            <div class="dx-field">
+                <div class="dx-field-label">User ID</div>
+                <div class="dx-field-value">
+                    <dx-text-box formControlName="UserId" valueChangeEvent="keyup" showClearButton="true" placeholder="Enter User Id"></dx-text-box>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="dx-fieldset">
+            <div class="dx-field">
+                <dx-button [disabled]="!walletGiftForm.valid" (onClick)='OnSubmit_click()' id="button" text="Submit" type="success"
+                    [useSubmitBehavior]="true">
+                </dx-button>
+            </div>
+        </div>
+        </form>
+        <div *ngIf='userdata'>
+        <div style="background-color:blanchedalmond;text-align: center">
+            <p>Name: {{userdata.Name}}</p>
+            <a>Balance: {{userdata.Balance}}</a>
+            <p>PartyMastId: {{userdata.PartyMastId}}</p>
+        </div>
+        <form [formGroup]="Form">
+            <div class="dx-fieldset">
+                <div class="dx-fieldset-column">
+                    <div class="dx-field">
+                        <div class="dx-field-label">Add Amount</div>
+                        <div class="dx-field-value">
+                            <dx-text-box formControlName="Amount" valueChangeEvent="keyup" (keyup)="onAmount($event.target.value)"
+                                placeholder="Enter Amount" width="100%">
+                            </dx-text-box>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="dx-fieldset-column">
+                    <div class="dx-field">
+                        <div class="dx-field-label">Payment Mode</div>
+                        <div class="dx-field-value">
+                            <dx-select-box formControlName="BillPayMode" (onValueChanged)="timeformatdataSelection($event)"
+                                [dataSource]="timeformatdata" displayExpr="Text" valueExpr="Id" [searchEnabled]="true" [value]='timeformatvalue'>
+                            </dx-select-box>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="dx-fieldset button-padding">
+                <dx-button [disabled]="!Form.valid" text="Wallet" (onClick)="onClick()" width="100%" style="margin-top:20px;"></dx-button>
+            </div>
+        </form>
+    </div> 
+</div>

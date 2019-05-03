@@ -22,7 +22,8 @@ export class AdminComponent {
     {Path:'/admin/offlinePaymentCompleted',Name:'Offline Payment Completed'},
     {Path:'/admin/assignRole',Name:'Assign Role'},
     {Path:'/admin/unresolvedMessages', Name:'UnResolved Messages'},
-    {Path:'/admin/assignRole',Name:'Resolved Messages'}];  
+    {Path:'/admin/resolvedMessages',Name:'Resolved Messages'},
+    {Path:'/admin/walletGift',Name:'Wallet Gift'}];  
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;

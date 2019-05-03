@@ -99,7 +99,6 @@ export class DepositWalletComponent {
     amount_pattern: 'Do not match with pattern',
     amount_min: "Minimum Amount is 50",
     amount_max: "Maximum Amount is 20000",
-
   };
 
   selecting = false;

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
-import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule, DxLoadPanelModule, DxResponsiveBoxModule, DxPopupModule, DxPopoverModule, DxAccordionModule, DxTemplateModule, DxSliderModule, DxTagBoxModule, DxDataGridModule, DxNumberBoxModule, DxDateBoxModule, DxListModule } from 'devextreme-angular';
+import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule, DxLoadPanelModule, DxResponsiveBoxModule, DxPopupModule, DxPopoverModule, DxAccordionModule, DxTemplateModule, DxSliderModule, DxTagBoxModule, DxDataGridModule, DxNumberBoxModule, DxDateBoxModule, DxListModule, DxTextAreaModule } from 'devextreme-angular';
 import { DxiRowModule } from 'devextreme-angular/ui/nested/row-dxi';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin/admin.component';
@@ -23,6 +23,8 @@ import { OfflinePaymentPendingComponent } from './offlinePaymentPending/offlineP
 import { OfflinePaymentCompletedComponent } from './offlinePaymentCompleted/offlinePaymentCompleted.component';
 import { AssignRoleComponent } from './assignRole/assignRole.component';
 import { UnResolvedMessagesComponent } from './unresolvedMessages/unresolvedMessages.component';
+import { ResolvedMessagesComponent } from './resolvedMessages.1/resolvedMessages.component';
+import { WalletGiftComponent } from './walletGift/walletGift.component';
 
 @NgModule({
     imports: [
@@ -39,7 +41,7 @@ import { UnResolvedMessagesComponent } from './unresolvedMessages/unresolvedMess
         DxSelectBoxModule,DxAccordionModule,
         DxCheckBoxModule,
         DxSliderModule,
-        DxTagBoxModule,
+        DxTagBoxModule, DxTextAreaModule,
         DxTemplateModule,ArchwizardModule,
         DxDataGridModule, DxListModule,
         DxLoadPanelModule,DxPopupModule, DxPopoverModule,
@@ -55,8 +57,8 @@ import { UnResolvedMessagesComponent } from './unresolvedMessages/unresolvedMess
         WelcomeOfferComponent,
         PromoCodeComponent,
         UnUsedPromoCodesComponent,
-        UsedPromoCodesComponent,
-        CreatePromoCodeComponent,
+        UsedPromoCodesComponent, WalletGiftComponent,
+        CreatePromoCodeComponent, ResolvedMessagesComponent,
         PendingtoDeliveryComponent, UnResolvedMessagesComponent,
         DeliveredListComponent, AssignRoleComponent,
         OfflinePaymentPendingComponent,OfflinePaymentCompletedComponent
