@@ -1,5 +1,5 @@
 
-<h2 class="content-block">Un Resolved Messages</h2>
+<h2 class="content-block">Resolved Messages</h2>
 <div class="dx-card content-block responsive-paddings price-grid">
         <div class="centered-content">
                 <div class="dx-fieldset" [formGroup]="unresolvedMessagesSearchForm">
@@ -41,30 +41,7 @@
         <dxi-column dataField="EMail"></dxi-column>
         <dxi-column dataField="Mobile"></dxi-column>
         <dxi-column dataField="Message"></dxi-column>
-        <dxi-column cellTemplate="DetailsCellTemplate"></dxi-column>
-        <div *dxTemplate="let d of 'DetailsCellTemplate'">
-            <div class="chart-cell">
-                <a (click)="OnResolve_click(d)">Resolve</a>
-            </div>
-        </div>
+        <dxi-column dataField="ResolveComment"></dxi-column>
     </dx-data-grid>
 </div>    
 </div>
-<dx-popup
-    class="popup"
-    [width]="250"
-    [height]="200"
-    [showTitle]="true"
-    title="Resolve"
-    [dragEnabled]="false"
-    [closeOnOutsideClick]="true"
-    [(visible)]="popupVisible">
-    <div *dxTemplate="let data of 'content'">
-            <form action="your-action" [formGroup]="commentForm">
-            <div class="dx-field">
-            <dx-text-area [height]="90"  formControlName="Message" placeholder="Enter Comment here..."></dx-text-area>
-            </div>
-            </form>
-        <dx-button text='OK' (onClick)="ClosePopUp()"></dx-button>
-    </div>
-    </dx-popup>

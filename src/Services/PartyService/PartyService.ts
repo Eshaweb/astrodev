@@ -83,4 +83,16 @@ this.statesOfIndia = [
         var endPoint = "Contact/AddMessage";
         return this.httpService.Post(endPoint,AddMessage);
     }
+    GetMessages(GetMessages):Observable<any> {
+        var endPoint = "Contact/GetMessages";
+        return this.httpService.Post(endPoint,GetMessages);
+    }
+    ResolveMessage(ResolveMessage):Observable<any> {
+        var endPoint = "Contact/ResolveMessage";
+        return this.httpService.Post(endPoint,ResolveMessage);
+    }
+    GetResolvedMessages(GetResolvedMessages):Observable<any> {
+        var endPoint = "Contact/GetResolvedMessages";
+        return this.httpService.Post(endPoint,GetResolvedMessages);
+    }
 }

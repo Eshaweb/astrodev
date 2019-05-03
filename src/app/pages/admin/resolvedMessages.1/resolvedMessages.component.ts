@@ -9,11 +9,11 @@ import { PartyService } from 'src/Services/PartyService/PartyService';
 
 
 @Component({
-    templateUrl: 'unresolvedMessages.component.html',
-    styleUrls: [ './unresolvedMessages.component.scss' ]
+    templateUrl: 'resolvedMessages.component.html',
+    styleUrls: [ './resolvedMessages.component.scss' ]
   })
   
-  export class UnResolvedMessagesComponent {
+  export class ResolvedMessagesComponent {
     @ViewChild(DxDataGridComponent) public datagridBasePrice: DxDataGridComponent;  
     dataSource: any;
     popupVisible: boolean;
@@ -38,7 +38,7 @@ import { PartyService } from 'src/Services/PartyService/PartyService';
             From:this.unresolvedMessagesSearchForm.controls['From'].value,
             To:this.unresolvedMessagesSearchForm.controls['To'].value,
         }
-        this.partyService.GetMessages(this.GetMessages).subscribe((data: any) => {
+        this.partyService.GetResolvedMessages(this.GetMessages).subscribe((data: any) => {
             if (data.Errors == undefined) {
                 this.loadingSwitchService.loading=false;
                 this.dataSource = data;
@@ -49,24 +49,5 @@ import { PartyService } from 'src/Services/PartyService/PartyService';
         this.popupVisible=true;
         this.Id=promoItem.data.Id;
     }
-    ClosePopUp(){
-        this.loadingSwitchService.loading=true;
-        var ResolveMessage = {
-            Message:this.commentForm.controls['Message'].value,
-            Id:this.Id,
-        }
-        this.partyService.ResolveMessage(ResolveMessage).subscribe((data: any) => {
-            if (data.Errors == undefined) {
-                this.popupVisible = false;
-                if (data == true) {
-                    this.partyService.GetMessages(this.GetMessages).subscribe((data: any) => {
-                        if (data.Errors == undefined) {
-                            this.dataSource = data;
-                            this.loadingSwitchService.loading = false;
-                        }
-                    });
-                }
-            }
-        });
-      }
+    
   }
