@@ -41,6 +41,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
   productPrice: ProductPrice;
   walletdiscountPercentage: any;
   walletdiscountAmount: any;
+  imgsrc: string;
   constructor(public walletService:WalletService, public formbuilder: FormBuilder, public uiService: UIService, private loadingSwitchService: LoadingSwitchService,
     private itemService: ItemService, public productService: ProductService, public horoScopeService: HoroScopeService,
     public router: Router, public orderService: OrderService, public loginService: LoginService) {
@@ -75,6 +76,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
     this.loadingSwitchService.loading = true;
     this.discountAmount = 0;
     this.ProductName=StorageService.GetItem('ProductName');
+    this.imgsrc='assets/images/gold.png';
     if(StorageService.GetItem('ProductName') == "Gold"){
       this.Astamangala_checkBoxValue = true;
       this.AndroidPriceRequest = {

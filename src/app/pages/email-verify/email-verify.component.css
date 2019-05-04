@@ -2,7 +2,9 @@
     font-size: 45px;
     color  :green;
 }
-
+::ng-deep #button {
+    width: 200px;
+}
 
 .centre {
    

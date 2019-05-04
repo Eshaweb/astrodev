@@ -107,7 +107,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         }
     }
     private validationMessages = { //used in above method.
-        Address1_required: '*Enter City',
+        Address1_required: '*Enter House No./ Building NameEnter City',
         Address1_minlength: '*Minimum length is 4',
 
         EMail_required: 'Enter EMail',
@@ -117,7 +117,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         Address2: '*Enter Area/Street Name',
         Address2_minlength: '*Minimum length is 4',
 
-        Address3_required: '*Enter House No./ Building Name',
+        Address3_required: '*Enter City',
         Address3_minlength: '*Minimum length is 4',
 
         Name_required: '*Enter Name',
@@ -134,29 +134,29 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         this.statedata = new ArrayStore({
             data: this.partyService.statesOfIndia,
             key: "Id"
-          });
-          this.loadingSwitchService.loading=true;
-          //this.OrderId = this.orderService.orderResponse.OrderId;
-          this.OrderId = StorageService.GetItem('OrderId');
-          // if(this.orderService.orderResponse.ItName!=undefined){
-          //     this.ItName=this.orderService.orderResponse.ItName;
-          // }
-          if(this.storageService.GetOrderResponse().ItName!=undefined){
-              this.ItName=this.storageService.GetOrderResponse().ItName;
-          }
-          var PartyMastId = StorageService.GetItem('PartyMastId');
-        this.horoScopeService.GetEMailAddress(PartyMastId).subscribe((data:any) => {
+        });
+        this.loadingSwitchService.loading = true;
+        //this.OrderId = this.orderService.orderResponse.OrderId;
+        this.OrderId = StorageService.GetItem('OrderId');
+        // if(this.orderService.orderResponse.ItName!=undefined){
+        //     this.ItName=this.orderService.orderResponse.ItName;
+        // }
+        if (this.storageService.GetOrderResponse().ItName != undefined) {
+            this.ItName = this.storageService.GetOrderResponse().ItName;
+        }
+        var PartyMastId = StorageService.GetItem('PartyMastId');
+        this.horoScopeService.GetEMailAddress(PartyMastId).subscribe((data: any) => {
             this.email = data.EMail;
-            this.horoScopeService.GetAllAddress(PartyMastId).subscribe((data:any) => {
+            this.horoScopeService.GetAllAddress(PartyMastId).subscribe((data: any) => {
                 this.existingAddress = data;
-                if(data.length==1){
+                if (data.length == 1) {
                     this.OnChangeDefaultAddress(data[0].Id);
                 }
-                this.horoScopeService.GetDefaultAddress(PartyMastId).subscribe((data:any) => {
-                    if(data!=null){
+                this.horoScopeService.GetDefaultAddress(PartyMastId).subscribe((data: any) => {
+                    if (data != null) {
                         this.Id = String(data);
                     }
-                    this.loadingSwitchService.loading=false;
+                    this.loadingSwitchService.loading = false;
                 });
             });
         });
@@ -172,6 +172,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     }
 
     ngOnDestroy(): void {
+
     }
     onAddressChanged(event) {
 
@@ -234,21 +235,21 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
             State:this.statevalue,
             PinCode: this.customerAddressForm.controls['PinCode'].value
         }
-        this.horoScopeService.CreateAddress(AddressModel).subscribe((data:any) => {
-            this.horoScopeService.GetAllAddress(StorageService.GetItem('PartyMastId')).subscribe((data:any) => {
+        this.horoScopeService.CreateAddress(AddressModel).subscribe((data: any) => {
+            this.horoScopeService.GetAllAddress(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
                 this.existingAddress = data;
-                if(data.length==1){
+                if (data.length == 1) {
                     this.OnChangeDefaultAddress(data[0].Id);
                 }
                 this.showAddAddressForm = !this.showAddAddressForm;
-                this.horoScopeService.GetDefaultAddress(StorageService.GetItem('PartyMastId')).subscribe((data:any) => {
-                    if(data!=null){
+                this.horoScopeService.GetDefaultAddress(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
+                    if (data != null) {
                         this.Id = String(data);
                     }
-                    else{
-                        this.Id =null;
+                    else {
+                        this.Id = null;
                     }
-                    this.loadingSwitchService.loading=false;
+                    this.loadingSwitchService.loading = false;
                 });
             });
         });

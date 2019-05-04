@@ -4,6 +4,12 @@
         <i class="dx-icon-check dx-icon-custom-style"></i>
         <h4>Thank you</h4>
 <p><b> Your Account Succesfully Verified. You Can Login Now</b></p>
-<button (click)='gotoLogin()'>Go to Login</button>
+<!-- <button (click)='gotoLogin()'>Go to Login</button> -->
+<dx-button (onClick)='gotoLogin()'
+                id="button"
+                text="Go to Login"
+                type="success"  
+                [useSubmitBehavior]="true">
+            </dx-button>
 </div>
 </div>

@@ -3,20 +3,21 @@
 
     <div class="top">
         <div class="content" [formGroup]="customerEMailAddressForm">
-               
-            <h4 >Delivery Address</h4>
-<div class="dx-field">
-        <div class="dx-field-label">Email</div>
-        <div class="dx-field-value">
-            <dx-text-box formControlName="EMail" valueChangeEvent="keyup" [(ngModel)]="email" placeholder="Enter your Email ID here..." showClearButton="true"></dx-text-box>
-            <p style="color:red" id='err_EMail'></p>
-        </div>
-    </div>
-                
+            <h4>Delivery Address</h4>
+            <div class="dx-fieldset">
+                <div class="dx-field">
+                    <div class="dx-field-label">Email</div>
+                    <div class="dx-field-value">
+                        <dx-text-box formControlName="EMail" valueChangeEvent="keyup" [(ngModel)]="email" placeholder="Enter your Email ID here..."
+                            showClearButton="true"></dx-text-box>
+                        <p style="color:red" id='err_EMail'></p>
+                    </div>
+                </div>
+            </div>
 <!-- <span>You are  purchasing {{ItName}}. You will get it to above entered Email Id</span>
 <p>Your Order Id is {{OrderId}}.</p> -->
 
-<p>You are  purchasing {{ItName}}. PDF will be sent immediately to the Email Id entered above.  Your Order Id is {{OrderId}}.</p>
+<p>You are  purchasing {{ItName}}. PDF will be sent immediately to the Email Id entered above. Your Order Id is {{OrderId}}.</p>
 </div>
 </div>
 <div class="address" *ngIf="DeliveryAddressRequired">
@@ -25,105 +26,100 @@
 
 <div class="saved-address" *ngIf="DeliveryAddressRequired">
         <div class="existing-add" *ngIf="existingAddress">
-                <div *ngFor="let order of existingAddress; trackBy: trackByFn">
-                  <div (click)="OnChangeDefaultAddress(order.Id)" [ngClass]="order.Id === Id? 'class-1':'class-2'">
-                        <div class="close-button"><dx-button icon="close" (onClick)='onRemoveAddress(order.Id)'></dx-button></div>
-                        <p>Name:&nbsp;&nbsp;{{ order.Name }} </p>
-                        <p>City:&nbsp;&nbsp;{{ order.Address1 }} </p>
-                        <p>Street/Area:&nbsp;&nbsp;{{ order.Address2 }} </p>
-                        <p>House No./Building Name:&nbsp;&nbsp;{{ order.Address3 }} </p>
+            <div *ngFor="let order of existingAddress; trackBy: trackByFn">
+                <div (click)="OnChangeDefaultAddress(order.Id)" [ngClass]="order.Id === Id? 'class-1':'class-2'">
+                    <div class="close-button">
+                        <dx-button icon="close" (onClick)='onRemoveAddress(order.Id)'></dx-button>
+                    </div>
+                    <p>Name:&nbsp;&nbsp;{{ order.Name }} </p>
+                    <p>City:&nbsp;&nbsp;{{ order.Address1 }} </p>
+                    <p>Street/Area:&nbsp;&nbsp;{{ order.Address2 }} </p>
+                    <p>House No./Building Name:&nbsp;&nbsp;{{ order.Address3 }} </p>
                 </div>
-                </div>
-        </div> 
+            </div>
+        </div>
     </div>
     <div class="add-address">
 
 </div>
 <div class="dx-fieldset" *ngIf="DeliveryAddressRequired">
-        <div class="dx-field"> 
-            <dx-button (onClick)='onAddAddress()'
-            id="button"
-            text="Add Address"
-            type="success"  
-            [useSubmitBehavior]="true">
-        </dx-button> </div>
+    <div class="dx-field">
+        <dx-button (onClick)='onAddAddress()' id="button" text="Add Address" type="success" [useSubmitBehavior]="true">
+        </dx-button>
+    </div>
 </div>
 
 <div class="delivery-form" *ngIf="DeliveryAddressRequired">
     <div class="form-address" [formGroup]="customerAddressForm" *ngIf="showAddAddressForm">
             <div class="dx-fieldset">
-<div class="dx-field">
-        <div class="dx-field-label">Name of the Reciever</div>
-        <div class="dx-field-value">
-            <dx-text-box formControlName="Name" valueChangeEvent="keyup" showClearButton="true" placeholder="Enter here..."></dx-text-box>
-            <p style="color:red" id='err_Name'></p>
-        </div>
-    </div>
-            <div class="dx-field">
-                <div class="dx-field-label">Mobile No</div>
-                <div class="dx-field-value">
-                    <dx-number-box step='0' valueChangeEvent="keyup" placeholder="Enter Mobile No here..." formControlName="MobileNo" [showClearButton]="true">
-                    </dx-number-box>
+                <div class="dx-field">
+                    <div class="dx-field-label">Name of the Reciever</div>
+                    <div class="dx-field-value">
+                        <dx-text-box formControlName="Name" valueChangeEvent="keyup" showClearButton="true" placeholder="Enter here..."></dx-text-box>
+                        <p style="color:red" id='err_Name'></p>
+                    </div>
                 </div>
-        </div>
-<div class="dx-field">
-        <div class="dx-field-label">Address 1</div>
-        <div class="dx-field-value">
-            <dx-text-box formControlName="Address1" valueChangeEvent="keyup" showClearButton="true" placeholder="Enter here..."></dx-text-box>
-            <p style="color:red" id='err_Address1'></p>
-        </div>
-    </div>
-
-<div class="dx-field">
-        <div class="dx-field-label">Address 2</div>
-        <div class="dx-field-value">
-            <dx-text-box formControlName="Address2" valueChangeEvent="keyup" showClearButton="true" placeholder="Enter here..."></dx-text-box>
-            <p style="color:red" id='err_Address2'></p>
-        </div>
-    </div>
-<div class="dx-field">
-        <div class="dx-field-label">City</div>
-        <div class="dx-field-value">
-            <dx-text-box formControlName="Address3" valueChangeEvent="keyup" showClearButton="true" placeholder="Enter here..."></dx-text-box>
-            <p style="color:red" id='err_Address3'></p>
-        </div>
-    </div>
-
-<div class="dx-field">
-        <div class="dx-field-label">State</div>
-        <div class="dx-field-value">
-            <!-- <dx-text-box formControlName="state" showClearButton="true"></dx-text-box> -->
-            <dx-select-box 
-            (onValueChanged)="statedataSelection($event)" 
-            [dataSource]="statedata" 
-            displayExpr="Text"
-            valueExpr="Id" 
-            [searchEnabled]="true"
-            [value]="statevalue">
-            </dx-select-box>
-            <!-- <dx-select-box formControlName="state"
-            [searchEnabled]="true"
-            placeholder="Select State" 
-            [items]="statesOfIndia" >
-            </dx-select-box> -->
-            <p style="color:red" id='err_State'></p>
-        </div>
-    </div>
-
-<div class="dx-field">
-        <div class="dx-field-label">Country</div>
-        <div class="dx-field-value">
-            <dx-text-box [disabled]="true" value="India" showClearButton="true"></dx-text-box>
-        </div>
-    </div>
-
-<div class="dx-field">
-        <div class="dx-field-label">Postal Code</div>
-        <div class="dx-field-value">
-            <dx-text-box formControlName="PinCode" valueChangeEvent="keyup" showClearButton="true" placeholder="Enter here..."></dx-text-box>
-            <p style="color:red" id='err_PinCode'></p>
-        </div>
-    </div>
+                <div class="dx-field">
+                    <div class="dx-field-label">Mobile No</div>
+                    <div class="dx-field-value">
+                        <dx-number-box step='0' valueChangeEvent="keyup" placeholder="Enter Mobile No here..." formControlName="MobileNo"
+                            [showClearButton]="true">
+                        </dx-number-box>
+                    </div>
+                </div>
+                <div class="dx-field">
+                    <div class="dx-field-label">Address 1</div>
+                    <div class="dx-field-value">
+                        <dx-text-box formControlName="Address1" valueChangeEvent="keyup" showClearButton="true" placeholder="Enter here..."></dx-text-box>
+                        <p style="color:red" id='err_Address1'></p>
+                    </div>
+                </div>
+            
+                <div class="dx-field">
+                    <div class="dx-field-label">Address 2</div>
+                    <div class="dx-field-value">
+                        <dx-text-box formControlName="Address2" valueChangeEvent="keyup" showClearButton="true" placeholder="Enter here..."></dx-text-box>
+                        <p style="color:red" id='err_Address2'></p>
+                    </div>
+                </div>
+                <div class="dx-field">
+                    <div class="dx-field-label">City</div>
+                    <div class="dx-field-value">
+                        <dx-text-box formControlName="Address3" valueChangeEvent="keyup" showClearButton="true" placeholder="Enter here..."></dx-text-box>
+                        <p style="color:red" id='err_Address3'></p>
+                    </div>
+                </div>
+            
+                <div class="dx-field">
+                    <div class="dx-field-label">State</div>
+                    <div class="dx-field-value">
+                        <!-- <dx-text-box formControlName="state" showClearButton="true"></dx-text-box> -->
+                        <dx-select-box (onValueChanged)="statedataSelection($event)" [dataSource]="statedata" displayExpr="Text"
+                            valueExpr="Id" [searchEnabled]="true" [value]="statevalue">
+                        </dx-select-box>
+                        <!-- <dx-select-box formControlName="state"
+                        [searchEnabled]="true"
+                        placeholder="Select State" 
+                        [items]="statesOfIndia" >
+                        </dx-select-box> -->
+                        <p style="color:red" id='err_State'></p>
+                    </div>
+                </div>
+            
+                <div class="dx-field">
+                    <div class="dx-field-label">Country</div>
+                    <div class="dx-field-value">
+                        <dx-text-box [disabled]="true" value="India" showClearButton="true"></dx-text-box>
+                    </div>
+                </div>
+            
+                <div class="dx-field">
+                    <div class="dx-field-label">Postal Code</div>
+                    <div class="dx-field-value">
+                        <dx-text-box formControlName="PinCode" valueChangeEvent="keyup" showClearButton="true" placeholder="Enter here..."></dx-text-box>
+                        <p style="color:red" id='err_PinCode'></p>
+                    </div>
+                </div>
             </div>
 
     <div class="dx-field">
