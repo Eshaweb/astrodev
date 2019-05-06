@@ -5396,7 +5396,7 @@
 .dx-gallery-indicator-item {
   border-radius: 50%;
   box-sizing: border-box;
-  border: 1px solid #337ab7;
+  border: 1px solid #D05B19;
   pointer-events: auto;
   margin: 1px 6px;
   width: 8px;
@@ -5407,8 +5407,8 @@
 .dx-gallery-indicator-item-selected {
   width: 12px;
   height: 12px;
-  background: #337ab7;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  background: #D05B19;
+  border: 2px solid #D05B19;
   margin: -1px 6px;
 }
 .dx-state-focused.dx-gallery .dx-gallery-indicator-item-selected {
