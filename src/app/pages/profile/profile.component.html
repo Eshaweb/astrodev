@@ -121,5 +121,14 @@
             </dx-button>
             </div>
         </div>
+
+        Invite your Friend
+                <share-buttons
+                [include]="['facebook','whatsapp','twitter','linkedin','google','telegram','messenger','sms','email']"
+                [exclude]="['pinterest','reddit','tumblr','mix','vk','telegram','xing','line','print','copy']" 
+                    [show]="3" [url]="loginService.RefCode" 
+                    [description]="loginService.shareButtonDescription"
+                    [image]="'https://i.ibb.co/dkhhhR1/icon-72x72.png'"
+                    [autoSetMeta]="false"></share-buttons>
     </form>
 </div>

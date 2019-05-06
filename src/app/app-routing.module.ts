@@ -17,6 +17,7 @@ import { ForgotComponent } from './pages/forgot/forgot.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PageNotFoundComponent } from './shared/components/pagenotfound/pagenotfound.component';
 import { AuthGuard } from 'src/Services/auth/auth.guard';
+import { ShareButtonsModule } from '@ngx-share/buttons';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [
@@ -117,7 +118,7 @@ const routes: Routes = [
     }),
     ReactiveFormsModule,
     BrowserModule,
-    FormsModule,
+    FormsModule, ShareButtonsModule,
     //DevExtremeModule
     DxMenuModule, DxGalleryModule,
     DxDataGridModule, DxFormModule, DxPopoverModule,

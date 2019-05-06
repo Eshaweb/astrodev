@@ -8,6 +8,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
 import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { LoginService } from 'src/Services/LoginService/LoginService';
 
 
 @Component({
@@ -26,8 +27,18 @@ export class ProfileComponent {
   EMailDisabled: boolean=true;
   constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, 
     public partyService: PartyService, public panchangaService: PanchangaService, public route: ActivatedRoute, 
-    public formbuilder: FormBuilder, public formBuilder: FormBuilder,) {
-    this.profileForm = this.formbuilder.group({
+    public formbuilder: FormBuilder, public formBuilder: FormBuilder, public loginService:LoginService) {
+      if (StorageService.GetItem('PartyMastId') != undefined) {
+        this.partyService.GetRefCode(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
+          //this.loginService.RefCode = 'https://testastroapi.azurewebsites.net/registration/' + data+'Join me on Astrolite, a accurate app for Horoscope, Match Making, Muhurtha, Astamangala, Nithya Panchanga and many more astrology related services. Enter My Code'+data+'to get some amount to the wallet!..';
+          //this.loginService.RefCode = 'http://localhost:4200/registration/' + data+' Join me on Astrolite, a accurate app for Horoscope, Match Making, Muhurtha, Astamangala, Nithya Panchanga and many more astrology related services. Enter My Code'+data+'to get some amount to the wallet!..';
+          this.loginService.shareButtonDescription='Join me on Astrolite, a accurate app for Horoscope, Match Making, Muhurtha, Astamangala, Nithya Panchanga and many more astrology related services. Enter My Code'+data+'to get some amount to the wallet!..';
+          this.loginService.RefCode = 'https://testastroapi.azurewebsites.net/registration/' + data;
+          //this.loginService.RefCode = 'http://localhost:4200/registration/' + data;
+          //this.loginService.RefCode = 'http://eshaweb.com';
+        });
+      }
+      this.profileForm = this.formbuilder.group({
       Date: new Date(),
       Name: [''],
       language: ['', []],
