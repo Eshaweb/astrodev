@@ -48,17 +48,7 @@ export class AppComponent {
     public storageService: StorageService, public orderService: OrderService, public router: Router, private errorService: ErrorService,
     public loadingSwitchService: LoadingSwitchService, public registrationService: RegistrationService, public authenticationService: AuthenticationService,
     private screen: ScreenService, public appInfo: AppInfoService, public authService: AuthService) {
-      //this.code = 'https://twitter.com/'+StorageService.GetItem('ShareCode');
-    if (StorageService.GetItem('PartyMastId') != undefined) {
-      this.partyService.GetRefCode(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
-        //this.loginService.RefCode = 'https://testastroapi.azurewebsites.net/registration/' + data+'Join me on Astrolite, a accurate app for Horoscope, Match Making, Muhurtha, Astamangala, Nithya Panchanga and many more astrology related services. Enter My Code'+data+'to get some amount to the wallet!..';
-        //this.loginService.RefCode = 'http://localhost:4200/registration/' + data+' Join me on Astrolite, a accurate app for Horoscope, Match Making, Muhurtha, Astamangala, Nithya Panchanga and many more astrology related services. Enter My Code'+data+'to get some amount to the wallet!..';
-        this.loginService.shareButtonDescription='Join me on Astrolite, a accurate app for Horoscope, Match Making, Muhurtha, Astamangala, Nithya Panchanga and many more astrology related services. Enter My Code'+data+'to get some amount to the wallet!..';
-        this.loginService.RefCode = 'https://testastroapi.azurewebsites.net/registration/' + data;
-        //this.loginService.RefCode = 'http://localhost:4200/registration/' + data;
-        //this.loginService.RefCode = 'http://eshaweb.com';
-      });
-    }
+    
     this.subscription = this.errorService.loaderState
       .subscribe((errorData: ErrorData) => {
         if (errorData != undefined) {

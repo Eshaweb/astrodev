@@ -380,7 +380,8 @@ export class LoginFormComponent {
       StorageService.SetItem('Name', data.Name);
       this.partyService.GetRefCode(data.PartyMastId).subscribe((data: any) => {
         this.loginService.shareButtonDescription='Join me on Astrolite, a accurate app for Horoscope, Match Making, Muhurtha, Astamangala, Nithya Panchanga and many more astrology related services. Enter My Code'+data+'to get some amount to the wallet!..';
-        this.loginService.RefCode = 'http://localhost:4200/registration/' + data;
+       // this.loginService.RefCode = 'http://localhost:4200/registration/' + data;
+       this.loginService.RefCode = 'https://testastroapi.azurewebsites.net/registration/' + data;
       });
       this.loginService.userProfileVisible = true;
       if (window.innerWidth < 900) {
