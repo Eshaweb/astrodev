@@ -71,11 +71,12 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
         StorageService.SetItem('ItMastId', ItMastId);
     }
     onSamplePDF(item) {
+        this.loadingSwitchService.loading = true;
         if (this.storageService.GetHoroResponse('#SH') != undefined) {
             this.horoScopeService.horoRequest=this.storageService.GetHoroRequest('#SH')
             var HoroSample = {
                 ItMastId: item.ItMastId,
-                Size:this.horoScopeService.horoRequest.ReportSize,
+                ReportSize:this.horoScopeService.horoRequest.ReportSize,
                 LangCode: this.horoScopeService.horoRequest.LangCode
             }
         }
@@ -83,7 +84,7 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
             this.astamangalaService.horoRequest=this.storageService.GetHoroRequest('#SA')
             var HoroSample = {
                 ItMastId: item.ItMastId,
-                Size:this.astamangalaService.horoRequest.ReportSize,
+                ReportSize:this.astamangalaService.horoRequest.ReportSize,
                 LangCode: this.astamangalaService.horoRequest.LangCode
             }
         }
@@ -91,7 +92,7 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
             this.muhurthaService.muhurthaRequest=this.storageService.GetHoroRequest('#MU')
             var HoroSample = {
                 ItMastId: item.ItMastId,
-                Size:this.muhurthaService.muhurthaRequest.ReportSize,
+                ReportSize:this.muhurthaService.muhurthaRequest.ReportSize,
                 LangCode: this.muhurthaService.muhurthaRequest.LangCode
             }
         }
@@ -99,7 +100,7 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
             this.matchMakingService.matchRequest=this.storageService.GetHoroRequest('#MU')
             var HoroSample = {
                 ItMastId: item.ItMastId,
-                Size:this.matchMakingService.matchRequest.ReportSize,
+                ReportSize:this.matchMakingService.matchRequest.ReportSize,
                 LangCode: this.matchMakingService.matchRequest.LangCode
             }
         }
@@ -107,13 +108,14 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
             this.numerologyService.numerologyRequest=this.storageService.GetHoroRequest('#MU')
             var HoroSample = {
                 ItMastId: item.ItMastId,
-                Size:this.numerologyService.numerologyRequest.ReportSize,
+                ReportSize:this.numerologyService.numerologyRequest.ReportSize,
                 LangCode: this.numerologyService.numerologyRequest.LangCode
             }
         }
-        this.horoScopeService.GetSample(HoroSample).subscribe((data: any) => {
+        this.horoScopeService.DownloadSample(HoroSample).subscribe((data: any) => {
+            this.loadingSwitchService.loading = false;
             var newBlob = new Blob([data], { type: "application/pdf" });
-            const fileName: string = 'PDFSample.pdf';
+            const fileName: string = item.Name+'.pdf';
             const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
             var url = window.URL.createObjectURL(newBlob);
             a.href = url;

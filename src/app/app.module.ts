@@ -42,6 +42,7 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ProductService } from 'src/Services/ProductService/ProductService';
+import { ShareButtonsModule } from '@ngx-share/buttons';
 
 
 let config = new AuthServiceConfig([
@@ -80,7 +81,7 @@ export function provideConfig() {
     HttpClientModule,
     DxPopupModule,
     DxButtonModule,
-    DxLoadPanelModule,
+    DxLoadPanelModule,ShareButtonsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     //DevExtremeModule
   ],

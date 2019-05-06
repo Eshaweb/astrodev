@@ -50,7 +50,6 @@ export class RegistrationFormComponent {
     constructor(public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, public uiService: UIService, public registrationService: RegistrationService,
         public route: ActivatedRoute, public _location: Location,
         public router: Router, public formBuilder: FormBuilder) {
-
         this.registrationForm = this.formBuilder.group({
             UserName: [null, [Validators.required, Validators.minLength(8)]],
             //email: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
@@ -58,7 +57,11 @@ export class RegistrationFormComponent {
             confirm_Password: ['', [Validators.required, Validators.minLength(4)]],
             IntroParty: ['', [Validators.minLength(6)]]
         }, { validator: this.matchingPasswords });
-
+        this.route.params.subscribe(params => {
+            if(params['id']!="id"){
+                this.registrationForm.controls['IntroParty'].setValue(params['id']);
+            }
+        });
         const UserNameContrl = this.registrationForm.get('UserName');
         UserNameContrl.valueChanges.subscribe(value => this.setErrorMessage(UserNameContrl));
 

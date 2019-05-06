@@ -3,6 +3,7 @@ import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/fo
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { UIService } from 'src/Services/UIService/ui.service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-contactus',
@@ -12,6 +13,7 @@ import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingS
 export class ContactusComponent implements OnInit {
   contactusForm: FormGroup;
   contactSubmitted: boolean=false;
+  siteKey: string;
 
   constructor(public formbuilder: FormBuilder, public partyService:PartyService, public uiService:UIService,
     public loadingSwitchService:LoadingSwitchService) {
@@ -38,7 +40,12 @@ export class ContactusComponent implements OnInit {
     Message_required: '*Select Date of Birth'
   };
   ngOnInit() {
-
+    if (environment.production) {
+      this.siteKey='6LdXZqEUAAAAAKiZ85dV4ziune4W6-0z9Dx2CWi9';
+    }
+    else{
+      this.siteKey='6LcjZ6EUAAAAADTKsnrcM17RLIOyc3Or5fz3_IJK';
+    }
   }
   OnSubmit_click(){
     this.loadingSwitchService.loading=true;

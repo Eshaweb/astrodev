@@ -2,9 +2,12 @@
     font-size: 45px;
     color  :green;
 }
-
+::ng-deep #button {
+    width: 200px;
+    //margin-left: 10%;
+    margin-right: 145px;
+}
 
 .centre {
-   
     text-align: center !important;
 }
