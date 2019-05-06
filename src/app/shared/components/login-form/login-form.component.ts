@@ -220,7 +220,7 @@ export class LoginFormComponent {
   
   goToRegistration() {
     this.registrationService.registered = true;
-    this.router.navigate(["/registration-form"]);
+    this.router.navigate(["/registration/id"]);
   }
 
   countDown;
@@ -291,6 +291,10 @@ export class LoginFormComponent {
           this.loginService.Name = data.Name;
           StorageService.SetItem('PartyMastId', data.PartyMastId);
           StorageService.SetItem('Name', data.Name);
+          this.partyService.GetRefCode(data.PartyMastId).subscribe((data: any) => {
+            this.loginService.shareButtonDescription='Join me on Astrolite, a accurate app for Horoscope, Match Making, Muhurtha, Astamangala, Nithya Panchanga and many more astrology related services. Enter My Code'+data+'to get some amount to the wallet!..';
+            this.loginService.RefCode = 'https://testastroapi.azurewebsites.net/registration/' + data;
+          });
           this.loginService.userProfileVisible = true;
           if (window.innerWidth < 900) {
             this.loginService.menuItems = navigationAfterLogin;
@@ -374,6 +378,10 @@ export class LoginFormComponent {
       this.loginService.Name = data.Name;
       StorageService.SetItem('PartyMastId', data.PartyMastId);
       StorageService.SetItem('Name', data.Name);
+      this.partyService.GetRefCode(data.PartyMastId).subscribe((data: any) => {
+        this.loginService.shareButtonDescription='Join me on Astrolite, a accurate app for Horoscope, Match Making, Muhurtha, Astamangala, Nithya Panchanga and many more astrology related services. Enter My Code'+data+'to get some amount to the wallet!..';
+        this.loginService.RefCode = 'http://localhost:4200/registration/' + data;
+      });
       this.loginService.userProfileVisible = true;
       if (window.innerWidth < 900) {
         this.loginService.menuItems = navigationAfterLogin;

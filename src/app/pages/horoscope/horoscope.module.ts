@@ -11,7 +11,7 @@ import { ContainerComponent } from './container/container.component';
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        FormsModule,
+        FormsModule, 
         HoroscopeRoutingModule,
         DxValidatorModule,DxButtonModule,DxValidationSummaryModule,
     DxDateBoxModule,DxSelectBoxModule,DxCheckBoxModule,

@@ -151,7 +151,7 @@ export class HeaderComponent {
     this.router.navigate(['/products']);
   }
   OnRegister_click(){
-    this.router.navigate(['/registration-form']);
+    this.router.navigate(['/registration/id']);
   }
   itemClick(data) {
     if (data.itemData.path == '/home'){

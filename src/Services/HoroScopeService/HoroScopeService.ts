@@ -76,8 +76,8 @@ export class HoroScopeService {
         });
     }
   
-    GetSample(horoSample) {
-        var url = "http://astroliteapi.azurewebsites.net/api/Result/GetSample";
+    DownloadSample(horoSample) {
+        var url = "https://astroliteapi.azurewebsites.net/api/Item/DownloadSample";
         return this.http.post(url, horoSample, { responseType: "blob" });
     }
    

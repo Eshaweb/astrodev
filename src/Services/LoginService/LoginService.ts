@@ -30,6 +30,9 @@ export class LoginService {
     refreshTokenNeeded: boolean;
     RefreshToken: any;
   isAdmin: boolean;
+  code: string;
+  RefCode: string;
+  shareButtonDescription: string;
     constructor(private httpService: HttpService, private errorService: ErrorService, public http: HttpClient) {
         this.menuItems = navigationBeforeLogin;
         //this.serviceMenus=serviceMenus;

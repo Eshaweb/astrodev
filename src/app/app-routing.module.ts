@@ -38,7 +38,7 @@ const routes: Routes = [
     loadChildren: './pages/horoscope/horoscope.module#HoroscopeModule'
   },
   {
-    path: 'registration-form',
+    path: 'registration/:id',
     loadChildren: './shared/components/registration-form/registration-form.module#RegistrationFormModule'
   },
   {
