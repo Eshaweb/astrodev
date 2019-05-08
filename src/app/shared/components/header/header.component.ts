@@ -139,10 +139,10 @@ export class HeaderComponent {
     this.router.navigate(['/admin']);
   }
   onAboutUsClick(){
-    this.router.navigate(['/staticforms/aboutus']);
+    this.router.navigate(['/staticpages/aboutus']);
   }
   onContactUsClick(){
-    this.router.navigate(['/staticforms/contactus']);
+    this.router.navigate(['/staticpages/contactus']);
   }
   OnLogin_click(){
     this.router.navigate(['/login-form']);

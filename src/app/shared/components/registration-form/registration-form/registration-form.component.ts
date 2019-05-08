@@ -47,6 +47,7 @@ export class RegistrationFormComponent {
     tick = 1000;
     Own: any;
     Ref: any;
+    IntroParty_disabled: boolean=false;
     constructor(public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager, public uiService: UIService, public registrationService: RegistrationService,
         public route: ActivatedRoute, public _location: Location,
         public router: Router, public formBuilder: FormBuilder) {
@@ -60,6 +61,7 @@ export class RegistrationFormComponent {
         this.route.params.subscribe(params => {
             if(params['id']!="id"){
                 this.registrationForm.controls['IntroParty'].setValue(params['id']);
+                this.IntroParty_disabled=true;
             }
         });
         const UserNameContrl = this.registrationForm.get('UserName');

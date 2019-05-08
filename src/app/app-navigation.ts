@@ -141,12 +141,12 @@ export const navigationAfterLoginForAdmin = [
   },
   {
     text: 'About Us',
-    path:'/staticforms/aboutus',
+    path:'/staticpages/aboutus',
     icon: 'folder',
   },
   {
     text: 'Contact Us',
-    path:'/staticforms/contactus',
+    path:'/staticpages/contactus',
     icon: 'folder',
   },
 ];
@@ -209,12 +209,12 @@ export const navigationAfterLogin = [
   },
   {
     text: 'About Us',
-    path:'/staticforms/aboutus',
+    path:'/staticpages/aboutus',
     icon: 'folder',
   },
   {
     text: 'Contact Us',
-    path:'/staticforms/contactus',
+    path:'/staticpages/contactus',
     icon: 'folder',
   },
 ];
@@ -281,12 +281,12 @@ export const navigationBeforeLogin = [
   },
   {
     text: 'About Us',
-    path:'/staticforms/aboutus',
+    path:'/staticpages/aboutus',
     icon: 'folder',
   },
   {
     text: 'Contact Us',
-    path:'/staticforms/contactus',
+    path:'/staticpages/contactus',
     icon: 'folder',
   },
 ];

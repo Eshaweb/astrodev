@@ -1,5 +1,5 @@
 <h2 class="content-block">Wallet</h2>
-<div *ngIf='!message' id="employee" class="dx-card ">
+<div *ngIf='!showSuccess' id="employee" class="dx-card ">
 
         <form [formGroup]="depositToWalletForm">
             <div class="wallet-balance">
@@ -50,7 +50,7 @@
             </div>
             </form>
 </div>
-<div *ngIf='message' class="dx-card content-block responsive-paddings">
+<div *ngIf='showSuccess' class="dx-card content-block responsive-paddings">
     <div class="centre">
    
         <!-- <i class="dx-icon-check dx-icon-custom-style"></i> -->
@@ -77,7 +77,6 @@
 <dx-load-panel
     #loadPanel
     shadingColor="rgba(0,0,0,0.4)"
-    [(visible)]="loading"
     [position]="{ of: '#employee' }"
     [showIndicator]="true"
     [showPane]="true"

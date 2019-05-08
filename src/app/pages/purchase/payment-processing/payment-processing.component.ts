@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
@@ -6,6 +6,7 @@ import { interval, Observable, timer } from 'rxjs';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
+import { DxLoadPanelComponent } from 'devextreme-angular';
 
 @Component({
   selector: 'app-payment-processing',
@@ -13,6 +14,7 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
   styleUrls: ['./payment-processing.component.scss']
 })
 export class PaymentProcessingComponent implements OnInit, OnDestroy {
+  @ViewChild(DxLoadPanelComponent) public loadPanel: DxLoadPanelComponent;
   buttonId: any;
   sub: any;
   showSuccess: boolean;
@@ -28,12 +30,11 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    //this.loading = true;
-    this.loadingSwitchService.loading = true;
+    //this.loadPanel.visible = true; 
+    this.loadingSwitchService.loading= true;
     // this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
     this.orderService.CheckForResult(StorageService.GetItem('OrderId')).subscribe((data) => {
       if (data.AstroReportId.length != 0) {
-        this.loadingSwitchService.loading = false;
         this.buttonId = data.AstroReportId[0].split('_')[0];
         this.DownloadResult(this.buttonId);
       }
@@ -41,7 +42,8 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
         const source = timer(1000, 1000);
         this.subscribe = source.subscribe(val => {
           if (val == 30) {
-            this.loadingSwitchService.loading = false;
+            //this.loadPanel.visible = false;
+            this.loadingSwitchService.loading= false;
             this.sub.unsubscribe();
             this.subscribe.unsubscribe();
             this.timeExceeded = true;
@@ -51,7 +53,6 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
           // this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
           this.orderService.CheckForResult(StorageService.GetItem('OrderId')).subscribe((data) => {
             if (data.AstroReportId.length != 0) {
-              this.loadingSwitchService.loading = false;
               this.buttonId = data.AstroReportId[0].split('_')[0];
               this.DownloadResult(this.buttonId);
             }
@@ -78,6 +79,8 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
       this.showSuccess = true;
       this.clearParameters();
       this.storageService.RemoveDataFromSession();
+      //this.loadPanel.visible = false;
+      this.loadingSwitchService.loading= false;
       this.sub.unsubscribe();
       this.subscribe.unsubscribe();
       console.clear();

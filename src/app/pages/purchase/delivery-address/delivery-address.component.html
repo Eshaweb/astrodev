@@ -32,9 +32,9 @@
                         <dx-button icon="close" (onClick)='onRemoveAddress(order.Id)'></dx-button>
                     </div>
                     <p>Name:&nbsp;&nbsp;{{ order.Name }} </p>
-                    <p>City:&nbsp;&nbsp;{{ order.Address1 }} </p>
-                    <p>Street/Area:&nbsp;&nbsp;{{ order.Address2 }} </p>
-                    <p>House No./Building Name:&nbsp;&nbsp;{{ order.Address3 }} </p>
+                    <p>City:&nbsp;&nbsp;{{ order.Address3 }} </p>
+                    <p>Address:&nbsp;&nbsp;{{ order.Address1 }} {{ order.Address2 }}</p>
+                    <p>Pin Code:&nbsp;&nbsp;{{order.PINCode}}</p>
                 </div>
             </div>
         </div>

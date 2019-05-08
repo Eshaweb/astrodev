@@ -11,6 +11,7 @@ import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingS
 import ArrayStore from 'devextreme/data/array_store';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/LoginService/LoginService';
+import { DxLoadPanelComponent } from 'devextreme-angular';
 
 declare var Razorpay: any;
 
@@ -21,7 +22,7 @@ declare var Razorpay: any;
   styleUrls: ['./deposit-wallet.component.scss']
 })
 export class DepositWalletComponent {
-
+  @ViewChild(DxLoadPanelComponent) public loadPanel: DxLoadPanelComponent;
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   depositToWalletForm: FormGroup;
   paycode: PayCode[];
@@ -43,6 +44,7 @@ export class DepositWalletComponent {
   errorMessage: any;
   walletBalanceAmount: any;
   bonusPercent: string='0%';
+  showSuccess: boolean=false;
   
   
 
@@ -137,7 +139,6 @@ export class DepositWalletComponent {
 
   }
   onClick() {
-    this.loadingSwitchService.loading=true;
     var WalletPurchase = {
       PartyMastId: StorageService.GetItem('PartyMastId'),
       PurchaseAmount: this.depositToWalletForm.controls['Amount'].value,
@@ -149,16 +150,17 @@ export class DepositWalletComponent {
         this.pay(data.ExtCode);
       }
       else if (data.IsValid == true && data.PayModes == "OFF") {
-        this.loadingSwitchService.loading=false;
+        this.loadPanel.visible=false;
         this.router.navigate(['/offlinePayment']);
       }
       else if (data.IsValid == true) {
-        this.loadingSwitchService.loading=false;
+        this.loadPanel.visible=false;
       }
     });
   }
 
   pay(ExtCode) {
+    this.showSuccess=true;
     var options = {
       description: 'Credits towards AstroLite',
       image: 'https://i.imgur.com/3g7nmJC.png',
@@ -174,7 +176,6 @@ export class DepositWalletComponent {
           PaymentId: this.paymentId
         }
         this.next(Payment);
-        this.loadingSwitchService.loading=false;
       },
       prefill: {
         email: 'shailesh@eshaweb.com',
@@ -189,7 +190,7 @@ export class DepositWalletComponent {
       },
       modal: {
         ondismiss: () => {
-          this.loadingSwitchService.loading=false;
+          this.loadPanel.visible=false;
         }
       }
     };
@@ -198,26 +199,23 @@ export class DepositWalletComponent {
   }
 
   next(Payment) {
-    this.loadingSwitchService.loading=false;
+    this.loadPanel.visible=true;
     this.walletService.PaymentComplete(Payment).subscribe((data) => {
-      this.loadingSwitchService.loading=false;
       if (data.Error == undefined) {
          this.loading = false;
         // this.router.navigate(['/purchase/walletPaymentSuccess'], { skipLocationChange: true });
-        this.loadingSwitchService.loading=false;
         this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
-          this.loadingSwitchService.loading=false;
           if (data.Errors == undefined) {
             //IsValid: true 
             this.walletBalanceAmount = data;
             this.message='PaymentCompleted and Balance Updated';
-            this.loadingSwitchService.loading=false;
+            this.loadPanel.visible=false;
           }
         });
       }
       else {
         this.errorMessage = data.Error;
-        this.loadingSwitchService.loading=false;
+        this.loadPanel.visible=false;
       }
     });
   }

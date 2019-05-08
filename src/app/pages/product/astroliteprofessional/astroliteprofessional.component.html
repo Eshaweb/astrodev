@@ -2,288 +2,267 @@
 
 <div class="dx-card content-block responsive-paddings">
         <div class="product-image">
-                <img src="assets/images/pro.png" class="service-image">
-                <h3>Astrolite {{ProductName}}</h3>
-               
-                    <h4>Add On Products</h4>
-                    <div class="dx-field">
-                            <dx-check-box value="true" disabled="true"
-                                text="Baby Naming">
-                            </dx-check-box>
-                    </div>
-                    <div class="dx-field">
-                        <div>
-                            <dx-check-box value="true" disabled="true"
-                                text="Ghati Converter">
-                            </dx-check-box>
-                        </div>
-                    </div>
-                    <div class="dx-field">
-                        <div>
-                            <dx-check-box value="true" disabled="true"
-                                text="Kaali Drushti">
-                            </dx-check-box>
-                        </div>
-                    </div>
-                    <div class="dx-field">
-                        <div>
-                            <dx-check-box value="true" disabled="true"
-                                text="Nithya Panchanga">
-                            </dx-check-box>
-                        </div>
-                    </div>
-                    <div class="dx-field">
-                        <div>
-                            <dx-check-box value="true" disabled="true"
-                                text="Prathamathava">
-                            </dx-check-box>
-                        </div>
-                    </div>
-                    <div class="dx-field">
-                        <div>
-                            <dx-check-box value="true" disabled="true"
-                                text="Shradda Tithi">
-                            </dx-check-box>
-                        </div>
-                    </div>
-               
-            </div>
-    <div class="dx-fieldset" *ngIf="professional">    
+            <img src="assets/images/pro.png" class="service-image">
+            <h3>Astrolite {{ProductName}}</h3>
         
-          <div class="dx-fieldset-column"> 
-        <h4>Products</h4>
-        <div class="dx-field">
-                <dx-check-box [(value)]="Horoscope_checkBoxValue" (onValueChanged)="Horoscope_Click($event)"
-                    text="Horoscope">
-                </dx-check-box>
-        </div>
-        <div class="dx-field">
-            <div>
-                <dx-check-box [(value)]="MatchMaking_checkBoxValue" (onValueChanged)="MatchMaking_Click($event)"
-                    text="Match Making">
-                </dx-check-box>
-            </div>
-        </div>
-        <div class="dx-field">
-            <div>
-                <dx-check-box [(value)]="Astamangala_checkBoxValue" (onValueChanged)="Astamangala_Click($event)"
-                    text="Astamangala">
-                </dx-check-box>
-            </div>
-        </div>
-
-        <div class="dx-field">
-            <div>
-                <dx-check-box [(value)]="Muhurtha_checkBoxValue" (onValueChanged)="Muhurtha_Click($event)"
-                    text="Muhurtha">
-                </dx-check-box>
-            </div>
-        </div>
-        <div class="dx-field">
-            <div>
-                <dx-check-box [(value)]="Numerology_checkBoxValue" (onValueChanged)="Numerology_Click($event)"
-                    text="Numerology">
-                </dx-check-box>
-            </div>
-        </div>
-        <div class="dx-field">
-            <div>
-                <dx-check-box [(value)]="Horoview_checkBoxValue" (onValueChanged)="Horoview_Click($event)"
-                    text="Horoview">
-                </dx-check-box>
-            </div>
-        </div>
-
-    <!-- <div class="dx-fieldset-column">
-        <h4>Add On Products</h4>
-        <div class="dx-field">
-                <dx-check-box value="true" disabled="true"
-                    text="Baby Naming">
-                </dx-check-box>
-        </div>
-        <div class="dx-field">
-            <div>
-                <dx-check-box value="true" disabled="true"
-                    text="Ghati Converter">
-                </dx-check-box>
-            </div>
-        </div>
-        <div class="dx-field">
-            <div>
-                <dx-check-box value="true" disabled="true"
-                    text="Kaali Drushti">
-                </dx-check-box>
-            </div>
-        </div>
-
-        <div class="dx-field">
-            <div>
-                <dx-check-box value="true" disabled="true"
-                    text="Nithya Panchanga">
-                </dx-check-box>
-            </div>
-        </div>
-        <div class="dx-field">
-            <div>
-                <dx-check-box value="true" disabled="true"
-                    text="Prathamathava">
-                </dx-check-box>
-            </div>
-        </div>
-        <div class="dx-field">
-            <div>
-                <dx-check-box value="true" disabled="true"
-                    text="Shradda Tithi">
-                </dx-check-box>
-            </div>
-        </div>
-    </div> -->
-        </div>
-        <div class="dx-fieldset-column"> 
-    <div class="dx-fieldset" *ngIf="professional">
-        <h4>Languages</h4>
-        <div class="dx-field">
-            <div>
-                <dx-check-box disabled="true" value="true" text="English">
-                </dx-check-box>
-            </div>
-        </div>
-        <div class="dx-field">
-            <div>
-                <dx-check-box [value]="Kannada_checkBoxValue" (onValueChanged)="Kannada_Click($event)" text="Kannada">
-                </dx-check-box>
-            </div>
-        </div>
-        <div class="dx-field">
-            <div>
-                <dx-check-box [(value)]="Malayalam_checkBoxValue" (onValueChanged)="Malayalam_Click($event)"
-                    text="Malayalam">
-                </dx-check-box>
-            </div>
-        </div>
-        <div class="dx-field">
-            <div>
-                <dx-check-box [(value)]="Tamilu_checkBoxValue" (onValueChanged)="Tamilu_Click($event)" text="Tamil">
-                </dx-check-box>
-            </div>
-        </div>
-        <div class="dx-field">
-            <div>
-                <dx-check-box [(value)]="Hindi_checkBoxValue" (onValueChanged)="Hindi_Click($event)" text="Hindi">
-                </dx-check-box>
-            </div>
-        </div>
-        <div class="dx-field"></div>
-    
-</div>
-</div>
-</div>
-    <div class="dx-fieldset-column1">  
-    <div class="dx-fieldset" *ngIf="professional">
-        <div class="dx-field">
-            <div>
-                <h4>Additionals</h4>
-                <dx-check-box [(value)]="AdditionalLisence_checkBoxValue"
-                    (onValueChanged)="AdditionalLisence_Click($event)" text="Get license for Another System">
-                </dx-check-box>
-                <span>  (<b>25%</b> discount for Additional System)</span>
-            </div>
-        </div>
-    </div>
-    <div class="dx-fieldset" *ngIf="professionalyearly">
-        <div class="dx-field">
-            <div class="cap">
-                <div class="payment-mode">
-                    <dx-select-box (onValueChanged)="yearSelection($event)"
-                        [dataSource]="yearsdata" 
-                        displayExpr="Text" 
-                        valueChangeEvent="keyup" 
-                        valueExpr="Id"
-                        placeholder="Select Years"
-                        [searchEnabled]="true" 
-                        [value]="yearvalue">
-                    </dx-select-box>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="dx-fieldset" [formGroup]="CoupenCodeForm">
-        <div class="dx-feldset-column">
+            <h4>Add On Products</h4>
             <div class="dx-field">
-                <div class="cap">
-                    <!-- <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box> -->
-                    <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup"
-                        (keyup)="OnCouponCode($event.target.value)" placeholder="Enter Coupon Code"></dx-text-box>
-                    <p style="color:red" id="err_CouponCode"></p>
-                    <p style="color:red">{{ errorMessage }}</p>
+                <dx-check-box value="true" disabled="true" text="Baby Naming">
+                </dx-check-box>
+            </div>
+            <div class="dx-field">
+                <div>
+                    <dx-check-box value="true" disabled="true" text="Ghati Converter">
+                    </dx-check-box>
                 </div>
-                <div class="data">
-                    <dx-button (onClick)="onApplyCouponCode_click()" [disabled]="!CoupenCodeForm.valid || disableButton"
-                        id="button" text="Apply" type="success" [useSubmitBehavior]="true">
-                    </dx-button>
+            </div>
+            <div class="dx-field">
+                <div>
+                    <dx-check-box value="true" disabled="true" text="Kaali Drushti">
+                    </dx-check-box>
+                </div>
+            </div>
+            <div class="dx-field">
+                <div>
+                    <dx-check-box value="true" disabled="true" text="Nithya Panchanga">
+                    </dx-check-box>
+                </div>
+            </div>
+            <div class="dx-field">
+                <div>
+                    <dx-check-box value="true" disabled="true" text="Prathamathava">
+                    </dx-check-box>
+                </div>
+            </div>
+            <div class="dx-field">
+                <div>
+                    <dx-check-box value="true" disabled="true" text="Shradda Tithi">
+                    </dx-check-box>
+                </div>
+            </div>
+        
+        </div>
+        <div class="dx-fieldset" *ngIf="professional">
+        
+            <div class="dx-fieldset-column">
+                <h4>Products</h4>
+                <div class="dx-field">
+                    <dx-check-box [(value)]="Horoscope_checkBoxValue" (onValueChanged)="Horoscope_Click($event)" text="Horoscope">
+                    </dx-check-box>
+                </div>
+                <div class="dx-field">
+                    <div>
+                        <dx-check-box [(value)]="MatchMaking_checkBoxValue" (onValueChanged)="MatchMaking_Click($event)" text="Match Making">
+                        </dx-check-box>
+                    </div>
+                </div>
+                <div class="dx-field">
+                    <div>
+                        <dx-check-box [(value)]="Astamangala_checkBoxValue" (onValueChanged)="Astamangala_Click($event)" text="Astamangala">
+                        </dx-check-box>
+                    </div>
+                </div>
+        
+                <div class="dx-field">
+                    <div>
+                        <dx-check-box [(value)]="Muhurtha_checkBoxValue" (onValueChanged)="Muhurtha_Click($event)" text="Muhurtha">
+                        </dx-check-box>
+                    </div>
+                </div>
+                <div class="dx-field">
+                    <div>
+                        <dx-check-box [(value)]="Numerology_checkBoxValue" (onValueChanged)="Numerology_Click($event)" text="Numerology">
+                        </dx-check-box>
+                    </div>
+                </div>
+                <div class="dx-field">
+                    <div>
+                        <dx-check-box [(value)]="Horoview_checkBoxValue" (onValueChanged)="Horoview_Click($event)" text="Horoview">
+                        </dx-check-box>
+                    </div>
+                </div>
+        
+                <!-- <div class="dx-fieldset-column">
+                <h4>Add On Products</h4>
+                <div class="dx-field">
+                        <dx-check-box value="true" disabled="true"
+                            text="Baby Naming">
+                        </dx-check-box>
+                </div>
+                <div class="dx-field">
+                    <div>
+                        <dx-check-box value="true" disabled="true"
+                            text="Ghati Converter">
+                        </dx-check-box>
+                    </div>
+                </div>
+                <div class="dx-field">
+                    <div>
+                        <dx-check-box value="true" disabled="true"
+                            text="Kaali Drushti">
+                        </dx-check-box>
+                    </div>
+                </div>
+        
+                <div class="dx-field">
+                    <div>
+                        <dx-check-box value="true" disabled="true"
+                            text="Nithya Panchanga">
+                        </dx-check-box>
+                    </div>
+                </div>
+                <div class="dx-field">
+                    <div>
+                        <dx-check-box value="true" disabled="true"
+                            text="Prathamathava">
+                        </dx-check-box>
+                    </div>
+                </div>
+                <div class="dx-field">
+                    <div>
+                        <dx-check-box value="true" disabled="true"
+                            text="Shradda Tithi">
+                        </dx-check-box>
+                    </div>
+                </div>
+            </div> -->
+            </div>
+            <div class="dx-fieldset-column">
+                <div class="dx-fieldset" *ngIf="professional">
+                    <h4>Languages</h4>
+                    <div class="dx-field">
+                        <div>
+                            <dx-check-box disabled="true" value="true" text="English">
+                            </dx-check-box>
+                        </div>
+                    </div>
+                    <div class="dx-field">
+                        <div>
+                            <dx-check-box [value]="Kannada_checkBoxValue" (onValueChanged)="Kannada_Click($event)" text="Kannada">
+                            </dx-check-box>
+                        </div>
+                    </div>
+                    <div class="dx-field">
+                        <div>
+                            <dx-check-box [(value)]="Malayalam_checkBoxValue" (onValueChanged)="Malayalam_Click($event)" text="Malayalam">
+                            </dx-check-box>
+                        </div>
+                    </div>
+                    <div class="dx-field">
+                        <div>
+                            <dx-check-box [(value)]="Tamilu_checkBoxValue" (onValueChanged)="Tamilu_Click($event)" text="Tamil">
+                            </dx-check-box>
+                        </div>
+                    </div>
+                    <div class="dx-field">
+                        <div>
+                            <dx-check-box [(value)]="Hindi_checkBoxValue" (onValueChanged)="Hindi_Click($event)" text="Hindi">
+                            </dx-check-box>
+                        </div>
+                    </div>
+                    <div class="dx-field"></div>
+        
                 </div>
             </div>
         </div>
-    </div>
-    <div class="clear"></div>
-    <div class="dx-fieldset" *ngIf="!payableAmount">
-        <div class="dx-field">
-            <div class="cap">Base Price</div>
-            <div class="data">{{productPrice.BasePrice|currency:'INR'}}</div>
-        </div>
-        <div class="dx-field">
-            <div class="cap">Discount</div>
-            <div class="data">{{productPrice.Discount|currency:'INR'}}({{productPrice.DiscountRate}}%)</div>
-        </div>
-        <div class="dx-field" *ngIf="discountAmount">
-            <div class="cap">Coupon Discount</div>
-            <div class="data">{{discountAmount|currency:'INR'}}</div>
-        </div>
-        <div class="dx-field">
-            <div class="cap">Net Price</div>
-            <div class="data">{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</div>
-        </div>
-        <div class="dx-field">
-            <div class="cap">Wallet Bonus</div>
-            <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
-        </div>
-    </div>
-    <div class="dx-fieldset" *ngIf="payableAmount">
-        <div class="dx-field" *ngIf="discountAmount">
-            <div class="cap">Coupon Discount</div>
-            <div class="data">{{discountAmount|currency:'INR'}}</div>
-        </div>
-        <div class="dx-field">
-            <div class="cap">Price</div>
-            <div class="data">{{payableAmount-discountAmount|currency:'INR'}}</div>
-        </div>
-        <div class="dx-field">
-            <div class="cap">Wallet Bonus</div>
-            <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
-        </div>
-    </div>
-    <div class="dx-fieldset">
-        <div class="dx-field">
-            <div class="cap">
-                <div class="payment-mode" [formGroup]="paymentModeForm">
-                    <dx-select-box formControlName="paymentMode" (onValueChanged)="paymentModeSelection($event)"
-                        [dataSource]="paymentModedata" displayExpr="Text" valueChangeEvent="keyup" valueExpr="Id"
-                        [searchEnabled]="true" [value]="paymentModedatavalue">
-                    </dx-select-box>
+        <div class="dx-fieldset-column1">
+            <div class="dx-fieldset" *ngIf="professional">
+                <div class="dx-field">
+                    <div>
+                        <h4>Additionals</h4>
+                        <dx-check-box [(value)]="AdditionalLisence_checkBoxValue" (onValueChanged)="AdditionalLisence_Click($event)"
+                            text="Get license for Another System">
+                        </dx-check-box>
+                        <span> (<b>25%</b> discount for Additional System)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dx-fieldset" *ngIf="professionalyearly">
+                <div class="dx-field">
+                    <div class="cap">
+                        <div class="payment-mode">
+                            <dx-select-box (onValueChanged)="yearSelection($event)" [dataSource]="yearsdata" displayExpr="Text"
+                                valueChangeEvent="keyup" valueExpr="Id" placeholder="Select Years" [searchEnabled]="true"
+                                [value]="yearvalue">
+                            </dx-select-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dx-fieldset" [formGroup]="CoupenCodeForm">
+                <div class="dx-feldset-column">
+                    <div class="dx-field">
+                        <div class="cap">
+                            <!-- <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box> -->
+                            <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)="OnCouponCode($event.target.value)"
+                                placeholder="Enter Coupon Code"></dx-text-box>
+                            <p style="color:red" id="err_CouponCode"></p>
+                            <p style="color:red">{{ errorMessage }}</p>
+                        </div>
+                        <div class="data">
+                            <dx-button (onClick)="onApplyCouponCode_click()" [disabled]="!CoupenCodeForm.valid || disableButton"
+                                id="button" text="Apply" type="success" [useSubmitBehavior]="true">
+                            </dx-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="dx-fieldset" *ngIf="!payableAmount">
+                <div class="dx-field">
+                    <div class="cap">Base Price</div>
+                    <div class="data">{{productPrice.BasePrice|currency:'INR'}}</div>
+                </div>
+                <div class="dx-field">
+                    <div class="cap">Discount</div>
+                    <div class="data">{{productPrice.Discount|currency:'INR'}}({{productPrice.DiscountRate}}%)</div>
+                </div>
+                <div class="dx-field" *ngIf="discountAmount">
+                    <div class="cap">Coupon Discount</div>
+                    <div class="data">{{discountAmount|currency:'INR'}}</div>
+                </div>
+                <div class="dx-field">
+                    <div class="cap">Net Price</div>
+                    <div class="data">{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</div>
+                </div>
+                <div class="dx-field">
+                    <div class="cap">Wallet Bonus</div>
+                    <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
+                </div>
+            </div>
+            <div class="dx-fieldset" *ngIf="payableAmount">
+                <div class="dx-field" *ngIf="discountAmount">
+                    <div class="cap">Coupon Discount</div>
+                    <div class="data">{{discountAmount|currency:'INR'}}</div>
+                </div>
+                <div class="dx-field">
+                    <div class="cap">Price</div>
+                    <div class="data">{{payableAmount-discountAmount|currency:'INR'}}</div>
+                </div>
+                <div class="dx-field">
+                    <div class="cap">Wallet Bonus</div>
+                    <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
+                </div>
+            </div>
+            <div class="dx-fieldset">
+                <div class="dx-field">
+                    <div class="cap">
+                        <div class="payment-mode" [formGroup]="paymentModeForm">
+                            <dx-select-box formControlName="paymentMode" (onValueChanged)="paymentModeSelection($event)"
+                                [dataSource]="paymentModedata" displayExpr="Text" valueChangeEvent="keyup" valueExpr="Id"
+                                [searchEnabled]="true" [value]="paymentModedatavalue">
+                            </dx-select-box>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="dx-field">
+                    <div class="continue-button">
+                        <dx-button (onClick)="onPay_click()" [disabled]="!paymentModedatavalue||disableBuyNow" text="Buy Now"
+                            type="success" [useSubmitBehavior]="true">
+                        </dx-button>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="dx-field">
-            <div class="continue-button">
-                <dx-button (onClick)="onPay_click()" 
-                    [disabled]="!paymentModedatavalue||disableBuyNow" 
-                    text="Buy Now" 
-                    type="success"
-                    [useSubmitBehavior]="true">
-                </dx-button>
-            </div>
-        </div>
-    </div>
-</div>
 </div>

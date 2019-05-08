@@ -99,4 +99,8 @@ this.statesOfIndia = [
         var endPoint = "Party/GetRefCode?PartyMastId=" + PartyMastId;
         return this.httpService.Get(endPoint);
     }
+    GetContactDetails(PartyMastId){
+        var endPoint = "Party/GetContactDetails?PartyMastId=" + PartyMastId;
+        return this.httpService.Get(endPoint);
+    }
 }

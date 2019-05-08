@@ -26,7 +26,7 @@
                     </div>
                    
                     <div class="dx-field">
-                        <dx-text-box formControlName="IntroParty" valueChangeEvent="keyup" placeholder="Refferal Code" width="100%">
+                        <dx-text-box [disabled]="IntroParty_disabled" formControlName="IntroParty" valueChangeEvent="keyup" placeholder="Refferal Code" width="100%">
                         </dx-text-box>
                         <p style="color:red;" id='err_IntroParty'></p>
                     </div>

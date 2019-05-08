@@ -4,11 +4,11 @@
 
 <div class="dx-card content-block responsive-paddings">
 <div class="product-image">
-        <!-- <img src="assets/images/gold.png" class="service-image"> -->
-        <img [src]="imgsrc" class="service-image">
-        <h3>Astrolite {{ProductName}}</h3>
-    </div>
-    <div class="product-info">
+    <!-- <img src="assets/images/gold.png" class="service-image"> -->
+    <img [src]="imgsrc" class="service-image">
+    <h3>Astrolite {{ProductName}}</h3>
+</div>
+<div class="product-info">
     <div class="dx-fieldset">
         <!-- <div class="dx-field">
             <div *ngFor="let item of chekboxes">
@@ -19,108 +19,92 @@
                 </dx-check-box>
             </div>
           </div> -->
-          
-          <div class="dx-fieldset-column">
-<div class="dx-field">
-  
-      <dx-check-box 
-          [(value)]="Horoscope_checkBoxValue"
-          (onValueChanged)="Horoscope_Click($event)"
-          text="Horoscope">
-      </dx-check-box>
-  </div>
-</div>
-<div class="dx-fieldset-column">
-<div class="dx-field">
-  
-      <dx-check-box 
-          [(value)]="MatchMaking_checkBoxValue"
-          (onValueChanged)="MatchMaking_Click($event)"
-          text="Match Making">
-      </dx-check-box>
-  </div>
-</div>
-<div class="dx-fieldset-column">
-<div class="dx-field">
-  
-      <dx-check-box 
-          [(value)]="Astamangala_checkBoxValue"
-          (onValueChanged)="Astamangala_Click($event)"
-          text="Astamangala">
-      </dx-check-box>
-  </div>
-</div>
-</div>
-<div class="clear"></div>
-<div class="dx-fieldset" [formGroup]="CoupenCodeForm">
-    <div class="dx-feldset-column">
-    <div class="dx-field">
-            <div class="cap">
-                 <!-- <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box> -->
-                 <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' placeholder="Enter Coupon Code"></dx-text-box>
-                 <p style="color:red" id='err_CouponCode'></p>
-                 <p style="color:red"> {{errorMessage}}</p>
 
+        <div class="dx-fieldset-column">
+            <div class="dx-field">
+
+                <dx-check-box [(value)]="Horoscope_checkBoxValue" (onValueChanged)="Horoscope_Click($event)" text="Horoscope">
+                </dx-check-box>
             </div>
-            <div class="data">
-                    <dx-button (onClick)='onApplyCouponCode_click()' [disabled]="!CoupenCodeForm.valid||disableButton" id="button" text="Apply" type="success"
-                    [useSubmitBehavior]="true">
-                </dx-button>
-            </div>         
         </div>
-</div>
-</div>
+        <div class="dx-fieldset-column">
+            <div class="dx-field">
 
-<div class="clear"></div>
-<div class="dx-fieldset">
-<div class="dx-field">
-    <div class="cap">Base Price</div>
-    <div class="data">{{productPrice.BasePrice|currency:'INR'}}</div>
-</div>
-<div class="dx-field">
-    <div class="cap">Discount</div>
-    <div class="data">{{productPrice.Discount|currency:'INR'}}({{productPrice.DiscountRate}}%)</div>
-</div>
-<div class="dx-field" *ngIf="discountAmount">
-    <div class="cap">Coupon Discount</div>
-    <div class="data">{{discountAmount|currency:'INR'}}</div>
-</div>
-<div class="dx-field">
-    <div class="cap">Net Price</div>
-    <div class="data">{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</div>
-</div>
-<div class="dx-field">
-        <div class="cap">Wallet Bonus</div>
-        <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
-    </div>
-</div>
-    <div class="dx-fieldset">
-    <div class="dx-field">
-      <div class="payment-method">
-         <div class="payment-mode" [formGroup]="paymentModeForm">
-             <dx-select-box formControlName="paymentMode"
-                 (onValueChanged)="paymentModeSelection($event)" 
-                 [dataSource]="paymentModedata" 
-                  displayExpr="Text" 
-                  valueChangeEvent="keyup"
-                  valueExpr="Id"
-                  [searchEnabled]="true"
-                  [value]='paymentModedatavalue'>
-               </dx-select-box>
-           </div>
+                <dx-check-box [(value)]="MatchMaking_checkBoxValue" (onValueChanged)="MatchMaking_Click($event)" text="Match Making">
+                </dx-check-box>
+            </div>
         </div>
-      </div>
+        <div class="dx-fieldset-column">
+            <div class="dx-field">
+
+                <dx-check-box [(value)]="Astamangala_checkBoxValue" (onValueChanged)="Astamangala_Click($event)" text="Astamangala">
+                </dx-check-box>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="dx-fieldset" [formGroup]="CoupenCodeForm">
+        <div class="dx-feldset-column">
+            <div class="dx-field">
+                <div class="cap">
+                    <!-- <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)' [disabled]="alterationDisabled" showClearButton="true" placeholder="Enter Coupon Code"></dx-text-box> -->
+                    <dx-text-box formControlName="CouponCode" valueChangeEvent="keyup" (keyup)='OnCouponCode($event.target.value)'
+                        placeholder="Enter Coupon Code"></dx-text-box>
+                    <p style="color:red" id='err_CouponCode'></p>
+                    <p style="color:red"> {{errorMessage}}</p>
+
+                </div>
+                <div class="data">
+                    <dx-button (onClick)='onApplyCouponCode_click()' [disabled]="!CoupenCodeForm.valid||disableButton"
+                        id="button" text="Apply" type="success" [useSubmitBehavior]="true">
+                    </dx-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+    <div class="dx-fieldset">
+        <div class="dx-field">
+            <div class="cap">Base Price</div>
+            <div class="data">{{productPrice.BasePrice|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">Discount</div>
+            <div class="data">{{productPrice.Discount|currency:'INR'}}({{productPrice.DiscountRate}}%)</div>
+        </div>
+        <div class="dx-field" *ngIf="discountAmount">
+            <div class="cap">Coupon Discount</div>
+            <div class="data">{{discountAmount|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">Net Price</div>
+            <div class="data">{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">Wallet Bonus</div>
+            <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
+        </div>
+    </div>
+    <div class="dx-fieldset">
+        <div class="dx-field">
+            <div class="payment-method">
+                <div class="payment-mode" [formGroup]="paymentModeForm">
+                    <dx-select-box formControlName="paymentMode" (onValueChanged)="paymentModeSelection($event)"
+                        [dataSource]="paymentModedata" displayExpr="Text" valueChangeEvent="keyup" valueExpr="Id"
+                        [searchEnabled]="true" [value]='paymentModedatavalue'>
+                    </dx-select-box>
+                </div>
+            </div>
+        </div>
 
         <div class="dx-fieldset">
             <div class="dx-field">
-                <dx-button (onClick)='onPay_click()' 
-                [disabled]="!paymentModedatavalue"
-                text="Buy Now" 
-                type="success" 
-                [useSubmitBehavior]="true">
+                <dx-button (onClick)='onPay_click()' [disabled]="!paymentModedatavalue" text="Buy Now" type="success"
+                    [useSubmitBehavior]="true">
                 </dx-button>
             </div>
         </div>
-        </div>
+    </div>
 </div>
 </div>

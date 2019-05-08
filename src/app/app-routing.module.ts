@@ -51,7 +51,7 @@ const routes: Routes = [
     loadChildren: './pages/astamangala/astamangala.module#AstamangalaModule'
   },
   {
-    path: 'staticforms',
+    path: 'staticpages',
     loadChildren: './pages/staticforms/staticforms.module#StaticFormsModule'
   },
   {
