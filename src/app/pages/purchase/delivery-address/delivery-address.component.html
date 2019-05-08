@@ -1,9 +1,13 @@
+
+<h2 class="content-block">Delivery Address</h2>
+
+
 <div class="dx-card content-block responsive-paddings delivery-add">
 <div class="delivery-address">
 
     <div class="top">
         <div class="content" [formGroup]="customerEMailAddressForm">
-            <h4>Delivery Address</h4>
+            
             <div class="dx-fieldset">
                 <div class="dx-field">
                     <div class="dx-field-label">Email</div>
@@ -123,8 +127,12 @@
             </div>
 
     <div class="dx-field">
-<dx-button class="buttonClass2" [disabled]="!customerAddressForm.valid" text="Save" type="success" (onClick)="onSaveAddress()" style="margin-right:44px;margin-left:55px;"></dx-button>
-<dx-button class="buttonClass1" text="Cancel" type="submit" (onClick)="onCancel()" style="margin-left:55px;" ></dx-button>
+        <div class="cap">
+<dx-button  [disabled]="!customerAddressForm.valid" text="Save" type="success" (onClick)="onSaveAddress()" ></dx-button>
+</div>
+<div class="data">
+<dx-button  text="Cancel" type="submit" (onClick)="onCancel()"  ></dx-button>
+</div>
 </div>
 
 
