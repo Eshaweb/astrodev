@@ -2,85 +2,6 @@
 
 <div class="dx-card content-block responsive-paddings">
         <div class="product-image">
-<<<<<<< HEAD
-            <img src="assets/images/pro.png" class="service-image">
-            <h3>Astrolite {{ProductName}}</h3>
-        
-            <h4>Add On Products</h4>
-            <div class="dx-field">
-                <dx-check-box value="true" disabled="true" text="Baby Naming">
-                </dx-check-box>
-            </div>
-            <div class="dx-field">
-                <div>
-                    <dx-check-box value="true" disabled="true" text="Ghati Converter">
-                    </dx-check-box>
-                </div>
-            </div>
-            <div class="dx-field">
-                <div>
-                    <dx-check-box value="true" disabled="true" text="Kaali Drushti">
-                    </dx-check-box>
-                </div>
-            </div>
-            <div class="dx-field">
-                <div>
-                    <dx-check-box value="true" disabled="true" text="Nithya Panchanga">
-                    </dx-check-box>
-                </div>
-            </div>
-            <div class="dx-field">
-                <div>
-                    <dx-check-box value="true" disabled="true" text="Prathamathava">
-                    </dx-check-box>
-                </div>
-            </div>
-            <div class="dx-field">
-                <div>
-                    <dx-check-box value="true" disabled="true" text="Shradda Tithi">
-                    </dx-check-box>
-                </div>
-            </div>
-        
-        </div>
-        <div class="dx-fieldset" *ngIf="professional">
-        
-            <div class="dx-fieldset-column">
-                <h4>Products</h4>
-                <div class="dx-field">
-                    <dx-check-box [(value)]="Horoscope_checkBoxValue" (onValueChanged)="Horoscope_Click($event)" text="Horoscope">
-                    </dx-check-box>
-                </div>
-                <div class="dx-field">
-                    <div>
-                        <dx-check-box [(value)]="MatchMaking_checkBoxValue" (onValueChanged)="MatchMaking_Click($event)" text="Match Making">
-                        </dx-check-box>
-                    </div>
-                </div>
-                <div class="dx-field">
-                    <div>
-                        <dx-check-box [(value)]="Astamangala_checkBoxValue" (onValueChanged)="Astamangala_Click($event)" text="Astamangala">
-                        </dx-check-box>
-                    </div>
-                </div>
-        
-                <div class="dx-field">
-                    <div>
-                        <dx-check-box [(value)]="Muhurtha_checkBoxValue" (onValueChanged)="Muhurtha_Click($event)" text="Muhurtha">
-                        </dx-check-box>
-                    </div>
-                </div>
-                <div class="dx-field">
-                    <div>
-                        <dx-check-box [(value)]="Numerology_checkBoxValue" (onValueChanged)="Numerology_Click($event)" text="Numerology">
-                        </dx-check-box>
-                    </div>
-                </div>
-                <div class="dx-field">
-                    <div>
-                        <dx-check-box [(value)]="Horoview_checkBoxValue" (onValueChanged)="Horoview_Click($event)" text="Horoview">
-                        </dx-check-box>
-=======
                 <img src="assets/images/pro.png" class="service-image">
                 <h3>Astrolite {{ProductName}}</h3>
                
@@ -99,7 +20,6 @@
                             <dx-check-box value="true" disabled="true"
                                 text="Baby Naming">
                             </dx-check-box>
->>>>>>> 02ac2a631acb79301e483a97f34fa4bcc944b750
                     </div>
                 </div>
         
@@ -181,13 +101,8 @@
                             </dx-check-box>
                         </div>
                     </div>
-<<<<<<< HEAD
-                    <div class="dx-field"></div>
-=======
-                -->
             </div>
     <div class="dx-fieldset" *ngIf="professional">    
->>>>>>> 02ac2a631acb79301e483a97f34fa4bcc944b750
         
                 </div>
             </div>
@@ -257,20 +172,6 @@
                     <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
                 </div>
             </div>
-<<<<<<< HEAD
-            <div class="dx-fieldset" *ngIf="payableAmount">
-                <div class="dx-field" *ngIf="discountAmount">
-                    <div class="cap">Coupon Discount</div>
-                    <div class="data">{{discountAmount|currency:'INR'}}</div>
-                </div>
-                <div class="dx-field">
-                    <div class="cap">Price</div>
-                    <div class="data">{{payableAmount-discountAmount|currency:'INR'}}</div>
-                </div>
-                <div class="dx-field">
-                    <div class="cap">Wallet Bonus</div>
-                    <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
-=======
         </div>
     </div>
     <div class="clear"></div>
@@ -318,7 +219,6 @@
                         [dataSource]="paymentModedata" displayExpr="Text" valueChangeEvent="keyup" valueExpr="Id"
                         [searchEnabled]="true" [value]="paymentModedatavalue">
                     </dx-select-box>
->>>>>>> 02ac2a631acb79301e483a97f34fa4bcc944b750
                 </div>
             </div>
             <div class="dx-fieldset">
