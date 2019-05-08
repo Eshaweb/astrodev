@@ -82,6 +82,12 @@ margin-top: 10px;
 }
 
 
+.math-image{
+
+    border: 1px solid #ddd; 
+    border-radius: 100px;
+}
+
 @media (max-width: 800px) {
     .dx-fieldset-column {
         float: left;

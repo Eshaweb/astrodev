@@ -1,27 +1,32 @@
+
+<h2 class="content-block">Contact Us</h2>
+
+
 <div class="dx-card content-block responsive-paddings">
+
 <div class="address">
 
-  <h2>Contact Us</h2>
+
   <p>
     Astrolite center is located at the south India, serving computerised Astrology services all over the world.
   </p>
  
 
 <div class="dx-field ">
-    <div class="cap"> <img src="assets/images/mobile.png"></div>
+    <div class="cap"> <img src="assets/images/phone-01.png"></div>
     <div class="data">Phone: +91 6282614041, +91 8848872902</div>
 </div>
 <div class="dx-field ">
-    <div class="cap"> <img src="assets/images/whatsapp.png"></div>
+    <div class="cap"> <img src="assets/images/whatsup-01.png"></div>
     <div class="data">Whatsapp : +91 8848872902</div>
 </div>
 <div class="dx-field ">
-    <div class="cap"> <img src="assets/images/email.png"></div>
+    <div class="cap"> <img src="assets/images/mail-01.png"></div>
     <div class="data">Email: contact@astrolite.in</div>
 </div>
 <div class="dx-field ">
-    <div class="cap"><img src="assets/images/address.png"></div>
-    <div class="data">Address: Badiyadka Road,Kumbla,<br>Karasagod Dist Pincode -671321, Kerala </div>
+    <div class="cap"><img src="assets/images/map-01.png"></div>
+    <div class="data">Address: Badiyadka Road,Kumbla,Karasagod Dist - 671321, Kerala </div>
 </div>
 </div>
 <div class="map">
@@ -34,7 +39,7 @@
   <div *ngIf='!contactSubmitted' class="dx-card content-block responsive-paddings">
     <h2>Contact Form</h2>
     <form action="your-action" [formGroup]="contactusForm">
-      <div class="dx-fieldset">
+      <div class="dx-fieldset contact-form">
               <div class="dx-field">
                   <div class="dx-field-label">Full Name</div>
                   <div class="dx-field-value">
@@ -69,10 +74,12 @@
                     formControlName="recaptcha">
                   </ngx-recaptcha2> -->
                   <div class="dx-field">
+                      <div class="dx-field-value">
                   <ngx-recaptcha2 #captchaElem  [siteKey]="siteKey" 
                     [useGlobalDomain]="false" 
                     formControlName="recaptcha">
                   </ngx-recaptcha2>
+                  </div>
                 </div>
       </div>
 

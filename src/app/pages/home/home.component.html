@@ -33,6 +33,15 @@
       <li *ngFor="let item of loginService.serviceList">
         <a (click)="OnServiceClick(item.Path)">{{ item.Name }}</a>
       </li>
+      <li class="dropdown">
+        <a style= "float: left;padding: 0px;margin-right: 14px;">More<dx-button id="button" icon ="chevronright" type="normal" style="border-radius: 20px;"> </dx-button></a>
+        
+        <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+      </li>
     </ul>
   </div>
   <div class="centre-image">

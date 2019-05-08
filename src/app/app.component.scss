@@ -90,7 +90,7 @@
     margin-left:75px;
     padding: 4px 6px;
     text-decoration: none;
-    color:#797777 !important;
+    color:#797777 ;
   //  font-size: 17px;
 }
 .footer-menu-padding{
@@ -122,6 +122,17 @@ dx-button.dx-button.dx-button-normal.dx-button-mode-contained.dx-widget.dx-butto
   left: 35%;
   right: 35%;
   position: absolute;
+}
+
+
+
+.middle-heading{
+
+  font-family: "font-bold";
+    font-size: 14px;
+    color: #344c55 !important;
+    padding-bottom: 15px !important;
+    text-transform: uppercase;
 }
 
 @media (max-width: 800px) {

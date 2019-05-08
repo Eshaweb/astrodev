@@ -5,6 +5,7 @@
     font-size: 30px;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 100px;
   }
 }
 
@@ -43,6 +44,11 @@
     flex-direction: column;
     min-height: 100%;
   }
+}
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.done:after{
+  color: #D97227 !important;
+  border: 2px solid #D97227 !important;
+
 }
 
 $side-panel-min-width: 60px;
