@@ -31,6 +31,36 @@
     float: left;
 }
 
+
+i.dx-icon-check {
+    color: green;
+    font-size: 20px;
+}
+
+dd {
+     font-size: 16px;
+    line-height: 1.8;
+    background: #fdfbfb;
+    margin-left: 0px;
+    padding: 2px;
+    width: 260px;
+    padding-left: 8px;
+}
+
+dt {
+    font-size: 18px;
+    background: #f7d449;
+    border-radius: 3px;
+    color: #fff;
+    padding: 7px;
+    width: 260px;
+}
+.payment-mode{
+    width:300px;
+}
+.continue-button {
+    margin-left: 26%;
+}
 @media (max-width: 450px) {
     .cap {
         float: left; //margin-right: 12%;
@@ -52,5 +82,12 @@
         width: 30%;
         margin-right: 40px;
         margin-top: 24px !important;
+        }
+
+        .continue-button {
+            margin-left: 30%;
+        }
+        .payment-mode{
+            width:100%;
         }
 }

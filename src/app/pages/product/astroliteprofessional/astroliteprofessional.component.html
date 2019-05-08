@@ -5,8 +5,18 @@
                 <img src="assets/images/pro.png" class="service-image">
                 <h3>Astrolite {{ProductName}}</h3>
                
-                    <h4>Add On Products</h4>
-                    <div class="dx-field">
+                    <!-- <h4>Add On Products</h4> -->
+
+                    <dl>
+                            <dt>Add On Products</dt>
+                            <dd><i class="dx-icon-check"></i>Baby Naming</dd> 
+                            <dd><i class="dx-icon-check"></i>Ghati Converter</dd> 
+                            <dd><i class="dx-icon-check"></i>Kaali Drushti</dd> 
+                            <dd><i class="dx-icon-check"></i>Nithya Panchanga</dd> 
+                            <dd><i class="dx-icon-check"></i>Prathamathava</dd>
+                            <dd><i class="dx-icon-check"></i>Shradda Tithi</dd>
+                            </dl>
+                    <!-- <div class="dx-field">
                             <dx-check-box value="true" disabled="true"
                                 text="Baby Naming">
                             </dx-check-box>
@@ -46,7 +56,7 @@
                             </dx-check-box>
                         </div>
                     </div>
-               
+                -->
             </div>
     <div class="dx-fieldset" *ngIf="professional">    
         
@@ -264,7 +274,7 @@
     </div>
     <div class="dx-fieldset">
         <div class="dx-field">
-            <div class="cap">
+            <div class="payment-mode">
                 <div class="payment-mode" [formGroup]="paymentModeForm">
                     <dx-select-box formControlName="paymentMode" (onValueChanged)="paymentModeSelection($event)"
                         [dataSource]="paymentModedata" displayExpr="Text" valueChangeEvent="keyup" valueExpr="Id"
