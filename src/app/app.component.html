@@ -38,21 +38,31 @@
               
               <div class="dx-card footer-menu-padding">
                 <div class=" footer-menu">
+                    <a class="middle-heading">Company</a>
                   <a [routerLink]="['/staticforms/aboutus']">About Us</a>
                   <a [routerLink]="['/services']" href="#">Services</a>
                   <a href="#">Sitemap</a>
                 </div>
                 <div class=" footer-menu">
+                    <a class="middle-heading">Policey Info</a>
                   <a [routerLink]="['/staticforms/privacy']">Privacy Policy</a>
                   <a [routerLink]="['/staticforms/TandC']">Terms of Use</a>
                   <a [routerLink]="['/staticforms/disclaimer']">Disclaimer</a>
                 </div>
+               
                 <div class="footer-menu">
+                    <a class="middle-heading">Need Help?</a>
                   <a href="#">Support</a>
                   <a href="#">FAQ</a>
                   <a [routerLink]="['/staticforms/contactus']">Contact</a>
                 </div>
-                <div class=" footer-menu"></div>
+                
+                <div class=" footer-menu">
+                    <div class="middle-heading">Subscribe</div>
+                    
+                    <dx-text-box value="Your email address"style=" width: 175px;float: left;"></dx-text-box>
+                    <dx-button id="button" text="Subscribe" type="success"> </dx-button>
+                </div>
               </div>
               <!-- <div class="dx-card">
                 <div class=" social">

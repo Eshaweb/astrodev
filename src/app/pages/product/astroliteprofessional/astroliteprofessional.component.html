@@ -2,6 +2,7 @@
 
 <div class="dx-card content-block responsive-paddings">
         <div class="product-image">
+<<<<<<< HEAD
             <img src="assets/images/pro.png" class="service-image">
             <h3>Astrolite {{ProductName}}</h3>
         
@@ -79,6 +80,26 @@
                     <div>
                         <dx-check-box [(value)]="Horoview_checkBoxValue" (onValueChanged)="Horoview_Click($event)" text="Horoview">
                         </dx-check-box>
+=======
+                <img src="assets/images/pro.png" class="service-image">
+                <h3>Astrolite {{ProductName}}</h3>
+               
+                    <!-- <h4>Add On Products</h4> -->
+
+                    <dl>
+                            <dt>Add On Products</dt>
+                            <dd><i class="dx-icon-check"></i>Baby Naming</dd> 
+                            <dd><i class="dx-icon-check"></i>Ghati Converter</dd> 
+                            <dd><i class="dx-icon-check"></i>Kaali Drushti</dd> 
+                            <dd><i class="dx-icon-check"></i>Nithya Panchanga</dd> 
+                            <dd><i class="dx-icon-check"></i>Prathamathava</dd>
+                            <dd><i class="dx-icon-check"></i>Shradda Tithi</dd>
+                            </dl>
+                    <!-- <div class="dx-field">
+                            <dx-check-box value="true" disabled="true"
+                                text="Baby Naming">
+                            </dx-check-box>
+>>>>>>> 02ac2a631acb79301e483a97f34fa4bcc944b750
                     </div>
                 </div>
         
@@ -160,7 +181,13 @@
                             </dx-check-box>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="dx-field"></div>
+=======
+                -->
+            </div>
+    <div class="dx-fieldset" *ngIf="professional">    
+>>>>>>> 02ac2a631acb79301e483a97f34fa4bcc944b750
         
                 </div>
             </div>
@@ -230,6 +257,7 @@
                     <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
                 </div>
             </div>
+<<<<<<< HEAD
             <div class="dx-fieldset" *ngIf="payableAmount">
                 <div class="dx-field" *ngIf="discountAmount">
                     <div class="cap">Coupon Discount</div>
@@ -242,6 +270,55 @@
                 <div class="dx-field">
                     <div class="cap">Wallet Bonus</div>
                     <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
+=======
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="dx-fieldset" *ngIf="!payableAmount">
+        <div class="dx-field">
+            <div class="cap">Base Price</div>
+            <div class="data">{{productPrice.BasePrice|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">Discount</div>
+            <div class="data">{{productPrice.Discount|currency:'INR'}}({{productPrice.DiscountRate}}%)</div>
+        </div>
+        <div class="dx-field" *ngIf="discountAmount">
+            <div class="cap">Coupon Discount</div>
+            <div class="data">{{discountAmount|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">Net Price</div>
+            <div class="data">{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">Wallet Bonus</div>
+            <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
+        </div>
+    </div>
+    <div class="dx-fieldset" *ngIf="payableAmount">
+        <div class="dx-field" *ngIf="discountAmount">
+            <div class="cap">Coupon Discount</div>
+            <div class="data">{{discountAmount|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">Price</div>
+            <div class="data">{{payableAmount-discountAmount|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">Wallet Bonus</div>
+            <div class="data">{{walletdiscountAmount|currency:'INR'}}({{walletdiscountPercentage}}%)</div>
+        </div>
+    </div>
+    <div class="dx-fieldset">
+        <div class="dx-field">
+            <div class="payment-mode">
+                <div class="payment-mode" [formGroup]="paymentModeForm">
+                    <dx-select-box formControlName="paymentMode" (onValueChanged)="paymentModeSelection($event)"
+                        [dataSource]="paymentModedata" displayExpr="Text" valueChangeEvent="keyup" valueExpr="Id"
+                        [searchEnabled]="true" [value]="paymentModedatavalue">
+                    </dx-select-box>
+>>>>>>> 02ac2a631acb79301e483a97f34fa4bcc944b750
                 </div>
             </div>
             <div class="dx-fieldset">
