@@ -1,13 +1,11 @@
+
+<h2 class="content-block">Payment</h2>
+
 <div class="dx-card content-block responsive-paddings payment">
     <form>
 <div class="payment-1">
 <div class="screen">
-    <div class="title">
-        <h2>Payment </h2>
-</div>
-
-    
-<div class="coupon-code-2" [formGroup]="CoupenCodeForm">
+  <div class="coupon-code-2" [formGroup]="CoupenCodeForm">
         <div class="dx-fieldset">
             <div class="dx-feldset-column">
             <!-- <div class="dx-field">
@@ -89,7 +87,7 @@ text='Pay using Astrolite wallet      {{walletbalance|currency:"INR"}}(Wallet Ba
 
 <div class="dx-fieldset">
         <div class="dx-field">
-                <div class="cap">
+                <div class="payment-mode">
 <div class="payment-mode" [formGroup]="paymentModeForm">
     <dx-select-box formControlName="paymentMode"
     (onValueChanged)="paymentModeSelection($event)" 

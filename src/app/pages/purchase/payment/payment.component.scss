@@ -30,9 +30,20 @@
 .payment {
     width: 50%;
 }
-
+.payment-mode{
+    width:300px;
+}
 @media (max-width: 800px) {
     .payment {
         width: 90%;
+    }
+
+    .cap {
+        float: left; //margin-right: 12%;
+        width: 60%;
+        text-align: left;
+    }
+    .payment-mode{
+        width:100%;
     }
 }
