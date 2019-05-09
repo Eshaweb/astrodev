@@ -1,4 +1,4 @@
-app-free-data {
+
     // .cover {
     //     //overflow:hidden;
     //     background-color: lightgray;
@@ -17,7 +17,7 @@ app-free-data {
     //     padding: 5px;
     //   //  line-height: 100px;
     //   }
-}
+
 
 // .customFont {
 //     font-family: "MyWebFont" !important;
@@ -31,16 +31,15 @@ app-free-data {
 //         background-color:white;
 //       }
 
-.float-button {
+.float-bar {
     position: fixed;
-    right: -77px;
+    right: 70px;
     top: 270px;
     transition: all 0.2s ease-in 0s;//this is the key attribute
     z-index: 9999;
     cursor: pointer;
     }
-
-    .float-button:hover {
+.float-button:hover {
         right: -7px;//hide it by pushing it off the screen
         }
 
