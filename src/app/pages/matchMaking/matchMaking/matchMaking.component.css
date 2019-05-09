@@ -24,7 +24,7 @@
 }
 
 .centered-content {
-    margin-top: 40px;
+    margin-top: 40px !important;
     text-align: center;
   }
 ::ng-deep #summary {
