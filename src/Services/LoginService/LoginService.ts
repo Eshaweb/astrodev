@@ -33,6 +33,7 @@ export class LoginService {
   code: string;
   RefCode: string;
   shareButtonDescription: string;
+  continueProductPayment: boolean;
     constructor(private httpService: HttpService, private errorService: ErrorService, public http: HttpClient) {
         this.menuItems = navigationBeforeLogin;
         //this.serviceMenus=serviceMenus;

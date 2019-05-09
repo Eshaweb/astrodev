@@ -105,7 +105,6 @@ export class StorageService {
         sessionStorage.removeItem('ItemOrdered');
         sessionStorage.removeItem('OrderId');
         sessionStorage.removeItem('ItActId');
-        sessionStorage.removeItem('IsDeliverable');
         sessionStorage.removeItem('ItMastId');
         //sessionStorage.removeItem('refreshToken');
         sessionStorage.removeItem('isAdmin');

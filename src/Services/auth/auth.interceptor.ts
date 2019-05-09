@@ -100,7 +100,6 @@ export class AuthInterceptor implements HttpInterceptor {
         }
         //}
         else if (this.loginService.AccessToken == null) {//used while page refresh, without login
-
             this.refreshToken = StorageService.GetItem('refreshToken');
             return next.handle(this.addToken(req, authService.refreshToken().pipe(switchMap((newToken: any) => { return newToken.AccessToken; })))).pipe(
                 catchError(error => {

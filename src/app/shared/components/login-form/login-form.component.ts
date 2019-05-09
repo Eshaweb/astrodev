@@ -412,8 +412,13 @@ export class LoginFormComponent {
                 if (data != null) {
                   this.loginService.orderHistoryResponse = data;
                   if (data.StatusCode == 'AP') {
-                    this.loginService.orderhistorypopupVisible = true;
-                    this.loginService.proceedDeliveryAddress = true;
+                    if(data.ItName=="Windows Product"){
+                      this.loginService.continueProductPayment = true;
+                    }
+                    else{
+                      this.loginService.proceedDeliveryAddress = true;
+                      this.loginService.orderhistorypopupVisible = true;
+                    }
                   }
                   else if (data.StatusCode == 'BP' || data.StatusCode == 'PP') {
                     this.loginService.orderhistorypopupVisible = true;

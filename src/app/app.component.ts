@@ -118,7 +118,12 @@ export class AppComponent {
     StorageService.SetItem('OrderId', item.OrderId)
     this.storageService.SetOrderResponse(JSON.stringify(this.orderService.orderResponse));
     if (item.StatusCode == 'AP') {
-      this.router.navigate(["/purchase/deliveryAddress", { 'OrderId': item.OrderId }]);
+      if(item.ItName=="Windows Product"){
+        this.loginService.orderhistorypopupVisible = false;
+      }
+      else{
+        this.router.navigate(["/purchase/deliveryAddress", { 'OrderId': item.OrderId }]);
+      }
     }
     else if (item.StatusCode == 'BP' || item.StatusCode == 'PP') {
       this.router.navigate(["/purchase/payment"]);

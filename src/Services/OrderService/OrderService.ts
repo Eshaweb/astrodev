@@ -17,6 +17,11 @@ export class OrderService {
     CreateOrder(orderModel):Observable<any> {
         var endPoint = "Order/CreateOrder";
         return this.httpService.Post(endPoint, orderModel);
+    } 
+
+    GetOrderIsDelivery(OrderId):Observable<any>{
+        var endPoint = "Order/GetOrderIsDelivery?OrderId="+ OrderId;
+        return this.httpService.Get(endPoint);
     }
 
     UpdateAddressToOrder(orderAddress):Observable<any> {

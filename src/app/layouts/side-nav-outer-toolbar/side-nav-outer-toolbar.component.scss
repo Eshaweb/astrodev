@@ -102,6 +102,14 @@ li.dropdown {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+button {
+  width: 30px;
+  height: 31px;
+  margin-left: 6px;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 14px;
+}
 @media (max-width: 800px) {
 
   .buynow-footer {

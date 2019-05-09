@@ -285,7 +285,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
       },
       modal: {
         ondismiss: () => {
-          this.loadingSwitchService.loading = false;
+          this.loadPanel.visible=false;
         }
       }
     };

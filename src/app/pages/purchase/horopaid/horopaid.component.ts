@@ -32,6 +32,7 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
     HardCopyDifference: number;
     itemAmount: number;
     errorMessage: any;
+    DeliveryAddressRequired: boolean;
     constructor(public storageService: StorageService, private muhurthaService: MuhurthaService, private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
         private orderService: OrderService, private astamangalaService: AstamangalaService, private itemService: ItemService,
         public _location: Location, public route: ActivatedRoute, public router: Router, public loadingSwitchService: LoadingSwitchService,
@@ -45,16 +46,29 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
     }
      
     ngAfterViewInit() {
-        if (StorageService.GetItem('IsDeliverable') != undefined && StorageService.GetItem('ItMastId') != undefined) {
-            if (StorageService.GetItem('ItMastId') == this.service.ItMastId) {
-                if (StorageService.GetItem('IsDeliverable')=='true'){
-                    this.checkBoxValue = true;
-                }
-                else{
-                    this.checkBoxValue = false;
+        this.orderService.GetOrderIsDelivery(StorageService.GetItem('OrderId')).subscribe((data: any) => {
+            this.DeliveryAddressRequired = data;
+            if (this.DeliveryAddressRequired != undefined && StorageService.GetItem('ItMastId') != undefined) {
+                if (StorageService.GetItem('ItMastId') == this.service.ItMastId) {
+                    if (this.DeliveryAddressRequired==true){
+                        this.checkBoxValue = true;
+                    }
+                    else{
+                        this.checkBoxValue = false;
+                    }
                 }
             }
-        }
+        });
+        // if (StorageService.GetItem('IsDeliverable') != undefined && StorageService.GetItem('ItMastId') != undefined) {
+        //     if (StorageService.GetItem('ItMastId') == this.service.ItMastId) {
+        //         if (StorageService.GetItem('IsDeliverable')=='true'){
+        //             this.checkBoxValue = true;
+        //         }
+        //         else{
+        //             this.checkBoxValue = false;
+        //         }
+        //     }
+        // }
     }
     backClicked() {
         this._location.back();
@@ -67,7 +81,7 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
         else {
             this.checkBoxValue = true;
         }
-        StorageService.SetItem('IsDeliverable', event.value);
+        //StorageService.SetItem('IsDeliverable', event.value);
         StorageService.SetItem('ItMastId', ItMastId);
     }
     onSamplePDF(item) {

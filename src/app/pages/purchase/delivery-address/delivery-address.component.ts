@@ -19,7 +19,7 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
     templateUrl: './delivery-address.component.html',
     styleUrls: ['./delivery-address.component.scss']
 })
-export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewInit {
+export class DeliveryAddressComponent implements OnInit {
     ItName: string;
     statedata: ArrayStore;
     statevalue: string;
@@ -38,12 +38,12 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     nameMessage: string;
     Id: any;
     email: string;
-    DeliveryAddressRequired: any;
+    DeliveryAddressRequired: boolean;
+    //DeliveryAddressRequired: any;
     constructor(public storageService:StorageService,public _location: Location, public route: ActivatedRoute, public router: Router, public loginService: LoginService,
         public horoScopeService: HoroScopeService, private orderService:OrderService, public partyService:PartyService,
-        public uiService: UIService, public formbuilder: FormBuilder, public loadingSwitchService:LoadingSwitchService) {
-        this.DeliveryAddressRequired = Boolean(JSON.parse(StorageService.GetItem('IsDeliverable')));
-        
+        public uiService: UIService, public formbuilder: FormBuilder, public loadingSwitchService:LoadingSwitchService) {        
+        //this.DeliveryAddressRequired = Boolean(JSON.parse(StorageService.GetItem('IsDeliverable')));
         this.customerEMailAddressForm = this.formbuilder.group({
             EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]]
         });
@@ -130,6 +130,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         PinCode_minlength: '*Minimum length is 4',
 
     };
+
     ngOnInit() {
         this.statedata = new ArrayStore({
             data: this.partyService.statesOfIndia,
@@ -141,6 +142,9 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         // if(this.orderService.orderResponse.ItName!=undefined){
         //     this.ItName=this.orderService.orderResponse.ItName;
         // }
+        this.orderService.GetOrderIsDelivery(this.OrderId).subscribe((data: any) => {
+            this.DeliveryAddressRequired = data;
+        });
         if (this.storageService.GetOrderResponse().ItName != undefined) {
             this.ItName = this.storageService.GetOrderResponse().ItName;
         }
@@ -161,22 +165,15 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
             });
         });
     }
-    statedataSelection(event){
-        this.statevalue=event.value;
-      }
+
+    statedataSelection(event) {
+        this.statevalue = event.value;
+    }
+
     OnChangeDefaultAddress(Id) {
         this.Id = Id;
     }
-    ngAfterViewInit(): void {
 
-    }
-
-    ngOnDestroy(): void {
-
-    }
-    onAddressChanged(event) {
-
-    }
     onAddAddress() {
         this.showAddAddressForm = true;
     }
@@ -213,6 +210,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
             this.loadingSwitchService.loading = false;
         });
     }
+
     OnNo_click() {
         this.deleteConfirmPopUp=false;
     }
@@ -254,9 +252,11 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
             });
         });
     }
+
     backClicked() {
         this._location.back();
     }
+
     onPlaceOrder() {
         this.loadingSwitchService.loading=true;
         var orderAddress = {
@@ -274,7 +274,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
 
     trackByFn(index, item) {    
         return item.id; // unique id corresponding to the item
-     }
+    }
 
 }
 
