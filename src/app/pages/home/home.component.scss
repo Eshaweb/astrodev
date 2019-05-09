@@ -35,6 +35,16 @@
   overflow: hidden;
 }
 
+button {
+  width: 30px;
+  height: 31px;
+  margin-left: 6px;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+
 #gallery{
   cursor: pointer;
 }
@@ -327,6 +337,8 @@ a {
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 1;
+    //  margin-top: 16px;
+      margin-left: -16px;
     }
     
     .dropdown-content a {
