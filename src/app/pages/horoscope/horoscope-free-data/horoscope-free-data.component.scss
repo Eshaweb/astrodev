@@ -30,6 +30,22 @@ app-free-data {
 //       td{
 //         background-color:white;
 //       }
+
+.float-button {
+    position: fixed;
+    right: -77px;
+    top: 270px;
+    transition: all 0.2s ease-in 0s;//this is the key attribute
+    z-index: 9999;
+    cursor: pointer;
+    }
+
+    .float-button:hover {
+        right: -7px;//hide it by pushing it off the screen
+        }
+
+
+
 .data {
     float: left;
     width: 40%;

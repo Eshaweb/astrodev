@@ -122,11 +122,11 @@ export const navigationAfterLoginForAdmin = [
   {
     text: 'Products',
     path:'/products',
-    icon: 'folder'
+    icon: 'product'
   },
   {
     text: 'Settings',
-    icon: 'folder',
+    icon: 'preferences',
     path:'/settings',
   },
   // {
@@ -142,12 +142,12 @@ export const navigationAfterLoginForAdmin = [
   {
     text: 'About Us',
     path:'/staticpages/aboutus',
-    icon: 'folder',
+    icon: 'info',
   },
   {
     text: 'Contact Us',
     path:'/staticpages/contactus',
-    icon: 'folder',
+    icon: 'message',
   },
 ];
 
@@ -200,22 +200,22 @@ export const navigationAfterLogin = [
   {
     text: 'Products',
     path:'/products',
-    icon: 'folder'
+    icon: 'product'
   },
   {
     text: 'Settings',
-    icon: 'folder',
+    icon: 'preferences',
     path:'/settings',
   },
   {
     text: 'About Us',
     path:'/staticpages/aboutus',
-    icon: 'folder',
+    icon: 'info',
   },
   {
     text: 'Contact Us',
     path:'/staticpages/contactus',
-    icon: 'folder',
+    icon: 'message',
   },
 ];
 
@@ -267,27 +267,27 @@ export const navigationBeforeLogin = [
   {
     text: 'Registration',
     path:'/registration-form',
-    icon: 'folder'
+    icon: 'user'
   },
   {
     text: 'Login',
     path:'/login-form',
-    icon: 'folder'
+    icon: 'key'
   },
   {
     text: 'Products',
     path:'/products',
-    icon: 'folder'
+    icon: 'product'
   },
   {
     text: 'About Us',
     path:'/staticpages/aboutus',
-    icon: 'folder',
+    icon: 'info',
   },
   {
     text: 'Contact Us',
     path:'/staticpages/contactus',
-    icon: 'folder',
+    icon: 'message',
   },
 ];
 
@@ -335,11 +335,11 @@ export const navigationAfterLoginForSystemForAdmin = [
   {
     text: 'Products',
     path:'/products',
-    icon: 'folder'
+    icon: 'product'
   },
   {
     text: 'Settings',
-    icon: 'folder',
+    icon: 'preferences',
     path:'/settings',
   },
   // {
@@ -398,11 +398,11 @@ export const navigationAfterLoginForSystem = [
   {
     text: 'Products',
     path:'/products',
-    icon: 'folder'
+    icon: 'product',
   },
   {
     text: 'Settings',
-    icon: 'folder',
+    icon: 'preferences',
     path:'/settings',
   }
 ];
@@ -450,17 +450,17 @@ export const navigationBeforeLoginForSystem = [
   {
     text: 'Registration',
     path:'/registration-form',
-    icon: 'folder'
+    icon: 'user'
   },
   {
     text: 'Login',
     path:'/login-form',
-    icon: 'folder'
+    icon: 'key'
   },
   {
     text: 'Products',
     path:'/products',
-    icon: 'folder'
+    icon: 'product'
   },
 ];
 
