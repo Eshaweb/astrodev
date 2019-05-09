@@ -77,6 +77,14 @@
         <li *ngFor="let item of loginService.serviceList">
             <a (click)='OnServiceClick(item.Path)' [ngClass]="getActive(item.Path)">{{item.Name}}</a>
         </li>
+        <li class="dropdown">
+            <a style= "float: left;padding: 0px;margin-right: 14px;">More<dx-button id="button" icon ="chevronright" type="normal" style="border-radius: 20px;"> </dx-button></a>   
+            <div class="dropdown-content">
+                <a href="#">Pancha Pakshi</a>
+                <a href="#">Hanuman Jyothisha</a>
+                <a href="#">Shraddha Maasika</a>
+              </div>
+          </li>
       </ul>
     </div>
 <!-- <app-side-navigation-menu *ngIf="!loginService.userProfileVisible"

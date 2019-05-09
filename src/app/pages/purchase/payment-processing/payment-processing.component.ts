@@ -30,8 +30,8 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    //this.loadPanel.visible = true; 
-    this.loadingSwitchService.loading= true;
+    this.loadPanel.visible = true; 
+    //this.loadingSwitchService.loading= true;
     // this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
     this.orderService.CheckForResult(StorageService.GetItem('OrderId')).subscribe((data) => {
       if (data.AstroReportId.length != 0) {
@@ -42,8 +42,8 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
         const source = timer(1000, 1000);
         this.subscribe = source.subscribe(val => {
           if (val == 30) {
-            //this.loadPanel.visible = false;
-            this.loadingSwitchService.loading= false;
+            this.loadPanel.visible = false;
+            //this.loadingSwitchService.loading= false;
             this.sub.unsubscribe();
             this.subscribe.unsubscribe();
             this.timeExceeded = true;
@@ -79,8 +79,8 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
       this.showSuccess = true;
       this.clearParameters();
       this.storageService.RemoveDataFromSession();
-      //this.loadPanel.visible = false;
-      this.loadingSwitchService.loading= false;
+      this.loadPanel.visible = false;
+      //this.loadingSwitchService.loading= false;
       this.sub.unsubscribe();
       this.subscribe.unsubscribe();
       console.clear();

@@ -186,7 +186,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   onApply() {
     //this.loading=true;
     //this.loadPanel.visible = true;
-    this.loadingSwitchService.loading= true;
+    this.loadingSwitchService.loading = true;
     this.disableButton = true;
     var Promo = {
       PromoText: this.CoupenCodeForm.controls['CouponCode'].value,
@@ -196,7 +196,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       //if (data.Errors == undefined) {
       //this.loading=false;
       //this.loadPanel.visible = false;
-      this.loadingSwitchService.loading= false;
+      this.loadingSwitchService.loading = false;
       if (data.IsValid == true) {
         this.discountAmount = data.Amount;
       }
@@ -258,11 +258,11 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onContinue() {
     //this.loadPanel.visible = true;
-    this.loadingSwitchService.loading= true;
+    this.loadingSwitchService.loading = true;
     if (this.checkClicked == true) {
       //this.loading = true;
       //this.loadPanel.visible = true;
-      this.loadingSwitchService.loading= true;
+      this.loadingSwitchService.loading = true;
       if (this.differenceAmount > 0 && this.paymentmodeSelected == true && this.discountAmount > 0) {
         this.paycodes = [{
           Code: this.paymentModeForm.get('paymentMode').value,
@@ -290,12 +290,12 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       else if (this.differenceAmount > 0 && this.paymentmodeSelected == false) {
         this.selectMeMessage = "Please select any Payment modes for Remaining Amount";
         //this.loadPanel.visible = false;
-        this.loadingSwitchService.loading= false;
+        this.loadingSwitchService.loading = false;
       }
       else if (this.discountAmount > 0) {
         //this.loading = true;
         //this.loadPanel.visible = true;
-        this.loadingSwitchService.loading= true;
+        this.loadingSwitchService.loading = true;
         this.payableAmount = this.payableAmount;
         this.paycodes = [{
           Code: "W",
@@ -320,7 +320,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     else if (this.discountAmount > 0) {
       //this.loading = true;
       //this.loadPanel.visible = true;
-      this.loadingSwitchService.loading= true;
+      this.loadingSwitchService.loading = true;
       if (this.paymentmodeSelected == true) {
         this.payableAmountthroughPaymentGateWay = this.payableAmount - this.discountAmount;
         this.paycodes = [{
@@ -338,12 +338,12 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       }
       //this.loading = false;
       //this.loadPanel.visible = false;
-      this.loadingSwitchService.loading= false;
+      this.loadingSwitchService.loading = false;
     }
     else {
       //this.loading = true;
       //this.loadPanel.visible = true;
-      this.loadingSwitchService.loading= true;
+      this.loadingSwitchService.loading = true;
       if (this.paymentmodeSelected == true) {
         this.payableAmountthroughPaymentGateWay = this.payableAmount;
         this.CreateBillPayModeToOrder();
@@ -354,13 +354,13 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       }
       //this.loading = false;
       //this.loadPanel.visible = false;
-      this.loadingSwitchService.loading= false;
+      this.loadingSwitchService.loading = false;
     }
   }
 
   CreateBillPayModeToOrder() {
     //this.loadPanel.visible = true;
-    this.loadingSwitchService.loading= true;
+    this.loadingSwitchService.loading = true;
     this.alterationDisabled = true;
     this.selectboxdisabled = true;
     var OrderBillPayMode = {
@@ -370,6 +370,8 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       PayCodes: this.paycodes
     }
     this.orderService.CreateBillPayModeToOrder(OrderBillPayMode).subscribe((data) => {
+      this.loadingSwitchService.loading = false;
+      //this.loadPanel.visible = false;
       if (data.Error == undefined) {
         this.horoScopeService.ExtCode = data.ExtCode;
         for (var i = 0; i < data.PayModes.length; i++) {
@@ -386,18 +388,18 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
               this.payableAmountthroughPaymentGateWay = this.payableAmountthroughPaymentGateWay;
             }
             //this.loadPanel.visible = true;
-            this.loadingSwitchService.loading= true;
+            this.loadingSwitchService.loading = true;
             this.pay();
             break;
           }
           else if (data.PayModes[i] == "W" && (data.Status == "C" || data.Status == "P")) {
             //this.loadPanel.visible = false;
-            this.loadingSwitchService.loading= false;
+            this.loadingSwitchService.loading = false;
             this.router.navigate(['/purchase/paymentProcessing']);
           }
           else if (data.PayModes[i] == "OFF") {
             //this.loadPanel.visible = false;
-            this.loadingSwitchService.loading= false;
+            this.loadingSwitchService.loading = false;
             this.router.navigate(['/offlinePayment']);
             break;
           }
@@ -406,7 +408,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       else {
         this.errorMessage = data.Error;
         //this.loadPanel.visible = false;
-        this.loadingSwitchService.loading= false;
+        this.loadingSwitchService.loading = false;
       }
     });
   }
@@ -427,7 +429,8 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
         this.PaymentComplete(Payment);
       },
       prefill: {
-        email: this.partyEmail,
+        //email: this.partyEmail,
+        email: 'shailesh@gmail.com',
         contact: this.partyMobileNo
       },
       notes: {
@@ -439,7 +442,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       modal: {
         ondismiss: () => {
           //this.loadPanel.visible = false;
-          this.loadingSwitchService.loading= false;
+          this.loadingSwitchService.loading = false;
         }
       }
     };
@@ -459,15 +462,16 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   PaymentComplete(Payment) {
     //this.loading = true;
     //this.loadPanel.visible = true;
-    this.loadingSwitchService.loading= true;
+    this.loadingSwitchService.loading = true;
     this.orderService.PaymentComplete(Payment).subscribe((data) => {
       if (data.Error == undefined) {
         this.horoScopeService.resultResponse = data;
         if (data.AstroReportId.length != 0) {
           this.horoScopeService.AstroReportId = data.AstroReportId[0].split('_')[0];
         }
-        //this.loading = false;
-        //this.loadingSwitchService.loading=false;
+        this.loading = false;
+        this.loadingSwitchService.loading = false;
+        //this.loadPanel.visible = false;
         this.router.navigate(['/purchase/paymentProcessing'], { skipLocationChange: true });
         //this.router.navigate(['/purchase/paymentProcessing']);
       }
