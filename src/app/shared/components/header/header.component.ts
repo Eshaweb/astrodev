@@ -44,6 +44,7 @@ export class HeaderComponent {
       //StorageService.RemoveItem('Token');
       StorageService.RemoveItem('PartyMastId');
       this.storageService.RemoveDataFromSession();
+      StorageService.RemoveItem('refreshToken');
       this.loginService.userProfileVisible=false;
       this.loginService.menuItems=navigationBeforeLogin;
       this.loginService.serviceMenus=serviceMenusBeforeLogin;

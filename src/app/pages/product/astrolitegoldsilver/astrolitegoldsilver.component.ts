@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { UIService } from 'src/Services/UIService/ui.service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
@@ -14,6 +14,7 @@ import { OrderService } from 'src/Services/OrderService/OrderService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 import { WalletService } from 'src/Services/Wallet/WalletService';
 import { ProductPrice } from 'src/Models/ProductPrice';
+import { DxLoadPanelComponent } from 'devextreme-angular';
 declare var Razorpay: any;
 
 @Component({
@@ -22,6 +23,7 @@ declare var Razorpay: any;
   styleUrls: ['./astrolitegoldsilver.component.scss']
 })
 export class AstrolitegoldsilverComponent implements OnInit {
+  @ViewChild(DxLoadPanelComponent) public loadPanel: DxLoadPanelComponent;
   Astamangala_checkBoxValue: boolean;
   MatchMaking_checkBoxValue: boolean;
   Horoscope_checkBoxValue: boolean;
@@ -215,8 +217,9 @@ export class AstrolitegoldsilverComponent implements OnInit {
   paymentModeSelection(event) {
     this.paymentModedatavalue = event.value;
   }
+
   onPay_click() {
-    this.loadingSwitchService.loading = true;
+    this.loadingSwitchService.loading=true;
     if (this.discountAmount > 0) {
       this.paycodes = [{ Code: 'D', Amount: this.discountAmount },
       { Code: this.paymentModedatavalue, Amount: this.productPrice.ActualPrice - this.discountAmount }];
@@ -233,12 +236,11 @@ export class AstrolitegoldsilverComponent implements OnInit {
       PayCodes: this.paycodes
     }
     this.productService.BuyAndroid(BuyAndroid).subscribe((data) => {
-      this.loadingSwitchService.loading = false;
       if (data.Error == undefined) {
         this.horoScopeService.ExtCode = data.ExtCode;
         for (var i = 0; i < data.PayModes.length; i++) {
           if (data.PayModes[i] == "ON") {
-            this.loadingSwitchService.loading = true;
+            this.loadingSwitchService.loading=false;
             this.pay();
             break;
           }
@@ -251,11 +253,10 @@ export class AstrolitegoldsilverComponent implements OnInit {
       }
       else {
         this.errorMessage = data.Error;
-        this.loadingSwitchService.loading = false;
+        this.loadPanel.visible=false;
       }
     });
   }
-
 
   pay() {
     var options = {
@@ -301,14 +302,16 @@ export class AstrolitegoldsilverComponent implements OnInit {
   }
 
   PaymentComplete(Payment) {
-    this.loadingSwitchService.loading = true;
+    this.loadPanel.visible=true;
+    //this.loadingSwitchService.loading = true;
     this.orderService.PaymentComplete(Payment).subscribe((data) => {
       if (data.Error == undefined) {
         this.horoScopeService.resultResponse = data;
         if (data.AstroReportId.length != 0) {
           this.horoScopeService.AstroReportId = data.AstroReportId[0].split('_')[0];
         }
-        this.loadingSwitchService.loading = false;
+        //this.loadingSwitchService.loading = false;
+        this.loadPanel.visible=false;
         this.router.navigate(['/products/paymentsuccess'], { skipLocationChange: true });
         //this.router.navigate(['/purchase/paymentProcessing']);
       }
