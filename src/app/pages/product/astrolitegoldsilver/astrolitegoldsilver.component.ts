@@ -78,8 +78,8 @@ export class AstrolitegoldsilverComponent implements OnInit {
     this.loadingSwitchService.loading = true;
     this.discountAmount = 0;
     this.ProductName=StorageService.GetItem('ProductName');
-    this.imgsrc='assets/images/gold.png';
     if(StorageService.GetItem('ProductName') == "Gold"){
+      this.imgsrc='assets/images/gold.png';
       this.Astamangala_checkBoxValue = true;
       this.AndroidPriceRequest = {
         PartyMastId: StorageService.GetItem('PartyMastId'),
@@ -87,6 +87,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
       }
     }
     else if(StorageService.GetItem('ProductName') == "Silver"){
+      this.imgsrc='assets/images/astrolite-silver.png';
       this.Astamangala_checkBoxValue = false;
       this.AndroidPriceRequest = {
         PartyMastId: StorageService.GetItem('PartyMastId'),
