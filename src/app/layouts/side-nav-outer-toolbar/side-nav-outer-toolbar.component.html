@@ -118,6 +118,16 @@
     <dx-scroll-view class="full-height-scrollable">
         <div class="content">
             <ng-content></ng-content>
+            <div class="float-bar" *ngIf='itemService.BuyNowVisible'>
+                <p>For Detailed {{itemService.ItemName}} </p>
+                                <!-- <button class="float-bar-button" data-toggle="modal" data-target=".your-modal">Buy Full Horoscope</button> -->
+                                <dx-button
+                                icon="cart"
+                                
+                                text="Buy Now"
+                                (onClick)="onBuyNowClick()">
+                                </dx-button>
+                            </div>
         </div>
 
         <div class="content-block">
@@ -127,7 +137,7 @@
 </dx-drawer>
 
 
-<app-footer *ngIf='itemService.BuyNowVisible'>
+<!-- <app-footer *ngIf='itemService.BuyNowVisible'>
 <div class="buynow-footer">
   <div class="buy-now" > For Detailed {{itemService.ItemName}}</div> 
     <dx-button stylingMode="text"
@@ -137,4 +147,4 @@
     (onClick)="onBuyNowClick()">
     </dx-button>
 </div>
-</app-footer>
+</app-footer> -->
