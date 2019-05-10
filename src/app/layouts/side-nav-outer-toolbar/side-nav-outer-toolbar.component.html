@@ -77,6 +77,15 @@
         <li *ngFor="let item of loginService.serviceList">
             <a (click)='OnServiceClick(item.Path)' [ngClass]="getActive(item.Path)">{{item.Name}}</a>
         </li>
+        <li>
+            <a>Pancha Pakshi</a>
+        </li>
+        <li>
+            <a>Shraddha Maasika</a>
+        </li>
+        <li>
+            <a>Hanuman Jyothisha</a>
+        </li>
         <li class="dropdown">
             <a style= "padding: 0px;">More<button > > </button></a>
             <div class="dropdown-content">
