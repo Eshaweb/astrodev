@@ -34,16 +34,24 @@
 .float-bar {
     position: fixed;
     right: 70px;
-    top: 270px;
+    top: 295px;
     transition: all 0.2s ease-in 0s;//this is the key attribute
     z-index: 9999;
     cursor: pointer;
+    background: #db7234;
+    padding: 20px;
+    border-radius: 10px 10px 0px 0px;
+    color: #fff;
+    font-size: 18px;
     }
 .float-button:hover {
         right: -7px;//hide it by pushing it off the screen
         }
 
-
+.float-bar-button{
+    padding: 13px;
+    border-radius: 20px;
+}
 
 .data {
     float: left;
