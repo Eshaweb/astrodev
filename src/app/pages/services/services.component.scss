@@ -85,6 +85,15 @@ h3 {
   background-repeat: no-repeat;
   
 }
+
+.service-image {
+  width: 45%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  cursor: pointer;
+}
+
 .service-list:hover{
 box-shadow: 4px 4px 6px #ddd;
 }
