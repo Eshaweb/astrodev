@@ -400,7 +400,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           else if (data.PayModes[i] == "OFF") {
             //this.loadPanel.visible = false;
             this.loadingSwitchService.loading = false;
-            this.router.navigate(['/offlinePayment']);
+            this.router.navigate(['/staticpages/offlinePayment']);
             break;
           }
         }
@@ -459,6 +459,44 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     rzp1.open(options, successCallback, cancelCallback);
   }
 
+  onTestPay(){
+    var options = {
+      description: 'Credits towards AstroLite',
+      image: 'https://i.ibb.co/dkhhhR1/icon-72x72.png',
+      currency: 'INR',
+      key: 'rzp_test_fg8RMT6vcRs4DP',
+      amount: 100 * 100,
+      name: StorageService.GetItem('Name'),
+      "handler": (response) => {
+        this.paymentId = response.razorpay_payment_id;
+        var Payment = {
+          PaymentId: this.paymentId
+        }
+        this.PaymentComplete(Payment);
+      },
+      prefill: {
+        //email: this.partyEmail,
+        email: 'shailesh@gmail.com',
+        contact: this.partyMobileNo
+      },
+      notes: {
+        order_id: this.horoScopeService.ExtCode,
+      },
+      theme: {
+        color: '#d05b19'
+      },
+      modal: {
+        ondismiss: () => {
+          //this.loadPanel.visible = false;
+          this.loadingSwitchService.loading = false;
+        }
+      }
+    };
+
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+  }
+
   PaymentComplete(Payment) {
     //this.loading = true;
     //this.loadPanel.visible = true;
@@ -477,6 +515,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       }
       else {
         this.errorMessage = data.Error;
+        this.loadingSwitchService.loading = false;
       }
     });
   }

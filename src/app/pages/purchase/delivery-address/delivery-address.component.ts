@@ -160,6 +160,7 @@ export class DeliveryAddressComponent implements OnInit {
                     if (data != null) {
                         this.Id = String(data);
                     }
+                    console.clear();
                     this.loadingSwitchService.loading = false;
                 });
             });

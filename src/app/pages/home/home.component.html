@@ -39,9 +39,6 @@
     <li>
         <a>Shraddha Maasika</a>
     </li>
-    <li>
-        <a>Hanuman Jyothisha</a>
-    </li>
       <li class="dropdown">
         <a style= "padding: 0px;">More<button > > </button></a>
         
@@ -108,7 +105,7 @@
   <div class="content-block">
     <div
       class="dx-card responsive-paddings service-box">
-      <img src="assets/images/Astamangala.png" class="service-image" />
+      <img src="assets/images/Astamangala.png" class="service-image" (click)="OnAstamangala_Click()"/>
       <h3>Astamangala</h3>
       
         <!-- <div class="content-summary" *ngIf="!contentFullAstamangala"> Ashtamangala prashne is a form of practice under Vedic astrology, followed widely in Kerala, where usually a Navagraha pooja is performed to seek blessings from the Navagraha. After the pooja, with the arrangement of cowry shells, sandalwood, floral offerings, gold coin etc..</div>
@@ -125,7 +122,7 @@
     <div
       class="dx-card responsive-paddings service-box"
       id="link1">
-      <img src="assets/images/Horoscope.png" class="service-image" />
+      <img src="assets/images/Horoscope.png" class="service-image"  (click)="OnHoroScope_Click()"/>
       <h3>Horoscope</h3>
       <!-- <div class="content-summary" *ngIf="!contentFullHoroscope">It is believed that a person experiences benefic or malefic virtues according to his deeds during his lifetime. Moreover, the deeds of the present lifespan determine the benefic or malefic experience in our rebirth, be it in the form of any being.According to Vedic astrology,..</div>
       <div class="content-full" *ngIf="contentFullHoroscope">It is believed that a person experiences benefic or malefic virtues according to his deeds during his lifetime. Moreover, the deeds of the present lifespan determine the benefic or malefic experience in our rebirth, be it in the form of any being.
@@ -139,7 +136,7 @@
     </div>
     <div
       class="dx-card responsive-paddings service-box">
-      <img src="assets/images/MelaMeli.png" class="service-image" />
+      <img src="assets/images/MelaMeli.png" class="service-image" (click)="OnMatchMaking_Click()"/>
       <h3>Mela Meli</h3>
       <!-- <div class="content-summary" *ngIf="!contentFullMatchMaking">The compatibility between a male and female could be assessed precisely based on the date, time and place of birth to match the horoscopes of prospective brides and bridegrooms in order to achieve marital harmony.. </div>
     <div class="content-full" *ngIf="contentFullMatchMaking">The compatibility between a male and female could be assessed precisely based on the date, time and place of birth to match the horoscopes of prospective brides and bridegrooms in order to achieve marital harmony. The software furnishes Dashakoota as well as Ashtakoota, which is also depicted in terms of percentage (%). The assessment of Dashasandhi at the same time in both the horoscopes, the resemblance in malefic planets and a review of the planets in the Seventh and Eighth house (Sapthamashtama bhava) have been provided. Although the assessment is given over here as an authentic report, it is at the discretion of the astrologer to get a report of his choice. A concise report has also been provided for a person who has just an input of Rashi and Nakshatra.</div>
@@ -155,7 +152,7 @@
   <div class="content-block">
     <div
       class="dx-card responsive-paddings service-box">
-      <img src="assets/images/Muhurtha.png" class="service-image" />
+      <img src="assets/images/Muhurtha.png" class="service-image"  (click)="OnMuhurtha_Click()"/>
       <h3>Muhurtha</h3>
       <!-- <div class="content-summary" *ngIf="!contentFullMuhurtha">Muhurtha have been generated on the basis of the calculations formulated in the books like Muhurtha Padavi and Muhurtha Madhavi, through which one could easily access the most auspicious time with respect to some special occasion or ceremony to be .. </div>
     <div class="content-full" *ngIf="contentFullMuhurtha">Muhurtha have been generated on the basis of the calculations formulated in the books like Muhurtha Padavi and Muhurtha Madhavi, through which one could easily access the most auspicious time with respect to some special occasion or ceremony to be held in any part of the world. During Brahmopadesham or Upanayana, it could be extremely useful to know the purity of the Eighth house as well as the Gurubala to decide the most auspicious Muhurtha. It could be also useful to know the Muhurtha for buying a vehicle, beginning a house construction, a new job or a new journey etc. It also depicts the arrangement of planets as well as the Bhavashuddhi at the given Muhurtha through a GrahaKundali. Anyone can have easy access to Muhurtha if he has the relevant inputs.</div>
@@ -168,7 +165,7 @@
     <div
       class="dx-card responsive-paddings service-box"
       id="link1">
-      <img src="assets/images/panchanga.png" class="service-image" />
+      <img src="assets/images/panchanga.png" class="service-image" (click)="OnPanchanga_Click()"/>
       <h3>Panchanga</h3>
       <!-- <div class="content-summary" *ngIf="!contentFullPanchanga">Panchangam or to get the information with respect to Thithi, Vara, Nakshatra, Yoga, Karana at any location across the world could be known in terms of Ghati- Vighati as well as in hours and minutes separately. One could even know about the speciality of .. </div>
     <div class="content-full" *ngIf="contentFullPanchanga">Panchangam or to get the information with respect to Thithi, Vara, Nakshatra, Yoga, Karana at any location across the world could be known in terms of Ghati- Vighati as well as in hours and minutes separately. One could even know about the speciality of the day; for eg; Shivarathri, Ramanavami, Akshaya Thritiya etc</div>
@@ -180,7 +177,7 @@
   </div>
     <div
       class="dx-card responsive-paddings service-box">
-      <img src="assets/images/Pancha-Pakshi.png" class="service-image" />
+      <img src="assets/images/Pancha-Pakshi.png" class="service-image" (click)="OnPanchanga_Click()"/>
       <h3>Pancha Pakshi</h3>
       <!-- <div class="content-summary" *ngIf="!contentFullPanchaPakshi">The auspicious time could also be predicted as done by sages during olden days on the basis of the movement of the Sun and the Moon. So, this could be used to know the most auspicious time for some special occasions or ceremonies as .</div>
       <div class="content-full" *ngIf="contentFullPanchaPakshi">The auspicious time could also be predicted as done by sages during olden days on the basis of the movement of the Sun and the Moon. So, this could be used to know the most auspicious time for some special occasions or ceremonies as well as for some other activities like buying a vehicle, starting a business venture, the chance of winning in a game etc.</div>
@@ -193,7 +190,7 @@
     </div>
     <div
       class="dx-card responsive-paddings service-box">
-      <img src="assets/images/Hanuma Jothisya.png" class="service-image" />
+      <img src="assets/images/Hanuma Jothisya.png" class="service-image" (click)="OnPanchanga_Click()"/>
       <h3>Hanuman Jyothisha</h3>
       <!-- <div class="content-summary" *ngIf="!contentFullHanumanJyothisha">In this app, one could select a relevant question from the list provided to know the solutions to the doubts arising in the life of an individual. For e.g; Can a particular subject be learnt? Will there be a chance to get a good job?Are there chances of marriage? Etc</div>
         <div class="content-full" *ngIf="contentFullHanumanJyothisha">In this app, one could select a relevant question from the list provided to know the solutions to the doubts arising in the life of an individual. For e.g; Can a particular subject be learnt? Will there be a chance to get a good job? Are there chances of marriage? Etc</div>
@@ -205,7 +202,7 @@
       </div>
     <div
       class="dx-card responsive-paddings service-box">
-      <img src="assets/images/Srardha Masika.png" class="service-image" />
+      <img src="assets/images/Srardha Masika.png" class="service-image" (click)="OnPanchanga_Click()"/>
       <h3>Shraddha Maasika</h3>
       <!-- <div class="content-summary" *ngIf="!contentFullShraddhaMaasika">One could have access to decipher the date of Death Anniversary (Shraddha) as per the lunar or the solar months. Even the list of Shraddha, Thithi and Masikas could be generated too.</div>
       <div class="content-full" *ngIf="contentFullShraddhaMaasika">One could have access to decipher the date of Death Anniversary (Shraddha) as per the lunar or the solar months. Even the list of Shraddha, Thithi and Masikas could be generated too.</div>

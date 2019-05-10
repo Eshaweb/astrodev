@@ -432,7 +432,8 @@ export class AstroliteProfessionalComponent implements OnInit {
           }
           else if (data.PayModes[i] == "OFF") {
             this.loadingSwitchService.loading = false;
-            this.router.navigate(['/offlinePayment']);
+            StorageService.SetItem('OrderId',data.OrderId);
+            this.router.navigate(['/staticpages/offlinePayment']);
             break;
           }
         }
@@ -465,7 +466,8 @@ export class AstroliteProfessionalComponent implements OnInit {
           }
           else if (data.PayModes[i] == "OFF") {
             this.loadingSwitchService.loading = false;
-            this.router.navigate(['/offlinePayment']);
+            StorageService.SetItem('OrderId',data.OrderId);
+            this.router.navigate(['/staticpages/offlinePayment']);
             break;
           }
         }

@@ -151,7 +151,8 @@ export class DepositWalletComponent {
       }
       else if (data.IsValid == true && data.PayModes == "OFF") {
         this.loadPanel.visible=false;
-        this.router.navigate(['/offlinePayment']);
+        StorageService.SetItem('OrderId',data.OrderId);
+        this.router.navigate(['/staticpages/offlinePayment']);
       }
       else if (data.IsValid == true) {
         this.loadPanel.visible=false;

@@ -5,6 +5,8 @@ import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { AuthGuard } from 'src/Services/auth/auth.guard';
+import { OfflinepaymentComponent } from './offline-payment/offline-payment.component';
 
 
 const routes: Routes = [
@@ -13,6 +15,7 @@ const routes: Routes = [
   { path: 'privacy', component:PrivacyComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contactus', component: ContactusComponent },
+  { path: 'offlinePayment', component:OfflinepaymentComponent, canActivate: [AuthGuard] },
   ];
   
   @NgModule({
