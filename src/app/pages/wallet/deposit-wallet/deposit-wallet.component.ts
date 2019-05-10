@@ -12,6 +12,7 @@ import ArrayStore from 'devextreme/data/array_store';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 import { DxLoadPanelComponent } from 'devextreme-angular';
+import { ItemService } from 'src/Services/ItemService/ItemService';
 
 declare var Razorpay: any;
 
@@ -48,17 +49,38 @@ export class DepositWalletComponent {
   
   
 
-  constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, public walletService: WalletService, public horoScopeService: HoroScopeService, public route: ActivatedRoute, public router: Router, public salesService: SalesService,
-    public uiService: UIService, public formbuilder: FormBuilder) {
+  constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, 
+    public walletService: WalletService, public horoScopeService: HoroScopeService, 
+    public route: ActivatedRoute, public router: Router, public salesService: SalesService,
+    public uiService: UIService, public formbuilder: FormBuilder, public itemService:ItemService) {
     var endPoint = "Sales/GetPayCodes";
     this.minAmount=50;
     this.maxAmount=20000;
-    this.depositToWalletForm = this.formbuilder.group({
-      // amount: [null, [Validators.required, Validators.minLength(1),Validators.pattern("^[a-z0-9_-]{8,15}$"),Validators.min(50),Validators.max(20000)]],
-      // Amount: [null, [Validators.required, Validators.pattern("[50<>20000]=?|="), Validators.min(50), Validators.max(20000)]],
-      Amount: [null, [Validators.required, Validators.min(50), Validators.max(20000)]],
-      BillPayMode: [null, []]
-    });
+    if(this.itemService.walletAmount!=undefined){
+      this.depositToWalletForm = this.formbuilder.group({
+        Amount: [this.itemService.walletAmount, [Validators.required, Validators.min(50), Validators.max(20000)]],
+        BillPayMode: [null, []]
+      });
+      var FreeWalletRequest = {
+        PartyMastId: StorageService.GetItem('PartyMastId'),
+        PurchaseAmount: this.itemService.walletAmount
+      }
+      this.walletService.GetFreeWallet(FreeWalletRequest).subscribe((data) => {
+        if (data.Errors == undefined) {
+          this.bonusAmount = data.Amount;
+          this.bonusPercent=data.Percent;
+          this.loading=false;
+        }
+      });
+    }
+    else{
+      this.depositToWalletForm = this.formbuilder.group({
+        // amount: [null, [Validators.required, Validators.minLength(1),Validators.pattern("^[a-z0-9_-]{8,15}$"),Validators.min(50),Validators.max(20000)]],
+        // Amount: [null, [Validators.required, Validators.pattern("[50<>20000]=?|="), Validators.min(50), Validators.max(20000)]],
+        Amount: [null, [Validators.required, Validators.min(50), Validators.max(20000)]],
+        BillPayMode: [null, []]
+      });
+    }
     const AmountContrl = this.depositToWalletForm.get('Amount');
     AmountContrl.valueChanges.subscribe(value => this.setErrorMessage(AmountContrl));
 

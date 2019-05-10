@@ -9,6 +9,7 @@ export class ItemService {
     ItemAmount: any;
     BuyNowVisible: boolean;
     ItemName: string;
+  walletAmount: any;
     constructor(public httpService: HttpService) {
 
     }

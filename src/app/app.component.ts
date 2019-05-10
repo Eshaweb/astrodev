@@ -126,7 +126,13 @@ export class AppComponent {
       }
     }
     else if (item.StatusCode == 'BP' || item.StatusCode == 'PP') {
-      this.router.navigate(["/purchase/payment"]);
+      if(item.ItName=="Wallet"){
+        this.itemService.walletAmount=this.itemService.ItemAmount;
+        this.router.navigate(["/wallet/depoToWallet"]);
+      }
+      else{
+        this.router.navigate(["/purchase/payment"]);
+      }
     }
     this.loginService.orderhistorypopupVisible = false;
   }

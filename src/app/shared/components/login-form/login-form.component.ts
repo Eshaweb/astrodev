@@ -422,7 +422,7 @@ export class LoginFormComponent {
                   }
                   else if (data.StatusCode == 'BP' || data.StatusCode == 'PP') {
                     this.loginService.orderhistorypopupVisible = true;
-                    this.loginService.proceedPayment = true;
+                      this.loginService.proceedPayment = true;
                   }
                   else if (data.StatusCode == 'RD' && data.ItName == 'Wallet' ) {
                     this.loginService.orderhistorypopupVisible = false;
