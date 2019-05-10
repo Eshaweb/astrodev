@@ -119,7 +119,7 @@
             </div>
             <div  *ngIf="accordian.name == 'Ayanamsha'"  >
               <div class="dx-field">
-                <div class="dx-field-label">
+                <div class="cap">
                   <dx-radio-group
                     [items]="configerationService.ayanamsha"
                     [(value)]="partyGeneralConfig.Config.AyanaType"
@@ -130,8 +130,8 @@
                 </div>
               </div>
               <div class="dx-field" *ngIf="isvisibleayana">
-                <div class="dx-field-label">Degree</div>
-                <div class="dx-field-label">
+                <div class="cap">Degree</div>
+                <div class="cap">
                   <dx-number-box
                     #numberBox
                     [(ngModel)]="partyGeneralConfig.Config.AyanaDeg"
@@ -167,7 +167,7 @@
             </div>
             <div  *ngIf="accordian.name == 'Astaka Varga Type'"  >
               <div class="dx-field">
-                <div class="dx-field-label">
+                <div class="cap">
                   <dx-radio-group
                     [items]="configerationService.astakavarga"
                     [(value)]="partyGeneralConfig.Config.AVType"
@@ -180,7 +180,7 @@
             </div>
             <div  *ngIf="accordian.name == 'Bhava Phal'" >
               <div class="dx-field">
-                <div class="dx-field-label">
+                <div class="cap">
                   <dx-radio-group
                     [items]="configerationService.Bahvaphala"
                     [(value)]="partyGeneralConfig.Config.BhavaPhal"
@@ -193,7 +193,7 @@
             </div>
             <div  *ngIf="accordian.name == 'Match Making'">
               <div class="dx-field">
-                <div class="dx-field-label">
+                <div class="cap">
                   <dx-check-box
                     [(value)]="partyGeneralConfig.Config.IsKalatraReqd"
                     text="Check kalatrarishta/Soubhagya Yoga"
@@ -204,7 +204,7 @@
 
             <div *ngIf="accordian.name == 'Adhipathi Phal'" >
               <div class="dx-field">
-                <div class="dx-field-label">
+                <div class="cap">
                   <dx-radio-group
                     [items]="configerationService.Adipatathaphala"
                     [(value)]="partyGeneralConfig.Config.AdhiPhal"
@@ -217,7 +217,7 @@
             </div>
             <div  *ngIf="accordian.name == 'Sadesathi Shani'">
               <div class="dx-field">
-                <div class="dx-field-label">
+                <div class="cap">
                   <dx-check-box
                     [(value)]="partyGeneralConfig.Config.IsSadesathiReqd"
                     text="Check sadesathi"
@@ -227,7 +227,7 @@
             </div>
             <div  *ngIf="accordian.name == 'SunRise/SunSet'">
               <div class="dx-field">
-                <div class="dx-field-label">
+                <div class="cap">
                   <dx-radio-group
                     [dataSource]="configerationService.sunrisesetdata"
                     [value]="partyGeneralConfig.Config.SunSetting"
@@ -240,7 +240,7 @@
             </div>
             <div *ngIf="accordian.name == 'Chart Type'">
               <div class="dx-field">
-                <div class="dx-field-label">
+                <div class="cap">
                   <dx-select-box
                     id="ChartType"
                     name="ChartType"
