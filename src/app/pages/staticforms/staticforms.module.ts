@@ -12,6 +12,7 @@ import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsandConditionsComponent } from './termsand-conditions/termsand-conditions.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { OfflinepaymentComponent } from './offline-payment/offline-payment.component';
 
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ import { NgxCaptchaModule } from 'ngx-captcha';
         DxResponsiveBoxModule,DxiRowModule
     ],
     declarations: [
-       AboutusComponent,ContactusComponent,DisclaimerComponent, PrivacyComponent, TermsandConditionsComponent
+       AboutusComponent,ContactusComponent,DisclaimerComponent, 
+       PrivacyComponent, TermsandConditionsComponent, OfflinepaymentComponent
     ],
 })
 export class StaticFormsModule{

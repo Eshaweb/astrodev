@@ -17,13 +17,24 @@ export class ContactusComponent implements OnInit {
 
   constructor(public formbuilder: FormBuilder, public partyService:PartyService, public uiService:UIService,
     public loadingSwitchService:LoadingSwitchService) {
-    this.contactusForm = this.formbuilder.group({
-      Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],
-      Email: ['shailesh@gmail.com'],
-      Mobile: ['8277033170'],
-      Message: ['Hello', [Validators.required]],
-      recaptcha: ['', Validators.required]
-    });
+      if (environment.production) {
+        this.contactusForm = this.formbuilder.group({
+          Name: ['', [Validators.required, Validators.minLength(4)]],
+          Email: [''],
+          Mobile: [''],
+          Message: ['', [Validators.required]],
+          recaptcha: ['', Validators.required]
+        });
+      }
+      else{
+        this.contactusForm = this.formbuilder.group({
+          Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],
+          Email: ['shailesh@gmail.com'],
+          Mobile: ['8277033170'],
+          Message: ['Hello', [Validators.required]],
+          recaptcha: ['', Validators.required]
+        });
+      }
    }
    setErrorMessage(c: AbstractControl): void {
     let control = this.uiService.getControlName(c);//gives the control name property from particular service.

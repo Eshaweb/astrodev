@@ -10,7 +10,6 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { RegistrationFormComponent } from './shared/components/registration-form/registration-form/registration-form.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { EmailVerifyComponent } from './pages/email-verify/email-verify.component';
-import { OfflinepaymentComponent } from './pages/offline-payment/offline-payment.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
@@ -25,9 +24,6 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]  },
   { path: 'Forgot', component:ForgotComponent },
   { path: 'Verify', component: EmailVerifyComponent },
-  {
-    path:'offlinePayment', component:OfflinepaymentComponent, canActivate: [AuthGuard]
-  },
   // {
   //   path: 'services',
   //   component: ServicesComponent,
@@ -134,7 +130,7 @@ const routes: Routes = [
     ProfileComponent,
     EmailVerifyComponent, ForgotComponent,
     // SortingOrderHistoryPipe,
-    OfflinepaymentComponent, HomeComponent,
+     HomeComponent,
     // HoroscopeComponent,
     // HoroscopeFreeDataComponent,
   ]
