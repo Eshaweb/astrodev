@@ -247,6 +247,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
           }
           else if (data.PayModes[i] == "OFF") {
             this.loadingSwitchService.loading = false;
+            StorageService.SetItem('OrderId',data.OrderId);
             this.router.navigate(['/staticpages/offlinePayment']);
             break;
           }
