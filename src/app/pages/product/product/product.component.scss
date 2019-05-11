@@ -58,9 +58,21 @@
     
   }
 
+  .product-disc {
+    float: left;
+    width: 39%;
+}
+.clear {
+    clear: both;
+    }
   @media (max-width: 800px) {
   .main-slider {
     padding: 50px 20px;
+}
+
+.product-disc{
+    float: left;
+    width: 48%;
 }
 .service-image{
     width: 200px;
@@ -73,6 +85,7 @@
 .discription{
     width:95%;
     float: none;
+    padding: 10px;
 }
 #button {
 
