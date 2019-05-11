@@ -28,7 +28,8 @@
                         <div class="dx-field">
                             <div class="dx-field-label">Date of birth</div>
                             <div class="dx-field-value">
-                                <dx-date-box formControlName="FemaleBdate" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="female_birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd" [useMaskBehavior]="true">
+                                <dx-date-box formControlName="FemaleBdate" type="date" displayFormat="dd/MM/yyyy"  [(min)]="mindateinDateFormat"
+                                [(max)]="maxdateinDateFormat" [(ngModel)]="female_birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd" [useMaskBehavior]="true">
                                 </dx-date-box>
                                 </div>
                         </div>
@@ -250,7 +251,8 @@
                         <div class="dx-field">
                             <div class="dx-field-label">Date of birth</div>
                             <div class="dx-field-value">
-                                <dx-date-box formControlName="MaleBdate" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="male_birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd" [useMaskBehavior]="true">
+                                <dx-date-box formControlName="MaleBdate" type="date" displayFormat="dd/MM/yyyy"  [(min)]="mindateinDateFormat"
+                                [(max)]="maxdateinDateFormat"[(ngModel)]="male_birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd" [useMaskBehavior]="true">
                                 </dx-date-box>
                                 </div>
                         </div>

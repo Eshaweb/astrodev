@@ -145,7 +145,7 @@
     <div *dxTemplate="let data of 'content'">
         <div class="cap">Date</div> <div class="data"> :{{loginService.orderHistoryResponse.Date|  date:'dd/MM/yyyy'}}</div><div class="clear"></div>
         <div class="cap">Item Ordered</div><div class="data">:{{loginService.orderHistoryResponse.ItName}}</div><div class="clear"></div>
-            <div class="cap">Order Id</div> <div class="data">:{{loginService.orderHistoryResponse.OrderId}}</div><div class="clear"></div>
+            <div class="cap">Order Id</div> <div class="data">:{{loginService.orderHistoryResponse.ExtCode}}</div><div class="clear"></div>
             <div class="cap">Amount  </div> <div class="data">:{{loginService.orderHistoryResponse.Amount}}
     </div>
         <!-- <div *ngIf="(loginService.orderHistoryResponse.StatusCode)=='AP'">

@@ -170,7 +170,8 @@
                                 <div class="dx-field">
                                     <div class="dx-field-label">From Date</div>
                                     <div class="dx-field-value">
-                                        <dx-date-box formControlName="FromDate" [(ngModel)]="fromdateinDateFormat" [(min)]="dateinDateFormat" type="date" displayFormat="dd/MM/yyyy" [useMaskBehavior]="true" (onValueChanged)='setToDateinDateFormat()'>
+                                        <dx-date-box formControlName="FromDate" [(ngModel)]="fromdateinDateFormat" [(min)]="dateinDateFormat" type="date" 
+                                        displayFormat="dd/MM/yyyy" [useMaskBehavior]="true" (onValueChanged)='setToDateinDateFormat()'>
                                         </dx-date-box>
                                         </div>
                                 </div>
@@ -179,7 +180,8 @@
                                     <div class="dx-field">
                                         <div class="dx-field-label">To Date</div>
                                         <div class="dx-field-value">
-                                            <dx-date-box id='tod' formControlName="ToDate" [(ngModel)]="todateinDateFormat" [(min)]="dateinDateFormat" type="date" displayFormat="dd/MM/yyyy" [useMaskBehavior]="true">
+                                            <dx-date-box id='tod' formControlName="ToDate" [(ngModel)]="todateinDateFormat" [(min)]="dateinDateFormat" 
+                                            [max]="maxdateinDateFormat" type="date" displayFormat="dd/MM/yyyy" [useMaskBehavior]="true">
                                             </dx-date-box>
                                             <p style="color:red" id='err_ToDate'></p>
                                         </div>

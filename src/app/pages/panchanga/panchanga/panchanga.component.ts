@@ -51,14 +51,17 @@ export class PanchangaComponent {
     { Id: "DOUBLE", Text: 'Double Summer Time' },
     { Id: "WAR", Text: 'War Time' }
   ];
+  mindateinDateFormat: Date;
+  maxdateinDateFormat: Date;
  
 
 
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public panchangaService: PanchangaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
-      
-      this.loginService.isHomePage=false;
+    this.mindateinDateFormat = new Date(1900, 0, 1);
+    this.maxdateinDateFormat = new Date(2099, 11, 31);
+    this.loginService.isHomePage = false;
       this.panchangaForm = this.formbuilder.group({
       Date: new Date(),
       birthPlace: ['', [Validators.required]],

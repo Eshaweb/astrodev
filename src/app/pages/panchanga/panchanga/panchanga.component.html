@@ -6,7 +6,8 @@
                         <div class="dx-field">
                             <div class="dx-field-label">Date</div>
                             <div class="dx-field-value">
-                                <dx-date-box formControlName="Date" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd" [useMaskBehavior]="true">
+                                <dx-date-box formControlName="Date" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" [(min)]="mindateinDateFormat"
+                                [(max)]="maxdateinDateFormat" dateSerializationFormat="yyyy-MM-dd" [useMaskBehavior]="true">
                                 </dx-date-box>
                                 </div>
                         </div>

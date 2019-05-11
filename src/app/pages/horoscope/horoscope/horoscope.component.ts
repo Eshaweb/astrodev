@@ -47,7 +47,7 @@ export class HoroscopeComponent {
   reportSizedata: ArrayStore;
   languagedata: ArrayStore;
   timeformatdata: ArrayStore;
-  
+
   timeformatvalue: string;
   reportSizevalue: string;
   languagevalue: string;
@@ -62,10 +62,13 @@ export class HoroscopeComponent {
   longitude: number;
   timeZoneName: string;
   timeZoneId: any;
+  mindateinDateFormat: Date;
+  maxdateinDateFormat: Date;
   constructor(public loginService: LoginService, public storageService: StorageService, service: Service, public loadingSwitchService: LoadingSwitchService, private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public horoScopeService: HoroScopeService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
-
+    this.mindateinDateFormat = new Date(1900, 0, 1);
+    this.maxdateinDateFormat = new Date();
     this.loginService.isHomePage = false;
     this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
     if (environment.production) {

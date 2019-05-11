@@ -89,6 +89,8 @@ export class MatchMakingComponent {
     reportSizes: SelectBoxModel[] = [
       { Id: "A4", Text: "A4" },
       { Id: "A5", Text: "A5" }];
+  mindateinDateFormat: Date;
+  maxdateinDateFormat: Date;
 
   opened(e) {
     e.component
@@ -103,6 +105,8 @@ export class MatchMakingComponent {
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService:LoadingSwitchService,public route: ActivatedRoute, public router: Router, public cdr: ChangeDetectorRef,
     public matchMakingService: MatchMakingService, public ngZone: NgZone, public mapsAPILoader: MapsAPILoader,
     public uiService: UIService, public formbuilder: FormBuilder) {
+      this.mindateinDateFormat = new Date(1900, 0, 1);
+      this.maxdateinDateFormat = new Date();
       this.loginService.isHomePage=false;
       if (environment.production) {
         this.maleMatchMakingForm = this.formbuilder.group({

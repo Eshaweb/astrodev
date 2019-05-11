@@ -68,6 +68,7 @@ export class MuhurthaComponent {
   
   birthDateinDateFormat: Date;
   dateinDateFormat: Date;
+  maxdateinDateFormat: Date;
   dataSource: RashiNak[];
   languages: SelectBoxModel[] = [
     { Id: "ENG", Text: "English" },
@@ -240,9 +241,12 @@ export class MuhurthaComponent {
     else {
       this.birthDateinDateFormat = this.muhurthaaForm.controls['Date'].value;
       this.dateinDateFormat = new Date();
+      this.maxdateinDateFormat = new Date();
+      this.maxdateinDateFormat.setMonth(this.dateinDateFormat.getMonth()+2);
       this.fromdateinDateFormat = this.dateRangeForm.controls['FromDate'].value;
       this.todateinDateFormat = this.dateRangeForm.controls['ToDate'].value;
-      this.todateinDateFormat.setMonth(this.todateinDateFormat.getMonth()+3);
+      //this.todateinDateFormat.setMonth(this.todateinDateFormat.getMonth()+3);
+      this.todateinDateFormat.setDate(this.todateinDateFormat.getDate()+15);
       this.dataSource = [{Rashi: "0", Nakshatra: "0"}];
       this.muhurthaRequest={
         MuhurthaType:null,
@@ -288,12 +292,11 @@ export class MuhurthaComponent {
 
   };
   setToDateinDateFormat() {  
-      // var todateinDateFormat:Date = this.dateRangeForm.controls['FromDate'].value;
-      // //this.dateRangeForm.controls['ToDate'].setValue(new Date());
-      // //this.todateinDateFormat=this.dateRangeForm.controls['ToDate'].value;
-      // this.todateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate()+1);
-      // this.dateRangeForm.controls['ToDate'].setValue(this.todateinDateFormat);
-      // this.fromdateinDateFormat = this.dateRangeForm.controls['FromDate'].value;
+      this.maxdateinDateFormat = this.dateRangeForm.controls['FromDate'].value;
+      //this.maxdateinDateFormat.setMonth(this.dateRangeForm.controls['FromDate'].value.getMonth()+2);
+      this.maxdateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate()+60);
+      // this.todateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate()+15);
+      // this.dateRangeForm.controls['ToDate'].value.setValue(this.dateRangeForm.controls['FromDate'].value.getDate()+15);
   }
   ngOnInit() {
     this.loadingSwitchService.loading = true;

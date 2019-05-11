@@ -47,23 +47,27 @@ export class NumerologyComponent {
     reportSizes: SelectBoxModel[] = [
       { Id: "A4", Text: "A4" },
       { Id: "A5", Text: "A5" }];
+  mindateinDateFormat: Date;
+  maxdateinDateFormat: Date;
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager,
     public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     public partyService: PartyService, public numerologyService: NumerologyService, public uiService: UIService,
     public formbuilder: FormBuilder) {
-      this.loginService.isHomePage=false;
-      if (environment.production) {
-        this.numerologyForm = this.formbuilder.group({
-          Name: ['', [Validators.required, Validators.minLength(4)]],
-          Date: new Date(),
-          language: ['', []],
-          gender: ['M', []],
-          houseName: [''],
-          mobileNo: [null],
-          vehicleNo: [''],
-          cityName: ['', []]
-        });
-      }
+    this.mindateinDateFormat = new Date(1900, 0, 1);
+    this.maxdateinDateFormat = new Date();
+    this.loginService.isHomePage = false;
+    if (environment.production) {
+      this.numerologyForm = this.formbuilder.group({
+        Name: ['', [Validators.required, Validators.minLength(4)]],
+        Date: new Date(),
+        language: ['', []],
+        gender: ['M', []],
+        houseName: [''],
+        mobileNo: [null],
+        vehicleNo: [''],
+        cityName: ['', []]
+      });
+    }
       else{
         this.numerologyForm = this.formbuilder.group({
           Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],

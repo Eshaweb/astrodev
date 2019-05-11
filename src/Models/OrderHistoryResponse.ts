@@ -5,4 +5,5 @@ export class OrderHistoryResponse {
     ItName: string;
     OrderId: any
     StatusCode: string;
+    ExtCode:string;
 }
