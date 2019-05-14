@@ -39,6 +39,7 @@ export class DeliveryAddressComponent implements OnInit {
     Id: any;
     email: string;
     DeliveryAddressRequired: boolean;
+    ExtCode: any;
     //DeliveryAddressRequired: any;
     constructor(public storageService:StorageService,public _location: Location, public route: ActivatedRoute, public router: Router, public loginService: LoginService,
         public horoScopeService: HoroScopeService, private orderService:OrderService, public partyService:PartyService,
@@ -139,6 +140,7 @@ export class DeliveryAddressComponent implements OnInit {
         this.loadingSwitchService.loading = true;
         //this.OrderId = this.orderService.orderResponse.OrderId;
         this.OrderId = StorageService.GetItem('OrderId');
+        this.ExtCode = StorageService.GetItem('ExtCode');
         // if(this.orderService.orderResponse.ItName!=undefined){
         //     this.ItName=this.orderService.orderResponse.ItName;
         // }

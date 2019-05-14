@@ -137,7 +137,12 @@
                                         [allowUpdating]="true"
                                         [allowDeleting]="true">
                                     </dxo-editing>
-                                        <dxi-column  class="grid-column2" dataField="Nakshatra" placeholder="Enter Gothra here..." [setCellValue]="setStarValue">
+                                    <dxi-column *ngIf="vivahaSelected" [allowEditing]="false" dataField="OfWhome" caption=""></dxi-column>
+                                    <dxi-column *ngIf="upanayanaSelected" [allowEditing]="false" dataField="OfWhome" caption=""></dxi-column>
+                                    <!-- <dxi-column *ngIf="semanthaSelected" [allowEditing]="false" dataField="OfWhome" caption=""></dxi-column> -->
+                                    <dxi-column *ngIf="semanthaSelected||annaPrashanaSelected||houseWarmingSelected||devaPrathistaSelected" [allowEditing]="false" dataField="OfWhome" caption=""></dxi-column>
+                                    <!-- <dxi-column *ngIf="houseWarmingSelected" [allowEditing]="false" dataField="OfWhome" caption=""></dxi-column> -->
+                                    <dxi-column  class="grid-column2" dataField="Nakshatra" placeholder="Enter Gothra here..." [setCellValue]="setStarValue">
                                         <dxo-lookup
                                         [dataSource]="stars"
                                         displayExpr="Text"

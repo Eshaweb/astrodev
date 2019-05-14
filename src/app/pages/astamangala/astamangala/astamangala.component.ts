@@ -562,10 +562,7 @@ export class AstamangalaComponent {
     if (btime instanceof Date) {
       var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
     }
-    else {
-      timeinString = btime;
-    }
-
+  
     this.horoRequest = {
       //Date: "2018-12-28",
       //Time: "18:34:00",

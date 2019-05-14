@@ -209,6 +209,11 @@ export class MuhurthaComponent {
     { "Id": "12", "Text": "Meena", "StarId": "26" },
     { "Id": "12", "Text": "Meena", "StarId": "27" }
   ];
+  BrideGroomDetails: string[];
+  semanthaSelected: boolean;
+  annaPrashanaSelected: boolean;
+  houseWarmingSelected: boolean;
+  devaPrathistaSelected: boolean;
   
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public muhurthaService: MuhurthaService, public uiService: UIService,
@@ -469,21 +474,81 @@ export class MuhurthaComponent {
       this.vivahaSelected = true;
       this.upanayanaSelected = false;
       this.yathraSelected = false;
+      this.semanthaSelected=false;
+      this.annaPrashanaSelected=false;
+      this.houseWarmingSelected=false;
+      this.devaPrathistaSelected=false;
+      this.dataSource=[{Rashi: "0", Nakshatra: "0", OfWhome:'BrideGroom'},
+      {Rashi: "0", Nakshatra: "0", OfWhome:'Bride'}];
     }
     else if (event.value == "upny") {
       this.upanayanaSelected = true;
       this.vivahaSelected = false;
       this.yathraSelected = false;
+      this.semanthaSelected=false;
+      this.annaPrashanaSelected=false;
+      this.houseWarmingSelected=false;
+      this.devaPrathistaSelected=false;
+      this.dataSource=[{Rashi: "0", Nakshatra: "0", OfWhome:'Vatu'},
+      {Rashi: "0", Nakshatra: "0", OfWhome:'Father'}];
+    }
+    else if(event.value == "semt"){
+      this.semanthaSelected=true;
+      this.vivahaSelected = false;
+      this.upanayanaSelected = false;
+      this.yathraSelected = false;
+      this.annaPrashanaSelected=false;
+      this.houseWarmingSelected=false;
+      this.devaPrathistaSelected=false;
+      this.dataSource=[{Rashi: "0", Nakshatra: "0", OfWhome:'Pregnant'}];
+    }
+    else if(event.value == "anna"||event.value =="krna"||event.value =="chal"||event.value =="tott"||event.value =="name"||event.value =="vida"){
+      this.annaPrashanaSelected=true;
+      this.semanthaSelected=false;
+      this.vivahaSelected = false;
+      this.upanayanaSelected = false;
+      this.yathraSelected = false;
+      this.houseWarmingSelected=false;
+      this.devaPrathistaSelected=false;
+      this.dataSource=[{Rashi: "0", Nakshatra: "0", OfWhome:'Child'}];
+    }
+    else if(event.value == "grpr"||event.value =="grab"){
+      this.houseWarmingSelected=true;
+      this.semanthaSelected=false;
+      this.vivahaSelected = false;
+      this.upanayanaSelected = false;
+      this.yathraSelected = false;
+      this.annaPrashanaSelected=false;
+      this.devaPrathistaSelected=false;
+      this.dataSource=[{Rashi: "0", Nakshatra: "0", OfWhome:'Owner'}];
+    }
+    else if (event.value == "dvpr") {
+      this.devaPrathistaSelected=true;
+      this.yathraSelected = false;
+      this.semanthaSelected=false;
+      this.vivahaSelected = false;
+      this.upanayanaSelected = false;
+      this.annaPrashanaSelected=false;
+      this.houseWarmingSelected=false;
+      this.dataSource=[{Rashi: "0", Nakshatra: "0", OfWhome:'God'}];
     }
     else if (event.value == "trvl") {
       this.yathraSelected = true;
+      this.semanthaSelected=false;
       this.vivahaSelected = false;
       this.upanayanaSelected = false;
+      this.annaPrashanaSelected=false;
+      this.houseWarmingSelected=false;
+      this.devaPrathistaSelected=false;
     }
     else {
       this.vivahaSelected = false;
       this.upanayanaSelected = false;
       this.yathraSelected = false;
+      this.semanthaSelected=false;
+      this.annaPrashanaSelected=false;
+      this.houseWarmingSelected=false;
+      this.devaPrathistaSelected=false;
     }
   }
   languagedataSelection(event) {

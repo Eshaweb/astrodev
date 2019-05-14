@@ -601,9 +601,7 @@ export class MatchMakingComponent {
     if (btime_Female instanceof Date) {
       var timeinString_Female = ("0" + btime_Female.getHours()).toString().slice(-2) + ":" + ("0" + btime_Female.getMinutes()).toString().slice(-2) + ":" + "00";
     }
-    else {
-      timeinString_Female = btime_Female;
-    }
+   
     if (bdate_Male instanceof Date) {
       var dateinString_Male = bdate_Male.getFullYear().toString() + "-" + ("0" + ((bdate_Male.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate_Male.getDate()).toString().slice(-2);
     }
@@ -613,9 +611,7 @@ export class MatchMakingComponent {
     if (btime_Male instanceof Date) {
       var timeinString_Male = ("0" + btime_Male.getHours()).toString().slice(-2) + ":" + ("0" + btime_Male.getMinutes()).toString().slice(-2) + ":" + "00";
     }
-    else {
-      timeinString_Male = btime_Male;
-    }
+    
     this.matchRequest = {
       LangCode: this.languagevalue,
       UserOrSystem: this.reportTypevalue,
