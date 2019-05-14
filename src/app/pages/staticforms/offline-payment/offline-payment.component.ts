@@ -8,9 +8,11 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 })
 export class OfflinepaymentComponent implements OnInit {
   OrderId: string;
+  ExtCode: any;
 
   constructor() { 
     this.OrderId = StorageService.GetItem('OrderId');
+    this.ExtCode = StorageService.GetItem('ExtCode');
   }
 
   ngOnInit() {

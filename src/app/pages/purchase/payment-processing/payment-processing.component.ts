@@ -24,9 +24,11 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
   timeExceeded: boolean = false;
   OrderId: string;
   subscribe: any;
+  ExtCode: any;
   constructor(public storageService: StorageService, private orderService: OrderService, private loadingSwitchService: LoadingSwitchService,
     public location: Location, public router: Router, public horoScopeService: HoroScopeService) {
     this.OrderId = StorageService.GetItem('OrderId');
+    this.ExtCode = StorageService.GetItem('ExtCode');
   }
 
   ngOnInit() {

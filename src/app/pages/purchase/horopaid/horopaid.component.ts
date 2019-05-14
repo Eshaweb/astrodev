@@ -291,6 +291,7 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
             if (data.Error == undefined) {
                 this.orderService.OrderId = data.OrderId;
                 StorageService.SetItem('OrderId', data.OrderId);
+                StorageService.SetItem('ExtCode', data.ExtCode);
                 //this.orderService.orderResponse = data;
                 this.storageService.SetOrderResponse(JSON.stringify(data));
                 //   var FreePDF = {

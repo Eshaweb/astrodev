@@ -25,4 +25,5 @@ export class MuhurthaRequest{
   export class RashiNak{
     Rashi:string;
     Nakshatra:string;
+    OfWhome?:string;
   }
