@@ -64,6 +64,7 @@ export class HoroscopeComponent {
   timeZoneId: any;
   mindateinDateFormat: Date;
   maxdateinDateFormat: Date;
+  isMarriedvalue: boolean=false;
   constructor(public loginService: LoginService, public storageService: StorageService, service: Service, public loadingSwitchService: LoadingSwitchService, private errorService: ErrorService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public horoScopeService: HoroScopeService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
@@ -363,6 +364,11 @@ export class HoroscopeComponent {
   languagedataSelection(event) {
     this.languagevalue = event.value;
   }
+
+  IsMarriedCheckBoxValueChanged(event){
+    this.isMarriedvalue=event.value;
+  }
+
   OnMouseUp(event) {
     if (event == null) {
       this.timeZoneName = null;
@@ -420,7 +426,7 @@ export class HoroscopeComponent {
       Pruchaka: 0,
       JanmaRashi: 0,
       AshtaMangalaNo: '444',
-      IsMarried: true,
+      IsMarried: this.isMarriedvalue,
     }
 
     this.horoScopeService.Fathername = this.horoRequest.Father;
