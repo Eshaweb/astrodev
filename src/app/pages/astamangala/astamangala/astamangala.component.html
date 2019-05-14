@@ -2,7 +2,7 @@
 <div class="dx-card content-block responsive-paddings">
     <form action="your-action" [formGroup]="astamangalaForm">
         <div class="dx-fieldset">
-            <div class="dx-fieldset-header">Credentials</div>
+            <!-- <div class="dx-fieldset-header">Credentials</div> -->
                     <div class="dx-fieldset-column">
                         <div class="dx-field">
                             <div class="dx-field-label">Date*</div>
@@ -320,7 +320,7 @@
             <div class="clear"></div>
             </div>
     
-        <div class="dx-fieldset">
+        <div class="dx-fieldset submit-btn">
             <dx-validation-summary id="summary"></dx-validation-summary>
     
             <dx-button [disabled]="!astamangalaForm.valid" (onClick)='OnSubmit_click()'

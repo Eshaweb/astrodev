@@ -109,8 +109,8 @@ button {
 }
 .float-bar {
   position: fixed;
-  right: 70px;
-  top: 500px;
+  right: 0;
+  bottom: 0;
   transition: all 0.2s ease-in 0s;//this is the key attribute
   z-index: 9999;
   cursor: pointer;
@@ -136,7 +136,7 @@ button {
 .float-bar {
   position: fixed;
   right: 0px;
-  top: inherit;
+  
   bottom: 0;
   transition: all 0.2s ease-in 0s;
   z-index: 9999;
