@@ -70,7 +70,9 @@
 table,
 tr,
 td {
-    border: 1px solid black !important;
+    border: 2px solid #bbb !important;
+    border-collapse: collapse;
+    padding: 5px;
 }
 
 .dx-field-value,

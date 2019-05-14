@@ -115,9 +115,10 @@ button {
   cursor: pointer;
   background: #db7234;
   padding: 20px;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 10px;
   color: #fff;
   font-size: 18px;
+  width: 300px;
   }
 .float-button:hover {
       right: -7px;//hide it by pushing it off the screen

@@ -114,7 +114,9 @@ td{
 table,
 tr,
 td {
-    border: none;
+    border: 2px solid #bbb !important;
+    border-collapse: collapse;
+    padding: 5px;
 }
 
 .dx-template-wrapper.dx-item-content.dx-tile-content {
