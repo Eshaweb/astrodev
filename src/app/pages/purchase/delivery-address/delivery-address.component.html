@@ -46,7 +46,7 @@
     <div class="add-address">
 
 </div>
-<div class="dx-fieldset" *ngIf="DeliveryAddressRequired">
+<div class="dx-fieldset submit-btn" *ngIf="DeliveryAddressRequired">
     <div class="dx-field">
         <dx-button (onClick)='onAddAddress()' id="button" text="Add Address" type="success" [useSubmitBehavior]="true">
         </dx-button>
@@ -125,21 +125,21 @@
                     </div>
                 </div>
             </div>
-
+            <div class="dx-fieldset submit-btn">
     <div class="dx-field">
-        <div class="cap">
-<dx-button  [disabled]="!customerAddressForm.valid" text="Save" type="success" (onClick)="onSaveAddress()" ></dx-button>
-</div>
-<div class="data">
+        <!-- <div class="cap"> -->
+<dx-button  [disabled]="!customerAddressForm.valid" text="Save" type="success" (onClick)="onSaveAddress()" style="margin-right: 60px;" ></dx-button>
+<!-- </div> -->
+<!-- <div class="data"> -->
 <dx-button  text="Cancel" type="submit" (onClick)="onCancel()"  ></dx-button>
+<!-- </div> -->
 </div>
 </div>
 
-
 </div>
 </div>
 
-<div class="dx-fieldset">
+<div class="dx-fieldset submit-btn">
     <div class="dx-field"> 
         <dx-button (onClick)='onPlaceOrder()'
         id="button"

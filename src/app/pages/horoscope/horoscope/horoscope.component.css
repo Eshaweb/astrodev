@@ -11,7 +11,6 @@
 
     ::ng-deep #button {
         width: 150px;
-        margin-left: 35%;
     }
     
     .dx-fieldset-column {
@@ -36,6 +35,15 @@
     margin-bottom: 14px;
     }
     
+    .submit-btn{
+       
+            display: flex;
+            justify-content: center;
+       
+    }
+
+
+
     @media (max-width: 800px) {
     .dx-fieldset-column {
     float: left;

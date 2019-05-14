@@ -6,22 +6,15 @@
 
 .cap {
     float: left; //margin-right: 12%;
-    width: 40%;
+    width: 45%;
     text-align: left;
 }
 
-.dx-feldset-column {
-    /* width: 50%; */
-}
 
 .astrolite-wallet {
     margin-left: 20px;
 }
 
-.continue-button {
-    margin-left: 35%;
-    margin-top: 8%;
-}
 
 .clear {
     clear: both;
@@ -33,6 +26,10 @@
 .payment-mode{
     width:300px;
 }
+.dx-fieldset.submit-btn {
+    margin-right: 18px;
+}
+
 @media (max-width: 800px) {
     .payment {
         width: 90%;
