@@ -13,7 +13,7 @@
             <div class="padding">
                     <div class="dx-fieldset-column">
                 <div class="dx-field">
-                <div class="dx-field-label">Add Amount</div>
+                <div class="dx-field-label">Add Amount*</div>
                 <div class="dx-field-value">
                     <dx-text-box formControlName="Amount" valueChangeEvent="keyup" (keyup)="onAmount($event.target.value)"  placeholder="Enter Amount" width="100%">
                     </dx-text-box>
@@ -28,7 +28,7 @@
                
                 <div class="dx-fieldset-column">
                 <div class="dx-field">
-                        <div class="dx-field-label">Payment Mode</div>
+                        <div class="dx-field-label">Payment Mode*</div>
                         <div class="dx-field-value">
                                 <dx-select-box formControlName="BillPayMode"
                                 (onValueChanged)="paymentModeSelection($event)" 

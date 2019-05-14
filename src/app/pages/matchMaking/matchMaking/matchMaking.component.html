@@ -16,7 +16,7 @@
             <div class="clear"></div>
             <div class="dx-fieldset-column">
                 <div class="dx-field">
-                    <div class="dx-field-label">Name</div>
+                    <div class="dx-field-label">Name*</div>
                     <div class="dx-field-value">
                         <dx-text-box formControlName="femaleName" valueChangeEvent="keyup" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
                         <span style="color:red" id='err_femaleName'></span>
@@ -26,7 +26,7 @@
                 <div class="clear"></div>
                     <div class="dx-fieldset-column">
                         <div class="dx-field">
-                            <div class="dx-field-label">Date of birth</div>
+                            <div class="dx-field-label">Date of birth*</div>
                             <div class="dx-field-value">
                                 <dx-date-box formControlName="FemaleBdate" type="date" displayFormat="dd/MM/yyyy"  [(min)]="mindateinDateFormat"
                                 [(max)]="maxdateinDateFormat" [(ngModel)]="female_birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd" [useMaskBehavior]="true">
@@ -63,7 +63,7 @@
                         </div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
-                                <div class="dx-field-label">Birth Place</div>
+                                <div class="dx-field-label">Birth Place*</div>
                                 <div class="dx-field-value">
                                     <dx-text-box id="female_birthplace_txt" valueChangeEvent="keyup" formControlName="FemaleBplace" [(ngModel)]="matchMakingService.female_birthplace" showClearButton="true"></dx-text-box>
                                     <p style="color:red" id='err_FemaleBplace'></p>
@@ -239,7 +239,7 @@
                         <div class="clear"></div>
             <div class="dx-fieldset-column">
                 <div class="dx-field">
-                    <div class="dx-field-label">Name</div>
+                    <div class="dx-field-label">Name*</div>
                     <div class="dx-field-value">
                         <dx-text-box formControlName="maleName" valueChangeEvent="keyup" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
                         <span style="color:red" id='err_maleName'></span>
@@ -249,7 +249,7 @@
                 <div class="clear"></div>
                     <div class="dx-fieldset-column">
                         <div class="dx-field">
-                            <div class="dx-field-label">Date of birth</div>
+                            <div class="dx-field-label">Date of birth*</div>
                             <div class="dx-field-value">
                                 <dx-date-box formControlName="MaleBdate" type="date" displayFormat="dd/MM/yyyy"  [(min)]="mindateinDateFormat"
                                 [(max)]="maxdateinDateFormat"[(ngModel)]="male_birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd" [useMaskBehavior]="true">
@@ -286,7 +286,7 @@
                         </div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
-                                <div class="dx-field-label">Birth Place</div>
+                                <div class="dx-field-label">Birth Place*</div>
                                 <div class="dx-field-value">
                                     <dx-text-box id="male_birthplace_txt" valueChangeEvent="keyup" formControlName="MaleBplace"[(ngModel)]="matchMakingService.male_birthplace" showClearButton="true"></dx-text-box>
                                     <p style="color:red" id='err_MaleBplace'></p>
@@ -475,7 +475,7 @@
         </div>
         <div class="dx-fieldset-column">
             <div class="dx-field">
-                <div class="dx-field-label">Report Types</div>
+                <div class="dx-field-label">Report Types*</div>
                 <div class="dx-field-value">
                   <dx-select-box
                   [dataSource]="reportTypedata"
@@ -491,7 +491,7 @@
         <div class="clear"></div>
         <div class="dx-fieldset-column">
             <div class="dx-field">
-                <div class="dx-field-label">Report Size</div>
+                <div class="dx-field-label">Report Size*</div>
                 <div class="dx-field-value">
                   <dx-select-box 
                   (onValueChanged)="reportSizedataSelection($event)"

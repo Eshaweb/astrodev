@@ -116,6 +116,14 @@ export class HomeComponent {
         this.router.navigate(['/horoscope']);
     }
   }
+
+  OnWindowsProduct_Click(){
+    this.router.navigate(['/products']);
+  }
+
+  OnAndroidProduct_Click(){
+    this.router.navigate(['/products']);
+  }
   // OnReadMore_click(value) {
   //   switch (value) {
   //     case "Astamangala":

@@ -220,7 +220,7 @@ export class MuhurthaComponent {
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
     this.loginService.isHomePage=false;
     this.muhurthaaForm = this.formbuilder.group({
-      Date: new Date(),
+      Date: [null, [Validators.required]],
       birthPlace: ['', [Validators.required]],
       language: ['', []]
     });
@@ -381,7 +381,7 @@ export class MuhurthaComponent {
       this.languagevalue = this.languages[2].Id;
       this.reportSizevalue = this.reportSizes[1].Id;
       //this.muhurthasvalue = this.muhurthas[0].Id;
-      this.yathradirectionsvalue = this.yathradirections[0].Id;
+      //this.yathradirectionsvalue = this.yathradirections[0].Id;
     }
 
   }

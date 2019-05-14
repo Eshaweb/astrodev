@@ -5,7 +5,7 @@
             <div class="dx-fieldset-header">Credentials</div>
                     <div class="dx-fieldset-column">
                         <div class="dx-field">
-                            <div class="dx-field-label">Date</div>
+                            <div class="dx-field-label">Date*</div>
                             <div class="dx-field-value">
                                 <dx-date-box formControlName="Date" type="date" [(min)]="mindateinDateFormat"
                                 [(max)]="maxdateinDateFormat" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd" [useMaskBehavior]="true">
@@ -15,7 +15,7 @@
                         </div>
                         <div class="dx-fieldset-column">
                         <div class="dx-field">
-                            <div class="dx-field-label">Time</div>
+                            <div class="dx-field-label">Time*</div>
                             <div class="dx-field-value">
                               <!-- <dx-date-box formControlName="Time" width="300" type="datetime" [showClearButton]="true" displayFormat="shortTime" (onOpened)="opened($event)" dateSerializationFormat="HH:mm:ss">
                             </dx-date-box> -->
@@ -27,7 +27,7 @@
                         <div class="clear"></div>
                         <div class="dx-fieldset-column">
                         <div class="dx-field">
-                            <div class="dx-field-label">Gender</div>
+                            <div class="dx-field-label">Gender*</div>
                             <div class="dx-field-value">
                                 <dx-radio-group
                                  [dataSource]="genderdata" 
@@ -96,7 +96,7 @@
                         </div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
-                                <div class="dx-field-label">Place</div>
+                                <div class="dx-field-label">Place*</div>
                                 <div class="dx-field-value">
                                     <dx-text-box id="txtHome" valueChangeEvent="keyup" formControlName="birthPlace" showClearButton="true" [(ngModel)]="horoRequest.Place"></dx-text-box>
                                     <p style="color:red" id='err_birthPlace'></p>
@@ -250,7 +250,7 @@
             <p>Time Zone: {{timeZoneName}}</p>
             <div class="dx-fieldset-column">
                 <div class="dx-field">
-                    <div class="dx-field-label">Swarna Aarooda</div>
+                    <div class="dx-field-label">Swarna Aarooda*</div>
                     <div class="dx-field-value">
                         <dx-number-box formControlName="Swarna" valueChangeEvent="keyup" [(ngModel)]="horoRequest.Swarna" placeholder="Enter Swarna Aarooda here..."></dx-number-box>
                         <span style="color:red" id='err_Swarna'></span>
@@ -259,7 +259,7 @@
             </div>
             <div class="dx-fieldset-column">
                 <div class="dx-field">
-                    <div class="dx-field-label">Tambula</div>
+                    <div class="dx-field-label">Tambula*</div>
                     <div class="dx-field-value">
                         <dx-number-box formControlName="Tambula" valueChangeEvent="keyup" [(ngModel)]="horoRequest.Tambula" placeholder="Enter Tambula here..."></dx-number-box>
                         <span style="color:red" id='err_Tambula'></span>
@@ -269,7 +269,7 @@
             <div class="clear"></div>
             <div class="dx-fieldset-column">
                 <div class="dx-field">
-                    <div class="dx-field-label">Pruchaka Nakshatra</div>
+                    <div class="dx-field-label">Pruchaka Nakshatra*</div>
                     <div class="dx-field-value">
                         <!-- <dx-number-box formControlName="Pruchaka" [(ngModel)]="horoRequest.Pruchaka" placeholder="Enter Pruchaka Nakshatra here..."></dx-number-box> -->
                         <dx-select-box
@@ -285,7 +285,7 @@
             </div>
             <div class="dx-fieldset-column">
                 <div class="dx-field">
-                    <div class="dx-field-label">Pruchaka Janma Rashi</div>
+                    <div class="dx-field-label">Pruchaka Janma Rashi*</div>
                     <div class="dx-field-value">
                         <dx-select-box
                         [dataSource]="pruchakaRashidata"
@@ -301,7 +301,7 @@
             <div class="clear"></div>
             <div class="dx-fieldset-column">
                 <div class="dx-field">
-                    <div class="dx-field-label">Asta Mangala No</div>
+                    <div class="dx-field-label">Asta Mangala No*</div>
                     <div class="dx-field-value">
                         <dx-number-box step='0' formControlName="AshtaMangalaNo" valueChangeEvent="keyup" [(ngModel)]="horoRequest.AshtaMangalaNo" placeholder="Enter AshtaMangala No here..."></dx-number-box>
                         <p style="color:red" id='err_AshtaMangalaNo'></p>
@@ -310,7 +310,7 @@
             </div>
             <div class="dx-fieldset-column">
                 <div class="dx-field">
-                    <div class="dx-field-label">Sprushtanga Rashi</div>
+                    <div class="dx-field-label">Sprushtanga Rashi*</div>
                     <div class="dx-field-value">
                         <dx-number-box formControlName="Sprushtanga" valueChangeEvent="keyup" [(ngModel)]="horoRequest.Sprushtanga" placeholder="Enter Sprushtanga here..."></dx-number-box>
                         <p style="color:red" id='err_Sprushtanga'></p>

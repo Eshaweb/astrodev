@@ -4,7 +4,7 @@
         <div class="dx-fieldset">
                     <div class="dx-fieldset-column">
                         <div class="dx-field">
-                            <div class="dx-field-label">Date</div>
+                            <div class="dx-field-label">Date*</div>
                             <div class="dx-field-value">
                                 <dx-date-box formControlName="Date" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" [(min)]="mindateinDateFormat"
                                 [(max)]="maxdateinDateFormat" dateSerializationFormat="yyyy-MM-dd" [useMaskBehavior]="true">
@@ -14,7 +14,7 @@
                         </div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
-                                <div class="dx-field-label">Time Format</div>
+                                <div class="dx-field-label">Time Format*</div>
                                 <div class="dx-field-value">
                                 <dx-select-box 
                                 (onValueChanged)="timeformatdataSelection($event)"
@@ -30,7 +30,7 @@
                         <div class="clear"></div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
-                                <div class="dx-field-label">Language</div>
+                                <div class="dx-field-label">Language*</div>
                                 <div class="dx-field-value">
                                   <!-- <dx-select-box formControlName="language"
                                       [items]="languages"
@@ -52,7 +52,7 @@
                         </div>
                         <div class="dx-fieldset-column">
                             <div class="dx-field">
-                                <div class="dx-field-label">Place</div>
+                                <div class="dx-field-label">Place*</div>
                                 <div class="dx-field-value">
                                     <dx-text-box id="txtHome" valueChangeEvent="keyup" formControlName="birthPlace" showClearButton="true" [(ngModel)]="panchangaRequest.Place"></dx-text-box>
                                     <p style="color:red" id='err_birthPlace'></p>

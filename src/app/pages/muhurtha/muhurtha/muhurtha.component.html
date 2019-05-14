@@ -7,7 +7,7 @@
                           <div class="dx-fieldset">
                                   <div class="dx-fieldset-column">
                                           <div class="dx-field">
-                                              <div class="dx-field-label">Muhurthas</div>
+                                              <div class="dx-field-label">Muhurthas*</div>
                                               <div class="dx-field-value">
                                                   <dx-select-box [dataSource]="muhurthasdata" (onValueChanged)="muhurthasdataSelection($event)"
                                                       displayExpr="Name" valueExpr="Id" [value]="muhurthasvalue" [searchEnabled]="true">
@@ -17,7 +17,7 @@
                                       </div>
                                       <div class="dx-fieldset-column">
                                           <div class="dx-field">
-                                              <div class="dx-field-label">Place</div>
+                                              <div class="dx-field-label">Place*</div>
                                               <div class="dx-field-value">
                                                   <dx-text-box id="txtHome" valueChangeEvent="keyup" formControlName="birthPlace" showClearButton="true" [(ngModel)]="muhurthaRequest.Place"></dx-text-box>
                                                   <p style="color:red" id='err_birthPlace'></p>
@@ -49,20 +49,22 @@
                                       </div>
                                       <div class="dx-fieldset-column" *ngIf="upanayanaSelected">
                                               <div class="dx-field">
-                                                      <div class="dx-field-label">Date of Birth</div>
+                                                      <div class="dx-field-label">Date of Birth*</div>
                                                       <div class="dx-field-value">
                                                           <dx-date-box formControlName="Date" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" dateSerializationFormat="yyyy-MM-dd" [useMaskBehavior]="true">
                                                           </dx-date-box>
+                                                          <span style="color:red" id='err_Date'></span>
                                                           </div>
                                                   </div>
                                       </div>
                                       <div class="dx-fieldset-column" *ngIf="yathraSelected">
                                               <div class="dx-field">
-                                                      <div class="dx-field-label">Yathra Direction</div>
+                                                      <div class="dx-field-label">Yathra Direction*</div>
                                                       <div class="dx-field-value">
                                                           <dx-select-box (onValueChanged)="yathradirectionSelection($event)" [dataSource]="yathradirectionsdata"
                                                               displayExpr="Text" valueExpr="Id" [value]="yathradirectionsvalue" [searchEnabled]="true">
                                                           </dx-select-box>
+                                                          <span style="color:red" id='err_Date'></span>
                                                       </div>
                                                   </div>
                                       </div>
@@ -94,7 +96,7 @@
                               </div>
                               <div class="dx-fieldset-column">
                                       <div class="dx-field">
-                                          <div class="dx-field-label">Language</div>
+                                          <div class="dx-field-label">Language*</div>
                                           <div class="dx-field-value">
                                             <dx-select-box
                                             [dataSource]="languagedata"
@@ -173,7 +175,7 @@
                         <div class="dx-fieldset">
                         <div class="dx-fieldset-column">
                                 <div class="dx-field">
-                                    <div class="dx-field-label">From Date</div>
+                                    <div class="dx-field-label">From Date*</div>
                                     <div class="dx-field-value">
                                         <dx-date-box formControlName="FromDate" [(ngModel)]="fromdateinDateFormat" [(min)]="dateinDateFormat" type="date" 
                                         displayFormat="dd/MM/yyyy" [useMaskBehavior]="true" (onValueChanged)='setToDateinDateFormat()'>
@@ -183,12 +185,12 @@
                                 </div>
                                 <div class="dx-fieldset-column">
                                     <div class="dx-field">
-                                        <div class="dx-field-label">To Date</div>
+                                        <div class="dx-field-label">To Date*</div>
                                         <div class="dx-field-value">
                                             <dx-date-box id='tod' formControlName="ToDate" [(ngModel)]="todateinDateFormat" [(min)]="dateinDateFormat" 
                                             [max]="maxdateinDateFormat" type="date" displayFormat="dd/MM/yyyy" [useMaskBehavior]="true">
                                             </dx-date-box>
-                                            <p style="color:red" id='err_ToDate'></p>
+                                            <span style="color:red" id='err_ToDate'></span>
                                         </div>
                                     </div>
                                     </div>

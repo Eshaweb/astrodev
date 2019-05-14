@@ -5,16 +5,16 @@
             <!-- <div class="dx-fieldset-header">Credentials</div> -->
             <div class="dx-fieldset-column">
                 <div class="dx-field">
-                    <div class="dx-field-label">Name</div>
+                    <div class="dx-field-label">Name*</div>
                     <div class="dx-field-value">
                         <dx-text-box formControlName="Name" valueChangeEvent="keyup" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
-                        <p style="color:red" id='err_Name'></p>
+                        <span style="color:red" id='err_Name'></span>
                     </div>
                 </div>
                 </div>
                 <div class="dx-fieldset-column">
                     <div class="dx-field">
-                        <div class="dx-field-label">Date of birth</div>
+                        <div class="dx-field-label">Date of birth*</div>
                         <div class="dx-field-value">
                             <dx-date-box formControlName="Date" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" [(min)]="mindateinDateFormat"
                             [(max)]="maxdateinDateFormat" dateSerializationFormat="yyyy-MM-dd" [useMaskBehavior]="true">
@@ -25,7 +25,7 @@
                 <div class="clear"></div>
                 <div class="dx-fieldset-column">
                         <div class="dx-field">
-                            <div class="dx-field-label">Gender</div>
+                            <div class="dx-field-label">Gender*</div>
                             <div class="dx-field-value">
                                 <dx-radio-group
                                  [dataSource]="genderdata" 

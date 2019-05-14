@@ -41,7 +41,7 @@
     <form action="your-action" [formGroup]="contactusForm">
       <div class="dx-fieldset contact-form">
               <div class="dx-field">
-                  <div class="dx-field-label">Full Name</div>
+                  <div class="dx-field-label">Full Name*</div>
                   <div class="dx-field-value">
                       <dx-text-box formControlName="Name" valueChangeEvent="keyup" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
                       <span style="color:red" id='err_Name'></span>
@@ -55,17 +55,17 @@
               </div>
               <div class="clear"></div>
                 <div class="dx-field">
-                    <div class="dx-field-label">Phone No</div>
+                    <div class="dx-field-label">Phone No*</div>
                     <div class="dx-field-value">
                         <dx-text-box formControlName="Mobile" valueChangeEvent="keyup" placeholder="Enter Phone No here..." showClearButton="true"></dx-text-box>
                         <span style="color:red" id='err_Mobile'></span>
                     </div>
                 </div>
                   <div class="dx-field">
-                      <div class="dx-field-label">Message</div>
+                      <div class="dx-field-label">Message*</div>
                       <div class="dx-field-value">
                           <!-- <dx-text-box formControlName="Message" valueChangeEvent="keyup" placeholder="Enter Message here..." showClearButton="true"></dx-text-box> -->
-                          <dx-text-area [height]="90" placeholder="Enter Message here..." formControlName="Message"></dx-text-area>
+                          <dx-text-area [height]="90" valueChangeEvent="keyup" placeholder="Enter Message here..." formControlName="Message"></dx-text-area>
                           <span style="color:red" id='err_Message'></span>
                       </div>
                   </div>
