@@ -140,12 +140,12 @@ export class AstamangalaComponent {
       ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
       ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
       PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]],
-      Swarna: [1, [Validators.required, Validators.min(0), Validators.max(12)]],
-      Tambula: [1, [Validators.required, Validators.min(0), Validators.max(100)]],
+      Swarna: [1, [Validators.required, Validators.min(1), Validators.max(12)]],
+      Tambula: [1, [Validators.required, Validators.min(1), Validators.max(100)]],
       AshtaMangalaNo: [444, [Validators.required, Validators.pattern("^[1-8]{3}$")]],
       //Pruchaka: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
       //JanmaRashi: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
-      Sprushtanga: [1, [Validators.required, Validators.min(0), Validators.max(12)]],
+      Sprushtanga: [1, [Validators.required, Validators.min(1), Validators.max(12)]],
     });
 
     // const LatDegContrl = this.astamangalaForm.get('LatDeg');
