@@ -84,7 +84,7 @@
             <a>Shraddha Maasika</a>
         </li>
         <li class="dropdown">
-            <a style= "padding: 0px;">More<button > > </button></a>
+            <a style= "padding: 0px;margin-left: 14px;">More<button > > </button></a>
             <div class="dropdown-content">
                 <a>Pancha Pakshi</a>
                 <a>Hanuman Jyothisha</a>
@@ -116,9 +116,9 @@
         <div class="content">
             <ng-content></ng-content>
             <div class="float-bar" *ngIf='itemService.BuyNowVisible'>
-                <p>For Detailed {{itemService.ItemName}} </p>
+                <p class="buynow-text">For Detailed {{itemService.ItemName}} </p>
                                 <!-- <button class="float-bar-button" data-toggle="modal" data-target=".your-modal">Buy Full Horoscope</button> -->
-                                <dx-button
+                                <dx-button class="buy-now-btn"
                                 icon="cart"
                                 
                                 text="Buy Now"

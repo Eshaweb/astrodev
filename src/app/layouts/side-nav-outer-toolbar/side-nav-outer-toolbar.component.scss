@@ -18,9 +18,7 @@
   flex-grow: 1;
 
 }
-.service-menu{
- 
-}
+
 .buynow-footer {
   margin-left: 40%;
   //margin-top: 40px;
@@ -111,7 +109,7 @@ button {
 .float-bar {
   position: fixed;
   right: 70px;
-  top: 295px;
+  top: 500px;
   transition: all 0.2s ease-in 0s;//this is the key attribute
   z-index: 9999;
   cursor: pointer;
@@ -130,11 +128,30 @@ button {
   border-radius: 20px;
 }
 
-@media (max-width: 800px) {
 
-  .buynow-footer {
-    margin-left: 20%;
-   // margin-top: 40px;
-  }
-  
+
+@media (max-width: 450px) {
+.float-bar {
+  position: fixed;
+  right: 0px;
+  top: inherit;
+  bottom: 0;
+  transition: all 0.2s ease-in 0s;
+  z-index: 9999;
+  cursor: pointer;
+  background: #db7234;
+  padding: 10px;
+  /* border-radius: 10px 10px 0px 0px; */
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  border-radius: 0px;
+}
+.buynow-text{
+  float: left;
+}
+.buy-now-btn {
+  margin-left: 20px;
+  margin-top: 10px;
+}
 }

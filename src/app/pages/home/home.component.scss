@@ -359,7 +359,8 @@ a {
       display: block;
     }
 
-
+   
+    
 
 
 
@@ -374,7 +375,7 @@ a {
 
   .dx-card.responsive-paddings {
     padding: 20px;
-    width: 90% !important;
+    width: 95% !important;
     float: left !important;
     margin-left: 5px !important;
     margin-top: 10px;
@@ -386,6 +387,11 @@ a {
     margin-left: 10px;
     margin-right: 5px;
   }
+
+  .content-block-bottom{
+    margin-left: 10px;
+    margin-right: 5px;
+}
   .slider {
     font-size: 30px;
   }
@@ -422,7 +428,13 @@ a {
   padding-left: 20px;
   padding-right: 20px;
 }
-
+.home-bottom{
+  margin-bottom: 2px;
+  border-radius: 8px;
+}
+.card-background{
+  height: 3400px;
+}
 p {
   text-align: justify;
   line-height: 23px;
