@@ -417,11 +417,11 @@ export const navigationBeforeLoginForSystem = [
         path: '/horoscope',
       },
       {
-        text: 'Match Making',
+        text: 'Matchmaking',
         path: '/matchMaking',
       },
       {
-        text: 'Astamangala',
+        text: 'Ashtamangala',
         path: '/astamangala',
       },
       {
@@ -474,11 +474,11 @@ export const serviceMenusBeforeLogin = [
         path: '/horoscope',
       },
       {
-        text: 'Match Making',
+        text: 'Matchmaking',
         path: '/matchMaking',
       },
       {
-        text: 'Astamangala',
+        text: 'Ashtamangala',
         path: '/astamangala',
       },
       {
@@ -512,11 +512,11 @@ export const serviceMenusAfterLogin = [
         path: '/horoscope',
       },
       {
-        text: 'Match Making',
+        text: 'Matchmaking',
         path: '/matchMaking',
       },
       {
-        text: 'Astamangala',
+        text: 'Ashtamangala',
         path: '/astamangala',
       },
       {
@@ -550,11 +550,11 @@ export const services = [
         path: '/horoscope',
       },
       {
-        text: 'Match Making',
+        text: 'Matchmaking',
         path: '/matchMaking',
       },
       {
-        text: 'Astamangala',
+        text: 'Ashtamangala',
         path: '/astamangala',
       },
       {
@@ -579,16 +579,16 @@ export const services = [
       },
     ];
 
-    export const serviceListBeforeLogin=[{Path:'/astamangala',Name:'Astamangala'},
+    export const serviceListBeforeLogin=[{Path:'/astamangala',Name:'Ashtamangala'},
     {Path:'/horoscope',Name:'Horoscope'},
-    {Path:'/matchMaking',Name:'Match Making'},
+    {Path:'/matchMaking',Name:'Matchmaking'},
     {Path:'/muhurtha',Name:'Muhurtha'},
     {Path:'/panchanga',Name:'Panchanga'},
     {Path:'/numerology',Name:'Numerology'}];
 
-    export const serviceListAfterLogin=[{Path:'/astamangala',Name:'Astamangala'},
+    export const serviceListAfterLogin=[{Path:'/astamangala',Name:'Ashtamangala'},
     {Path:'/horoscope',Name:'Horoscope'},
-    {Path:'/matchMaking',Name:'Match Making'},
+    {Path:'/matchMaking',Name:'Matchmaking'},
     {Path:'/muhurtha',Name:'Muhurtha'},
     {Path:'/panchanga',Name:'Panchanga'},
     {Path:'/numerology',Name:'Numerology'},
