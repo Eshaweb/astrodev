@@ -29,7 +29,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
 
   @Input()
   title: string;
-  logo
+  //logo
 
   menuMode = 'shrink';
   menuRevealMode = 'expand';

@@ -124,7 +124,8 @@ h2 {
 table,
 tr,
 td {
-    border: 1px solid black;
+    border: 2px solid #db7234 !important;
+    border-collapse: collapse;
 }
 
 .dx-field-value,
