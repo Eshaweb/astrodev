@@ -91,7 +91,7 @@
             <div class="payment-method">
                 <div class="payment-mode" [formGroup]="paymentModeForm">
                     <dx-select-box formControlName="paymentMode" (onValueChanged)="paymentModeSelection($event)"
-                        [dataSource]="paymentModedata" displayExpr="Text" valueChangeEvent="keyup" valueExpr="Id"
+                        [dataSource]="paymentModedata" displayExpr="Text"  placeholder="Select Payment Mode" valueChangeEvent="keyup" valueExpr="Id"
                         [searchEnabled]="true" [value]='paymentModedatavalue'>
                     </dx-select-box>
                 </div>
@@ -99,7 +99,8 @@
         </div>
 
         <div class="dx-fieldset">
-            <div class="dx-field">
+               
+            <div class="dx-field" style="margin-left: 138px;">
                 <dx-button (onClick)='onPay_click()' 
                            [disabled]="!paymentModedatavalue" 
                            text="Buy Now" 
@@ -107,6 +108,7 @@
                     [useSubmitBehavior]="true">
                 </dx-button>
             </div>
+        
         </div>
     </div>
 </div>
