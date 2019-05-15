@@ -195,3 +195,72 @@ td {
         text-align: left;
     }
 }
+
+
+
+.square1 {
+    height: 300px;
+    width: 600px;
+    overflow: hidden;
+    margin: -18px;
+    border-right:none;
+    border-left:none;
+  }
+  .square2 {
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+    margin-left: -256px;
+    border-left:none;
+    border-right:none;
+  }
+  .square3 {
+    height: 300px;
+    width: 600px;
+    overflow: hidden;
+    margin: -18px;
+    border-left:none;
+    border-right:none;
+    margin-top:-128px;
+  }
+  .square4 {
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+    margin-left: -256px;  
+    border-left:none;
+    border-right:none;
+    margin-top:-135px;
+    position: relative;
+      top: 12px;
+  }
+  
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+  polygon {
+    fill: aliceblue;
+    stroke: crimson;
+    stroke-linejoin: round;
+  }
+  polygon:hover {
+    fill: cornflowerblue;
+  }
+  text{
+    display:none;
+    fill:#fff;
+    font-size:0.3em;
+    font-family:sans-serif;
+  }
+  
+  text.sub-text{
+    display:none;
+    fill:#fff;
+    font-size:0.3em;
+    font-family:sans-serif;
+  }
+  
+  g:hover > text{
+    display:block;
+  }

@@ -139,6 +139,7 @@ export class DepositWalletComponent {
       this.showError = true;
       this.walletAmount = null;
       this.bonusAmount = null;
+      this.bonusPercent='0%';
       this.loading=false;
       if(value==""){
         this.showError=false
