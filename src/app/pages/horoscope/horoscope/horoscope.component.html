@@ -14,16 +14,16 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Name*</div>
                     <div class="dx-field-value">
-                        <dx-text-box formControlName="Name" valueChangeEvent="keyup" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
+                        <dx-text-box formControlName="Name" valueChangeEvent="keyup" placeholder="Enter Name" showClearButton="true"></dx-text-box>
                         <span style="color:red" id='err_Name'></span>
                     </div>
                 </div>
                 </div>
                 <div class="dx-fieldset-column">
                 <div class="dx-field">
-                    <div class="dx-field-label">Father Name</div>
+                    <div class="dx-field-label">Father's Name</div>
                     <div class="dx-field-value">
-                        <dx-text-box formControlName="fatherName" [(ngModel)]="horoRequest.Father" placeholder="Enter Father Name here..." showClearButton="true"></dx-text-box>
+                        <dx-text-box formControlName="fatherName" [(ngModel)]="horoRequest.Father" placeholder="Enter Father Name" showClearButton="true"></dx-text-box>
                     </div>
                 </div>
                 </div>
@@ -31,9 +31,9 @@
 
                 <div class="dx-fieldset-column">
                     <div class="dx-field">
-                        <div class="dx-field-label">Mother Name</div>
+                        <div class="dx-field-label">Mother's Name</div>
                         <div class="dx-field-value">
-                            <dx-text-box id="txtmname" formControlName="motherName" [(ngModel)]="horoRequest.Mother" placeholder="Enter Mother Name here..." showClearButton="true"></dx-text-box>
+                            <dx-text-box id="txtmname" formControlName="motherName" [(ngModel)]="horoRequest.Mother" placeholder="Enter Mother Name" showClearButton="true"></dx-text-box>
                         </div>
                     </div>
                     </div>
@@ -41,7 +41,7 @@
                     <div class="dx-field">
                         <div class="dx-field-label">Gothra</div>
                         <div class="dx-field-value">
-                            <dx-text-box formControlName="gotra" [(ngModel)]="horoRequest.Gothra" placeholder="Enter Gothra here..." [showClearButton]="true">
+                            <dx-text-box formControlName="gotra" [(ngModel)]="horoRequest.Gothra" placeholder="Enter Gothra" [showClearButton]="true">
                             </dx-text-box>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                                     <div class="dx-field-label"></div>
                                     <div class="dx-field-value">
                                         <div>
-                                        <dx-check-box id="check" (onValueChanged)="IsMarriedCheckBoxValueChanged($event)" text="Is Married">
+                                        <dx-check-box id="check" (onValueChanged)="IsMarriedCheckBoxValueChanged($event)" text="Married">
                                         </dx-check-box>
                                     </div>
                                     </div>                       
@@ -275,7 +275,7 @@
             <div class="clear"></div>
             <div class="row">
                 <div class="first-column">
-                    <div class="f-label">Longititude</div>
+                    <div class="f-label">Longitude</div>
                     <div class="first-textbox">
                         <dx-number-box formControlName="LongDeg" [disabled]="true" [(ngModel)]="horoRequest.LongDeg"></dx-number-box>
                     </div>
@@ -294,7 +294,7 @@
             <div class="clear"></div>
             <div class="row">
                 <div class="first-column">
-                    <div class="f-label">Zone Hour</div>
+                    <div class="f-label">Zone Time</div>
                     <div class="first-textbox">
                         <dx-number-box formControlName="ZH" [disabled]="true" [(ngModel)]="horoRequest.ZH"></dx-number-box>
                         <p style="color:red" id='err_ZH'></p>
