@@ -91,6 +91,8 @@ export class MatchMakingComponent {
       { Id: "A5", Text: "A5" }];
   mindateinDateFormat: Date;
   maxdateinDateFormat: Date;
+  girlTitle: string;
+  boyTitle: string;
 
   opened(e) {
     e.component
@@ -421,6 +423,8 @@ export class MatchMakingComponent {
   };
 
   ngOnInit() {
+    this.girlTitle="Enter Girl's Details";
+    this.boyTitle="Enter Boy's Details";
     this.femaletimeformatdata = new ArrayStore({
       data: this.femaletimeformats,
       key: "Id"

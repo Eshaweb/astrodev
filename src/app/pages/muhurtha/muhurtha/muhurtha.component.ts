@@ -393,6 +393,7 @@ export class MuhurthaComponent {
   ngOnDestroy(): void {
 
   }
+
   onToolbarPreparing(e) {
     // if (this.muhurthaService.muhurthaRequest == null) {
     //   this.muhurtha.instance.addRow();
@@ -403,7 +404,8 @@ export class MuhurthaComponent {
       item.visible = false;
     });
   }
-  OnEnterStep(event){
+
+  OnEnterStepToRashiNakshatra(event){
     var bdate: Date = this.muhurthaaForm.controls['Date'].value;
     if (bdate instanceof Date) {
       var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
@@ -412,9 +414,28 @@ export class MuhurthaComponent {
       dateinString = bdate;
     }
     this.muhurthaService.DateinDateFormat = bdate;
-    
+
   }
-  OnExitStep(event){
+
+  OnEnterStepToDateRange(event){
+     //for(var i=0;i<this.muhurtha.instance.getVisibleRows().length;i++){
+      for(var i=this.muhurtha.instance.getVisibleRows().length-1;i>=0;i--){
+      if(i==this.muhurtha.instance.getVisibleRows().length-1){
+        this.rashiNak=[{
+          Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
+          Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
+        }]
+      }
+        else if(i>=0){
+          this.rashiNak.push({
+            Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
+            Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
+          })
+        } 
+    }
+  }
+
+  OnExitStepFromDateRange(event){
     var fromdate: Date = this.dateRangeForm.controls['FromDate'].value;
     var todate: Date = this.dateRangeForm.controls['ToDate'].value;
     if (fromdate instanceof Date) {
@@ -618,20 +639,7 @@ export class MuhurthaComponent {
     else {
       todateinString = todate;
     }
-    for(var i=0;i<this.muhurtha.instance.getVisibleRows().length;i++){
-      if(i==0){
-        this.rashiNak=[{
-          Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
-          Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
-        }]
-      }
-        else if(i>0){
-          this.rashiNak.push({
-            Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
-            Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
-          })
-        } 
-    }
+
     this.muhurthaRequest={
       MuhurthaType:this.muhurthasvalue,
       FromDate:fromdateinString,
