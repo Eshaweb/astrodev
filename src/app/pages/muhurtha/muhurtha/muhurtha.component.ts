@@ -215,6 +215,8 @@ export class MuhurthaComponent {
   annaPrashanaSelected: boolean;
   houseWarmingSelected: boolean;
   devaPrathistaSelected: boolean;
+  showError: string;
+  canEnterDateRange: boolean=true;
   
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public muhurthaService: MuhurthaService, public uiService: UIService,
@@ -418,21 +420,42 @@ export class MuhurthaComponent {
   }
 
   OnEnterStepToDateRange(event){
-     //for(var i=0;i<this.muhurtha.instance.getVisibleRows().length;i++){
-      for(var i=this.muhurtha.instance.getVisibleRows().length-1;i>=0;i--){
-      if(i==this.muhurtha.instance.getVisibleRows().length-1){
-        this.rashiNak=[{
-          Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
-          Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
-        }]
-      }
-        else if(i>=0){
-          this.rashiNak.push({
-            Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
-            Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
-          })
-        } 
-    }
+     for(var i=0;i<this.muhurtha.instance.getVisibleRows().length;i++){
+       if (i == 0) {
+         if (this.muhurtha.instance.getVisibleRows()[i].data.Rashi != undefined && this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra != undefined) {
+           this.rashiNak = [{
+             Rashi: this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
+             Nakshatra: this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
+           }];
+           this.canEnterDateRange = true;
+         }
+         else {
+           this.showError = 'Please fill both Rashi and Nakshatra';
+           this.canEnterDateRange = false;
+         }
+       }
+       else if (i > 0) {
+         this.rashiNak.push({
+           Rashi: this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
+           Nakshatra: this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
+         });
+         //this.canEnterDateRange = true;
+       }
+     }
+    // for(var i=this.muhurtha.instance.getVisibleRows().length-1;i>=0;i--){
+    //   if(i==this.muhurtha.instance.getVisibleRows().length-1){
+    //     this.rashiNak=[{
+    //       Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
+    //       Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
+    //     }]
+    //   }
+    //     else if(i>=0){
+    //       this.rashiNak.push({
+    //         Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
+    //         Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
+    //       })
+    //     } 
+    // }
   }
 
   OnExitStepFromDateRange(event){
