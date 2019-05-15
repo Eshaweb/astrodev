@@ -86,7 +86,18 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           data: this.paymentModes,
           key: "Id"
         });
-        this.GetWalletBalance();
+        this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
+          if (data.Errors == undefined) {
+            //IsValid: true 
+            this.walletbalance = data;
+            if (data == 0) {
+              this.alterationDisabled = true;
+            }
+          }
+          else {
+            this.errorMessage = data.Error;
+          }
+        });
       }
       else {
         this.errorMessage = data.Error;
@@ -160,18 +171,6 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   backClicked() {
     this._location.back();
-  }
-
-  GetWalletBalance() {
-    this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
-      if (data.Errors == undefined) {
-        //IsValid: true 
-        this.walletbalance = data;
-      }
-      else {
-        this.errorMessage = data.Error;
-      }
-    });
   }
 
   OnCouponCode(value) {

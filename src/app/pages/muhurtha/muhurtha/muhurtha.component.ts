@@ -10,7 +10,7 @@ import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
 import { MuhurthaService, Star } from 'src/Services/MuhoorthaService/MuhoorthaService';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { DxDataGridComponent, DxDateBoxComponent } from 'devextreme-angular';
 import { MuhurthaRequest, RashiNak } from 'src/Models/Muhurtha/MuhurthaRequest';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/LoginService/LoginService';
@@ -23,6 +23,7 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
 
 export class MuhurthaComponent {
   @ViewChild(DxDataGridComponent) public muhurtha: DxDataGridComponent;
+  @ViewChild(DxDateBoxComponent) public todate: DxDateBoxComponent;
   muhurthaRequest: MuhurthaRequest;
   muhurthaaForm: FormGroup;
   dateRangeForm: FormGroup;
@@ -220,7 +221,8 @@ export class MuhurthaComponent {
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
     this.loginService.isHomePage=false;
     this.muhurthaaForm = this.formbuilder.group({
-      Date: [null, [Validators.required]],
+      Date: new Date(),
+      //Date: [null, [Validators.required]],
       birthPlace: ['', [Validators.required]],
       language: ['', []]
     });
@@ -296,13 +298,14 @@ export class MuhurthaComponent {
     language_required: '*Select Language',
 
   };
-  setToDateinDateFormat() {  
-      this.maxdateinDateFormat = this.dateRangeForm.controls['FromDate'].value;
-      //this.maxdateinDateFormat.setMonth(this.dateRangeForm.controls['FromDate'].value.getMonth()+2);
-      this.maxdateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate()+60);
-      // this.todateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate()+15);
-      // this.dateRangeForm.controls['ToDate'].value.setValue(this.dateRangeForm.controls['FromDate'].value.getDate()+15);
+
+  setToDateinDateFormat() {
+    this.maxdateinDateFormat.setMonth(this.dateRangeForm.controls['FromDate'].value.getMonth());
+    this.maxdateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate());
+    this.maxdateinDateFormat.setMonth(this.dateRangeForm.controls['FromDate'].value.getMonth() + 2);
+    //this.todateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate()+15);
   }
+
   ngOnInit() {
     this.loadingSwitchService.loading = true;
     this.muhurthaService.GetMuhurthaList().subscribe((data: any) => {
@@ -369,6 +372,7 @@ export class MuhurthaComponent {
     // }
 
   }
+
   ngAfterViewInit(): void {
     if (this.muhurthaService.muhurthaRequest != null) {
       this.timeformatvalue = this.muhurthaService.muhurthaRequest.TimeFormat;
@@ -408,6 +412,7 @@ export class MuhurthaComponent {
       dateinString = bdate;
     }
     this.muhurthaService.DateinDateFormat = bdate;
+    
   }
   OnExitStep(event){
     var fromdate: Date = this.dateRangeForm.controls['FromDate'].value;
