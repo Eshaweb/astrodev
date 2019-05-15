@@ -123,7 +123,7 @@
                       </form>
                 </div>
               </aw-wizard-step>
-                <aw-wizard-step (stepEnter)="OnEnterStep($event)" [stepTitle]="'Rashi/Nakshatra'" [navigationSymbol]="{ symbol: '&#xf005;', fontFamily: 'FontAwesome' }">
+                <aw-wizard-step (stepEnter)="OnEnterStepToRashiNakshatra($event)" [stepTitle]="'Rashi/Nakshatra'" [navigationSymbol]="{ symbol: '&#xf005;', fontFamily: 'FontAwesome' }">
                   <div class="centered-content">
                         <div id="data-grid-demo" #muhurtha>
                                 <dx-data-grid
@@ -169,7 +169,7 @@
                             </div>
                   </div>
                 </aw-wizard-step>
-                <aw-wizard-step (stepExit)="OnExitStep($event)" [stepTitle]="'Date Range'" [navigationSymbol]="{ symbol: '&#xf073;', fontFamily: 'FontAwesome' }">
+                <aw-wizard-step (stepEnter)="OnEnterStepToDateRange($event)" (stepExit)="OnExitStepFromDateRange($event)" [stepTitle]="'Date Range'" [navigationSymbol]="{ symbol: '&#xf073;', fontFamily: 'FontAwesome' }">
                   <div class="centered-content">
                         <form [formGroup]="dateRangeForm">
                         <div class="dx-fieldset">
