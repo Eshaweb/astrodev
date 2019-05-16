@@ -305,6 +305,7 @@ export class MuhurthaComponent {
   };
 
   setToDateinDateFormat() {
+    this.maxdateinDateFormat.setFullYear(this.dateRangeForm.controls['FromDate'].value.getFullYear());
     this.maxdateinDateFormat.setMonth(this.dateRangeForm.controls['FromDate'].value.getMonth());
     this.maxdateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate());
     this.maxdateinDateFormat.setMonth(this.dateRangeForm.controls['FromDate'].value.getMonth() + 2);
