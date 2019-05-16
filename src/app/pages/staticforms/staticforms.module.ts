@@ -13,6 +13,7 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsandConditionsComponent } from './termsand-conditions/termsand-conditions.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { OfflinepaymentComponent } from './offline-payment/offline-payment.component';
+import { ComingsoonComponent } from './comingsoon/comingsoon.component';
 
 @NgModule({
     imports: [
@@ -36,7 +37,7 @@ import { OfflinepaymentComponent } from './offline-payment/offline-payment.compo
         DxResponsiveBoxModule,DxiRowModule
     ],
     declarations: [
-       AboutusComponent,ContactusComponent,DisclaimerComponent, 
+       AboutusComponent,ContactusComponent,DisclaimerComponent, ComingsoonComponent, 
        PrivacyComponent, TermsandConditionsComponent, OfflinepaymentComponent
     ],
 })

@@ -5,7 +5,7 @@ import { DxDrawerModule } from 'devextreme-angular/ui/drawer';
 import { DxScrollViewModule } from 'devextreme-angular/ui/scroll-view';
 import { CommonModule } from '@angular/common';
 
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 // import { navigation } from 'src/app/app-navigation';
 import { navigationAfterLogin, navigationBeforeLogin, navigationAfterLoginForSystem, navigationBeforeLoginForSystem, services, serviceListAfterLogin, serviceListBeforeLogin, navigationAfterLoginForSystemForAdmin } from 'src/app/app-navigation';
@@ -195,7 +195,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
 
 @NgModule({
   imports: [SideNavigationMenuModule, DxButtonModule, DxMenuModule, DxDrawerModule, HeaderModule, DxScrollViewModule, CommonModule, DxNavBarModule, 
-    FooterModule
+    FooterModule, RouterModule
   ],
   exports: [SideNavOuterToolbarComponent],
   declarations: [SideNavOuterToolbarComponent]
