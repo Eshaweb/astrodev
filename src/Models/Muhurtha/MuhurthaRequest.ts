@@ -26,4 +26,5 @@ export class MuhurthaRequest{
     Rashi:string;
     Nakshatra:string;
     OfWhome?:string;
+    Id?:string;
   }

@@ -61,6 +61,7 @@ export class MuhurthaService {
     place: string;
     placeShort: string;
   timeZoneName: string;
+  RashiNak: any[];
 
 
     constructor(private httpService: HttpService,

@@ -24,12 +24,14 @@ export class HoroscopeFreeDataComponent implements OnInit {
     horoModel: HoroRequest;
     caption: any;
     horoResponse: any;
+    dffdg: boolean;
     
     constructor(public storageService: StorageService, private itemService: ItemService, public captionDbService: CaptionDbService,
         public _location: Location, public route: ActivatedRoute, public router: Router, public registrationService: RegistrationService,
         public platform: Platform, public loginService: LoginService, public horoScopeService: HoroScopeService) {
         this.itemService.BuyNowVisible=true;
         this.itemService.ItemName = 'Horoscope';
+        this.dffdg=false;
         //this.horoModel=this.horoScopeService.horoRequest;
         this.horoModel = this.storageService.GetHoroRequest('#SH');
         this.horoResponse = new HoroResponse();

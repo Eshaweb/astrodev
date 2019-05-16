@@ -42,7 +42,8 @@ export class MuhurthaComponent {
   timeZoneId: any;
   long: number;
   lat: number;
-  rashiNak: RashiNak[];
+  //rashiNak: RashiNak[];
+  rashiNak: any[];
   muhurthasvalue: string;
   muhurthasdata: ArrayStore;
   timeformatdata: ArrayStore;
@@ -66,7 +67,7 @@ export class MuhurthaComponent {
   abhijinCheckBoxValue: boolean=false;
   godhuliCheckBoxValue: boolean=false;
   endTimeCheckBoxValue: boolean=false;
-  
+
   birthDateinDateFormat: Date;
   dateinDateFormat: Date;
   maxdateinDateFormat: Date;
@@ -217,6 +218,7 @@ export class MuhurthaComponent {
   devaPrathistaSelected: boolean;
   showError: string;
   canEnterDateRange: boolean=true;
+  rashiNakshatras:any[];
   
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public muhurthaService: MuhurthaService, public uiService: UIService,
@@ -245,7 +247,8 @@ export class MuhurthaComponent {
       this.todateinDateFormat = this.muhurthaService.ToDateinDateFormat;
       this.birthTimeinDateFormat = this.muhurthaService.TimeinDateFormat;
       this.timeZoneName = this.muhurthaService.timeZoneName;
-      this.dataSource=this.muhurthaService.muhurthaRequest.RashiNakshatras;
+      //this.dataSource=this.muhurthaService.muhurthaRequest.RashiNakshatras;
+      this.dataSource=this.muhurthaService.RashiNak;
     }
     else {
       this.birthDateinDateFormat = this.muhurthaaForm.controls['Date'].value;
@@ -419,45 +422,61 @@ export class MuhurthaComponent {
 
   }
 
-  OnEnterStepToDateRange(event){
-     for(var i=0;i<this.muhurtha.instance.getVisibleRows().length;i++){
-       if (i == 0) {
-         if (this.muhurtha.instance.getVisibleRows()[i].data.Rashi != undefined && this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra != undefined) {
-           this.rashiNak = [{
-             Rashi: this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
-             Nakshatra: this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
-           }];
-           this.canEnterDateRange = true;
-         }
-         else {
-           this.showError = 'Please fill both Rashi and Nakshatra';
-           this.canEnterDateRange = false;
-         }
-       }
-       else if (i > 0) {
-         this.rashiNak.push({
-           Rashi: this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
-           Nakshatra: this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
-         });
-         //this.canEnterDateRange = true;
-       }
-     }
-    // for(var i=this.muhurtha.instance.getVisibleRows().length-1;i>=0;i--){
-    //   if(i==this.muhurtha.instance.getVisibleRows().length-1){
-    //     this.rashiNak=[{
-    //       Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
-    //       Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
-    //     }]
-    //   }
-    //     else if(i>=0){
-    //       this.rashiNak.push({
-    //         Rashi:this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
-    //         Nakshatra:this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra
-    //       })
-    //     } 
-    // }
+  OnContinue_click(){
+    for(var i=0;i<this.muhurtha.instance.getVisibleRows().length;i++){
+      if (i == 0) {
+        if (this.muhurtha.instance.getVisibleRows()[i].data.Rashi != undefined && this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra != undefined) {
+          this.rashiNak = [{
+            Rashi: this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
+            Nakshatra: this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra,
+            OfWhome:this.muhurtha.instance.getVisibleRows()[i].data.OfWhome
+          }];
+          this.canEnterDateRange = true;
+        }
+        else {
+          this.showError = 'Please fill both Rashi and Nakshatra';
+          document.getElementById('showError').innerHTML='Please fill both Rashi and Nakshatra';
+          this.canEnterDateRange = false;
+        }
+      }
+      else if (i > 0) {
+        this.rashiNak.unshift({
+          Rashi: this.muhurtha.instance.getVisibleRows()[i].data.Rashi,
+          Nakshatra: this.muhurtha.instance.getVisibleRows()[i].data.Nakshatra,
+          OfWhome:this.muhurtha.instance.getVisibleRows()[i].data.OfWhome
+        });
+      }
+    }
+    if(this.muhurthasvalue =="viha"){
+      this.rashiNak.splice(0, 0, this.rashiNak.find(function (obj) { return obj.OfWhome === "BrideGroom" }));
+       this.rashiNak.splice(2, 1);
+    }
+    else if(this.muhurthasvalue =="upny"){
+      this.rashiNak.splice(0, 0, this.rashiNak.find(function (obj) { return obj.OfWhome === "Vatu" }));
+       this.rashiNak.splice(2, 1);
+    }
+    else if(this.muhurthasvalue =="semt"){
+      this.rashiNak.splice(0, 0, this.rashiNak.find(function (obj) { return obj.OfWhome === "Pregnant" }));
+       this.rashiNak.splice(1, 1);
+    }
+    else if(this.muhurthasvalue =="anna"||this.muhurthasvalue =="krna"||this.muhurthasvalue =="chal"||this.muhurthasvalue =="tott"||this.muhurthasvalue =="name"||this.muhurthasvalue =="vida"){
+      this.rashiNak.splice(0, 0, this.rashiNak.find(function (obj) { return obj.OfWhome === "Child" }));
+       this.rashiNak.splice(1, 1);
+    }
+    else if(this.muhurthasvalue =="grpr"||this.muhurthasvalue =="grab"){
+      this.rashiNak.splice(0, 0, this.rashiNak.find(function (obj) { return obj.OfWhome === "Owner" }));
+       this.rashiNak.splice(1, 1);
+    }
+    else if(this.muhurthasvalue =="dvpr"){
+      this.rashiNak.splice(0, 0, this.rashiNak.find(function (obj) { return obj.OfWhome === "God" }));
+       this.rashiNak.splice(1, 1);
+    }
+    else if(this.muhurthasvalue =="dvpr"){
+      this.rashiNak.splice(0, 0, this.rashiNak.find(function (obj) { return obj.OfWhome === "God" }));
+       this.rashiNak.splice(1, 1);
+    }
   }
-
+  
   OnExitStepFromDateRange(event){
     var fromdate: Date = this.dateRangeForm.controls['FromDate'].value;
     var todate: Date = this.dateRangeForm.controls['ToDate'].value;
@@ -476,6 +495,7 @@ export class MuhurthaComponent {
     this.muhurthaService.FromDateinDateFormat = fromdate;
     this.muhurthaService.ToDateinDateFormat = todate;
   }
+  
   onRowRemoving(event) {
 
   }
@@ -628,12 +648,15 @@ export class MuhurthaComponent {
     (<any>this).defaultSetCellValue(rowData, value);
   }
   setRashiValue(rowData: any,value: any): void {
+    this.canEnterDateRange = true;
+    document.getElementById('showError').innerHTML='';
     this.rashiValue= value;
     (<any>this).defaultSetCellValue(rowData, value);
   }
   public date: Date = new Date(Date.now());
   OnAddNew(){
-    this.muhurtha.instance.insertRow();
+    this.muhurtha.instance.addRow();
+    this.canEnterDateRange = false;
   }
   GodhuliCheckBoxValueChanged(event){
     this.godhuliCheckBoxValue=event.value;
@@ -647,6 +670,18 @@ export class MuhurthaComponent {
   
   OnSubmit_click() {
     this.loadingSwitchService.loading = true;
+    for(var i=0;i<this.rashiNak.length;i++){
+      if(i==0){
+        this.rashiNakshatras=[{Rashi:this.rashiNak[0].Rashi,
+        Nakshatra:this.rashiNak[0].Nakshatra}];
+      }
+      else{
+        this.rashiNakshatras.push({
+          Rashi: this.rashiNak[i].Rashi,
+          Nakshatra: this.rashiNak[i].Nakshatra
+        });
+      }
+    }
     this.muhurthaService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
     var fromdate: Date = this.dateRangeForm.controls['FromDate'].value;
     var todate: Date = this.dateRangeForm.controls['ToDate'].value;
@@ -685,12 +720,13 @@ export class MuhurthaComponent {
       Direction:this.yathradirectionsvalue,
       EndTime:this.endTimeCheckBoxValue,
       LangCode:this.languagevalue,
-      RashiNakshatras:this.rashiNak
+      RashiNakshatras:this.rashiNakshatras
     }
     this.muhurthaService.FromDateinDateFormat = fromdate;
     this.muhurthaService.ToDateinDateFormat = todate;
     this.muhurthaService.muhurthaRequest = this.muhurthaRequest;
     this.muhurthaService.timeZoneName = this.timeZoneName;
+    this.muhurthaService.RashiNak= this.rashiNak;
     this.storageService.SetHoroModel(JSON.stringify(this.muhurthaRequest));
     this.muhurthaService.GetFreeData(this.muhurthaRequest).subscribe((data: any) => {
       this.muhurthaService.muhurthaResponse = data;
