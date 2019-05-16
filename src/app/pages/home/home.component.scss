@@ -210,7 +210,7 @@ h3 {
 }
 
 .card-background {
-  height: 1020px;
+  height: 1400px;
   background: #fadb32;
   background-image: url(/assets/images/bottom-side.png);
   background-repeat: no-repeat;
@@ -360,12 +360,9 @@ a {
     }
 
    .coming-soon{
-    background-image: url(/assets/images/coming.png);
-    background-position-x: -2px;
-    background-position-y: top;
-}
+    background: url(/assets/images/coming.png) left top no-repeat, url(/assets/images/Intersection.png)left bottom no-repeat,white;
 
-
+   }
 
 
 

@@ -115,7 +115,10 @@ box-shadow: 4px 4px 6px #ddd;
   font-size: 14px;
   font-weight: bold;
 }
-
+.coming-soon{
+  background: url(/assets/images/coming.png) left top no-repeat, url(/assets/images/Intersection.png)left bottom no-repeat,white;
+  
+}
 
 @media (max-width: 800px) {
   .dx-fieldset-column {
