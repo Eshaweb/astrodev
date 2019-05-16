@@ -57,3 +57,28 @@ aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.do
 
 }
 $side-panel-min-width: 60px;
+
+
+//User panel for mobile
+@media (max-width: 450px){
+.user-panel {
+  margin-left: 46px;
+}
+
+.user-info{
+    display: flex;
+    align-items: center;
+    background: #ee7939;
+    border-radius: 5px;
+    width: 136px;
+    /* margin-left: 51px; */
+    border: solid 1px#ee7e3c;
+    color: #000;
+}
+.dx-button-mode-text{
+
+  background-color: transparent;
+  border-color: #ffffff;
+}
+}
+//User panel for mobile end
