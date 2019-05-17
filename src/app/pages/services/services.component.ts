@@ -88,6 +88,9 @@ onServiceClick(event){
   OnPanchaPakshi_Click(){
     this.router.navigate(["/panchapakshi"]);
   }
+  OnComingSoon_Click(){
+    this.router.navigate(["/staticpages/comingsoon"]);
+  }
   OnWalletDeposit_Click(){
     if (StorageService.GetItem('refreshToken') != undefined) {
       this.router.navigate(['/wallet/depoToWallet']);

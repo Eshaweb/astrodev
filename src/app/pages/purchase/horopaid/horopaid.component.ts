@@ -286,11 +286,11 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
                 OrderId: this.orderService.OrderId
             }
         }
-        StorageService.SetItem('OrderId', orderModel.OrderId);
+        //StorageService.SetItem('OrderId', orderModel.OrderId);
         this.orderService.CreateOrder(orderModel).subscribe((data) => {
             if (data.Error == undefined) {
                 this.orderService.OrderId = data.OrderId;
-                //StorageService.SetItem('OrderId', data.OrderId);
+                StorageService.SetItem('OrderId', data.OrderId);
                 StorageService.SetItem('ExtCode', data.ExtCode);
                 //this.orderService.orderResponse = data;
                 this.storageService.SetOrderResponse(JSON.stringify(data));

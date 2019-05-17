@@ -188,7 +188,7 @@
                                     <div class="dx-field">
                                         <div class="dx-field-label">To Date*</div>
                                         <div class="dx-field-value">
-                                            <dx-date-box #todate id='tod' valueChangeEvent="keyup" formControlName="ToDate" [(value)]="todateinDateFormat" [(min)]="dateinDateFormat" 
+                                            <dx-date-box #todate id='tod' valueChangeEvent="keyup" formControlName="ToDate" (value)="todateinDateFormat" [(min)]="dateinDateFormat" 
                                             [max]="maxdateinDateFormat" type="date" displayFormat="dd/MM/yyyy" [useMaskBehavior]="true">
                                             </dx-date-box>
                                             <!-- <dx-date-box #todate id='tod' valueChangeEvent="keyup" formControlName="ToDate" [(ngModel)]="todateinDateFormat" [(min)]="dateinDateFormat" 

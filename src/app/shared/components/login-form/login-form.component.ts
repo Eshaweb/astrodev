@@ -65,6 +65,7 @@ export class LoginFormComponent {
   loading: boolean;
   ShowPassword_checkBoxValue: boolean;
   textboxMode: string = "password";
+  redirectUrl: any;
 
   constructor(public orderService: OrderService, public storageService: StorageService, private muhurthaService: MuhurthaService, private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
     private astamangalaService: AstamangalaService, public registrationService: RegistrationService, public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager,
@@ -72,12 +73,11 @@ export class LoginFormComponent {
     public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService,
     public uiService: UIService, public formbuilder: FormBuilder) {
 
-    // this.route.params.subscribe(params => {
-    //     //this.id = +params['OrderId']; // (+) converts string 'id' to a number
-    //     this.orderModel = params['orderModel'];
-    //     this.horoInfo = params['HoroInfo'];
-    //     // In a real app: dispatch action to load the details here.
-    // });
+    this.route.params.subscribe(params => {
+        //this.id = +params['OrderId']; // (+) converts string 'id' to a number
+        this.redirectUrl = params['RedirectUrl'];
+        // In a real app: dispatch action to load the details here.
+    });
     if (environment.production) {
       this.loginForm = this.formbuilder.group({
         UserName: [null, [Validators.required, Validators.minLength(8)]],
@@ -304,20 +304,15 @@ export class LoginFormComponent {
             this.loginService.serviceMenus = serviceMenusAfterLogin;
             this.loginService.serviceList = serviceListAfterLogin;
           }
-          if (this.horoScopeService.horoRequest != null || this.astamangalaService.horoRequest != null || this.matchMakingService.matchRequest != null || this.numerologyService.numerologyRequest != null || this.muhurthaService.muhurthaRequest != null) {
-            this.router.navigate(["/purchase/paidServices"]);
+          if (this.redirectUrl != undefined) {
+            this.router.navigate([this.redirectUrl]);
           }
           // if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined|| this.storageService.GetHoroResponse('#MU') != undefined) {
           //   this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
           // }
           else {
             this.loadingSwitchService.loading = false;
-            if (this.loginService.path != undefined) {
-              this.router.navigate([this.loginService.path]);
-            }
-            else {
               this.router.navigate(["/services"]);
-            }
           }
           this.loadingSwitchService.loading = false;
         }
@@ -392,18 +387,14 @@ export class LoginFormComponent {
         this.loginService.serviceMenus = serviceMenusAfterLogin;
         this.loginService.serviceList = serviceListAfterLogin;
       }
-      if (this.storageService.GetHoroResponse('#SH') != undefined || this.storageService.GetHoroResponse('#SA') != undefined || this.storageService.GetHoroResponse('#SM') != undefined || this.storageService.GetHoroResponse('#NM') != undefined || this.storageService.GetHoroResponse('#MU') != undefined) {
+      if (this.redirectUrl != undefined) {
         // this.router.navigate(["/purchase/paidServices"], { skipLocationChange: true });
-        this.router.navigate(["/purchase/paidServices"]);
+        //this.router.navigate(["/purchase/paidServices"]);
+        this.router.navigate([this.redirectUrl]);
       }
       else {
         this.loadingSwitchService.loading = false;
-        if (this.loginService.path != undefined) {
-          this.router.navigate([this.loginService.path]);
-        }
-        else {
-          this.router.navigate(["/services"]);
-        }
+        this.router.navigate(["/services"]);
         if (StorageService.GetItem('refreshToken') != undefined && window.location.pathname != '/settings/orderHistory') {
           const source = timer(1000, 1000);
           this.subscribe = source.subscribe(val => {

@@ -25,7 +25,7 @@ constructor(private route: ActivatedRoute, private router: Router, private login
            return true;
        }
        else {
-          this.router.navigate(['/']);
+          this.router.navigate(['/login-form', {'RedirectUrl':state.url}]);
          
           return false;
        }  
