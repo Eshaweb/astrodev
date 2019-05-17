@@ -101,7 +101,9 @@ export class HomeComponent {
   OnPanchanga_Click() {
     this.router.navigate(["/panchanga"]);
   }
- 
+  OnCominSoon_Click(){
+    this.router.navigate(["/staticpages/comingsoon"]);
+  }
   onItemClick(event) {
     if (event.itemIndex == 0) {
       if (StorageService.GetItem('refreshToken') != undefined) {
