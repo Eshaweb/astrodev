@@ -32,7 +32,7 @@ export class DeliveryAddressComponent implements OnInit {
     address3Message: string;
     pincodeMessage: string;
     stateMessage: string;
-    OrderId: any;
+    OrderId: string;
     checkBoxValue: boolean = false;
     showAddAddressForm: boolean = false;
     nameMessage: string;

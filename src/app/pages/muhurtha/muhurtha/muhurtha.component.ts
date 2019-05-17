@@ -310,6 +310,7 @@ export class MuhurthaComponent {
     this.maxdateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate());
     this.maxdateinDateFormat.setMonth(this.dateRangeForm.controls['FromDate'].value.getMonth() + 2);
     //this.todateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate()+15);
+  this.todate.instance.endUpdate();
   }
 
   ngOnInit() {
