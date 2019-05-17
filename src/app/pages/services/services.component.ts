@@ -88,7 +88,7 @@ onServiceClick(event){
   OnPanchaPakshi_Click(){
     this.router.navigate(["/panchapakshi"]);
   }
-  OnCominSoon_Click(){
+  OnComingSoon_Click(){
     this.router.navigate(["/staticpages/comingsoon"]);
   }
   OnWalletDeposit_Click(){

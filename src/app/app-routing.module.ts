@@ -17,6 +17,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PageNotFoundComponent } from './shared/components/pagenotfound/pagenotfound.component';
 import { AuthGuard } from 'src/Services/auth/auth.guard';
 import { ShareButtonsModule } from '@ngx-share/buttons';
+import { CanActivate } from '@angular/router/src/utils/preactivation';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [

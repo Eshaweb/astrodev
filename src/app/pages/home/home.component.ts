@@ -101,7 +101,7 @@ export class HomeComponent {
   OnPanchanga_Click() {
     this.router.navigate(["/panchanga"]);
   }
-  OnCominSoon_Click(){
+  OnComingSoon_Click(){
     this.router.navigate(["/staticpages/comingsoon"]);
   }
   onItemClick(event) {

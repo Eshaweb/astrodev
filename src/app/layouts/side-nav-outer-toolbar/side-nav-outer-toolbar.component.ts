@@ -175,12 +175,12 @@ export class SideNavOuterToolbarComponent implements OnInit {
     }
   }
   onBuyNowClick() {
-    if (StorageService.GetItem('refreshToken') == undefined) {
-      this.router.navigate(["/login-form"]);
-    }
-    else {
+    // if (StorageService.GetItem('refreshToken') == undefined) {
+    //   this.router.navigate(["/login-form"]);
+    // }
+    // else {
       this.router.navigate(["/purchase/paidServices"]);
-    }
+    //}
   }
   OnRegistrationform_Click() {
     this.router.navigate(["/registration-form"]);

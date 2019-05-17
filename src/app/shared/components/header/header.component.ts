@@ -146,7 +146,7 @@ export class HeaderComponent {
     this.router.navigate(['/staticpages/contactus']);
   }
   OnLogin_click(){
-    this.router.navigate(['/login-form']);
+    this.router.navigate(['/login-form', {'RedirectUrl':window.location.pathname}]);
   }
   onProductsClick(){
     this.router.navigate(['/products']);

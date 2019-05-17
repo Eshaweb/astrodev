@@ -17,7 +17,6 @@ export class ProductComponent implements OnInit {
 
   }
   OnAstroLiteProducts_Click(value) {
-    if (StorageService.GetItem('refreshToken') != undefined) {
       if (value == "Gold") {
         this.productService.ProductName = "Gold";
         StorageService.SetItem('ProductName', this.productService.ProductName);
@@ -38,32 +37,6 @@ export class ProductComponent implements OnInit {
         StorageService.SetItem('ProductName', "Professional Full Package");
         this.router.navigate(["/products/astroprofessional"]);
       }
-    }
-    else {
-      if (value == "Gold") {
-        this.productService.ProductName = "Gold";
-        this.loginService.path = "/products/astrogoldsilver";
-        StorageService.SetItem('ProductName', this.productService.ProductName);
-      this.router.navigate(["/login-form"]);
-      }
-      else if (value == "Silver") {
-        this.productService.ProductName = "Silver";
-        this.loginService.path = "/products/astrogoldsilver";
-        StorageService.SetItem('ProductName', this.productService.ProductName);
-      this.router.navigate(["/login-form"]);
-      }
-      else if (value == "Professional") {
-        this.productService.ProductName = "Professional";
-        this.loginService.path = "/products/astroprofessional";
-        StorageService.SetItem('ProductName', this.productService.ProductName);
-        this.router.navigate(["/login-form"]);
-      }
-      else if (value == "ProfessionalYearlySubscription") {
-        this.productService.ProductName = "Professional Full Package";
-        this.loginService.path = "/products/astroprofessional";
-        StorageService.SetItem('ProductName', "Professional Full Package");
-        this.router.navigate(["/login-form"]);
-      }
-    }
+    
   }
 }
