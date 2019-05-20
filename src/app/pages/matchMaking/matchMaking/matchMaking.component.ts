@@ -425,8 +425,14 @@ export class MatchMakingComponent {
 
   validateDateField(from: string) {
     return (group: FormGroup): {[key: string]: any} => {
-     let f = group.controls['Date'];
-      if (f.value > new Date(this.maxdateinDateFormat)) {
+     let m = group.controls['MaleBdate'];
+     let f = group.controls['FemaleBdate'];
+     if (m!=undefined&& m.value > new Date(this.maxdateinDateFormat)) {
+      return {
+        dates: "Date from should be less than Date to"
+      };
+    }
+     if (f!=undefined&& f.value > new Date(this.maxdateinDateFormat)) {
        return {
          dates: "Date from should be less than Date to"
        };

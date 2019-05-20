@@ -72,7 +72,7 @@
             [hideSubmenuOnMouseLeave]="true"
             (onItemClick)="itemClick($event)">
 </dx-menu> -->
-<!-- <div class="service-menu" *ngIf='!isMobileResolution&&!loginService.isHomePage'>
+<div class="service-menu" *ngIf='!isMobileResolution&&!loginService.isHomePage'>
     <ul>
         <li *ngFor="let item of loginService.serviceList">
             <a (click)='OnServiceClick(item.Path)' [ngClass]="getActive(item.Path)">{{item.Name}}</a>
@@ -95,9 +95,8 @@
               </div>
           </li>
       </ul>
-    </div> -->
-    <div class="service-menu">
-
+    </div>
+    <!-- <div class="service-menu">
   <ul class="nav">
     <li><a class='menuItem ' href="#15.0.0">Astamangala</a></li><li><a class='menuItem' href="#14.3.6">Horoscope</a></li><li><a class='menuItem' href="#14.3.5">Matchmaking</a></li><li><a class='menuItem' href="#14.3.4">Muhurtha</a></li><li><a class='menuItem' href="#14.3.3">Panchanga</a></li><li><a class='menuItem' href="#14.3.0">Numerology</a></li><li><a class='menuItem' href="#14.2.17">Wallet</a></li><li><a class='menuItem' href="#14.2.12">Panchapakshi</a></li><li><a class='menuItem' href="#14.2.9">Shraadha Masika</a></li><li><a class='menuItem' href="#14.2.8">Baby Naming</a></li><li><a class='menuItem' href="#14.2.7">Hanuman Jyothisha</a></li><li><a class='menuItem' href="#14.2.6">Prathamartava Guna Dosha</a></li><li><a class='menuItem' href="#14.2.4">Kaalidrushti</a></li><li><a class='menuItem' href="#14.2.3">Choughadiya</a></li>
     <li id="moreButton" class="menuItem">More 
@@ -106,7 +105,7 @@
     </ul>
     </li>
     </ul>
-</div>
+</div> -->
 <!-- <app-side-navigation-menu *ngIf="!loginService.userProfileVisible"
     [items]="menuItemsBeforeLogin"
     [compactMode]="!menuOpened"

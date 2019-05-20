@@ -224,8 +224,7 @@ export class AstamangalaComponent {
   validateDateField(from: string) {
     return (group: FormGroup): {[key: string]: any} => {
      let f = group.controls['Date'];
-     //if (this.horoscopeForm.controls['Date'].value > new Date) {
-     if (f.value > new Date) {
+      if (f.value > new Date(this.maxdateinDateFormat)) {
        return {
          dates: "Date from should be less than Date to"
        };
