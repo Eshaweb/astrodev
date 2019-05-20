@@ -130,6 +130,10 @@ td {
     font-weight: bold;
     color: #e91e63;
 }
+.caption {
+    width: 220px;
+    margin-top: 40px;
+}
 
 @media (max-width: 479px) {
     .dx-fieldset-column {
@@ -146,5 +150,10 @@ td {
       width: 285px;
        
     }
+    .caption {
+        width: 220px;
+        margin-top: 0px;
+    }
+    
 }
 
