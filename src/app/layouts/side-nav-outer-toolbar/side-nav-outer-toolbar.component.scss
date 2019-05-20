@@ -120,6 +120,7 @@ button {
   color: #fff;
   font-size: 18px;
   width: 300px;
+  touch-action: none;
   }
 .float-button:hover {
       right: -7px;//hide it by pushing it off the screen
