@@ -15,6 +15,7 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { DxLoadPanelComponent } from 'devextreme-angular';
+import { RazorPayService } from 'src/Services/RazorPayService/RazorPayService';
 
 declare var Razorpay: any;
 
@@ -64,7 +65,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     private loadingSwitchService: LoadingSwitchService, public walletService: WalletService, public _location: Location,
     public formBuilder: FormBuilder, public platform: Platform, public formbuilder: FormBuilder,
     public loginService: LoginService, public horoScopeService: HoroScopeService, public route: ActivatedRoute,
-    public uiService: UIService, public router: Router, public partyService: PartyService) {
+    public uiService: UIService, public router: Router, public partyService: PartyService, public razorPayService:RazorPayService) {
     this.discountAmount = 0;
 
     //this.OrderId = this.orderService.orderResponse.OrderId;
@@ -388,7 +389,8 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
             }
             //this.loadPanel.visible = true;
             this.loadingSwitchService.loading = true;
-            this.pay();
+            //this.pay();
+            this.razorPayService.pay(this.payableAmountthroughPaymentGateWay);
             break;
           }
           else if (data.PayModes[i] == "W" && (data.Status == "C" || data.Status == "P")) {

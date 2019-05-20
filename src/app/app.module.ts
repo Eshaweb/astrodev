@@ -43,6 +43,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ProductService } from 'src/Services/ProductService/ProductService';
 import { ShareButtonsModule } from '@ngx-share/buttons';
+import { RazorPayService } from 'src/Services/RazorPayService/RazorPayService';
 
 
 let config = new AuthServiceConfig([
@@ -91,7 +92,7 @@ export function provideConfig() {
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService, MuhurthaService,
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
     LoaderService, SalesService, WalletService, OrderHistoryService, StorageService, AdminService,
-    ProductService,
+    ProductService, RazorPayService,
     { provide: APP_BASE_HREF, useValue: '/' },
     {
       provide: HTTP_INTERCEPTORS,

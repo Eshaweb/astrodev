@@ -283,7 +283,7 @@ export class AstamangalaComponent {
     Tambula_min: '*Minimum value is 1',
     Tambula_max: '*Maximum value is 100',
 
-    AshtaMangalaNo_required: '*Enter AshtaMangalaNo',
+    AshtaMangalaNo_required: '*Enter AshtaMangala Number',
     AshtaMangalaNo_pattern: "*No's from 1-8 of 3 digits is only allowed",
 
     Sprushtanga_required: '*Enter Sprushtanga',
