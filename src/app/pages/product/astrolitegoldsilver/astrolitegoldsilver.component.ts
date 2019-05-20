@@ -15,6 +15,7 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
 import { WalletService } from 'src/Services/Wallet/WalletService';
 import { ProductPrice } from 'src/Models/ProductPrice';
 import { DxLoadPanelComponent } from 'devextreme-angular';
+import { RazorPayService } from 'src/Services/RazorPayService/RazorPayService';
 declare var Razorpay: any;
 
 @Component({
@@ -46,7 +47,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
   imgsrc: string;
   constructor(public walletService:WalletService, public formbuilder: FormBuilder, public uiService: UIService, private loadingSwitchService: LoadingSwitchService,
     private itemService: ItemService, public productService: ProductService, public horoScopeService: HoroScopeService,
-    public router: Router, public orderService: OrderService, public loginService: LoginService) {
+    public router: Router, public orderService: OrderService, public loginService: LoginService, public razorPayService:RazorPayService) {
     this.loginService.path = undefined;
     this.paymentModeForm = this.formbuilder.group({
       paymentMode: ['', []],
@@ -239,10 +240,12 @@ export class AstrolitegoldsilverComponent implements OnInit {
     this.productService.BuyAndroid(BuyAndroid).subscribe((data) => {
       if (data.Error == undefined) {
         this.horoScopeService.ExtCode = data.ExtCode;
+        StorageService.SetItem('ExtCode',data.ExtCode);
         for (var i = 0; i < data.PayModes.length; i++) {
           if (data.PayModes[i] == "ON") {
             this.loadingSwitchService.loading=false;
             this.pay();
+            //this.razorPayService.pay((this.productPrice.ActualPrice - this.discountAmount), "Product");
             break;
           }
           else if (data.PayModes[i] == "OFF") {
@@ -265,7 +268,8 @@ export class AstrolitegoldsilverComponent implements OnInit {
       description: 'Credits towards AstroLite',
       image: 'https://i.imgur.com/3g7nmJC.png',
       currency: 'INR',
-      key: 'rzp_test_fg8RMT6vcRs4DP',
+      //key: 'rzp_test_fg8RMT6vcRs4DP',
+      key: 'rzp_live_guacAtckljJGyQ',
       amount: (this.productPrice.ActualPrice - this.discountAmount) * 100,
       name: StorageService.GetItem('Name'),
       "handler": (response) => {
@@ -276,8 +280,8 @@ export class AstrolitegoldsilverComponent implements OnInit {
         this.PaymentComplete(Payment);
       },
       prefill: {
-        email: 'shailesh@eshaweb.com',
-        contact: '9731927204'
+        // email: 'shailesh@eshaweb.com',
+        // contact: '9731927204'
       },
       notes: {
         order_id: this.horoScopeService.ExtCode,

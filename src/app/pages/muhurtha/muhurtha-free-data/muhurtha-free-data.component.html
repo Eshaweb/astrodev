@@ -9,6 +9,7 @@
                 <p style="color:green">Dates With Green Color indicates the Matching Dates</p>
                 <p style="color:red">Dates With Red Color indicates the Non-Matching Dates</p>
         </div>
+        <h3 *ngIf="muhurthaResponse.CountDesc==null">{{showErrorMessage}}</h3>
        <p> {{muhurthaResponse.CountDesc}}</p>
     <div >
         <div >

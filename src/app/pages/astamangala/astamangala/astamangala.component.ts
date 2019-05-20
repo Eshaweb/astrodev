@@ -119,6 +119,7 @@ export class AstamangalaComponent {
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
     this.mindateinDateFormat = new Date(1900, 0, 1);
     this.maxdateinDateFormat = new Date();
+    this.maxdateinDateFormat.setDate(this.maxdateinDateFormat.getDate()+1);
     this.loginService.isHomePage = false;
     this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
     this.astamangalaForm = this.formbuilder.group({
@@ -146,7 +147,7 @@ export class AstamangalaComponent {
       //Pruchaka: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
       //JanmaRashi: [1, [Validators.required, Validators.min(0), Validators.max(90)]],
       Sprushtanga: [1, [Validators.required, Validators.min(1), Validators.max(12)]],
-    });
+    }, {validator: this.validateDateField('Date')});
 
     // const LatDegContrl = this.astamangalaForm.get('LatDeg');
     // LatDegContrl.valueChanges.subscribe(value => this.setErrorMessage(LatDegContrl));
@@ -220,6 +221,19 @@ export class AstamangalaComponent {
     
   }
 
+  validateDateField(from: string) {
+    return (group: FormGroup): {[key: string]: any} => {
+     let f = group.controls['Date'];
+     //if (this.horoscopeForm.controls['Date'].value > new Date) {
+     if (f.value > new Date) {
+       return {
+         dates: "Date from should be less than Date to"
+       };
+     }
+     return {};
+    }
+  }
+
   setErrorMessage(c: AbstractControl): void {
     let control = this.uiService.getControlName(c);//gives the control name property from particular service.
     document.getElementById('err_' + control).innerHTML = '';//To not display the error message, if there is no error.
@@ -241,6 +255,7 @@ export class AstamangalaComponent {
       }
     }
   }
+
   private validationMessages = { //used in above method.
     LatDeg_required: '*Enter Latitude Degree',
     LatDeg_min: '*Minimum value is 0',

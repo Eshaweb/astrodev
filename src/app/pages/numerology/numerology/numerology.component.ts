@@ -55,18 +55,19 @@ export class NumerologyComponent {
     public formbuilder: FormBuilder) {
     this.mindateinDateFormat = new Date(1900, 0, 1);
     this.maxdateinDateFormat = new Date();
+    this.maxdateinDateFormat.setDate(this.maxdateinDateFormat.getDate()+1);
     this.loginService.isHomePage = false;
     if (environment.production) {
       this.numerologyForm = this.formbuilder.group({
         Name: ['', [Validators.required, Validators.minLength(4)]],
-        Date: new Date(),
+        Date: [new Date(), Validators.max(18-5-2019)],
         language: ['', []],
         gender: ['M', []],
         houseName: [''],
         mobileNo: [null],
         vehicleNo: [''],
         cityName: ['', []]
-      });
+      }, {validator: this.validateDateField('Date')});
     }
       else{
         this.numerologyForm = this.formbuilder.group({
@@ -78,7 +79,7 @@ export class NumerologyComponent {
           mobileNo: [null],
           vehicleNo: [''],
           cityName: ['', []]
-        });
+        }, {validator: this.validateDateField('Date')});
       }
       
     const NameContrl = this.numerologyForm.get('Name');
@@ -127,6 +128,18 @@ export class NumerologyComponent {
     language_required: '*Select Language',
 
   };
+
+  validateDateField(from: string) {
+    return (group: FormGroup): {[key: string]: any} => {
+     let f = group.controls['Date'];
+      if (f.value > new Date(this.maxdateinDateFormat)) {
+       return {
+         dates: "Date from should be less than Date to"
+       };
+     }
+     return {};
+    }
+  }
   onInitialized(e) {
     e.component.option('elementAttr',{'class':'uppercase'});
 }

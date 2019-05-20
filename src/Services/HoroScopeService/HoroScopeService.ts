@@ -64,7 +64,8 @@ export class HoroScopeService {
      this.captionDbService.GetCaption(langCode,caption);
     }
     DownloadResult(AstroReportId, callback: (data) => void){
-        var url = "https://astroliteapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
+         var url = "https://astroliteapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
+        //var url = "https://mahadevaapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
         this.http.get(url, { responseType: "blob" }).subscribe((data: any) => {
             this.existingAddress = data;
             callback(data);
@@ -77,7 +78,8 @@ export class HoroScopeService {
     }
   
     DownloadSample(horoSample) {
-        var url = "https://astroliteapi.azurewebsites.net/api/Item/DownloadSample";
+         var url = "https://astroliteapi.azurewebsites.net/api/Item/DownloadSample";
+        //var url = "https://mahadevaapi.azurewebsites.net/api/Item/DownloadSample";
         return this.http.post(url, horoSample, { responseType: "blob" });
     }
    

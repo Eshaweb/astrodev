@@ -70,6 +70,7 @@ export class HoroscopeComponent {
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
     this.mindateinDateFormat = new Date(1900, 0, 1);
     this.maxdateinDateFormat = new Date();
+    this.maxdateinDateFormat.setDate(this.maxdateinDateFormat.getDate()+1);
     this.loginService.isHomePage = false;
     this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
     if (environment.production) {
@@ -96,7 +97,7 @@ export class HoroscopeComponent {
         ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
         ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
         PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
-      });
+      }, {validator: this.validateDateField()});
     }
     else{
       this.horoscopeForm = this.formbuilder.group({
@@ -122,7 +123,7 @@ export class HoroscopeComponent {
         ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
         ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
         PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
-      });
+      }, {validator: this.validateDateField()});
     }
     const NameContrl = this.horoscopeForm.get('Name');
     NameContrl.valueChanges.subscribe(value => this.setErrorMessage(NameContrl));
@@ -193,7 +194,17 @@ export class HoroscopeComponent {
       }
     }
   }
-
+  validateDateField() {
+    return (group: FormGroup): {[key: string]: any} => {
+    let f = group.controls['Date'];
+    if (f.value > new Date(this.maxdateinDateFormat)) {
+       return {
+         dates: "Date should be less than today"
+       };
+     }
+     return {};
+    }
+  }
   setErrorMessage(c: AbstractControl): void {
     let control = this.uiService.getControlName(c);//gives the control name property from particular service.
     document.getElementById('err_' + control).innerHTML = '';//To not display the error message, if there is no error.

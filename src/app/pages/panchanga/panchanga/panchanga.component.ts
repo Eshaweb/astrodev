@@ -66,7 +66,7 @@ export class PanchangaComponent {
       Date: new Date(),
       birthPlace: ['', [Validators.required]],
       language: ['', []]
-    });
+    }, {validator: this.validateDateField('Date')});
 
     const birthPlaceContrl = this.panchangaForm.get('birthPlace');
     birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
@@ -113,6 +113,18 @@ export class PanchangaComponent {
     language_required: '*Select Language',
 
   };
+
+  validateDateField(from: string) {
+    return (group: FormGroup): {[key: string]: any} => {
+     let f = group.controls['Date'];
+      if (f.value > new Date(this.maxdateinDateFormat)) {
+       return {
+         dates: "Date from should be less than Date to"
+       };
+     }
+     return {};
+    }
+  }
 
   ngOnInit() {
     this.timeformatdata = new ArrayStore({

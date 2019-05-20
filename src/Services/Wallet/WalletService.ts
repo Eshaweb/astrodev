@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class WalletService{
+  walletBalanceAmount: any;
+  message: string;
+  errorMessage: any;
 constructor(public httpService: HttpService){
 
 }
