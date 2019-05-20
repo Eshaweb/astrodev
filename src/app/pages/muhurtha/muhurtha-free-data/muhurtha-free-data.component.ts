@@ -27,6 +27,7 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
   muhurthaRequest: MuhurthaRequest;
   muhurthaResponse: MuhurthaResponse;
   serialisedPanchangaResponse: SerialisedPanchangaResponse;
+  showErrorMessage: string;
     
     constructor(public storageService:StorageService, private registrationService:RegistrationService,private itemService:ItemService, public router: Router, public loginService: LoginService, 
       public captionDbService:CaptionDbService, public muhurthaService: MuhurthaService) {
@@ -37,6 +38,9 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
           this.itemService.ItemName = 'Muhurtha';
           this.itemService.ItActId='#MU';
           StorageService.SetItem('ItActId','#MU');
+        }
+        else{
+          this.showErrorMessage="Sorry..There are no Muhurthas for the given Date Range";
         }
     }
     ngOnInit(): void {

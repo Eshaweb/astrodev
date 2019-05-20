@@ -109,6 +109,7 @@ export class MatchMakingComponent {
     public uiService: UIService, public formbuilder: FormBuilder) {
       this.mindateinDateFormat = new Date(1900, 0, 1);
       this.maxdateinDateFormat = new Date();
+      this.maxdateinDateFormat.setDate(this.maxdateinDateFormat.getDate()+1);
       this.loginService.isHomePage=false;
       if (environment.production) {
         this.maleMatchMakingForm = this.formbuilder.group({
@@ -127,7 +128,7 @@ export class MatchMakingComponent {
           Male_ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
           Male_ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
           Male_PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
-        });
+        }, {validator: this.validateDateField('MaleBdate')});
         this.femaleMatchMakingForm = this.formbuilder.group({
           femaleName: ['', [Validators.required, Validators.minLength(4)]],
           FemaleBdate: new Date(),
@@ -144,7 +145,7 @@ export class MatchMakingComponent {
           Female_ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
           Female_ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
           Female_PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
-        });
+        }, {validator: this.validateDateField('FemaleBdate')});
       }
       else{
         this.maleMatchMakingForm = this.formbuilder.group({
@@ -163,7 +164,7 @@ export class MatchMakingComponent {
           Male_ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
           Male_ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
           Male_PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
-        });
+        }, {validator: this.validateDateField('MaleBdate')});
         this.femaleMatchMakingForm = this.formbuilder.group({
           femaleName: ['Vaasanthi', [Validators.required, Validators.minLength(4)]],
           FemaleBdate: new Date(),
@@ -180,7 +181,7 @@ export class MatchMakingComponent {
           Female_ZH: [null, [Validators.required, Validators.min(0), Validators.max(13)]],
           Female_ZM: [null, [Validators.required, Validators.min(0), Validators.max(45)]],
           Female_PN: ['', [Validators.required, Validators.pattern("^[+-]?$")]]
-        });
+        }, {validator: this.validateDateField('FemaleBdate')});
       }
       
     const maleNameContrl = this.maleMatchMakingForm.get('maleName');
@@ -421,6 +422,18 @@ export class MatchMakingComponent {
     Male_PN_pattern: '*Only + or - is valid ',
 
   };
+
+  validateDateField(from: string) {
+    return (group: FormGroup): {[key: string]: any} => {
+     let f = group.controls['Date'];
+      if (f.value > new Date(this.maxdateinDateFormat)) {
+       return {
+         dates: "Date from should be less than Date to"
+       };
+     }
+     return {};
+    }
+  }
 
   ngOnInit() {
     this.girlTitle="Enter Girl's Details";

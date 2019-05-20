@@ -14,6 +14,7 @@ import { OrderService } from 'src/Services/OrderService/OrderService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 import { ProductPrice } from 'src/Models/ProductPrice';
 import { WalletService } from 'src/Services/Wallet/WalletService';
+import { RazorPayService } from 'src/Services/RazorPayService/RazorPayService';
 declare var Razorpay: any;
 
 @Component({
@@ -65,7 +66,7 @@ export class AstroliteProfessionalComponent implements OnInit {
   Promo: any;
   constructor(public walletService:WalletService, public formbuilder: FormBuilder, public uiService: UIService, private loadingSwitchService: LoadingSwitchService,
     private itemService: ItemService, public productService: ProductService, public horoScopeService: HoroScopeService,
-    public router: Router, public orderService: OrderService, public loginService: LoginService) {
+    public router: Router, public orderService: OrderService, public loginService: LoginService, public razorPayService:RazorPayService) {
     this.loginService.path = undefined;
     this.paymentModeForm = this.formbuilder.group({
       paymentMode: ['', []],
@@ -410,76 +411,88 @@ export class AstroliteProfessionalComponent implements OnInit {
         this.paycodes = [{ Code: this.paymentModedatavalue, Amount: this.productPrice.ActualPrice - this.discountAmount }];
       }
     }
-    if(StorageService.GetItem('ProductName') == "Professional"){
-    var BuyWindows = {
-      PartyMastId: StorageService.GetItem('PartyMastId'),
-      Products: this.WindowsPriceRequest.Products,
-      Additional:this.AdditionalLisence_checkBoxValue,
-      Language:this.WindowsPriceRequest.Language,
-      Amount: this.productPrice.ActualPrice - this.discountAmount,
-      PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
-      PayCodes: this.paycodes
-    }
-    this.productService.BuyWindows(BuyWindows).subscribe((data) => {
-      this.loadingSwitchService.loading = false;
-      if (data.Error == undefined) {
-        this.horoScopeService.ExtCode = data.ExtCode;
-        for (var i = 0; i < data.PayModes.length; i++) {
-          if (data.PayModes[i] == "ON") {
-            this.loadingSwitchService.loading = true;
-            this.pay();
-            break;
-          }
-          else if (data.PayModes[i] == "OFF") {
-            this.loadingSwitchService.loading = false;
-            StorageService.SetItem('OrderId',data.OrderId);
-            this.router.navigate(['/staticpages/offlinePayment']);
-            break;
+    if (StorageService.GetItem('ProductName') == "Professional") {
+      var BuyWindows = {
+        PartyMastId: StorageService.GetItem('PartyMastId'),
+        Products: this.WindowsPriceRequest.Products,
+        Additional: this.AdditionalLisence_checkBoxValue,
+        Language: this.WindowsPriceRequest.Language,
+        Amount: this.productPrice.ActualPrice - this.discountAmount,
+        PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
+        PayCodes: this.paycodes
+      }
+      this.productService.BuyWindows(BuyWindows).subscribe((data) => {
+        this.loadingSwitchService.loading = false;
+        if (data.Error == undefined) {
+          this.horoScopeService.ExtCode = data.ExtCode;
+          for (var i = 0; i < data.PayModes.length; i++) {
+            if (data.PayModes[i] == "ON") {
+              this.loadingSwitchService.loading = true;
+              this.pay();
+              // if (this.payableAmount != undefined) {
+              //   this.razorPayService.pay((this.payableAmount - this.discountAmount), "Product");
+              // }
+              // else if (this.payableAmount != undefined) {
+              //   this.razorPayService.pay((this.productPrice.ActualPrice - this.discountAmount), "Product");
+              // }
+              break;
+            }
+            else if (data.PayModes[i] == "OFF") {
+              this.loadingSwitchService.loading = false;
+              StorageService.SetItem('OrderId', data.OrderId);
+              this.router.navigate(['/staticpages/offlinePayment']);
+              break;
+            }
           }
         }
-      }
-      else {
-        this.errorMessage = data.Error;
-        this.CoupenCodeForm.controls['CouponCode'].setValue('');
-        document.getElementById('err_CouponCode').innerHTML='';
-        this.loadingSwitchService.loading = false;
-      }
-    });
-  }
-  else if(StorageService.GetItem('ProductName') == "Professional Full Package"){
-    var BuyWindowsYearly = {
-      PartyMastId: StorageService.GetItem('PartyMastId'),
-      Years: this.yearvalue,
-      Amount: this.payableAmount - this.discountAmount,
-      PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
-      PayCodes: this.paycodes
+        else {
+          this.errorMessage = data.Error;
+          this.CoupenCodeForm.controls['CouponCode'].setValue('');
+          document.getElementById('err_CouponCode').innerHTML = '';
+          this.loadingSwitchService.loading = false;
+        }
+      });
     }
-    this.productService.BuyWindowsYearly(BuyWindowsYearly).subscribe((data) => {
-      this.loadingSwitchService.loading = false;
-      if (data.Errors == undefined) {
-        this.horoScopeService.ExtCode = data.ExtCode;
-        for (var i = 0; i < data.PayModes.length; i++) {
-          if (data.PayModes[i] == "ON") {
-            this.loadingSwitchService.loading = true;
-            this.pay();
-            break;
-          }
-          else if (data.PayModes[i] == "OFF") {
-            this.loadingSwitchService.loading = false;
-            StorageService.SetItem('OrderId',data.OrderId);
-            this.router.navigate(['/staticpages/offlinePayment']);
-            break;
+    else if (StorageService.GetItem('ProductName') == "Professional Full Package") {
+      var BuyWindowsYearly = {
+        PartyMastId: StorageService.GetItem('PartyMastId'),
+        Years: this.yearvalue,
+        Amount: this.payableAmount - this.discountAmount,
+        PromoText: this.CoupenCodeForm.controls['CouponCode'].value.replace(/\s/g, ""),
+        PayCodes: this.paycodes
+      }
+      this.productService.BuyWindowsYearly(BuyWindowsYearly).subscribe((data) => {
+        this.loadingSwitchService.loading = false;
+        if (data.Errors == undefined) {
+          this.horoScopeService.ExtCode = data.ExtCode;
+          for (var i = 0; i < data.PayModes.length; i++) {
+            if (data.PayModes[i] == "ON") {
+              this.loadingSwitchService.loading = true;
+              this.pay();
+              // if (this.payableAmount != undefined) {
+              //   this.razorPayService.pay((this.payableAmount - this.discountAmount), "Product");
+              // }
+              // else if (this.payableAmount != undefined) {
+              //   this.razorPayService.pay((this.productPrice.ActualPrice - this.discountAmount), "Product");
+              // }
+              break;
+            }
+            else if (data.PayModes[i] == "OFF") {
+              this.loadingSwitchService.loading = false;
+              StorageService.SetItem('OrderId', data.OrderId);
+              this.router.navigate(['/staticpages/offlinePayment']);
+              break;
+            }
           }
         }
-      }
-      else {
-        this.errorMessage = data.Error;
-        this.CoupenCodeForm.controls['CouponCode'].setValue('');
-        document.getElementById('err_CouponCode').innerHTML='';
-        this.loadingSwitchService.loading = false;
-      }
-    });
-  }
+        else {
+          this.errorMessage = data.Error;
+          this.CoupenCodeForm.controls['CouponCode'].setValue('');
+          document.getElementById('err_CouponCode').innerHTML = '';
+          this.loadingSwitchService.loading = false;
+        }
+      });
+    }
   }
 
 
@@ -489,7 +502,8 @@ export class AstroliteProfessionalComponent implements OnInit {
         description: 'Credits towards AstroLite',
         image: 'https://i.imgur.com/3g7nmJC.png',
         currency: 'INR',
-        key: 'rzp_test_fg8RMT6vcRs4DP',
+        //key: 'rzp_test_fg8RMT6vcRs4DP',
+        key: 'rzp_live_guacAtckljJGyQ',
         amount: (this.payableAmount - this.discountAmount) * 100,
         name: StorageService.GetItem('Name'),
         "handler": (response) => {
@@ -500,8 +514,8 @@ export class AstroliteProfessionalComponent implements OnInit {
           this.PaymentComplete(Payment);
         },
         prefill: {
-          email: 'shailesh@eshaweb.com',
-          contact: '9731927204'
+          // email: 'shailesh@eshaweb.com',
+          // contact: '9731927204'
         },
         notes: {
           order_id: this.horoScopeService.ExtCode,
@@ -532,8 +546,8 @@ export class AstroliteProfessionalComponent implements OnInit {
           this.PaymentComplete(Payment);
         },
         prefill: {
-          email: 'shailesh@eshaweb.com',
-          contact: '9731927204'
+          // email: 'shailesh@eshaweb.com',
+          // contact: '9731927204'
         },
         notes: {
           order_id: this.horoScopeService.ExtCode,

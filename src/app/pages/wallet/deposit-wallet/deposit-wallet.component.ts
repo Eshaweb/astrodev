@@ -13,6 +13,7 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 import { DxLoadPanelComponent } from 'devextreme-angular';
 import { ItemService } from 'src/Services/ItemService/ItemService';
+import { RazorPayService } from 'src/Services/RazorPayService/RazorPayService';
 
 declare var Razorpay: any;
 
@@ -50,10 +51,11 @@ export class DepositWalletComponent {
   
 
   constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, 
-    public walletService: WalletService, public horoScopeService: HoroScopeService, 
+    public walletService: WalletService, public horoScopeService: HoroScopeService, public razorPayService:RazorPayService,
     public route: ActivatedRoute, public router: Router, public salesService: SalesService,
     public uiService: UIService, public formbuilder: FormBuilder, public itemService:ItemService) {
     var endPoint = "Sales/GetPayCodes";
+    this.loading=true;
     this.minAmount=50;
     this.maxAmount=20000;
     if(this.itemService.walletAmount!=undefined){
@@ -97,7 +99,6 @@ export class DepositWalletComponent {
         //this.paymentModedatavalue=this.paymentModes[0].Id;
       }
     });
-    this.loading=true;
     if (StorageService.GetItem('PartyMastId')!= undefined) {
       this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
         if (data.Errors == undefined) {
@@ -169,13 +170,14 @@ export class DepositWalletComponent {
     }
     this.PurchaseAmount=(+WalletPurchase.PurchaseAmount)+this.bonusAmount;
     this.walletService.PurchaseWallet(WalletPurchase).subscribe((data) => {
+      StorageService.SetItem('ExtCode',data.ExtCode);
       if (data.IsValid == true && data.PayModes == "ON") {
         this.pay(data.ExtCode);
+        //this.razorPayService.pay(this.depositToWalletForm.controls['Amount'].value, "Wallet");
       }
       else if (data.IsValid == true && data.PayModes == "OFF") {
         this.loadPanel.visible=false;
         StorageService.SetItem('OrderId',data.OrderId);
-        StorageService.SetItem('ExtCode',data.ExtCode);
         this.router.navigate(['/staticpages/offlinePayment']);
       }
       else if (data.IsValid == true) {
@@ -190,7 +192,8 @@ export class DepositWalletComponent {
       description: 'Credits towards AstroLite',
       image: 'https://i.imgur.com/3g7nmJC.png',
       currency: 'INR',
-      key: 'rzp_test_fg8RMT6vcRs4DP',
+      //key: 'rzp_test_fg8RMT6vcRs4DP',
+      key: 'rzp_live_guacAtckljJGyQ',
       // callback_url:'https://www.google.com/'+this.paymentId,
       // redirect: "true",
       amount: this.depositToWalletForm.controls['Amount'].value * 100,
@@ -203,9 +206,9 @@ export class DepositWalletComponent {
         this.next(Payment);
       },
       prefill: {
-        email: 'shailesh@eshaweb.com',
-        contact: '9731927204',
-        name: 'Shailesh'
+        // email: 'shailesh@eshaweb.com',
+        // contact: '9731927204',
+        // name: 'Shailesh'
       },
       notes: {
         order_id: ExtCode,
@@ -225,6 +228,8 @@ export class DepositWalletComponent {
 
   next(Payment) {
     this.loadPanel.visible=true;
+    this.loadPanel.position="{ of: '#employee' }";
+    //this.loading=true;
     this.walletService.PaymentComplete(Payment).subscribe((data) => {
       if (data.Error == undefined) {
          this.loading = false;
@@ -235,6 +240,7 @@ export class DepositWalletComponent {
             this.walletBalanceAmount = data;
             this.message='PaymentCompleted and Balance Updated';
             this.loadPanel.visible=false;
+            //this.loading=false;
           }
         });
       }
