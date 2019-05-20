@@ -120,6 +120,7 @@ button {
   color: #fff;
   font-size: 18px;
   width: 300px;
+  touch-action: none;
   }
 .float-button:hover {
       right: -7px;//hide it by pushing it off the screen
@@ -130,6 +131,151 @@ button {
   border-radius: 20px;
 }
 
+li#moreButton {
+  margin-top: 11px;
+}
+
+li#moreButton {
+
+background-image: url(/assets/images/more-button.png);
+
+  background-repeat: no-repeat;
+background-position-x: 56px;
+padding-bottom: 10px;
+ 
+padding-right: 50px;
+
+}
+ul, li
+{
+list-style:none;
+background: #f7d430;
+  padding: 10px;
+}
+
+.nav > li
+{
+display:inline-block;
+
+}
+.nav a.menuItem{
+
+border-right: 1px solid rgba(137,63,3,.4);
+}
+#more a.menuItem {
+  border-right: none;
+}
+.nav
+{
+/*background:#c4df9b;*/
+padding:0px;
+overflow:hidden;
+margin-top: 1px;
+box-shadow: 0 4px 5px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24)
+}
+
+#more
+{
+width: 175px;
+display:block;
+margin:0;
+padding:0;
+position:absolute;
+padding-top:9px;
+margin-left:-1px;
+  z-index: 10000;
+}
+ul#more {
+  background: none;
+}
+
+#more > li
+{
+display:none;
+}
+
+#moreButton:hover li:nth-child(n+8)
+{
+display:block;
+}
+
+.nav li:nth-child(n+8)
+{ 
+  display:none;
+
+}
+
+.nav li:last-child
+{ 
+  display:inline-block;
+
+}
+
+
+.menuItem
+{
+display:inline-block;
+/*width:100px;
+height:40px;*/
+text-align:center;
+font-size:12pt;
+box-sizing:border-box;
+padding:7px;	
+vertical-align:top;
+text-decoration: none;
+color: black;    
+  margin-right:5px;
+}
+
+.menuItem:hover
+{
+background: #b48318;
+color: white;
+  border-color: #b48318;
+}
+
+@media screen and (max-width: 990px)
+{
+#moreButton:hover li:nth-child(8) { display:block; }
+.nav li:nth-child(8) { display:none; }
+}
+
+@media screen and (max-width: 885px)
+{
+#moreButton:hover li:nth-child(7) { display:block; }
+.nav li:nth-child(7) { display:none; }
+}
+
+@media screen and (max-width: 780px)
+{
+#moreButton:hover li:nth-child(6) { display:block; }
+.nav li:nth-child(6) { display:none; }
+}
+
+@media screen and (max-width: 675px)
+{
+#moreButton:hover li:nth-child(5) { display:block; }
+.nav li:nth-child(5) { display:none; }
+}
+
+@media screen and (max-width: 570px) 
+{
+#moreButton:hover li:nth-child(4) { display:block; }
+
+.nav li:nth-child(4) { display:none; } 
+}
+
+@media screen and (max-width: 465px)
+{
+#moreButton:hover li:nth-child(3) { display:block; }
+.nav li:nth-child(3) { display:none; }
+}
+
+@media screen and (max-width: 360px)
+{
+#moreButton:hover li:nth-child(2) { display:block; }
+.nav li:nth-child(2) { display:none; } 
+}
 
 
 @media (max-width: 450px) {
