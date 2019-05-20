@@ -52,7 +52,7 @@ export class DeliveryAddressComponent implements OnInit {
             this.customerAddressForm = this.formbuilder.group({
                 Name: ['', [Validators.required, Validators.minLength(3)]],
                 //EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
-                MobileNo:[null,[Validators.required, Validators.minLength(10)]],
+                MobileNo:['',[Validators.required, Validators.minLength(10)]],
                 Address1: ['', [Validators.required, Validators.minLength(3)]],
                 Address2: ['', [Validators.required, Validators.minLength(4)]],
                 Address3: ['', [Validators.required, Validators.minLength(4)]],
@@ -63,11 +63,11 @@ export class DeliveryAddressComponent implements OnInit {
             this.customerAddressForm = this.formbuilder.group({
                 Name: ['Shailesh', [Validators.required, Validators.minLength(3)]],
                 //EMail: ['', [Validators.required, Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
-                MobileNo:[8277033170,[Validators.required, Validators.minLength(10)]],
+                MobileNo:['8277033170',[Validators.required, Validators.minLength(10)]],
                 Address1: ['Bappanadu', [Validators.required, Validators.minLength(3)]],
                 Address2: ['Temple Street', [Validators.required, Validators.minLength(4)]],
                 Address3: ['#4/5-2', [Validators.required, Validators.minLength(4)]],
-                PinCode: ['574 154', [Validators.required, Validators.minLength(6)]],
+                PinCode: ['574154', [Validators.required, Validators.minLength(6)]],
             });
         }
         

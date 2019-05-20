@@ -21,9 +21,10 @@ import { interval, Subscription } from 'rxjs';
   buttonId: any;
   sub:Subscription;
   ItName: any;
+    ExtCode: any;
     constructor(public storageService:StorageService,public orderService:OrderService,public horoScopeService:HoroScopeService,public formBuilder:FormBuilder,public itemService:ItemService, public loadingSwitchService:LoadingSwitchService) {
         this.loadingSwitchService.loading=true;
-        this.itemService.GetPendingToDelvery(StorageService.GetItem('PartyMastId')).subscribe((data:any)=>{
+        this.itemService.GetPendingToDelvery().subscribe((data:any)=>{
             if (data.Errors == undefined) {
              this.dataSource=data;
             }
@@ -49,6 +50,7 @@ import { interval, Subscription } from 'rxjs';
     onItemClick(event){
         this.OrderId=event.itemData.OrderId;
         this.ItName=event.itemData.Service;
+        this.ExtCode=event.itemData.ExtCode;
       }
    
       submit_click(){
@@ -60,7 +62,7 @@ import { interval, Subscription } from 'rxjs';
           }
           this.itemService.UpdateDelivery(UpdateDelivery).subscribe((data:any)=>{
             if(data==true){
-                this.itemService.GetPendingToDelvery(StorageService.GetItem('PartyMastId')).subscribe((data:any)=>{
+                this.itemService.GetPendingToDelvery().subscribe((data:any)=>{
                     if (data.Errors == undefined) {
                      this.dataSource=data;
                      this.wizard.navigation.goToPreviousStep();

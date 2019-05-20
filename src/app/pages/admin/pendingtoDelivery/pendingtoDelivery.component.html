@@ -24,9 +24,9 @@
                             
                             <dx-list #list [dataSource]="dataSource" (onItemClick)="onItemClick($event)" [height]="400">
                                 <div *dxTemplate="let data of 'item'">
-                                    <div awNextStep style="background-color:goldenrod">
+                                    <div awNextStep style="background-color:yellow">
                                             <p>OrderDate: {{data.OrderDate|  date:'dd/MM/yyyy'}}</p>
-                                            <p>OrderId: {{data.OrderId}}</p> 
+                                            <p>OrderId: {{data.ExtCode}}</p> 
                                             <p>Service:{{data.Service}}</p>
                                             <p>Address:{{data.Address}}</p>
                                             <!-- <dx-button text="Download" (onClick)='onItemClick($event)' type="success"[useSubmitBehavior]="true">
@@ -40,10 +40,11 @@
                       <div class="centered-content">
                             <div class="dx-fieldset" [formGroup]="updateDeliveryForm">
                                 <div class="dx-fieldset-column">
+                                        <p>OrderId: {{ExtCode}}</p>
                                     <div class="dx-field">
                                         <div class="dx-field-label">Tracking Reference</div>
                                         <div class="dx-field-value">
-                                            <dx-text-box formControlName="TrackingRef" placeholder="Enter Order Id here..." showClearButton="true"></dx-text-box>
+                                            <dx-text-box formControlName="TrackingRef" placeholder="Enter Tracking Reference here..." showClearButton="true"></dx-text-box>
                                         </div>
                                     </div>
                                 </div>

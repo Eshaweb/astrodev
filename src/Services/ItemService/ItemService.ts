@@ -53,8 +53,8 @@ export class ItemService {
         return this.httpService.Post(endPoint, Couponcode);
     }
 
-    GetPendingToDelvery(PartyMastId):Observable<any> {
-        var endPoint = "Delivery/GetPendingToDelivery?PartyMastId=" + PartyMastId;
+    GetPendingToDelvery():Observable<any> {
+        var endPoint = "Delivery/GetPendingToDelivery";
         return this.httpService.Get(endPoint);
     }
 
