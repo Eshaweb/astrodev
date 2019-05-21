@@ -18,7 +18,11 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #d8860a; 
 }
-
+.HindiFont {
+  font-family: "hinfontfamily" !important;
+  text-align: center;
+  font-size: 20px !important;
+}
 .content-summary {
   height: 150px;
 }
@@ -84,15 +88,22 @@ button {
   color: #7E3F08;
   text-align: center;
 }
-
 .main-content {
+  font-size: 40px;
+  line-height: normal;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  color: #D05B19;
+  text-align: center;
+}
+.main-contentinHindiFont {
     font-size: 40px;
     line-height: normal;
     letter-spacing: -0.03em;
     font-weight: 400;
     color: #D05B19;
     text-align: center;
-   
+    font-family: "hinfontfamily" !important;
   }
 .centre-image{
   background-image: url(/assets/images/main-pattern-right.png);

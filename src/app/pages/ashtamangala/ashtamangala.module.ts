@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AstamangalaRoutingModule } from './astamangala-routing.module';
-import { AstamangalaComponent } from './astamangala/astamangala.component';
 import { NgModule } from '@angular/core';
 import { DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule, DxNumberBoxModule } from 'devextreme-angular';
-import { AstamangalaFreeDataComponent } from './astamangala-free-data/astamangala-free-data.component';
+import { AshtamangalaFreeDataComponent } from './ashtamangala-free-data/ashtamangala-free-data.component';
+import { AshtamangalaRoutingModule } from './ashtamangala-routing.module';
+import { AshtamangalaComponent } from './ashtamangala/ashtamangala.component';
 
 
 @NgModule({
@@ -12,16 +12,16 @@ import { AstamangalaFreeDataComponent } from './astamangala-free-data/astamangal
         CommonModule,
         ReactiveFormsModule,
         FormsModule,
-        AstamangalaRoutingModule,
+        AshtamangalaRoutingModule,
         DxValidatorModule,DxButtonModule,DxValidationSummaryModule,
     DxDateBoxModule,DxSelectBoxModule,DxCheckBoxModule,
     DxTextBoxModule, DxRadioGroupModule, DxNumberBoxModule
     ],
 
     declarations: [
-        AstamangalaComponent, 
-        AstamangalaFreeDataComponent
+        AshtamangalaComponent, 
+        AshtamangalaFreeDataComponent
     ]
 })
-export class AstamangalaModule {
+export class AshtamangalaModule {
 }

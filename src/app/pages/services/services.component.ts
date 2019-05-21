@@ -34,7 +34,7 @@ export class ServicesComponent implements OnInit{
     //     history.go(1);
     //   }
     // };
-    this.servicesMenu=[{Path:'/astamangala',Name:'Astamangala'},
+    this.servicesMenu=[{Path:'/ashtamangala',Name:'Ashtamangala'},
     {Path:'/horoscope',Name:'Horoscope'},
     {Path:'/matchMaking',Name:'Mela Meli'},
     {Path:'/muhurtha',Name:'Muhurtha'},
@@ -74,7 +74,7 @@ onServiceClick(event){
     this.router.navigate(["/matchMaking"]);
   }
   OnAstamangala_Click() {
-    this.router.navigate(["/astamangala"]);
+    this.router.navigate(["/ashtamangala"]);
   }
   OnNumerology_Click() {
     this.router.navigate(["/numerology"]);

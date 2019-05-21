@@ -22,20 +22,25 @@ import { interval, Subscription } from 'rxjs';
   sub:Subscription;
   ItName: any;
     ExtCode: any;
-    constructor(public storageService:StorageService,public orderService:OrderService,public horoScopeService:HoroScopeService,public formBuilder:FormBuilder,public itemService:ItemService, public loadingSwitchService:LoadingSwitchService) {
-        this.loadingSwitchService.loading=true;
-        this.itemService.GetPendingToDelvery().subscribe((data:any)=>{
-            if (data.Errors == undefined) {
-             this.dataSource=data;
-            }
-            this.loadingSwitchService.loading=false;
-          }); 
-          
-          this.updateDeliveryForm=this.formBuilder.group({
-            TrackingRef:[''],
-            DispatchDate: new Date()
-          });
+    constructor(public storageService: StorageService, public orderService: OrderService, public horoScopeService: HoroScopeService, public formBuilder: FormBuilder, public itemService: ItemService, public loadingSwitchService: LoadingSwitchService) {
+
     }
+
+    ngOnInit() {
+        this.loadingSwitchService.loading = true;
+        this.itemService.GetPendingToDelvery().subscribe((data: any) => {
+            if (data.Errors == undefined) {
+                this.dataSource = data;
+            }
+            this.loadingSwitchService.loading = false;
+        });
+
+        this.updateDeliveryForm = this.formBuilder.group({
+            TrackingRef: [''],
+            DispatchDate: new Date()
+        });
+    }
+
     onToolbarPreparing (e) { 
         
         var toolbarItems = e.toolbarOptions.items;

@@ -46,19 +46,21 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
     }
      
     ngAfterViewInit() {
-        this.orderService.GetOrderIsDelivery(StorageService.GetItem('OrderId')).subscribe((data: any) => {
-            this.DeliveryAddressRequired = data;
-            if (this.DeliveryAddressRequired != undefined && StorageService.GetItem('ItMastId') != undefined) {
-                if (StorageService.GetItem('ItMastId') == this.service.ItMastId) {
-                    if (this.DeliveryAddressRequired==true){
-                        this.checkBoxValue = true;
-                    }
-                    else{
-                        this.checkBoxValue = false;
+        if(StorageService.GetItem('OrderId')!=null){
+            this.orderService.GetOrderIsDelivery(StorageService.GetItem('OrderId')).subscribe((data: any) => {
+                this.DeliveryAddressRequired = data;
+                if (this.DeliveryAddressRequired != undefined && StorageService.GetItem('ItMastId') != undefined) {
+                    if (StorageService.GetItem('ItMastId') == this.service.ItMastId) {
+                        if (this.DeliveryAddressRequired==true){
+                            this.checkBoxValue = true;
+                        }
+                        else{
+                            this.checkBoxValue = false;
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
         // if (StorageService.GetItem('IsDeliverable') != undefined && StorageService.GetItem('ItMastId') != undefined) {
         //     if (StorageService.GetItem('ItMastId') == this.service.ItMastId) {
         //         if (StorageService.GetItem('IsDeliverable')=='true'){

@@ -234,6 +234,7 @@ export class MuhurthaComponent {
       FromDate:new Date(),
       ToDate:new Date(),
     });
+    // }, {validator: this.validateDateField('FromDate')});
     this.getFilteredRashis = this.getFilteredRashis.bind(this);
     const birthPlaceContrl = this.muhurthaaForm.get('birthPlace');
     birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
@@ -243,6 +244,7 @@ export class MuhurthaComponent {
       this.muhurthaRequest = this.muhurthaService.muhurthaRequest;
       this.birthDateinDateFormat = this.muhurthaService.BirthDateinDateFormat;
       this.dateinDateFormat = this.muhurthaService.DateinDateFormat;
+      this.maxdateinDateFormat= this.muhurthaService.maxdateinDateFormat;
       this.fromdateinDateFormat = this.muhurthaService.FromDateinDateFormat;
       this.todateinDateFormat = this.muhurthaService.ToDateinDateFormat;
       this.birthTimeinDateFormat = this.muhurthaService.TimeinDateFormat;
@@ -304,13 +306,24 @@ export class MuhurthaComponent {
 
   };
 
+  validateDateField(from: string) {
+    return (group: FormGroup): {[key: string]: any} => {
+     let f = group.controls['FromDate'];
+      if (f.value > new Date(this.maxdateinDateFormat)) {
+       return {
+         dates: "Date from should be less than Date to"
+       };
+     }
+     return {};
+    }
+  }
+
   setToDateinDateFormat() {
     this.maxdateinDateFormat.setFullYear(this.dateRangeForm.controls['FromDate'].value.getFullYear());
     this.maxdateinDateFormat.setMonth(this.dateRangeForm.controls['FromDate'].value.getMonth());
     this.maxdateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate());
     this.maxdateinDateFormat.setMonth(this.dateRangeForm.controls['FromDate'].value.getMonth() + 2);
-    this.todateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate()+15);
-  this.todate.instance.endUpdate();
+    //this.todateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate()+15);
   }
 
   ngOnInit() {
@@ -724,6 +737,9 @@ export class MuhurthaComponent {
       LangCode:this.languagevalue,
       RashiNakshatras:this.rashiNakshatras
     }
+
+    this.muhurthaService.DateinDateFormat=this.dateinDateFormat;
+    this.muhurthaService.maxdateinDateFormat=this.maxdateinDateFormat;
     this.muhurthaService.FromDateinDateFormat = fromdate;
     this.muhurthaService.ToDateinDateFormat = todate;
     this.muhurthaService.muhurthaRequest = this.muhurthaRequest;

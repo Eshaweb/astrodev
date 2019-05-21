@@ -12,11 +12,11 @@ let services: Services[] = [{
     "ItActId": "#SH",
 }, {
     "ID": 2,
-    "ServiceName": "Match Making",
+    "ServiceName": "Matchmaking",
     "ItActId": "#SM"
 }, {
     "ID": 3,
-    "ServiceName": "AstaMangala",
+    "ServiceName": "AshtaMangala",
     "ItActId": "#SA"
 }, {
     "ID": 4,

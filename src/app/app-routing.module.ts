@@ -44,8 +44,8 @@ const routes: Routes = [
     loadChildren: './shared/components/login-form/login-form.component#LoginFormModule'
   },
   {
-    path: 'astamangala',
-    loadChildren: './pages/astamangala/astamangala.module#AstamangalaModule'
+    path: 'ashtamangala',
+    loadChildren: './pages/ashtamangala/ashtamangala.module#AshtamangalaModule'
   },
   {
     path: 'staticpages',

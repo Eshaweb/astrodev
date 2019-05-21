@@ -17,8 +17,8 @@
 //         path: '/matchMaking',
 //       },
 //       {
-//         text: 'Astamangala',
-//         path: '/astamangala',
+//         text: 'Ashtamangala',
+//         path: '/ashtamangala',
 //       },
 //       {
 //         text: 'Numerology',
@@ -93,8 +93,8 @@ export const navigationAfterLoginForAdmin = [
         path: '/matchMaking',
       },
       {
-        text: 'Astamangala',
-        path: '/astamangala',
+        text: 'Ashtamangala',
+        path: '/ashtamangala',
       },
       {
         text: 'Numerology',
@@ -171,8 +171,8 @@ export const navigationAfterLogin = [
         path: '/matchMaking',
       },
       {
-        text: 'Astamangala',
-        path: '/astamangala',
+        text: 'Ashtamangala',
+        path: '/ashtamangala',
       },
       {
         text: 'Numerology',
@@ -238,8 +238,8 @@ export const navigationBeforeLogin = [
         path: '/matchMaking',
       },
       {
-        text: 'Astamangala',
-        path: '/astamangala',
+        text: 'Ashtamangala',
+        path: '/ashtamangala',
       },
       {
         text: 'Numerology',
@@ -306,8 +306,8 @@ export const navigationAfterLoginForSystemForAdmin = [
         path: '/matchMaking',
       },
       {
-        text: 'Astamangala',
-        path: '/astamangala',
+        text: 'Ashtamangala',
+        path: '/ashtamangala',
       },
       {
         text: 'Numerology',
@@ -369,8 +369,8 @@ export const navigationAfterLoginForSystem = [
         path: '/matchMaking',
       },
       {
-        text: 'Astamangala',
-        path: '/astamangala',
+        text: 'Ashtamangala',
+        path: '/ashtamangala',
       },
       {
         text: 'Numerology',
@@ -422,7 +422,7 @@ export const navigationBeforeLoginForSystem = [
       },
       {
         text: 'Ashtamangala',
-        path: '/astamangala',
+        path: '/ashtamangala',
       },
       {
         text: 'Numerology',
@@ -479,7 +479,7 @@ export const serviceMenusBeforeLogin = [
       },
       {
         text: 'Ashtamangala',
-        path: '/astamangala',
+        path: '/ashtamangala',
       },
       {
         text: 'Numerology',
@@ -517,7 +517,7 @@ export const serviceMenusAfterLogin = [
       },
       {
         text: 'Ashtamangala',
-        path: '/astamangala',
+        path: '/ashtamangala',
       },
       {
         text: 'Numerology',
@@ -555,7 +555,7 @@ export const services = [
       },
       {
         text: 'Ashtamangala',
-        path: '/astamangala',
+        path: '/ashtamangala',
       },
       {
         text: 'Numerology',
@@ -579,14 +579,14 @@ export const services = [
       },
     ];
 
-    export const serviceListBeforeLogin=[{Path:'/astamangala',Name:'Ashtamangala'},
+    export const serviceListBeforeLogin=[{Path:'/ashtamangala',Name:'Ashtamangala'},
     {Path:'/horoscope',Name:'Horoscope'},
     {Path:'/matchMaking',Name:'Matchmaking'},
     {Path:'/muhurtha',Name:'Muhurtha'},
     {Path:'/panchanga',Name:'Panchanga'},
     {Path:'/numerology',Name:'Numerology'}];
 
-    export const serviceListAfterLogin=[{Path:'/astamangala',Name:'Ashtamangala'},
+    export const serviceListAfterLogin=[{Path:'/ashtamangala',Name:'Ashtamangala'},
     {Path:'/horoscope',Name:'Horoscope'},
     {Path:'/matchMaking',Name:'Matchmaking'},
     {Path:'/muhurtha',Name:'Muhurtha'},

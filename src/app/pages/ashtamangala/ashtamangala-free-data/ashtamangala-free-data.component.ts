@@ -11,12 +11,12 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
 
 
 @Component({
-    selector: 'app-astamangala-free-data',
-    templateUrl: './astamangala-free-data.component.html',
-    styleUrls: [ './astamangala-free-data.component.scss' ]
+    selector: 'app-ashtamangala-free-data',
+    templateUrl: './ashtamangala-free-data.component.html',
+    styleUrls: [ './ashtamangala-free-data.component.scss' ]
   })
   
-  export class AstamangalaFreeDataComponent {
+  export class AshtamangalaFreeDataComponent {
   horoModel: HoroRequest;
   caption: Caption;
   prashnaFreeModel: PrashnaFreeModel;

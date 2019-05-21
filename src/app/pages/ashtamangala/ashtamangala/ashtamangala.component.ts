@@ -20,11 +20,11 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
 
 
 @Component({
-  templateUrl: './astamangala.component.html',
-  styleUrls: ['./astamangala.component.css']
+  templateUrl: './ashtamangala.component.html',
+  styleUrls: ['./ashtamangala.component.css']
 })
 
-export class AstamangalaComponent {
+export class AshtamangalaComponent {
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
     { Id: "SUMMER", Text: 'Summer Time' },
@@ -621,7 +621,7 @@ export class AstamangalaComponent {
       this.astamangalaService.horoResponse = data;
       this.storageService.SetHoroResponse(JSON.stringify(data));
       this.loadingSwitchService.loading = false;
-      this.router.navigate(["/astamangala/getAstamangalaFreeData"]);
+      this.router.navigate(["/ashtamangala/getAshtamangalaFreeData"]);
     });
   }
 

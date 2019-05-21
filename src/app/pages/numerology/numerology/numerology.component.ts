@@ -54,13 +54,12 @@ export class NumerologyComponent {
     public partyService: PartyService, public numerologyService: NumerologyService, public uiService: UIService,
     public formbuilder: FormBuilder) {
     this.mindateinDateFormat = new Date(1900, 0, 1);
-    this.maxdateinDateFormat = new Date();
-    this.maxdateinDateFormat.setDate(this.maxdateinDateFormat.getDate()+1);
+    this.maxdateinDateFormat = new Date(2099, 11, 31);
     this.loginService.isHomePage = false;
     if (environment.production) {
       this.numerologyForm = this.formbuilder.group({
         Name: ['', [Validators.required, Validators.minLength(4)]],
-        Date: [new Date(), Validators.max(18-5-2019)],
+        Date: new Date(),
         language: ['', []],
         gender: ['M', []],
         houseName: [''],

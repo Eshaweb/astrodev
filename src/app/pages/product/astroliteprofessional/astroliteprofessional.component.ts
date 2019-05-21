@@ -502,8 +502,8 @@ export class AstroliteProfessionalComponent implements OnInit {
         description: 'Credits towards AstroLite',
         image: 'https://i.imgur.com/3g7nmJC.png',
         currency: 'INR',
-        //key: 'rzp_test_fg8RMT6vcRs4DP',
-        key: 'rzp_live_guacAtckljJGyQ',
+        key: 'rzp_test_fg8RMT6vcRs4DP',
+        //key: 'rzp_live_guacAtckljJGyQ',
         amount: (this.payableAmount - this.discountAmount) * 100,
         name: StorageService.GetItem('Name'),
         "handler": (response) => {
@@ -536,6 +536,7 @@ export class AstroliteProfessionalComponent implements OnInit {
         image: 'https://i.imgur.com/3g7nmJC.png',
         currency: 'INR',
         key: 'rzp_test_fg8RMT6vcRs4DP',
+      //key: 'rzp_live_guacAtckljJGyQ',
         amount: (this.productPrice.ActualPrice - this.discountAmount) * 100,
         name: StorageService.GetItem('Name'),
         "handler": (response) => {

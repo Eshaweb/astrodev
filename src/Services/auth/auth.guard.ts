@@ -16,14 +16,18 @@ constructor(private route: ActivatedRoute, private router: Router, private login
 //   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-      if (StorageService.GetItem('refreshToken')!=undefined&&StorageService.GetItem('isAdmin')=='true')
+      if (StorageService.GetItem('refreshToken')!=undefined)
        {
            return true;
        }
-       else if (StorageService.GetItem('refreshToken')!=undefined&&StorageService.GetItem('isAdmin')==undefined)
-       {
-           return true;
-       }
+    //    if (StorageService.GetItem('refreshToken')!=undefined&&StorageService.GetItem('isAdmin')=='true')
+    //    {
+    //        return true;
+    //    }
+    //    else if (StorageService.GetItem('refreshToken')!=undefined&&StorageService.GetItem('isAdmin')==undefined)
+    //    {
+    //        return true;
+    //    }
        else {
           this.router.navigate(['/login-form', {'RedirectUrl':state.url}]);
          

@@ -90,7 +90,7 @@ export class HomeComponent {
     this.router.navigate(["/matchMaking"]);
   }
   OnAstamangala_Click() {
-    this.router.navigate(["/astamangala"]);
+    this.router.navigate(["/ashtamangala"]);
   }
   OnMuhurtha_Click(){
     this.router.navigate(["/muhurtha"]);

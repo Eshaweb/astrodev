@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { HttpClient, HttpBackend, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpBackend, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { HoroRequest } from "src/Models/HoroScope/HoroRequest";
 import { ResultResponse } from "src/Models/ResultResponse";
 import { HttpService } from '../Error/http.service';
@@ -8,6 +8,7 @@ import { ErrorService } from '../Error/error.service';
 import { CaptionDbService } from '../CaptionService/captionDb.service';
 import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
 import { Caption } from 'src/Models/Caption';
+import { LoginService } from '../LoginService/LoginService';
 export class SelectBoxModelNew{
     Id: number;
     Text: string;
@@ -47,7 +48,7 @@ export class HoroScopeService {
     horoResponse: HoroResponse;
     birthplaceShort: string;
   timeZoneName: string;
-    constructor(private captionDbService:CaptionDbService,private httpService: HttpService, private errorService: ErrorService, handler: HttpBackend, public http: HttpClient) {
+    constructor(public loginService:LoginService,private captionDbService:CaptionDbService,private httpService: HttpService, private errorService: ErrorService, handler: HttpBackend, public http: HttpClient) {
         this.http = new HttpClient(handler);
     }
     getProducts(): SelectBoxModelNew[] {
@@ -64,9 +65,10 @@ export class HoroScopeService {
      this.captionDbService.GetCaption(langCode,caption);
     }
     DownloadResult(AstroReportId, callback: (data) => void){
-        //var url = "https://astroliteapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
-        var url = "https://mahadevapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
-        this.http.get(url, { responseType: "blob" }).subscribe((data: any) => {
+        var url = "https://astroliteapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
+        //var url = "https://mahadevapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json','Authorization':'Bearer'+this.loginService.AccessToken });
+        this.http.get(url, { responseType: "blob", headers:headers }).subscribe((data: any) => {
             this.existingAddress = data;
             callback(data);
         }, (error) => {
@@ -78,9 +80,10 @@ export class HoroScopeService {
     }
   
     DownloadSample(horoSample) {
-        //var url = "https://astroliteapi.azurewebsites.net/api/Item/DownloadSample";
-        var url = "https://mahadevapi.azurewebsites.net/api/Item/DownloadSample";
-        return this.http.post(url, horoSample, { responseType: "blob" });
+        var url = "https://astroliteapi.azurewebsites.net/api/Item/DownloadSample";
+        //var url = "https://mahadevapi.azurewebsites.net/api/Item/DownloadSample";
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json','Authorization':'Bearer'+this.loginService.AccessToken });
+        return this.http.post(url, horoSample, { responseType: "blob", headers:headers  });
     }
    
     GetAllAddress(PartyMastId):Observable<any> {

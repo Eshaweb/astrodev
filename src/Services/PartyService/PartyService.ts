@@ -51,6 +51,10 @@ this.statesOfIndia = [
         var endPoint = "Party/IsAdmin";
         return this.httpService.Get(endPoint);
     }
+    GetAccessToken(RefreshToken): Observable<any> {
+        var endPoint = "Party/GetAccessToken";
+        return this.httpService.Post(endPoint, RefreshToken);
+    }
     GetProfile(PartyMastId): Observable<any> {
         var endPoint = "Party/GetProfile?PartyMastId=" + PartyMastId;
         return this.httpService.Get(endPoint);
