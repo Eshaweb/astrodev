@@ -18,6 +18,17 @@
   flex-grow: 1;
 
 }
+.more-menu{
+  background-image: url(/assets/images/more-button.png);
+
+  background-repeat: no-repeat;
+  padding-right: 50px !important;
+  background-position-x: 43px;
+  background-position-y: -1px;
+  padding-bottom: 3px !important;
+  padding-top: 7px !important;
+
+}
 
 .buynow-footer {
   margin-left: 40%;

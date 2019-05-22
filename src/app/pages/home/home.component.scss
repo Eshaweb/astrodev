@@ -39,15 +39,17 @@
   overflow: hidden;
 }
 
-button {
-  width: 30px;
-  height: 31px;
-  margin-left: 6px;
-  border-radius: 15px;
-  font-weight: 600;
-  font-size: 14px;
-}
+.more-menu{
+  background-image: url(/assets/images/more-button.png);
 
+  background-repeat: no-repeat;
+  padding-right: 50px !important;
+  background-position-x: 43px;
+  background-position-y: 1px;
+  padding-bottom: 3px !important;
+  padding-top: 5px !important;
+
+}
 
 #gallery{
   cursor: pointer;
