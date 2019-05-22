@@ -56,16 +56,16 @@ export class LoginService {
         //     this.AccessToken = res.AccessToken;
         //     StorageService.SetItem('refreshToken', res.RefreshToken)
         // }));
-        // return this.http.post('https://mahadevapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(tap(res => {
-        //     this.AccessToken = res.AccessToken;
-        //     StorageService.SetItem('refreshToken', res.RefreshToken)
-        // }));
+        return this.http.post('https://mahadevapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(tap(res => {
+            this.AccessToken = res.AccessToken;
+            StorageService.SetItem('refreshToken', res.RefreshToken)
+        }));
         // return this.httpService.Post(endPoint, RefreshToken).pipe(tap(res => {
         //     this.AccessToken = res.AccessToken;
         //     StorageService.SetItem('refreshToken', res.RefreshToken)
         // }));
-        let headers = new HttpHeaders({ 'Content-Type': 'application/json','No-Auth':'True' });
-        return this.httpService.Post(endPoint, RefreshToken, {headers:headers});
+        // let headers = new HttpHeaders({ 'Content-Type': 'application/json','No-Auth':'True' });
+        // return this.httpService.Post(endPoint, RefreshToken, {headers:headers});
     }
     GetOTP(GetOTP): Observable<any> {
         var endPoint = "Party/GetOTP";

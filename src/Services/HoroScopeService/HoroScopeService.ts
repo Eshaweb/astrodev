@@ -65,8 +65,8 @@ export class HoroScopeService {
      this.captionDbService.GetCaption(langCode,caption);
     }
     DownloadResult(AstroReportId, callback: (data) => void){
-        var url = "https://astroliteapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
-        //var url = "https://mahadevapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
+        //var url = "https://astroliteapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
+        var url = "https://mahadevapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json','Authorization':'Bearer'+this.loginService.AccessToken });
         this.http.get(url, { responseType: "blob", headers:headers }).subscribe((data: any) => {
             this.existingAddress = data;
@@ -80,8 +80,8 @@ export class HoroScopeService {
     }
   
     DownloadSample(horoSample) {
-        var url = "https://astroliteapi.azurewebsites.net/api/Item/DownloadSample";
-        //var url = "https://mahadevapi.azurewebsites.net/api/Item/DownloadSample";
+        //var url = "https://astroliteapi.azurewebsites.net/api/Item/DownloadSample";
+        var url = "https://mahadevapi.azurewebsites.net/api/Item/DownloadSample";
         let headers = new HttpHeaders({ 'Content-Type': 'application/json','Authorization':'Bearer'+this.loginService.AccessToken });
         return this.http.post(url, horoSample, { responseType: "blob", headers:headers  });
     }

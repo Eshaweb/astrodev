@@ -69,7 +69,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
     }
   }
   private validationMessages = {
-    CouponCode_required: 'Enter Coupon Code if you have',
+    //CouponCode_required: 'Enter Coupon Code if you have',
     CouponCode_minlength: 'Minimum length should be 6'
   };
   ngOnInit() {
@@ -97,7 +97,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
     }
     this.productService.GetAndroidPrice(this.AndroidPriceRequest).subscribe((data) => {
       this.productPrice=data;
-      this.GetProductPurchaseWalletBenefit();
+      this.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice);
     });
 
     this.horoScopeService.GetPayCodes().subscribe(data => {
@@ -155,7 +155,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
         if(this.CoupenCodeForm.controls['CouponCode'].value!=undefined){
           this.onApplyCouponCode_click();
         }
-        this.GetProductPurchaseWalletBenefit();
+        this.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice-this.discountAmount);
         this.loadingSwitchService.loading = false;
       });
     }
@@ -173,8 +173,8 @@ export class AstrolitegoldsilverComponent implements OnInit {
     }
   }
 
-  GetProductPurchaseWalletBenefit(){
-    this.walletService.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice).subscribe((data) => {
+  GetProductPurchaseWalletBenefit(ActualPrice){
+    this.walletService.GetProductPurchaseWalletBenefit(ActualPrice).subscribe((data) => {
      this.walletdiscountAmount=data.Amount;
      this.walletdiscountPercentage=data.Percent;
       this.loadingSwitchService.loading = false;
@@ -188,6 +188,9 @@ export class AstrolitegoldsilverComponent implements OnInit {
       this.disableButton = false;
     }
     this.errorMessage = '';
+    if(this.productPrice.ActualPrice!=undefined){
+      this.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice-this.discountAmount);
+    }
   }
   onApplyCouponCode_click() {
     this.loadingSwitchService.loading = true;
@@ -203,12 +206,13 @@ export class AstrolitegoldsilverComponent implements OnInit {
       }
       else if (data.IsValid == false) {
         this.discountAmount = 0;
+        this.CoupenCodeForm.controls['CouponCode'].setValue('');
         this.errorMessage = data.Error;
       }
       else {
         this.errorMessage = data.Error;
       }
-      this.GetProductPurchaseWalletBenefit();
+      this.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice-this.discountAmount);
       // if (this.checkClicked == true && this.firstClick == true) {
       //   this.payableAmount = this.payableAmount - this.discountAmount;
       //   this.differenceAmount = this.differenceAmount - this.discountAmount;

@@ -97,7 +97,7 @@ export class AstroliteProfessionalComponent implements OnInit {
     }
   }
   private validationMessages = {
-    CouponCode_required: 'Enter Coupon Code if you have',
+    //CouponCode_required: 'Enter Coupon Code if you have',
     CouponCode_minlength: 'Minimum length should be 6'
   };
   ngOnInit() {
@@ -337,15 +337,21 @@ export class AstroliteProfessionalComponent implements OnInit {
   OnCouponCode(value) {
     if (value.length < 6) {  //checks for couponcode length
       this.discountAmount = 0;
-      this.disableBuyNow = true;
-      if (value.length==0){
-        this.disableBuyNow = false;
-      }
+      // this.disableBuyNow = true;
+      // if (value.length==0){
+      //   this.disableBuyNow = false;
+      // }
     }
     else {
       this.disableButton = false;
     }
     this.errorMessage = '';
+    if (this.payableAmount != undefined) {
+      this.GetProductPurchaseWalletBenefit(this.payableAmount - this.discountAmount);
+    }
+    else if (this.productPrice.ActualPrice != undefined) {
+      this.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice - this.discountAmount);
+    }
   }
   onApplyCouponCode_click() {
     this.loadingSwitchService.loading = true;
@@ -370,16 +376,17 @@ export class AstroliteProfessionalComponent implements OnInit {
       }
       else if (data.IsValid == false) {
         this.discountAmount = 0;
+        this.CoupenCodeForm.controls['CouponCode'].setValue('');
         this.errorMessage = data.Error;
       }
       else {
         this.errorMessage = data.Error;
       }
       if(this.payableAmount!=undefined){
-        this.GetProductPurchaseWalletBenefit(this.payableAmount);
+        this.GetProductPurchaseWalletBenefit(this.payableAmount-this.discountAmount);
       }
       else{
-        this.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice);
+        this.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice-this.discountAmount);
       }
       // if (this.checkClicked == true && this.firstClick == true) {
       //   this.payableAmount = this.payableAmount - this.discountAmount;
