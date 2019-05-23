@@ -459,8 +459,9 @@ export class LoginFormComponent {
     }
     this.registrationService.ResendUserOTP(UserName).subscribe((data: any) => {
       if (data.Errors == undefined) {
+        this.loginService.oTPRef = data.OTPRef;
         this.title = 'Message';
-        this.message = 'Please enter OTP And Submit';
+        this.message = 'Please enter OTP with Reference No. ' + this.loginService.oTPRef+ ' and click on Login';
       }
       this.disableResendOTP = false;
       this.countDown = timer(0, this.tick).pipe(

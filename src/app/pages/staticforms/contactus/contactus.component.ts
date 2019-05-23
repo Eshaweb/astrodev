@@ -20,22 +20,39 @@ export class ContactusComponent implements OnInit {
       if (environment.production) {
         this.contactusForm = this.formbuilder.group({
           Name: ['', [Validators.required, Validators.minLength(4)]],
-          Email: [''],
-          Mobile: [''],
+          Email: ['',[Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
+          Mobile: ['',[Validators.minLength(10)]],
           Message: ['', [Validators.required]],
           recaptcha: ['', Validators.required]
         });
       }
       else{
+        // this.contactusForm = this.formbuilder.group({
+        //   Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],
+        //   Email: ['shailesh@gmail.com', [Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
+        //   Mobile: ['8277033170',[Validators.minLength(10)]],
+        //   Message: ['Hello', [Validators.required]],
+        //   recaptcha: ['', Validators.required]
+        // });
         this.contactusForm = this.formbuilder.group({
-          Name: ['Shailesh', [Validators.required, Validators.minLength(4)]],
-          Email: ['shailesh@gmail.com'],
-          Mobile: ['8277033170'],
-          Message: ['Hello', [Validators.required]],
+          Name: ['', [Validators.required, Validators.minLength(4)]],
+          Email: ['', [Validators.pattern("[^ @]*@[^ @]*"), Validators.minLength(6)]],
+          Mobile: ['',[Validators.minLength(10)]],
+          Message: ['', [Validators.required]],
           recaptcha: ['', Validators.required]
         });
       }
+
+    const NameContrl = this.contactusForm.get('Name');
+    NameContrl.valueChanges.subscribe(value => this.setErrorMessage(NameContrl));
+    const EmailContrl = this.contactusForm.get('Email');
+    EmailContrl.valueChanges.subscribe(value => this.setErrorMessage(EmailContrl));
+    const MobileContrl = this.contactusForm.get('Mobile');
+    MobileContrl.valueChanges.subscribe(value => this.setErrorMessage(MobileContrl));
+    const MessageContrl = this.contactusForm.get('Message');
+    MessageContrl.valueChanges.subscribe(value => this.setErrorMessage(MessageContrl));
    }
+
    setErrorMessage(c: AbstractControl): void {
     let control = this.uiService.getControlName(c);//gives the control name property from particular service.
     document.getElementById('err_' + control).innerHTML = '';//To not display the error message, if there is no error.
@@ -43,13 +60,18 @@ export class ContactusComponent implements OnInit {
       document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
     }
   }
+
   private validationMessages = { //used in above method.
     Name_required: '*Enter Name',
     Name_minlength: '*Minimum length is 4',
     Name_pattern: 'Name should be character only',
 
+   //Email_minlength: 'Minimum length should be 6',
+    Email_pattern: 'Do not match with EMail pattern',
+
     Message_required: '*Select Date of Birth'
   };
+
   ngOnInit() {
     if (environment.production) {
       this.siteKey='6LdXZqEUAAAAAKiZ85dV4ziune4W6-0z9Dx2CWi9';
@@ -58,6 +80,7 @@ export class ContactusComponent implements OnInit {
       this.siteKey='6LcjZ6EUAAAAADTKsnrcM17RLIOyc3Or5fz3_IJK';
     }
   }
+
   OnSubmit_click(){
     this.loadingSwitchService.loading=true;
     var AddMessage = {
