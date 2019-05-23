@@ -107,6 +107,7 @@ export class DeliveryAddressComponent implements OnInit {
             document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
         }
     }
+    
     private validationMessages = { //used in above method.
         Address1_required: '*Enter House No./ Building NameEnter City',
         Address1_minlength: '*Minimum length is 4',
@@ -125,10 +126,10 @@ export class DeliveryAddressComponent implements OnInit {
         Name_minlength: '*Minimum length is 4',
 
         MobileNo_required: '*Enter Mobile No',
-        MobileNo_minlength: '*Minimum length is 4',
+        MobileNo_minlength: '*Minimum length is 10',
 
         PinCode_required: '*Enter Pin code',
-        PinCode_minlength: '*Minimum length is 4',
+        PinCode_minlength: '*Minimum length is 6',
 
     };
 

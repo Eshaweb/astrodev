@@ -37,61 +37,56 @@
   <div *ngIf='!contactSubmitted' class="dx-card content-block responsive-paddings">
     <h3>Contact Form</h3>
     <form action="your-action" [formGroup]="contactusForm">
-      <div class="dx-fieldset contact-form">
-              <div class="dx-field">
-                  <div class="dx-field-label">Full Name*</div>
-                  <div class="dx-field-value">
-                      <dx-text-box formControlName="Name" valueChangeEvent="keyup" placeholder="Enter Name" showClearButton="true"></dx-text-box>
-                      <span style="color:red" id='err_Name'></span>
-                  </div>
-              </div>
-              <div class="dx-field">
-                  <div class="dx-field-label">E-mail Address</div>
-                  <div class="dx-field-value">
-                      <dx-text-box formControlName="Email" placeholder="Enter E-mail Address" showClearButton="true"></dx-text-box>
-                  </div>
-              </div>
-              <div class="clear"></div>
+        <div class="dx-fieldset contact-form">
+            <div class="dx-field">
+                <div class="dx-field-label">Full Name*</div>
+                <div class="dx-field-value">
+                    <dx-text-box formControlName="Name" valueChangeEvent="keyup" placeholder="Enter Name" showClearButton="true"></dx-text-box>
+                    <span style="color:red" id='err_Name'></span>
+                </div>
+            </div>
+            <div class="dx-field">
+                <div class="dx-field-label">E-mail Address</div>
+                <div class="dx-field-value">
+                    <dx-text-box formControlName="Email" valueChangeEvent="keyup" placeholder="Enter E-mail Address"
+                        showClearButton="true"></dx-text-box>
+                    <span style="color:red" id='err_Email'></span>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="dx-field">
+                <div class="dx-field-label">Phone No.</div>
+                <div class="dx-field-value">
+                    <!-- <dx-text-box formControlName="Mobile" valueChangeEvent="keyup" placeholder="Enter Phone No" showClearButton="true"></dx-text-box> -->
+                    <dx-text-box valueChangeEvent="keyup" placeholder="Enter Mobile No..." formControlName="Mobile"
+                        [showClearButton]="true" mask="00000 00000">
+                    </dx-text-box>
+                    <span style="color:red" id='err_Mobile'></span>
+                </div>
+            </div>
+            <div class="dx-field">
+                <div class="dx-field-label">Message*</div>
+                <div class="dx-field-value">
+                    <!-- <dx-text-box formControlName="Message" valueChangeEvent="keyup" placeholder="Enter Message here..." showClearButton="true"></dx-text-box> -->
+                    <dx-text-area [height]="90" valueChangeEvent="keyup" placeholder="Enter Message" formControlName="Message"></dx-text-area>
+                    <span style="color:red" id='err_Message'></span>
+                </div>
+            </div>
+            <div class="dx-field">
+                <div class="dx-field-value">
+                    <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" [useGlobalDomain]="false" formControlName="recaptcha">
+                    </ngx-recaptcha2>
+                </div>
+            </div>
+    
+            <div class="dx-fieldset submit-btn">
                 <div class="dx-field">
-                    <div class="dx-field-label">Phone No*</div>
-                    <div class="dx-field-value">
-                        <dx-text-box formControlName="Mobile" valueChangeEvent="keyup" placeholder="Enter Phone No" showClearButton="true"></dx-text-box>
-                        <span style="color:red" id='err_Mobile'></span>
-                    </div>
+                    <dx-button [disabled]="!contactusForm.valid" (onClick)='OnSubmit_click()' id="button" text="Submit"
+                        type="success" [useSubmitBehavior]="true">
+                    </dx-button>
                 </div>
-                  <div class="dx-field">
-                      <div class="dx-field-label">Message*</div>
-                      <div class="dx-field-value">
-                          <!-- <dx-text-box formControlName="Message" valueChangeEvent="keyup" placeholder="Enter Message here..." showClearButton="true"></dx-text-box> -->
-                          <dx-text-area [height]="90" valueChangeEvent="keyup" placeholder="Enter Message" formControlName="Message"></dx-text-area>
-                          <span style="color:red" id='err_Message'></span>
-                      </div>
-                  </div>
-                  <!-- <ngx-recaptcha2 #captchaElem  siteKey="6LdXZqEUAAAAAKiZ85dV4ziune4W6-0z9Dx2CWi9" 
-                    [useGlobalDomain]="false" 
-                    formControlName="recaptcha">
-                  </ngx-recaptcha2> -->
-                  <div class="dx-field">
-                      <div class="dx-field-value">
-                  <ngx-recaptcha2 #captchaElem  [siteKey]="siteKey" 
-                    [useGlobalDomain]="false" 
-                    formControlName="recaptcha">
-                  </ngx-recaptcha2>
-                  </div>
-                </div>
-     
-
-      <div class="dx-fieldset submit-btn">
-        <div class="dx-field">
-        <dx-button [disabled]="!contactusForm.valid" (onClick)='OnSubmit_click()'
-            id="button"
-            text="Submit"
-            type="success"  
-            [useSubmitBehavior]="true">
-        </dx-button>
+            </div>
         </div>
-    </div>
-  </div>
     </form>
     </div> 
 
