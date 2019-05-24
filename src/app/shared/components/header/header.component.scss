@@ -58,6 +58,12 @@ img.site-logo {
   // height: 28px;
   //color: #D05B19;
   cursor: pointer;
+
+}
+
+.menu-item:hover {
+  color: #D05B19;
+  border-bottom: 2px solid #f7d430;
 }
 
 .dx-menu-item.dx-state-hover{
@@ -72,6 +78,9 @@ img.site-logo {
 ::ng-deep.dx-button-mode-contained {
   background-color: #FEFCEF;
   border-color: #FADB32;}
+
+
+
 
 
 @media (max-width: 800px) {
