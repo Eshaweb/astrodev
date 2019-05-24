@@ -47,10 +47,10 @@
                     [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.DashaStartValue"
                   ></dx-number-box>
-                  <p
+                  <span
                     style="color:red;font-size: 14px;"
                     id="err_DashaStartFromAge"
-                  ></p>
+                  ></span>
                 </div>
               </div>
               </div>
@@ -65,9 +65,9 @@
                     [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.DashaEndValue"
                   ></dx-number-box>
-                  <p  style="color:red;font-size: 14px;"
+                  <span  style="color:red;font-size: 14px;"
                     id="err_DashaStarttoAge"
-                  ></p>
+                  ></span>
                 </div>
               </div>
               </div>
@@ -83,17 +83,27 @@
                   <dx-number-box
                     #numberBox
                     [width]='150'
-                    [max]="100"
-                    [min]="0"
+                    valueChangeEvent="keyup" (keyup)="onDashaPredictionFromAge($event.target.value)"  
                     [disabled]='fromAgeDisabled'
                     formControlName="DashapredictfromAge"
                     [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.PredStDt"
                   ></dx-number-box>
-                  <p
+                  <!-- <dx-number-box
+                    #numberBox
+                    [width]='150'
+                    [max]="partyGeneralConfig.Config.DashaStartValue"
+                    [min]="0"
+                    valueChangeEvent="keyup" (keyup)="onDashaPredictionFromAge($event.target.value)"  
+                    [disabled]='fromAgeDisabled'
+                    formControlName="DashapredictfromAge"
+                    [showSpinButtons]="true"
+                    [(ngModel)]="partyGeneralConfig.Config.PredStDt"
+                  ></dx-number-box> -->
+                  <span
                     style="color:red;font-size: 14px;"
-                    id="err_DashaStartFromAge"
-                  ></p>
+                    id="err_DashapredictfromAge"
+                  ></span>
                 </div>
               </div>
                 </div>
@@ -108,10 +118,10 @@
                     [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.PredEndDt"
                   ></dx-number-box>
-                  <p
+                  <span
                     style="color:red;font-size: 14px;"
                     id="err_DashapredicttoAge"
-                  ></p>
+                  ></span>
                 </div>
               </div>
                 </div>
@@ -340,8 +350,9 @@
         </dx-accordion>
       </div>
     </div>
-    
+    <br/>
       <div class="rows">
+          <a (click)="Deafult()">Set Default Configuration</a>
             <div class="dx-fieldset-column">
         <div class="dx-field">
           <div class="cs-button">
@@ -349,13 +360,13 @@
           </div>
         </div>
             </div>
-            <div class="dx-fieldset-column">
+            <!-- <div class="dx-fieldset-column">
         <div class="dx-field">
           <div class="cs-button">
             <dx-button text="Deafult" (onClick)="Deafult()"> </dx-button>
           </div>
         </div>
-    </div>
+    </div> -->
     <div class="dx-fieldset-column">
         <div class="dx-field">
           <div class="cs-button">
