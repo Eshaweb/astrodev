@@ -191,6 +191,7 @@ export class HoroscopeComponent {
         JanmaRashi: 0,
         AshtaMangalaNo: null,
         IsMarried: true,
+        PartyMastId:StorageService.GetItem('PartyMastId')
       }
     }
   }
@@ -438,6 +439,7 @@ export class HoroscopeComponent {
       JanmaRashi: 0,
       AshtaMangalaNo: '444',
       IsMarried: this.isMarriedvalue,
+      PartyMastId:StorageService.GetItem('PartyMastId')
     }
 
     this.horoScopeService.Fathername = this.horoRequest.Father;
