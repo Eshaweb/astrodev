@@ -117,7 +117,7 @@ export class PanchangaComponent {
   validateDateField(from: string) {
     return (group: FormGroup): {[key: string]: any} => {
      let f = group.controls['Date'];
-      if (f.value > new Date(this.maxdateinDateFormat)) {
+      if (f.value > new Date(this.maxdateinDateFormat)||f.value < new Date(this.mindateinDateFormat)) {
        return {
          dates: "Date from should be less than Date to"
        };

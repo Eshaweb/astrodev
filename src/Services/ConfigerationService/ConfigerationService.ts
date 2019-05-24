@@ -34,7 +34,7 @@ export class ConfigerationService {
         { id: "RN", name: "Raman" },
         { id: "UD", name: "User Defined" }]
 
-    dashastart: RadioSource[] = [{ id: "SD", name: "System Data" },
+    dashastart: RadioSource[] = [{ id: "SD", name: "System Date" },
     { id: "FA", name: "From Age" },
 
 
@@ -43,7 +43,7 @@ export class ConfigerationService {
     { id: 360, name: "360.00 Days" }];
 
     astakavarga: RadioSource[] = [{ id: "BJ", name: "Brihath Jathaka" },
-    { id: "BP", name: "Brihath Parashara" }, { id: "JA", name: "Jathaka Desha" }]
+    { id: "BP", name: "Brihath Parashara" }, { id: "JA", name: "Jathakaadesha" }]
 
 
     Bahvaphala: RadioSource[] = [{ id: "B", name: "Bhava Phala Based on Bhava Chakram" }, { id: "G", name: "Bhava Phala Based on Graha Chakram" }]

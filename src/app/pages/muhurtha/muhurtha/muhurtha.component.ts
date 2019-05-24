@@ -296,6 +296,7 @@ export class MuhurthaComponent {
       document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
     }
   }
+
   private validationMessages = { //used in above method.
 
     Date_required: '*Select Date of Birth',
@@ -309,7 +310,7 @@ export class MuhurthaComponent {
   validateDateField(from: string) {
     return (group: FormGroup): {[key: string]: any} => {
      let f = group.controls['FromDate'];
-      if (f.value > new Date(this.maxdateinDateFormat)) {
+      if (f.value > new Date(this.maxdateinDateFormat)||f.value < new Date()) {
        return {
          dates: "Date from should be less than Date to"
        };

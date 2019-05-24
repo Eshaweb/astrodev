@@ -23,6 +23,7 @@ export class GeneralConfigComponent {
     this.configform = this.formbuilder.group({
       DashaStartFromAge: [''],
       DashaStarttoAge: ['',[Validators.min(0), Validators.max(100)]],
+      //DashapredictfromAge: ['',[Validators.min(0), Validators.max(this.partyGeneralConfig.Config.DashaStartValue)]],
       DashapredictfromAge: [''],
       DashapredicttoAge: ['',[Validators.min(0), Validators.max(100)] ],
       Chandra: [''],
@@ -82,13 +83,15 @@ export class GeneralConfigComponent {
     DashaStarttoAge_min: '*Minimum value is 0',
     DashaStarttoAge_max: '*Maximum value is 100',
 
+    DashapredictfromAge_min: '*Minimum value is 0',
+    DashapredictfromAge_max: '*Dasha Prediction from Age should be less than or equal to Dasha Start FromAge',
+
     DashapredicttoAge_min: '*Minimum value is 0',
     DashapredicttoAge_max: '*Maximum value is 100',
   };
 
 
   ngOnInit() {
-
     this.partyGeneralConfig = new PartyGeneralConfig();
     this.partyGeneralConfig.Config = new Config();
     this.configerationService.GetGeneralconfig(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
@@ -121,9 +124,17 @@ export class GeneralConfigComponent {
   SunSettingSelection(event){
     this.partyGeneralConfig.Config.SunSetting=event.value;
   }
-charttypedataSelection(event){
-  this.partyGeneralConfig.Config.ChartType=event.value;
-}
+  charttypedataSelection(event) {
+    this.partyGeneralConfig.Config.ChartType = event.value;
+  }
+  onDashaPredictionFromAge(value) {
+    if (value > this.partyGeneralConfig.Config.DashaStartValue) {
+      document.getElementById('err_DashapredictfromAge').innerHTML = 'This should be less than or equal to Dasha Start From Age';
+    }
+    else {
+      document.getElementById('err_DashapredictfromAge').innerHTML = '';
+    }
+  }
   Update() {
     this.loadingSwitchService.loading = true;
     if(this.configform.get('DashapredicttoAge').value<=this.configform.get('DashaStarttoAge').value){
@@ -142,12 +153,15 @@ charttypedataSelection(event){
       this.loadingSwitchService.message='Dasha Prediction To Age should be less than Dasha Start To Age';
     }
   }
+
   Deafult() {
     this.loadingSwitchService.loading = true;
     this.configerationService.GetDefaultconfig().subscribe((data: any) => {
       this.partyGeneralConfig.Config = data;
       this.loadingSwitchService.loading = false;
-      this.router.navigate(["/settings"]);
+      //this.router.navigate(["/settings"]);
+
+      
       // this.loadingSwitchService.popupVisible = true;
       // this.loadingSwitchService.message = 'Default Configuration';
     });
