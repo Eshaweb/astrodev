@@ -27,7 +27,6 @@ export class PanchangaComponent {
   timeformatdata: ArrayStore;
   languagevalue: string;
   timeformatvalue: string;
-
   public loading = false;
   intLongDeg: number;
   intLatDeg: number;
@@ -53,8 +52,6 @@ export class PanchangaComponent {
   ];
   mindateinDateFormat: Date;
   maxdateinDateFormat: Date;
- 
-
 
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public panchangaService: PanchangaService, public uiService: UIService,
@@ -93,6 +90,7 @@ export class PanchangaComponent {
         ZH:null,
         ZM:null,
         PN:null,
+        PartyMastId:StorageService.GetItem('PartyMastId')
       }
     }
   }
@@ -153,6 +151,7 @@ export class PanchangaComponent {
       });
     });
   }
+
   ngAfterViewInit(): void {
     if (this.panchangaService.panchangaRequest != null) {
       this.timeformatvalue = this.panchangaService.panchangaRequest.TimeFormat;
@@ -162,7 +161,6 @@ export class PanchangaComponent {
       this.timeformatvalue = this.timeformats[0].Id;
       this.languagevalue = this.languages[2].Id;
     }
-    
   }
 
   getTimezone(lat, long) {
@@ -237,22 +235,8 @@ export class PanchangaComponent {
       ZH: this.panchangaRequest.ZH,
       ZM: this.panchangaRequest.ZM,
       PN: this.panchangaRequest.PN,
+      PartyMastId:StorageService.GetItem('PartyMastId')
     }
-    // var getsputaModel={
-    //   Date:dateinString,
-    //   Time:timeinString,
-    //   TimeFormat:this.timeformatvalue,
-    //   LatDeg: this.panchangaRequest.LatDeg,
-    //   LatMt: this.panchangaRequest.LatMt,
-    //   LongDeg: this.panchangaRequest.LongDeg,
-    //   LongMt: this.panchangaRequest.LongMt,
-    //   NS: this.panchangaRequest.NS,
-    //   EW: this.panchangaRequest.EW,
-    //   ZH: this.panchangaRequest.ZH,
-    //   ZM: this.panchangaRequest.ZM,
-    //   PN: this.panchangaRequest.PN,
-    //   Count:1,
-    // }
     this.panchangaService.panchangaRequest = this.panchangaRequest;
     this.panchangaService.DateinDateFormat = bdate;
     this.panchangaService.timeZoneName = this.timeZoneName;

@@ -8,4 +8,5 @@ export class NumerologyRequest {
     CityName: string;
     LangCode: string;
     ReportSize:string;
+    PartyMastId:string;
 }
