@@ -354,9 +354,23 @@ a {
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 1;
     //  margin-top: 16px;
-      margin-left: -16px;
+      margin-left: -37px;
+      border-radius: 10px;
+    
     }
     
+    .dropdown-content::before  {
+      content: "";
+      position: absolute;
+      left: calc(50% - 10px);
+      margin-top: -7px;
+      width: 14px;
+      z-index: -1;
+      height: 14px;
+      background: #fff;
+      transform: rotate(45deg);
+  }
+
     .dropdown-content a {
       color: black;
       padding: 12px 16px;

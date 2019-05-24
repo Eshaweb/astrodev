@@ -27,6 +27,7 @@
   background-position-y: -1px;
   padding-bottom: 3px !important;
   padding-top: 7px !important;
+  font-weight: 600;
 
 }
 
@@ -60,6 +61,10 @@ li a {
   border-right: 1px solid rgba(137,63,3, .40);
   cursor: pointer;
 }
+li:last-child {
+  border-right: none;
+}
+
 
 li a:hover:not(.active) {
   background-color: rgb(224, 172, 28);
