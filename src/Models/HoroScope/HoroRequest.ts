@@ -33,4 +33,5 @@ export class HoroRequest{
     Tambula?:number;
     Sprushtanga?:number;
     // Path:string;
+    PartyMastId:string;
 }

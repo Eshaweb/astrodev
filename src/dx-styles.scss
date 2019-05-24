@@ -5,6 +5,18 @@
 //   width: 0px !important;
 // }
 
+.dx-gallery-item-image {
+  max-width: 100%;
+   -webkit-align-self: auto; 
+  -ms-flex-item-align: auto;
+  /* align-self: flex-start; */
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  /* flex-shrink: 0; */
+  height: auto;
+   margin: 0px;
+}
+
 
 .content {
   line-height: 1.5;

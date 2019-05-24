@@ -216,6 +216,7 @@ export class AshtamangalaComponent {
         Tambula: this.astamangalaForm.controls['Tambula'].value,
         Sprushtanga: this.astamangalaForm.controls['Sprushtanga'].value,
         IsMarried: true,
+        PartyMastId:StorageService.GetItem('PartyMastId')
       }
     }
     
@@ -241,16 +242,18 @@ export class AshtamangalaComponent {
     }
     if (control == "AshtaMangalaNo") {
       var number = this.astamangalaForm.controls['AshtaMangalaNo'].value;
-      var cast = number.toString(10).split('');
-      var ANo=0;
-      for (var i = 0, n = cast.length; i < n; i++) {
-        ANo += +cast[i];
-      }
-      if (ANo == 4 || ANo == 8 || ANo == 12) {
-
-      }
-      else {
-        document.getElementById('err_AshtaMangalaNo').innerHTML = 'Sum must be either 4,8 or 12';
+      if(number!=null){
+        var cast = number.toString(10).split('');
+        var ANo=0;
+        for (var i = 0, n = cast.length; i < n; i++) {
+          ANo += +cast[i];
+        }
+        if (ANo == 4 || ANo == 8 || ANo == 12) {
+  
+        }
+        else {
+          document.getElementById('err_AshtaMangalaNo').innerHTML = 'Sum must be either 4,8 or 12';
+        }
       }
     }
   }
@@ -298,7 +301,7 @@ export class AshtamangalaComponent {
     Tambula_max: '*Maximum value is 100',
 
     AshtaMangalaNo_required: '*Enter AshtaMangala Number',
-    AshtaMangalaNo_pattern: "*No's from 1-8 of 3 digits is only allowed",
+    AshtaMangalaNo_pattern: "*Numbers from 1-8 of 3 digits is only allowed",
 
     Sprushtanga_required: '*Enter Sprushtanga',
     Sprushtanga_min: '*Minimum value is 1',
@@ -365,13 +368,14 @@ export class AshtamangalaComponent {
       this.genderValue = 'F';
     }
   }
+
   ngAfterViewInit(): void {
     if (this.astamangalaService.horoRequest != null) {
       this.timeformatvalue = this.astamangalaService.horoRequest.TimeFormat;
       this.reportSizevalue = this.astamangalaService.horoRequest.ReportSize;
       this.languagevalue = this.astamangalaService.horoRequest.LangCode;
       this.genderValue = this.astamangalaService.horoRequest.Gender;
-      //this.pruchakaStarvalue = 
+      this.pruchakaStarvalue = this.astamangalaService.horoRequest.Pruchaka;
     }
     else {
       this.timeformatvalue = this.timeformats[0].Id;
@@ -556,7 +560,6 @@ export class AshtamangalaComponent {
     }
   }
 
-
   OnSubmit_click() {
     //this.tick();
     //this.loading = true;
@@ -611,6 +614,7 @@ export class AshtamangalaComponent {
       Tambula: this.astamangalaForm.controls['Tambula'].value,
       Sprushtanga: this.astamangalaForm.controls['Sprushtanga'].value,
       IsMarried: true,
+      PartyMastId:StorageService.GetItem('PartyMastId')
     }
     this.astamangalaService.horoRequest = this.horoRequest;
     this.astamangalaService.DateinDateFormat = bdate;
