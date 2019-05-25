@@ -427,12 +427,12 @@ export class MatchMakingComponent {
     return (group: FormGroup): {[key: string]: any} => {
      let m = group.controls['MaleBdate'];
      let f = group.controls['FemaleBdate'];
-     if (m!=undefined&& m.value > new Date(this.maxdateinDateFormat)||f.value < new Date(this.mindateinDateFormat)) {
+     if (m!=undefined&& (m.value > new Date(this.maxdateinDateFormat)||m.value < new Date(this.mindateinDateFormat))) {
       return {
         dates: "Date from should be less than Date to"
       };
     }
-     if (f!=undefined&& f.value > new Date(this.maxdateinDateFormat)||f.value < new Date(this.mindateinDateFormat)) {
+     if (f!=undefined&& (f.value > new Date(this.maxdateinDateFormat)||f.value < new Date(this.mindateinDateFormat))) {
        return {
          dates: "Date from should be less than Date to"
        };

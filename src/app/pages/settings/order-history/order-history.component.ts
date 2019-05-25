@@ -41,15 +41,15 @@ export class OrderHistoryComponent implements OnInit {
     fielddata: ArrayStore;
     sortorderdata: ArrayStore;
     buttonId: any;
-    sub:Subscription;
+    sub: Subscription;
     deleteConfirmPopUp: boolean;
     OrderId: string;
     ItActId: string;
     args: string[];
-    constructor(public horoScopeService: HoroScopeService, public storageService: StorageService, public loadingSwitchService: LoadingSwitchService, 
-        public sortingOrderHistoryPipe: SortingOrderHistoryPipe, private router: Router, private itemService: ItemService, private loginService: LoginService, 
+    constructor(public horoScopeService: HoroScopeService, public storageService: StorageService, public loadingSwitchService: LoadingSwitchService,
+        public sortingOrderHistoryPipe: SortingOrderHistoryPipe, private router: Router, private itemService: ItemService, private loginService: LoginService,
         service: OrderHistoryService, private orderService: OrderService) {
-            
+
         this.services = service.getServices();
         this.fielddata = new ArrayStore({
             data: this.fields,
@@ -65,7 +65,7 @@ export class OrderHistoryComponent implements OnInit {
     }
     ngOnInit() {
         this.loadingSwitchService.loading = true;
-        this.ItActId="#SH";
+        this.ItActId = "#SH";
         var orderHistory = {
             PartyMastId: StorageService.GetItem('PartyMastId'),
             ItActId: "#SH"
@@ -108,7 +108,7 @@ export class OrderHistoryComponent implements OnInit {
 
     onItemClick(event) {
         this.loadingSwitchService.loading = true;
-        this.ItActId=event.itemData.ItActId
+        this.ItActId = event.itemData.ItActId
         var orderHistory = {
             PartyMastId: StorageService.GetItem('PartyMastId'),
             ItActId: event.itemData.ItActId
@@ -140,40 +140,14 @@ export class OrderHistoryComponent implements OnInit {
             this.orderService.CheckForResult(item.OrderId).subscribe((data) => {
                 if (data.AstroReportId.length != 0) {
                     this.buttonId = data.AstroReportId[0].split('_')[0];
-                    this.horoScopeService.DownloadResult(this.buttonId, (data) => {
-                        var newBlob = new Blob([data], { type: "application/pdf" });
-                        const fileName: string = item.ItName + '.pdf';
-                        const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
-                        var url = window.URL.createObjectURL(newBlob);
-                        a.href = url;
-                        a.download = fileName;
-                        document.body.appendChild(a);
-                        this.loadingSwitchService.loading = false;
-                        a.click();
-                        document.body.removeChild(a);
-                        URL.revokeObjectURL(url);
-                    });
+                    this.DownloadResult(this.buttonId);
                 }
                 else {
                     this.sub = interval(10000).subscribe((val) => {
                         this.orderService.CheckForResult(StorageService.GetItem('OrderId')).subscribe((data) => {
                             if (data.AstroReportId.length != 0) {
                                 this.buttonId = data.AstroReportId[0].split('_')[0];
-                                this.horoScopeService.DownloadResult(this.buttonId, (data) => {
-                                    var newBlob = new Blob([data], { type: "application/pdf" });
-                                    const fileName: string = this.storageService.GetOrderResponse().ItName + '.pdf';
-                                    const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
-                                    var url = window.URL.createObjectURL(newBlob);
-                                    a.href = url;
-                                    a.download = fileName;
-                                    document.body.appendChild(a);
-                                    a.click();
-                                    document.body.removeChild(a);
-                                    URL.revokeObjectURL(url);
-                                    this.loadingSwitchService.loading = false;
-                                    //this.storageService.RemoveDataFromSession();
-                                    this.sub.unsubscribe();
-                                });
+                                this.DownloadResult(this.buttonId);
                             }
 
                         });
@@ -182,15 +156,33 @@ export class OrderHistoryComponent implements OnInit {
             });
         }
     }
+
+    DownloadResult(buttonId) {
+        this.horoScopeService.DownloadResult(buttonId).subscribe((data: any) => {
+            var newBlob = new Blob([data], { type: "application/pdf" });
+            const fileName: string = this.storageService.GetOrderResponse().ItName + '.pdf';
+            const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+            var url = window.URL.createObjectURL(newBlob);
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            this.loadingSwitchService.loading = false;
+            //this.storageService.RemoveDataFromSession();
+            this.sub.unsubscribe();
+        });
+    }
     OnYes_click() {
-        this.deleteConfirmPopUp=false;
+        this.deleteConfirmPopUp = false;
         this.loadingSwitchService.loading = true;
         var deleteOrder = {
             PartyMastId: StorageService.GetItem('PartyMastId'),
             OrderId: this.OrderId
         }
         this.orderService.DeleteOrder(deleteOrder).subscribe((data: any) => {
-            if(data==true){
+            if (data == true) {
                 var orderHistory = {
                     PartyMastId: StorageService.GetItem('PartyMastId'),
                     ItActId: this.ItActId
@@ -207,17 +199,17 @@ export class OrderHistoryComponent implements OnInit {
                     this.sortingOrderHistoryPipe.transform(this.orderHistoryResponse, args);
                 });
             }
-            else{
+            else {
                 this.loadingSwitchService.loading = false;
             }
         });
     }
     OnNo_click() {
-        this.deleteConfirmPopUp=false;
+        this.deleteConfirmPopUp = false;
     }
-    ondelete_Click(item){
-        this.OrderId=item.OrderId; 
-        this.deleteConfirmPopUp=true;
+    ondelete_Click(item) {
+        this.OrderId = item.OrderId;
+        this.deleteConfirmPopUp = true;
     }
 }
 

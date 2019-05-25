@@ -27,8 +27,8 @@ export function applicationHttpClientCreator(http: HttpClient, errorService: Err
   providedIn: 'root'
 })
 export class HttpService {
-  //private api = 'https://astroliteapi.azurewebsites.net/api/';
-  private api = 'https://mahadevapi.azurewebsites.net/api/';
+  private api = 'https://astroliteapi.azurewebsites.net/api/';
+  //private api = 'https://mahadevapi.azurewebsites.net/api/';
   private errorData: ErrorData;
   url: string;
   params: Object;
@@ -76,6 +76,31 @@ export class HttpService {
     this.errorSuscription(subscription);
     return subscription;
   }
+
+/**
+  * GET request
+  * @param {string} endPoint it doesn't need / in front of the end point
+  * @returns {Observable<Blob>}
+  */
+ public Get_PDF<T>(endPoint: string): Observable<Blob> {
+  let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  let subscription = this.http.get(this.api + endPoint, { responseType: "blob", headers:headers }).pipe(shareReplay());
+  this.errorSuscription(subscription);
+  return subscription;
+}
+
+/**
+ * POST request
+ * @param {string} endPoint end point of the api
+ * @param {Object} params body of the request.
+ * @returns {Observable<Blob>}
+ */
+public Post_PDF<T>(endPoint: string, params: Object): Observable<Blob> {
+  let headers = new HttpHeaders({ 'Content-Type': 'application/json'});
+  let subscription = this.http.post(this.api + endPoint, params, { responseType: "blob", headers:headers  }).pipe(shareReplay());
+  this.errorSuscription(subscription);
+  return subscription;
+}
 
   private errorSuscription(subscription: Observable<any>) {
     subscription.subscribe((data: any) => {
