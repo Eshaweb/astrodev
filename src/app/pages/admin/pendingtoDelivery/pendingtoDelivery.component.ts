@@ -15,12 +15,12 @@ import { interval, Subscription } from 'rxjs';
   
   export class PendingtoDeliveryComponent {
     dataSource: any;
-    @ViewChild(WizardComponent) public wizard: WizardComponent;  
+    @ViewChild(WizardComponent) public wizard: WizardComponent;
     updateDeliveryForm: FormGroup;
     OrderId: any;
-  buttonId: any;
-  sub:Subscription;
-  ItName: any;
+    buttonId: any;
+    sub: Subscription;
+    ItName: any;
     ExtCode: any;
     constructor(public storageService: StorageService, public orderService: OrderService, public horoScopeService: HoroScopeService, public formBuilder: FormBuilder, public itemService: ItemService, public loadingSwitchService: LoadingSwitchService) {
 
@@ -58,26 +58,26 @@ import { interval, Subscription } from 'rxjs';
         this.ExtCode=event.itemData.ExtCode;
       }
    
-      submit_click(){
-        this.loadingSwitchService.loading=true;
-          var UpdateDelivery={
-              OrderId:this.OrderId,
-              TrackingRef:this.updateDeliveryForm.controls['TrackingRef'].value,
-              DispatchDate:this.updateDeliveryForm.controls['DispatchDate'].value
-          }
-          this.itemService.UpdateDelivery(UpdateDelivery).subscribe((data:any)=>{
-            if(data==true){
-                this.itemService.GetPendingToDelvery().subscribe((data:any)=>{
+    submit_click() {
+        this.loadingSwitchService.loading = true;
+        var UpdateDelivery = {
+            OrderId: this.OrderId,
+            TrackingRef: this.updateDeliveryForm.controls['TrackingRef'].value,
+            DispatchDate: this.updateDeliveryForm.controls['DispatchDate'].value
+        }
+        this.itemService.UpdateDelivery(UpdateDelivery).subscribe((data: any) => {
+            if (data == true) {
+                this.itemService.GetPendingToDelvery().subscribe((data: any) => {
                     if (data.Errors == undefined) {
-                     this.dataSource=data;
-                     this.wizard.navigation.goToPreviousStep();
+                        this.dataSource = data;
+                        this.wizard.navigation.goToPreviousStep();
                     }
-                    this.loadingSwitchService.loading=false;
-                  });
+                    this.loadingSwitchService.loading = false;
+                });
             }
-            this.loadingSwitchService.loading=false;
-          });  
-      }
+            this.loadingSwitchService.loading = false;
+        });
+    }
       OnEnterStep(event){
 
       }
@@ -85,51 +85,41 @@ import { interval, Subscription } from 'rxjs';
           
     }
 
-    onDownload_click(){
-      this.loadingSwitchService.loading = true;
-            this.orderService.CheckForResult(this.OrderId).subscribe((data) => {
-                if (data.AstroReportId.length != 0) {
-                    this.buttonId = data.AstroReportId[0].split('_')[0];
-                    this.horoScopeService.DownloadResult(this.buttonId, (data) => {
-                        var newBlob = new Blob([data], { type: "application/pdf" });
-                        const fileName: string = this.ItName + '.pdf';
-                        const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
-                        var url = window.URL.createObjectURL(newBlob);
-                        a.href = url;
-                        a.download = fileName;
-                        document.body.appendChild(a);
-                        this.loadingSwitchService.loading = false;
-                        a.click();
-                        document.body.removeChild(a);
-                        URL.revokeObjectURL(url);
+    onDownload_click() {
+        this.loadingSwitchService.loading = true;
+        this.orderService.CheckForResult(this.OrderId).subscribe((data) => {
+            if (data.AstroReportId.length != 0) {
+                this.buttonId = data.AstroReportId[0].split('_')[0];
+                this.DownloadResult(this.buttonId);
+            }
+            else {
+                this.sub = interval(10000).subscribe((val) => {
+                    this.orderService.CheckForResult(this.OrderId).subscribe((data) => {
+                        if (data.AstroReportId.length != 0) {
+                            this.buttonId = data.AstroReportId[0].split('_')[0];
+                            this.DownloadResult(this.buttonId);
+                        }
                     });
-                }
-                else {
-                    this.sub = interval(10000).subscribe((val) => {
-                        this.orderService.CheckForResult(this.OrderId).subscribe((data) => {
-                            if (data.AstroReportId.length != 0) {
-                                this.buttonId = data.AstroReportId[0].split('_')[0];
-                                this.horoScopeService.DownloadResult(this.buttonId, (data) => {
-                                    var newBlob = new Blob([data], { type: "application/pdf" });
-                                    const fileName: string = this.ItName + '.pdf';
-                                    const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
-                                    var url = window.URL.createObjectURL(newBlob);
-                                    a.href = url;
-                                    a.download = fileName;
-                                    document.body.appendChild(a);
-                                    a.click();
-                                    document.body.removeChild(a);
-                                    URL.revokeObjectURL(url);
-                                    this.loadingSwitchService.loading = false;
-                                    this.storageService.RemoveDataFromSession();
-                                    this.sub.unsubscribe();
-                                });
-                            }
+                });
+            }
+        });
+    }
 
-                        });
-                    });
-
-                }
-            });
+    DownloadResult(buttonId) {
+        this.horoScopeService.DownloadResult(buttonId).subscribe((data: any) => {
+            var newBlob = new Blob([data], { type: "application/pdf" });
+            const fileName: string = this.ItName + '.pdf';
+            const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+            var url = window.URL.createObjectURL(newBlob);
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            this.loadingSwitchService.loading = false;
+            this.storageService.RemoveDataFromSession();
+            this.sub.unsubscribe();
+        });
     }
   }

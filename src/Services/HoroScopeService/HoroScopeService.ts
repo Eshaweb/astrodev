@@ -64,30 +64,39 @@ export class HoroScopeService {
     {
      this.captionDbService.GetCaption(langCode,caption);
     }
-    DownloadResult(AstroReportId, callback: (data) => void){
-        //var url = "https://astroliteapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
-        var url = "https://mahadevapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
-        let headers = new HttpHeaders({ 'Content-Type': 'application/json','Authorization':'Bearer'+this.loginService.AccessToken });
-        this.http.get(url, { responseType: "blob", headers:headers }).subscribe((data: any) => {
-            this.existingAddress = data;
-            callback(data);
-        }, (error) => {
-            var errorMessage={
-              Error:error
-            }
-            callback(errorMessage);
-        });
+    // DownloadResult(AstroReportId, callback: (data) => void){
+    //     var url = "https://astroliteapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
+    //     //var url = "https://mahadevapi.azurewebsites.net/api/Order/DownloadResult?AstroReportId=" + AstroReportId;
+    //     let headers = new HttpHeaders({ 'Content-Type': 'application/json','Authorization':'Bearer'+this.loginService.AccessToken });
+    //     this.http.get(url, { responseType: "blob", headers:headers }).subscribe((data: any) => {
+    //         this.existingAddress = data;
+    //         callback(data);
+    //     }, (error) => {
+    //         var errorMessage={
+    //           Error:error
+    //         }
+    //         callback(errorMessage);
+    //     });
+    // }
+  
+    // DownloadSample(horoSample) {
+    //     var url = "https://astroliteapi.azurewebsites.net/api/Item/DownloadSample";
+    //     //var url = "https://mahadevapi.azurewebsites.net/api/Item/DownloadSample";
+    //     let headers = new HttpHeaders({ 'Content-Type': 'application/json','Authorization':'Bearer'+this.loginService.AccessToken });
+    //     return this.http.post(url, horoSample, { responseType: "blob", headers:headers  });
+    // }
+   
+    DownloadResult(AstroReportId){
+        var endPoint = "Order/DownloadResult?AstroReportId=" + AstroReportId;
+        return this.httpService.Get_PDF(endPoint);
     }
   
     DownloadSample(horoSample) {
-        //var url = "https://astroliteapi.azurewebsites.net/api/Item/DownloadSample";
-        var url = "https://mahadevapi.azurewebsites.net/api/Item/DownloadSample";
-        let headers = new HttpHeaders({ 'Content-Type': 'application/json','Authorization':'Bearer'+this.loginService.AccessToken });
-        return this.http.post(url, horoSample, { responseType: "blob", headers:headers  });
+        var endPoint = "Item/DownloadSample";
+        return this.httpService.Post_PDF(endPoint, horoSample);
     }
-   
+
     GetAllAddress(PartyMastId):Observable<any> {
-       
         var endPoint = "Address/GetAllAddress?PartyMastId=" + PartyMastId;
         return this.httpService.Get(endPoint);
     }

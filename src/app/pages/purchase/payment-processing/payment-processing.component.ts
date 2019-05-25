@@ -65,7 +65,8 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
     this.horoScopeService.horoRequest = null;
   }
   DownloadResult(buttonId) {
-    this.horoScopeService.DownloadResult(buttonId, (data) => {
+    //this.horoScopeService.DownloadResult(buttonId, (data) => {
+    this.horoScopeService.DownloadResult(buttonId).subscribe((data:any)=> {
       var newBlob = new Blob([data], { type: "application/pdf" });
       // const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
       const fileName: string = this.storageService.GetOrderResponse().ItName + '.pdf';
