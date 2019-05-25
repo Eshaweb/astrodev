@@ -147,7 +147,12 @@ dx-button.dx-button.dx-button-normal.dx-button-mode-contained.dx-widget.dx-butto
 .rights{
 
   float: left;
-  width: 80%;
+  width: 50%;
+}
+.payment-icons {
+  float: left;
+  margin-right: 100px;
+
 }
 @media (max-width: 800px) {
   .social{
