@@ -99,7 +99,8 @@ export class NumerologyComponent {
         MobileNo: this.numerologyForm.controls['mobileNo'].value,
         VehicleNo: this.numerologyForm.controls['vehicleNo'].value,
         CityName: this.numerologyForm.controls['cityName'].value,
-        ReportSize:this.reportSizevalue
+        ReportSize:this.reportSizevalue,
+        PartyMastId:StorageService.GetItem('PartyMastId')
       }
     }
   }
@@ -213,7 +214,8 @@ export class NumerologyComponent {
       MobileNo: this.numerologyForm.controls['mobileNo'].value,
       VehicleNo: this.numerologyForm.controls['vehicleNo'].value,
       CityName: this.numerologyForm.controls['cityName'].value,
-      ReportSize:this.reportSizevalue
+      ReportSize:this.reportSizevalue,
+      PartyMastId:StorageService.GetItem('PartyMastId')
     }
     
     this.numerologyService.numerologyRequest = this.numerologyRequest;

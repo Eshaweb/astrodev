@@ -35,8 +35,8 @@ export class GeneralConfigComponent {
       AyanaDeg: [''],
       AyanaMt: [''],
       AyanaSec: [''],
-
     });
+
     const DashaStartFromAgeContrl = this.configform.get('DashaStartFromAge');
     DashaStartFromAgeContrl.valueChanges.subscribe(value => this.setErrorMessage(DashaStartFromAgeContrl));
 
@@ -79,6 +79,7 @@ export class GeneralConfigComponent {
       document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
     }
   }
+  
   private validationMessages = {
     DashaStarttoAge_min: '*Minimum value is 0',
     DashaStarttoAge_max: '*Maximum value is 100',
@@ -127,6 +128,7 @@ export class GeneralConfigComponent {
   charttypedataSelection(event) {
     this.partyGeneralConfig.Config.ChartType = event.value;
   }
+
   onDashaPredictionFromAge(value) {
     if (value > this.partyGeneralConfig.Config.DashaStartValue) {
       document.getElementById('err_DashapredictfromAge').innerHTML = 'This should be less than or equal to Dasha Start From Age';
@@ -135,6 +137,7 @@ export class GeneralConfigComponent {
       document.getElementById('err_DashapredictfromAge').innerHTML = '';
     }
   }
+
   Update() {
     this.loadingSwitchService.loading = true;
     if(this.configform.get('DashapredicttoAge').value<=this.configform.get('DashaStarttoAge').value){

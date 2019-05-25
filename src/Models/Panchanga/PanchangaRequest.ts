@@ -14,4 +14,5 @@ export class PanchangaRequest
     ZM:number;
     PN:string;
     Place:string;
+    PartyMastId:string;
 }

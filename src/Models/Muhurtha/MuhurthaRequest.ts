@@ -20,7 +20,8 @@ export class MuhurthaRequest{
     EndTime:boolean;
     LangCode:string;
     ReportSize:string;
-    RashiNakshatras:RashiNak[]
+    RashiNakshatras:RashiNak[];
+    PartyMastId:string;
   }
   export class RashiNak{
     Rashi:string;

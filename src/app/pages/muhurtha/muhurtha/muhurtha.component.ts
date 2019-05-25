@@ -284,7 +284,8 @@ export class MuhurthaComponent {
         Direction:null,
         EndTime:null,
         LangCode:null,
-        RashiNakshatras:null
+        RashiNakshatras:null,
+        PartyMastId:StorageService.GetItem('PartyMastId')
       }
     }
   }
@@ -736,7 +737,8 @@ export class MuhurthaComponent {
       Direction:this.yathradirectionsvalue,
       EndTime:this.endTimeCheckBoxValue,
       LangCode:this.languagevalue,
-      RashiNakshatras:this.rashiNakshatras
+      RashiNakshatras:this.rashiNakshatras,
+      PartyMastId:StorageService.GetItem('PartyMastId')
     }
 
     this.muhurthaService.DateinDateFormat=this.dateinDateFormat;

@@ -30,7 +30,6 @@ export class MatchMakingComponent {
   femaleMatchMakingRequest: FemaleMatchMakingRequest;
   maleMatchMakingForm: FormGroup;
   femaleMatchMakingForm: FormGroup;
-
   enabletoEdit_MaleBDetails: boolean = false;
   enabletoEdit_FemaleBDetails: boolean = false;
   maletimeformatdata: ArrayStore;
@@ -293,6 +292,7 @@ export class MatchMakingComponent {
         LangCode: null,
         UserOrSystem:null,
         ReportSize:null,
+        PartyMastId:StorageService.GetItem('PartyMastId'),
         Male: {
           Name: this.maleMatchMakingForm.controls['maleName'].value,
           Date: null,
@@ -639,6 +639,7 @@ export class MatchMakingComponent {
       LangCode: this.languagevalue,
       UserOrSystem: this.reportTypevalue,
       ReportSize:this.reportSizevalue,
+      PartyMastId:StorageService.GetItem('PartyMastId'),
       Female: {
         Name:this.femaleMatchMakingForm.controls['femaleName'].value,
         Date: dateinStringFemale,
