@@ -370,7 +370,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       PayCodes: this.paycodes
     }
     this.orderService.CreateBillPayModeToOrder(OrderBillPayMode).subscribe((data) => {
-      this.loadingSwitchService.loading = false;
+      //this.loadingSwitchService.loading = false;
       //this.loadPanel.visible = false;
       if (data.Error == undefined) {
         this.horoScopeService.ExtCode = data.ExtCode;
@@ -388,7 +388,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
               this.payableAmountthroughPaymentGateWay = this.payableAmountthroughPaymentGateWay;
             }
             //this.loadPanel.visible = true;
-            this.loadingSwitchService.loading = true;
+            //this.loadingSwitchService.loading = true;
             this.pay();
            // this.razorPayService.pay(this.payableAmountthroughPaymentGateWay, "Service");
             break;

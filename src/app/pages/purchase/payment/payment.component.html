@@ -45,27 +45,27 @@
 </div>
 <div class="clear"></div>
 <div>
-        <div class="dx-fieldset">
-<div class="dx-field">
-    <div class="cap">Price</div>
-    <div class="data">{{payableAmount|currency:'INR'}}
-    </div>
-</div>
+    <div class="dx-fieldset">
+        <div class="dx-field">
+            <div class="cap">Price</div>
+            <div class="data">{{payableAmount|currency:'INR'}}
+            </div>
+        </div>
 
-<div class="dx-field">
-    <div class="cap">Coupon Discount</div>
-    <div class="data">{{discountAmount|currency:'INR'}}
-    </div>
-</div>
+        <div class="dx-field">
+            <div class="cap">Coupon Discount</div>
+            <div class="data">{{discountAmount|currency:'INR'}}
+            </div>
+        </div>
 
-<div class="dx-field" *ngIf="(discountAmount>0)">
-    <div class="cap">Order Total</div>
-    <div class="data">{{payableAmount-discountAmount|currency:'INR'}}
-    </div>
-</div>
-<p style="color:green"> {{selectMeMessage}}</p>
+        <div class="dx-field" *ngIf="(discountAmount>0)">
+            <div class="cap">Order Total</div>
+            <div class="data">{{payableAmount-discountAmount|currency:'INR'}}
+            </div>
+        </div>
+        <p style="color:green"> {{selectMeMessage}}</p>
 
-</div>
+    </div>
 </div>
 <div class="astrolite-wallet">
 <dx-check-box id="check" [disabled]="alterationDisabled"
@@ -86,43 +86,33 @@ text='Pay using Astrolite wallet      {{walletbalance|currency:"INR"}}(Wallet Ba
 <p style="color:red"> {{errorMessage}}</p>
 
 <div class="dx-fieldset">
-        <div class="dx-field">
-                <div class="payment-mode">
-<div class="payment-mode" [formGroup]="paymentModeForm">
-    <dx-select-box formControlName="paymentMode"
-    (onValueChanged)="paymentModeSelection($event)" 
-    [dataSource]="paymentModedata" 
-    displayExpr="Text" 
-    valueExpr="Id"
-    [searchEnabled]="true"
-    [disabled]="selectboxdisabled"
-    [value]='paymentModedatavalue'>
-    </dx-select-box>
-</div>
-</div>
-        </div>
-
-       
-            <div class="dx-fieldset submit-btn">
-                    <div class="dx-field">
-                <dx-button (onClick)='onContinue()' 
-                text="Continue" 
-                type="success" 
-                [useSubmitBehavior]="true">
-                </dx-button>
-                <!-- <dx-button (onClick)='onTestPay()' 
-                text="Continue" 
-                type="success" 
-                [useSubmitBehavior]="true">
-                </dx-button> -->
+    <div class="dx-field">
+        <div class="payment-mode">
+            <div class="payment-mode" [formGroup]="paymentModeForm">
+                <dx-select-box formControlName="paymentMode" (onValueChanged)="paymentModeSelection($event)"
+                    [dataSource]="paymentModedata" displayExpr="Text" valueExpr="Id" [searchEnabled]="true" [disabled]="selectboxdisabled"
+                    [value]='paymentModedatavalue'>
+                </dx-select-box>
             </div>
         </div>
+    </div>
+
+    <div class="dx-fieldset submit-btn">
+        <div class="dx-field">
+            <dx-button (onClick)='onContinue()' text="Continue" type="success" [useSubmitBehavior]="true">
+            </dx-button>
+            <!-- <dx-button (onClick)='onTestPay()' 
+                    text="Continue" 
+                    type="success" 
+                    [useSubmitBehavior]="true">
+                    </dx-button> -->
         </div>
-
+    </div>
+    </div>
 
 </div>
 </div>
-<!-- <dx-load-panel
+<dx-load-panel
     #loadPanel
     shadingColor="rgba(0,0,0,0.4)"
     message="Loading..Please wait"
@@ -130,7 +120,7 @@ text='Pay using Astrolite wallet      {{walletbalance|currency:"INR"}}(Wallet Ba
     [showPane]="true"
     [shading]="true"
     [closeOnOutsideClick]="false">
-</dx-load-panel> -->
+</dx-load-panel>
 <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading> -->
 </form>
 
