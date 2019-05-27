@@ -4,16 +4,38 @@
         <form [formGroup]="depositToWalletForm">
             <div class="wallet-balance">
                     <div class="cap">
-                <h3>Wallet Balance:  {{walletBalanceAmount|currency:'INR'}}</h3>
+           
+                <div class="dx-field">
+                    <!-- <div class="dx-field-label">Add Amount*</div> -->
+                    <div class="dx-field-label"><img class="wallet-top-image"  src="assets/images/wallet1.png"/></div>
+                    <div class="dx-field-value">
+                       <p>{{walletBalanceAmount|currency:'INR'}}</p> 
+                       <p>Wallet balance</p>
+                    </div>
+                    
+                    </div>
+           
             </div>
-            <div class="cap"><h3>Wallet Bonus: {{bonusAmount|currency:'INR'}}({{bonusPercent}})</h3></div>
+            <div class="cap">
+                
+                    <div class="dx-field">
+                            <!-- <div class="dx-field-label">Add Amount*</div> -->
+                            <div class="dx-field-label"><img class="wallet-top-image"  src="assets/images/add-amount1.png"/></div>
+                            <div class="dx-field-value">
+                                 <p>{{bonusAmount|currency:'INR'}}({{bonusPercent}})</p>   
+                                 <p>Bonus Amount</p>   
+                            </div>
+                            
+                            </div>
+                         </div>
             </div>
             <div class="w-border"></div>
             <br>
             <div class="padding">
                     <div class="dx-fieldset-column">
                 <div class="dx-field">
-                <div class="dx-field-label">Add Amount*</div>
+                <!-- <div class="dx-field-label">Add Amount*</div> -->
+                <div class="dx-field-label"><img class="label-image"  src="assets/images/add-amount.png"/></div>
                 <div class="dx-field-value">
                     <dx-text-box formControlName="Amount" valueChangeEvent="keyup" (keyup)="onAmount($event.target.value)"  placeholder="Enter Amount" width="100%">
                     </dx-text-box>
@@ -28,7 +50,7 @@
                
                 <div class="dx-fieldset-column">
                 <div class="dx-field">
-                        <div class="dx-field-label">Payment Mode*</div>
+                    <div class="dx-field-label"><img class="label-image"  src="assets/images/payment-mode.png"/></div>
                         <div class="dx-field-value">
                                 <dx-select-box formControlName="BillPayMode"
                                 (onValueChanged)="paymentModeSelection($event)" 
