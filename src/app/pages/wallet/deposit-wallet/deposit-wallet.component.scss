@@ -5,10 +5,16 @@ float: left;
 
 
 }
+
+h2.content-block {
+  margin-left: 25%;
+}
+
+
 .wallet-balance{
 
   background: #fff8ed;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
   padding-left: 20px;
   padding-top: 20px;
 }
@@ -37,6 +43,15 @@ h3{
   margin-left: 35px;
 }
 
+.wallet-top-icon {
+  float: left;
+  width: 110px;
+}
+
+.wallet-top-content {
+  padding: 5px;
+  font-weight: 600;
+}
 .wallet-top-image{
   width: 50px;
   margin-left: 35px;
@@ -53,15 +68,20 @@ h3{
   padding: 20px;
 
 }
-.button-padding{
-padding: 40px;
-
-}
 .cap {
   float: left;
   width: 50%;
 }
 
+.clear {
+  clear: both;
+  }
+  
+.button-padding{
+
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
 
 
@@ -77,6 +97,7 @@ padding: 40px;
     background-color: #e07333;
     border-color: transparent;
     color: #fff;
+    padding: 10px;
   }
   .dx-card {
     width: 50%;

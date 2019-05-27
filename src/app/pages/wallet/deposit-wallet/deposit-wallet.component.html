@@ -7,10 +7,10 @@
            
                 <div class="dx-field">
                     <!-- <div class="dx-field-label">Add Amount*</div> -->
-                    <div class="dx-field-label"><img class="wallet-top-image"  src="assets/images/wallet1.png"/></div>
-                    <div class="dx-field-value">
-                       <p>{{walletBalanceAmount|currency:'INR'}}</p> 
-                       <p>Wallet balance</p>
+                    <div class="wallet-top-icon"><img class="wallet-top-image"  src="assets/images/wallet1.png"/></div>
+                    <div class="wallet-top-money">
+                       <div class="wallet-top-content">{{walletBalanceAmount|currency:'INR'}}</div>
+                       <div>Your Wallet balance</div>
                     </div>
                     
                     </div>
@@ -20,10 +20,10 @@
                 
                     <div class="dx-field">
                             <!-- <div class="dx-field-label">Add Amount*</div> -->
-                            <div class="dx-field-label"><img class="wallet-top-image"  src="assets/images/add-amount1.png"/></div>
-                            <div class="dx-field-value">
-                                 <p>{{bonusAmount|currency:'INR'}}({{bonusPercent}})</p>   
-                                 <p>Bonus Amount</p>   
+                            <div class="wallet-top-icon"><img class="wallet-top-image"  src="assets/images/add-amount1.png"/></div>
+                            <div class="wallet-top-money">
+                                 <div class="wallet-top-content">{{bonusAmount|currency:'INR'}}({{bonusPercent}})</div>   
+                                 <div>Bonus Amount</div>   
                             </div>
                             
                             </div>
@@ -64,10 +64,12 @@
                     </div>
                 </div>
                 <br>
-                
+                <div class="clear"></div>
                 <div class="dx-fieldset button-padding">
-                    <dx-button [disabled]="!depositToWalletForm.valid||!paymentModedatavalue" text="Add Money to Wallet" (onClick)="onClick()" width="50%" style="margin-top:20px;"></dx-button>
+                    <div class="dx-field">
+                    <dx-button [disabled]="!depositToWalletForm.valid||!paymentModedatavalue" text="Add Money to Wallet" (onClick)="onClick()" width="100%" ></dx-button>
                 </div>
+            </div>
                 
             </div>
             </form>
