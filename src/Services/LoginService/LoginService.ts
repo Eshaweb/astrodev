@@ -47,25 +47,26 @@ export class LoginService {
             a method on the oAuth server (usually called refreshToken) to get a new
             authorization token for the API calls.
         */
-       var endPoint = "Party/GetAccessToken";
+        var endPoint = "Party/GetAccessToken";
         var RefreshToken = {
             RefreshToken: StorageService.GetItem('refreshToken')
         }
         // Just to keep HttpClient from getting tree shaken.
-        return this.http.post('https://astroliteapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(tap(res => {
-            this.AccessToken = res.AccessToken;
-            StorageService.SetItem('refreshToken', res.RefreshToken)
-        }));
-        // return this.http.post('https://mahadevapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(tap(res => {
+        // return this.http.post('https://astroliteapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(tap(res => {
         //     this.AccessToken = res.AccessToken;
         //     StorageService.SetItem('refreshToken', res.RefreshToken)
         // }));
+        return this.http.post('https://mahadevapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(tap(res => {
+            this.AccessToken = res.AccessToken;
+            StorageService.SetItem('refreshToken', res.RefreshToken)
+        }));
         // return this.httpService.Post(endPoint, RefreshToken).pipe(tap(res => {
         //     this.AccessToken = res.AccessToken;
         //     StorageService.SetItem('refreshToken', res.RefreshToken)
         // }));
         // let headers = new HttpHeaders({ 'Content-Type': 'application/json','No-Auth':'True' });
         // return this.httpService.Post(endPoint, RefreshToken, {headers:headers});
+        //return this.httpService.Post(endPoint, RefreshToken);
     }
     GetOTP(GetOTP): Observable<any> {
         var endPoint = "Party/GetOTP";

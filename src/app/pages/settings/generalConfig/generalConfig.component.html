@@ -114,6 +114,7 @@
                   <dx-number-box
                     #numberBox
                     [width]='150'
+                    valueChangeEvent="keyup" (keyup)="onDashapredicttoAge($event.target.value)"
                     formControlName="DashapredicttoAge"
                     [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.PredEndDt"

@@ -320,6 +320,7 @@ export class MuhurthaConfigComponent implements OnInit {
   }
   save() {
     this.loadingSwitchService.loading = true;
+    this.partymuhurthaconfig.PartyMastId=StorageService.GetItem('PartyMastId');
     this.configerationService.UpdateMuhurthaConfig(this.partymuhurthaconfig).subscribe((data: any) => {
       this.loadingSwitchService.loading = false;
     });

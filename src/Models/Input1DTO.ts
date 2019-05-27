@@ -28,6 +28,6 @@ export class  MuhurthaConfig
 
 export class PartymuhurthaConfig
 {
-    PartyMastId:string="1";
+    PartyMastId:string;
     Config:MuhurthaConfig[]=[];
 }
