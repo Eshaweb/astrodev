@@ -16,7 +16,6 @@
     [shading]="shaderEnabled"
     [(opened)]="menuOpened">
 
-
     <div *ngIf='isMobileResolution'>
         <app-side-navigation-menu
         [items]="loginService.menuItems"
@@ -83,13 +82,11 @@
         <li>
             <a [routerLink]="['/staticpages/comingsoon']">Shraddha Maasika</a>
         </li>
-        <li>
-            <a [routerLink]="['/staticpages/comingsoon']">Baby Naming</a>
-        </li>
         <li class="dropdown">
             <a class="more-menu" style= "padding: 0px;margin-left: 14px;">More</a>
             <div class="dropdown-content">
-                <a [routerLink]="['/staticpages/comingsoon']">Kaali Drushti</a>
+            <a [routerLink]="['/staticpages/comingsoon']">Baby Naming</a>
+            <a [routerLink]="['/staticpages/comingsoon']">Kaali Drushti</a>
             <a [routerLink]="['/staticpages/comingsoon']">Hanuman Jyothisha</a>
             <a [routerLink]="['/staticpages/comingsoon']">Prathamarthava Guna-Dosha</a>
               </div>

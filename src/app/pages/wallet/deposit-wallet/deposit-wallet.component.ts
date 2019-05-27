@@ -219,6 +219,7 @@ export class DepositWalletComponent {
       modal: {
         ondismiss: () => {
           this.loadPanel.visible=false;
+          this.showSuccess=false;
         }
       }
     };

@@ -276,7 +276,7 @@
             <div class="payment-mode">
                 <div class="payment-mode" [formGroup]="paymentModeForm">
                     <dx-select-box formControlName="paymentMode" (onValueChanged)="paymentModeSelection($event)"
-                        [dataSource]="paymentModedata" displayExpr="Text" valueChangeEvent="keyup" valueExpr="Id"
+                        [dataSource]="paymentModedata" placeholder="Payment Mode" displayExpr="Text" valueChangeEvent="keyup" valueExpr="Id"
                         [searchEnabled]="true" [value]="paymentModedatavalue">
                     </dx-select-box>
                 </div>

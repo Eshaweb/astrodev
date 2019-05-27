@@ -91,7 +91,7 @@ text='Pay using Astrolite wallet      {{walletbalance|currency:"INR"}}(Wallet Ba
             <div class="payment-mode" [formGroup]="paymentModeForm">
                 <dx-select-box formControlName="paymentMode" (onValueChanged)="paymentModeSelection($event)"
                     [dataSource]="paymentModedata" displayExpr="Text" valueExpr="Id" [searchEnabled]="true" [disabled]="selectboxdisabled"
-                    [value]='paymentModedatavalue'>
+                    [value]='paymentModedatavalue' placeholder="Payment Mode">
                 </dx-select-box>
             </div>
         </div>

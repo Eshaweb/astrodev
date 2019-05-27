@@ -388,7 +388,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
               this.payableAmountthroughPaymentGateWay = this.payableAmountthroughPaymentGateWay;
             }
             //this.loadPanel.visible = true;
-            //this.loadingSwitchService.loading = true;
+            this.loadingSwitchService.loading = true;
             this.pay();
            // this.razorPayService.pay(this.payableAmountthroughPaymentGateWay, "Service");
             break;
@@ -511,7 +511,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           this.horoScopeService.AstroReportId = data.AstroReportId[0].split('_')[0];
         }
         this.loading = false;
-        this.loadingSwitchService.loading = false;
+        //this.loadingSwitchService.loading = false;
         //this.loadPanel.visible = false;
         this.router.navigate(['/purchase/paymentProcessing'], { skipLocationChange: true });
         //this.router.navigate(['/purchase/paymentProcessing']);

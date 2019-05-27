@@ -83,7 +83,7 @@ export class PaymentProcessingComponent implements OnInit, OnDestroy {
       this.clearParameters();
       this.storageService.RemoveDataFromSession();
       this.loadPanel.visible = false;
-      //this.loadingSwitchService.loading= false;
+      this.loadingSwitchService.loading= false;
       this.sub.unsubscribe();
       this.subscribe.unsubscribe();
       console.clear();

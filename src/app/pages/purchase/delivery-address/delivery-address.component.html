@@ -99,7 +99,7 @@
                     <div class="dx-field-value">
                         <!-- <dx-text-box formControlName="state" showClearButton="true"></dx-text-box> -->
                         <dx-select-box (onValueChanged)="statedataSelection($event)" [dataSource]="statedata" displayExpr="Text"
-                            valueExpr="Id" [searchEnabled]="true" [value]="statevalue">
+                            valueExpr="Id" [searchEnabled]="true" placeholder="Select State" [value]="statevalue">
                         </dx-select-box>
                         <!-- <dx-select-box formControlName="state"
                         [searchEnabled]="true"
