@@ -131,18 +131,18 @@
                     <a type="default" *ngIf='isOTPRequested'
                         (click)="ResendOTP_click()" width="100%">Resend OTP
                     </a>    -->
-                    <dx-button stylingMode="text" type="default" class="RequestOTPButton" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" width="100%" style="margin-left: 22px;margin-top: -4px;" ></dx-button>
+                    <dx-button stylingMode="text" type="default" class="RequestOTPButton" text="Request OTP" *ngIf='!isOTPRequested' (onClick)="onRequestOTP()" width="100%" style="margin-left: 29px;margin-top: -7px;" ></dx-button>
                     <div id='resendbutton'>
                     <dx-button stylingMode="text" type="default" text="Resend OTP" 
                                [disabled]="disableResendOTP||counter!= 0"
                                *ngIf='isOTPRequested' 
                                (onClick)="ResendOTP_click()" width="100%">
                                <div *dxTemplate="let data of 'content'">
-                                    <span *ngIf='counter!= 0'>{{countDown | async }}</span>
-                                <dx-load-indicator class='button-indicator' height="20" width="100"
+                                    <span style="margin-left:54px;margin-top:-7px;" *ngIf='counter!= 0'>{{countDown | async }}</span>
+                                <!-- <dx-load-indicator class='button-indicator' height="20" width="100"
                                     [visible]="disableResendOTP||counter!= 0">
-                                </dx-load-indicator>
-                                <span *ngIf='counter== 0' class='dx-button-text'>Resend OTP</span>
+                                </dx-load-indicator> -->
+                                <span style="margin-left:54px;margin-top:-7px;" *ngIf='counter== 0' class='dx-button-text'>Resend OTP</span>
                             </div>
                     </dx-button>     
                 </div>

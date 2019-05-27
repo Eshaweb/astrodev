@@ -130,11 +130,20 @@ export class GeneralConfigComponent {
   }
 
   onDashaPredictionFromAge(value) {
-    if (value > this.partyGeneralConfig.Config.DashaStartValue) {
-      document.getElementById('err_DashapredictfromAge').innerHTML = 'This should be less than or equal to Dasha Start From Age';
+    if (value < this.partyGeneralConfig.Config.DashaStartValue) {
+      document.getElementById('err_DashapredictfromAge').innerHTML = 'This should be greater than or equal to Dasha Start From Age';
     }
     else {
       document.getElementById('err_DashapredictfromAge').innerHTML = '';
+    }
+  }
+
+  onDashapredicttoAge(value) {
+    if (value > this.partyGeneralConfig.Config.DashaEndValue) {
+      document.getElementById('err_DashapredicttoAge').innerHTML = 'This should be less than or equal to Dasha Start From Age';
+    }
+    else {
+      document.getElementById('err_DashapredicttoAge').innerHTML = '';
     }
   }
 
