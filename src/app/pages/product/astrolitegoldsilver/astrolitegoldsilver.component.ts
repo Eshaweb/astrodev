@@ -224,7 +224,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
     this.paymentModedatavalue = event.value;
   }
 
-  onPay_click() {
+  onBuyNow_click() {
     this.loadingSwitchService.loading=true;
     if (this.discountAmount > 0) {
       this.paycodes = [{ Code: 'D', Amount: this.discountAmount },
@@ -262,7 +262,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
       }
       else {
         this.errorMessage = data.Error;
-        this.loadPanel.visible=false;
+        this.loadingSwitchService.loading = false;
       }
     });
   }

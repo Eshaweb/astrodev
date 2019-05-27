@@ -228,7 +228,7 @@ export class DepositWalletComponent {
 
   next(Payment) {
     this.loadPanel.visible=true;
-    this.loadPanel.position="{ of: '#employee' }";
+    this.loadPanel.position="{ of: '#wallet' }";
     //this.loading=true;
     this.walletService.PaymentComplete(Payment).subscribe((data) => {
       if (data.Error == undefined) {
