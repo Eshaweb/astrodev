@@ -53,10 +53,7 @@ export class LoginService {
         }
         // Just to keep HttpClient from getting tree shaken.
         return this.http.post('https://astroliteapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(shareReplay());
-        // return this.http.post('https://mahadevapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(tap(res => {
-        //     this.AccessToken = res.AccessToken;
-        //     StorageService.SetItem('refreshToken', res.RefreshToken)
-        // }));
+        //return this.http.post('https://mahadevapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(shareReplay());
         // return this.httpService.Post(endPoint, RefreshToken).pipe(tap(res => {
         //     this.AccessToken = res.AccessToken;
         //     StorageService.SetItem('refreshToken', res.RefreshToken)
