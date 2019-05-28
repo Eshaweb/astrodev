@@ -18,6 +18,7 @@ export class GeneralConfigComponent {
   partyGeneralConfig: PartyGeneralConfig;
   isvisibleayana: boolean;
   fromAgeDisabled: boolean;
+  updatebuttonEnabled: boolean;
 
   constructor(public router:Router,public loadingSwitchService:LoadingSwitchService,public uiService: UIService, public formbuilder: FormBuilder, private httpService: HttpService, public configerationService: ConfigerationService) {
     this.configform = this.formbuilder.group({
@@ -93,6 +94,7 @@ export class GeneralConfigComponent {
 
 
   ngOnInit() {
+    this.loadingSwitchService.loading=true;
     this.partyGeneralConfig = new PartyGeneralConfig();
     this.partyGeneralConfig.Config = new Config();
     this.configerationService.GetGeneralconfig(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
@@ -103,6 +105,7 @@ export class GeneralConfigComponent {
       else{
         this.fromAgeDisabled=false;
       }
+      this.loadingSwitchService.loading=false;
     });
   }
 
@@ -131,19 +134,23 @@ export class GeneralConfigComponent {
 
   onDashaPredictionFromAge(value) {
     if (value < this.partyGeneralConfig.Config.DashaStartValue) {
-      document.getElementById('err_DashapredictfromAge').innerHTML = 'This should be greater than or equal to Dasha Start From Age';
+      document.getElementById('err_DashapredictfromAge').innerText = 'This should be greater than or equal to Dasha Start From Age';
+      this.updatebuttonEnabled=false;
     }
     else {
-      document.getElementById('err_DashapredictfromAge').innerHTML = '';
+      document.getElementById('err_DashapredictfromAge').innerText = '';
+      this.updatebuttonEnabled=true;
     }
   }
 
   onDashapredicttoAge(value) {
     if (value > this.partyGeneralConfig.Config.DashaEndValue) {
-      document.getElementById('err_DashapredicttoAge').innerHTML = 'This should be less than or equal to Dasha Start From Age';
+      document.getElementById('err_DashapredicttoAge').innerText = 'This should be less than or equal to Dasha Start To Age';
+    this.updatebuttonEnabled=false;
     }
     else {
-      document.getElementById('err_DashapredicttoAge').innerHTML = '';
+      document.getElementById('err_DashapredicttoAge').innerText = '';
+      this.updatebuttonEnabled=true;
     }
   }
 

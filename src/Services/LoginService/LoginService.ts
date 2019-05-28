@@ -5,7 +5,7 @@ import { HttpService } from '../Error/http.service';
 import { Observable } from 'rxjs';
 import { navigationBeforeLogin, navigationAfterLogin, } from 'src/app/app-navigation';
 import { OrderHistoryResponse } from 'src/Models/OrderHistoryResponse';
-import { tap } from 'rxjs/operators';
+import { tap, shareReplay } from 'rxjs/operators';
 import { StorageService } from '../StorageService/Storage_Service';
 
 
@@ -52,10 +52,7 @@ export class LoginService {
             RefreshToken: StorageService.GetItem('refreshToken')
         }
         // Just to keep HttpClient from getting tree shaken.
-        return this.http.post('https://astroliteapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(tap(res => {
-            this.AccessToken = res.AccessToken;
-            StorageService.SetItem('refreshToken', res.RefreshToken)
-        }));
+        return this.http.post('https://astroliteapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(shareReplay());
         // return this.http.post('https://mahadevapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(tap(res => {
         //     this.AccessToken = res.AccessToken;
         //     StorageService.SetItem('refreshToken', res.RefreshToken)

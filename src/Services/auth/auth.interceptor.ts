@@ -145,6 +145,7 @@ export class AuthInterceptor implements HttpInterceptor {
                         this.loginService.AccessToken = data.AccessToken;
                         StorageService.SetItem('refreshToken', data.RefreshToken)
                         this.tokenSubject.next(data.AccessToken);
+                        console.clear();
                         return next.handle(this.addToken(this.getNewRequest(req), data.AccessToken));
                     }
                     // If we don't get a new token, we are in trouble so logout.

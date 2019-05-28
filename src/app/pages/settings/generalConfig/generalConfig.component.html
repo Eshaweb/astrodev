@@ -44,7 +44,6 @@
                     [width]='150'
                     [disabled]='fromAgeDisabled'
                     formControlName="DashaStartFromAge"
-                    [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.DashaStartValue"
                   ></dx-number-box>
                   <span
@@ -62,7 +61,6 @@
                     #numberBox
                     [width]='150'
                     formControlName="DashaStarttoAge"
-                    [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.DashaEndValue"
                   ></dx-number-box>
                   <span  style="color:red;font-size: 14px;"
@@ -82,11 +80,10 @@
                 <div class="dx-field-value">
                   <dx-number-box
                     #numberBox
-                    [width]='150'
+                    [width]='150' step='0'
                     valueChangeEvent="keyup" (keyup)="onDashaPredictionFromAge($event.target.value)"  
                     [disabled]='fromAgeDisabled'
                     formControlName="DashapredictfromAge"
-                    [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.PredStDt"
                   ></dx-number-box>
                   <!-- <dx-number-box
@@ -116,7 +113,6 @@
                     [width]='150'
                     valueChangeEvent="keyup" (keyup)="onDashapredicttoAge($event.target.value)"
                     formControlName="DashapredicttoAge"
-                    [showSpinButtons]="true"
                     [(ngModel)]="partyGeneralConfig.Config.PredEndDt"
                   ></dx-number-box>
                   <span
@@ -273,7 +269,7 @@
                 <div class="dx-field-label">Chandra</div>
                 <div class="dx-field-label">
                   <dx-number-box
-                    #numberBox
+                    #numberBox  step='0'
                     [(ngModel)]="partyGeneralConfig.Config.MChandra"
                     formControlName="Chandra"
                   ></dx-number-box>
@@ -286,7 +282,7 @@
                 <div class="dx-field-label">Kuja</div>
                 <div class="dx-field-label">
                   <dx-number-box
-                    #numberBox
+                    #numberBox  step='0'
                     [(ngModel)]="partyGeneralConfig.Config.MKuja"
                     formControlName="Kuja"
                   ></dx-number-box>
@@ -299,7 +295,7 @@
                 <div class="dx-field-label">Budha</div>
                 <div class="dx-field-label">
                   <dx-number-box
-                    #numberBox
+                    #numberBox  step='0'
                     [(ngModel)]="partyGeneralConfig.Config.MBudha"
                     formControlName="Budha"
                   ></dx-number-box>
@@ -312,7 +308,7 @@
                 <div class="dx-field-label">Guru</div>
                 <div class="dx-field-label">
                   <dx-number-box
-                    #numberBox
+                    #numberBox  step='0'
                     [(ngModel)]="partyGeneralConfig.Config.MGuru"
                     formControlName="Guru"
                   ></dx-number-box>
@@ -325,7 +321,7 @@
                 <div class="dx-field-label">Shukra</div>
                 <div class="dx-field-label">
                   <dx-number-box
-                    #numberBox
+                    #numberBox  step='0'
                     [(ngModel)]="partyGeneralConfig.Config.MShukra"
                     formControlName="Shukra"
                   ></dx-number-box>
@@ -338,7 +334,7 @@
                 <div class="dx-field-label">Shani</div>
                 <div class="dx-field-label">
                   <dx-number-box
-                    #numberBox
+                    #numberBox  step='0'
                     [(ngModel)]="partyGeneralConfig.Config.MShani"
                     formControlName="Shani"
                   ></dx-number-box>
@@ -357,7 +353,7 @@
             <div class="dx-fieldset-column">
         <div class="dx-field">
           <div class="cs-button">
-            <dx-button text="Update" [disabled]='!configform.valid' (onClick)="Update()"> </dx-button>
+            <dx-button text="Update" [disabled]='!configform.valid||!updatebuttonEnabled' (onClick)="Update()"> </dx-button>
           </div>
         </div>
             </div>
