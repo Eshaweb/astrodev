@@ -71,28 +71,7 @@
             [hideSubmenuOnMouseLeave]="true"
             (onItemClick)="itemClick($event)">
 </dx-menu> -->
-<div class="service-menu" *ngIf='!isMobileResolution&&!loginService.isHomePage'>
-    <ul>
-        <li *ngFor="let item of loginService.serviceList">
-            <a (click)='OnServiceClick(item.Path)' [ngClass]="getActive(item.Path)">{{item.Name}}</a>
-        </li>
-        <li>
-            <a [routerLink]="['/staticpages/comingsoon']">Pancha Pakshi</a>
-        </li>
-        <li>
-            <a [routerLink]="['/staticpages/comingsoon']">Shraddha Maasika</a>
-        </li>
-        <li class="dropdown">
-            <a class="more-menu" style= "padding: 0px;margin-left: 14px;">More</a>
-            <div class="dropdown-content">
-            <a [routerLink]="['/staticpages/comingsoon']">Baby Naming</a>
-            <a [routerLink]="['/staticpages/comingsoon']">Kaali Drushti</a>
-            <a [routerLink]="['/staticpages/comingsoon']">Hanuman Jyothisha</a>
-            <a [routerLink]="['/staticpages/comingsoon']">Prathamarthava Guna-Dosha</a>
-              </div>
-          </li>
-      </ul>
-    </div>
+
     <!-- <div class="service-menu">
   <ul class="nav">
     <li><a class='menuItem ' href="#15.0.0">Astamangala</a></li><li><a class='menuItem' href="#14.3.6">Horoscope</a></li><li><a class='menuItem' href="#14.3.5">Matchmaking</a></li><li><a class='menuItem' href="#14.3.4">Muhurtha</a></li><li><a class='menuItem' href="#14.3.3">Panchanga</a></li><li><a class='menuItem' href="#14.3.0">Numerology</a></li><li><a class='menuItem' href="#14.2.17">Wallet</a></li><li><a class='menuItem' href="#14.2.12">Panchapakshi</a></li><li><a class='menuItem' href="#14.2.9">Shraadha Masika</a></li><li><a class='menuItem' href="#14.2.8">Baby Naming</a></li><li><a class='menuItem' href="#14.2.7">Hanuman Jyothisha</a></li><li><a class='menuItem' href="#14.2.6">Prathamartava Guna Dosha</a></li><li><a class='menuItem' href="#14.2.4">Kaalidrushti</a></li><li><a class='menuItem' href="#14.2.3">Choughadiya</a></li>
@@ -124,6 +103,28 @@
 
     <dx-scroll-view class="full-height-scrollable">
         <div class="content">
+                <div class="service-menu" *ngIf='!isMobileResolution&&!loginService.isHomePage'>
+                        <ul>
+                            <li *ngFor="let item of loginService.serviceList">
+                                <a (click)='OnServiceClick(item.Path)' [ngClass]="getActive(item.Path)">{{item.Name}}</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/staticpages/comingsoon']">Pancha Pakshi</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/staticpages/comingsoon']">Shraddha Maasika</a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="more-menu" style= "padding: 0px;margin-left: 14px;">More</a>
+                                <div class="dropdown-content">
+                                <a [routerLink]="['/staticpages/comingsoon']">Baby Naming</a>
+                                <a [routerLink]="['/staticpages/comingsoon']">Kaali Drushti</a>
+                                <a [routerLink]="['/staticpages/comingsoon']">Hanuman Jyothisha</a>
+                                <a [routerLink]="['/staticpages/comingsoon']">Prathamarthava Guna-Dosha</a>
+                                  </div>
+                              </li>
+                          </ul>
+                        </div>
             <ng-content></ng-content>
             <div class="float-bar" *ngIf='itemService.BuyNowVisible'>
                 <p class="buynow-text">For Detailed {{itemService.ItemName}} </p>
