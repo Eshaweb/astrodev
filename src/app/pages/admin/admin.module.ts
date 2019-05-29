@@ -25,6 +25,7 @@ import { AssignRoleComponent } from './assignRole/assignRole.component';
 import { UnResolvedMessagesComponent } from './unresolvedMessages/unresolvedMessages.component';
 import { ResolvedMessagesComponent } from './resolvedMessages.1/resolvedMessages.component';
 import { WalletGiftComponent } from './walletGift/walletGift.component';
+import { OrderstatusComponent } from './orderstatus/orderstatus.component';
 
 @NgModule({
     imports: [
@@ -56,7 +57,7 @@ import { WalletGiftComponent } from './walletGift/walletGift.component';
         AssignNewPriceListComponent,
         WelcomeOfferComponent,
         PromoCodeComponent,
-        UnUsedPromoCodesComponent,
+        UnUsedPromoCodesComponent, OrderstatusComponent,
         UsedPromoCodesComponent, WalletGiftComponent,
         CreatePromoCodeComponent, ResolvedMessagesComponent,
         PendingtoDeliveryComponent, UnResolvedMessagesComponent,

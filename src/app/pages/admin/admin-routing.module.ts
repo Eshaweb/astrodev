@@ -20,6 +20,7 @@ import { AuthGuard } from 'src/Services/auth/auth.guard';
 import { UnResolvedMessagesComponent } from './unresolvedMessages/unresolvedMessages.component';
 import { ResolvedMessagesComponent } from './resolvedMessages.1/resolvedMessages.component';
 import { WalletGiftComponent } from './walletGift/walletGift.component';
+import { OrderstatusComponent } from './orderstatus/orderstatus.component';
 
 const routes: Routes = [
     {
@@ -97,6 +98,10 @@ const routes: Routes = [
     {
       path: 'walletGift',
       component:WalletGiftComponent
+    },
+    {
+      path: 'orderStatus',
+      component:OrderstatusComponent
     }
   ];
   

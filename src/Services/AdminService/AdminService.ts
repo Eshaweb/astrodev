@@ -102,4 +102,13 @@ export class AdminService {
         return this.httpService.Post(endPoint, AuthorizedPaymentList);
     }
 
+    GetOrderStatus(GetOrderStatus):Observable<any> {
+        var endPoint = "Admin/GetOrderStatus";
+        return this.httpService.Post(endPoint, GetOrderStatus);
+    }
+
+    GetUpdatedStatus(AstroReportIds):Observable<any> {
+        var endPoint = "Admin/GetUpdatedStatus";
+        return this.httpService.Post(endPoint, AstroReportIds);
+    }
 }
