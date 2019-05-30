@@ -132,7 +132,7 @@ td {
 }
 .caption {
     width: 220px;
-    margin-top: 40px;
+  //  margin-top: 40px;
 }
 
 @media (max-width: 479px) {
@@ -151,8 +151,8 @@ td {
        
     }
     .caption {
-        width: 220px;
-        margin-top: 0px;
+        width: -webkit-fill-available;
+       margin-top: 0px;
     }
     
 }
