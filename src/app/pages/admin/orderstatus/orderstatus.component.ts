@@ -22,7 +22,9 @@ export class OrderstatusComponent implements OnInit {
   countDown;
   counter = 20;
   tick = 1000;
+  dateinDateFormat: Date;
     constructor(public formBuilder:FormBuilder,public adminService:AdminService, public loadingSwitchService:LoadingSwitchService) {
+      this.dateinDateFormat = new Date();
       this.orderStatusSearchForm=this.formBuilder.group({
         From: new Date(),
         To: new Date()
@@ -63,7 +65,6 @@ export class OrderstatusComponent implements OnInit {
           AstroReportId.push(this.dataSource[i].AstroReportId);
         }
       }
-      this.loadingSwitchService.loading = true;
       var AstroReportIds={
         AstroReportIds:AstroReportId
       }
@@ -74,7 +75,6 @@ export class OrderstatusComponent implements OnInit {
             this.dataSource[i].Status = data[i].Status;
           });
         }
-        this.loadingSwitchService.loading = false;
       });
     });
   //   this.dataSource.store = new CustomStore({

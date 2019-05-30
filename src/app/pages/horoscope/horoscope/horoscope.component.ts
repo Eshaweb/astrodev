@@ -347,6 +347,7 @@ export class HoroscopeComponent {
       this.genderValue = 'F';
     }
   }
+  
   ngAfterViewInit(): void {
     if (this.horoScopeService.horoRequest != null) {
       this.timeformatvalue = this.horoScopeService.horoRequest.TimeFormat;

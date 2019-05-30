@@ -12,6 +12,8 @@ import { ItemService } from 'src/Services/ItemService/ItemService';
 import { Caption } from 'src/Models/Caption';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/LoginService/LoginService';
+import { SelectBoxModel } from '../../../../Models/SelectBoxModel';
+import ArrayStore from 'devextreme/data/array_store';
 
 @Component({
     selector: 'app-horoscope-free-data',
@@ -25,7 +27,13 @@ export class HoroscopeFreeDataComponent implements OnInit {
     caption: any;
     horoResponse: any;
     dffdg: boolean;
-    
+    grahaKundaliFormats: SelectBoxModel[] = [
+        { Id: "SI", Text: 'South Indian' },
+        { Id: "NI", Text: 'North Indian' },
+        { Id: "EI", Text: 'East Indian' }];
+    grahaKundaliFormatdata: ArrayStore;
+    grahaKundalivalue: any;
+
     constructor(public storageService: StorageService, private itemService: ItemService, public captionDbService: CaptionDbService,
         public _location: Location, public route: ActivatedRoute, public router: Router, public registrationService: RegistrationService,
         public platform: Platform, public loginService: LoginService, public horoScopeService: HoroScopeService) {
@@ -38,19 +46,32 @@ export class HoroscopeFreeDataComponent implements OnInit {
         //this.horoResponse=this.horoScopeService.horoResponse;
         this.horoResponse = this.storageService.GetHoroResponse('#SH');
     }
+
     ngOnInit(): void {
         this.caption = new Caption();
         this.GetCaption(this.horoModel.LangCode, this.caption);
         this.itemService.ItActId = '#SH';
         StorageService.SetItem('ItActId', '#SH');
+        this.grahaKundaliFormatdata = new ArrayStore({
+            data: this.grahaKundaliFormats,
+            key: "Id"
+          });
     }
+
+    ngAfterViewInit(): void {
+        this.grahaKundalivalue = this.grahaKundaliFormats[0].Id;
+    }
+
     ngOnDestroy(): void {
         this.itemService.BuyNowVisible=false;
     }
+
     GetCaption(langCode: string, caption: Caption) {
         this.captionDbService.GetCaption(langCode, caption);
     }
-
+    grahaKundaliFormatSelection(event) {
+    this.grahaKundalivalue = event.value;
+  }
     backClicked() {
         this._location.back();
     }
