@@ -23,7 +23,8 @@ export class AdminComponent {
     {Path:'/admin/assignRole',Name:'Assign Role'},
     {Path:'/admin/unresolvedMessages', Name:'UnResolved Messages'},
     {Path:'/admin/resolvedMessages',Name:'Resolved Messages'},
-    {Path:'/admin/walletGift',Name:'Wallet Gift'}];  
+    {Path:'/admin/walletGift',Name:'Wallet Gift'},
+    {Path:'/admin/orderStatus', Name:'Order Status'}];  
   }
   toggleDefault() {
     this.defaultVisible = !this.defaultVisible;

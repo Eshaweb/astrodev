@@ -1,0 +1,120 @@
+<h2 class="content-block">Order Status</h2>
+<div class="dx-card content-block responsive-paddings price-grid">
+  <div class="centered-content">
+          <div class="dx-fieldset" [formGroup]="orderStatusSearchForm">
+                  <div class="dx-fieldset-column">
+                          <div class="dx-field">
+                              <div class="dx-field-label">From Date</div>
+                              <div class="dx-field-value">
+                                  <dx-date-box formControlName="From" [(max)]="dateinDateFormat" type="date" displayFormat="dd/MM/yyyy">
+                                  </dx-date-box>
+                              </div>
+                          </div>
+                  </div>
+                  <div class="dx-fieldset-column">
+                      <div class="dx-field">
+                          <div class="dx-field-label">To Date</div>
+                              <div class="dx-field-value">
+                                  <dx-date-box formControlName="To" [(max)]="dateinDateFormat" type="date" displayFormat="dd/MM/yyyy">
+                                  </dx-date-box>
+                                  <p style="color:red" id='err_To'></p>
+                              </div>
+                      </div>
+                  </div>
+          </div>  
+          <div class="clear"></div> 
+          <div class="dx-fieldset">
+                  <dx-button text="Search" type="success" (onClick)='OnSearch_click()' [useSubmitBehavior]="true">
+                  </dx-button>
+                  </div>
+    </div>
+<!-- <div ng-if="connectionStarted">
+  <dx-data-grid
+      id="gridContainer"
+      [dataSource]="dataSource"
+      [showBorders]="true"
+      [repaintChangesOnly]="true"
+      [highlightChanges]="true">
+      <dxi-column
+          dataField="lastUpdate"
+          dataType="date"
+          [width]="115"
+          format="longTime">
+      </dxi-column>
+      <dxi-column
+          dataField="symbol">
+      </dxi-column>
+      <dxi-column
+          dataField="price"
+          dataType="number"
+          format="#0.####"
+          cellTemplate="priceCellTemplate">
+      </dxi-column>
+      <dxi-column
+          dataField="change"
+          dataType="number"
+          [width]="140"
+          format="#0.####"
+          cellTemplate="changeCellTemplate">
+      </dxi-column>
+      <dxi-column
+          dataField="dayOpen"
+          dataType="number"
+          format="#0.####">
+      </dxi-column>
+      <dxi-column
+          dataField="dayMin"
+          dataType="number"
+          format="#0.####">
+      </dxi-column>
+      <dxi-column
+          dataField="dayMax"
+          dataType="number"
+          format="#0.####">
+      </dxi-column>
+
+      <div *dxTemplate="let cell of 'priceCellTemplate'" [class.inc]="cell.data.change > 0" [class.dec]="cell.data.change < 0">
+          <span>{{cell.text}}</span>
+      </div>
+      <div *dxTemplate="let cell of 'changeCellTemplate'" [class.inc]="cell.data.change > 0" [class.dec]="cell.data.change < 0">
+          <span class="current-value">{{cell.text}}</span>
+          <span class="arrow"></span>
+          <span class="diff">{{cell.data.percentChange.toFixed(2)}}%</span>
+      </div>
+  </dx-data-grid>
+</div> -->
+
+
+<div ng-if="dataSource">
+  <dx-data-grid
+      id="gridContainer"
+      [dataSource]="dataSource"
+      [showBorders]="true"
+      [repaintChangesOnly]="true"
+      [highlightChanges]="true">
+      <dxi-column
+          dataField="OrderId"
+          [width]="115">
+      </dxi-column>
+      <dxi-column dataType="date" 
+      [width]="115" format="dd/MM/yyyy"
+      dataField="OrderDate">
+      </dxi-column>
+      <dxi-column
+          dataField="ItemName">
+      </dxi-column>
+      <dxi-column
+        dataField="PartyName">
+      </dxi-column>
+      <dxi-column
+          dataField="ExtCode">
+      </dxi-column>
+      <dxi-column
+        dataField="AstroReportId">
+      </dxi-column>
+      <dxi-column
+          dataField="Status">
+      </dxi-column>
+  </dx-data-grid>
+</div>
+</div>
