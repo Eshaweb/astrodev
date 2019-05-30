@@ -38,12 +38,12 @@ export class NumerologyComponent {
   genders: SelectBoxModel[]=[
     { Id: "M", Text: "Male" }, 
     { Id: "F", Text: "Female" }];
-  languages: SelectBoxModel[] = [
-    { Id: "ENG", Text: "English" },
-    { Id: "HIN", Text: "Hindi" },
-    { Id: "KAN", Text: "Kannada" },
-    { Id: "MAL", Text: "Malayalam" },
-    { Id: "TAM", Text: "Tamil" }];
+    languages: SelectBoxModel[] = [
+      { Id: "ENG", Text: "English" },
+      { Id: "HIN", Text: "हिन्दि" },
+      { Id: "KAN", Text: "ಕನ್ನಡ" },
+      { Id: "MAL", Text: "മലയാളം" },
+      { Id: "TAM", Text: "டமில்" }];
     reportSizes: SelectBoxModel[] = [
       { Id: "A4", Text: "A4" },
       { Id: "A5", Text: "A5" }];

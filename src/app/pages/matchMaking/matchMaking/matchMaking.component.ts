@@ -75,12 +75,12 @@ export class MatchMakingComponent {
     { Id: "WAR", Text: 'War Time' }
   ];
   languages: SelectBoxModel[] = [
-    { Id: "ENG", Text: 'English' },
-    { Id: "HIN", Text: 'Hindi' },
-    { Id: "KAN", Text: 'Kannada' },
-    { Id: "MAL", Text: 'Malayalam' },
-    { Id: "TAM", Text: "Tamil" }
-  ];
+    { Id: "ENG", Text: "English" },
+    { Id: "HIN", Text: "हिन्दि" },
+    { Id: "KAN", Text: "ಕನ್ನಡ" },
+    { Id: "MAL", Text: "മലയാളം" },
+    { Id: "TAM", Text: "டமில்" }];
+    
   reportTypes: SelectBoxModel[] = [
     { Id: "S", Text: 'System Report' },
     { Id: "U", Text: 'User Report' }];

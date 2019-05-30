@@ -120,6 +120,7 @@ export class LoginFormComponent {
       document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
     }
   }
+
   private validationMessages = {
     UserName_required: 'Enter UserName',
     UserName_minlength: 'Minimum length should be 8',
@@ -127,16 +128,19 @@ export class LoginFormComponent {
     Password_required: 'Enter Password/OTP',
     Password_minlength: 'Minimum length should be 4',
   };
+
   ngOnInit() {
     //this.events.publish('REFRESH_DIGIPARTYNAME');
 
     this.ShowPassword_checkBoxValue = false;
   }
+
   ngAfterViewInit(): void {
     if (this.registrationService.UserName != undefined) {
       this.loginForm.controls['UserName'].setValue(this.registrationService.UserName);
     }
   }
+
   ShowPassword_Click(event) {
     if (event.value == true) {
       this.ShowPassword_checkBoxValue = true;
@@ -147,6 +151,7 @@ export class LoginFormComponent {
       this.textboxMode = "password";
     }
   }
+
   public signIn(event) {
     event.dialog.close();
   }
@@ -160,6 +165,7 @@ export class LoginFormComponent {
     }
     this.getisDisabled();
   }
+
   getisDisabled() {
     if (this.disableResendOTP == true) {
       return 'isDisabled';
@@ -168,6 +174,7 @@ export class LoginFormComponent {
       return 'notDisabled';
     }
   }
+
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((user) => {
@@ -192,6 +199,7 @@ export class LoginFormComponent {
       }
     });
   }
+
   signInWithFB() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((user) => {
@@ -265,6 +273,7 @@ export class LoginFormComponent {
       });
     }
   }
+
   Login_Click() {
     this.loadingSwitchService.loading = true;
     if (this.isOTPRequested == false) {
@@ -326,12 +335,15 @@ export class LoginFormComponent {
       });
     }
   }
+
   backClicked() {
     this._location.back();
   }
+
   goToLoginByOTP() {
     this.isLoginByOTP = true;
   }
+
   Login(loginModel) {
     this.loginService.Login(loginModel).subscribe((data) => {
       if (data.Errors == undefined) {
@@ -356,6 +368,7 @@ export class LoginFormComponent {
       this.IsAdmin();
     });
   }
+
   IsAdmin() {
     this.partyService.IsAdmin().subscribe((data) => {
       if (data == true) {
@@ -364,6 +377,7 @@ export class LoginFormComponent {
       }
     });
   }
+
   AfterLogin(data) {
     this.loginService.PartyMastId = data.PartyMastId;
     if (data.Token != undefined && data.PartyMastId != undefined) {
@@ -451,6 +465,7 @@ export class LoginFormComponent {
       }
     });
   }
+
   ResendOTP_click() {
     this.counter = 20;
     this.loadingSwitchService.loading = true;
@@ -483,6 +498,7 @@ export class LoginFormComponent {
     this.loginForm.controls['Password'].setValue('');
   }
 }
+
 const routes: Routes = [
   {
     path: '',

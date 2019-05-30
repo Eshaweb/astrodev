@@ -40,10 +40,10 @@ export class PanchangaComponent {
   simpleProducts: string[];
   languages: SelectBoxModel[] = [
     { Id: "ENG", Text: "English" },
-    { Id: "HIN", Text: "Hindi" },
-    { Id: "KAN", Text: "Kannada" },
-    { Id: "MAL", Text: "Malayalam" },
-    { Id: "TAM", Text: "Tamil" }];
+    { Id: "HIN", Text: "हिन्दि" },
+    { Id: "KAN", Text: "ಕನ್ನಡ" },
+    { Id: "MAL", Text: "മലയാളം" },
+    { Id: "TAM", Text: "டமில்" }];
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
     { Id: "SUMMER", Text: 'Summer Time' },

@@ -31,13 +31,16 @@ export class AshtamangalaComponent {
     { Id: "DOUBLE", Text: 'Double Summer Time' },
     { Id: "WAR", Text: 'War Time' }
   ];
+  
   languages: SelectBoxModel[] = [
     { Id: "ENG", Text: "English" },
-    { Id: "KAN", Text: "Kannada" },
-    { Id: "MAL", Text: "Malayalam" }];
+    { Id: "KAN", Text: "ಕನ್ನಡ" },
+    { Id: "MAL", Text: "മലയാളം" }];
+
   reportSizes: SelectBoxModel[] = [
     { Id: "A4", Text: "A4" },
     { Id: "A5", Text: "A5" }];
+
   pruchakaStars: SelectBoxModel[] = [
     { Id: "1", Text: "Ashwini" },
     { Id: "2", Text: "Bharani" },
