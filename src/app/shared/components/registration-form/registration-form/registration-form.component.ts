@@ -152,7 +152,7 @@ export class RegistrationFormComponent {
             TermsandConditions:this.TandC_checkBoxValue
         }
         this.registrationService.registerModel=registerModel;
-        this.router.navigate(["/TandC"]);
+        this.router.navigate(["/staticpages/TandC"]);
     }
     Register_Click() {
         this.loadingSwitchService.loading = true;

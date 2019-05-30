@@ -75,9 +75,14 @@
         <div style="width: 175px;" *ngIf='disableResendOTP'>
             <a class="isDisabled" (click)="ResendOTP_click()" style="text-decoration: underline">Resend OTP</a>
         </div> -->
-        <div style="width: 175px;">
+        <!-- <div style="width: 175px;">
             <a (click)="ResendOTP_click()" style="text-decoration: underline">Resend OTP</a>
-        </div>
+        </div> -->
+        <dx-button stylingMode="text" type="default" text="Resend OTP" (onClick)="ResendOTP_click()" width="100%">
+            <div *dxTemplate="let data of 'content'">
+                <span style="margin-left:180px;margin-top:-7px;" class='dx-button-text'>Resend OTP</span>
+            </div>
+        </dx-button>
         <!-- <a *ngIf='!disableResendOTP' (click)="ResendOTP_click()">Resend OTP</a>
         <a *ngIf='disableResendOTP' class="isDisabled">Resend OTP</a> -->
 
