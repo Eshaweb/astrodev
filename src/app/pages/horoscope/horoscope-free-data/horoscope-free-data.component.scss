@@ -111,15 +111,15 @@ h2 {
 
 
 
-:host-context(.screen-x-small) .logos-container {
-    svg {
-        width: 100%;
-        display: block;
-        &.plus {
-            margin: 0;
-        }
-    }
-}
+// :host-context(.screen-x-small) .logos-container {
+//     svg {
+//         width: 100%;
+//         display: block;
+//         &.plus {
+//             margin: 0;
+//         }
+//     }
+// }
 
 table,
 tr,
@@ -235,10 +235,10 @@ td {
       top: 12px;
   }
   
-  svg {
-    height: 100%;
-    width: 100%;
-  }
+//   svg {
+//     height: 100%;
+//     width: 100%;
+//   }
   polygon {
     fill: aliceblue;
     stroke: crimson;
