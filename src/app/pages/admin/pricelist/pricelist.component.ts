@@ -33,6 +33,7 @@ export class PriceListComponent {
         { Id: "#S", Text: "Services" },
         { Id: "#P", Text: "Products" }];
     typevalue: any;
+    Item: { Name: any; Formula: any; FormulaPDF: number; Type: any; };
     constructor(public adminService: AdminService, public loadingSwitchService: LoadingSwitchService,
         public formbuilder: FormBuilder) {
         // this.itemService.GetBasePrice().subscribe((data: any) => {
@@ -50,7 +51,8 @@ export class PriceListComponent {
         });
         this.priceListForm = this.formbuilder.group({
             Name: ['', [Validators.required, Validators.minLength(4)]],
-            Formula: ['', []]
+            Formula: ['', []],
+            FormulaPDF:[null,[]]
         });
     }
     onToolbarPreparing(e) {
@@ -76,12 +78,23 @@ export class PriceListComponent {
     }
     OnGenerate_click() {
         this.loadingSwitchService.loading = true;
-        var Item = {
-            Name:this.priceListForm.controls['Name'].value,
-            Formula:this.priceListForm.controls['Formula'].value,
-            Type: this.typevalue 
+        if(this.priceListForm.controls['FormulaPDF'].value!=null){
+            this.Item = {
+                Name:this.priceListForm.controls['Name'].value,
+                Formula:this.priceListForm.controls['Formula'].value,
+                FormulaPDF:this.priceListForm.controls['FormulaPDF'].value,
+                Type: this.typevalue 
+            }
         }
-        this.adminService.GeneratePriceList(Item).subscribe((data: any) => {
+        else{
+            this.Item = {
+                Name:this.priceListForm.controls['Name'].value,
+                Formula:this.priceListForm.controls['Formula'].value,
+                FormulaPDF:0,
+                Type: this.typevalue 
+            }
+        }
+        this.adminService.GeneratePriceList(this.Item).subscribe((data: any) => {
             if (data.Errors == undefined) {
                 this.priceListUpdated=true;
                 this.dataSource = data;
@@ -99,6 +112,7 @@ export class PriceListComponent {
             var Item={
                 Name:this.priceListForm.controls['Name'].value,
                 Formula:this.priceListForm.controls['Formula'].value,
+                FormulaPDF:this.Item.FormulaPDF,
                 GeneratedRateDets:this.dataSource,
                 Type: this.typevalue 
             }
