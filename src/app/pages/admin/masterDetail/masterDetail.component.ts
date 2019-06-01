@@ -22,7 +22,11 @@ export class PriceList {
     priceListUpdated: boolean;
 
     constructor(public loadingSwitchService:LoadingSwitchService, public router: Router, private service: Service, private adminService:AdminService) {
-        this.loadingSwitchService.loading = true;
+        
+    }
+
+ngOnInit(){
+    this.loadingSwitchService.loading = true;
         this.adminService.GetPriceList().subscribe((data:any)=>{
             if (data.Errors == undefined) {
                 this.priceListUpdated=true;
@@ -32,7 +36,7 @@ export class PriceList {
                 }  
             }
           });
-    }
+}
 
     onRowRemoving(event){
         var Rate={
