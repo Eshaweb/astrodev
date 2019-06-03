@@ -196,7 +196,7 @@ export class DepositWalletComponent {
       //key: 'rzp_live_guacAtckljJGyQ',
       // callback_url:'https://www.google.com/'+this.paymentId,
       // redirect: "true",
-      amount: this.depositToWalletForm.controls['Amount'].value * 100,
+      amount: +(this.depositToWalletForm.controls['Amount'].value * 100).toFixed(),
       name: StorageService.GetItem('Name'),
       "handler": (response) => {
         this.paymentId = response.razorpay_payment_id;

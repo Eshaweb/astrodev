@@ -171,7 +171,9 @@ export class OrderHistoryComponent implements OnInit {
             URL.revokeObjectURL(url);
             this.loadingSwitchService.loading = false;
             //this.storageService.RemoveDataFromSession();
-            this.sub.unsubscribe();
+            if(this.sub!=undefined){
+                this.sub.unsubscribe();
+            }
         });
     }
     OnYes_click() {

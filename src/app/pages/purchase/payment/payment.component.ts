@@ -76,34 +76,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.storageService.GetItemOrdered() != undefined) {
       this.ItemOrdered = this.storageService.GetItemOrdered();
     }
-    this.orderService.GetItemAmountByOrderId(this.OrderId).subscribe((data: any) => {
-      this.payableAmount = data.Amount;
-    });
-    //this.payableAmount=this.itemService.ItemAmount;
-    this.horoScopeService.GetPayCodes().subscribe((data) => {
-      if (data.Error == undefined) {
-        this.paymentModes = data;
-        this.paymentModedata = new ArrayStore({
-          data: this.paymentModes,
-          key: "Id"
-        });
-        this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
-          if (data.Errors == undefined) {
-            //IsValid: true 
-            this.walletbalance = data;
-            if (data == 0) {
-              this.alterationDisabled = true;
-            }
-          }
-          else {
-            this.errorMessage = data.Error;
-          }
-        });
-      }
-      else {
-        this.errorMessage = data.Error;
-      }
-    });
+   
     this.paymentModeForm = this.formbuilder.group({
       paymentMode: ['', []],
     });
@@ -155,12 +128,41 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   };
   ngOnInit(): void {
     //this.paymentModevalue = this.paymentModes[0].Text;
-
+    this.loadingSwitchService.loading=true;
+    this.orderService.GetItemAmountByOrderId(this.OrderId).subscribe((data: any) => {
+      this.payableAmount = data.Amount;
+    });
+    //this.payableAmount=this.itemService.ItemAmount;
+    this.horoScopeService.GetPayCodes().subscribe((data) => {
+      if (data.Error == undefined) {
+        this.paymentModes = data;
+        this.paymentModedata = new ArrayStore({
+          data: this.paymentModes,
+          key: "Id"
+        });
+        this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
+          if (data.Errors == undefined) {
+            //IsValid: true 
+            this.walletbalance = data;
+            if (data == 0) {
+              this.alterationDisabled = true;
+            }
+          }
+          else {
+            this.errorMessage = data.Error;
+          }
+        });
+      }
+      else {
+        this.errorMessage = data.Error;
+      }
+    });
     this.partyService.GetContactDetails(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
       if (data.Errors == undefined) {
         this.partyEmail = data.EMail;
         this.partyMobileNo = data.Mobile;
       }
+      this.loadingSwitchService.loading=false;
     });
   }
 
@@ -421,7 +423,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       currency: 'INR',
       key: 'rzp_test_fg8RMT6vcRs4DP',
       //key: 'rzp_live_guacAtckljJGyQ',
-      amount: this.payableAmountthroughPaymentGateWay * 100,
+      amount: +(this.payableAmountthroughPaymentGateWay * 100).toFixed(),
       name: StorageService.GetItem('Name'),
       "handler": (response) => {
         this.paymentId = response.razorpay_payment_id;

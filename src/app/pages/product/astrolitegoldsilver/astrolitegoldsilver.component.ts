@@ -274,7 +274,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
       currency: 'INR',
       key: 'rzp_test_fg8RMT6vcRs4DP',
       //key: 'rzp_live_guacAtckljJGyQ',
-      amount: (this.productPrice.ActualPrice - this.discountAmount) * 100,
+      amount: +((this.productPrice.ActualPrice - this.discountAmount) * 100).toFixed(),
       name: StorageService.GetItem('Name'),
       "handler": (response) => {
         this.paymentId = response.razorpay_payment_id;
