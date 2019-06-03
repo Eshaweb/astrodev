@@ -18,7 +18,8 @@ export class GeneralConfigComponent {
   partyGeneralConfig: PartyGeneralConfig;
   isvisibleayana: boolean;
   fromAgeDisabled: boolean;
-  updatebuttonEnabled: boolean;
+  updatebuttonEnabled: boolean=true;
+  oncechanged: boolean;
 
   constructor(public router:Router,public loadingSwitchService:LoadingSwitchService,public uiService: UIService, public formbuilder: FormBuilder, private httpService: HttpService, public configerationService: ConfigerationService) {
     this.configform = this.formbuilder.group({
@@ -131,7 +132,16 @@ export class GeneralConfigComponent {
   charttypedataSelection(event) {
     this.partyGeneralConfig.Config.ChartType = event.value;
   }
-
+  onDashaStartFromAge(value) {
+    if(this.partyGeneralConfig.Config.PredStDt<value){
+      this.partyGeneralConfig.Config.PredStDt = value;
+    }
+  }
+  onDashaStarttoAge(event) {
+    if(this.configform.get('DashapredicttoAge').value>event.value){
+      this.partyGeneralConfig.Config.PredEndDt = event.value;
+    }
+  }
   onDashaPredictionFromAge(value) {
     if (value < this.partyGeneralConfig.Config.DashaStartValue) {
       document.getElementById('err_DashapredictfromAge').innerText = 'This should be greater than or equal to Dasha Start From Age';
