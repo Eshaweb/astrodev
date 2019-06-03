@@ -112,19 +112,21 @@
     </dx-text-box>
     <dx-text-box [mode]="textboxMode" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="Password" *ngIf='isOTPRequested' placeholder="Enter OTP" width="100%">
     </dx-text-box>
+    <!-- <dx-text-box *ngIf='!isOTPRequested' stylingMode="filled" [(mode)]="passwordMode" valueChangeEvent="keyup" formControlName="Password" [(value)]="password" placeholder="Password" width="100%">
+    </dx-text-box>
+    <dx-text-box *ngIf='isOTPRequested' stylingMode="filled" [(mode)]="passwordMode" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="Password" placeholder="Enter OTP" width="100%">
+    </dx-text-box>
+    <dxi-button name="today" location="after" [options]="passwordButton"></dxi-button> -->
     <p style="color:red;font-size: 12px;" id='err_Password'></p>
-    <p style="color:red;font-size: 12px;" id='err_OTP'></p>
+    <p style="color:red;font-size: 12px;" id='err_OTP'></p> 
 
 
     <!-- <p *ngIf='counter!= 0'>{{countDown | async }}</p> -->
 </div>
 <div class="dx-field">
         <div class="dx-fieldset-column">
-<dx-check-box id="check" 
-    [(value)]="ShowPassword_checkBoxValue" 
-    (onValueChanged)="ShowPassword_Click($event)"
-    text="Show Password">
-</dx-check-box>
+            <dx-check-box id="check" [(value)]="ShowPassword_checkBoxValue" (onValueChanged)="ShowPassword_Click($event)" text="Show Password">
+            </dx-check-box>
         </div>
         <div class="dx-fieldset-column">
                 <!-- <a type="default" *ngIf='!isOTPRequested' (click)="onRequestOTP()" width="100%">Request OTP</a>
@@ -176,8 +178,11 @@
 <form *ngIf='needtoEnterOTP' [formGroup]="uservalidateForm">
 <p>{{message}}</p>
 <div class="dx-field">
-    <dx-text-box mode="password" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="OTP" placeholder="Enter OTP" width="100%">
+        <dx-text-box mode="password" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="OTP" placeholder="Enter OTP" width="100%">
+            </dx-text-box>
+    <!-- <dx-text-box stylingMode="filled" [(mode)]="passwordMode" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="OTP" placeholder="Enter OTP" width="100%">
     </dx-text-box>
+    <dxi-button name="today" location="after" [options]="passwordButton"></dxi-button> -->
     <p style="color:red;" id='err_OTP'></p>
     <p style="color:red;" id='err_OTPRef'></p>
     <!-- <div style="width: 175px;" *ngIf='!disableResendOTP'>

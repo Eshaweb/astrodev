@@ -25,6 +25,7 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
 })
 export class HoroscopeComponent {
   //genders:string[];
+  now: Date = new Date();
   horoRequest: HoroRequest;
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
@@ -80,7 +81,7 @@ export class HoroscopeComponent {
         fatherName: [''],
         motherName: [''],
         gotra: [''],
-        Date: new Date(),
+        Date: [new Date()],
         Time: new Date(),
         TimeFormat: ['', []],
         ReportSize: ['', []],
@@ -106,7 +107,7 @@ export class HoroscopeComponent {
         fatherName: [''],
         motherName: [''],
         gotra: [''],
-        Date: new Date(),
+        Date: [new Date()],
         Time: new Date(),
         TimeFormat: ['', []],
         ReportSize: ['', []],

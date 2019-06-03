@@ -29,8 +29,10 @@ constructor(private route: ActivatedRoute, private router: Router, private login
     //        return true;
     //    }
        else {
-          this.router.navigate(['/login-form', {'RedirectUrl':state.url}]);
-         
+        //this.router.navigate(['/login-form']);
+        this.router.navigate(['/login-form', {'RedirectUrl':state.url}]);
+          //window.location.href='https://www.google.com';
+          //this.router.navigate(["/"]).then(result=>{window.location.href = 'https://www.google.com';});
           return false;
        }  
    }

@@ -190,7 +190,7 @@ export class AuthInterceptor implements HttpInterceptor {
       this.loginService.serviceMenus=serviceMenusBeforeLogin;
       this.loginService.serviceList=serviceListBeforeLogin;
       this.loginService.isAdmin=false;
-        this.router.navigateByUrl('/login-form');
+      this.router.navigateByUrl('/login-form');
         return observableThrowError("");
     }
 }

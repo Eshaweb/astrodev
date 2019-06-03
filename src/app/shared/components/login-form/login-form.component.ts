@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxCheckBoxModule } from 'devextreme-angular/ui/check-box';
-import { DxTextBoxModule } from 'devextreme-angular/ui/text-box';
+import { DxTextBoxModule } from 'devextreme-angular';
 import { DxValidatorModule } from 'devextreme-angular/ui/validator';
 import { DxValidationGroupModule } from 'devextreme-angular/ui/validation-group';
 import { NgModule, OnInit, OnDestroy, ViewChildren, ElementRef, AfterViewInit, ViewChild, Component, EventEmitter, Output } from '@angular/core';
@@ -31,6 +31,7 @@ import { environment } from 'src/environments/environment';
 import { take, map } from 'rxjs/operators';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
+import { DxiButtonModule } from 'devextreme-angular/ui/nested/button-dxi';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -66,6 +67,8 @@ export class LoginFormComponent {
   ShowPassword_checkBoxValue: boolean;
   textboxMode: string = "password";
   redirectUrl: any;
+  passwordMode: string;
+  passwordButton: any;
 
   constructor(public orderService: OrderService, public storageService: StorageService, private muhurthaService: MuhurthaService, private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
     private astamangalaService: AstamangalaService, public registrationService: RegistrationService, public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager,
@@ -131,7 +134,14 @@ export class LoginFormComponent {
 
   ngOnInit() {
     //this.events.publish('REFRESH_DIGIPARTYNAME');
-
+    // this.passwordMode = 'password';
+    // this.passwordButton = {
+    //     icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB7klEQVRYw+2YP0tcQRTFz65xFVJZpBBS2O2qVSrRUkwqYfUDpBbWQu3ELt/HLRQ/Q8RCGxVJrRDEwj9sTATxZ/Hugo4zL/NmV1xhD9xi59177pl9986fVwLUSyi/tYC+oL6gbuNDYtyUpLqkaUmfJY3a+G9JZ5J2JW1J2ivMDBSxeWCfeBxYTHSOWMcRYLOAEBebxtEVQWPASQdi2jgxro4E1YDTQIJjYM18hszGbew4EHNq/kmCvgDnHtI7YBko58SWgSXg1hN/btyFBM0AlwExczG1YDZrMS4uLUeUoDmgFfjLGwXEtG05wNXyTc4NXgzMCOAIGHD8q0ATuDZrempkwGJ9+AfUQ4K+A/eEseqZ/UbgdUw4fqs5vPeW+5mgBvBAPkLd8cPju+341P7D/WAaJGCdOFQI14kr6o/zvBKZYz11L5Okv5KGA89Kzu9K0b0s5ZXt5PjuOL6TRV5ZalFP4F+rrnhZ1Cs5vN6ijmn7Q162/ThZq9+YNW3MbfvDAOed5cxdGL+RFaUPKQtjI8DVAr66/u9i6+jJzTXm+HFEVqxVYBD4SNZNKzk109HxoycPaG0bIeugVDTp4hH2qdXJDu6xOAAWiuQoQdLHhvY1aEZSVdInG7+Q9EvSz9RrUKqgV0PP3Vz7gvqCOsUj+CxC9LB1Dc8AAAASdEVYdEVYSUY6T3JpZW50YXRpb24AMYRY7O8AAAAASUVORK5CYII=",
+    //     type: "default",
+    //     onClick: () => {
+    //         this.passwordMode = this.passwordMode === "text" ? "password" : "text";
+    //     }
+    // };
     this.ShowPassword_checkBoxValue = false;
   }
 
@@ -519,7 +529,7 @@ export class LoginFormRoutingModule { }
     DxCheckBoxModule,
     DxTextBoxModule,
     DxValidatorModule,
-    DxValidationGroupModule,
+    DxValidationGroupModule, DxiButtonModule,
     DxPopupModule, DxLoadIndicatorModule,
     ReactiveFormsModule, LoginFormRoutingModule,
     FormsModule, DxLoadPanelModule
