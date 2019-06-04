@@ -69,7 +69,7 @@ export class MuhurthaComponent {
   endTimeCheckBoxValue: boolean=false;
 
   birthDateinDateFormat: Date;
-  dateinDateFormat: Date;
+  //dateinDateFormat: Date;
   maxdateinDateFormat: Date;
   dataSource: RashiNak[];
   languages: SelectBoxModel[] = [
@@ -219,6 +219,8 @@ export class MuhurthaComponent {
   showError: string;
   canEnterDateRange: boolean=true;
   rashiNakshatras:any[];
+  mindateinDateFormat_To: Date;
+  mindateinDateFormat_From: Date;
   
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef, public partyService: PartyService, public muhurthaService: MuhurthaService, public uiService: UIService,
@@ -238,12 +240,17 @@ export class MuhurthaComponent {
     this.getFilteredRashis = this.getFilteredRashis.bind(this);
     const birthPlaceContrl = this.muhurthaaForm.get('birthPlace');
     birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
+    const FromDateContrl = this.dateRangeForm.get('FromDate');
+    FromDateContrl.valueChanges.subscribe(value => this.setErrorMessage(FromDateContrl));
+    const ToDateContrl = this.dateRangeForm.get('ToDate');
+    ToDateContrl.valueChanges.subscribe(value => this.setErrorMessage(ToDateContrl));
     //this.setStarValue("","1");
    // this.setRashiValue("","1");
     if (this.muhurthaService.muhurthaRequest != null) {
       this.muhurthaRequest = this.muhurthaService.muhurthaRequest;
       this.birthDateinDateFormat = this.muhurthaService.BirthDateinDateFormat;
-      this.dateinDateFormat = this.muhurthaService.DateinDateFormat;
+      this.mindateinDateFormat_From = this.muhurthaService.DateinDateFormat_From;
+      this.mindateinDateFormat_To = this.muhurthaService.DateinDateFormat_To;
       this.maxdateinDateFormat= this.muhurthaService.maxdateinDateFormat;
       this.fromdateinDateFormat = this.muhurthaService.FromDateinDateFormat;
       this.todateinDateFormat = this.muhurthaService.ToDateinDateFormat;
@@ -254,9 +261,10 @@ export class MuhurthaComponent {
     }
     else {
       this.birthDateinDateFormat = this.muhurthaaForm.controls['Date'].value;
-      this.dateinDateFormat = new Date();
+      this.mindateinDateFormat_From = new Date();
+      this.mindateinDateFormat_To = new Date();
       this.maxdateinDateFormat = new Date();
-      this.maxdateinDateFormat.setMonth(this.dateinDateFormat.getMonth()+2);
+      this.maxdateinDateFormat.setDate(this.mindateinDateFormat_From.getDate()+60);
       this.fromdateinDateFormat = this.dateRangeForm.controls['FromDate'].value;
       this.todateinDateFormat = this.dateRangeForm.controls['ToDate'].value;
       //this.todateinDateFormat.setMonth(this.todateinDateFormat.getMonth()+3);
@@ -323,11 +331,13 @@ export class MuhurthaComponent {
   setToDateinDateFormat() {
     this.maxdateinDateFormat.setFullYear(this.dateRangeForm.controls['FromDate'].value.getFullYear());
     this.maxdateinDateFormat.setMonth(this.dateRangeForm.controls['FromDate'].value.getMonth());
-    this.maxdateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate());
-    this.maxdateinDateFormat.setMonth(this.dateRangeForm.controls['FromDate'].value.getMonth() + 2);
+    this.maxdateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate()+60);
+    this.mindateinDateFormat_To.setDate(this.dateRangeForm.controls['FromDate'].value.getDate());
+    this.mindateinDateFormat_To.setMonth(this.dateRangeForm.controls['FromDate'].value.getMonth());
+    this.mindateinDateFormat_To.setFullYear(this.dateRangeForm.controls['FromDate'].value.getFullYear());
+    document.getElementById('err_ToDate').innerHTML = '';
     //this.todateinDateFormat.setDate(this.dateRangeForm.controls['FromDate'].value.getDate()+15);
   }
-
   ngOnInit() {
     this.loadingSwitchService.loading = true;
     this.muhurthaService.GetMuhurthaList().subscribe((data: any) => {
@@ -741,7 +751,8 @@ export class MuhurthaComponent {
       PartyMastId:StorageService.GetItem('PartyMastId')
     }
 
-    this.muhurthaService.DateinDateFormat=this.dateinDateFormat;
+    this.muhurthaService.DateinDateFormat_From=this.mindateinDateFormat_From;
+    this.muhurthaService.DateinDateFormat_To=this.mindateinDateFormat_To;
     this.muhurthaService.maxdateinDateFormat=this.maxdateinDateFormat;
     this.muhurthaService.FromDateinDateFormat = fromdate;
     this.muhurthaService.ToDateinDateFormat = todate;
