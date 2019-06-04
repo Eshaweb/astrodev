@@ -2,7 +2,10 @@ a {
     color: #b74610;
     cursor: pointer;
   }
-  
+  .dx-datagrid-content .dx-datagrid-table .dx-row .dx-command-edit {
+    width: 76px;
+    min-width: 100px;
+}
 .centered-content {
     margin: auto;
     text-align: center;

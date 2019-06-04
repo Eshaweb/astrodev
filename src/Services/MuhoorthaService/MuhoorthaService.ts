@@ -63,6 +63,8 @@ export class MuhurthaService {
   timeZoneName: string;
   RashiNak: any[];
   maxdateinDateFormat: Date;
+  DateinDateFormat_To: Date;
+  DateinDateFormat_From: Date;
 
 
     constructor(private httpService: HttpService,
