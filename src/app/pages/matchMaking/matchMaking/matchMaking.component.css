@@ -87,7 +87,10 @@ margin-top: 10px;
     border: 1px solid #ddd; 
     border-radius: 100px;
 }
-
+::ng-deep aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.current .step-indicator {
+    color: #ff5722 !important;
+    /* border: 2px solid #ff5722; */
+}
 @media (max-width: 800px) {
     .dx-fieldset-column {
         float: left;

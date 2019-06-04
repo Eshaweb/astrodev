@@ -59,6 +59,15 @@ a {
         width: 900px;
         margin-left: 200px;
     }
+
+    ::ng-deep aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.current .step-indicator {
+        color: #ff5722 !important;
+        /* border: 2px solid #ff5722; */
+    }
+    ::ng-deep aw-wizard-navigation-bar.horizontal ul.steps-indicator li a .label{
+
+        font-weight: 400 !important;
+    }
     /* ::ng-deep .dx-button-content {
     padding: 9px 36px 10px !important;
 } */

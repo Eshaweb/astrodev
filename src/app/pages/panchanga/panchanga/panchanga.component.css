@@ -29,7 +29,10 @@
     .dx-texteditor-container {
     margin-bottom: 14px;
     }
-    
+    ::ng-deep aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.current .step-indicator {
+        color: #ff5722 !important;
+        /* border: 2px solid #ff5722; */
+    }
     @media (max-width: 800px) {
 
         .dx-fieldset {
