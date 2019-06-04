@@ -3334,6 +3334,23 @@
   border-color: transparent;
   background-color: rgba(51, 51, 51, 0.02);
 }
+  .dx-texteditor.dx-state-readonly.dx-editor-filled {
+    border-color: transparent;
+    background-color: rgba(51, 51, 51, 0.03);
+  }
+  .dx-texteditor.dx-state-readonly.dx-editor-filled.dx-state-focused {
+    background-color: rgba(51, 51, 51, 0.03);
+  }
+  .dx-texteditor.dx-state-readonly.dx-editor-filled.dx-state-hover {
+    background-color: rgba(51, 122, 183, 0.07);
+  }
+  .dx-texteditor.dx-state-readonly.dx-editor-underlined {
+    border-style: none;
+    border-bottom-style: dashed;
+  }
+  .dx-texteditor.dx-state-readonly .dx-texteditor-buttons-container {
+    display: none;
+  }
 .dx-texteditor.dx-state-hover {
   border-color: rgba(51, 122, 183, 0.4);
 }
