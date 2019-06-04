@@ -2486,7 +2486,7 @@
   color: #fff;
 }
 .dx-button-mode-contained.dx-button-default.dx-state-hover {
-  background-color: #285f8f;
+  background-color: #db6521;
   border-color: transparent;
 }
 .dx-button-mode-contained.dx-button-default.dx-state-focused {
@@ -3433,7 +3433,7 @@
   padding-right: 0;
 }
 .dx-editor-filled .dx-texteditor-input {
-  background: transparent;
+  /* background: transparent; */
 }
 .dx-invalid.dx-texteditor {
   border-color: rgba(217, 83, 79, 0.4);
