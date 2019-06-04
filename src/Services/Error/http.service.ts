@@ -176,8 +176,12 @@ public Post_PDF<T>(endPoint: string, params: Object): Observable<Blob> {
     else if (err.status == 405) {
       this.errorData = {
         errorMessage: err.statusText,
-      };
-      
+      };  
+    }
+    else if (err.status == 0) {
+      this.errorData = {
+        errorMessage: 'Please check the Internet Availability',
+      };  
     }
     errorService.myErrorSubscription(this.errorData);
     return of(null);
