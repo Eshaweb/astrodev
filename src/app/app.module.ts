@@ -49,12 +49,12 @@ import { RazorPayService } from 'src/Services/RazorPayService/RazorPayService';
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('117317761358-804guhn1j9vnuic2ee9flcohjsdkc3g6.apps.googleusercontent.com')
+    provider: new GoogleLoginProvider('xxxx')
     
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider("1260701960750430")
+    provider: new FacebookLoginProvider("xxx")
   },
   {
     id: LinkedInLoginProvider.PROVIDER_ID,
@@ -68,7 +68,7 @@ export function provideConfig() {
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     //NgxLoadingModule.forRoot({}),

@@ -110,7 +110,7 @@ const routes: Routes = [
     //EventsModule.forRoot(),
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC0nx6AjTNNb24ZEnah5hRBqL0ehgrZ3es',
+      apiKey: 'xxxd',
       libraries: ['places']
     }),
     ReactiveFormsModule,

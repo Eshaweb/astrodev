@@ -36,10 +36,10 @@ export class HoroscopeComponent {
 
   languages: SelectBoxModel[] = [
     { Id: "ENG", Text: "English" },
-    { Id: "HIN", Text: "हिन्दि" },
+    { Id: "HIN", Text: "हिन्दी" },
     { Id: "KAN", Text: "ಕನ್ನಡ" },
     { Id: "MAL", Text: "മലയാളം" },
-    { Id: "TAM", Text: "டமில்" }];
+    { Id: "TAM", Text: "தமிழ்" }];
   reportSizes: SelectBoxModel[] = [
     { Id: "A4", Text: "A4" },
     { Id: "A5", Text: "A5" },

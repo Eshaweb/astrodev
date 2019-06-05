@@ -40,10 +40,10 @@ export class PanchangaComponent {
   simpleProducts: string[];
   languages: SelectBoxModel[] = [
     { Id: "ENG", Text: "English" },
-    { Id: "HIN", Text: "हिन्दि" },
+    { Id: "HIN", Text: "हिन्दी" },
     { Id: "KAN", Text: "ಕನ್ನಡ" },
     { Id: "MAL", Text: "മലയാളം" },
-    { Id: "TAM", Text: "டமில்" }];
+    { Id: "TAM", Text: "தமிழ்" }];
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
     { Id: "SUMMER", Text: 'Summer Time' },
@@ -61,12 +61,12 @@ export class PanchangaComponent {
     this.loginService.isHomePage = false;
       this.panchangaForm = this.formbuilder.group({
       Date: new Date(),
-      birthPlace: ['', [Validators.required]],
+      Place: ['', [Validators.required]],
       language: ['', []]
     }, {validator: this.validateDateField('Date')});
 
-    const birthPlaceContrl = this.panchangaForm.get('birthPlace');
-    birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
+    const PlaceContrl = this.panchangaForm.get('Place');
+    PlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(PlaceContrl));
     if (this.panchangaService.panchangaRequest != null) {
       this.panchangaRequest = this.panchangaService.panchangaRequest;
       this.birthDateinDateFormat = this.panchangaService.DateinDateFormat;
@@ -106,7 +106,7 @@ export class PanchangaComponent {
 
     Date_required: '*Select Date of Birth',
 
-    birthPlace_required: '*Enter Birth Place',
+    Place_required: '*Enter Place',
 
     language_required: '*Select Language',
 

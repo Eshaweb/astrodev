@@ -6,7 +6,6 @@ import { WalletRoutingModule } from './wallet-routing.module';
 import { SalesService } from 'src/Services/sales/sales.service';
 import { DepositWalletComponent } from './deposit-wallet/deposit-wallet.component';
 import { DxTextBoxModule, DxSelectBoxModule, DxButtonModule, DxLoadPanelModule } from 'devextreme-angular';
-import { ArchwizardModule } from 'angular-archwizard';
 @NgModule({
     imports: [
         CommonModule,

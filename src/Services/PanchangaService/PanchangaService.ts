@@ -29,7 +29,7 @@ GetSputasOnSunRise(horoRequest):Observable<any> {
     return this.httpService.Post(endPoint, horoRequest);
 }
 getTimezone(lat, long) {
-    var apiKey = 'AIzaSyCvfK_tYN-xiSpc0leO9N-ffswKm4G49VI';
+    var apiKey = 'xxx';
     var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey
     return this.http.get(url);
 }

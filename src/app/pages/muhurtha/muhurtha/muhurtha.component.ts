@@ -74,10 +74,10 @@ export class MuhurthaComponent {
   dataSource: RashiNak[];
   languages: SelectBoxModel[] = [
     { Id: "ENG", Text: "English" },
-    { Id: "HIN", Text: "हिन्दि" },
+    { Id: "HIN", Text: "हिन्दी" },
     { Id: "KAN", Text: "ಕನ್ನಡ" },
     { Id: "MAL", Text: "മലയാളം" },
-    { Id: "TAM", Text: "டமில்" }];
+    { Id: "TAM", Text: "தமிழ்" }];
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
     { Id: "SUMMER", Text: 'Summer Time' },
@@ -229,7 +229,7 @@ export class MuhurthaComponent {
     this.muhurthaaForm = this.formbuilder.group({
       Date: new Date(),
       //Date: [null, [Validators.required]],
-      birthPlace: ['', [Validators.required]],
+      Place: ['', [Validators.required]],
       language: ['', []]
     });
     this.dateRangeForm = this.formbuilder.group({
@@ -238,8 +238,8 @@ export class MuhurthaComponent {
     });
     // }, {validator: this.validateDateField('FromDate')});
     this.getFilteredRashis = this.getFilteredRashis.bind(this);
-    const birthPlaceContrl = this.muhurthaaForm.get('birthPlace');
-    birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
+    const PlaceContrl = this.muhurthaaForm.get('Place');
+    PlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(PlaceContrl));
     const FromDateContrl = this.dateRangeForm.get('FromDate');
     FromDateContrl.valueChanges.subscribe(value => this.setErrorMessage(FromDateContrl));
     const ToDateContrl = this.dateRangeForm.get('ToDate');
@@ -310,7 +310,7 @@ export class MuhurthaComponent {
 
     Date_required: '*Select Date of Birth',
 
-    birthPlace_required: '*Enter Birth Place',
+    Place_required: '*Enter Place',
 
     language_required: '*Select Language',
 

@@ -11,9 +11,9 @@ import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingS
 import ArrayStore from 'devextreme/data/array_store';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/LoginService/LoginService';
+import { ItemService } from '../../../../Services/ItemService/ItemService';
+import { RazorPayService } from '../../../../Services/RazorPayService/RazorPayService';
 import { DxLoadPanelComponent } from 'devextreme-angular';
-import { ItemService } from 'src/Services/ItemService/ItemService';
-import { RazorPayService } from 'src/Services/RazorPayService/RazorPayService';
 
 declare var Razorpay: any;
 
@@ -160,9 +160,10 @@ export class DepositWalletComponent {
         }
       });
     }
-
   }
+
   onClick() {
+    this.loadPanel.visible=true;
     var WalletPurchase = {
       PartyMastId: StorageService.GetItem('PartyMastId'),
       PurchaseAmount: this.depositToWalletForm.controls['Amount'].value,
@@ -187,7 +188,6 @@ export class DepositWalletComponent {
   }
 
   pay(ExtCode) {
-    this.showSuccess=true;
     var options = {
       description: 'Credits towards AstroLite',
       image: 'https://i.imgur.com/3g7nmJC.png',
@@ -219,12 +219,22 @@ export class DepositWalletComponent {
       modal: {
         ondismiss: () => {
           this.loadPanel.visible=false;
+          this.loadingSwitchService.loading=false;
           this.showSuccess=false;
         }
       }
     };
-    var rzp1 = new Razorpay(options);
-    rzp1.open();
+    // var rzp1 = new Razorpay(options);
+    // rzp1.open();
+    var rzp1 = new Razorpay(options, successCallback, cancelCallback);
+    var successCallback = (payment_id) => {
+      alert('payment_id: ' + payment_id);
+    };
+
+    var cancelCallback = (error) => {
+      alert(error.description + ' (Error ' + error.code + ')');
+    };
+    rzp1.open(options, successCallback, cancelCallback);
   }
 
   next(Payment) {
@@ -238,6 +248,7 @@ export class DepositWalletComponent {
         this.walletService.GetWalletBalance(StorageService.GetItem('PartyMastId')).subscribe((data) => {
           if (data.Errors == undefined) {
             //IsValid: true 
+            this.showSuccess=true;
             this.walletBalanceAmount = data;
             this.message='PaymentCompleted and Balance Updated';
             this.loadPanel.visible=false;
@@ -251,6 +262,7 @@ export class DepositWalletComponent {
       }
     });
   }
+
   gotoServies(){
     this.router.navigate(["/services"]);
   }

@@ -7,8 +7,11 @@
                             <div class="dx-field-label">Date*</div>
                             <div class="dx-field-value">
                                 <dx-date-box formControlName="Date" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" [(min)]="mindateinDateFormat"
-                                [(max)]="maxdateinDateFormat" [useMaskBehavior]="true">
+                                [(max)]="maxdateinDateFormat">
                                 </dx-date-box>
+                                <!-- <dx-date-box formControlName="Date" pickerType="list" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" [(min)]="mindateinDateFormat"
+                                [(max)]="maxdateinDateFormat">
+                                </dx-date-box> -->
                                 </div>
                         </div>
                         </div>
@@ -54,8 +57,8 @@
                             <div class="dx-field">
                                 <div class="dx-field-label">Place*</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box id="txtHome" valueChangeEvent="keyup" formControlName="birthPlace" showClearButton="true" [(ngModel)]="panchangaRequest.Place"></dx-text-box>
-                                    <p style="color:red" id='err_birthPlace'></p>
+                                    <dx-text-box id="txtHome" valueChangeEvent="keyup" formControlName="Place" showClearButton="true" [(ngModel)]="panchangaRequest.Place"></dx-text-box>
+                                    <p style="color:red" id='err_Place'></p>
                             </div>
                         </div>
                         </div>
