@@ -421,7 +421,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       description: 'Credits towards AstroLite',
       image: 'https://i.ibb.co/dkhhhR1/icon-72x72.png',
       currency: 'INR',
-      key: 'xxx',
+      key: this.loginService.razorPayKey,
       amount: +(this.payableAmountthroughPaymentGateWay * 100).toFixed(),
       name: StorageService.GetItem('Name'),
       "handler": (response) => {
@@ -467,7 +467,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       description: 'Credits towards AstroLite',
       image: 'https://i.ibb.co/dkhhhR1/icon-72x72.png',
       currency: 'INR',
-      key: 'ddd',
+      key: this.loginService.razorPayKey,
       amount: 100 * 100,
       name: StorageService.GetItem('Name'),
       "handler": (response) => {

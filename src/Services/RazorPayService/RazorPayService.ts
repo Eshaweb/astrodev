@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { PartyService } from '../PartyService/PartyService';
 import { WalletService } from '../Wallet/WalletService';
 import { DxLoadPanelComponent } from 'devextreme-angular';
+import { LoginService } from '../LoginService/LoginService';
 declare var Razorpay: any;
 
 
@@ -17,7 +18,7 @@ export class RazorPayService {
     partyMobileNo: any;
     partyEmail: any;
     constructor(public loadingSwitchService:LoadingSwitchService,public horoScopeService:HoroScopeService, public orderService:OrderService,
-        public router:Router, public partyService:PartyService, public walletService:WalletService){
+        public router:Router, public partyService:PartyService, public walletService:WalletService, public loginService:LoginService){
             this.partyService.GetContactDetails(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
                 if (data.Errors == undefined) {
                   this.partyEmail = data.EMail;
@@ -31,7 +32,7 @@ export class RazorPayService {
           description: 'Credits towards AstroLite',
           image: 'https://i.ibb.co/dkhhhR1/icon-72x72.png',
           currency: 'INR',
-          key: 'xxx',
+          key: this.loginService.razorPayKey,
           amount: payableAmountthroughPaymentGateWay * 100,
           name: StorageService.GetItem('Name'),
           "handler": (response) => {

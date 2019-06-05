@@ -4,6 +4,7 @@ import { HttpService } from '../Error/http.service';
 import { HttpClient, HttpBackend } from '@angular/common/http';
 import { PanchangaResponse } from 'src/Models/Panchanga/PanchangaResponse';
 import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
+import { LoginService } from '../LoginService/LoginService';
 
 @Injectable()
 export class PanchangaService {
@@ -15,7 +16,7 @@ export class PanchangaService {
     place: string;
     placeShort: string;
   timeZoneName: string;
-    constructor(private httpService: HttpService, 
+    constructor(private httpService: HttpService,
         handler: HttpBackend, public http: HttpClient) {
         this.http = new HttpClient(handler);
     }
@@ -29,7 +30,7 @@ GetSputasOnSunRise(horoRequest):Observable<any> {
     return this.httpService.Post(endPoint, horoRequest);
 }
 getTimezone(lat, long) {
-    var apiKey = 'xxx';
+    var apiKey = LoginService.GoogleAPIKey
     var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey
     return this.http.get(url);
 }

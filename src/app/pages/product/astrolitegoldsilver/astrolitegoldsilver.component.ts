@@ -272,7 +272,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
       description: 'Credits towards AstroLite',
       image: 'https://i.imgur.com/3g7nmJC.png',
       currency: 'INR',
-      key: 'xxx',
+      key: this.loginService.razorPayKey,
       amount: +((this.productPrice.ActualPrice - this.discountAmount) * 100).toFixed(),
       name: StorageService.GetItem('Name'),
       "handler": (response) => {

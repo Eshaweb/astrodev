@@ -6,6 +6,7 @@ import { MatchRequest } from 'src/Models/MatchMaking/MatchRequest';
 import { MatchResponse } from 'src/Models/MatchMaking/match';
 import { HttpService } from '../Error/http.service';
 import { Observable } from 'rxjs';
+import { LoginService } from '../LoginService/LoginService';
 
 
 @Injectable()
@@ -34,7 +35,7 @@ export class MatchMakingService {
         return this.httpService.Post(endPoint, matchRequest);
     }
     getTimezone(lat, long) {
-        var apiKey = 'xxx';
+        var apiKey = LoginService.GoogleAPIKey;
         var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey
         return this.http.get(url);
 

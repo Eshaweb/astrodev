@@ -49,12 +49,12 @@ import { RazorPayService } from 'src/Services/RazorPayService/RazorPayService';
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('xxxx')
+    provider: new GoogleLoginProvider(LoginService.Facebook_client_Id)
     
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider("xxx")
+    provider: new FacebookLoginProvider(LoginService.Google_client_Id)
   },
   {
     id: LinkedInLoginProvider.PROVIDER_ID,

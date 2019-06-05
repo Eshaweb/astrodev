@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './shared/components/pagenotfound/pagenotf
 import { AuthGuard } from 'src/Services/auth/auth.guard';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { CanActivate } from '@angular/router/src/utils/preactivation';
+import { LoginService } from '../Services/LoginService/LoginService';
 //import { EventsModule } from 'angular4-events';
 
 const routes: Routes = [
@@ -110,7 +111,7 @@ const routes: Routes = [
     //EventsModule.forRoot(),
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'xxxd',
+      apiKey: LoginService.GoogleAPIKey,
       libraries: ['places']
     }),
     ReactiveFormsModule,
