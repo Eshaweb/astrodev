@@ -35,7 +35,6 @@ export class MatchMakingService {
     }
     getTimezone(lat, long) {
         var apiKey = 'xxx';
-        //https://maps.googleapis.com/maps/api/timezone/json?location=38.908133,-77.047119&timestamp=1458000000&key=AIzaSyD68pTd0CmqTXSqPHFpLrPWkiClqPBIpLQ
         var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey
         return this.http.get(url);
 

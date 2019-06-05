@@ -31,8 +31,7 @@ export class RazorPayService {
           description: 'Credits towards AstroLite',
           image: 'https://i.ibb.co/dkhhhR1/icon-72x72.png',
           currency: 'INR',
-          key: 'rzp_test_fg8RMT6vcRs4DP',
-          //key: 'rzp_live_guacAtckljJGyQ',
+          key: 'xxx',
           amount: payableAmountthroughPaymentGateWay * 100,
           name: StorageService.GetItem('Name'),
           "handler": (response) => {
