@@ -64,7 +64,8 @@ a {
     }
 
     ::ng-deep aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.current .step-indicator {
-        color: #ff5722 !important;
+        color: #D97227!important;
+        border: 2px solid #D97227 !important;
         /* border: 2px solid #ff5722; */
     }
     ::ng-deep aw-wizard-navigation-bar.horizontal ul.steps-indicator li a .label{
