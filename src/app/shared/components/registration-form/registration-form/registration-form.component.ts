@@ -178,6 +178,7 @@ export class RegistrationFormComponent {
                     this.SMSOTPType = 'You will get an OTP. Please enter the OTP here';
                     //'OTP Sent to ' + oTPRequest.MobileNo + ' with Reference No. ' + data.OTPRef
                 }
+                this.counter = 20;
                 this.countDown = timer(0, this.tick).pipe(
                     take(this.counter),
                     map(() => {--this.counter;
@@ -271,20 +272,21 @@ export class RegistrationFormComponent {
         this.router.navigate(["/login-form"]);
       }
     ResendOTP_click() {
+        this.counter = 20;
         this.disableResendOTP = true;
-        this.countDown = timer(0, this.tick).pipe(
-            take(this.counter),
-            map(() => {--this.counter;
-                if(this.counter==0){
-                    this.disableResendOTP = false;
-                }
-            }));
         var UserName = {
             UserName: this.registrationForm.get('UserName').value
         }
         this.registrationService.ResendUserOTP(UserName).subscribe((data: any) => {
             if (data.Errors == undefined) {
                 this.SMSOTPType = 'OTP Resent. Please enter OTP And Submit';
+                this.countDown = timer(0, this.tick).pipe(
+                    take(this.counter),
+                    map(() => {--this.counter;
+                        if(this.counter==0){
+                            this.disableResendOTP = false;
+                        }
+                    }));
             }
         });
     }

@@ -5,7 +5,6 @@
     [title]="title">
 </app-header>
 
-
 <dx-drawer
     class="layout-body"
     position="before"
@@ -27,79 +26,6 @@
         (openMenu)="navigationClick()">
     </app-side-navigation-menu>
     </div>
-
-
-<!-- <dx-nav-bar (onItemClick)="selectionChanged($event)"
-[selectedIndex]="0" *ngIf='!isMobileResolution'>
-        <dxi-item text="Registration" icon="home" (onItemClick)='OnRegistrationform_Click()'>
-            <div (click)="OnRegistrationform_Click()">
-                    <dx-button icon="home" text="Registration"></dx-button>
-            </div>
-        </dxi-item>
-        <dxi-item text="Login" icon="info" [onClick]="OnLogin_Click"></dxi-item>
-        <dxi-item text="Profile" icon="favorites" badge="new">
-                <dx-button icon="home" text="Profile" (click)="OnProfile_Click()"></dx-button>
-        </dxi-item>
-        <dxi-item text="Home" icon="home"></dxi-item>
-        <dxi-item text="About" icon="info"></dxi-item>
-        <dxi-item text="Favorites" icon="favorites" badge="new"></dxi-item>
-    </dx-nav-bar> -->
-<!-- <dx-nav-bar
-    [dataSource]="navBarData"
-    (onItemClick)="selectionChanged($event)"
-    [selectedIndex]="0">
-</dx-nav-bar> -->
-
-<!-- <dx-menu *ngIf='!isMobileResolution
-            #menu
-            [dataSource]="loginService.menuItems"
-            displayExpr="text"
-            [showFirstSubmenuMode]="showFirstSubmenuModes"
-            orientation="horizontal"
-            submenuDirection="auto"
-            [hideSubmenuOnMouseLeave]="true"
-            (onItemClick)="itemClick($event)">
-</dx-menu> -->
-
-<!-- <dx-menu *ngIf='!isMobileResolution&&!loginService.isHomePage'
-            #menu
-            [dataSource]="menuItems"
-            displayExpr="text"
-            [showFirstSubmenuMode]="showFirstSubmenuModes"
-            orientation="horizontal"
-            submenuDirection="auto"
-            [hideSubmenuOnMouseLeave]="true"
-            (onItemClick)="itemClick($event)">
-</dx-menu> -->
-
-    <!-- <div class="service-menu">
-  <ul class="nav">
-    <li><a class='menuItem ' href="#15.0.0">Astamangala</a></li><li><a class='menuItem' href="#14.3.6">Horoscope</a></li><li><a class='menuItem' href="#14.3.5">Matchmaking</a></li><li><a class='menuItem' href="#14.3.4">Muhurtha</a></li><li><a class='menuItem' href="#14.3.3">Panchanga</a></li><li><a class='menuItem' href="#14.3.0">Numerology</a></li><li><a class='menuItem' href="#14.2.17">Wallet</a></li><li><a class='menuItem' href="#14.2.12">Panchapakshi</a></li><li><a class='menuItem' href="#14.2.9">Shraadha Masika</a></li><li><a class='menuItem' href="#14.2.8">Baby Naming</a></li><li><a class='menuItem' href="#14.2.7">Hanuman Jyothisha</a></li><li><a class='menuItem' href="#14.2.6">Prathamartava Guna Dosha</a></li><li><a class='menuItem' href="#14.2.4">Kaalidrushti</a></li><li><a class='menuItem' href="#14.2.3">Choughadiya</a></li>
-    <li id="moreButton" class="menuItem">More 
-    <ul id="more">
-      <li><a class='menuItem' href="#15.0.0">Astamangala</a></li><li><a class='menuItem' href="#14.3.6">Horoscope</a></li><li><a class='menuItem' href="#14.3.5">Matchmaking</a></li><li><a class='menuItem' href="#14.3.4">Muhurtha</a></li><li><a class='menuItem' href="#14.3.3">Panchanga</a></li><li><a class='menuItem' href="#14.3.0">Numerology</a></li><li><a class='menuItem' href="#14.2.17">Wallet</a></li><li><a class='menuItem' href="#14.2.12">Panchapakshi</a></li><li><a class='menuItem' href="#14.2.9">Shraadha Masika</a></li><li><a class='menuItem' href="#14.2.8">Baby Naming</a></li><li><a class='menuItem' href="#14.2.7">Hanuman Jyothisha</a></li><li><a class='menuItem' href="#14.2.6">Prathamartava Guna Dosha</a></li><li><a class='menuItem' href="#14.2.4">Kaalidrushti</a></li><li><a class='menuItem' href="#14.2.3">Choughadiya</a></li>
-    </ul>
-    </li>
-    </ul>
-</div> -->
-<!-- <app-side-navigation-menu *ngIf="!loginService.userProfileVisible"
-    [items]="menuItemsBeforeLogin"
-    [compactMode]="!menuOpened"
-    [selectedItem]="selectedRoute"
-    class="dx-swatch-additional"
-    *dxTemplate="let dataMenu of 'panel'"
-    (selectedItemChanged)="navigationChanged($event)"
-    (openMenu)="navigationClick()">
-</app-side-navigation-menu>
-    <app-side-navigation-menu *ngIf="loginService.userProfileVisible"
-        [items]="menuItemsAfterLogin"
-        [compactMode]="!menuOpened"
-        [selectedItem]="selectedRoute"
-        class="dx-swatch-additional"
-        *dxTemplate="let dataMenu of 'panel'"
-        (selectedItemChanged)="navigationChanged($event)"
-        (openMenu)="navigationClick()">
-    </app-side-navigation-menu> -->
 
     <dx-scroll-view class="full-height-scrollable">
         <div class="content">
@@ -128,12 +54,9 @@
             <ng-content></ng-content>
             <div class="float-bar" *ngIf='itemService.BuyNowVisible'>
                 <p class="buynow-text">For Detailed {{itemService.ItemName}} </p>
-                                <!-- <button class="float-bar-button" data-toggle="modal" data-target=".your-modal">Buy Full Horoscope</button> -->
-                                <dx-button class="buy-now-btn"                                
-                                text="Click here"
-                                (onClick)="onBuyNowClick()">
-                                </dx-button>
-                            </div>
+                <dx-button class="buy-now-btn" text="Click here" (onClick)="onBuyNowClick()">
+                </dx-button>
+            </div>
         </div>
 
         <div class="content-block">
@@ -141,16 +64,3 @@
         </div>
     </dx-scroll-view>
 </dx-drawer>
-
-
-<!-- <app-footer *ngIf='itemService.BuyNowVisible'>
-<div class="buynow-footer">
-  <div class="buy-now" > For Detailed {{itemService.ItemName}}</div> 
-    <dx-button stylingMode="text"
-    icon="cart"
-    type="success"
-    text="Buy Now"
-    (onClick)="onBuyNowClick()">
-    </dx-button>
-</div>
-</app-footer> -->

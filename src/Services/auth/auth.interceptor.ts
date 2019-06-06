@@ -72,7 +72,7 @@ export class AuthInterceptor implements HttpInterceptor {
         //If we use only refreshToken in Local/SessionStorage, then below set of code is helpful.
 
 
-        const authService = this.injector.get(LoginService);
+        const authService = this.injector.get(HttpService);
         if (req.headers.get('No-Auth') == "True") {
             return next.handle(req.clone());
         }
@@ -81,7 +81,7 @@ export class AuthInterceptor implements HttpInterceptor {
             var headersforTokenAPI = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded' })
             return next.handle(req);
         }
-        if (this.loginService.AccessToken != null) {
+        if (this.httpService.AccessToken != null) {
             return next.handle(this.addToken(req, authService.getAuthToken())).pipe(
                 catchError(error => {
                     if (error instanceof HttpErrorResponse) {
@@ -99,7 +99,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 }));
         }
         //}
-        else if (this.loginService.AccessToken == null) {//used while page refresh, without login
+        else if (this.httpService.AccessToken == null) {//used while page refresh, without login
             this.refreshToken = StorageService.GetItem('refreshToken');
             return next.handle(this.addToken(req, authService.refreshToken().pipe(switchMap((newToken: any) => { return newToken.AccessToken; })))).pipe(
                 catchError(error => {
@@ -137,12 +137,12 @@ export class AuthInterceptor implements HttpInterceptor {
             // comes back from the refreshToken call.
             this.tokenSubject.next(null);
 
-            const authService = this.injector.get(LoginService);
+            const authService = this.injector.get(HttpService);
 
             return authService.refreshToken().pipe(
                 switchMap((data: any) => {
                     if (data.AccessToken) {
-                        this.loginService.AccessToken = data.AccessToken;
+                        this.httpService.AccessToken = data.AccessToken;
                         StorageService.SetItem('refreshToken', data.RefreshToken)
                         this.tokenSubject.next(data.AccessToken);
                         console.clear();

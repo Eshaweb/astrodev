@@ -32,6 +32,7 @@ import { take, map } from 'rxjs/operators';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { DxiButtonModule } from 'devextreme-angular/ui/nested/button-dxi';
+import { HttpService } from '../../../../Services/Error/http.service';
 //import { EventsService } from 'angular4-events';
 
 @Component({
@@ -69,11 +70,12 @@ export class LoginFormComponent {
   redirectUrl: any;
   passwordMode: string;
   passwordButton: any;
+  showResendOTP: boolean;
 
   constructor(public orderService: OrderService, public storageService: StorageService, private muhurthaService: MuhurthaService, private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
     private astamangalaService: AstamangalaService, public registrationService: RegistrationService, public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager,
     public _location: Location, public route: ActivatedRoute, public router: Router, public http: HttpClient, public partyService: PartyService,
-    public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService,
+    public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService, public httpService:HttpService,
     public uiService: UIService, public formbuilder: FormBuilder) {
 
     this.route.params.subscribe(params => {
@@ -305,7 +307,7 @@ export class LoginFormComponent {
         this.loginService.PartyMastId = data.PartyMastId;
         if (data.Token != undefined && data.PartyMastId != undefined) {
           this.loginService.Token = data.Token;
-          this.loginService.AccessToken = data.Token;
+          this.httpService.AccessToken = data.Token;
           StorageService.SetItem('refreshToken', data.RefreshToken);
           this.loginService.Name = data.Name;
           StorageService.SetItem('PartyMastId', data.PartyMastId);
@@ -361,8 +363,10 @@ export class LoginFormComponent {
         this.loadingSwitchService.loading = false;
         if (data.IsActivated == false) {
           this.needtoEnterOTP = true;
+          //this.showResendOTP=true;
           this.title = 'Alert';
           this.message = 'Please Enter OTP(since you loginnig for the first time)';
+          this.ResendOTP_click();
         }
         else if (data.IsActivated == true) {
           this.AfterLogin(data);
@@ -392,7 +396,7 @@ export class LoginFormComponent {
     this.loginService.PartyMastId = data.PartyMastId;
     if (data.Token != undefined && data.PartyMastId != undefined) {
       this.loginService.Token = data.Token;
-      this.loginService.AccessToken = data.Token;
+      this.httpService.AccessToken = data.Token;
       StorageService.SetItem('refreshToken', data.RefreshToken);
       this.loginService.Name = data.Name;
       StorageService.SetItem('PartyMastId', data.PartyMastId);
@@ -475,7 +479,31 @@ export class LoginFormComponent {
       }
     });
   }
-
+  ResendGetOTP_click() {
+    //this.showResendOTP=false;
+    this.counter = 20;
+    this.loadingSwitchService.loading = true;
+    var GetOTP = {
+      MobileNo: this.loginForm.get('UserName').value
+    }
+    this.loginService.GetOTP(GetOTP).subscribe((data: any) => {
+      if (data.Errors == undefined) {
+        this.loginService.oTPRef = data;
+        this.title = 'Message';
+        this.message = 'Please enter OTP with Reference No. ' + this.loginService.oTPRef+ ' and click on Login';
+      }
+      this.disableResendOTP = false;
+      this.countDown = timer(0, this.tick).pipe(
+        take(this.counter),
+        map(() =>
+          --this.counter
+          // if(this.counter==0){
+          //   this.loading=false;
+          // }
+        ));
+      this.loadingSwitchService.loading = false;
+    });
+  }
   ResendOTP_click() {
     this.counter = 20;
     this.loadingSwitchService.loading = true;
@@ -484,9 +512,8 @@ export class LoginFormComponent {
     }
     this.registrationService.ResendUserOTP(UserName).subscribe((data: any) => {
       if (data.Errors == undefined) {
-        this.loginService.oTPRef = data.OTPRef;
         this.title = 'Message';
-        this.message = 'Please enter OTP with Reference No. ' + this.loginService.oTPRef+ ' and click on Login';
+        this.message = 'Please enter the OTP and click on Login';
       }
       this.disableResendOTP = false;
       this.countDown = timer(0, this.tick).pipe(

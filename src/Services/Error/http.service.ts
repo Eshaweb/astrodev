@@ -47,7 +47,22 @@ export class HttpService {
     //   RefreshToken:StorageService.GetItem('refreshToken')
     // }
   }
-
+  getAuthToken() {
+    return this.AccessToken;
+}
+  refreshToken(): Observable<any> {
+    /*
+        The call that goes in here will use the existing refresh token to call
+        a method on the oAuth server (usually called refreshToken) to get a new
+        authorization token for the API calls.
+    */
+    var endPoint = "Party/GetAccessToken";
+    var RefreshToken = {
+        RefreshToken: StorageService.GetItem('refreshToken')
+    }
+    // Just to keep HttpClient from getting tree shaken.
+    return this.http.post(this.api+endPoint, RefreshToken).pipe(shareReplay());
+}
   /**
   * GET request
   * @param {string} endPoint it doesn't need / in front of the end point
