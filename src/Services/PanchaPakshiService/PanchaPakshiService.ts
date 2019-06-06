@@ -6,6 +6,7 @@ import { ErrorService } from '../Error/error.service';
 import { Observable } from 'rxjs';
 import { Caption } from 'src/Models/Caption';
 import { PanchaPakshiRequest } from 'src/Models/PanchaPakshi/PanchaPakshiRequest';
+import { LoginService } from '../LoginService/LoginService';
 
 
 @Injectable()
@@ -43,7 +44,7 @@ GetSputasOnSunRise(panchapakshiRequest):Observable<any> {
     }
    
     getTimezone(lat, long) {
-        var apiKey = 'AIzaSyCvfK_tYN-xiSpc0leO9N-ffswKm4G49VI';
+        var apiKey = LoginService.GoogleAPIKey;
         var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey
         return this.http.get(url);
     }

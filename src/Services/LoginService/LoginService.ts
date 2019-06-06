@@ -34,9 +34,14 @@ export class LoginService {
   RefCode: string;
   shareButtonDescription: string;
   continueProductPayment: boolean;
+    razorPayKey: string;
+    static GoogleAPIKey: string='xxxxxx';
+    static Google_client_Id: string='ddddd';
+    static Facebook_client_Id: string='gggggg';
     constructor(private httpService: HttpService, private errorService: ErrorService, public http: HttpClient) {
         this.menuItems = navigationBeforeLogin;
         //this.serviceMenus=serviceMenus;
+        this.razorPayKey='ddddd';
     }
     getAuthToken() {
         return this.AccessToken;

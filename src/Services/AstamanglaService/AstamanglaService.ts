@@ -6,6 +6,7 @@ import { HttpClient, HttpBackend } from '@angular/common/http';
 import { ErrorService } from '../Error/error.service';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
 import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
+import { LoginService } from '../LoginService/LoginService';
 
 
 
@@ -30,8 +31,7 @@ export class AstamangalaService {
     }
 
     getTimezone(lat, long) {
-        //var apiKey = 'AIzaSyD68pTd0CmqTXSqPHFpLrPWkiClqPBIpLQ';
-        var apiKey = 'AIzaSyCvfK_tYN-xiSpc0leO9N-ffswKm4G49VI';
+        var apiKey =LoginService.GoogleAPIKey;
         var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey
         return this.http.get(url);
     }

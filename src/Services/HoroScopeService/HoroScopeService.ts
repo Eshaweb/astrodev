@@ -48,7 +48,7 @@ export class HoroScopeService {
     horoResponse: HoroResponse;
     birthplaceShort: string;
   timeZoneName: string;
-    constructor(public loginService:LoginService,private captionDbService:CaptionDbService,private httpService: HttpService, private errorService: ErrorService, handler: HttpBackend, public http: HttpClient) {
+    constructor(private captionDbService:CaptionDbService,private httpService: HttpService, private errorService: ErrorService, handler: HttpBackend, public http: HttpClient) {
         this.http = new HttpClient(handler);
     }
     getProducts(): SelectBoxModelNew[] {
@@ -131,7 +131,7 @@ export class HoroScopeService {
         return this.httpService.Get(endPoint);
     }
     getTimezone(lat, long) {
-        var apiKey = 'AIzaSyCvfK_tYN-xiSpc0leO9N-ffswKm4G49VI';
+        var apiKey = LoginService.GoogleAPIKey;
         var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey
         return this.http.get(url);
     }

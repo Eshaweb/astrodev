@@ -130,7 +130,7 @@ export class AshtamangalaComponent {
       Time: new Date(),
       TimeFormat: ['', []],
       ReportSize: ['', []],
-      birthPlace: ['', [Validators.required]],
+      Place: ['', [Validators.required]],
       language: ['', []],
       latitude: [''],
       longitude: [''],
@@ -182,8 +182,8 @@ export class AshtamangalaComponent {
     // JanmaRashiContrl.valueChanges.subscribe(value => this.setErrorMessage(JanmaRashiContrl));
     const SprushtangaContrl = this.astamangalaForm.get('Sprushtanga');
     SprushtangaContrl.valueChanges.subscribe(value => this.setErrorMessage(SprushtangaContrl));
-    const birthPlaceContrl = this.astamangalaForm.get('birthPlace');
-    birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
+    const PlaceContrl = this.astamangalaForm.get('Place');
+    PlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(PlaceContrl));
     if (this.astamangalaService.horoRequest != null) {
       this.horoRequest = this.astamangalaService.horoRequest;
       this.birthDateinDateFormat = this.astamangalaService.DateinDateFormat;
@@ -314,7 +314,7 @@ export class AshtamangalaComponent {
 
     gender_required: '*Select Date of Birth',
 
-    birthPlace_required: '*Enter Birth Place',
+    Place_required: '*Enter Place',
 
     language_required: '*Select Language',
 
