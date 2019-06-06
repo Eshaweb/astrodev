@@ -112,10 +112,10 @@
     </dx-text-box>
     <dx-text-box [mode]="textboxMode" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="Password" *ngIf='isOTPRequested' placeholder="Enter OTP" width="100%">
     </dx-text-box> -->
-    <dx-text-box *ngIf='!isOTPRequested' stylingMode="filled" [(mode)]="passwordMode" valueChangeEvent="keyup" formControlName="Password" [(value)]="password" placeholder="Password" width="100%">
+    <dx-text-box *ngIf='!isOTPRequested'  [(mode)]="passwordMode" valueChangeEvent="keyup" formControlName="Password" [(value)]="password" placeholder="Password" width="100%">
     <dxi-button name="today" location="after" [options]="passwordButton"></dxi-button>
     </dx-text-box>
-    <dx-text-box *ngIf='isOTPRequested' stylingMode="filled" [(mode)]="passwordMode" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="Password" placeholder="Enter OTP" width="100%">
+    <dx-text-box *ngIf='isOTPRequested'  [(mode)]="passwordMode" valueChangeEvent="keyup" (onValueChanged)='onValueChanged($event)' formControlName="Password" placeholder="Enter OTP" width="100%">
     <dxi-button name="today" location="after" [options]="passwordButton"></dxi-button>
     </dx-text-box>
     <p style="color:red;font-size: 12px;" id='err_Password'></p>
