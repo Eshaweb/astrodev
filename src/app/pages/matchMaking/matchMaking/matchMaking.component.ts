@@ -331,6 +331,12 @@ export class MatchMakingComponent {
   setErrorMessage(c: AbstractControl): void {
     let control = this.uiService.getControlName(c);//gives the control name property from particular service.
     document.getElementById('err_' + control).innerHTML = '';//To not display the error message, if there is no error.
+    if(control=="FemaleBplace"){
+      this.timeZoneName_Female=null;
+    }
+    else if(control=="MaleBplace"){
+      this.timeZoneName_Male=null;
+    }
     if ((c.touched || c.dirty) && c.errors) {
       document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
       //maps the error message from validationMessages array. 

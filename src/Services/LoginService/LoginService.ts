@@ -26,7 +26,6 @@ export class LoginService {
     serviceList: { Path: string; Name: string; }[];
     proceedDeliveryAddress: boolean;
     proceedPayment: boolean;
-    AccessToken: any;
     refreshTokenNeeded: boolean;
     RefreshToken: any;
   isAdmin: boolean;
@@ -35,38 +34,15 @@ export class LoginService {
   shareButtonDescription: string;
   continueProductPayment: boolean;
     razorPayKey: string;
-    static GoogleAPIKey: string='xxxxxx';
-    static Google_client_Id: string='ddddd';
-    static Facebook_client_Id: string='gggggg';
+    static GoogleAPIKey: string='xxx';
+    static Google_client_Id: string='xxx';
+    static Facebook_client_Id: string='xxxx';
     constructor(private httpService: HttpService, private errorService: ErrorService, public http: HttpClient) {
         this.menuItems = navigationBeforeLogin;
         //this.serviceMenus=serviceMenus;
-        this.razorPayKey='ddddd';
+        this.razorPayKey='xxxx';
     }
-    getAuthToken() {
-        return this.AccessToken;
-    }
-    refreshToken(): Observable<any> {
-        /*
-            The call that goes in here will use the existing refresh token to call
-            a method on the oAuth server (usually called refreshToken) to get a new
-            authorization token for the API calls.
-        */
-        var endPoint = "Party/GetAccessToken";
-        var RefreshToken = {
-            RefreshToken: StorageService.GetItem('refreshToken')
-        }
-        // Just to keep HttpClient from getting tree shaken.
-        return this.http.post('https://astroliteapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(shareReplay());
-        //return this.http.post('https://mahadevapi.azurewebsites.net/api/Party/GetAccessToken', RefreshToken).pipe(shareReplay());
-        // return this.httpService.Post(endPoint, RefreshToken).pipe(tap(res => {
-        //     this.AccessToken = res.AccessToken;
-        //     StorageService.SetItem('refreshToken', res.RefreshToken)
-        // }));
-        // let headers = new HttpHeaders({ 'Content-Type': 'application/json','No-Auth':'True' });
-        // return this.httpService.Post(endPoint, RefreshToken, {headers:headers});
-        //return this.httpService.Post(endPoint, RefreshToken);
-    }
+    
     GetOTP(GetOTP): Observable<any> {
         var endPoint = "Party/GetOTP";
         return this.httpService.Post(endPoint, GetOTP);

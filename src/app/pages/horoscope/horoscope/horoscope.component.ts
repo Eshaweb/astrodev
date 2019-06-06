@@ -211,6 +211,9 @@ export class HoroscopeComponent {
   setErrorMessage(c: AbstractControl): void {
     let control = this.uiService.getControlName(c);//gives the control name property from particular service.
     document.getElementById('err_' + control).innerHTML = '';//To not display the error message, if there is no error.
+    if(control=="birthPlace"){
+      this.timeZoneName=null;
+    }
     if ((c.touched || c.dirty) && c.errors) {
       document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
     }
