@@ -88,7 +88,8 @@ margin-top: 10px;
     border-radius: 100px;
 }
 ::ng-deep aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.current .step-indicator {
-    color: #ff5722 !important;
+    color: #D97227!important;
+    border: 2px solid #D97227 !important;
     /* border: 2px solid #ff5722; */
 }
 @media (max-width: 800px) {
