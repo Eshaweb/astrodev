@@ -156,6 +156,7 @@ export class RegistrationFormComponent {
     }
     Register_Click() {
         this.loadingSwitchService.loading = true;
+        this.counter = 20;
         var registerModel = {
             UserName: this.registrationForm.get('UserName').value,
             Password: this.registrationForm.get('Password').value,
@@ -169,6 +170,11 @@ export class RegistrationFormComponent {
                 this.loadingSwitchService.loading = false;
                 this.OTPEntryFormVisible = true;
                 this.disableResendOTP = true;
+                this.countDown = timer(0, this.tick).pipe(
+                    take(this.counter),
+                    map(() => 
+                        --this.counter
+                    ));
                 if (data.OTPType == "E") {
                     //this.toastrService.successToastr('You Successfully registered. Please check your EMail and click on link we sent to verify your Account', 'Success!');
                     this.EMailOTPType = 'Please check your EMail. You have received a link to verify your Account';
@@ -178,21 +184,7 @@ export class RegistrationFormComponent {
                     this.SMSOTPType = 'You will get an OTP. Please enter the OTP here';
                     //'OTP Sent to ' + oTPRequest.MobileNo + ' with Reference No. ' + data.OTPRef
                 }
-                this.counter = 20;
-                this.countDown = timer(0, this.tick).pipe(
-                    take(this.counter),
-                    map(() => {--this.counter;
-                        if(this.counter==0){
-                            this.disableResendOTP = false;
-                        }
-                    }));
             }
-            // else {
-            //     this.loadingSwitchService.loading = false;
-            //     //this.toastrService.errorToastr('Registration Failed', 'Error!');
-            //     //   this.dialog.message=data.Errors[0].ErrorString;
-            //     //   this.dialog.open();
-            // }
         });
     }
 
@@ -272,6 +264,7 @@ export class RegistrationFormComponent {
         this.router.navigate(["/login-form"]);
       }
     ResendOTP_click() {
+        this.loadingSwitchService.loading=true;
         this.counter = 20;
         this.disableResendOTP = true;
         var UserName = {
@@ -279,14 +272,13 @@ export class RegistrationFormComponent {
         }
         this.registrationService.ResendUserOTP(UserName).subscribe((data: any) => {
             if (data.Errors == undefined) {
+                this.loadingSwitchService.loading=false;
                 this.SMSOTPType = 'OTP Resent. Please enter OTP And Submit';
                 this.countDown = timer(0, this.tick).pipe(
                     take(this.counter),
-                    map(() => {--this.counter;
-                        if(this.counter==0){
-                            this.disableResendOTP = false;
-                        }
-                    }));
+                    map(() => 
+                        --this.counter
+                    ));
             }
         });
     }

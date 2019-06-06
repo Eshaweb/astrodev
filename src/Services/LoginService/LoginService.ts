@@ -34,13 +34,13 @@ export class LoginService {
   shareButtonDescription: string;
   continueProductPayment: boolean;
     razorPayKey: string;
-    static GoogleAPIKey: string='xxx';
-    static Google_client_Id: string='xxx';
-    static Facebook_client_Id: string='xxxx';
+    static GoogleAPIKey: string='xxxxx';
+    static Google_client_Id: string='xxxxxx';
+    static Facebook_client_Id: string='xxxxxx';
     constructor(private httpService: HttpService, private errorService: ErrorService, public http: HttpClient) {
         this.menuItems = navigationBeforeLogin;
         //this.serviceMenus=serviceMenus;
-        this.razorPayKey='xxxx';
+        this.razorPayKey='xxxxxxx';
     }
     
     GetOTP(GetOTP): Observable<any> {

@@ -99,10 +99,10 @@ this.statesOfIndia = [
         var endPoint = "Contact/GetResolvedMessages";
         return this.httpService.Post(endPoint,GetResolvedMessages);
     }
-    GetRefCode(PartyMastId){
-        var endPoint = "Party/GetRefCode?PartyMastId=" + PartyMastId;
-        return this.httpService.Get(endPoint);
-    }
+    // GetRefCode(PartyMastId){
+    //     var endPoint = "Party/GetRefCode?PartyMastId=" + PartyMastId;
+    //     return this.httpService.Get(endPoint);
+    // }
     GetContactDetails(PartyMastId){
         var endPoint = "Party/GetContactDetails?PartyMastId=" + PartyMastId;
         return this.httpService.Get(endPoint);

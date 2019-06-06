@@ -8,6 +8,8 @@ import { LoginService } from '../LoginService/LoginService';
 import { HttpService } from '../Error/http.service';
 import {throwError as observableThrowError,  BehaviorSubject } from 'rxjs';
 import { navigationBeforeLogin, serviceMenusBeforeLogin, serviceListBeforeLogin } from 'src/app/app-navigation';
+import { ConnectionService } from 'ng-connection-service';
+import { LoadingSwitchService } from '../LoadingSwitchService/LoadingSwitchService';
 
 
 @Injectable()
@@ -20,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
     tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
     constructor(public storageService:StorageService, private injector: Injector, private route: ActivatedRoute, public httpService: HttpService,
-        private router: Router, private loginService: LoginService) {
+        private router: Router, private loginService: LoginService, private connectionService: ConnectionService, public loadingSwitchService:LoadingSwitchService) {
 
     }
     
@@ -85,14 +87,23 @@ export class AuthInterceptor implements HttpInterceptor {
             return next.handle(this.addToken(req, authService.getAuthToken())).pipe(
                 catchError(error => {
                     if (error instanceof HttpErrorResponse) {
-                        switch ((<HttpErrorResponse>error).status) {
-                            case 400:
-                                return this.handle400Error(error);
-                            case 401:
-                                return this.handle401Error(req, next);
-                            default:
-                                return observableThrowError(error);
-                        }
+                        this.connectionService.monitor().subscribe((currentState:any) => {
+                            if(currentState.hasNetworkConnection==false){
+                                this.loadingSwitchService.popupVisible=true;
+                              this.loadingSwitchService.message='Please check the Internet Availability';
+                              this.loadingSwitchService.title='Check';
+                              this.loadingSwitchService.loading=false;
+                            } else {
+                                switch ((<HttpErrorResponse>error).status) {
+                                    case 400:
+                                        return this.handle400Error(error);
+                                    case 401:
+                                        return this.handle401Error(req, next);
+                                    default:
+                                        return observableThrowError(error);
+                                }
+                            }
+                          });
                     } else {
                         return observableThrowError(error);
                     }
@@ -104,14 +115,22 @@ export class AuthInterceptor implements HttpInterceptor {
             return next.handle(this.addToken(req, authService.refreshToken().pipe(switchMap((newToken: any) => { return newToken.AccessToken; })))).pipe(
                 catchError(error => {
                     if (error instanceof HttpErrorResponse) {
-                        switch ((<HttpErrorResponse>error).status) {
-                            case 400:
-                                return this.handle400Error(error);
-                            case 401:
-                                return this.handle401Error(req, next);
-                            default:
-                                return observableThrowError(error);
-                        }
+                            this.connectionService.monitor().subscribe((currentState:any) => {
+                                if(currentState.hasNetworkConnection==false){
+                                    this.loadingSwitchService.popupVisible=true;
+                                  this.loadingSwitchService.message='Please check the Internet Availability';
+                                  this.loadingSwitchService.title='Check';
+                                } else {
+                                    switch ((<HttpErrorResponse>error).status) {
+                                        case 400:
+                                            return this.handle400Error(error);
+                                        case 401:
+                                            return this.handle401Error(req, next);
+                                        default:
+                                            return observableThrowError(error);
+                                    }
+                                }
+                              });
                     } else {
                         return observableThrowError(error);
                     }

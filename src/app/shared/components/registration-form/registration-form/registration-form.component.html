@@ -80,9 +80,8 @@
         </div> -->
         <dx-button stylingMode="text" type="default" text="Resend OTP" (onClick)="ResendOTP_click()" width="100%">
             <div *dxTemplate="let data of 'content'">
-                    <!-- <span style="margin-left:184px;margin-top:-7px;" *ngIf='counter!= 0'>{{countDown | async }}</span>
-                <span style="margin-left:180px;margin-top:-7px;" *ngIf='counter== 0' class='dx-button-text'>Resend OTP</span> -->
-                <span style="margin-left:180px;margin-top:-7px;" class='dx-button-text'>Resend OTP</span>
+                    <span style="margin-left:184px;margin-top:-7px;" *ngIf='counter!= 0'>{{countDown | async }}</span>
+                <span style="margin-left:180px;margin-top:-7px;" *ngIf='counter== 0' class='dx-button-text'>Resend OTP</span>
             </div>
         </dx-button>
         <!-- <a *ngIf='!disableResendOTP' (click)="ResendOTP_click()">Resend OTP</a>
@@ -120,6 +119,7 @@
     [height]="300"
     [showTitle]="true"
     title="Welcome"
+    [closeOnOutsideClick]="false"
     [dragEnabled]="false"
     [closeOnOutsideClick]="true"
     [(visible)]="OTPValidatedVisible">

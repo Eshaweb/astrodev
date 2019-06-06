@@ -125,6 +125,7 @@
     class="popup"
     [width]="250"
     [height]="200"
+    [closeOnOutsideClick]="false"
     [showTitle]="true"
     title="Error"
     [dragEnabled]="false"
@@ -142,6 +143,7 @@
     [width]="350"
     [height]="200"
     [showTitle]="true"
+    [closeOnOutsideClick]="false"
     [(title)]="loadingSwitchService.title"
     [dragEnabled]="false"
     [closeOnOutsideClick]="true"
@@ -160,6 +162,7 @@
     [height]="300"
     [showTitle]="true"
     title="Last Pending Transaction"
+    [closeOnOutsideClick]="false"
     [dragEnabled]="false"
     [closeOnOutsideClick]="true"
     [(visible)]="loginService.orderhistorypopupVisible">

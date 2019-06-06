@@ -178,11 +178,11 @@ export class AppComponent {
 
   }
 
-  OnShareButtonOpened() {
-    this.partyService.GetRefCode(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
-        this.loginService.RefCode = 'Join me on Astrolite, a accurate app for Horoscope, Match Making, Muhurtha, Astamangala, Nithya Panchanga and many more astrology related services. Enter My Code'+data+'to get some amount to the wallet!..'+'https://testastroapi.azurewebsites.net/registration/'+data;
-    });
-  }
+  // OnShareButtonOpened() {
+  //   this.partyService.GetRefCode(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
+  //       this.loginService.RefCode = 'Join me on Astrolite, a accurate app for Horoscope, Match Making, Muhurtha, Astamangala, Nithya Panchanga and many more astrology related services. Enter My Code'+data+'to get some amount to the wallet!..'+'https://testastroapi.azurewebsites.net/registration/'+data;
+  //   });
+  // }
 
   isAutorized() {
     return this.authenticationService.isLoggedIn;

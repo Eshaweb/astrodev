@@ -44,6 +44,7 @@ import { environment } from '../environments/environment';
 import { ProductService } from 'src/Services/ProductService/ProductService';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { RazorPayService } from 'src/Services/RazorPayService/RazorPayService';
+import {ConnectionServiceModule, ConnectionServiceOptions, ConnectionServiceOptionsToken} from 'ng-connection-service';
 
 
 let config = new AuthServiceConfig([
@@ -76,6 +77,7 @@ export function provideConfig() {
     SideNavOuterToolbarModule,
     //SingleCardModule,
     FooterModule,
+    ConnectionServiceModule,
     //LoginFormModule,
     //RegistrationFormModule,
     AppRoutingModule,
@@ -108,6 +110,15 @@ export function provideConfig() {
         provide: HttpService,
         useFactory: applicationHttpClientCreator,
         deps: [HttpClient, ErrorService]
+    },
+    {
+      provide: ConnectionServiceOptionsToken,
+      useValue: <ConnectionServiceOptions>{
+        enableHeartbeat: false,
+        heartbeatUrl: '/assets/ping.json',
+        requestMethod: 'get',
+        heartbeatInterval: 3000
+      }
     },
   ],
   bootstrap: [AppComponent]
