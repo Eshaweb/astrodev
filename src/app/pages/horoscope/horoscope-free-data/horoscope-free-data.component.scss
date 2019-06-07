@@ -315,26 +315,27 @@ float: left;
   } */
   
   .line {
-    width: 125px;
-    height: 93%;
-    border-bottom: 1px solid red;
-    transform: translateY(-26px) translateX(11px) rotate(38deg);
+    width: 153px;
+    height: 100%;
+    border-bottom: 1px solid #db7234;
+    -webkit-transform: translateY(-26px) translateX(11px) rotate(38deg);
+    transform: translateY(-33px) translateX(6px) rotate(32deg);
     position: absolute;
-    z-index: -1;
+  //  z-index: -1;
 }
 
 td {
-    width: 80px;
+    width: 130px;
     height: 80px;
 }
 
 .line2 {
-    width: 127px;
+    width: 150px;
     height: 93px;
-    border-bottom: 1px solid red;
-    transform: translateY(30px) translateX(14px) rotate(142deg);
+    border-bottom: 1px solid #db7234 ;
+    transform: translateY(30px) translateX(14px) rotate(148deg);
     position: absolute;
-    z-index: -1;
+  //  z-index: -1;
 }
   .background>div {
     position: relative;
@@ -368,3 +369,243 @@ td {
     border: 1px solid black;
     border-collapse: collapse;
   }
+
+
+
+
+
+
+
+
+/*
+	@name kundali
+*/
+/* Only edit this if you know what you are doing! */
+body { margin: 0px; padding: 0px; font-family:"Arial"; /*overflow-x:hidden;*/ }
+
+/* Only edit this if you know what you are doing! */
+img { position: absolute; display: block; margin: 0px; border: none; padding: 0px; }
+
+/* Only edit this if you know what you are doing! */
+div { position: absolute; }
+
+#content-container { display: table; position: relative;  overflow: hidden;  }
+
+#content-container > div{ position: relative; top:inherit; }
+#page_kundali_ek1 {
+	top: 0px;
+	left: 0px;
+	width: 375px;
+	height: 812px;
+	overflow:hidden;
+}
+
+#_bg__kundali_ek2 {
+	top: 0px;
+	left: 0px;
+	width: 375px;
+	height: 812px;
+	background:rgba(255,255,255,255);
+}
+
+
+#path_1 {
+	top: 218px;
+	left: 23px;
+	width: 336px;
+	height: 337px;
+}
+
+
+#line_1 {
+	top: 218px;
+	left: 23px;
+	width: 164.71557617188px;
+	height: 168.69854736328px;
+}
+
+
+#line_2 {
+	top: 218px;
+	left: 187px;
+	width: 172.69873046875px;
+	height: 168.71534729004px;
+}
+
+
+#line_3 {
+	top: 386px;
+	left: 23px;
+	width: 165.71551513672px;
+	height: 169.69860839844px;
+}
+
+
+#line_4 {
+	top: 386px;
+	left: 187px;
+	width: 172.70086669922px;
+	height: 169.71328735352px;
+}
+
+
+#line_5 {
+	top: 218px;
+	left: 23px;
+	width: 336.70812988281px;
+	height: 337.7060546875px;
+}
+
+
+#line_6 {
+	top: 218px;
+	left: 23px;
+	width: 336.70812988281px;
+	height: 337.7060546875px;
+}
+
+
+#rahu_ketu___mandi {
+	top: 222px;
+	left: 65px;
+	width: 80px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#rahu_ketu___mandi_ek1 {
+	top: 276px;
+	left: 145px;
+	width: 80px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#rahu_ketu___mandi_ek2 {
+	top: 221px;
+	left: 228px;
+	width: 80px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#___rahu__ketu__mandi {
+	top: 268px;
+	left: 305px;
+	width: 56px;
+	height: 57px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#rahu_ketu___mandi_ek3 {
+	top: 372px;
+	left: 59px;
+	width: 80px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#rahu__ketu_mandi {
+	top: 264px;
+	left: 29px;
+	width: 49px;
+	height: 57px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#rahu_ketu___mandi_ek4 {
+	top: 442px;
+	left: 155px;
+	width: 80px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#rahu_ketu___mandi_ek5 {
+	top: 359px;
+	left: 228px;
+	width: 80px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#______rahu__ketu_mandi {
+	top: 506px;
+	left: 56px;
+	width: 87px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#__rahu__ketu__mandi {
+	top: 431px;
+	left: 23px;
+	width: 54px;
+	height: 57px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#_____rahu_ketu_shukra {
+	top: 505px;
+	left: 230px;
+	width: 93px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#__rahu_ketu_mandi {
+	top: 437px;
+	left: 302px;
+	width: 49px;
+	height: 57px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
