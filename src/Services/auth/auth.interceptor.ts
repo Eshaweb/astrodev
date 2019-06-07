@@ -20,9 +20,10 @@ export class AuthInterceptor implements HttpInterceptor {
     url: string;
     isRefreshingToken: boolean;
     tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+    hasNetworkConnection: any;
 
     constructor(public storageService:StorageService, private injector: Injector, private route: ActivatedRoute, public httpService: HttpService,
-        private router: Router, private loginService: LoginService, private connectionService: ConnectionService, public loadingSwitchService:LoadingSwitchService) {
+        private router: Router, private loginService: LoginService, public connectionService:ConnectionService, public loadingSwitchService:LoadingSwitchService) {
 
     }
     
@@ -83,54 +84,58 @@ export class AuthInterceptor implements HttpInterceptor {
             var headersforTokenAPI = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded' })
             return next.handle(req);
         }
-        if (this.httpService.AccessToken != null) {
+        if (this.loginService.AccessToken != null) {
             return next.handle(this.addToken(req, authService.getAuthToken())).pipe(
                 catchError(error => {
                     if (error instanceof HttpErrorResponse) {
                         this.connectionService.monitor().subscribe((currentState:any) => {
-                            if(currentState.hasNetworkConnection==false){
-                                this.loadingSwitchService.popupVisible=true;
-                              this.loadingSwitchService.message='Please check the Internet Availability';
-                              this.loadingSwitchService.title='Check';
-                              this.loadingSwitchService.loading=false;
-                            } else {
-                                switch ((<HttpErrorResponse>error).status) {
-                                    case 400:
-                                        return this.handle400Error(error);
-                                    case 401:
-                                        return this.handle401Error(req, next);
-                                    default:
-                                        return observableThrowError(error);
-                                }
+                            this.hasNetworkConnection=currentState.hasNetworkConnection;
+                        });
+                        if (this.hasNetworkConnection == false) {
+                            this.loadingSwitchService.popupVisible = true;
+                            this.loadingSwitchService.message = 'Please check the Internet Availability';
+                            this.loadingSwitchService.title = 'Check';
+                            this.loadingSwitchService.loading = false;
+                        } else {
+                            switch ((<HttpErrorResponse>error).status) {
+                                case 400:
+                                    return this.handle400Error(error);
+                                case 401:
+                                    return this.handle401Error(req, next);
+                                default:
+                                    return observableThrowError(error);
                             }
-                          });
+                        }
+                          
                     } else {
                         return observableThrowError(error);
                     }
                 }));
         }
         //}
-        else if (this.httpService.AccessToken == null) {//used while page refresh, without login
+        else if (this.loginService.AccessToken == null) {//used while page refresh, without login
             this.refreshToken = StorageService.GetItem('refreshToken');
             return next.handle(this.addToken(req, authService.refreshToken().pipe(switchMap((newToken: any) => { return newToken.AccessToken; })))).pipe(
                 catchError(error => {
                     if (error instanceof HttpErrorResponse) {
-                            this.connectionService.monitor().subscribe((currentState:any) => {
-                                if(currentState.hasNetworkConnection==false){
-                                    this.loadingSwitchService.popupVisible=true;
-                                  this.loadingSwitchService.message='Please check the Internet Availability';
-                                  this.loadingSwitchService.title='Check';
-                                } else {
-                                    switch ((<HttpErrorResponse>error).status) {
-                                        case 400:
-                                            return this.handle400Error(error);
-                                        case 401:
-                                            return this.handle401Error(req, next);
-                                        default:
-                                            return observableThrowError(error);
-                                    }
-                                }
-                              });
+                        this.connectionService.monitor().subscribe((currentState:any) => {
+                            this.hasNetworkConnection=currentState.hasNetworkConnection;
+                        });
+                        if (this.hasNetworkConnection == false) {
+                            this.loadingSwitchService.popupVisible = true;
+                            this.loadingSwitchService.message = 'Please check the Internet Availability';
+                            this.loadingSwitchService.title = 'Check';
+                            this.loadingSwitchService.loading = false;
+                        } else {
+                            switch ((<HttpErrorResponse>error).status) {
+                                case 400:
+                                    return this.handle400Error(error);
+                                case 401:
+                                    return this.handle401Error(req, next);
+                                default:
+                                    return observableThrowError(error);
+                            }
+                        }
                     } else {
                         return observableThrowError(error);
                     }
@@ -161,7 +166,7 @@ export class AuthInterceptor implements HttpInterceptor {
             return authService.refreshToken().pipe(
                 switchMap((data: any) => {
                     if (data.AccessToken) {
-                        this.httpService.AccessToken = data.AccessToken;
+                        this.loginService.AccessToken = data.AccessToken;
                         StorageService.SetItem('refreshToken', data.RefreshToken)
                         this.tokenSubject.next(data.AccessToken);
                         console.clear();

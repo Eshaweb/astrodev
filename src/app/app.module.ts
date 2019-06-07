@@ -50,12 +50,12 @@ import {ConnectionServiceModule, ConnectionServiceOptions, ConnectionServiceOpti
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(LoginService.Facebook_client_Id)
+    provider: new GoogleLoginProvider(LoginService.Google_client_Id)
     
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider(LoginService.Google_client_Id)
+    provider: new FacebookLoginProvider(LoginService.Facebook_client_Id)
   },
   {
     id: LinkedInLoginProvider.PROVIDER_ID,
