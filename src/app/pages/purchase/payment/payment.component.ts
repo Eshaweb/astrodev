@@ -462,44 +462,6 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
     rzp1.open(options, successCallback, cancelCallback);
   }
 
-  onTestPay(){
-    var options = {
-      description: 'Credits towards AstroLite',
-      image: 'https://i.ibb.co/dkhhhR1/icon-72x72.png',
-      currency: 'INR',
-      key: this.loginService.razorPayKey,
-      amount: 100 * 100,
-      name: StorageService.GetItem('Name'),
-      "handler": (response) => {
-        this.paymentId = response.razorpay_payment_id;
-        var Payment = {
-          PaymentId: this.paymentId
-        }
-        this.PaymentComplete(Payment);
-      },
-      prefill: {
-        //email: this.partyEmail,
-        email: 'shailesh@gmail.com',
-        contact: this.partyMobileNo
-      },
-      notes: {
-        order_id: this.horoScopeService.ExtCode,
-      },
-      theme: {
-        color: '#d05b19'
-      },
-      modal: {
-        ondismiss: () => {
-          //this.loadPanel.visible = false;
-          this.loadingSwitchService.loading = false;
-        }
-      }
-    };
-
-    var rzp1 = new Razorpay(options);
-    rzp1.open();
-  }
-
   PaymentComplete(Payment) {
     //this.loading = true;
     //this.loadPanel.visible = true;

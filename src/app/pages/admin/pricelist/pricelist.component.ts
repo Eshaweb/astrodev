@@ -36,12 +36,6 @@ export class PriceListComponent {
     Item: { Name: any; Formula: any; FormulaPDF: number; Type: any; };
     constructor(public adminService: AdminService, public loadingSwitchService: LoadingSwitchService,
         public formbuilder: FormBuilder) {
-        // this.itemService.GetBasePrice().subscribe((data: any) => {
-        //     if (data.Errors == undefined) {
-        //         this.dataSource = data;
-
-        //     }
-        // });
 
         this.saveButtonName = 'Edit';
         this.allowUpdate = false;
@@ -67,14 +61,6 @@ export class PriceListComponent {
     }
     OnTypeSelection(event) {
         this.typevalue = event.value;
-        // var Type={
-        //     Type:event.value
-        // }
-        // this.adminService.GetBasePrice(Type).subscribe((data: any) => {
-        //     if (data.Errors == undefined) {
-        //         this.dataSource = data;
-        //     }
-        // });
     }
     OnGenerate_click() {
         this.loadingSwitchService.loading = true;

@@ -1,33 +1,5 @@
 <h2 class="content-block">Welcome Offer</h2>
 <div class="dx-card content-block responsive-paddings">
-    <!-- <form action="your-action" [formGroup]="welcomeOfferForm">
-        <div class="dx-fieldset" #datagridBasePrice>
-            <div class="dx-fieldset-column">
-                <div class="dx-field">
-                    <div class="dx-field-label">While Registration</div>
-                    <div class="dx-field-value">
-                        <dx-number-box formControlName="Own" valueChangeEvent="keyup" [disabled]="allowUpdate" placeholder="Enter value here..." showClearButton="true"></dx-number-box>
-                        <p style="color:red" id='err_Own'></p>
-                    </div>
-                </div>
-            </div>
-            <div class="dx-fieldset-column">
-                <div class="dx-field">
-                    <div class="dx-field-label">Refferal Benefit</div>
-                    <div class="dx-field-value">
-                        <dx-number-box formControlName="Reff" valueChangeEvent="keyup" [disabled]="allowUpdate" placeholder="Enter value here..." showClearButton="true"></dx-number-box>
-                        <p style="color:red" id='err_Reff'></p>
-                    </div>
-                </div>
-            </div>
-            </div>
-            <div class="clear"></div>
-        <div class="dx-fieldset">
-            <dx-button [disabled]="!welcomeOfferForm.valid" (onClick)='onSaveClick()' id="button" [text]="saveButtonName" type="success"
-                [useSubmitBehavior]="true">
-            </dx-button>
-        </div>
-    </form> -->
 
 <div #datagridBasePrice>
     <dx-data-grid (onToolbarPreparing)="onToolbarPreparing($event)"

@@ -34,14 +34,14 @@ export class LoginService {
   shareButtonDescription: string;
   continueProductPayment: boolean;
     razorPayKey: string;
-    static GoogleAPIKey: string='xxxx';
-    static Google_client_Id: string='xxxxx';
-    static Facebook_client_Id: string='xxxxxx';
+    static GoogleAPIKey: string='CCCCC';
+    static Google_client_Id: string='CCCCCCC';
+    static Facebook_client_Id: string='CCCCC';
     AccessToken: any;
     constructor(private httpService: HttpService, private errorService: ErrorService, public http: HttpClient) {
         this.menuItems = navigationBeforeLogin;
         //this.serviceMenus=serviceMenus;
-        this.razorPayKey='xxxxxx';
+        this.razorPayKey='CCCCC';
     }
     
     GetOTP(GetOTP): Observable<any> {
@@ -58,23 +58,7 @@ export class LoginService {
             callback(data);
         });
     }
-    // Login(loginModel, callback: (data) => void) {
-    //     var endPoint = "Party/Login";
-    //     this.httpService.Post(endPoint, loginModel).subscribe((data: any) => {
-    //         this.Name = data.Name;
-    //         this.Token = data.Token;
-    //         this.PartyMastId = data.PartyMastId;
-    //         localStorage.setItem('Name', this.Name);
-    //         //this.events.publish('REFRESH_NAME');
-    //         callback(data);
-    //     }, (error) => {
-    //         var errorMessage = {
-    //             Error: error
-    //         }
-    //         callback(errorMessage);
-    //     });
-    // }
-
+   
     Login(loginModel): Observable<any> {
         var endPoint = "Party/Login";
         return this.httpService.Post(endPoint, loginModel);

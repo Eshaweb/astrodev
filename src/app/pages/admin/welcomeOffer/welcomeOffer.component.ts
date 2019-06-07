@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ItemService } from 'src/Services/ItemService/ItemService';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from 'src/Services/AdminService/AdminService';
-import CustomStore from 'devextreme/data/custom_store';
 import { DxDataGridComponent } from 'devextreme-angular';
 
 

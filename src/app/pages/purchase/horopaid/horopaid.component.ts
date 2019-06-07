@@ -162,68 +162,7 @@ export class HoropaidComponent implements OnInit,AfterViewInit {
             this.horoScopeService.IsDeliverable = true;
             this.itemService.ItemAmount = item.PrintAmount;
         }
-        //   if(this.horoScopeService.horoRequest!=undefined){
-        //     this.horoScopeService.horoRequest.ReportType=item.ItMastId;
-        //     var orderModel = {
-        //         IsDeliverable: this.checkBoxValue,
-        //         FreeAmount: 0,
-        //         ItemAmount: this.itemAmount,
-        //         PartyMastId: StorageService.GetItem('PartyMastId'),
-        //         JSONData: JSON.stringify(this.horoScopeService.horoRequest),
-        //         ItActId: this.itemService.ItActId,
-        //         ItMastId: item.ItMastId,
-        //         OrderId: this.orderService.OrderId
-        //     }
-        //   }
-        //   else if(this.astamangalaService.horoRequest!=undefined){
-        //     this.astamangalaService.horoRequest.ReportType=item.ItMastId;
-        //     var orderModel = {
-        //         IsDeliverable: this.checkBoxValue,
-        //         FreeAmount: 0,
-        //         ItemAmount: this.itemAmount,
-        //         PartyMastId: StorageService.GetItem('PartyMastId'),
-        //         JSONData:JSON.stringify(this.astamangalaService.horoRequest),
-        //         ItActId: this.itemService.ItActId,
-        //         ItMastId: item.ItMastId,
-        //         OrderId: this.orderService.OrderId
-        //     }
-        //   }
-        //   else if(this.muhurthaService.muhurthaRequest!=undefined){
-        //     var orderModel = {
-        //         IsDeliverable: this.checkBoxValue,
-        //         FreeAmount: 0,
-        //         ItemAmount: this.itemAmount,
-        //         PartyMastId: StorageService.GetItem('PartyMastId'),
-        //         JSONData:JSON.stringify(this.muhurthaService.muhurthaRequest),
-        //         ItActId: this.itemService.ItActId,
-        //         ItMastId: item.ItMastId,
-        //         OrderId: this.orderService.OrderId
-        //     }
-        //   }
-        //   else if(this.matchMakingService.matchRequest!=undefined){
-        //     var orderModel = {
-        //         IsDeliverable: this.checkBoxValue,
-        //         FreeAmount: 0,
-        //         ItemAmount: this.itemAmount,
-        //         PartyMastId: StorageService.GetItem('PartyMastId'),
-        //         JSONData:JSON.stringify(this.matchMakingService.matchRequest),
-        //         ItActId: this.itemService.ItActId,
-        //         ItMastId: item.ItMastId,
-        //         OrderId: this.orderService.OrderId
-        //     }
-        //   }
-        //   else if(this.numerologyService.numerologyRequest!=undefined){
-        //     var orderModel = {
-        //         IsDeliverable: this.checkBoxValue,
-        //         FreeAmount: 0,
-        //         ItemAmount: this.itemAmount,
-        //         PartyMastId: StorageService.GetItem('PartyMastId'),
-        //         JSONData:JSON.stringify(this.numerologyService.numerologyRequest),
-        //         ItActId: this.itemService.ItActId,
-        //         ItMastId: item.ItMastId,
-        //         OrderId: this.orderService.OrderId
-        //     }
-        //   }
+       
         if (this.storageService.GetHoroResponse('#SH') != undefined) {
             this.horoScopeService.horoRequest = this.storageService.GetHoroRequest('#SH');
             this.horoScopeService.horoRequest.ReportType = item.ItMastId;
