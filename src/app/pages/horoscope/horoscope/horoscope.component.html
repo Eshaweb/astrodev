@@ -55,7 +55,7 @@
                                 [(max)]="maxdateinDateFormat" [(ngModel)]="birthDateinDateFormat" [useMaskBehavior]="true">
                                 </dx-date-box> -->
                                 <dx-date-box formControlName="Date" type="date" displayFormat="dd/MM/yyyy"  [(min)]="mindateinDateFormat"
-                                [(max)]="maxdateinDateFormat" [(ngModel)]="birthDateinDateFormat" [useMaskBehavior]="true">
+                                [(max)]="maxdateinDateFormat" [(ngModel)]="birthDateinDateFormat" [useMaskBehavior]="true" (onValueChanged)='onDOBValueChanged()'>
                                 </dx-date-box>
                                 </div>
                         </div>
@@ -312,7 +312,7 @@
                 </div>
             </div>
             <div class="clear"></div>
-            <!-- <p *ngIf="timeZoneName">Time Zone: {{timeZoneName}}</p> -->
+            <p *ngIf="timeZoneName">Time Zone: {{timeZoneName}}</p>
         </div>
         <!-- <div class="dx-fieldset">
             <div class="dx-fieldset-header">Personal Data</div>
