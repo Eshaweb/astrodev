@@ -167,7 +167,8 @@
                 </tr>
             </tbody>
         </table>
-        <svg *ngIf='(grahaKundalivalue=="EI")' height="450" width="600" xmlns="http://www.w3.org/2000/svg" style="
+
+        <!-- <svg *ngIf='(grahaKundalivalue=="EI")' height="450" width="600" xmlns="http://www.w3.org/2000/svg" style="
         margin-right: 500;"><g>
             <title>background</title>
             <rect fill="#fff" height="402" id="canvas_background" width="405" x="-1" y="-1"></rect>
@@ -211,7 +212,100 @@
                 <text xml:space="preserve" fill="#db7234000" fill-opacity="null" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_12" stroke="#db7234" stroke-opacity="null" stroke-width="0" text-anchor="start" 
                 x="350" y="55" class="KannadaFont" ng-reflect-ng-class="KannadaFont"> {{ horoResponse.Grahakundali[12]}}</text>
             </g>
-        </svg>
+        </svg> -->
+                      
+            <table *ngIf='(grahaKundalivalue=="EI")'>
+                                
+            <tbody>
+                                    
+            <tr>
+                                            
+            <td class="background">
+                                                    
+            <div><span class="bottom">{{ horoResponse.Grahakundali[3]}}</span>
+            
+            <span class="top">{{ horoResponse.Grahakundali[2]}}</span>
+                                                      
+            <div class="line"></div>
+                                                    
+            </div>
+                                                  
+            </td>
+                                        
+            <td>{{ horoResponse.Grahakundali[1]}}</td>
+                                                                                
+            <td class="background">
+                                                
+            <div><span class="bottom1">{{ horoResponse.Grahakundali[11]}}</span>
+                                                  
+            <span class="top1">{{ horoResponse.Grahakundali[12]}}</span>
+                                                  
+            <div class="line2"></div>
+                                                
+            </div>
+                                              
+            </td>
+                                    
+            </tr>
+                                    
+            <tr>
+                                        
+            <td>{{ horoResponse.Grahakundali[4]}}</td>
+                                        
+            <td><p style="font-family: monospace"> {{horoResponse.ChartDate}} </p>
+                <p>{{ caption.Grahachakram}} </p>
+                {{horoResponse.ChartCenter}}</td>
+                                                                                
+            <td>{{ horoResponse.Grahakundali[10]}}</td>
+                                    
+            </tr>
+                                    
+            <!-- <tr>
+                                        
+            <td>2Kuja Rahu<br>122 <br>rahu</td>
+                                        
+            <td>2Kuja Rahu</td>
+                                        
+            <td>22Kuja Rahu</td>
+                                        
+            <td>22Kuja Rahu</td>
+                                    
+            </tr> -->
+                                    
+            <tr>
+                                            
+            <td class="background">
+                                                    
+            <div><span class="bottom1">{{ horoResponse.Grahakundali[5]}}</span>
+                                                      
+            <span class="top1">{{ horoResponse.Grahakundali[6]}}</span>
+                                                      
+            <div class="line2"></div>
+                                                    
+            </div>
+                                                  
+            </td>
+                                            
+            <td>{{ horoResponse.Grahakundali[7]}}</td>
+                                                                                        
+            <td class="background">
+                                                    
+            <div><span class="bottom">{{ horoResponse.Grahakundali[8]}}</span>
+                                                      
+            <span class="top">{{ horoResponse.Grahakundali[9]}}</span>
+                                                      
+            <div class="line"></div>
+                                                    
+            </div>
+                                                  
+            </td>
+                                        
+            </tr>
+                                
+            </tbody>
+                            
+            </table>
+          
         <!-- <svg *ngIf='(grahaKundalivalue=="EI")' width="403" height="400" xmlns="http://www.w3.org/2000/svg">
             <g>
                 <title>background</title>

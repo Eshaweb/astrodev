@@ -288,3 +288,83 @@ float: left;
   g:hover > text{
     display:block;
   }
+
+
+
+
+
+
+
+
+
+  .background {
+    width: 100px;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+    border: solid 1px #000;
+  }
+  
+  /* .line {
+    width: 112px;
+    height: 47px;
+    border-bottom: 1px solid red;
+    transform: translateY(-20px) translateX(5px) rotate(27deg);
+    position: absolute;
+    z-index: -1;
+  } */
+  
+  .line {
+    width: 125px;
+    height: 93%;
+    border-bottom: 1px solid red;
+    transform: translateY(-26px) translateX(11px) rotate(38deg);
+    position: absolute;
+    z-index: -1;
+}
+
+td {
+    width: 80px;
+    height: 80px;
+}
+
+.line2 {
+    width: 127px;
+    height: 93px;
+    border-bottom: 1px solid red;
+    transform: translateY(30px) translateX(14px) rotate(142deg);
+    position: absolute;
+    z-index: -1;
+}
+  .background>div {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  
+  .bottom {
+    position: absolute;
+    bottom: 1px;
+    left: 1px;
+  }
+  .bottom1 {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+  }
+  .top {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+  }
+  .top1 {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+  }
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
