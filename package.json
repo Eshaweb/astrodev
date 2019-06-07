@@ -43,6 +43,7 @@
     "devextreme-angular": "19.1",
     "devextreme-schematics": "^1.0.5",
     "font-awesome": "^4.7.0",
+    "ng-connection-service": "^1.0.4",
     "ng6-toastr-notifications": "^1.0.4",
     "ngx-captcha": "^6.4.0",
     "ngx-loading": "^3.0.1",
