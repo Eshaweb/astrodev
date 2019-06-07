@@ -129,12 +129,12 @@ export class HoroscopeComponent {
     }
     const NameContrl = this.horoscopeForm.get('Name');
     NameContrl.valueChanges.subscribe(value => this.setErrorMessage(NameContrl));
-    const fatherNameContrl = this.horoscopeForm.get('fatherName');
-    fatherNameContrl.valueChanges.subscribe(value => this.setErrorMessage(fatherNameContrl));
-    const motherNameContrl = this.horoscopeForm.get('motherName');
-    motherNameContrl.valueChanges.subscribe(value => this.setErrorMessage(motherNameContrl));
-    const gotraContrl = this.horoscopeForm.get('gotra');
-    gotraContrl.valueChanges.subscribe(value => this.setErrorMessage(gotraContrl));
+    // const fatherNameContrl = this.horoscopeForm.get('fatherName');
+    // fatherNameContrl.valueChanges.subscribe(value => this.setErrorMessage(fatherNameContrl));
+    // const motherNameContrl = this.horoscopeForm.get('motherName');
+    // motherNameContrl.valueChanges.subscribe(value => this.setErrorMessage(motherNameContrl));
+    // const gotraContrl = this.horoscopeForm.get('gotra');
+    // gotraContrl.valueChanges.subscribe(value => this.setErrorMessage(gotraContrl));
     // const LatDegContrl = this.horoscopeForm.get('LatDeg');
     // LatDegContrl.valueChanges.subscribe(value => this.setErrorMessage(LatDegContrl));
     // const LatMtContrl = this.horoscopeForm.get('LatMt');
@@ -155,47 +155,6 @@ export class HoroscopeComponent {
     // PNContrl.valueChanges.subscribe(value => this.setErrorMessage(PNContrl));
     const birthPlaceContrl = this.horoscopeForm.get('birthPlace');
     birthPlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(birthPlaceContrl));
-    if (this.horoScopeService.horoRequest != null) {
-      this.horoRequest = this.horoScopeService.horoRequest;
-      this.horoscopeForm.controls['Name'].setValue(this.horoScopeService.horoRequest.Name);
-      this.birthDateinDateFormat = this.horoScopeService.birthDateinDateFormat;
-      this.birthTimeinDateFormat = this.horoScopeService.birthTimeinDateFormat;
-      this.timeZoneName = this.horoScopeService.timeZoneName;
-    }
-    else {
-      this.birthDateinDateFormat = this.horoscopeForm.controls['Date'].value;
-      this.birthTimeinDateFormat = this.horoscopeForm.controls['Time'].value;
-      this.horoRequest = {
-        Name: this.horoscopeForm.controls['Name'].value,
-        Father: this.horoscopeForm.controls['fatherName'].value,
-        Mother: this.horoscopeForm.controls['motherName'].value,
-        Gothra: this.horoscopeForm.controls['gotra'].value,
-        Date: this.horoscopeForm.controls['Date'].value,
-        Time: this.horoscopeForm.controls['Time'].value,
-        TimeFormat: null,
-        Place: this.horoScopeService.birthplace,
-        LatDeg: null,
-        LatMt: null,
-        LongDeg: null,
-        LongMt: null,
-        NS: null,
-        EW: null,
-        ZH: null,
-        ZM: null,
-        PN: null,
-        Gender: this.horoscopeForm.controls['gender'].value,
-        LangCode: null,
-        ReportSize: null,
-        ReportType: null,
-        FormParameter: null,
-        Swarna: 0,
-        Pruchaka: 0,
-        JanmaRashi: 0,
-        AshtaMangalaNo: null,
-        IsMarried: true,
-        PartyMastId:StorageService.GetItem('PartyMastId')
-      }
-    }
   }
   validateDateField() {
     return (group: FormGroup): {[key: string]: any} => {
@@ -223,13 +182,10 @@ export class HoroscopeComponent {
     Name_minlength: '*Minimum length is 4',
     Name_pattern: 'Name should be character only',
 
-    fatherName_required: '*Enter Father Name',
     fatherName_minlength: '*Minimum length is 4',
 
-    motherName_required: '*Enter Mother Name',
     motherName_minlength: '*Minimum length is 4',
 
-    gotra_required: '*Enter Gothra',
     gotra_minlength: '*Minimum length is 4',
 
     LatDeg_required: '*Enter Latitude Degree',
@@ -308,6 +264,47 @@ export class HoroscopeComponent {
         });
       });
     });
+
+    if (this.horoScopeService.horoRequest != null) {
+      this.horoRequest = this.horoScopeService.horoRequest;
+      this.horoscopeForm.controls['Name'].setValue(this.horoScopeService.horoRequest.Name);
+      this.birthDateinDateFormat = this.horoScopeService.birthDateinDateFormat;
+      this.birthTimeinDateFormat = this.horoScopeService.birthTimeinDateFormat;
+    }
+    else {
+      this.birthDateinDateFormat = this.horoscopeForm.controls['Date'].value;
+      this.birthTimeinDateFormat = this.horoscopeForm.controls['Time'].value;
+      this.horoRequest = {
+        Name: this.horoscopeForm.controls['Name'].value,
+        Father: this.horoscopeForm.controls['fatherName'].value,
+        Mother: this.horoscopeForm.controls['motherName'].value,
+        Gothra: this.horoscopeForm.controls['gotra'].value,
+        Date: this.horoscopeForm.controls['Date'].value,
+        Time: this.horoscopeForm.controls['Time'].value,
+        TimeFormat: null,
+        Place: this.horoScopeService.birthplace,
+        LatDeg: null,
+        LatMt: null,
+        LongDeg: null,
+        LongMt: null,
+        NS: null,
+        EW: null,
+        ZH: null,
+        ZM: null,
+        PN: null,
+        Gender: this.horoscopeForm.controls['gender'].value,
+        LangCode: null,
+        ReportSize: null,
+        ReportType: null,
+        FormParameter: null,
+        Swarna: 0,
+        Pruchaka: 0,
+        JanmaRashi: 0,
+        AshtaMangalaNo: null,
+        IsMarried: true,
+        PartyMastId:StorageService.GetItem('PartyMastId')
+      }
+    }
   }
 
   getTimezone(lat, long) {
@@ -395,6 +392,7 @@ export class HoroscopeComponent {
       this.reportSizevalue = this.horoScopeService.horoRequest.ReportSize;
       this.languagevalue = this.horoScopeService.horoRequest.LangCode;
       this.genderValue = this.horoScopeService.horoRequest.Gender;
+      this.timeZoneName = this.horoScopeService.timeZoneName;
     }
     else {
       this.timeformatvalue = this.timeformats[0].Id;
@@ -402,7 +400,6 @@ export class HoroscopeComponent {
       this.languagevalue = this.languages[2].Id;
       this.genderValue = this.genders[0].Id;
     }
-
   }
 
   ngOnDestroy(): void {

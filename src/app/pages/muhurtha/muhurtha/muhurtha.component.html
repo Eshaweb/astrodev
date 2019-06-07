@@ -64,7 +64,6 @@
                                                           <dx-select-box (onValueChanged)="yathradirectionSelection($event)" [dataSource]="yathradirectionsdata"
                                                               displayExpr="Text" valueExpr="Id" [value]="yathradirectionsvalue" [searchEnabled]="true">
                                                           </dx-select-box>
-                                                          <span style="color:red" id='err_Date'></span>
                                                       </div>
                                                   </div>
                                       </div>
@@ -181,6 +180,7 @@
                                         <dx-date-box formControlName="FromDate" pickerType="list" [(ngModel)]="fromdateinDateFormat" [(min)]="mindateinDateFormat_From" type="date" 
                                         displayFormat="dd/MM/yyyy" [acceptCustomValue]="false" [focusStateEnabled]="false" (onValueChanged)='setToDateinDateFormat()'>
                                         </dx-date-box>
+                                        <span style="color:red" id='err_FromDate'></span>
                                         </div>
                                 </div>
                                 </div>

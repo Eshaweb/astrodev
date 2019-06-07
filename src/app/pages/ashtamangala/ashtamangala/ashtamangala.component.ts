@@ -188,7 +188,6 @@ export class AshtamangalaComponent {
       this.horoRequest = this.astamangalaService.horoRequest;
       this.birthDateinDateFormat = this.astamangalaService.DateinDateFormat;
       this.birthTimeinDateFormat = this.astamangalaService.TimeinDateFormat;
-      this.timeZoneName = this.astamangalaService.timeZoneName;
     }
     else {
       this.birthDateinDateFormat = this.astamangalaForm.controls['Date'].value;
@@ -382,6 +381,7 @@ export class AshtamangalaComponent {
       this.languagevalue = this.astamangalaService.horoRequest.LangCode;
       this.genderValue = this.astamangalaService.horoRequest.Gender;
       this.pruchakaStarvalue = this.astamangalaService.horoRequest.Pruchaka;
+      this.timeZoneName = this.astamangalaService.timeZoneName;
     }
     else {
       this.timeformatvalue = this.timeformats[0].Id;

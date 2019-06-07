@@ -31,6 +31,7 @@
                                 <dx-date-box formControlName="FemaleBdate" type="date" displayFormat="dd/MM/yyyy"  [(min)]="mindateinDateFormat"
                                 [(max)]="maxdateinDateFormat" [(ngModel)]="female_birthDateinDateFormat" [useMaskBehavior]="true">
                                 </dx-date-box>
+                                <span style="color:red" id='err_FemaleBdate'></span>
                                 </div>
                         </div>
                         </div>
@@ -42,6 +43,7 @@
                             </dx-date-box> -->
                             <dx-date-box formControlName="FemaleBtime" type="time" pickerType="native" [(ngModel)]="female_birthTimeinDateFormat">
                             </dx-date-box>
+                            <span style="color:red" id='err_FemaleBtime'></span>
                             </div>
                         </div>
                         </div>
@@ -66,7 +68,7 @@
                                 <div class="dx-field-label">Birth Place*</div>
                                 <div class="dx-field-value">
                                     <dx-text-box id="female_birthplace_txt" valueChangeEvent="keyup" formControlName="FemaleBplace" [(ngModel)]="matchMakingService.female_birthplace" showClearButton="true"></dx-text-box>
-                                    <p style="color:red" id='err_FemaleBplace'></p>
+                                    <span style="color:red" id='err_FemaleBplace'></span>
                             </div>
                         </div>
                         </div> 
@@ -254,6 +256,7 @@
                                 <dx-date-box formControlName="MaleBdate" type="date" displayFormat="dd/MM/yyyy"  [(min)]="mindateinDateFormat"
                                 [(max)]="maxdateinDateFormat" [(ngModel)]="male_birthDateinDateFormat" [useMaskBehavior]="true">
                                 </dx-date-box>
+                                <span style="color:red" id='err_MaleBdate'></span>
                                 </div>
                         </div>
                         </div>
@@ -265,6 +268,7 @@
                             </dx-date-box> -->
                             <dx-date-box formControlName="MaleBtime" type="time" pickerType="native" [(ngModel)]="male_birthTimeinDateFormat">
                             </dx-date-box>
+                            <span style="color:red" id='err_MaleBtime'></span>
                             </div>
                         </div>
                         </div>
@@ -289,7 +293,7 @@
                                 <div class="dx-field-label">Birth Place*</div>
                                 <div class="dx-field-value">
                                     <dx-text-box id="male_birthplace_txt" valueChangeEvent="keyup" formControlName="MaleBplace"[(ngModel)]="matchMakingService.male_birthplace" showClearButton="true"></dx-text-box>
-                                    <p style="color:red" id='err_MaleBplace'></p>
+                                    <span style="color:red" id='err_MaleBplace'></span>
                             </div>
                         </div>
                         </div>

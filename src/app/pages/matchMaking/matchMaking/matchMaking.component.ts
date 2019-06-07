@@ -280,8 +280,6 @@ export class MatchMakingComponent {
       this.male_birthTimeinDateFormat = this.matchMakingService.male_birthTimeinDateFormat;
       this.female_birthDateinDateFormat = this.matchMakingService.female_birthDateinDateFormat;
       this.female_birthTimeinDateFormat = this.matchMakingService.female_birthTimeinDateFormat;
-      this.timeZoneName_Female = this.matchMakingService.timeZoneName_Female;
-      this.timeZoneName_Male = this.matchMakingService.timeZoneName_Male;
     }
     else {
       this.male_birthDateinDateFormat = this.maleMatchMakingForm.controls['MaleBdate'].value;
@@ -511,6 +509,8 @@ export class MatchMakingComponent {
       this.languagevalue = this.matchMakingService.matchRequest.LangCode;
       this.reportSizevalue = this.matchMakingService.matchRequest.ReportSize;
       this.reportTypevalue= this.matchMakingService.matchRequest.UserOrSystem;
+      this.timeZoneName_Female = this.matchMakingService.timeZoneName_Female;
+      this.timeZoneName_Male = this.matchMakingService.timeZoneName_Male;
     }
     else {
       this.male_timeformatvalue = this.maletimeformats[0].Id;
