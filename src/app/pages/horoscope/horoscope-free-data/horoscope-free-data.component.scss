@@ -381,13 +381,17 @@ td {
 	@name kundali
 */
 /* Only edit this if you know what you are doing! */
+/*
+	@name kundali
+*/
+/* Only edit this if you know what you are doing! */
 body { margin: 0px; padding: 0px; font-family:"Arial"; /*overflow-x:hidden;*/ }
 
 /* Only edit this if you know what you are doing! */
 img { position: absolute; display: block; margin: 0px; border: none; padding: 0px; }
 
 /* Only edit this if you know what you are doing! */
-div { position: absolute; }
+.north-kundali { position: absolute; }
 
 #content-container { display: table; position: relative;  overflow: hidden;  }
 
@@ -396,7 +400,7 @@ div { position: absolute; }
 	top: 0px;
 	left: 0px;
 	width: 375px;
-	height: 812px;
+	height: 400px;
 	overflow:hidden;
 }
 
@@ -404,53 +408,53 @@ div { position: absolute; }
 	top: 0px;
 	left: 0px;
 	width: 375px;
-	height: 812px;
+	height: 400px;
 	background:rgba(255,255,255,255);
 }
 
 
 #path_1 {
-	top: 218px;
-	left: 23px;
-	width: 336px;
+	top: 29px;
+	left: 24px;
+	width: 335.5px;
 	height: 337px;
 }
 
 
 #line_1 {
-	top: 218px;
+	top: 31px;
 	left: 23px;
-	width: 164.71557617188px;
-	height: 168.69854736328px;
+	width: 168.70709228516px;
+	height: 168.70709228516px;
 }
 
 
 #line_2 {
-	top: 218px;
-	left: 187px;
-	width: 172.69873046875px;
-	height: 168.71534729004px;
+	top: 31px;
+	left: 191px;
+	width: 165.70922851562px;
+	height: 166.70495605469px;
 }
 
 
 #line_3 {
-	top: 386px;
+	top: 197px;
 	left: 23px;
-	width: 165.71551513672px;
-	height: 169.69860839844px;
+	width: 180.68231201172px;
+	height: 168.73106384277px;
 }
 
 
 #line_4 {
-	top: 386px;
-	left: 187px;
-	width: 172.70086669922px;
-	height: 169.71328735352px;
+	top: 197px;
+	left: 203px;
+	width: 153.73936462402px;
+	height: 168.67333984375px;
 }
 
 
 #line_5 {
-	top: 218px;
+	top: 29px;
 	left: 23px;
 	width: 336.70812988281px;
 	height: 337.7060546875px;
@@ -458,7 +462,7 @@ div { position: absolute; }
 
 
 #line_6 {
-	top: 218px;
+	top: 29px;
 	left: 23px;
 	width: 336.70812988281px;
 	height: 337.7060546875px;
@@ -466,8 +470,8 @@ div { position: absolute; }
 
 
 #rahu_ketu___mandi {
-	top: 222px;
-	left: 65px;
+	top: 36px;
+	left: 63px;
 	width: 80px;
 	height: 39px;
 	font-family: Helvetica Neue;
@@ -478,8 +482,8 @@ div { position: absolute; }
 
 
 #rahu_ketu___mandi_ek1 {
-	top: 276px;
-	left: 145px;
+	top: 91px;
+	left: 150px;
 	width: 80px;
 	height: 39px;
 	font-family: Helvetica Neue;
@@ -490,8 +494,8 @@ div { position: absolute; }
 
 
 #rahu_ketu___mandi_ek2 {
-	top: 221px;
-	left: 228px;
+	top: 36px;
+	left: 244px;
 	width: 80px;
 	height: 39px;
 	font-family: Helvetica Neue;
@@ -502,8 +506,8 @@ div { position: absolute; }
 
 
 #___rahu__ketu__mandi {
-	top: 268px;
-	left: 305px;
+	top: 82px;
+	left: 302px;
 	width: 56px;
 	height: 57px;
 	font-family: Helvetica Neue;
@@ -514,8 +518,8 @@ div { position: absolute; }
 
 
 #rahu_ketu___mandi_ek3 {
-	top: 372px;
-	left: 59px;
+	top: 178px;
+	left: 79px;
 	width: 80px;
 	height: 39px;
 	font-family: Helvetica Neue;
@@ -526,8 +530,8 @@ div { position: absolute; }
 
 
 #rahu__ketu_mandi {
-	top: 264px;
-	left: 29px;
+	top: 83px;
+	left: 35px;
 	width: 49px;
 	height: 57px;
 	font-family: Helvetica Neue;
@@ -538,8 +542,8 @@ div { position: absolute; }
 
 
 #rahu_ketu___mandi_ek4 {
-	top: 442px;
-	left: 155px;
+	top: 251px;
+	left: 166px;
 	width: 80px;
 	height: 39px;
 	font-family: Helvetica Neue;
@@ -550,7 +554,7 @@ div { position: absolute; }
 
 
 #rahu_ketu___mandi_ek5 {
-	top: 359px;
+	top: 166px;
 	left: 228px;
 	width: 80px;
 	height: 39px;
@@ -562,8 +566,8 @@ div { position: absolute; }
 
 
 #______rahu__ketu_mandi {
-	top: 506px;
-	left: 56px;
+	top: 316px;
+	left: 72px;
 	width: 87px;
 	height: 39px;
 	font-family: Helvetica Neue;
@@ -574,8 +578,8 @@ div { position: absolute; }
 
 
 #__rahu__ketu__mandi {
-	top: 431px;
-	left: 23px;
+	top: 234px;
+	left: 24px;
 	width: 54px;
 	height: 57px;
 	font-family: Helvetica Neue;
@@ -586,8 +590,8 @@ div { position: absolute; }
 
 
 #_____rahu_ketu_shukra {
-	top: 505px;
-	left: 230px;
+	top: 316px;
+	left: 231px;
 	width: 93px;
 	height: 39px;
 	font-family: Helvetica Neue;
@@ -598,8 +602,8 @@ div { position: absolute; }
 
 
 #__rahu_ketu_mandi {
-	top: 437px;
-	left: 302px;
+	top: 251px;
+	left: 306px;
 	width: 49px;
 	height: 57px;
 	font-family: Helvetica Neue;
@@ -609,3 +613,5 @@ div { position: absolute; }
 }
 
 
+
+/* Add your custom CSS here */
