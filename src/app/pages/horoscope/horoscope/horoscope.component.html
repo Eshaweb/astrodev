@@ -55,7 +55,7 @@
                                 [(max)]="maxdateinDateFormat" [(ngModel)]="birthDateinDateFormat" [useMaskBehavior]="true">
                                 </dx-date-box> -->
                                 <dx-date-box formControlName="Date" type="date" displayFormat="dd/MM/yyyy"  [(min)]="mindateinDateFormat"
-                                [(max)]="maxdateinDateFormat" [(ngModel)]="birthDateinDateFormat" [useMaskBehavior]="true">
+                                [(max)]="maxdateinDateFormat" [(ngModel)]="birthDateinDateFormat" [useMaskBehavior]="true" (onValueChanged)='onDOBValueChanged()'>
                                 </dx-date-box>
                                 </div>
                         </div>
@@ -141,13 +141,6 @@
                             <div class="dx-field">
                                 <div class="dx-field-label">Language*</div>
                                 <div class="dx-field-value">
-                                  <!-- <dx-select-box formControlName="language"
-                                      [items]="languages"
-                                      placeholder="Choose Type"
-                                      displayExpr="Text"
-                                      valueExpr="Id"
-                                      showClearButton="true" [value]="languages[0]"
-                                  ></dx-select-box> -->
                                   <dx-select-box
                                   [dataSource]="languagedata"
                                   (onValueChanged)="languagedataSelection($event)"
@@ -300,7 +293,6 @@
                     <div class="f-label">Zone Time</div>
                     <div class="first-textbox">
                         <dx-number-box formControlName="ZH" [disabled]="true" [(ngModel)]="horoRequest.ZH"></dx-number-box>
-                        <p style="color:red" id='err_ZH'></p>
                     </div>
                 </div>
             
@@ -312,35 +304,8 @@
                 </div>
             </div>
             <div class="clear"></div>
-            <!-- <p *ngIf="timeZoneName">Time Zone: {{timeZoneName}}</p> -->
+            <p >Time Zone: {{timeZoneName}}</p>
         </div>
-        <!-- <div class="dx-fieldset">
-            <div class="dx-fieldset-header">Personal Data</div>
-            <div class="clear"></div>
-            <div class="dx-fieldset-column">
-            <div class="dx-field">
-                <div class="dx-field-label">Birth Time*</div>
-                <div class="dx-field-value">
-                  <dx-date-box formControlName="Btime" width="300" type="datetime" [showClearButton]="true" displayFormat="shortTime" (onOpened)="opened($event)" dateSerializationFormat="HH:mm:ss">
-                  </dx-date-box>
-                  <dx-date-box formControlName="Btime" type="time" [showClearButton]="true" pickerType="rollers">
-                  </dx-date-box>
-                </div>
-            </div>
-            </div>
-            <div class="dx-fieldset-column">
-            <div class="dx-field">
-                <div class="dx-field-label">Birth Time2*</div>
-                <div class="dx-field-value">
-                  <dx-date-box formControlName="time" width="300" type="datetime" [showClearButton]="true" displayFormat="shortTime" (onOpened)="opened2($event)" dateSerializationFormat="HH:mm:ss">
-                  </dx-date-box>
-                  <dx-date-box formControlName="Btime" type="time" [showClearButton]="true" pickerType="rollers">
-                </dx-date-box>
-                </div>
-            </div>
-            </div>
-            <div class="clear"></div>
-        </div>    -->
 
         
         <!-- <div class="dx-fieldset">

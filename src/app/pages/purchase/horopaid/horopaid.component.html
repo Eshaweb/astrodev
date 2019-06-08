@@ -6,30 +6,6 @@
   <h3 >{{service.Name}}</h3>
     <div class="full-horoscope-1" id='employee'>
     <h5 >{{service.Description}}</h5>
-    <!-- <h6  *ngIf='!checkBoxValue'>MRP.               {{service.MRP|currency:'INR'}}</h6>
-    <h6  *ngIf='checkBoxValue'>MRP.               {{service.PrintMRP|currency:'INR'}}</h6>
-    <h6  *ngIf='!checkBoxValue'>Discount             {{SoftCopyDifference|currency:'INR'}}</h6>
-    <h6  *ngIf='checkBoxValue'>Discount             {{HardCopyDifference|currency:'INR'}}</h6>
-    <h6  *ngIf='!checkBoxValue'>Effective Price      {{service.Amount|currency:'INR'}}</h6>
-    <h6  *ngIf='checkBoxValue'>Effective Price      {{service.PrintAmount|currency:'INR'}}</h6> -->
-   
-    <!-- <div class="dx-fieldset-column">
-        <div class="dx-field">
-            <div class="dx-field-label">MRP.</div>
-            <div class="dx-field-value">
-                <h6>{{service.MRP|currency:'INR'}}</h6>
-            </div>
-        </div>
-    </div>
-    <div class="dx-fieldset-column">
-        <div class="dx-field">
-            <div class="dx-field-label">MRP.</div>
-            <div class="dx-field-value">
-                <h6>{{service.PrintMRP|currency:'INR'}}</h6>
-            </div>
-        </div>
-    </div> -->
-
         <div class="dx-field" *ngIf='!checkBoxValue'>
             <div class="cap">MRP.</div>
             <div class="data">{{service.MRP|currency:'INR'}}
@@ -71,12 +47,6 @@
                 (onValueChanged)="hardcopyRequired_Click($event, service.ItMastId)"
                 text="Hardcopy Required">
             </dx-check-box>
-            <!-- <dx-check-box 
-                id="check"
-                (onValueChanged)="hardcopyRequired_Click($event)"
-                [(value)]="checkBoxValue"
-                text="Hardcopy Required">
-            </dx-check-box> -->
        
     </div>
     
@@ -94,16 +64,3 @@
 </div>
 </div>
 </div>
-
-<!-- <dx-load-panel
-    #loadPanel
-    shadingColor="rgba(0,0,0,0.4)"
-    [position]="{ of: '#employee' }"
-    [(visible)]="loading"
-    [showIndicator]="true"
-    [showPane]="true"
-    [shading]="true"
-    [closeOnOutsideClick]="false"
-    (onShown)="onShown()"
-    (onHidden)="onHidden()">
-</dx-load-panel> -->

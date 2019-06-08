@@ -130,9 +130,10 @@ export class HoroScopeService {
         var endPoint = "Party/GetEMailAddress?PartyMastId=" + PartyMastId;
         return this.httpService.Get(endPoint);
     }
-    getTimezone(lat, long) {
+    getTimezone(lat, long,timestamp) {
         var apiKey = LoginService.GoogleAPIKey;
-        var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey
+        //var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey
+        var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp='+timestamp+'&key=' + apiKey
         return this.http.get(url);
     }
     private handleError(err: HttpErrorResponse) {

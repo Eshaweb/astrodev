@@ -7,7 +7,6 @@ import { Location } from "@angular/common";
 import { RegistrationService } from 'src/Services/registration/registration.service';
 import { HoroResponse } from 'src/Models/HoroScope/HoroResponse';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
-import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 import { ItemService } from 'src/Services/ItemService/ItemService';
 import { Caption } from 'src/Models/Caption';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';

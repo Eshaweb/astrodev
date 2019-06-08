@@ -6,7 +6,6 @@ import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/fo
 import { from, Subscription } from 'rxjs';
 import { SelectBoxModel } from 'src/Models/SelectBoxModel';
 import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
-import { PaymentInfo, ServiceInfo, SelectBoxModelNew } from 'src/Services/HoroScopeService/HoroScopeService';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { UIService } from 'src/Services/UIService/ui.service';
@@ -188,7 +187,6 @@ export class AshtamangalaComponent {
       this.horoRequest = this.astamangalaService.horoRequest;
       this.birthDateinDateFormat = this.astamangalaService.DateinDateFormat;
       this.birthTimeinDateFormat = this.astamangalaService.TimeinDateFormat;
-      this.timeZoneName = this.astamangalaService.timeZoneName;
     }
     else {
       this.birthDateinDateFormat = this.astamangalaForm.controls['Date'].value;
@@ -382,6 +380,7 @@ export class AshtamangalaComponent {
       this.languagevalue = this.astamangalaService.horoRequest.LangCode;
       this.genderValue = this.astamangalaService.horoRequest.Gender;
       this.pruchakaStarvalue = this.astamangalaService.horoRequest.Pruchaka;
+      this.timeZoneName = this.astamangalaService.timeZoneName;
     }
     else {
       this.timeformatvalue = this.timeformats[0].Id;

@@ -71,7 +71,6 @@ export class PanchangaComponent {
       this.panchangaRequest = this.panchangaService.panchangaRequest;
       this.birthDateinDateFormat = this.panchangaService.DateinDateFormat;
       this.birthTimeinDateFormat = this.panchangaService.TimeinDateFormat;
-      this.timeZoneName = this.panchangaService.timeZoneName;
     }
     else {
       this.birthDateinDateFormat = this.panchangaForm.controls['Date'].value;
@@ -159,6 +158,7 @@ export class PanchangaComponent {
     if (this.panchangaService.panchangaRequest != null) {
       this.timeformatvalue = this.panchangaService.panchangaRequest.TimeFormat;
       this.languagevalue = this.panchangaService.panchangaRequest.LangCode;
+      this.timeZoneName = this.panchangaService.timeZoneName;
     }
     else {
       this.timeformatvalue = this.timeformats[0].Id;

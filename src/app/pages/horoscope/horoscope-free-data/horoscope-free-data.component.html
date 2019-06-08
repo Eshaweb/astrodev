@@ -444,7 +444,7 @@
 
 
 		<div *ngIf='(grahaKundalivalue=="NI")' id="content-container" >
-			<div class="north-kundali"  id="page_kundali_ek1"  >
+			<div class="north-kundali"  id="page_kundali_ek1">
 				<div class="north-kundali"  id="_bg__kundali_ek2"  ></div>
 				<img src="assets/skins/path_1.png" id="path_1" />
 				<img src="assets/skins/line_1.png" id="line_1" />
@@ -453,45 +453,44 @@
 				<img src="assets/skins/line_4.png" id="line_4" />
 				<img src="assets/skins/line_5.png" id="line_5" />
 				<img src="assets/skins/line_6.png" id="line_6" />
-				<div class="north-kundali" id="rahu_ketu___mandi" >
-					Rahu Ketu<br/>  Mandi
+				<div class="north-kundali" [ngClass]="getFont(horoModel.LangCode)" id="rahu_ketu___mandi_ek1" >
+					{{horoResponse.GrahakundaliNorth[1]}}
+                </div>
+                <div class="north-kundali" [ngClass]="getFont(horoModel.LangCode)" id="rahu_ketu___mandi" >
+					{{horoResponse.GrahakundaliNorth[2]}}
+                </div>
+                <div class="north-kundali" [ngClass]="getFont(horoModel.LangCode)" id="rahu__ketu_mandi" >
+					{{horoResponse.GrahakundaliNorth[3]}}
+                </div>
+                <div class="north-kundali" [ngClass]="getFont(horoModel.LangCode)" id="rahu_ketu___mandi_ek3" >
+					{{horoResponse.GrahakundaliNorth[4]}}
+                </div>
+                <div id="__rahu__ketu__mandi" [ngClass]="getFont(horoModel.LangCode)">
+                    {{horoResponse.GrahakundaliNorth[5]}}
+                </div>
+                <div class="north-kundali" [ngClass]="getFont(horoModel.LangCode)" id="______rahu__ketu_mandi" >
+                    {{horoResponse.GrahakundaliNorth[6]}}
+                </div>
+                <div class="north-kundali" [ngClass]="getFont(horoModel.LangCode)" id="rahu_ketu___mandi_ek4" >
+					{{horoResponse.GrahakundaliNorth[7]}}
 				</div>
-				<div class="north-kundali"  id="rahu_ketu___mandi_ek1" >
-					Rahu Ketu<br/>  Mandi
+				<div class="north-kundali" [ngClass]="getFont(horoModel.LangCode)" id="_____rahu_ketu_shukra" >
+                    {{horoResponse.GrahakundaliNorth[8]}}
 				</div>
-				<div class="north-kundali"  id="rahu_ketu___mandi_ek2" >
-					Rahu Ketu<br/>  Mandi
+				<div class="north-kundali" [ngClass]="getFont(horoModel.LangCode)" id="__rahu_ketu_mandi" >
+                    {{horoResponse.GrahakundaliNorth[9]}}
 				</div>
-				<div class="north-kundali"  id="___rahu__ketu__mandi" >
-					  Rahu <br/>Ketu<br/> Mandi
+                <div class="north-kundali" [ngClass]="getFont(horoModel.LangCode)" id="rahu_ketu___mandi_ek5" >
+					{{horoResponse.GrahakundaliNorth[10]}}
+                </div>
+                <div class="north-kundali" [ngClass]="getFont(horoModel.LangCode)" id="___rahu__ketu__mandi" >
+                    {{horoResponse.GrahakundaliNorth[11]}}
 				</div>
-				<div class="north-kundali"  id="rahu_ketu___mandi_ek3" >
-					Rahu Ketu<br/>  Mandi
+				<div class="north-kundali" [ngClass]="getFont(horoModel.LangCode)" id="rahu_ketu___mandi_ek2" >
+					{{horoResponse.GrahakundaliNorth[12]}}
 				</div>
-				<div class="north-kundali"  id="rahu__ketu_mandi" >
-					Rahu <br/>Ketu<br/>Mandi
-				</div>
-				<div class="north-kundali"  id="rahu_ketu___mandi_ek4" >
-					Rahu Ketu<br/>  Mandi
-				</div>
-				<div class="north-kundali"  id="rahu_ketu___mandi_ek5" >
-					Rahu Ketu<br/>  Mandi
-				</div>
-				<div class="north-kundali"  id="______rahu__ketu_mandi" >
-					     Rahu <br/>Ketu Mandi
-				</div>
-				<div id="__rahu__ketu__mandi" >
-					 Rahu<br/> Ketu<br/> Mandi
-				</div>
-				<div class="north-kundali"  id="_____rahu_ketu_shukra" >
-					    Rahu<br/>Ketu Shukra
-				</div>
-				<div class="north-kundali"  id="__rahu_ketu_mandi" >
-					 Rahu<br/>Ketu<br/>Mandi
-				</div>
-
 			</div>
-		</div>
+		</div> 
 	
     </div>
     <div class="clear"></div>

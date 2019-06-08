@@ -31,8 +31,8 @@
             [multiple]="false"
             [animationDuration]="300"
             (onItemTitleClick)="onItemClick($event)">
-            <div *dxTemplate="let company of 'title'">
-                <div class="heading">{{company.ServiceName}}</div>
+            <div *dxTemplate="let item of 'title'">
+                <div class="heading">{{item.ServiceName}}</div>
             </div>
             <div *dxTemplate="let service of 'item'">
                     <!-- <div class="dx-card responsive-paddings" *ngFor="let item of orderHistoryResponse | sortingOrders:path:order"> -->

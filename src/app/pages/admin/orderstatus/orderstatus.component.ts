@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HubConnectionBuilder } from '@aspnet/signalr';
-import { DxDataGridModule } from 'devextreme-angular';
-import CustomStore from 'devextreme/data/custom_store';
 import { AdminService } from '../../../../Services/AdminService/AdminService';
 import { LoadingSwitchService } from '../../../../Services/LoadingSwitchService/LoadingSwitchService';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -29,27 +26,6 @@ export class OrderstatusComponent implements OnInit {
         From: new Date(),
         To: new Date()
       });   
-      
-      // this.connectionStarted = false;
-
-      //   var hubConnection = new HubConnectionBuilder()
-      //       .withUrl("https://js.devexpress.com/Demos/NetCore/liveUpdateSignalRHub")
-      //       .build();
-
-      //   var store = new CustomStore({
-      //       load: () => hubConnection.invoke("getAllStocks"),
-      //       key: "symbol"
-      //   });
-
-      //   hubConnection
-      //       .start()
-      //       .then(() => {
-      //           hubConnection.on("updateStockPrice", (data: any) => {
-      //               store.push([{ type: "update", key: data.symbol, data: data }]);
-      //           });
-      //           this.dataSource = store;
-      //           this.connectionStarted = true;
-      //       });
     }
 
 
@@ -77,31 +53,6 @@ export class OrderstatusComponent implements OnInit {
         }
       });
     });
-  //   this.dataSource.store = new CustomStore({
-  //     load: function (loadOptions: any) {
-  //         var params = '?';
-
-  //         params += 'skip=' + loadOptions.skip;
-  //         params += '&take=' + loadOptions.take;
-
-  //         if(loadOptions.sort) {
-  //             params += '&orderby=' + loadOptions.sort[0].selector;
-  //             if(loadOptions.sort[0].desc) {
-  //                 params += ' desc';
-  //             }
-  //         }
-  //         return '';
-  //         // return httpClient.get('https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems' + params)
-  //         //     .toPromise()
-  //         //     .then((data: any) => {
-  //         //         return {
-  //         //             data: data.items,
-  //         //             totalCount: data.totalCount
-  //         //         }
-  //         //     })
-  //         //     .catch(error => { throw 'Data Loading Error' });
-  //     }
-  // });
   }
 
   OnSearch_click(){

@@ -255,7 +255,6 @@ export class MuhurthaComponent {
       this.fromdateinDateFormat = this.muhurthaService.FromDateinDateFormat;
       this.todateinDateFormat = this.muhurthaService.ToDateinDateFormat;
       this.birthTimeinDateFormat = this.muhurthaService.TimeinDateFormat;
-      this.timeZoneName = this.muhurthaService.timeZoneName;
       //this.dataSource=this.muhurthaService.muhurthaRequest.RashiNakshatras;
       this.dataSource=this.muhurthaService.RashiNak;
     }
@@ -414,6 +413,7 @@ export class MuhurthaComponent {
       //this.muhurthasvalue = this.muhurthaService.panchangaRequest.LangCode;
       this.languagevalue = this.muhurthaService.muhurthaRequest.LangCode;
       this.reportSizevalue = this.muhurthaService.muhurthaRequest.ReportSize;
+      this.timeZoneName = this.muhurthaService.timeZoneName;
     }
     else {
       this.timeformatvalue = this.timeformats[0].Id;
