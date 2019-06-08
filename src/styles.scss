@@ -23,24 +23,28 @@ html, body {
 
 @font-face {
    font-family: 'kanfontfamily';
-    src: url('/assets/fonts/KAN.woff2')  format('woff2'),
+   src: local('kanfontfamily'),
+     url('/assets/fonts/KAN.woff2')  format('woff2'),
  }
 @font-face {
   
    font-family: 'hinfontfamily';
-   src:   url('/assets/fonts/HIN.woff2')  format('woff2'),
+   src: local('hinfontfamily'),
+   url('/assets/fonts/HIN.woff2')  format('woff2'),
 }
 
 @font-face {
   font-family: 'malfontfamily';
-   src: url('/assets/fonts/Mal.woff')  format('woff'),
+  src: local('malfontfamily'),
+    url('/assets/fonts/Mal.woff')  format('woff'),
    url('/assets/fonts/MAL.woff2')  format('woff2'),
   
 }
 @font-face {
   
    font-family: 'tamfontfamily';
-   src: url('/assets/fonts/Tam.woff')  format('woff'),
+   src: local('tamfontfamily'),
+   url('/assets/fonts/Tam.woff')  format('woff'),
    url('/assets/fonts/TAM.woff2')  format('woff2'),
 }
 $font-path: "assets/fonts";
