@@ -4,6 +4,7 @@ import { PartyService } from 'src/Services/PartyService/PartyService';
 import { UIService } from 'src/Services/UIService/ui.service';
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { environment } from 'src/environments/environment';
+import { LoginService } from '../../../../Services/LoginService/LoginService';
 
 @Component({
   selector: 'app-contactus',
@@ -16,7 +17,7 @@ export class ContactusComponent implements OnInit {
   siteKey: string;
 
   constructor(public formbuilder: FormBuilder, public partyService:PartyService, public uiService:UIService,
-    public loadingSwitchService:LoadingSwitchService) {
+    public loadingSwitchService:LoadingSwitchService, public loginService:LoginService) {
       if (environment.production) {
         this.contactusForm = this.formbuilder.group({
           Name: ['', [Validators.required, Validators.minLength(4)]],
@@ -73,12 +74,16 @@ export class ContactusComponent implements OnInit {
   };
 
   ngOnInit() {
-    if (environment.production) {
-      this.siteKey='6LdXZqEUAAAAAKiZ85dV4ziune4W6-0z9Dx2CWi9';
-    }
-    else{
-      this.siteKey='6LcjZ6EUAAAAADTKsnrcM17RLIOyc3Or5fz3_IJK';
-    }
+    // if (environment.production) {
+    //   //this.siteKey='xxxxx';
+    //   this.siteKey='ccccc';
+    // }
+    // else{
+    //   this.siteKey='vvvvv';
+    // }
+    
+      this.siteKey=LoginService.siteKey;
+    
   }
 
   OnSubmit_click(){

@@ -34,24 +34,27 @@ export class OrderstatusComponent implements OnInit {
     this.sub = interval(10000).subscribe((val) => {
       //this.GetOrderStatus();
       for (var i = 0; i < this.dataSource.length; i++) {
-        if (i == 0) {
-          var AstroReportId = [this.dataSource[0].AstroReportId]
-        }
-        else {
-          AstroReportId.push(this.dataSource[i].AstroReportId);
-        }
-      }
-      var AstroReportIds={
-        AstroReportIds:AstroReportId
-      }
-      this.adminService.GetUpdatedStatus(AstroReportIds).subscribe((data: any) => {
-        for(var i=0;i<data.length;i++){
-          this.dataSource.forEach((item) => {
-            this.dataSource[i].AstroReportId = data[i].AstroReportId;
-            this.dataSource[i].Status = data[i].Status;
+        //if(this.dataSource.length!=0){
+          if (i == 0) {
+            var AstroReportId = [this.dataSource[0].AstroReportId]
+          }
+          else {
+            AstroReportId.push(this.dataSource[i].AstroReportId);
+          }
+          var AstroReportIds={
+            AstroReportIds:AstroReportId
+          }
+          this.adminService.GetUpdatedStatus(AstroReportIds).subscribe((data: any) => {
+            for(var i=0;i<data.length;i++){
+              this.dataSource.forEach((item) => {
+                this.dataSource[i].AstroReportId = data[i].AstroReportId;
+                this.dataSource[i].Status = data[i].Status;
+              });
+            }
+            this.sub.unsubscribe();
           });
         }
-      });
+      //}
     });
   }
 

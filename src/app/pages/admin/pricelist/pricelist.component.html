@@ -32,8 +32,10 @@
             <div class="dx-field">
                 <div class="dx-field-label">Discount</div>
                 <div class="dx-field-value">
-                    <dx-number-box formControlName="Formula" valueChangeEvent="keyup" placeholder="Enter Discount..." showClearButton="true"></dx-number-box>
+                    <dx-number-box *ngIf='(typevalue=="#S")' formControlName="Formula" valueChangeEvent="keyup" placeholder="Enter Discount..." showClearButton="true"></dx-number-box>
+                    <dx-number-box  *ngIf='(typevalue=="#P")' formControlName="FormulaPDF" valueChangeEvent="keyup" placeholder="Enter Discount..." showClearButton="true"></dx-number-box>
                     <p style="color:red" id='err_Formula'></p>
+                    <p style="color:red" id='err_FormulaPDF'></p>
                 </div>
             </div>
         </div>

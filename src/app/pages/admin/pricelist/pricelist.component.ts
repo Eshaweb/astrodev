@@ -32,7 +32,7 @@ export class PriceListComponent {
     types: SelectBoxModel[] = [
         { Id: "#S", Text: "Services" },
         { Id: "#P", Text: "Products" }];
-    typevalue: any;
+    typevalue: string="#P";
     Item: { Name: any; Formula: any; FormulaPDF: number; Type: any; };
     constructor(public adminService: AdminService, public loadingSwitchService: LoadingSwitchService,
         public formbuilder: FormBuilder) {
@@ -64,7 +64,7 @@ export class PriceListComponent {
     }
     OnGenerate_click() {
         this.loadingSwitchService.loading = true;
-        if(this.priceListForm.controls['FormulaPDF'].value!=null){
+        if(this.typevalue=="#S"){
             this.Item = {
                 Name:this.priceListForm.controls['Name'].value,
                 Formula:this.priceListForm.controls['Formula'].value,
@@ -72,11 +72,11 @@ export class PriceListComponent {
                 Type: this.typevalue 
             }
         }
-        else{
+        else if(this.typevalue=="#P"){
             this.Item = {
                 Name:this.priceListForm.controls['Name'].value,
-                Formula:this.priceListForm.controls['Formula'].value,
-                FormulaPDF:0,
+                Formula:0,
+                FormulaPDF:this.priceListForm.controls['FormulaPDF'].value,
                 Type: this.typevalue 
             }
         }
