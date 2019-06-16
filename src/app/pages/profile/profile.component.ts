@@ -72,7 +72,7 @@ export class ProfileComponent {
         this.EMailDisabled = false;
       }
       this.loginService.shareButtonDescription='Join me on Astrolite, a accurate app for Horoscope, Match Making, Muhurtha, Astamangala, Nithya Panchanga and many more astrology related services. Enter My Code '+data.ReferralCode+' to get some amount to the wallet!..';
-      this.loginService.RefCode = 'https://testastroapi.azurewebsites.net/registration/' + data.ReferralCode;
+      this.loginService.RefCode = 'https://astrolite.in/registration/' + data.ReferralCode;
       this.loadingSwitchService.loading = false;
     });
   }

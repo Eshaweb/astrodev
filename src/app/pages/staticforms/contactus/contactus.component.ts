@@ -81,8 +81,8 @@ export class ContactusComponent implements OnInit {
     // else{
     //   this.siteKey='vvvvv';
     // }
-    
-      this.siteKey=LoginService.siteKey;
+    this.siteKey="6LdY0agUAAAAAP-HXxxSih7LGcmniT2ainnJCFK0";
+      //this.siteKey=LoginService.siteKey;
     
   }
 
