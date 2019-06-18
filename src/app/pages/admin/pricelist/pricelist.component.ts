@@ -97,7 +97,7 @@ export class PriceListComponent {
             this.loadingSwitchService.loading = true;
             var Item={
                 Name:this.priceListForm.controls['Name'].value,
-                Formula:this.priceListForm.controls['Formula'].value,
+                Formula:this.Item.Formula,
                 FormulaPDF:this.Item.FormulaPDF,
                 GeneratedRateDets:this.dataSource,
                 Type: this.typevalue 
