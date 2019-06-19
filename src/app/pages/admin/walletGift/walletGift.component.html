@@ -108,10 +108,9 @@
           <dxi-column
             dataField="Date"
             dataType="date"
-            format="dd/MM/yyyy"
-          ></dxi-column>
-          <dxi-column dataField="Cr" caption="Credit"></dxi-column>
-          <dxi-column dataField="Dr" caption="Debit"></dxi-column>
+            format="dd/MM/yyyy" [width]="100"></dxi-column>
+          <dxi-column dataField="Cr" caption="Credit" [width]="70"></dxi-column>
+          <dxi-column dataField="Dr" caption="Debit" [width]="70"></dxi-column>
           <dxi-column dataField="Remarks"></dxi-column>
         </dx-data-grid>
       </div>

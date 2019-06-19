@@ -4,19 +4,79 @@
         <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'">
                 <aw-wizard-step [stepTitle]="'Pending Dispatch'" [navigationSymbol]="{ symbol: '&#xf0b1;', fontFamily: 'FontAwesome' }">
                     <div class="centered-content">
-                            
-                            <dx-list #list [dataSource]="dataSource" (onItemClick)="onItemClick($event)" [height]="400">
-                                <div *dxTemplate="let data of 'item'">
-                                    <div awNextStep style="background-color:yellow">
-                                            <p>OrderDate: {{data.OrderDate|  date:'dd/MM/yyyy'}}</p>
-                                            <p>OrderId: {{data.ExtCode}}</p> 
-                                            <p>Service:{{data.Service}}</p>
-                                            <p>Address:{{data.Address}}</p>
-                                            <!-- <dx-button text="Download" (onClick)='onItemClick($event)' type="success"[useSubmitBehavior]="true">
-                                            </dx-button> -->
+                        <div class="dx-fieldset">
+                            <div class="dx-field">
+                                <div class="cap">
+                                    <div class="payment-mode">
+                                        <dx-select-box (onValueChanged)="OnTypeSelection($event)" [dataSource]="typedata" displayExpr="Text"
+                                            valueExpr="Id" [searchEnabled]="true"[value]='typevalue'>
+                                        </dx-select-box>
                                     </div>
                                 </div>
-                            </dx-list>
+                            </div>
+                        </div>
+                        <dx-list #list [dataSource]="dataSource" (onItemClick)="onItemClick($event)" [height]="400">
+                            <div *dxTemplate="let data of 'item'" >
+                                <div style="background-color:#e0bda7; margin-top:10px;white-space: pre-wrap;">
+                                    <div class="dx-field">
+                                        <div class="cap">OrderDate</div>
+                                        <div class="data"><span>:&nbsp;&nbsp;</span>{{data.OrderDate| date:'dd/MM/yyyy'}}
+                                        </div>
+                                    </div>
+                                    <div class="dx-field">
+                                        <div class="cap">OrderId</div>
+                                        <div class="data"><span>:&nbsp;&nbsp;</span>{{data.ExtCode}}
+                                        </div>
+                                        <a awNextStep>Proceed to Dispatch</a>
+                                    </div>
+                                    <div class="dx-field">
+                                        <div class="cap">Party Name</div>
+                                        <div class="data"><span>:&nbsp;&nbsp;</span>{{data.PartyName}}
+                                        </div>
+                                    </div>
+                                    <div class="dx-field">
+                                        <div class="cap">EMail</div>
+                                        <div class="data"><span>:&nbsp;&nbsp;</span>{{data.EMail}}
+                                        </div>
+                                    </div>
+                                    <div class="dx-field">
+                                        <div class="cap">Mobile</div>
+                                        <div class="data"><span>:&nbsp;&nbsp;</span>{{data.Mobile}}
+                                        </div>
+                                    </div>
+                                    <div class="dx-field">
+                                        <div class="cap">Amount</div>
+                                        <div class="data"><span>:&nbsp;&nbsp;</span><a (click)="OnAmountClick()">{{data.Amount}}</a>
+                                        </div>
+                                    </div>
+                                    <div class="dx-field" *ngIf='typevalue=="#S"'>
+                                        <div class="cap">Service</div>
+                                        <div class="data"><span>:&nbsp;&nbsp;</span>{{data.Service}}
+                                        </div>
+                                    </div>
+                                    <div class="dx-field" *ngIf='typevalue=="#S"'>
+                                        <div class="cap">Address</div>
+                                        <div class="data"><span>:&nbsp;&nbsp;</span>{{data.Address}}
+                                        </div>
+                                    </div>
+                                    <div class="dx-field" *ngIf='typevalue=="#P"'>
+                                        <div class="cap">Product</div>
+                                        <div class="data"><span>:&nbsp;&nbsp;</span>{{data.Product}}
+                                        </div>
+                                    </div>
+                                    <!-- <p>OrderDate: {{data.OrderDate|  date:'dd/MM/yyyy'}}</p>
+                                                                    <p>OrderId: {{data.ExtCode}}</p>
+                                                                    <p>Party Name: {{data.PartyName}}</p> 
+                                                                    <p>EMail: {{data.EMail}}</p>
+                                                                    <p>Mobile: {{data.Mobile}}</p>
+                                                                    <p>Amount:{{data.Amount}}</p>
+                                                                    <p *ngIf='typevalue=="#S"'>Service:{{data.Service}}</p>
+                                                                   
+                                                                    <p *ngIf='typevalue=="#S"'>Address:{{data.Address}}</p> -->
+                        
+                                </div>
+                            </div>
+                        </dx-list>
                     </div>
                   </aw-wizard-step>
                     <aw-wizard-step (stepEnter)="OnEnterStep($event)" (stepExit)="OnExitStep($event)" [stepTitle]="'Dispatch'" [navigationSymbol]="{ symbol: '&#xf00c;', fontFamily: 'FontAwesome' }">
@@ -40,6 +100,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="clear"></div>
                             </div>
                             <div class="dx-fieldset">      
                                 <dx-button text="Download" (onClick)='onDownload_click()' type="success"[useSubmitBehavior]="true" >

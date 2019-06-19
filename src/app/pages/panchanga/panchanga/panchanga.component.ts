@@ -46,7 +46,7 @@ export class PanchangaComponent {
     { Id: "TAM", Text: "தமிழ்" }];
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
-    { Id: "SUMMER", Text: 'Summer Time' },
+    { Id: "SUMMER", Text: 'Daylight Saving Time' },
     { Id: "DOUBLE", Text: 'Double Summer Time' },
     { Id: "WAR", Text: 'War Time' }
   ];

@@ -7,6 +7,8 @@ import { WizardComponent } from 'angular-archwizard';
 import { HoroScopeService } from 'src/Services/HoroScopeService/HoroScopeService';
 import { OrderService } from 'src/Services/OrderService/OrderService';
 import { interval, Subscription } from 'rxjs';
+import { SelectBoxModel } from 'src/Models/SelectBoxModel';
+import ArrayStore from 'devextreme/data/array_store';
 
 @Component({
     templateUrl: 'pendingtoDelivery.component.html',
@@ -20,25 +22,27 @@ import { interval, Subscription } from 'rxjs';
     OrderId: any;
     buttonId: any;
     sub: Subscription;
-    ItName: any;
-    ExtCode: any;
+    ItName: string;
+    ExtCode: string;
+    typedata: ArrayStore;
+    types: SelectBoxModel[] = [
+        { Id: "#S", Text: "Services" },
+        { Id: "#P", Text: "Products" }];
+    typevalue: string;
     constructor(public storageService: StorageService, public orderService: OrderService, public horoScopeService: HoroScopeService, public formBuilder: FormBuilder, public itemService: ItemService, public loadingSwitchService: LoadingSwitchService) {
+        this.typedata = new ArrayStore({
+            data: this.types,
+            key: "Id"
+          });
 
-    }
-
-    ngOnInit() {
-        this.loadingSwitchService.loading = true;
-        this.itemService.GetPendingToDelvery().subscribe((data: any) => {
-            if (data.Errors == undefined) {
-                this.dataSource = data;
-            }
-            this.loadingSwitchService.loading = false;
-        });
-
-        this.updateDeliveryForm = this.formBuilder.group({
+          this.updateDeliveryForm = this.formBuilder.group({
             TrackingRef: [''],
             DispatchDate: new Date()
         });
+    }
+
+    ngOnInit() {
+        
     }
 
     onToolbarPreparing (e) { 
@@ -52,6 +56,22 @@ import { interval, Subscription } from 'rxjs';
         });
     }
     
+    OnTypeSelection(event) {
+        this.typevalue = event.value;
+        this.loadingSwitchService.loading = true;
+        var PendingToDelveryRequest = {
+            Type: this.typevalue
+        }
+        this.itemService.GetPendingToDelvery(PendingToDelveryRequest).subscribe((data: any) => {
+            if (data.Errors == undefined) {
+                this.dataSource = data;
+            }
+            this.loadingSwitchService.loading = false;
+        });
+    }
+    OnAmountClick(){
+        //alert("hello");
+    }
     onItemClick(event){
         this.OrderId=event.itemData.OrderId;
         this.ItName=event.itemData.Service;
@@ -67,7 +87,7 @@ import { interval, Subscription } from 'rxjs';
         }
         this.itemService.UpdateDelivery(UpdateDelivery).subscribe((data: any) => {
             if (data == true) {
-                this.itemService.GetPendingToDelvery().subscribe((data: any) => {
+                this.itemService.GetPendingToDelvery(this.typevalue).subscribe((data: any) => {
                     if (data.Errors == undefined) {
                         this.dataSource = data;
                         this.wizard.navigation.goToPreviousStep();
@@ -78,11 +98,13 @@ import { interval, Subscription } from 'rxjs';
             this.loadingSwitchService.loading = false;
         });
     }
-      OnEnterStep(event){
 
-      }
-      OnExitStep(event){
-          
+    OnEnterStep(event) {
+
+    }
+
+    OnExitStep(event) {
+
     }
 
     onDownload_click() {

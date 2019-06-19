@@ -1,7 +1,7 @@
-<h2 class="content-block">Matchmaking</h2>
+<h2 class="content-block">Match</h2>
 <div class="dx-card content-block responsive-paddings">
         <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'" class="custom-css">
-                <aw-wizard-step [stepTitle]="girlTitle" [navigationSymbol]="{ symbol: '&#xf182;', fontFamily: 'FontAwesome' }">
+                <aw-wizard-step [stepTitle]="'Female'" [navigationSymbol]="{ symbol: '&#xf182;', fontFamily: 'FontAwesome' }">
             <form action="your-action" [formGroup]="femaleMatchMakingForm">
         <div class="dx-card content-padding responsive-paddings">
         <div class="dx-fieldset">
@@ -11,14 +11,14 @@
             </div>
         </div>
         <div class="dx-header head"> 
-            <div class="dx-fieldset-header">Enter Girl's Details</div>
+            <div class="dx-fieldset-header">Enter Details - Female</div>
         </div>
             <div class="clear"></div>
             <div class="dx-fieldset-column">
                 <div class="dx-field">
                     <div class="dx-field-label">Name*</div>
                     <div class="dx-field-value">
-                        <dx-text-box formControlName="femaleName" valueChangeEvent="keyup" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
+                        <dx-text-box formControlName="femaleName" valueChangeEvent="keyup" placeholder="Enter Name..." showClearButton="true"></dx-text-box>
                         <span style="color:red" id='err_femaleName'></span>
                     </div>
                 </div>
@@ -226,7 +226,7 @@
         </div>
     </form>
 </aw-wizard-step>
-<aw-wizard-step [stepTitle]="boyTitle" [navigationSymbol]="{ symbol: '&#xf183;', fontFamily: 'FontAwesome' }">
+<aw-wizard-step [stepTitle]="'Male'" [navigationSymbol]="{ symbol: '&#xf183;', fontFamily: 'FontAwesome' }">
     <form action="your-action" [formGroup]="maleMatchMakingForm">
             <div class="dx-card content-padding responsive-paddings">
         <div class="dx-fieldset">
@@ -236,14 +236,14 @@
                         </div>
                     </div>
                     <div class="dx-header head"> 
-                            <div class="dx-fieldset-header">Enter Boy's Details</div>
+                            <div class="dx-fieldset-header">Enter Details - Male</div>
                         </div>
                         <div class="clear"></div>
             <div class="dx-fieldset-column">
                 <div class="dx-field">
                     <div class="dx-field-label">Name*</div>
                     <div class="dx-field-value">
-                        <dx-text-box formControlName="maleName" valueChangeEvent="keyup" placeholder="Enter Name here..." showClearButton="true"></dx-text-box>
+                        <dx-text-box formControlName="maleName" valueChangeEvent="keyup" placeholder="Enter Name..." showClearButton="true"></dx-text-box>
                         <span style="color:red" id='err_maleName'></span>
                     </div>
                 </div>
@@ -453,7 +453,7 @@
             </div>
 </form>
 </aw-wizard-step>
-<aw-wizard-step [stepTitle]="'General'" [navigationSymbol]="{ symbol: '&#xf00c;', fontFamily: 'FontAwesome' }">
+<aw-wizard-step [stepTitle]="'Generate Report'" [navigationSymbol]="{ symbol: '&#xf00c;', fontFamily: 'FontAwesome' }">
     <div class="dx-card content-padding responsive-paddings">
         <div class="dx-fieldset-column">
             <div class="dx-field">

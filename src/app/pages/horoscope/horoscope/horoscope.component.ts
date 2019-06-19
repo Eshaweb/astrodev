@@ -29,7 +29,7 @@ export class HoroscopeComponent {
   horoRequest: HoroRequest;
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
-    { Id: "SUMMER", Text: 'Summer Time' },
+    { Id: "SUMMER", Text: 'Daylight Saving Time' },
     { Id: "DOUBLE", Text: 'Double Summer Time' },
     { Id: "WAR", Text: 'War Time' }
   ];
@@ -334,7 +334,16 @@ export class HoroscopeComponent {
       dateinString = bdate;
     }
     var dis = dateinString.split("-");
-    var newDate = dis[1] + "," + dis[2] + "," + dis[0];
+    var btime: Date = this.horoscopeForm.controls['Time'].value;
+    if (btime instanceof Date) {
+      var timeinString = ("0" + btime.getHours()).toString().slice(-2) + ":" + ("0" + btime.getMinutes()).toString().slice(-2) + ":" + "00";
+    }
+    else {
+      timeinString = btime;
+    }
+    var tis = timeinString.split("-");
+     var newDate = dis[1] + "," + dis[2] + "," + dis[0];
+    //var newDate = dis[1] + "," + dis[2] + "," + dis[0]+ "," +tis[0]+ "," +tis[1]+ "," +tis[2];
     var timestamp=new Date(newDate).getTime();
     this.horoScopeService.getTimezone(lat, long, (timestamp/1000).toString()).subscribe((data: any) => {
       this.horoRequest.ZH = parseInt((Math.abs(data.rawOffset) / 3600.00).toString());

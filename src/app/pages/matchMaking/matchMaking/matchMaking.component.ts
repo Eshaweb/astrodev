@@ -64,13 +64,13 @@ export class MatchMakingComponent {
   LatMtMessage: string;
   maletimeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
-    { Id: "SUMMER", Text: 'Summer Time' },
+    { Id: "SUMMER", Text: 'Daylight Saving Time' },
     { Id: "DOUBLE", Text: 'Double Summer Time' },
     { Id: "WAR", Text: 'War Time' }
   ];
   femaletimeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
-    { Id: "SUMMER", Text: 'Summer Time' },
+    { Id: "SUMMER", Text: 'Daylight Saving Time' },
     { Id: "DOUBLE", Text: 'Double Summer Time' },
     { Id: "WAR", Text: 'War Time' }
   ];
@@ -446,8 +446,6 @@ export class MatchMakingComponent {
   }
 
   ngOnInit() {
-    this.girlTitle="Enter Girl's Details";
-    this.boyTitle="Enter Boy's Details";
     this.femaletimeformatdata = new ArrayStore({
       data: this.femaletimeformats,
       key: "Id"

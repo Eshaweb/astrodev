@@ -53,9 +53,9 @@ export class ItemService {
         return this.httpService.Post(endPoint, Couponcode);
     }
 
-    GetPendingToDelvery():Observable<any> {
+    GetPendingToDelvery(PendingToDelveryRequest):Observable<any> {
         var endPoint = "Delivery/GetPendingToDelivery";
-        return this.httpService.Get(endPoint);
+        return this.httpService.Post(endPoint, PendingToDelveryRequest);
     }
 
     UpdateDelivery(UpdateDelivery):Observable<any> {

@@ -26,7 +26,7 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
 export class AshtamangalaComponent {
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
-    { Id: "SUMMER", Text: 'Summer Time' },
+    { Id: "SUMMER", Text: 'Daylight Saving Time' },
     { Id: "DOUBLE", Text: 'Double Summer Time' },
     { Id: "WAR", Text: 'War Time' }
   ];

@@ -22,7 +22,10 @@ export class AssignRoleComponent implements OnInit {
   categorydata: ArrayStore;
   categories: SelectBoxModel[] = [
     { Id: "#S", Text: "Staff" },
-    { Id: "#D", Text: "Dealer" }];
+    { Id: "#D", Text: "Dealer" },
+    { Id: "#CUSTA", Text: "Customer-A" },
+    { Id: "#CUSTB", Text: "Customer-B" },
+    { Id: "#CUSTC", Text: "Customer-C" }];
   categoryvalue: any;
   userdata: any;
   FindParty: { Search: any; };

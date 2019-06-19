@@ -22,6 +22,8 @@ import { ItemService } from 'src/Services/ItemService/ItemService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 import { AuthService } from 'angularx-social-login';
 import { PartyService } from 'src/Services/PartyService/PartyService';
+import { VersionCheckService } from 'src/Services/version-check.service';
+import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -47,7 +49,7 @@ export class AppComponent {
   constructor(public loginService: LoginService, public itemService: ItemService, public horoScopeService: HoroScopeService, public partyService:PartyService,
     public storageService: StorageService, public orderService: OrderService, public router: Router, private errorService: ErrorService,
     public loadingSwitchService: LoadingSwitchService, public registrationService: RegistrationService, public authenticationService: AuthenticationService,
-    private screen: ScreenService, public appInfo: AppInfoService, public authService: AuthService) {
+    private screen: ScreenService, public appInfo: AppInfoService, public authService: AuthService, public versionCheckService:VersionCheckService) {
     
     this.subscription = this.errorService.loaderState
       .subscribe((errorData: ErrorData) => {
@@ -153,12 +155,18 @@ export class AppComponent {
       this.loginService.orderhistorypopupVisible = false;
     });
   }
+
+ngOnInit(){
+  this.versionCheckService.initVersionCheck(environment.versionCheckURL);
+}
+
   ClosePopUp() {
     this.popupVisible = false;
     this.loginService.orderhistorypopupVisible = false;
     this.loginService.proceedDeliveryAddress = false;
     this.loginService.proceedPayment = false;
   }
+
   onContinue_Click() {
 
   }
@@ -187,6 +195,7 @@ export class AppComponent {
   isAutorized() {
     return this.authenticationService.isLoggedIn;
   }
+
   private processRouterEvent(routerEvent: Event): void {
     if (routerEvent instanceof NavigationStart) {
       this.navigationInProgress = true;

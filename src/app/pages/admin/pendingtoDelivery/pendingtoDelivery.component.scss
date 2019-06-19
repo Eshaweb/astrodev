@@ -1,7 +1,34 @@
 .price-grid{
-    width: 50%;
+    width: 70%;
 }
+.clear {
+    clear: both;
+    }
 
+    .data {
+        float: left;
+        width: 60%;
+        text-align: left;
+    }
+    
+    .cap {
+        float: left; //margin-right: 12%;
+        width: 19%;
+        text-align: left;
+    }
+    a {
+        color: #b74610;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    .dx-field {
+        min-height: 5px;
+    }
+    // ::ng-deep .dx-list-item {
+    //     border-top: 1px solid #ddd;
+    //     color: #333;
+    //     margin-top: 10px;
+    // }
 @media (max-width: 800px) {
 
     .price-grid{

@@ -80,7 +80,7 @@ export class MuhurthaComponent {
     { Id: "TAM", Text: "தமிழ்" }];
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
-    { Id: "SUMMER", Text: 'Summer Time' },
+    { Id: "SUMMER", Text: 'Daylight Saving Time' },
     { Id: "DOUBLE", Text: 'Double Summer Time' },
     { Id: "WAR", Text: 'War Time' }
   ];
@@ -478,7 +478,7 @@ export class MuhurthaComponent {
       }
     }
     if(this.muhurthasvalue =="viha"){
-      this.rashiNak.splice(0, 0, this.rashiNak.find(function (obj) { return obj.OfWhome === "BrideGroom" }));
+      this.rashiNak.splice(0, 0, this.rashiNak.find(function (obj) { return obj.OfWhome === "Bridegroom" }));
        this.rashiNak.splice(2, 1);
     }
     else if(this.muhurthasvalue =="upny"){
