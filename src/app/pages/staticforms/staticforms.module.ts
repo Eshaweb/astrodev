@@ -14,6 +14,7 @@ import { TermsandConditionsComponent } from './termsand-conditions/termsand-cond
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { OfflinepaymentComponent } from './offline-payment/offline-payment.component';
 import { ComingsoonComponent } from './comingsoon/comingsoon.component';
+import { FAQComponent } from './faq/faq.component';
 
 @NgModule({
     imports: [
@@ -38,7 +39,7 @@ import { ComingsoonComponent } from './comingsoon/comingsoon.component';
     ],
     declarations: [
        AboutusComponent,ContactusComponent,DisclaimerComponent, ComingsoonComponent, 
-       PrivacyComponent, TermsandConditionsComponent, OfflinepaymentComponent
+       PrivacyComponent, TermsandConditionsComponent, OfflinepaymentComponent, FAQComponent
     ],
 })
 export class StaticFormsModule{

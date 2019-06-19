@@ -95,7 +95,7 @@ export function provideConfig() {
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService, MuhurthaService,
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
     LoaderService, SalesService, WalletService, OrderHistoryService, StorageService, AdminService,
-    //ProductService, 
+    ProductService, 
     RazorPayService, VersionCheckService,
     { provide: APP_BASE_HREF, useValue: '/' },
     {

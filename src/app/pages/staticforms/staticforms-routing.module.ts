@@ -8,6 +8,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { AuthGuard } from 'src/Services/auth/auth.guard';
 import { OfflinepaymentComponent } from './offline-payment/offline-payment.component';
 import { ComingsoonComponent } from './comingsoon/comingsoon.component';
+import { FAQComponent } from './faq/faq.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contactus', component: ContactusComponent },
   { path: 'comingsoon', component: ComingsoonComponent },
+  { path: 'faq', component: FAQComponent },
   { path: 'offlinePayment', component:OfflinepaymentComponent, canActivate: [AuthGuard] },
   ];
   
