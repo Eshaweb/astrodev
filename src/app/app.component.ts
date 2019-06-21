@@ -22,8 +22,8 @@ import { ItemService } from 'src/Services/ItemService/ItemService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 import { AuthService } from 'angularx-social-login';
 import { PartyService } from 'src/Services/PartyService/PartyService';
-import { VersionCheckService } from 'src/Services/version-check.service';
 import { environment } from 'src/environments/environment.prod';
+import { UpdateService } from 'src/Services/update.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -49,8 +49,8 @@ export class AppComponent {
   constructor(public loginService: LoginService, public itemService: ItemService, public horoScopeService: HoroScopeService, public partyService:PartyService,
     public storageService: StorageService, public orderService: OrderService, public router: Router, private errorService: ErrorService,
     public loadingSwitchService: LoadingSwitchService, public registrationService: RegistrationService, public authenticationService: AuthenticationService,
-    private screen: ScreenService, public appInfo: AppInfoService, public authService: AuthService, public versionCheckService:VersionCheckService) {
-    
+    private screen: ScreenService, public appInfo: AppInfoService, public authService: AuthService, private update: UpdateService) {
+    this.update.checkForUpdates();
     this.subscription = this.errorService.loaderState
       .subscribe((errorData: ErrorData) => {
         if (errorData != undefined) {
@@ -157,7 +157,7 @@ export class AppComponent {
   }
 
 ngOnInit(){
-  this.versionCheckService.initVersionCheck(environment.versionCheckURL);
+  //this.versionCheckService.initVersionCheck(environment.versionCheckURL);
 }
 
   ClosePopUp() {

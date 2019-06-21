@@ -577,7 +577,7 @@ export class MuhurthaComponent {
       this.annaPrashanaSelected=false;
       this.houseWarmingSelected=false;
       this.devaPrathistaSelected=false;
-      this.dataSource=[{Rashi: "0", Nakshatra: "0", OfWhome:'BrideGroom'},
+      this.dataSource=[{Rashi: "0", Nakshatra: "0", OfWhome:'Bridegroom'},
       {Rashi: "0", Nakshatra: "0", OfWhome:'Bride'}];
     }
     else if (event.value == "upny") {
