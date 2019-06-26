@@ -436,12 +436,14 @@ export class LoginFormComponent {
                     }
                     else{
                       this.loginService.proceedDeliveryAddress = true;
+                      this.loginService.proceedPayment = false;
                       this.loginService.orderhistorypopupVisible = true;
                     }
                   }
                   else if (data.StatusCode == 'BP' || data.StatusCode == 'PP') {
                     this.loginService.orderhistorypopupVisible = true;
                       this.loginService.proceedPayment = true;
+                      this.loginService.proceedDeliveryAddress = false;
                   }
                   else if (data.StatusCode == 'RD' && data.ItName == 'Wallet' ) {
                     this.loginService.orderhistorypopupVisible = false;

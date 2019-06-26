@@ -24,6 +24,7 @@ import { AuthService } from 'angularx-social-login';
 import { PartyService } from 'src/Services/PartyService/PartyService';
 import { environment } from 'src/environments/environment.prod';
 import { UpdateService } from 'src/Services/update.service';
+import { VersionCheckService } from 'src/Services/version-check.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -49,7 +50,7 @@ export class AppComponent {
   constructor(public loginService: LoginService, public itemService: ItemService, public horoScopeService: HoroScopeService, public partyService:PartyService,
     public storageService: StorageService, public orderService: OrderService, public router: Router, private errorService: ErrorService,
     public loadingSwitchService: LoadingSwitchService, public registrationService: RegistrationService, public authenticationService: AuthenticationService,
-    private screen: ScreenService, public appInfo: AppInfoService, public authService: AuthService, private update: UpdateService) {
+    private screen: ScreenService, public appInfo: AppInfoService, public authService: AuthService, private update: UpdateService, public versionCheckService:VersionCheckService) {
     this.update.checkForUpdates();
     this.subscription = this.errorService.loaderState
       .subscribe((errorData: ErrorData) => {
@@ -117,7 +118,8 @@ export class AppComponent {
       ItMastId: null,
       ItName: item.ItName
     };
-    StorageService.SetItem('OrderId', item.OrderId)
+    StorageService.SetItem('OrderId', item.OrderId);
+    StorageService.SetItem('ExtCode', item.ExtCode);
     this.storageService.SetOrderResponse(JSON.stringify(this.orderService.orderResponse));
     if (item.StatusCode == 'AP') {
       if(item.ItName=="Windows Product"){
@@ -157,7 +159,7 @@ export class AppComponent {
   }
 
 ngOnInit(){
-  //this.versionCheckService.initVersionCheck(environment.versionCheckURL);
+  this.versionCheckService.initVersionCheck(environment.versionCheckURL);
 }
 
   ClosePopUp() {

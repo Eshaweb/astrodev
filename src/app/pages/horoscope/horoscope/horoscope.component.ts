@@ -345,7 +345,20 @@ export class HoroscopeComponent {
      var newDate = dis[1] + "," + dis[2] + "," + dis[0];
     //var newDate = dis[1] + "," + dis[2] + "," + dis[0]+ "," +tis[0]+ "," +tis[1]+ "," +tis[2];
     var timestamp=new Date(newDate).getTime();
-    this.horoScopeService.getTimezone(lat, long, (timestamp/1000).toString()).subscribe((data: any) => {
+    // this.horoScopeService.getTimezone(lat, long, (timestamp/1000).toString()).subscribe((data: any) => {
+    //   this.horoRequest.ZH = parseInt((Math.abs(data.rawOffset) / 3600.00).toString());
+    //   this.horoRequest.ZM = parseInt((((Math.abs(data.rawOffset) / 3600.00) - this.horoRequest.ZH) * 60).toString());
+    //   if (data.rawOffset < 0) {
+    //     this.horoRequest.PN = "-";
+    //   }
+    //   else {
+    //     this.horoRequest.PN = "+";
+    //   }
+    //   this.timeZoneName = data.timeZoneName;
+    //   this.timeZoneId = data.timeZoneId;
+    //   this.cdr.detectChanges();
+    // });
+    this.horoScopeService.getTimezone(lat, long).subscribe((data: any) => {
       this.horoRequest.ZH = parseInt((Math.abs(data.rawOffset) / 3600.00).toString());
       this.horoRequest.ZM = parseInt((((Math.abs(data.rawOffset) / 3600.00) - this.horoRequest.ZH) * 60).toString());
       if (data.rawOffset < 0) {
@@ -360,31 +373,31 @@ export class HoroscopeComponent {
     });
   }
 
-  onDOBValueChanged(){
-    var bdate: Date = this.horoscopeForm.controls['Date'].value;
-    if (bdate instanceof Date) {
-      var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
-    }
-    else {
-      dateinString = bdate;
-    }
-    var dis = dateinString.split("-");
-    var newDate = dis[1] + "," + dis[2] + "," + dis[0];
-    var timestamp=new Date(newDate).getTime();
-    this.horoScopeService.getTimezone(this.latitude, this.longitude, (timestamp/1000).toString()).subscribe((data: any) => {
-      this.horoRequest.ZH = parseInt((Math.abs(data.rawOffset) / 3600.00).toString());
-      this.horoRequest.ZM = parseInt((((Math.abs(data.rawOffset) / 3600.00) - this.horoRequest.ZH) * 60).toString());
-      if (data.rawOffset < 0) {
-        this.horoRequest.PN = "-";
-      }
-      else {
-        this.horoRequest.PN = "+";
-      }
-      this.timeZoneName = data.timeZoneName;
-      this.timeZoneId = data.timeZoneId;
-      this.cdr.detectChanges();
-    });
-  }
+  // onDOBValueChanged(){
+  //   var bdate: Date = this.horoscopeForm.controls['Date'].value;
+  //   if (bdate instanceof Date) {
+  //     var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
+  //   }
+  //   else {
+  //     dateinString = bdate;
+  //   }
+  //   var dis = dateinString.split("-");
+  //   var newDate = dis[1] + "," + dis[2] + "," + dis[0];
+  //   var timestamp=new Date(newDate).getTime();
+  //   this.horoScopeService.getTimezone(this.latitude, this.longitude, (timestamp/1000).toString()).subscribe((data: any) => {
+  //     this.horoRequest.ZH = parseInt((Math.abs(data.rawOffset) / 3600.00).toString());
+  //     this.horoRequest.ZM = parseInt((((Math.abs(data.rawOffset) / 3600.00) - this.horoRequest.ZH) * 60).toString());
+  //     if (data.rawOffset < 0) {
+  //       this.horoRequest.PN = "-";
+  //     }
+  //     else {
+  //       this.horoRequest.PN = "+";
+  //     }
+  //     this.timeZoneName = data.timeZoneName;
+  //     this.timeZoneId = data.timeZoneId;
+  //     this.cdr.detectChanges();
+  //   });
+  // }
 
   onGenderChanged(event) {
     if (event.value == 'M') {

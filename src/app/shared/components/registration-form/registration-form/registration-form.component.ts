@@ -61,7 +61,9 @@ export class RegistrationFormComponent {
         this.route.params.subscribe(params => {
             if(params['id']!="id"){
                 this.registrationForm.controls['IntroParty'].setValue(params['id']);
-                this.IntroParty_disabled=true;
+                if(this.registrationForm.controls['IntroParty'].value.length==6){
+                    this.IntroParty_disabled=true;
+                }
             }
         });
         const UserNameContrl = this.registrationForm.get('UserName');
@@ -184,6 +186,9 @@ export class RegistrationFormComponent {
                     this.SMSOTPType = 'You will get an OTP. Please enter the OTP here';
                     //'OTP Sent to ' + oTPRequest.MobileNo + ' with Reference No. ' + data.OTPRef
                 }
+            }
+            else{
+                this.IntroParty_disabled=false;
             }
         });
     }

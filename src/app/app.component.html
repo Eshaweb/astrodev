@@ -158,7 +158,7 @@
 
 <dx-popup *ngIf="loginService.orderhistorypopupVisible"
     class="popup"
-    [width]="350"
+    [width]="400"
     [height]="300"
     [showTitle]="true"
     title="Last Pending Transaction"
@@ -169,7 +169,7 @@
         <div class="cap">Date</div> <div class="data"> :{{loginService.orderHistoryResponse.Date|  date:'dd/MM/yyyy'}}</div><div class="clear"></div>
         <div class="cap">Item Ordered</div><div class="data">:{{loginService.orderHistoryResponse.ItName}}</div><div class="clear"></div>
             <div class="cap">Order Id</div> <div class="data">:{{loginService.orderHistoryResponse.ExtCode}}</div><div class="clear"></div>
-            <div class="cap">Amount  </div> <div class="data">:{{loginService.orderHistoryResponse.Amount}}
+            <div class="cap">Amount  </div> <div class="data">:{{loginService.orderHistoryResponse.Amount|currency:'INR'}}
     </div>
         <div class="clear"></div>
         <div *ngIf="loginService.proceedDeliveryAddress">

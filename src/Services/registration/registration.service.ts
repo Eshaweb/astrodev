@@ -37,6 +37,7 @@ export class RegistrationService {
                 }
                 callback(errorMessage);
             }
+            callback(error);
             this.loadingSwitchService.loading = false;
         });
     }

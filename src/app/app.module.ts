@@ -46,6 +46,7 @@ import { ShareButtonsModule } from '@ngx-share/buttons';
 import { RazorPayService } from 'src/Services/RazorPayService/RazorPayService';
 import {ConnectionServiceModule, ConnectionServiceOptions, ConnectionServiceOptionsToken} from 'ng-connection-service';
 import { UpdateService } from 'src/Services/update.service';
+import { VersionCheckService } from 'src/Services/version-check.service';
 
 
 let config = new AuthServiceConfig([
@@ -97,7 +98,7 @@ export function provideConfig() {
     LoaderService, SalesService, WalletService, OrderHistoryService, StorageService, AdminService,
     ProductService, 
     RazorPayService, UpdateService,
-    //VersionCheckService,
+    VersionCheckService,
     { provide: APP_BASE_HREF, useValue: '/' },
     {
       provide: HTTP_INTERCEPTORS,

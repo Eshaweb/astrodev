@@ -10,6 +10,7 @@ export class ItemService {
     BuyNowVisible: boolean;
     ItemName: string;
   walletAmount: any;
+  AmounttoPay_Offline: any;
     constructor(public httpService: HttpService) {
 
     }
