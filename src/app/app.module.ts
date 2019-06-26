@@ -45,7 +45,7 @@ import { ProductService } from 'src/Services/ProductService/ProductService';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { RazorPayService } from 'src/Services/RazorPayService/RazorPayService';
 import {ConnectionServiceModule, ConnectionServiceOptions, ConnectionServiceOptionsToken} from 'ng-connection-service';
-import { VersionCheckService } from 'src/Services/version-check.service';
+import { UpdateService } from 'src/Services/update.service';
 
 
 let config = new AuthServiceConfig([
@@ -96,7 +96,8 @@ export function provideConfig() {
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
     LoaderService, SalesService, WalletService, OrderHistoryService, StorageService, AdminService,
     ProductService, 
-    RazorPayService, VersionCheckService,
+    RazorPayService, UpdateService,
+    //VersionCheckService,
     { provide: APP_BASE_HREF, useValue: '/' },
     {
       provide: HTTP_INTERCEPTORS,

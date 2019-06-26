@@ -49,7 +49,7 @@ export class OrderHistoryComponent implements OnInit {
     constructor(public horoScopeService: HoroScopeService, public storageService: StorageService, public loadingSwitchService: LoadingSwitchService,
         public sortingOrderHistoryPipe: SortingOrderHistoryPipe, private router: Router, private itemService: ItemService, private loginService: LoginService,
         service: OrderHistoryService, private orderService: OrderService) {
-
+            
         this.services = service.getServices();
         this.fielddata = new ArrayStore({
             data: this.fields,
@@ -59,10 +59,10 @@ export class OrderHistoryComponent implements OnInit {
             data: this.sortorders,
             key: "Id"
         });
-
         this.fieldvalue = this.fields[0].Id;
-        this.sortordervalue = this.sortorders[0].Id;
+        this.sortordervalue = this.sortorders[1].Id;
     }
+
     ngOnInit() {
         this.loadingSwitchService.loading = true;
         this.ItActId = "#SH";
@@ -72,7 +72,7 @@ export class OrderHistoryComponent implements OnInit {
         }
         this.orderService.OrderHistory(orderHistory).subscribe((data: any) => {
             this.orderHistoryResponse = data;
-            this.args = [this.fieldvalue, "OrderId"];
+            this.args = ["-" +this.fieldvalue, "OrderId"];
             this.sortingOrderHistoryPipe.transform(this.orderHistoryResponse, this.args);
             this.loadingSwitchService.loading = false;
         });
