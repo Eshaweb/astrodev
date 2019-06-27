@@ -356,7 +356,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       }
       //this.loading = false;
       //this.loadPanel.visible = false;
-      this.loadingSwitchService.loading = false;
+      //this.loadingSwitchService.loading = false;
     }
   }
 
@@ -377,18 +377,18 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
       if (data.Error == undefined) {
         this.horoScopeService.ExtCode = data.ExtCode;
         for (var i = 0; i < data.PayModes.length; i++) {
-          if (data.PayModes[i] == "ON") {
-            if (this.discountAmount == 0) {
-              if (this.differenceAmount > 0) {
-                this.payableAmountthroughPaymentGateWay = this.differenceAmount;
-              }
-              else {
-                this.payableAmountthroughPaymentGateWay = this.payableAmount;
-              }
+          if (this.discountAmount == 0) {
+            if (this.differenceAmount > 0) {
+              this.payableAmountthroughPaymentGateWay = this.differenceAmount;
             }
             else {
-              this.payableAmountthroughPaymentGateWay = this.payableAmountthroughPaymentGateWay;
+              this.payableAmountthroughPaymentGateWay = this.payableAmount;
             }
+          }
+          else {
+            this.payableAmountthroughPaymentGateWay = this.payableAmountthroughPaymentGateWay;
+          }
+          if (data.PayModes[i] == "ON") {
             //this.loadPanel.visible = true;
             this.loadingSwitchService.loading = true;
             this.pay();
@@ -403,6 +403,7 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
           else if (data.PayModes[i] == "OFF") {
             //this.loadPanel.visible = false;
             this.loadingSwitchService.loading = false;
+            StorageService.SetItem('AmounttoPay_Offline',this.payableAmountthroughPaymentGateWay);
             this.router.navigate(['/staticpages/offlinePayment']);
             break;
           }

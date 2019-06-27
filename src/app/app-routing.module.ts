@@ -31,7 +31,10 @@ const routes: Routes = [
   //   component: ServicesComponent,
   //   canActivate: [ AuthGuardService ]
   // },
- 
+  {
+    path: 'babyNaming',
+    loadChildren: './pages/babyNaming/babyNaming.module#BabyNamingModule'
+  },
   {
     path: 'horoscope',
     loadChildren: './pages/horoscope/horoscope.module#HoroscopeModule'

@@ -25,6 +25,8 @@ export class ProfileComponent {
   Id: any;
   MobileNoDisabled: boolean=true;
   EMailDisabled: boolean=true;
+  buttonName: string='Edit';
+  fieldDisabled: boolean=true;
   constructor(public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, 
     public partyService: PartyService, public panchangaService: PanchangaService, public route: ActivatedRoute, 
     public formbuilder: FormBuilder, public formBuilder: FormBuilder, public loginService:LoginService) {
@@ -78,22 +80,31 @@ export class ProfileComponent {
   }
   }
 
-  OnSave_click() {
+  OnSave_click(buttonName) {
     this.loadingSwitchService.loading = true;
-    var ProfileData = {
-      Id: this.Id,
-      Name: this.profileForm.controls['Name'].value,
-      Mobile: this.profileForm.controls['MobileNo'].value,
-      EMail: this.profileForm.controls['EMail'].value,
-      Address1: this.profileForm.controls['Address1'].value,
-      Address2: this.profileForm.controls['Address2'].value,
-      Address3: this.profileForm.controls['Address3'].value,
-      State:this.statevalue,
-      PinCode: this.profileForm.controls['PinCode'].value
-    }
-    this.partyService.UpdateProfile(ProfileData).subscribe((data: any) => {
+    if(buttonName=="Edit"){
+      this.fieldDisabled=false;
+      this.buttonName='Save';
       this.loadingSwitchService.loading = false;
-    });
+    }
+    else if(buttonName=="Save"){
+      var ProfileData = {
+        Id: this.Id,
+        Name: this.profileForm.controls['Name'].value,
+        Mobile: this.profileForm.controls['MobileNo'].value,
+        EMail: this.profileForm.controls['EMail'].value,
+        Address1: this.profileForm.controls['Address1'].value,
+        Address2: this.profileForm.controls['Address2'].value,
+        Address3: this.profileForm.controls['Address3'].value,
+        State:this.statevalue,
+        PinCode: this.profileForm.controls['PinCode'].value
+      }
+      this.partyService.UpdateProfile(ProfileData).subscribe((data: any) => {
+        this.buttonName='Edit';
+        this.fieldDisabled=true;
+        this.loadingSwitchService.loading = false;
+      });
+    }
   }
 
   public onDialogOKSelected(event) {

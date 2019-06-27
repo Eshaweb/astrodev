@@ -23,11 +23,24 @@
                   </div>
           </div>  
           <div class="clear"></div> 
-          <div class="dx-fieldset">
-                  <dx-button text="Search" type="success" (onClick)='OnSearch_click()' [useSubmitBehavior]="true">
-                  </dx-button>
-                  </div>
-    </div>
+        <div class="dx-fieldset">
+            <div class="dx-fieldset-column">
+                <div class="dx-field">
+                    <div class="dx-field-label">Status</div>
+                    <div class="dx-field-value">
+                        <dx-select-box (onValueChanged)="statusdataSelection($event)" [dataSource]="statusesdata"
+                            displayExpr="Text" valueExpr="Id" [searchEnabled]="true" [value]="statusvalue">
+                        </dx-select-box>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="dx-fieldset">
+            <dx-button text="Search" type="success" (onClick)='OnSearch_click()' [useSubmitBehavior]="true">
+            </dx-button>
+        </div>
+        </div>
 
 
 <div ng-if="dataSource">
@@ -51,6 +64,9 @@
       </dxi-column>
       <dxi-column
         dataField="PartyName">
+      </dxi-column>
+      <dxi-column
+        dataField="Contact">
       </dxi-column>
       <dxi-column
           dataField="Status">

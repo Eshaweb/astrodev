@@ -6,7 +6,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Name</div>
                     <div class="dx-field-value">
-                        <dx-text-box formControlName="Name" showClearButton="true"></dx-text-box>
+                        <dx-text-box [disabled]="fieldDisabled" formControlName="Name" showClearButton="true"></dx-text-box>
                 </div>
             </div>
             </div>
@@ -33,7 +33,7 @@
                             <div class="dx-field">
                                 <div class="dx-field-label">Address 1</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box formControlName="Address1" valueChangeEvent="keyup" showClearButton="true"></dx-text-box>
+                                    <dx-text-box [disabled]="fieldDisabled" formControlName="Address1" valueChangeEvent="keyup" showClearButton="true"></dx-text-box>
                                     <span style="color:red" id='err_Address1'></span>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                         <div class="dx-field">
                                 <div class="dx-field-label">Address 2</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box formControlName="Address2" valueChangeEvent="keyup" showClearButton="true"></dx-text-box>
+                                    <dx-text-box [disabled]="fieldDisabled" formControlName="Address2" valueChangeEvent="keyup" showClearButton="true"></dx-text-box>
                                     <span style="color:red" id='err_Address2'></span>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                         <div class="dx-field">
                                 <div class="dx-field-label">City</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box formControlName="Address3" valueChangeEvent="keyup" showClearButton="true"></dx-text-box>
+                                    <dx-text-box [disabled]="fieldDisabled" formControlName="Address3" valueChangeEvent="keyup" showClearButton="true"></dx-text-box>
                                     <span style="color:red" id='err_Address3'></span>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                         <div class="dx-field">
                                 <div class="dx-field-label">Postal Code</div>
                                 <div class="dx-field-value">
-                                    <dx-text-box mode='tel' formControlName="PinCode" valueChangeEvent="keyup" showClearButton="true"></dx-text-box>
+                                    <dx-text-box mode='tel' [disabled]="fieldDisabled" formControlName="PinCode" valueChangeEvent="keyup" showClearButton="true"></dx-text-box>
                                     <span style="color:red" id='err_PinCode'></span>
                                 </div>
                             </div>
@@ -112,9 +112,9 @@
     
         <div class="dx-fieldset"> 
                 <div class="dx-field centre-align">   
-            <dx-button (onClick)='OnSave_click()'
+            <dx-button (onClick)='OnSave_click(buttonName)'
                 id="button"
-                text="Save"
+                [text]="buttonName"
                 type="success"  
                 width="100"
                 [useSubmitBehavior]="true">

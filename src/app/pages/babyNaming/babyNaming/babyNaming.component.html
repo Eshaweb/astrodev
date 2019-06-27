@@ -1,0 +1,116 @@
+<h2 class="content-block">Baby Naming</h2>
+<div class="dx-card content-block responsive-paddings">
+    <form action="your-action" [formGroup]="babyNamingForm">
+        <div class="dx-fieldset">
+                    <div class="dx-fieldset-column">
+                        <div class="dx-field">
+                            <div class="dx-field-label">Date*</div>
+                            <div class="dx-field-value">
+                                <dx-date-box formControlName="Date" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" [(min)]="mindateinDateFormat"
+                                [(max)]="maxdateinDateFormat">
+                                </dx-date-box>
+                                <!-- <dx-date-box formControlName="Date" pickerType="list" type="date" displayFormat="dd/MM/yyyy"  [(ngModel)]="birthDateinDateFormat" [(min)]="mindateinDateFormat"
+                                [(max)]="maxdateinDateFormat">
+                                </dx-date-box> -->
+                                </div>
+                        </div>
+                        </div>
+                        <div class="dx-fieldset-column">
+                          <div class="dx-field">
+                              <div class="dx-field-label">Time*</div>
+                              <div class="dx-field-value">
+                                <!-- <dx-date-box formControlName="Time" width="300" type="datetime" [showClearButton]="true" displayFormat="shortTime" (onOpened)="opened($event)" dateSerializationFormat="HH:mm:ss">
+                              </dx-date-box> -->
+                              <dx-date-box formControlName="Time" type="time" [showClearButton]="true" pickerType="native" [(ngModel)]="birthTimeinDateFormat">
+                              </dx-date-box>
+                              </div>
+                          </div>
+                          </div>
+                          <div class="clear"></div>
+                          <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Gender*</div>
+                                <div class="dx-field-value">
+                                    <!-- <dx-radio-group
+                                     [items]="genders" 
+                                     [value]="genders[0]" 
+                                     (onValueChanged)="onGenderChanged($event)" 
+                                     layout="horizontal">
+                                    </dx-radio-group> -->
+                                    <dx-radio-group
+                                     [dataSource]="genderdata" 
+                                     [value]="genderValue"
+                                     displayExpr="Text"
+                                     valueExpr="Id" 
+                                     (onValueChanged)="onGenderChanged($event)" 
+                                     layout="horizontal">
+                                    </dx-radio-group>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Time Format*</div>
+                                <div class="dx-field-value">
+                                <dx-select-box 
+                                (onValueChanged)="timeformatdataSelection($event)"
+                                      [dataSource]="timeformatdata"
+                                      displayExpr="Text"
+                                      valueExpr="Id"
+                                      [readOnly]="true"
+                                      [searchEnabled]="true"
+                                      [value]="timeformatvalue">
+                                  </dx-select-box>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Language*</div>
+                                <div class="dx-field-value">
+                                  <!-- <dx-select-box formControlName="language"
+                                      [items]="languages"
+                                      placeholder="Choose Type"
+                                      displayExpr="Text"
+                                      valueExpr="Id"
+                                      showClearButton="true" [value]="languages[0]"
+                                  ></dx-select-box> -->
+                                  <dx-select-box
+                                  [dataSource]="languagedata"
+                                  (onValueChanged)="languagedataSelection($event)"
+                                  displayExpr="Text"
+                                  valueExpr="Id"
+                                  [searchEnabled]="true"
+                                  [value]="languagevalue" >
+                              </dx-select-box>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dx-fieldset-column">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Place*</div>
+                                <div class="dx-field-value">
+                                    <dx-text-box id="txtHome" valueChangeEvent="keyup" formControlName="Place" showClearButton="true" [(ngModel)]="panchangaRequest.Place"></dx-text-box>
+                                    <p style="color:red" id='err_Place'></p>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="clear"></div>
+                       
+            </div>
+    
+        <div class="dx-fieldset submit-btn">   
+                <div class="dx-field"> 
+            <dx-button [disabled]="!babyNamingForm.valid||!timeZoneName" (onClick)='OnSubmit_click()'
+                id="button"
+                text="Submit"
+                type="success"  
+                [useSubmitBehavior]="true">
+            </dx-button>
+                </div>
+        </div>
+    </form>
+</div>
+

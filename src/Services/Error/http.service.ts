@@ -28,7 +28,7 @@ export function applicationHttpClientCreator(http: HttpClient, errorService: Err
 })
 export class HttpService {
   private api = 'https://astroliteapi.azurewebsites.net/api/';
-  //private api = 'https://mahadevapi.azurewebsites.net/api/';
+  //private api = 'https://mahadevaapi.azurewebsites.net/api/';
   private errorData: ErrorData;
   url: string;
   params: Object;

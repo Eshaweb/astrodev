@@ -98,6 +98,9 @@ export class HomeComponent {
   OnNumerology_Click() {
     this.router.navigate(["/numerology"]);
   }
+  OnBabyNaming_Click() {
+    this.router.navigate(["/babyNaming"]);
+  }
   OnPanchanga_Click() {
     this.router.navigate(["/panchanga"]);
   }

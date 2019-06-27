@@ -54,7 +54,6 @@ export class DepositWalletComponent {
     public walletService: WalletService, public horoScopeService: HoroScopeService, public razorPayService:RazorPayService,
     public route: ActivatedRoute, public router: Router, public salesService: SalesService,
     public uiService: UIService, public formbuilder: FormBuilder, public itemService:ItemService) {
-    var endPoint = "Sales/GetPayCodes";
     this.loading=true;
     this.minAmount=50;
     this.maxAmount=20000;
@@ -71,6 +70,7 @@ export class DepositWalletComponent {
         if (data.Errors == undefined) {
           this.bonusAmount = data.Amount;
           this.bonusPercent=data.Percent;
+          this.pay(StorageService.GetItem('ExtCode'));
           this.loading=false;
         }
       });
@@ -112,6 +112,7 @@ export class DepositWalletComponent {
       this.walletBalanceAmount = 'Please Login to View';
     }
   }
+
   setErrorMessage(c: AbstractControl): void {
     let control = this.uiService.getControlName(c);//gives the control name property from particular service.
     document.getElementById('err_' + control).innerHTML = '';//To not display the error message, if there is no error.
@@ -119,6 +120,7 @@ export class DepositWalletComponent {
       document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
     }
   }
+
   private validationMessages = {
     amount_required: 'Enter Amount',
     amount_pattern: 'Do not match with pattern',
@@ -162,7 +164,7 @@ export class DepositWalletComponent {
     }
   }
 
-  onClick() {
+  onAddMoneyClick() {
     this.loadPanel.visible=true;
     var WalletPurchase = {
       PartyMastId: StorageService.GetItem('PartyMastId'),
@@ -178,8 +180,9 @@ export class DepositWalletComponent {
       }
       else if (data.IsValid == true && data.PayModes == "OFF") {
         this.loadPanel.visible=false;
-        StorageService.SetItem('OrderId',data.OrderId);
-        this.router.navigate(['/staticpages/offlinePayment']);
+       // StorageService.SetItem('OrderId',data.OrderId);
+       StorageService.SetItem('AmounttoPay_Offline',this.depositToWalletForm.controls['Amount'].value);
+       this.router.navigate(['/staticpages/offlinePayment']);
       }
       else if (data.IsValid == true) {
         this.loadPanel.visible=false;
@@ -264,5 +267,11 @@ export class DepositWalletComponent {
 
   gotoServies(){
     this.router.navigate(["/services"]);
+  }
+
+  ngOnDestroy(): void {
+    if(this.itemService.walletAmount!=undefined){
+      this.itemService.walletAmount=null;
+    }
   }
 }
