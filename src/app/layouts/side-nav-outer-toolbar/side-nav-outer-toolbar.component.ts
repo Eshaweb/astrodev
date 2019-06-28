@@ -156,6 +156,15 @@ export class SideNavOuterToolbarComponent implements OnInit {
       this.router.navigate(["/purchase/paidServices"]);
   }
   
+  onDownloadClick(){
+    if(StorageService.GetItem('ItActId')=='#BN'){
+
+    }
+    else if(StorageService.GetItem('ItActId')=='#PMGD'){
+      
+    }
+  }
+
 }
 
 @NgModule({

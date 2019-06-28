@@ -43,7 +43,7 @@
                             <li class="dropdown">
                                 <a class="more-menu" style= "padding: 0px;margin-left: 14px;">More</a>
                                 <div class="dropdown-content">
-                                <a [routerLink]="['/staticpages/comingsoon']">Baby Naming</a>
+                                <a [routerLink]="['/babyNaming']">Baby Naming</a>
                                 <a [routerLink]="['/staticpages/comingsoon']">Kaali Drushti</a>
                                 <a [routerLink]="['/staticpages/comingsoon']">Hanuman Jyothisha</a>
                                 <a [routerLink]="['/staticpages/comingsoon']">Prathamarthava Guna-Dosha</a>
@@ -53,8 +53,13 @@
                         </div>
             <ng-content></ng-content>
             <div class="float-bar" *ngIf='itemService.BuyNowVisible'>
-                <p class="buynow-text">For Detailed {{itemService.ItemName}} </p>
+                <p class="buynow-text">For detailed {{itemService.ItemName}} </p>
                 <dx-button class="buy-now-btn" text="Click here" (onClick)="onBuyNowClick()">
+                </dx-button>
+            </div>
+            <div class="float-bar" *ngIf='itemService.DownloadButtonVisible'>
+                <p class="buynow-text">To download this report</p>
+                <dx-button class="buy-now-btn" text="Click here" (onClick)="onDownloadClick()">
                 </dx-button>
             </div>
         </div>

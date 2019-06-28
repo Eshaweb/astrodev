@@ -38,8 +38,8 @@ export class BabyNamingFreeDataComponent {
     }
     this.itemService.ItActId = '#BN';
     StorageService.SetItem('ItActId', '#BN');
-    this.itemService.BuyNowVisible = true;
-    this.itemService.ItemName = 'Baby Naming';
+    this.itemService.DownloadButtonVisible = true;
+    //this.itemService.ItemName = 'Baby Naming';
   }
   constructor(public storageService: StorageService, private itemService: ItemService, public router: Router, public loginService: LoginService,
     public captionDbService: CaptionDbService, public panchangaService: PanchangaService) {

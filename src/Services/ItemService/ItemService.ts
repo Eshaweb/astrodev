@@ -11,6 +11,7 @@ export class ItemService {
     ItemName: string;
   walletAmount: any;
   AmounttoPay_Offline: any;
+  DownloadButtonVisible: boolean;
     constructor(public httpService: HttpService) {
 
     }
@@ -69,4 +70,8 @@ export class ItemService {
         return this.httpService.Post(endPoint, DeliveredList);
     }
 
+    DownloadSample(horoSample) {
+        var endPoint = "Item/DownloadSample";
+        return this.httpService.Post_PDF(endPoint, horoSample);
+    }
 }

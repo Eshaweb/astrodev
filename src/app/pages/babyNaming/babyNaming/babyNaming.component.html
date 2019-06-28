@@ -62,6 +62,7 @@
                         (onValueChanged)="timeformatdataSelection($event)" [dataSource]="timeformatdata"
                             displayExpr="Text" valueExpr="Id" [searchEnabled]="true" [value]="timeformatvalue">
                         </dx-select-box>
+                        <span style="color:red" id='err_Timeformat'></span>
                     </div>
                 </div>
             </div>
@@ -70,7 +71,7 @@
                     <div class="dx-field-label">Place*</div>
                     <div class="dx-field-value">
                         <dx-text-box id="txtHome" valueChangeEvent="keyup" formControlName="Place" showClearButton="true" [(ngModel)]="babyNamingRequest.Place"></dx-text-box>
-                        <p style="color:red" id='err_Place'></p>
+                        <span style="color:red" id='err_Place'></span>
                     </div>
                 </div>
             </div>
