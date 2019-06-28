@@ -47,6 +47,7 @@ import { RazorPayService } from 'src/Services/RazorPayService/RazorPayService';
 import {ConnectionServiceModule, ConnectionServiceOptions, ConnectionServiceOptionsToken} from 'ng-connection-service';
 import { UpdateService } from 'src/Services/update.service';
 import { VersionCheckService } from 'src/Services/version-check.service';
+import { BabyNamingService } from 'src/Services/BabyNamingService/BabyNamingService';
 
 
 let config = new AuthServiceConfig([
@@ -96,7 +97,7 @@ export function provideConfig() {
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService, MuhurthaService,
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
     LoaderService, SalesService, WalletService, OrderHistoryService, StorageService, AdminService,
-    ProductService, 
+    ProductService, BabyNamingService,
     RazorPayService, UpdateService,
     VersionCheckService,
     { provide: APP_BASE_HREF, useValue: '/' },

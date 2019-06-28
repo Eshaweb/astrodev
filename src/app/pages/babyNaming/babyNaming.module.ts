@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DxValidatorModule, DxButtonModule, DxValidationSummaryModule, DxDateBoxModule, DxSelectBoxModule, DxCheckBoxModule, DxTextBoxModule, DxRadioGroupModule, DxNumberBoxModule, DxPopupModule, DxValidationGroupModule } from 'devextreme-angular';
 import { BabyNamingComponent } from './babyNaming/babyNaming.component';
 import { BabyNamingRoutingModule } from './babyNaming-routing.module';
+import { BabyNamingFreeDataComponent } from './babyNaming-free-data/babyNaming-free-data.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { BabyNamingRoutingModule } from './babyNaming-routing.module';
 
     declarations: [
         BabyNamingComponent,
+        BabyNamingFreeDataComponent
     ]
 })
 export class BabyNamingModule {

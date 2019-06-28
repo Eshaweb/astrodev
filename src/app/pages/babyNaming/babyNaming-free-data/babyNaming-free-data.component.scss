@@ -1,0 +1,166 @@
+::ng-deep .widget-container {
+    margin-right: 240px;
+}
+::ng-deep #gallery {
+    margin: auto;
+    max-width: 450px;
+}
+::ng-deep .options {
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 180px;
+    top: 0;
+    background-color: rgba(191, 191, 191, 0.15);
+}
+::ng-deep .caption {
+    font-size: 18px;
+    font-weight: 500;
+}
+::ng-deep .option {
+    margin-top: 10px;
+}
+
+::ng-deep .dx-selectbox {
+    max-width: 400px;
+}
+
+::ng-deep .dx-tile-content {
+    height: 100%;
+}
+
+::ng-deep .dx-tile-content .image {
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    display: block;
+}
+
+::ng-deep .options {
+    padding: 20px;
+    background-color: rgba(191, 191, 191, 0.15);
+    margin-top: 20px;
+}
+
+::ng-deep .caption {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+::ng-deep .option {
+    margin-top: 10px;
+}
+
+::ng-deep .option>span {
+    width: 70px;
+    display: inline-block;
+}
+
+::ng-deep .option>.dx-widget {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    max-width: 350px;
+}
+
+.KannadaFont {
+    font-family: "kanfontfamily" !important;
+    //text-align: center;
+    font-size: 18px !important;
+}
+
+.EnglishFont {
+    font-family: sans-serif !important;
+   // text-align: center;
+    //font-size: 20px !important;
+}
+
+.HindiFont {
+    font-family: "hinfontfamily" !important;
+    //text-align: center;
+  //  font-size: 20px !important;
+}
+
+.MalyalamFont {
+    font-family: "malfontfamily" !important;
+    //text-align: center;
+    font-size: 16px !important;
+}
+
+.TamilFont {
+    font-family: "tamfontfamily" !important;
+    //text-align: center;
+    font-size: 16px !important;
+}
+
+
+
+:host-context(.screen-x-small) .logos-container {
+    svg {
+        width: 100%;
+        display: block;
+        &.plus {
+            margin: 0;
+        }
+    }
+}
+
+table,
+tr,
+td {
+    border: 1px solid black !important;
+}
+
+.dx-field-value,
+.dx-field-label {
+    text-align: left;
+}
+
+.dx-fieldset-column {
+    float: left;
+    width: 48%;
+} //   .dx-field-label {
+//       width: 200px !important;
+//   }
+.chakra {
+    margin-left: 300px;
+}
+
+.clear {
+    clear: both;
+}
+
+.dx-template-wrapper.dx-item-content.dx-tile-content {
+    padding: 24px;
+}
+
+.data {
+    float: left;
+    width: 60%;
+    text-align: left;
+}
+
+.cap {
+    float: left; //margin-right: 12%;
+    width: 38%;
+    text-align: left;
+}
+
+.panch-date {
+    font-size: 19px;
+    font-style: italic;
+    /* font-weight: 600; */
+}
+
+
+@media (max-width: 479px) {
+    .dx-fieldset-column {
+        float: left;
+        width: 100%;
+    }
+    .chakra {
+        margin-left: 2px;
+    }
+}

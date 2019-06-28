@@ -10,6 +10,7 @@ import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
 import { MuhurthaRequest } from 'src/Models/Muhurtha/MuhurthaRequest';
 import { MuhurthaResponse } from 'src/Models/Muhurtha/MuhurthaResponse';
 import { OrderResponse } from 'src/Models/OrderResponse';
+import { BabyNamingRequest } from 'src/Models/BabyNaming/BabyNamingRequest';
 
 @Injectable()
 export class StorageService {
@@ -62,6 +63,9 @@ export class StorageService {
             case '#PA':
                 return JSON.parse(sessionStorage.getItem("HoroModel")) as PanchangaRequest;
                 break;
+            case '#BN':
+                return JSON.parse(sessionStorage.getItem("HoroModel")) as BabyNamingRequest;
+                break;
             default:
                 break;
         }
@@ -84,6 +88,9 @@ export class StorageService {
                 return JSON.parse(sessionStorage.getItem("HoroResponse")) as MuhurthaResponse;
                 break;
             case '#PA':
+                return JSON.parse(sessionStorage.getItem("HoroResponse"));
+                break;
+            case '#BN':
                 return JSON.parse(sessionStorage.getItem("HoroResponse"));
                 break;
             default:

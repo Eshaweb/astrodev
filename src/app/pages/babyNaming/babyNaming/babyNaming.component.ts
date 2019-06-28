@@ -9,21 +9,19 @@ import { UIService } from 'src/Services/UIService/ui.service';
 import { MapsAPILoader } from '@agm/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import ArrayStore from 'devextreme/data/array_store';
-import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
-import { PanchangaRequest } from 'src/Models/Panchanga/PanchangaRequest';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/LoginService/LoginService';
+import { BabyNamingService } from 'src/Services/BabyNamingService/BabyNamingService';
+import { BabyNamingRequest } from 'src/Models/BabyNaming/BabyNamingRequest';
 @Component({
   selector: 'app-babyNaming',
   templateUrl: './babyNaming.component.html',
   styleUrls: ['./babyNaming.component.scss']
 })
 export class BabyNamingComponent implements OnInit {
-  panchangaRequest: PanchangaRequest;
+  babyNamingRequest: BabyNamingRequest;
   babyNamingForm: FormGroup;
-  languagedata: ArrayStore;
   timeformatdata: ArrayStore;
-  languagevalue: string;
   timeformatvalue: string;
   public loading = false;
   intLongDeg: number;
@@ -36,12 +34,6 @@ export class BabyNamingComponent implements OnInit {
   timeZoneName: string;
   timeZoneId: any;
   simpleProducts: string[];
-  languages: SelectBoxModel[] = [
-    { Id: "ENG", Text: "English" },
-    { Id: "HIN", Text: "हिन्दी" },
-    { Id: "KAN", Text: "ಕನ್ನಡ" },
-    { Id: "MAL", Text: "മലയാളം" },
-    { Id: "TAM", Text: "தமிழ்" }];
   timeformats: SelectBoxModel[] = [
     { Id: "STANDARD", Text: 'Standard Time' },
     { Id: "SUMMER", Text: 'Daylight Saving Time' },
@@ -54,33 +46,35 @@ export class BabyNamingComponent implements OnInit {
   genderValue: string;
   genderdata: ArrayStore;
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
-    private cdr: ChangeDetectorRef, public partyService: PartyService, public panchangaService: PanchangaService, public uiService: UIService,
+    private cdr: ChangeDetectorRef, public partyService: PartyService, public babyNamingService: BabyNamingService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
     this.mindateinDateFormat = new Date(1900, 0, 1);
     this.maxdateinDateFormat = new Date(2099, 11, 31);
+    this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
     this.loginService.isHomePage = false;
       this.babyNamingForm = this.formbuilder.group({
       Date: new Date(),
       Time: new Date(),
       Place: ['', [Validators.required]],
-      language: ['', []]
+      Timeformat: ['', [Validators.required]]
     }, {validator: this.validateDateField('Date')});
 
     const PlaceContrl = this.babyNamingForm.get('Place');
     PlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(PlaceContrl));
-    if (this.panchangaService.panchangaRequest != null) {
-      this.panchangaRequest = this.panchangaService.panchangaRequest;
-      this.birthDateinDateFormat = this.panchangaService.DateinDateFormat;
-      this.birthTimeinDateFormat = this.panchangaService.TimeinDateFormat;
+    if (this.babyNamingService.babyNamingRequest != null) {
+      this.babyNamingRequest = this.babyNamingService.babyNamingRequest;
+      this.birthDateinDateFormat = this.babyNamingService.DateinDateFormat;
+      this.birthTimeinDateFormat = this.babyNamingService.TimeinDateFormat;
     }
     else {
       this.birthDateinDateFormat = this.babyNamingForm.controls['Date'].value;
-      this.panchangaRequest = {
+      this.birthTimeinDateFormat = this.babyNamingForm.controls['Time'].value;
+      this.babyNamingRequest = {
         Date: this.babyNamingForm.controls['Date'].value,
         Time: null,
-        Place: this.panchangaService.place,
+        Gender:"M",
+        Place: this.babyNamingService.place,
         TimeFormat:this.timeformatvalue,
-        LangCode: null,
         LatDeg: null,
         LatMt: null,
         LongDeg: null,
@@ -105,6 +99,7 @@ export class BabyNamingComponent implements OnInit {
       document.getElementById('err_' + control).innerHTML = Object.keys(c.errors).map(key => this.validationMessages[control + '_' + key]).join(' ');
     }
   }
+
   private validationMessages = { //used in above method.
 
     Date_required: '*Select Date of Birth',
@@ -132,15 +127,10 @@ export class BabyNamingComponent implements OnInit {
       data: this.timeformats,
       key: "Id"
     });
-    this.languagedata = new ArrayStore({
-      data: this.languages,
-      key: "Id"
-    });
     this.genderdata = new ArrayStore({
       data: this.genders,
       key: "Id"
     });
-    this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
     this.mapsAPILoader.load().then(() => {
       let nativeHomeInputBox = document.getElementById('txtHome').getElementsByTagName('input')[0];
       let autocomplete = new google.maps.places.Autocomplete(nativeHomeInputBox, {
@@ -150,8 +140,8 @@ export class BabyNamingComponent implements OnInit {
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          this.panchangaService.place = place.formatted_address;
-          this.panchangaService.placeShort = place.address_components[0].long_name
+          this.babyNamingService.place = place.formatted_address;
+          this.babyNamingService.placeShort = place.address_components[0].long_name
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.getTimezone(this.latitude, this.longitude);
@@ -161,56 +151,54 @@ export class BabyNamingComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.panchangaService.panchangaRequest != null) {
-      this.timeformatvalue = this.panchangaService.panchangaRequest.TimeFormat;
-      this.languagevalue = this.panchangaService.panchangaRequest.LangCode;
-      this.timeZoneName = this.panchangaService.timeZoneName;
+    if (this.babyNamingService.babyNamingRequest != null) {
+      this.timeformatvalue = this.babyNamingService.babyNamingRequest.TimeFormat;
+      this.timeZoneName = this.babyNamingService.timeZoneName;
     }
     else {
       this.timeformatvalue = this.timeformats[0].Id;
-      this.languagevalue = this.languages[2].Id;
+      this.genderValue = this.genders[0].Id;
     }
   }
 
   getTimezone(lat, long) {
-    this.panchangaRequest.LatDeg = Math.abs(parseInt(lat));
-    this.panchangaRequest.LongDeg = Math.abs(parseInt(long));
+    this.babyNamingRequest.LatDeg = Math.abs(parseInt(lat));
+    this.babyNamingRequest.LongDeg = Math.abs(parseInt(long));
     this.intLatDeg = parseInt(lat);
     this.intLongDeg = parseInt(long);
-    this.panchangaRequest.LatMt = parseInt(Math.abs((lat - this.intLatDeg) * 60).toString());
-    this.panchangaRequest.LongMt = parseInt(Math.abs((long - this.intLongDeg) * 60).toString());
+    this.babyNamingRequest.LatMt = parseInt(Math.abs((lat - this.intLatDeg) * 60).toString());
+    this.babyNamingRequest.LongMt = parseInt(Math.abs((long - this.intLongDeg) * 60).toString());
     if (lat < 0) {
-      this.panchangaRequest.NS = "S";
+      this.babyNamingRequest.NS = "S";
     }
     else {
-      this.panchangaRequest.NS = "N";
+      this.babyNamingRequest.NS = "N";
     }
     if (long < 0) {
-      this.panchangaRequest.EW = "W";
+      this.babyNamingRequest.EW = "W";
     }
     else {
-      this.panchangaRequest.EW = "E";
+      this.babyNamingRequest.EW = "E";
     }
-    this.panchangaService.getTimezone(lat, long).subscribe((data: any) => {
-      this.panchangaRequest.ZH = parseInt((Math.abs(data.rawOffset) / 3600.00).toString());
-      this.panchangaRequest.ZM = parseInt((((Math.abs(data.rawOffset) / 3600.00) - this.panchangaRequest.ZH) * 60).toString());
+    this.babyNamingService.getTimezone(lat, long).subscribe((data: any) => {
+      this.babyNamingRequest.ZH = parseInt((Math.abs(data.rawOffset) / 3600.00).toString());
+      this.babyNamingRequest.ZM = parseInt((((Math.abs(data.rawOffset) / 3600.00) - this.babyNamingRequest.ZH) * 60).toString());
       if (data.rawOffset < 0) {
-        this.panchangaRequest.PN = "-";
+        this.babyNamingRequest.PN = "-";
       }
       else {
-        this.panchangaRequest.PN = "+";
+        this.babyNamingRequest.PN = "+";
       }
       this.timeZoneName = data.timeZoneName;
       this.timeZoneId = data.timeZoneId;
       this.cdr.detectChanges();
     });
   }
+
   timeformatdataSelection(event){
     this.timeformatvalue=event.value;
   }
-  languagedataSelection(event) {
-    this.languagevalue = event.value;
-  }
+
   onGenderChanged(event) {
     if (event.value == 'M') {
       this.genderValue = 'M';
@@ -219,9 +207,10 @@ export class BabyNamingComponent implements OnInit {
       this.genderValue = 'F';
     }
   }
+
   OnSubmit_click() {
     this.loadingSwitchService.loading = true;
-    this.panchangaService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
+    this.babyNamingService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
     var bdate: Date = this.babyNamingForm.controls['Date'].value;
     var btime: Date = this.babyNamingForm.controls['Date'].value;
     if (bdate instanceof Date) {
@@ -236,32 +225,32 @@ export class BabyNamingComponent implements OnInit {
     else {
       timeinString = "00:00:00";
     }
-    this.panchangaRequest = {
+    this.babyNamingRequest = {
       Date: dateinString,
       Time:timeinString,
-      Place: this.panchangaService.placeShort,
+      Gender:this.genderValue,
+      Place: this.babyNamingService.placeShort,
       TimeFormat:this.timeformatvalue,
-      LangCode: this.languagevalue,
-      LatDeg: this.panchangaRequest.LatDeg,
-      LatMt: this.panchangaRequest.LatMt,
-      LongDeg: this.panchangaRequest.LongDeg,
-      LongMt: this.panchangaRequest.LongMt,
-      NS: this.panchangaRequest.NS,
-      EW: this.panchangaRequest.EW,
-      ZH: this.panchangaRequest.ZH,
-      ZM: this.panchangaRequest.ZM,
-      PN: this.panchangaRequest.PN,
+      LatDeg: this.babyNamingRequest.LatDeg,
+      LatMt: this.babyNamingRequest.LatMt,
+      LongDeg: this.babyNamingRequest.LongDeg,
+      LongMt: this.babyNamingRequest.LongMt,
+      NS: this.babyNamingRequest.NS,
+      EW: this.babyNamingRequest.EW,
+      ZH: this.babyNamingRequest.ZH,
+      ZM: this.babyNamingRequest.ZM,
+      PN: this.babyNamingRequest.PN,
       PartyMastId:StorageService.GetItem('PartyMastId')
     }
-    this.panchangaService.panchangaRequest = this.panchangaRequest;
-    this.panchangaService.DateinDateFormat = bdate;
-    this.panchangaService.timeZoneName = this.timeZoneName;
-    this.storageService.SetHoroModel(JSON.stringify(this.panchangaRequest));
-    this.panchangaService.GetPanchanga(this.panchangaRequest).subscribe((data: any) => {
-      this.panchangaService.panchangaResponse = data;
-      this.storageService.SetHoroResponse(JSON.stringify(data));
+    this.babyNamingService.babyNamingRequest = this.babyNamingRequest;
+    this.babyNamingService.DateinDateFormat = bdate;
+    this.babyNamingService.timeZoneName = this.timeZoneName;
+    this.storageService.SetHoroModel(JSON.stringify(this.babyNamingRequest));
+    this.babyNamingService.GetBabyNames(this.babyNamingRequest).subscribe((data: any) => {
+      this.babyNamingService.babyNamingResponse = data.BabyNames;
+      this.storageService.SetHoroResponse(JSON.stringify(data.BabyNames));
       this.loadingSwitchService.loading = false;
-      this.router.navigate(["/panchanga/getPanchangaFreeData"]);
+      this.router.navigate(["/babyNaming/getBabyNamingFreeData"]);
     });
   }
 
