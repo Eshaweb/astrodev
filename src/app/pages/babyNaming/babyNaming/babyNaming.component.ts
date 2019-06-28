@@ -153,6 +153,7 @@ export class BabyNamingComponent implements OnInit {
   ngAfterViewInit(): void {
     if (this.babyNamingService.babyNamingRequest != null) {
       this.timeformatvalue = this.babyNamingService.babyNamingRequest.TimeFormat;
+      this.genderValue = this.babyNamingService.babyNamingRequest.Gender;
       this.timeZoneName = this.babyNamingService.timeZoneName;
     }
     else {
@@ -244,6 +245,7 @@ export class BabyNamingComponent implements OnInit {
     }
     this.babyNamingService.babyNamingRequest = this.babyNamingRequest;
     this.babyNamingService.DateinDateFormat = bdate;
+    this.babyNamingService.TimeinDateFormat = btime;
     this.babyNamingService.timeZoneName = this.timeZoneName;
     this.storageService.SetHoroModel(JSON.stringify(this.babyNamingRequest));
     this.babyNamingService.GetBabyNames(this.babyNamingRequest).subscribe((data: any) => {
