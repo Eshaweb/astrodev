@@ -1,25 +1,24 @@
 <div class="dx-card content-block responsive-paddings col-sm-6" style="float:left">
     <table *ngIf="firstPreference">
-        <thead>
-            <th style="text-align:center">First Preference</th>
-            <tr>
-                <th>Name</th>
-                <th>Meaning</th>
-            </tr>
-        </thead>
+
         <tbody>
+            <tr>
+                <th colspan="2">First Preference</th>
+                </tr>
+                <tr>
+                    <td style="text-align:center"><strong>Name</strong></td>
+                    <td style="text-align:center"><strong>Meaning</strong></td>
+                </tr>
             <tr *ngFor="let item of firstPreference">
+                <td style="width: 100px;"> &nbsp;{{item.Name}}</td>
                 <td>
-                    {{item.Name}}
-                </td>
-                <td>
-                    {{item.Meaning}}
+                    &nbsp;{{item.Meaning}}
                 </td>
             </tr>
         </tbody>
     </table>
     <br/>
-    <table *ngIf="secondPreference">
+    <!-- <table *ngIf="secondPreference">
         <thead>
             <th style="text-align:center">Second Preference</th>
             <tr>
@@ -37,5 +36,23 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
+
+    <table *ngIf="secondPreference">
+        <tbody>
+        <tr>
+        <th colspan="2">First Preference</th>
+        </tr>
+        <tr>
+        <td style="text-align:center"><strong>Name</strong></td>
+        <td style="text-align:center" ><strong>Meaning</strong></td>
+        </tr>
+        <tr *ngFor="let item of secondPreference">
+        <td style="width: 100px;"> &nbsp; {{item.Name}}</td>
+        <td > &nbsp;{{item.Meaning}}  </td>
+        </tr>
+        </tbody>
+        </table>
+
+
 </div>
