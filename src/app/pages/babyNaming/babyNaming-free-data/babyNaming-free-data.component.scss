@@ -1,10 +1,7 @@
 ::ng-deep .widget-container {
     margin-right: 240px;
 }
-::ng-deep #gallery {
-    margin: auto;
-    max-width: 450px;
-}
+
 ::ng-deep .options {
     padding: 20px;
     position: absolute;
@@ -97,15 +94,7 @@
 
 
 
-:host-context(.screen-x-small) .logos-container {
-    svg {
-        width: 100%;
-        display: block;
-        &.plus {
-            margin: 0;
-        }
-    }
-}
+
 
 table,
 tr,
@@ -125,9 +114,6 @@ td {
 } //   .dx-field-label {
 //       width: 200px !important;
 //   }
-.chakra {
-    margin-left: 300px;
-}
 
 .clear {
     clear: both;
@@ -149,11 +135,7 @@ td {
     text-align: left;
 }
 
-.panch-date {
-    font-size: 19px;
-    font-style: italic;
-    /* font-weight: 600; */
-}
+
 
 
 @media (max-width: 479px) {
@@ -161,7 +143,5 @@ td {
         float: left;
         width: 100%;
     }
-    .chakra {
-        margin-left: 2px;
-    }
+
 }
