@@ -3,12 +3,12 @@ import { Observable } from 'rxjs';
 import { HttpService } from '../Error/http.service';
 import { HttpClient, HttpBackend } from '@angular/common/http';
 import { LoginService } from '../LoginService/LoginService';
-import { BabyNamingRequest } from 'src/Models/BabyNaming/BabyNamingRequest';
+import { PrathamartavaRequest } from '../../Models/Prathamartava/PrathamartavaRequest';
 
 @Injectable()
-export class BabyNamingService {
+export class PrathamartavaService {
     systemDate: string;
-    babyNamingRequest: BabyNamingRequest;
+    prathamartavaRequest: PrathamartavaRequest;
     DateinDateFormat: Date;
     TimeinDateFormat: Date;
     place: string;
@@ -23,7 +23,7 @@ export class BabyNamingService {
         var endPoint = "BabyNaming/GetBabyNames";
         return this.httpService.Post(endPoint, babyNameRequest);
     }
-   
+    
     getTimezone(lat, long) {
         var apiKey = LoginService.GoogleAPIKey
         var url = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + long + '&timestamp=1458000000&key=' + apiKey

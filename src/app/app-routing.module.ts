@@ -36,6 +36,10 @@ const routes: Routes = [
     loadChildren: './pages/babyNaming/babyNaming.module#BabyNamingModule'
   },
   {
+    path: 'prathamartava',
+    loadChildren: './pages/prathamartava/prathamartava.module#PrathamartavaModule'
+  },
+  {
     path: 'horoscope',
     loadChildren: './pages/horoscope/horoscope.module#HoroscopeModule'
   },

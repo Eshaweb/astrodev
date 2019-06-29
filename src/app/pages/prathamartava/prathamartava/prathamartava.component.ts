@@ -13,14 +13,16 @@ import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 import { BabyNamingService } from 'src/Services/BabyNamingService/BabyNamingService';
 import { BabyNamingRequest } from 'src/Models/BabyNaming/BabyNamingRequest';
+import { PrathamartavaService } from '../../../../Services/PrathamartavaService/PrathamartavaService';
+import { PrathamartavaRequest } from '../../../../Models/Prathamartava/PrathamartavaRequest';
 @Component({
-  selector: 'app-babyNaming',
-  templateUrl: './babyNaming.component.html',
-  styleUrls: ['./babyNaming.component.scss']
+  selector: 'app-prathamartava',
+  templateUrl: './prathamartava.component.html',
+  styleUrls: ['./prathamartava.component.scss']
 })
-export class BabyNamingComponent implements OnInit {
-  babyNamingRequest: BabyNamingRequest;
-  babyNamingForm: FormGroup;
+export class PrathamartavaComponent implements OnInit {
+  prathamartavaRequest: PrathamartavaRequest;
+  prathamartavaForm: FormGroup;
   timeformatdata: ArrayStore;
   timeformatvalue: string;
   public loading = false;
@@ -40,40 +42,52 @@ export class BabyNamingComponent implements OnInit {
     { Id: "DOUBLE", Text: 'Double Summer Time' },
     { Id: "WAR", Text: 'War Time' }
   ];
+  languages: SelectBoxModel[] = [
+    { Id: "ENG", Text: "English" },
+    { Id: "HIN", Text: "हिन्दी" },
+    { Id: "KAN", Text: "ಕನ್ನಡ" },
+    { Id: "MAL", Text: "മലയാളം" },
+    { Id: "TAM", Text: "தமிழ்" }];
   mindateinDateFormat: Date;
   maxdateinDateFormat: Date;
   genders: SelectBoxModel[];
   genderValue: string;
   genderdata: ArrayStore;
+  languagevalue: any;
+  languagedata: ArrayStore;
   constructor(public loginService:LoginService,public storageService:StorageService, public loadingSwitchService: LoadingSwitchService, public toastr: ToastrManager, public route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder,
-    private cdr: ChangeDetectorRef, public partyService: PartyService, public babyNamingService: BabyNamingService, public uiService: UIService,
+    private cdr: ChangeDetectorRef, public partyService: PartyService, public prathamartavaService: PrathamartavaService, public uiService: UIService,
     private ngZone: NgZone, private mapsAPILoader: MapsAPILoader, public formbuilder: FormBuilder) {
     this.mindateinDateFormat = new Date(1900, 0, 1);
     this.maxdateinDateFormat = new Date(2099, 11, 31);
     this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
     this.loginService.isHomePage = false;
-      this.babyNamingForm = this.formbuilder.group({
+      this.prathamartavaForm = this.formbuilder.group({
+      Name: ['', [Validators.required, Validators.minLength(4)]],
       Date: new Date(),
       Time: new Date(),
+      LangCode:['', [Validators.required]],
       Place: ['', [Validators.required]],
       Timeformat: ['', [Validators.required]]
     }, {validator: this.validateDateField('Date')});
 
-    const PlaceContrl = this.babyNamingForm.get('Place');
+    const PlaceContrl = this.prathamartavaForm.get('Place');
     PlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(PlaceContrl));
-    if (this.babyNamingService.babyNamingRequest != null) {
-      this.babyNamingRequest = this.babyNamingService.babyNamingRequest;
-      this.birthDateinDateFormat = this.babyNamingService.DateinDateFormat;
-      this.birthTimeinDateFormat = this.babyNamingService.TimeinDateFormat;
+    if (this.prathamartavaService.prathamartavaRequest != null) {
+      this.prathamartavaRequest = this.prathamartavaService.prathamartavaRequest;
+      this.birthDateinDateFormat = this.prathamartavaService.DateinDateFormat;
+      this.birthTimeinDateFormat = this.prathamartavaService.TimeinDateFormat;
     }
     else {
-      this.birthDateinDateFormat = this.babyNamingForm.controls['Date'].value;
-      this.birthTimeinDateFormat = this.babyNamingForm.controls['Time'].value;
-      this.babyNamingRequest = {
-        Date: this.babyNamingForm.controls['Date'].value,
+      this.birthDateinDateFormat = this.prathamartavaForm.controls['Date'].value;
+      this.birthTimeinDateFormat = this.prathamartavaForm.controls['Time'].value;
+      this.prathamartavaRequest = {
+        Name:null,
+        LangCode:null,
+        Date: this.prathamartavaForm.controls['Date'].value,
         Time: null,
         Gender:"M",
-        Place: this.babyNamingService.place,
+        Place: this.prathamartavaService.place,
         TimeFormat:this.timeformatvalue,
         LatDeg: null,
         LatMt: null,
@@ -101,12 +115,16 @@ export class BabyNamingComponent implements OnInit {
   }
 
   private validationMessages = { //used in above method.
+    Name_required: '*Enter Name',
+    Name_minlength: '*Minimum length is 4',
 
     Date_required: '*Select Date of Birth',
 
-    Place_required: '*Enter Place',
+    LangCode_required:'Select Language',
 
-    language_required: '*Select Language',
+    Timeformat_required:'Select Timeformat',
+
+    Place_required: '*Enter Place'
 
   };
 
@@ -127,6 +145,10 @@ export class BabyNamingComponent implements OnInit {
       data: this.timeformats,
       key: "Id"
     });
+    this.languagedata = new ArrayStore({
+      data: this.languages,
+      key: "Id"
+    });
     this.genderdata = new ArrayStore({
       data: this.genders,
       key: "Id"
@@ -140,8 +162,8 @@ export class BabyNamingComponent implements OnInit {
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          this.babyNamingService.place = place.formatted_address;
-          this.babyNamingService.placeShort = place.address_components[0].long_name
+          this.prathamartavaService.place = place.formatted_address;
+          this.prathamartavaService.placeShort = place.address_components[0].long_name
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.getTimezone(this.latitude, this.longitude);
@@ -151,44 +173,46 @@ export class BabyNamingComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.babyNamingService.babyNamingRequest != null) {
-      this.timeformatvalue = this.babyNamingService.babyNamingRequest.TimeFormat;
-      this.genderValue = this.babyNamingService.babyNamingRequest.Gender;
-      this.timeZoneName = this.babyNamingService.timeZoneName;
+    if (this.prathamartavaService.prathamartavaRequest != null) {
+      this.timeformatvalue = this.prathamartavaService.prathamartavaRequest.TimeFormat;
+      this.genderValue = this.prathamartavaService.prathamartavaRequest.Gender;
+      this.languagevalue = this.prathamartavaService.prathamartavaRequest.LangCode;
+      this.timeZoneName = this.prathamartavaService.timeZoneName;
     }
     else {
       this.timeformatvalue = this.timeformats[0].Id;
       this.genderValue = this.genders[0].Id;
+      this.languagevalue = this.languages[2].Id;
     }
   }
 
   getTimezone(lat, long) {
-    this.babyNamingRequest.LatDeg = Math.abs(parseInt(lat));
-    this.babyNamingRequest.LongDeg = Math.abs(parseInt(long));
+    this.prathamartavaRequest.LatDeg = Math.abs(parseInt(lat));
+    this.prathamartavaRequest.LongDeg = Math.abs(parseInt(long));
     this.intLatDeg = parseInt(lat);
     this.intLongDeg = parseInt(long);
-    this.babyNamingRequest.LatMt = parseInt(Math.abs((lat - this.intLatDeg) * 60).toString());
-    this.babyNamingRequest.LongMt = parseInt(Math.abs((long - this.intLongDeg) * 60).toString());
+    this.prathamartavaRequest.LatMt = parseInt(Math.abs((lat - this.intLatDeg) * 60).toString());
+    this.prathamartavaRequest.LongMt = parseInt(Math.abs((long - this.intLongDeg) * 60).toString());
     if (lat < 0) {
-      this.babyNamingRequest.NS = "S";
+      this.prathamartavaRequest.NS = "S";
     }
     else {
-      this.babyNamingRequest.NS = "N";
+      this.prathamartavaRequest.NS = "N";
     }
     if (long < 0) {
-      this.babyNamingRequest.EW = "W";
+      this.prathamartavaRequest.EW = "W";
     }
     else {
-      this.babyNamingRequest.EW = "E";
+      this.prathamartavaRequest.EW = "E";
     }
-    this.babyNamingService.getTimezone(lat, long).subscribe((data: any) => {
-      this.babyNamingRequest.ZH = parseInt((Math.abs(data.rawOffset) / 3600.00).toString());
-      this.babyNamingRequest.ZM = parseInt((((Math.abs(data.rawOffset) / 3600.00) - this.babyNamingRequest.ZH) * 60).toString());
+    this.prathamartavaService.getTimezone(lat, long).subscribe((data: any) => {
+      this.prathamartavaRequest.ZH = parseInt((Math.abs(data.rawOffset) / 3600.00).toString());
+      this.prathamartavaRequest.ZM = parseInt((((Math.abs(data.rawOffset) / 3600.00) - this.prathamartavaRequest.ZH) * 60).toString());
       if (data.rawOffset < 0) {
-        this.babyNamingRequest.PN = "-";
+        this.prathamartavaRequest.PN = "-";
       }
       else {
-        this.babyNamingRequest.PN = "+";
+        this.prathamartavaRequest.PN = "+";
       }
       this.timeZoneName = data.timeZoneName;
       this.timeZoneId = data.timeZoneId;
@@ -198,6 +222,10 @@ export class BabyNamingComponent implements OnInit {
 
   timeformatdataSelection(event){
     this.timeformatvalue=event.value;
+  }
+
+  languagedataSelection(event) {
+    this.languagevalue = event.value;
   }
 
   onGenderChanged(event) {
@@ -211,9 +239,9 @@ export class BabyNamingComponent implements OnInit {
 
   OnSubmit_click() {
     this.loadingSwitchService.loading = true;
-    this.babyNamingService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
-    var bdate: Date = this.babyNamingForm.controls['Date'].value;
-    var btime: Date = this.babyNamingForm.controls['Date'].value;
+    this.prathamartavaService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
+    var bdate: Date = this.prathamartavaForm.controls['Date'].value;
+    var btime: Date = this.prathamartavaForm.controls['Date'].value;
     if (bdate instanceof Date) {
       var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
     }
@@ -226,33 +254,35 @@ export class BabyNamingComponent implements OnInit {
     else {
       timeinString = "00:00:00";
     }
-    this.babyNamingRequest = {
+    this.prathamartavaRequest = {
+      Name:this.prathamartavaForm.controls['Name'].value,
+      LangCode:this.languagevalue,
       Date: dateinString,
       Time:timeinString,
       Gender:this.genderValue,
-      Place: this.babyNamingService.placeShort,
+      Place: this.prathamartavaService.placeShort,
       TimeFormat:this.timeformatvalue,
-      LatDeg: this.babyNamingRequest.LatDeg,
-      LatMt: this.babyNamingRequest.LatMt,
-      LongDeg: this.babyNamingRequest.LongDeg,
-      LongMt: this.babyNamingRequest.LongMt,
-      NS: this.babyNamingRequest.NS,
-      EW: this.babyNamingRequest.EW,
-      ZH: this.babyNamingRequest.ZH,
-      ZM: this.babyNamingRequest.ZM,
-      PN: this.babyNamingRequest.PN,
+      LatDeg: this.prathamartavaRequest.LatDeg,
+      LatMt: this.prathamartavaRequest.LatMt,
+      LongDeg: this.prathamartavaRequest.LongDeg,
+      LongMt: this.prathamartavaRequest.LongMt,
+      NS: this.prathamartavaRequest.NS,
+      EW: this.prathamartavaRequest.EW,
+      ZH: this.prathamartavaRequest.ZH,
+      ZM: this.prathamartavaRequest.ZM,
+      PN: this.prathamartavaRequest.PN,
       PartyMastId:StorageService.GetItem('PartyMastId')
     }
-    this.babyNamingService.babyNamingRequest = this.babyNamingRequest;
-    this.babyNamingService.DateinDateFormat = bdate;
-    this.babyNamingService.TimeinDateFormat = btime;
-    this.babyNamingService.timeZoneName = this.timeZoneName;
-    this.storageService.SetHoroModel(JSON.stringify(this.babyNamingRequest));
-    this.babyNamingService.GetBabyNames(this.babyNamingRequest).subscribe((data: any) => {
-      this.babyNamingService.babyNamingResponse = data.BabyNames;
+    this.prathamartavaService.prathamartavaRequest = this.prathamartavaRequest;
+    this.prathamartavaService.DateinDateFormat = bdate;
+    this.prathamartavaService.TimeinDateFormat = btime;
+    this.prathamartavaService.timeZoneName = this.timeZoneName;
+    this.storageService.SetHoroModel(JSON.stringify(this.prathamartavaRequest));
+    this.prathamartavaService.GetBabyNames(this.prathamartavaRequest).subscribe((data: any) => {
+      this.prathamartavaService.babyNamingResponse = data.BabyNames;
       this.storageService.SetHoroResponse(JSON.stringify(data.BabyNames));
       this.loadingSwitchService.loading = false;
-      this.router.navigate(["/babyNaming/getBabyNamingFreeData"]);
+      this.router.navigate(["/prathamartava/getPrathamartavaFreeData"]);
     });
   }
 

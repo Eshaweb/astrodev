@@ -153,16 +153,16 @@ export class LoginFormComponent {
     }
   }
 
-  ShowPassword_Click(event) {
-    if (event.value == true) {
-      this.ShowPassword_checkBoxValue = true;
-      this.textboxMode = "text";
-    }
-    else {
-      this.ShowPassword_checkBoxValue = false;
-      this.textboxMode = "password";
-    }
-  }
+  // ShowPassword_Click(event) {
+  //   if (event.value == true) {
+  //     this.ShowPassword_checkBoxValue = true;
+  //     this.textboxMode = "text";
+  //   }
+  //   else {
+  //     this.ShowPassword_checkBoxValue = false;
+  //     this.textboxMode = "password";
+  //   }
+  // }
 
   public signIn(event) {
     event.dialog.close();

@@ -101,6 +101,9 @@ export class HomeComponent {
   OnBabyNaming_Click() {
     this.router.navigate(["/babyNaming"]);
   }
+  OnPrathamartava_Click(){
+    this.router.navigate(["/prathamartava"]);
+  }
   OnPanchanga_Click() {
     this.router.navigate(["/panchanga"]);
   }
