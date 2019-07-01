@@ -414,13 +414,14 @@ export class MuhurthaComponent {
       this.languagevalue = this.muhurthaService.muhurthaRequest.LangCode;
       this.reportSizevalue = this.muhurthaService.muhurthaRequest.ReportSize;
       this.timeZoneName = this.muhurthaService.timeZoneName;
+      this.yathradirectionsvalue=this.muhurthaService.muhurthaRequest.Direction;
     }
     else {
       this.timeformatvalue = this.timeformats[0].Id;
       this.languagevalue = this.languages[2].Id;
       this.reportSizevalue = this.reportSizes[1].Id;
       //this.muhurthasvalue = this.muhurthas[0].Id;
-      //this.yathradirectionsvalue = this.yathradirections[0].Id;
+      this.yathradirectionsvalue = this.yathradirections[0].Id;
     }
 
   }

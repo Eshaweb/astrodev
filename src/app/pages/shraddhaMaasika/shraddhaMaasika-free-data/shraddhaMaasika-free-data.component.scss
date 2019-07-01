@@ -1,0 +1,627 @@
+
+    // .cover {
+    //     //overflow:hidden;
+    //     background-color: lightgray;
+    //     border: solid 1px black;
+    //     overflow-y: scroll;
+    //     padding: 5px;
+    //   }
+    //   .page {
+    //     //overflow:hidden;
+    //     background-color: white;
+    //     border: solid 1px gray;
+    //     font-weight: bold;
+    //     text-align: center;
+    //     font-size: 18px;
+    //     overflow-y: scroll;
+    //     padding: 5px;
+    //   //  line-height: 100px;
+    //   }
+
+
+// .customFont {
+//     font-family: "MyWebFont" !important;
+//     text-align: center
+//     }
+//     table{
+//         width:400px;
+//         height:400px;
+//       }
+//       td{
+//         background-color:white;
+//       }
+
+.float-bar {
+    position: fixed;
+    right: 70px;
+    top: 295px;
+    transition: all 0.2s ease-in 0s;//this is the key attribute
+    z-index: 9999;
+    cursor: pointer;
+    background: #db7234;
+    padding: 20px;
+    border-radius: 10px 10px 0px 0px;
+    color: #fff;
+    font-size: 18px;
+    }
+.float-button:hover {
+        right: -7px;//hide it by pushing it off the screen
+        }
+
+.float-bar-button{
+    padding: 13px;
+    border-radius: 20px;
+    margin-left: 15px;
+}
+
+.data {
+    float: left;
+    width: 40%;
+    text-align: left;
+}
+
+.cap {
+    float: left; //margin-right: 12%;
+    width: 19%;
+    text-align: left;
+}
+
+.dx-button {
+    float: none !important;
+}
+
+h2 {
+    font-size: 20px !important;
+    text-align: center;
+}
+
+.note {
+    color: deeppink;
+}
+
+.KannadaFont {
+    font-family: "kanfontfamily" !important;
+    text-align: justify;
+    font-size: 18px;
+}
+
+.EnglishFont {
+    font-family: sans-serif !important;
+    text-align: center;
+    font-size: 16px;
+}
+
+.HindiFont {
+    font-family: "hinfontfamily" !important;
+    text-align: center;
+    font-size: 16px ;
+}
+
+.MalyalamFont {
+    font-family: "malfontfamily" !important;
+    text-align: center;
+    font-size: 16px;
+}
+
+.TamilFont {
+    font-family: "tamfontfamily" !important;
+    text-align: center;
+    font-size: 16px;
+}
+
+
+
+// :host-context(.screen-x-small) .logos-container {
+//     svg {
+//         width: 100%;
+//         display: block;
+//         &.plus {
+//             margin: 0;
+//         }
+//     }
+// }
+
+table,
+tr,
+td {
+    border: 2px solid #db7234 !important;
+    border-collapse: collapse;
+}
+
+.dx-field-value,
+.dx-field-label {
+    text-align: left;
+}
+
+.dx-fieldset-column {
+    float: left;
+    width: 48%;
+} // .dx-field-label {
+//     width: 200px !important;
+// }
+// .Maha-Nakshatra{
+//   width: 50%;
+// }
+.chakram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+}
+
+.clear {
+    clear: both;
+}
+
+.chakra.KannadaFont {
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 20px;
+}
+
+.prediction {
+    border-bottom: 1px solid;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+
+.dx-field-kundali{
+width: 50%;
+float: left;
+
+}
+.dx-field-kundali-value{
+    width: 50%;
+    float: left;
+    
+    }
+@media (max-width: 479px) {
+    .dx-fieldset-column {
+        float: left;
+        width: 100%;
+    }
+    table {
+        width: 280px !important;
+    }
+    .chakra {
+        margin-left: 2px;
+        overflow-x: auto;
+    }
+    .dx-field-label {
+        width: 50% !important;
+    }
+    .responsive-paddings {
+        padding: 5px !important;
+    }
+    .data {
+        float: left;
+        width: 45%;
+        text-align: left;
+    }
+    .cap {
+        float: left; //margin-right: 12%;
+        width: 50%;
+        text-align: left;
+    }
+
+    .dx-field-kundali{
+        width: 80%;
+        float: left;
+        margin-bottom: 10px;
+        
+        }
+        .dx-field-kundali-value{
+            width: 100%;
+            float: left;
+            
+            }
+            .content h2{
+
+                margin-left: 0px
+            }
+}
+
+
+
+.square1 {
+    height: 300px;
+    width: 600px;
+    overflow: hidden;
+    margin: -18px;
+    border-right:none;
+    border-left:none;
+  }
+  .square2 {
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+    margin-left: -256px;
+    border-left:none;
+    border-right:none;
+  }
+  .square3 {
+    height: 300px;
+    width: 600px;
+    overflow: hidden;
+    margin: -18px;
+    border-left:none;
+    border-right:none;
+    margin-top:-128px;
+  }
+  .square4 {
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+    margin-left: -256px;  
+    border-left:none;
+    border-right:none;
+    margin-top:-135px;
+    position: relative;
+      top: 12px;
+  }
+  
+//   svg {
+//     height: 100%;
+//     width: 100%;
+//   }
+  polygon {
+    fill: aliceblue;
+    stroke: crimson;
+    stroke-linejoin: round;
+  }
+  polygon:hover {
+    fill: cornflowerblue;
+  }
+  text{
+    fill:black;
+    font-size:1em;
+    font-family:arial;
+  }
+  
+  text.sub-text{
+    fill:black;
+    font-size:1em;
+    font-family:arial;
+  }
+  
+  g:hover > text{
+    display:block;
+  }
+
+
+
+
+
+
+
+
+
+  .background {
+    width: 100px;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+    border: solid 1px #000;
+  }
+  
+  /* .line {
+    width: 112px;
+    height: 47px;
+    border-bottom: 1px solid red;
+    transform: translateY(-20px) translateX(5px) rotate(27deg);
+    position: absolute;
+    z-index: -1;
+  } */
+  
+  .line {
+    width: 153px;
+    height: 100%;
+    border-bottom: 1px solid #db7234;
+    -webkit-transform: translateY(-26px) translateX(11px) rotate(38deg);
+    transform: translateY(-33px) translateX(6px) rotate(32deg);
+    position: absolute;
+  //  z-index: -1;
+}
+
+td {
+    width: 130px;
+    height: 80px;
+}
+
+.line2 {
+    width: 150px;
+    height: 93px;
+    border-bottom: 1px solid #db7234 ;
+    transform: translateY(30px) translateX(14px) rotate(148deg);
+    position: absolute;
+  //  z-index: -1;
+}
+  .background>div {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  
+  .bottom {
+    position: absolute;
+    bottom: 1px;
+    left: 1px;
+  }
+  .bottom1 {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+  }
+  .top {
+    position: absolute;
+    top: 1px;
+    right: 44px;
+  }
+  .top1 {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+  }
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+
+
+
+
+
+
+
+/*
+	@name kundali
+*/
+/* Only edit this if you know what you are doing! */
+/*
+	@name kundali
+*/
+/* Only edit this if you know what you are doing! */
+body { margin: 0px; padding: 0px; font-family:"Arial"; /*overflow-x:hidden;*/ }
+
+/* Only edit this if you know what you are doing! */
+img { position: absolute; display: block; margin: 0px; border: none; padding: 0px; }
+
+/* Only edit this if you know what you are doing! */
+.north-kundali { position: absolute; }
+
+#content-container { display: table; position: relative;  overflow: hidden;  }
+
+#content-container > div{ position: relative; top:inherit; }
+#page_kundali_ek1 {
+	top: 0px;
+	left: 0px;
+	width: 375px;
+	height: 400px;
+	overflow:hidden;
+}
+
+#_bg__kundali_ek2 {
+	top: 0px;
+	left: 0px;
+	width: 375px;
+	height: 400px;
+	background:rgba(255,255,255,255);
+}
+
+// div { position: absolute; }
+
+#path_1 {
+	top: 29px;
+	left: 24px;
+	width: 335.5px;
+	height: 337px;
+}
+
+// #content-container > div{ position: relative; top:inherit; }
+// #page_kundali_ek1 {
+// 	top: 0px;
+// 	left: 0px;
+// 	width: 375px;
+// 	height: 812px;
+// 	overflow:hidden;
+// }
+
+#line_1 {
+	top: 31px;
+	left: 23px;
+	width: 168.70709228516px;
+	height: 168.70709228516px;
+}
+
+
+#line_2 {
+	top: 31px;
+	left: 191px;
+	width: 165.70922851562px;
+	height: 166.70495605469px;
+}
+
+
+#line_3 {
+	top: 197px;
+	left: 23px;
+	width: 180.68231201172px;
+	height: 168.73106384277px;
+}
+
+
+#line_4 {
+	top: 197px;
+	left: 203px;
+	width: 153.73936462402px;
+	height: 168.67333984375px;
+}
+
+
+#line_5 {
+	top: 29px;
+	left: 23px;
+	width: 336.70812988281px;
+	height: 337.7060546875px;
+}
+
+
+#line_6 {
+	top: 29px;
+	left: 23px;
+	width: 336.70812988281px;
+	height: 337.7060546875px;
+}
+
+
+#rahu_ketu___mandi {
+	top: 36px;
+	left: 63px;
+	width: 80px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#rahu_ketu___mandi_ek1 {
+	top: 91px;
+	left: 150px;
+	width: 80px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#rahu_ketu___mandi_ek2 {
+	top: 36px;
+	left: 244px;
+	width: 80px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#___rahu__ketu__mandi {
+	top: 82px;
+	left: 302px;
+	width: 56px;
+	height: 57px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#rahu_ketu___mandi_ek3 {
+	top: 178px;
+	left: 79px;
+	width: 80px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#rahu__ketu_mandi {
+	top: 104px;
+    left: 26px;
+	width: 49px;
+	height: 57px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#rahu_ketu___mandi_ek4 {
+	top: 251px;
+	left: 158px;
+	width: 80px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#rahu_ketu___mandi_ek5 {
+	top: 187px;
+    left: 206px;
+	width: 80px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#______rahu__ketu_mandi {
+	top: 342px;
+	left: 72px;
+	width: 87px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#__rahu__ketu__mandi {
+	top: 234px;
+	left: 24px;
+	width: 54px;
+	height: 57px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#_____rahu_ketu_shukra {
+	top: 323px;
+    left: 249px;
+	width: 93px;
+	height: 39px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+#__rahu_ketu_mandi {
+	top: 231px;
+    left: 324px;
+	width: 49px;
+	height: 57px;
+	font-family: Helvetica Neue;
+	font-size: 16px;
+	text-align: left;
+	color:#707070;
+}
+
+
+
+/* Add your custom CSS here */

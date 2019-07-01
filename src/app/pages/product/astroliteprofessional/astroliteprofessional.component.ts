@@ -233,12 +233,6 @@ export class AstroliteProfessionalComponent implements OnInit {
     else {
       this.Kannada_checkBoxValue = false;
       this.WindowsPriceRequest.Language.splice(this.WindowsPriceRequest.Language.indexOf('KAN'), 1);
-    //if(this.WindowsPriceRequest.Language.length==0&&this.WindowsPriceRequest.Products.length==1&&this.WindowsPriceRequest.Products[0]=='KAN'){
-      if(this.WindowsPriceRequest.Language.length==0){
-
-    this.Kannada_checkBoxValue = true;
-      this.WindowsPriceRequest.Language.push('KAN');
-    }
     }
     this.GetWindowsPrice(this.WindowsPriceRequest);
   }
@@ -309,11 +303,11 @@ export class AstroliteProfessionalComponent implements OnInit {
     if (WindowsPriceRequest.Products.length != 0) {
       this.productService.GetWindowsPrice(WindowsPriceRequest).subscribe((data) => {
         this.productPrice=data;
-        if(this.CoupenCodeForm.controls['CouponCode'].value!=undefined){
+        if(this.CoupenCodeForm.controls['CouponCode'].value!=""){
           this.onApplyCouponCode_click();
         }
         this.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice);
-        this.loadingSwitchService.loading = false;
+        //this.loadingSwitchService.loading = false;
       });
     }
     else {

@@ -33,7 +33,7 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
       public captionDbService:CaptionDbService, public muhurthaService: MuhurthaService) {
         //this.muhurthaResponse=muhurthaService.muhurthaResponse;
         this.muhurthaResponse=this.storageService.GetHoroResponse('#MU');
-        if(this.muhurthaResponse.CountDesc!=null){
+        if(this.muhurthaResponse.Buy!=false){
           this.itemService.BuyNowVisible=true;
           this.itemService.ItemName = 'Muhurtha';
           this.itemService.ItActId='#MU';

@@ -40,6 +40,14 @@ const routes: Routes = [
     loadChildren: './pages/prathamartava/prathamartava.module#PrathamartavaModule'
   },
   {
+    path: 'kaalidrushti',
+    loadChildren: './pages/kaalidrushti/kaalidrushti.module#KaalidrushtiModule'
+  },
+  {
+    path: 'shraddhaMaasika',
+    loadChildren: './pages/shraddhaMaasika/shraddhaMaasika.module#ShraddhaMaasikaModule'
+  },
+  {
     path: 'horoscope',
     loadChildren: './pages/horoscope/horoscope.module#HoroscopeModule'
   },

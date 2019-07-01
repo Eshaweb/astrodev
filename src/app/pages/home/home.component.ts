@@ -104,6 +104,9 @@ export class HomeComponent {
   OnPrathamartava_Click(){
     this.router.navigate(["/prathamartava"]);
   }
+  OnKaalidrushti_Click(){
+    this.router.navigate(["/kaalidrushti"]);
+  }
   OnPanchanga_Click() {
     this.router.navigate(["/panchanga"]);
   }

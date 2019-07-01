@@ -49,6 +49,7 @@ import { UpdateService } from 'src/Services/update.service';
 import { VersionCheckService } from 'src/Services/version-check.service';
 import { BabyNamingService } from 'src/Services/BabyNamingService/BabyNamingService';
 import { PrathamartavaService } from '../Services/PrathamartavaService/PrathamartavaService';
+import { KaaliDrushtiService } from 'src/Services/KaaliDrushtiService/KaaliDrushtiService';
 
 
 let config = new AuthServiceConfig([
@@ -98,7 +99,7 @@ export function provideConfig() {
     HoroScopeService, MatchMakingService, LoginService, LoadingSwitchService, MuhurthaService,
     PartyService, RegistrationService, AuthGuard, AstamangalaService, UIService, RegistrationService, 
     LoaderService, SalesService, WalletService, OrderHistoryService, StorageService, AdminService,
-    ProductService, BabyNamingService, PrathamartavaService,
+    ProductService, BabyNamingService, PrathamartavaService, KaaliDrushtiService,
     RazorPayService, UpdateService,
     VersionCheckService,
     { provide: APP_BASE_HREF, useValue: '/' },
