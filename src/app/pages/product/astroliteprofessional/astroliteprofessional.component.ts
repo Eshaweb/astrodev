@@ -234,11 +234,10 @@ export class AstroliteProfessionalComponent implements OnInit {
       this.Kannada_checkBoxValue = false;
       this.WindowsPriceRequest.Language.splice(this.WindowsPriceRequest.Language.indexOf('KAN'), 1);
     //if(this.WindowsPriceRequest.Language.length==0&&this.WindowsPriceRequest.Products.length==1&&this.WindowsPriceRequest.Products[0]=='KAN'){
-      if(this.WindowsPriceRequest.Language.length==0){
-
-    this.Kannada_checkBoxValue = true;
-      this.WindowsPriceRequest.Language.push('KAN');
-    }
+      // if (this.WindowsPriceRequest.Language.length == 0) {
+      //   this.Kannada_checkBoxValue = true;
+      //   this.WindowsPriceRequest.Language.push('KAN');
+      // }
     }
     this.GetWindowsPrice(this.WindowsPriceRequest);
   }
@@ -251,6 +250,10 @@ export class AstroliteProfessionalComponent implements OnInit {
     else {
       this.Malayalam_checkBoxValue = false;
       this.WindowsPriceRequest.Language.splice(this.WindowsPriceRequest.Language.indexOf('MAL'), 1);
+      // if (this.WindowsPriceRequest.Language.length == 0) {
+      //   this.Kannada_checkBoxValue = true;
+      //   this.WindowsPriceRequest.Language.push('MAL');
+      // }
     }
     this.GetWindowsPrice(this.WindowsPriceRequest);
   }
@@ -263,6 +266,10 @@ export class AstroliteProfessionalComponent implements OnInit {
     else {
       this.Tamilu_checkBoxValue = false;
       this.WindowsPriceRequest.Language.splice(this.WindowsPriceRequest.Language.indexOf('TAM'), 1);
+      // if (this.WindowsPriceRequest.Language.length == 0) {
+      //   this.Kannada_checkBoxValue = true;
+      //   this.WindowsPriceRequest.Language.push('TAM');
+      // }
     }
     this.GetWindowsPrice(this.WindowsPriceRequest);
   }
@@ -275,6 +282,10 @@ export class AstroliteProfessionalComponent implements OnInit {
     else {
       this.Hindi_checkBoxValue = false;
       this.WindowsPriceRequest.Language.splice(this.WindowsPriceRequest.Language.indexOf('HIN'), 1);
+      // if (this.WindowsPriceRequest.Language.length == 0) {
+      //   this.Kannada_checkBoxValue = true;
+      //   this.WindowsPriceRequest.Language.push('HIN');
+      // }
     }
     this.GetWindowsPrice(this.WindowsPriceRequest);
   }
@@ -313,7 +324,7 @@ export class AstroliteProfessionalComponent implements OnInit {
           this.onApplyCouponCode_click();
         }
         this.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice);
-        this.loadingSwitchService.loading = false;
+        //this.loadingSwitchService.loading = false;
       });
     }
     else {
