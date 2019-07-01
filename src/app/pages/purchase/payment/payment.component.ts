@@ -59,6 +59,8 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   remainingAmount: any;
   partyEmail: any;
   partyMobileNo: any;
+  Mobile: any;
+  EMail: any;
 
 
   constructor(public storageService: StorageService, private itemService: ItemService, private orderService: OrderService,
@@ -418,49 +420,53 @@ export class PaymentComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   pay() {
-    var options = {
-      description: 'Credits towards AstroLite',
-      image: 'https://i.ibb.co/dkhhhR1/icon-72x72.png',
-      currency: 'INR',
-      key: this.loginService.razorPayKey,
-      amount: +(this.payableAmountthroughPaymentGateWay * 100).toFixed(),
-      name: StorageService.GetItem('Name'),
-      "handler": (response) => {
-        this.paymentId = response.razorpay_payment_id;
-        var Payment = {
-          PaymentId: this.paymentId
+    this.partyService.GetProfile(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
+      this.Mobile=data.Mobile;
+      this.EMail = data.EMail;
+      var options = {
+        description: 'Credits towards AstroLite',
+        image: 'https://i.ibb.co/dkhhhR1/icon-72x72.png',
+        currency: 'INR',
+        key: this.loginService.razorPayKey,
+        amount: +(this.payableAmountthroughPaymentGateWay * 100).toFixed(),
+        name: StorageService.GetItem('Name'),
+        "handler": (response) => {
+          this.paymentId = response.razorpay_payment_id;
+          var Payment = {
+            PaymentId: this.paymentId
+          }
+          this.PaymentComplete(Payment);
+        },
+        prefill: {
+          //email: this.partyEmail,
+          email: this.EMail,
+          contact: this.Mobile
+        },
+        notes: {
+          order_id: this.horoScopeService.ExtCode,
+        },
+        theme: {
+          color: '#d05b19'
+        },
+        modal: {
+          ondismiss: () => {
+            //this.loadPanel.visible = false;
+            this.loadingSwitchService.loading = false;
+          }
         }
-        this.PaymentComplete(Payment);
-      },
-      prefill: {
-        //email: this.partyEmail,
-        // email: 'shailesh@gmail.com',
-        // contact: this.partyMobileNo
-      },
-      notes: {
-        order_id: this.horoScopeService.ExtCode,
-      },
-      theme: {
-        color: '#d05b19'
-      },
-      modal: {
-        ondismiss: () => {
-          //this.loadPanel.visible = false;
-          this.loadingSwitchService.loading = false;
-        }
-      }
-    };
-
-    var rzp1 = new Razorpay(options, successCallback, cancelCallback);
-    //rzp1.open();
-    var successCallback = (payment_id) => {
-      alert('payment_id: ' + payment_id);
-    };
-
-    var cancelCallback = (error) => {
-      alert(error.description + ' (Error ' + error.code + ')');
-    };
-    rzp1.open(options, successCallback, cancelCallback);
+      };
+  
+      var rzp1 = new Razorpay(options, successCallback, cancelCallback);
+      //rzp1.open();
+      var successCallback = (payment_id) => {
+        alert('payment_id: ' + payment_id);
+      };
+  
+      var cancelCallback = (error) => {
+        alert(error.description + ' (Error ' + error.code + ')');
+      };
+      rzp1.open(options, successCallback, cancelCallback);
+    });
   }
 
   PaymentComplete(Payment) {

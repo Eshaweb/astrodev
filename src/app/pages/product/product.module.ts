@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
-import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule, DxLoadPanelModule, DxResponsiveBoxModule, DxPopupModule, DxNumberBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxCheckBoxModule, DxTextBoxModule, DxSelectBoxModule, DxLoadPanelModule, DxResponsiveBoxModule, DxPopupModule, DxNumberBoxModule, DxTooltipModule, DxTemplateModule } from 'devextreme-angular';
 import { DxiRowModule } from 'devextreme-angular/ui/nested/row-dxi';
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product/product.component';
@@ -18,8 +18,8 @@ import { AstroliteProfessionalComponent } from './astroliteprofessional/astrolit
         FormsModule,
         ProductRoutingModule,
         DxCheckBoxModule,
-        DxButtonModule,
-        DxTextBoxModule,
+        DxButtonModule, DxTemplateModule,
+        DxTextBoxModule, DxTooltipModule,
         DxSelectBoxModule, DxNumberBoxModule,
         DxLoadPanelModule,DxPopupModule,
         DxResponsiveBoxModule,DxiRowModule

@@ -63,4 +63,9 @@ export class OrderService {
         var endPoint = "Order/LastPendingTransaction?PartyMastId="+ PartyMastId;
         return this.httpService.Get(endPoint);
     }
+
+    OrderFreeReport(FreeReport):Observable<any>{
+        var endPoint = "Order/OrderFreeReport";
+        return this.httpService.Post(endPoint, FreeReport);
+    }
 }

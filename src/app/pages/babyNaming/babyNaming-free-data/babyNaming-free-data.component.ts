@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { CaptionDbService } from 'src/Services/CaptionService/captionDb.service';
-import { HoroRequest } from 'src/Models/HoroScope/HoroRequest';
-import { PrashnaFreeModel } from 'src/Models/Astamangala/prashnaFreeModel';
 import { Router } from '@angular/router';
 import { ItemService } from 'src/Services/ItemService/ItemService';
-import { Caption } from 'src/Models/Caption';
 import { PanchangaService } from 'src/Services/PanchangaService/PanchangaService';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 import { LoginService } from 'src/Services/LoginService/LoginService';
@@ -65,6 +62,6 @@ export class BabyNamingFreeDataComponent {
   }
 
   ngOnDestroy(): void {
-    this.itemService.BuyNowVisible = false;
+    this.itemService.DownloadButtonVisible = false;
   }
 }

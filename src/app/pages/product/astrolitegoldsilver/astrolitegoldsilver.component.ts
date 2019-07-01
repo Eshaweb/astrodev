@@ -16,6 +16,7 @@ import { WalletService } from 'src/Services/Wallet/WalletService';
 import { ProductPrice } from 'src/Models/ProductPrice';
 import { DxLoadPanelComponent } from 'devextreme-angular';
 import { RazorPayService } from 'src/Services/RazorPayService/RazorPayService';
+import { PartyService } from '../../../../Services/PartyService/PartyService';
 declare var Razorpay: any;
 
 @Component({
@@ -45,8 +46,11 @@ export class AstrolitegoldsilverComponent implements OnInit {
   walletdiscountPercentage: any;
   walletdiscountAmount: any;
   imgsrc: string;
+  Mobile: any;
+  EMail: any;
+  defaultVisible: boolean;
   constructor(public walletService:WalletService, public formbuilder: FormBuilder, public uiService: UIService, private loadingSwitchService: LoadingSwitchService,
-    private itemService: ItemService, public productService: ProductService, public horoScopeService: HoroScopeService,
+    private itemService: ItemService, public productService: ProductService, public horoScopeService: HoroScopeService, public partyService:PartyService,
     public router: Router, public orderService: OrderService, public loginService: LoginService, public razorPayService:RazorPayService) {
     this.loginService.path = undefined;
     this.paymentModeForm = this.formbuilder.group({
@@ -110,6 +114,11 @@ export class AstrolitegoldsilverComponent implements OnInit {
       }
     });
   }
+
+  toggleDefault() {
+    this.defaultVisible = !this.defaultVisible;
+}
+
   Horoscope_Click(event) {
     this.loadingSwitchService.loading = true;
     if (event.value == true) {
@@ -268,6 +277,9 @@ export class AstrolitegoldsilverComponent implements OnInit {
   }
 
   pay() {
+    this.partyService.GetProfile(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
+      this.Mobile=data.Mobile;
+      this.EMail = data.EMail;
     var options = {
       description: 'Credits towards AstroLite',
       image: 'https://i.imgur.com/3g7nmJC.png',
@@ -283,8 +295,8 @@ export class AstrolitegoldsilverComponent implements OnInit {
         this.PaymentComplete(Payment);
       },
       prefill: {
-        // email: 'shailesh@eshaweb.com',
-        // contact: '9731927204'
+        email: this.EMail,
+        contact: this.Mobile
       },
       notes: {
         order_id: this.horoScopeService.ExtCode,
@@ -307,6 +319,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
     var cancelCallback = (error) => {
       alert(error.description + ' (Error ' + error.code + ')');
     };
+  });
     //  RazorpayCheckout.open(options, successCallback, cancelCallback);
   }
 

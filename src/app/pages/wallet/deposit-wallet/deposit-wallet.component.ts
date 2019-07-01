@@ -14,6 +14,7 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
 import { ItemService } from '../../../../Services/ItemService/ItemService';
 import { RazorPayService } from '../../../../Services/RazorPayService/RazorPayService';
 import { DxLoadPanelComponent } from 'devextreme-angular';
+import { PartyService } from '../../../../Services/PartyService/PartyService';
 
 declare var Razorpay: any;
 
@@ -47,12 +48,14 @@ export class DepositWalletComponent {
   walletBalanceAmount: any;
   bonusPercent: string='0%';
   showSuccess: boolean=false;
+  Mobile: any;
+  EMail: any;
   
   
 
   constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, 
     public walletService: WalletService, public horoScopeService: HoroScopeService, public razorPayService:RazorPayService,
-    public route: ActivatedRoute, public router: Router, public salesService: SalesService,
+    public route: ActivatedRoute, public router: Router, public salesService: SalesService, public partyService:PartyService,
     public uiService: UIService, public formbuilder: FormBuilder, public itemService:ItemService) {
     this.loading=true;
     this.minAmount=50;
@@ -191,6 +194,9 @@ export class DepositWalletComponent {
   }
 
   pay(ExtCode) {
+    this.partyService.GetProfile(StorageService.GetItem('PartyMastId')).subscribe((data: any) => {
+      this.Mobile=data.Mobile;
+      this.EMail = data.EMail;
     var options = {
       description: 'Credits towards AstroLite',
       image: 'https://i.imgur.com/3g7nmJC.png',
@@ -208,8 +214,8 @@ export class DepositWalletComponent {
         this.next(Payment);
       },
       prefill: {
-        // email: 'shailesh@eshaweb.com',
-        // contact: '9731927204',
+        email: this.EMail,
+        contact: this.Mobile,
         // name: 'Shailesh'
       },
       notes: {
@@ -237,6 +243,7 @@ export class DepositWalletComponent {
       alert(error.description + ' (Error ' + error.code + ')');
     };
     rzp1.open(options, successCallback, cancelCallback);
+  });
   }
 
   next(Payment) {

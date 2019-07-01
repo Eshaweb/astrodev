@@ -4,7 +4,7 @@ import { ScreenService } from '../../shared/services';
 import { DxDrawerModule } from 'devextreme-angular/ui/drawer';
 import { DxScrollViewModule } from 'devextreme-angular/ui/scroll-view';
 import { CommonModule } from '@angular/common';
-
+import { interval, Observable, timer } from 'rxjs';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 // import { navigation } from 'src/app/app-navigation';
@@ -13,6 +13,8 @@ import { DxNavBarModule, DxButtonModule, DxMenuModule } from 'devextreme-angular
 import { LoadingSwitchService } from 'src/Services/LoadingSwitchService/LoadingSwitchService';
 import { LoginService } from 'src/Services/LoginService/LoginService';
 import { ItemService } from 'src/Services/ItemService/ItemService';
+import { OrderService } from '../../../Services/OrderService/OrderService';
+import { HoroScopeService } from '../../../Services/HoroScopeService/HoroScopeService';
 @Component({
   selector: 'app-side-nav-outer-toolbar',
   templateUrl: './side-nav-outer-toolbar.component.html',
@@ -37,9 +39,16 @@ export class SideNavOuterToolbarComponent implements OnInit {
   isMobileResolution: boolean;
   menuItems: any;
   serviceList:any;
+  buttonId: any;
+  subscribe: import("f:/EshaWebTechnologies/Working folder/astrodev/node_modules/rxjs/internal/Subscription").Subscription;
+  sub: any;
+  timeExceeded: boolean = false;
+  showSuccess: boolean;
+  ItName: any;
 
   constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, private screen: ScreenService, 
-    private router: Router, public itemService:ItemService) {
+    private router: Router, public itemService:ItemService, public orderService:OrderService, public storageService:StorageService,
+  public horoScopeService:HoroScopeService) {
     if (window.location.pathname == '/home') {
       this.loginService.isHomePage=true;
      }
@@ -156,15 +165,77 @@ export class SideNavOuterToolbarComponent implements OnInit {
       this.router.navigate(["/purchase/paidServices"]);
   }
   
-  onDownloadClick(){
-    if(StorageService.GetItem('ItActId')=='#BN'){
-
+  onDownloadClick() {
+    if (StorageService.GetItem('ItActId') == '#BN') {
+      this.loadingSwitchService.loading=true;
+      var FreeReport = {
+        OrderId:null,
+        PartyMastId:StorageService.GetItem('PartyMastId'),
+        JSONData:JSON.stringify(this.storageService.GetHoroRequest('#BN')),
+        ItActId:StorageService.GetItem('ItActId'),
+        ItMastId:"#BNF"
+      }
+      this.orderService.OrderFreeReport(FreeReport).subscribe((data: any) => {
+        var OrderId = data.OrderId;
+        this.orderService.CheckForResult(data.OrderId).subscribe((data) => {
+          if (data.AstroReportId.length != 0) {
+            this.buttonId = data.AstroReportId[0].split('_')[0];
+            this.ItName=data.AstroReportId[0].split('_')[1];
+            this.DownloadResult(this.buttonId);
+          }
+          else {
+            const source = timer(1000, 1000);
+            this.subscribe = source.subscribe(val => {
+              if (val == 30) {
+                //this.loadPanel.visible = false;
+                this.loadingSwitchService.loading= false;
+                this.sub.unsubscribe();
+                this.subscribe.unsubscribe();
+                this.timeExceeded = true;
+              }
+            });
+            this.sub = interval(10000).subscribe((val) => {
+              // this.orderService.CheckForResult(this.orderService.orderResponse.OrderId).subscribe((data) => {
+              this.orderService.CheckForResult(OrderId).subscribe((data) => {
+                if (data.AstroReportId.length != 0) {
+                  this.buttonId = data.AstroReportId[0].split('_')[0];
+                  this.DownloadResult(this.buttonId);
+                }
+              });
+            });
+          }
+        });
+      });
     }
-    else if(StorageService.GetItem('ItActId')=='#PMGD'){
-      
+    else if (StorageService.GetItem('ItActId') == '#PMGD') {
+
     }
   }
-
+  DownloadResult(buttonId) {
+    //this.horoScopeService.DownloadResult(buttonId, (data) => {
+    this.horoScopeService.DownloadResult(buttonId).subscribe((data:any)=> {
+      var newBlob = new Blob([data], { type: "application/pdf" });
+      // const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
+      const fileName: string = this.ItName + '.pdf';
+      const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+      var url = window.URL.createObjectURL(newBlob);
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      //this.loading = false;
+      this.showSuccess = true;
+      //this.clearParameters();
+      this.storageService.RemoveDataFromSession();
+      //this.loadPanel.visible = false;
+      this.loadingSwitchService.loading= false;
+      this.sub.unsubscribe();
+      this.subscribe.unsubscribe();
+      console.clear();
+    });
+  }
 }
 
 @NgModule({

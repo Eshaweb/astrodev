@@ -104,7 +104,7 @@ export class BabyNamingComponent implements OnInit {
 
     Date_required: '*Select Date of Birth',
 
-    Place_required: '*Enter Place',
+    Place_required: '*Enter Birth Place',
 
     language_required: '*Select Language',
 
