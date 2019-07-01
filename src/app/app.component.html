@@ -3,8 +3,8 @@
         <router-outlet></router-outlet>
         <app-footer>
             Copyright © 2011-2018 Astrolite.in.
-           
-           
+
+
         </app-footer>
     </app-side-nav-inner-toolbar>
         <app-single-card *ngIf="registrationService.registered">
@@ -35,7 +35,7 @@
                   <img src="assets/images/shop.png" style="width: 90%;" />
                 </div>
               </div> -->
-              
+
               <div class="dx-card footer-menu-padding ">
 <div class="footer-inner">
                 <div class=" footer-menu">
@@ -50,21 +50,21 @@
                   <a [routerLink]="['/staticpages/TandC']">Terms of Use</a>
                   <a [routerLink]="['/staticpages/disclaimer']">Disclaimer</a>
                 </div>
-               
+
                 <div class="footer-menu">
                     <a class="middle-heading">Need Help?</a>
                   <a href="#">Support</a>
                   <a [routerLink]="['/staticpages/faq']">FAQ</a>
                   <a [routerLink]="['/staticpages/contactus']">Contact</a>
                 </div>
-                
+
                 <!-- <div class=" footer-menu subscribe">
                     <div class="middle-heading">Subscribe</div>
-                    
+
                     <dx-text-box value="Your email address"style=" width: 175px;float: left;"></dx-text-box>
                     <dx-button id="button" text="Subscribe" type="success"> </dx-button>
                 </div> -->
-                
+
               </div>
               </div>
                <!-- <div class="dx-card"style="margin-top: -6px;">
@@ -82,12 +82,12 @@
                   <div class="footer-images">
                     <a href="https://www.facebook.com/AstroLite-Astrology-Software-823982047980455/">     <img src="assets/images/facebook.png" class="footer-image" /></a>
                     <img src="assets/images/twitter.png" class="footer-image" />
-                    <img src="assets/images/youtube.png" class="footer-image" /> 
+                    <img src="assets/images/youtube.png" class="footer-image" />
                   </div>
                 </div>
               </div> -->
               <div class="dx-card copyright">
-                 <div class="footer-inner" > 
+                 <div class="footer-inner" >
                    <p class="rights">© 2019 Astrolite.in All Rights Reserved</p>
                   <!-- <p class="made-in">Made within India</p> -->
             <div class="made-in">
@@ -98,7 +98,7 @@
                       <img src="assets/images/card.png" class="footer-image" />
                       <img src="assets/images/ccard.png" class="footer-image" />
                       <img src="assets/images/america.png" class="footer-image" />
-                    
+
                     </div>
             </div>
             <div class="payment-icons">
@@ -106,22 +106,22 @@
                     <div class="footer-images">
                       <a href="https://www.facebook.com/AstroLite-Astrology-Software-823982047980455/">     <img src="assets/images/facebook.png" class="footer-image" /></a>
                       <img src="assets/images/twitter.png" class="footer-image" />
-                      <img src="assets/images/youtube.png" class="footer-image" /> 
+                      <img src="assets/images/youtube.png" class="footer-image" />
                     </div>
                     </div>
                   </div>
                   <!-- <p>Build version: 0.0.4</p> -->
                 </div>
                 </div>
-             
-            
-           
+
+
+
         </app-footer>
     </app-side-nav-outer-toolbar>
     <!-- <app-single-card>
             <router-outlet></router-outlet>
         </app-single-card> -->
-   
+
     <dx-popup
     class="popup"
     [width]="250"
@@ -139,7 +139,7 @@
         <dx-button text='OK' (onClick)="ClosePopUp()"></dx-button>
     </div>
     </dx-popup>
-    
+
 <dx-popup
     class="popup"
     [width]="350"
@@ -160,7 +160,7 @@
 
 <dx-popup *ngIf="loginService.orderhistorypopupVisible"
     class="popup"
-    [width]="400"
+    [width]="350"
     [height]="300"
     [showTitle]="true"
     title="Last Pending Transaction"

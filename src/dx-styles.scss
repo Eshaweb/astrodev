@@ -7,7 +7,7 @@
 
 .dx-gallery-item-image {
   max-width: 100%;
-   -webkit-align-self: auto; 
+   -webkit-align-self: auto;
   -ms-flex-item-align: auto;
   /* align-self: flex-start; */
   -webkit-flex-shrink: 0;
@@ -71,7 +71,7 @@ aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.do
 
 }
 .submit-btn{
-       
+
   display: flex;
   justify-content: center;
 
@@ -81,9 +81,9 @@ $side-panel-min-width: 60px;
 
 //User panel for mobile
 @media (max-width: 450px){
-.user-panel {
-  margin-left: 46px;
-}
+// .user-panel {
+//   margin-left: 46px;
+// }
 
 .user-info{
     display: flex;
@@ -91,7 +91,7 @@ $side-panel-min-width: 60px;
     background: #ee7939;
     border-radius: 5px;
     width: 136px;
-    /* margin-left: 51px; */
+    margin-left: 51px;
     border: solid 1px#ee7e3c;
     color: #000;
 }
