@@ -1,0 +1,70 @@
+::ng-deep #summary {
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    }
+    ::ng-deep #button {
+        width: 150px;
+       
+    }
+    
+    .dx-fieldset-column {
+    float: left;
+    width: 45%;
+    margin-right: 40px;
+    margin-top: 24px !important;
+    }
+
+    .dx-fieldset-column3 {
+        float: left;
+        width: 25%;
+        
+        margin-top: 24px !important;
+        }
+    
+    .clear {
+    clear: both;
+    }
+    
+    .dx-texteditor-container {
+    margin-bottom: 14px;
+    }
+    ::ng-deep aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.current .step-indicator {
+        color: #ff5722 !important;
+        /* border: 2px solid #ff5722; */
+    }
+    @media (max-width: 800px) {
+
+        .dx-fieldset {
+            margin: 50px 20px !important;
+        }
+    .dx-fieldset-column {
+    float: left;
+    width: 100%;
+    height:55px;
+    }
+    .dx-fieldset-column3 {
+        float: left;
+        width: 100%;
+        /*height:55px;*/
+        }
+    .dx-field-label{
+        width: 60%;
+        align-self:flex-end;
+    }
+
+    .responsive-paddings {
+        padding: 5px;
+    }
+    .dx-field-value{
+        width: 100% !important;
+    }
+
+    }
+    
+    .dx-field-value, .dx-field-label {
+    text-align: left;
+    }
+   
+
+  

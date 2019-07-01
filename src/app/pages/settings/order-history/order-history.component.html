@@ -31,6 +31,14 @@
             [multiple]="false"
             [animationDuration]="300"
             (onItemTitleClick)="onItemClick($event)">
+            <!-- <dx-accordion
+            #accordion
+            [dataSource]="services"
+            [collapsible]="true"
+            [multiple]="true"
+            [animationDuration]="300"
+            [selectedItems]="[]"
+            (onItemTitleClick)="onItemClick($event)"> To Closing of items, while opening the page-->
             <div *dxTemplate="let item of 'title'">
                 <div class="heading">{{item.ServiceName}}</div>
             </div>

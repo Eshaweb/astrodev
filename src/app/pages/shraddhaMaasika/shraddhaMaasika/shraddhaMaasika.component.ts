@@ -14,11 +14,11 @@ import { LoginService } from 'src/Services/LoginService/LoginService';
 import { KaaliDrushtiRequest } from 'src/Models/KaaliDrushti/KaaliDrushtiRequest';
 import { KaaliDrushtiService } from 'src/Services/KaaliDrushtiService/KaaliDrushtiService';
 @Component({
-  selector: 'app-kaalidrushti',
-  templateUrl: './kaalidrushti.component.html',
-  styleUrls: ['./kaalidrushti.component.scss']
+  selector: 'app-shraddhaMaasika',
+  templateUrl: './shraddhaMaasika.component.html',
+  styleUrls: ['./shraddhaMaasika.component.scss']
 })
-export class KaalidrushtiComponent implements OnInit {
+export class ShraddhaMaasikaComponent implements OnInit {
   kaalidrushtiRequest: KaaliDrushtiRequest;
   kaalidrushtiForm: FormGroup;
   timeformatdata: ArrayStore;

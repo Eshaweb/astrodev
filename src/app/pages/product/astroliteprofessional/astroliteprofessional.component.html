@@ -155,20 +155,20 @@
     <div class="clear"></div>
     <div class="dx-fieldset" *ngIf="!payableAmount">
         <div class="dx-field">
-            <div class="cap">Base Price</div>
-            <div class="data">{{productPrice.BasePrice|currency:'INR'}}</div>
+            <div class="cap" style="text-decoration: line-through;">Base Price</div>
+            <div class="data" style="text-decoration: line-through;">{{productPrice.BasePrice|currency:'INR'}}</div>
         </div>
         <div class="dx-field">
-            <div class="cap">Discount</div>
+            <div class="cap" style="font-size: 24;">Net Price</div>
+            <div class="data">{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</div>
+        </div>
+        <div class="dx-field">
+            <div class="cap">You Save</div>
             <div class="data">{{productPrice.Discount|currency:'INR'}} ({{productPrice.DiscountRate}}%)</div>
         </div>
         <div class="dx-field" *ngIf="discountAmount">
             <div class="cap">Coupon Discount</div>
             <div class="data">{{discountAmount|currency:'INR'}}</div>
-        </div>
-        <div class="dx-field">
-            <div class="cap">Net Price</div>
-            <div class="data">{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</div>
         </div>
         <div class="dx-field">
             <div class="cap">Wallet Bonus</div>
