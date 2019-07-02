@@ -4,7 +4,7 @@ import { ScreenService } from '../../shared/services';
 import { DxDrawerModule } from 'devextreme-angular/ui/drawer';
 import { DxScrollViewModule } from 'devextreme-angular/ui/scroll-view';
 import { CommonModule } from '@angular/common';
-import { interval, Observable, timer } from 'rxjs';
+import { interval, Observable, timer, Subscription } from 'rxjs';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { StorageService } from 'src/Services/StorageService/Storage_Service';
 // import { navigation } from 'src/app/app-navigation';
@@ -40,11 +40,11 @@ export class SideNavOuterToolbarComponent implements OnInit {
   menuItems: any;
   serviceList:any;
   buttonId: any;
-  subscribe: import("f:/EshaWebTechnologies/Working folder/astrodev/node_modules/rxjs/internal/Subscription").Subscription;
-  sub: any;
+  subscribe: Subscription;
   timeExceeded: boolean = false;
   showSuccess: boolean;
   ItName: any;
+  sub: Subscription;
 
   constructor(public loadingSwitchService:LoadingSwitchService,public loginService: LoginService, private screen: ScreenService, 
     private router: Router, public itemService:ItemService, public orderService:OrderService, public storageService:StorageService,
@@ -166,6 +166,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
   }
   
   onDownloadClick() {
+    this.itemService.DownloadClickedOnce=true;
     if (StorageService.GetItem('ItActId') == '#BN') {
       this.loadingSwitchService.loading=true;
       var FreeReport = {
@@ -199,6 +200,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
               this.orderService.CheckForResult(OrderId).subscribe((data) => {
                 if (data.AstroReportId.length != 0) {
                   this.buttonId = data.AstroReportId[0].split('_')[0];
+                  this.ItName=data.AstroReportId[0].split('_')[1];
                   this.DownloadResult(this.buttonId);
                 }
               });
@@ -215,7 +217,6 @@ export class SideNavOuterToolbarComponent implements OnInit {
     //this.horoScopeService.DownloadResult(buttonId, (data) => {
     this.horoScopeService.DownloadResult(buttonId).subscribe((data:any)=> {
       var newBlob = new Blob([data], { type: "application/pdf" });
-      // const fileName: string = this.orderService.orderResponse.ItName+'.pdf';
       const fileName: string = this.ItName + '.pdf';
       const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
       var url = window.URL.createObjectURL(newBlob);
@@ -225,12 +226,10 @@ export class SideNavOuterToolbarComponent implements OnInit {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      //this.loading = false;
       this.showSuccess = true;
-      //this.clearParameters();
-      this.storageService.RemoveDataFromSession();
-      //this.loadPanel.visible = false;
+      //this.storageService.RemoveDataFromSession();
       this.loadingSwitchService.loading= false;
+      this.itemService.DownloadClickedOnce=false;
       this.sub.unsubscribe();
       this.subscribe.unsubscribe();
       console.clear();

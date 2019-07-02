@@ -72,11 +72,10 @@ export class LoginFormComponent {
   passwordButton: any;
   showResendOTP: boolean;
 
-  constructor(public orderService: OrderService, public storageService: StorageService, private muhurthaService: MuhurthaService, private numerologyService: NumerologyService, private matchMakingService: MatchMakingService,
-    private astamangalaService: AstamangalaService, public registrationService: RegistrationService, public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager,
+  constructor(public orderService: OrderService, public storageService: StorageService,public uiService: UIService, public formbuilder: FormBuilder,
+    public registrationService: RegistrationService, public loadingSwitchService: LoadingSwitchService, public toastrService: ToastrManager,
     public _location: Location, public route: ActivatedRoute, public router: Router, public http: HttpClient, public partyService: PartyService,
-    public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService, public httpService:HttpService,
-    public uiService: UIService, public formbuilder: FormBuilder) {
+    public authService: AuthService, public horoScopeService: HoroScopeService, public loginService: LoginService, public httpService:HttpService) {
 
     this.route.params.subscribe(params => {
         //this.id = +params['OrderId']; // (+) converts string 'id' to a number

@@ -24,7 +24,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
     constructor(public storageService:StorageService, private injector: Injector, private route: ActivatedRoute, public httpService: HttpService,
         private router: Router, private loginService: LoginService, public connectionService:ConnectionService, public loadingSwitchService:LoadingSwitchService) {
-
     }
     
     addToken(req: HttpRequest<any>, token: any): HttpRequest<any> {
@@ -208,13 +207,16 @@ export class AuthInterceptor implements HttpInterceptor {
     logoutUser() {
         // Route to the login page (implementation up to you)
         StorageService.RemoveItem('PartyMastId');
-      this.storageService.RemoveDataFromSession();
-      this.loginService.userProfileVisible=false;
-      this.loginService.menuItems=navigationBeforeLogin;
-      this.loginService.serviceMenus=serviceMenusBeforeLogin;
-      this.loginService.serviceList=serviceListBeforeLogin;
-      this.loginService.isAdmin=false;
-      this.router.navigateByUrl('/login-form');
+        if (window.location.pathname != "/babyNaming/getBabyNamingFreeData") {
+            this.storageService.RemoveDataFromSession();
+        }
+        this.loginService.userProfileVisible = false;
+        this.loginService.menuItems = navigationBeforeLogin;
+        this.loginService.serviceMenus = serviceMenusBeforeLogin;
+        this.loginService.serviceList = serviceListBeforeLogin;
+        this.loginService.isAdmin = false;
+        //   this.router.navigate(['/login-form', {'RedirectUrl':window.location.href.substring(window.location.href.lastIndexOf('/')+1)}]);
+        this.router.navigate(['/login-form', { 'RedirectUrl': window.location.pathname }]);
         return observableThrowError("");
     }
 }

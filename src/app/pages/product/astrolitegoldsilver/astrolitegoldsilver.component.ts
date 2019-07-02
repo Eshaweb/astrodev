@@ -161,11 +161,10 @@ export class AstrolitegoldsilverComponent implements OnInit {
     if (AndroidPriceRequest.Products.length != 0) {
       this.productService.GetAndroidPrice(AndroidPriceRequest).subscribe((data) => {
         this.productPrice=data;
-        if(this.CoupenCodeForm.controls['CouponCode'].value!=undefined){
+        if(this.CoupenCodeForm.controls['CouponCode'].value!=""){
           this.onApplyCouponCode_click();
         }
         this.GetProductPurchaseWalletBenefit(this.productPrice.ActualPrice-this.discountAmount);
-        this.loadingSwitchService.loading = false;
       });
     }
     else {
@@ -175,7 +174,7 @@ export class AstrolitegoldsilverComponent implements OnInit {
       this.productPrice.DiscountRate=0;
       this.walletdiscountAmount=0;
       this.walletdiscountPercentage=0;
-      if(this.CoupenCodeForm.controls['CouponCode'].value!=undefined){
+      if(this.CoupenCodeForm.controls['CouponCode'].value!=""){
         this.discountAmount = 0;
       }
       this.loadingSwitchService.loading = false;
@@ -262,8 +261,8 @@ export class AstrolitegoldsilverComponent implements OnInit {
             break;
           }
           else if (data.PayModes[i] == "OFF") {
-            this.loadingSwitchService.loading = false;
             StorageService.SetItem('OrderId',data.OrderId);
+            StorageService.SetItem('AmounttoPay_Offline',this.productPrice.ActualPrice - this.discountAmount);
             this.router.navigate(['/staticpages/offlinePayment']);
             break;
           }

@@ -20,7 +20,7 @@ import { KaaliDrushtiService } from 'src/Services/KaaliDrushtiService/KaaliDrush
 })
 export class ShraddhaMaasikaComponent implements OnInit {
   kaalidrushtiRequest: KaaliDrushtiRequest;
-  kaalidrushtiForm: FormGroup;
+  shraddhaMaasikaForm: FormGroup;
   timeformatdata: ArrayStore;
   timeformatvalue: string;
   public loading = false;
@@ -60,7 +60,7 @@ export class ShraddhaMaasikaComponent implements OnInit {
     this.maxdateinDateFormat = new Date(2099, 11, 31);
     this.genders = [{ Id: "M", Text: "Male" }, { Id: "F", Text: "Female" }];
     this.loginService.isHomePage = false;
-      this.kaalidrushtiForm = this.formbuilder.group({
+      this.shraddhaMaasikaForm = this.formbuilder.group({
       Date: new Date(),
       Time: new Date(),
       LangCode:['', [Validators.required]],
@@ -68,7 +68,7 @@ export class ShraddhaMaasikaComponent implements OnInit {
       Timeformat: ['', [Validators.required]]
     }, {validator: this.validateDateField('Date')});
 
-    const PlaceContrl = this.kaalidrushtiForm.get('Place');
+    const PlaceContrl = this.shraddhaMaasikaForm.get('Place');
     PlaceContrl.valueChanges.subscribe(value => this.setErrorMessage(PlaceContrl));
     if (this.kaaliDrushtiService.kaaliDrushtiRequest!= null) {
       this.kaalidrushtiRequest = this.kaaliDrushtiService.kaaliDrushtiRequest;
@@ -76,11 +76,11 @@ export class ShraddhaMaasikaComponent implements OnInit {
       this.birthTimeinDateFormat = this.kaaliDrushtiService.TimeinDateFormat;
     }
     else {
-      this.birthDateinDateFormat = this.kaalidrushtiForm.controls['Date'].value;
-      this.birthTimeinDateFormat = this.kaalidrushtiForm.controls['Time'].value;
+      this.birthDateinDateFormat = this.shraddhaMaasikaForm.controls['Date'].value;
+      this.birthTimeinDateFormat = this.shraddhaMaasikaForm.controls['Time'].value;
       this.kaalidrushtiRequest = {
         LangCode:null,
-        Date: this.kaalidrushtiForm.controls['Date'].value,
+        Date: this.shraddhaMaasikaForm.controls['Date'].value,
         Time: null,
         Gender:"M",
         Place: this.kaaliDrushtiService.place,
@@ -227,8 +227,8 @@ export class ShraddhaMaasikaComponent implements OnInit {
   OnSubmit_click() {
     this.loadingSwitchService.loading = true;
     this.kaaliDrushtiService.systemDate = ("0" + new Date().getDate()).toString().slice(-2) + "-" + ("0" + ((new Date().getMonth()) + 1)).toString().slice(-2) + "-" + new Date().getFullYear().toString();
-    var bdate: Date = this.kaalidrushtiForm.controls['Date'].value;
-    var btime: Date = this.kaalidrushtiForm.controls['Date'].value;
+    var bdate: Date = this.shraddhaMaasikaForm.controls['Date'].value;
+    var btime: Date = this.shraddhaMaasikaForm.controls['Date'].value;
     if (bdate instanceof Date) {
       var dateinString = bdate.getFullYear().toString() + "-" + ("0" + ((bdate.getMonth()) + 1)).toString().slice(-2) + "-" + ("0" + bdate.getDate()).toString().slice(-2);
     }

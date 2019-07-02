@@ -73,7 +73,8 @@ export class ProfileComponent {
       if (data.EMail == null||data.EMail == "") {
         this.EMailDisabled = false;
       }
-      this.loginService.shareButtonDescription='Join me on Astrolite, an accurate app for Horoscope, Matchmaking, Muhurtha, Ashtamangala, Nithya Panchanga and many more astrology related services. Enter Code '+data.ReferralCode+' to get some amount to your wallet!..ಜಾತಕ, ಮುಹೂರ್ತ, ವಿವಾಹ ಹೊಂದಾಣಿಕೆ, 200 ವರ್ಷದ ಪಂಚಾಂಗ, ಇತ್ಯಾದಿ ಅನೇಕ ಜ್ಯೋತಿಷ್ಯದ ವಿಚಾರಗಳು ಈ ಸಾಫ್ಟ್ವೇರ್ ನಲ್ಲಿ ಲಭ್ಯವಿದೆ. ಕೆಳಗಿನ Link ಅನ್ನು Click ಮಾಡಿ Register ಮಾಡಿಕೊಳ್ಳಿ. Register ಮಾಡಿಕೊಂಡಲ್ಲಿ ₹225/- ಪ್ರಾರಂಭಿಕ ವ್ಯಾಲೆಟ್ ಬ್ಯಾಲೆನ್ಸ್ ನಿಮ್ಮದಾಗುತ್ತದೆ ಹಾಗೂ ಇತರರಿಗೂ Share ಮಾಡಿ.';
+      // this.loginService.shareButtonDescription='Join me on Astrolite, an accurate app for Horoscope, Matchmaking, Muhurtha, Ashtamangala, Nithya Panchanga and many more astrology related services. Enter Code '+data.ReferralCode+' to get some amount to your wallet!..ಜಾತಕ, ಮುಹೂರ್ತ, ವಿವಾಹ ಹೊಂದಾಣಿಕೆ, 200 ವರ್ಷದ ಪಂಚಾಂಗ, ಇತ್ಯಾದಿ ಅನೇಕ ಜ್ಯೋತಿಷ್ಯದ ವಿಚಾರಗಳು ಈ ಸಾಫ್ಟ್ವೇರ್ ನಲ್ಲಿ ಲಭ್ಯವಿದೆ. ಕೆಳಗಿನ Link ಅನ್ನು Click ಮಾಡಿ Register ಮಾಡಿಕೊಳ್ಳಿ. Register ಮಾಡಿಕೊಂಡಲ್ಲಿ ₹225/- ಪ್ರಾರಂಭಿಕ ವ್ಯಾಲೆಟ್ ಬ್ಯಾಲೆನ್ಸ್ ನಿಮ್ಮದಾಗುತ್ತದೆ ಹಾಗೂ ಇತರರಿಗೂ Share ಮಾಡಿ.';
+      this.loginService.shareButtonDescription='Join me on Astrolite, an accurate app for Horoscope, Matchmaking, Muhurtha, Ashtamangala, Nithya Panchanga and many more astrology related services!..ಜಾತಕ, ಮುಹೂರ್ತ, ವಿವಾಹ ಹೊಂದಾಣಿಕೆ, 200 ವರ್ಷದ ಪಂಚಾಂಗ, ಇತ್ಯಾದಿ ಅನೇಕ ಜ್ಯೋತಿಷ್ಯದ ವಿಚಾರಗಳು ಈ ಸಾಫ್ಟ್ವೇರ್ ನಲ್ಲಿ ಲಭ್ಯವಿದೆ. ಕೆಳಗಿನ Link ಅನ್ನು Click ಮಾಡಿ Register ಮಾಡಿಕೊಳ್ಳಿ. Register ಮಾಡಿಕೊಂಡಲ್ಲಿ ₹225/- ಪ್ರಾರಂಭಿಕ ವ್ಯಾಲೆಟ್ ಬ್ಯಾಲೆನ್ಸ್ ನಿಮ್ಮದಾಗುತ್ತದೆ ಹಾಗೂ ಇತರರಿಗೂ Share ಮಾಡಿ.';
       this.loginService.RefCode = 'https://astrolite.in/registration/' + data.ReferralCode;
       this.loadingSwitchService.loading = false;
     });

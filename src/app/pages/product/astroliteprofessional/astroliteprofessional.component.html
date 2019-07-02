@@ -154,17 +154,19 @@
     </div>
     <div class="clear"></div>
     <div class="dx-fieldset" *ngIf="!payableAmount">
-        <div class="dx-field">
+        <!-- <div class="dx-field">
             <div class="cap" style="text-decoration: line-through;">Base Price</div>
             <div class="data" style="text-decoration: line-through;">{{productPrice.BasePrice|currency:'INR'}}</div>
+        </div> -->
+        <div class="dx-field">
+                <div class="cap">Base Price</div>
+                <div class="data" style="text-decoration: line-through;">{{productPrice.BasePrice|currency:'INR'}}</div>
+            <div class="cap" style="font-size: 24px;">Deal Price</div>
+            <div class="data" style="font-size: 24px;color:red;">{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</div>
         </div>
         <div class="dx-field">
-            <div class="cap" style="font-size: 24px;color:red">Net Price</div>
-            <div class="data" style="font-size: 24px;color:red">{{productPrice.ActualPrice-discountAmount|currency:'INR'}}</div>
-        </div>
-        <div class="dx-field">
-            <div class="cap">You Save</div>
-            <div class="data">{{productPrice.Discount|currency:'INR'}} ({{productPrice.DiscountRate}}%)</div>
+            <div class="cap" style="font-size: 12px">You Save</div>
+            <div class="data" style="font-size: 10px" style="color:orangered;">{{productPrice.Discount|currency:'INR'}} ({{productPrice.DiscountRate}}%)</div>
         </div>
         <div class="dx-field" *ngIf="discountAmount">
             <div class="cap">Coupon Discount</div>
@@ -172,15 +174,8 @@
         </div>
         <div class="dx-field" id="product1" (mouseenter)="toggleDefault()" (mouseleave)="toggleDefault()">
             <div class="cap">Wallet Bonus</div>
-            <div class="data">{{walletdiscountAmount|currency:'INR'}} ({{walletdiscountPercentage}}%)</div>
+            <div class="data" style="color:green">{{walletdiscountAmount|currency:'INR'}} ({{walletdiscountPercentage}}%)</div>
         </div>
-        <dx-tooltip 
-            target="#product1" 
-            [(visible)]="defaultVisible">
-            <div *dxTemplate="let data = data of 'content'">
-                Which can be used to get all online services(Horoscope, Matchmaking report etc.)
-            </div>
-        </dx-tooltip>
     </div>
     <div class="dx-fieldset" *ngIf="payableAmount">
         <div class="dx-field" *ngIf="discountAmount">
@@ -188,12 +183,12 @@
             <div class="data">{{discountAmount|currency:'INR'}}</div>
         </div>
         <div class="dx-field">
-            <div class="cap">Price</div>
-            <div class="data">{{payableAmount-discountAmount|currency:'INR'}}</div>
+            <div class="cap" style="font-size: 24px;">Price</div>
+            <div class="data" style="font-size: 24px;color:red;">{{payableAmount-discountAmount|currency:'INR'}}</div>
         </div>
-        <div class="dx-field">
+        <div class="dx-field" id="product1" (mouseenter)="toggleDefault()" (mouseleave)="toggleDefault()">
             <div class="cap">Wallet Bonus</div>
-            <div class="data">{{walletdiscountAmount|currency:'INR'}} ({{walletdiscountPercentage}}%)</div>
+            <div class="data" style="color:green">{{walletdiscountAmount|currency:'INR'}} ({{walletdiscountPercentage}}%)</div>
         </div>
     </div>
     <div class="dx-fieldset">
@@ -219,5 +214,12 @@
             </div>
         </div>
     </div>
+    <dx-tooltip 
+            target="#product1" 
+            [(visible)]="defaultVisible">
+            <div *dxTemplate="let data = data of 'content'">
+                Which can be used to get all online services(Horoscope, Matchmaking report etc.)
+            </div>
+        </dx-tooltip>
 </div>
 </div>

@@ -88,6 +88,9 @@ onServiceClick(event){
   OnKaalidrushti_Click(){
     this.router.navigate(["/kaalidrushti"]);
   }
+  OnShraddhaMaasika_Click(){
+    this.router.navigate(["/shraddhaMaasika"]);
+  }
   OnPanchanga_Click() {
     this.router.navigate(["/panchanga"]);
   }

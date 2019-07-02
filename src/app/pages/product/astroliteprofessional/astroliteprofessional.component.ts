@@ -434,6 +434,7 @@ export class AstroliteProfessionalComponent implements OnInit {
         this.loadingSwitchService.loading = false;
         if (data.Error == undefined) {
           this.horoScopeService.ExtCode = data.ExtCode;
+          StorageService.SetItem('ExtCode',data.ExtCode);
           for (var i = 0; i < data.PayModes.length; i++) {
             if (data.PayModes[i] == "ON") {
               this.loadingSwitchService.loading = true;
@@ -447,8 +448,8 @@ export class AstroliteProfessionalComponent implements OnInit {
               break;
             }
             else if (data.PayModes[i] == "OFF") {
-              this.loadingSwitchService.loading = false;
               StorageService.SetItem('OrderId', data.OrderId);
+              StorageService.SetItem('AmounttoPay_Offline',this.productPrice.ActualPrice - this.discountAmount);
               this.router.navigate(['/staticpages/offlinePayment']);
               break;
             }
@@ -474,6 +475,7 @@ export class AstroliteProfessionalComponent implements OnInit {
         this.loadingSwitchService.loading = false;
         if (data.Errors == undefined) {
           this.horoScopeService.ExtCode = data.ExtCode;
+          StorageService.SetItem('ExtCode',data.ExtCode);
           for (var i = 0; i < data.PayModes.length; i++) {
             if (data.PayModes[i] == "ON") {
               this.loadingSwitchService.loading = true;
@@ -487,8 +489,8 @@ export class AstroliteProfessionalComponent implements OnInit {
               break;
             }
             else if (data.PayModes[i] == "OFF") {
-              this.loadingSwitchService.loading = false;
               StorageService.SetItem('OrderId', data.OrderId);
+              StorageService.SetItem('AmounttoPay_Offline',this.payableAmount - this.discountAmount);
               this.router.navigate(['/staticpages/offlinePayment']);
               break;
             }

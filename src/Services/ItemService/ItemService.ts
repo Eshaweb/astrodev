@@ -12,6 +12,7 @@ export class ItemService {
   walletAmount: any;
   AmounttoPay_Offline: any;
   DownloadButtonVisible: boolean;
+  DownloadClickedOnce: boolean;
     constructor(public httpService: HttpService) {
 
     }

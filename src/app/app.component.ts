@@ -159,7 +159,7 @@ export class AppComponent {
   }
 
 ngOnInit(){
-  this.versionCheckService.initVersionCheck(environment.versionCheckURL);
+  //this.versionCheckService.initVersionCheck(environment.versionCheckURL);
 }
 
   ClosePopUp() {
